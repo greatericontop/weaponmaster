@@ -18,7 +18,9 @@ package io.github.greatericontop.weaponmaster.Excalibur;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Particle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -28,7 +30,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class ExcaliburItemListener implements Listener {
+
+    private Map<UUID, Boolean> cooldowns = new HashMap<UUID, Boolean>();
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -46,14 +54,27 @@ public class ExcaliburItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.excalibur.use§3.");
             return;
         }
-        LivingEntity victim = (LivingEntity) event.getEntity();
-        victim.setNoDamageTicks(0);
-        new BukkitRunnable() {
-            public void run() {
-                victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
-                victim.damage(3.0);
-            }
-        }.runTaskLater(plugin, 1L);
+        if (cooldowns.getOrDefault(player.getUniqueId(), true)) {
+            LivingEntity victim = (LivingEntity) event.getEntity();
+            new BukkitRunnable() {
+                public void run() {
+                    if (victim.isDead()) {
+                        cancel();
+                        return;
+                    }
+                    victim.setNoDamageTicks(0);
+                    victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
+                    victim.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, victim.getLocation(), 4);
+                    TrueDamageHelper.dealTrueDamage(victim, 3.0, player);
+                }
+            }.runTaskLater(plugin, 1L);
+            cooldowns.put(player.getUniqueId(), false);
+            new BukkitRunnable() {
+                public void run() {
+                    cooldowns.put(player.getUniqueId(), true);
+                }
+            }.runTaskLater(plugin, 120L);
+        }
     }
 
 }

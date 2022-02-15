@@ -29,6 +29,7 @@ import io.github.greatericontop.weaponmaster.DragonSword.DragonItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonRecipe;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburCommand;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
+import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
@@ -128,6 +129,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Excalibur
         getCommand("excalibur").setExecutor(new ExcaliburCommand());
         getServer().getPluginManager().registerEvents(new ExcaliburItemListener(this), this);
+        new ExcaliburRecipe().regRecipe();
         // Exodus
         getCommand("exodus").setExecutor(new ExodusCommand());
         getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);

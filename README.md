@@ -12,4 +12,8 @@ use maven
 
 a lot of things are broken
 
-yes, there is a license check but you should be able to crack it (look in the main class)
+## license
+
+GPL 3
+
+(Yes, there is a dumb license check just for fun, but you should be able to crack it. Look in the main class.)
