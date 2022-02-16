@@ -37,7 +37,7 @@ public class ExcaliburRecipe {
         excalibur.addEnchantment(Enchantment.DURABILITY, 2);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("excalibur"), excalibur);
         recipe.shape("dNt",
-                     "dNt",
+                     "NNN",
                      "dCt");
         recipe.setIngredient('N', Material.NETHER_STAR);
         recipe.setIngredient('C', Material.END_CRYSTAL);

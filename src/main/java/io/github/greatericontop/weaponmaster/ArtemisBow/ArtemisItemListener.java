@@ -62,8 +62,7 @@ public class ArtemisItemListener implements Listener {
                 if (runNumber <= 59) return 0.5 * SEEKING_DISTANCE;
                 return 0.75 * SEEKING_DISTANCE;
             case STRONGEST:
-                if (runNumber <= 2) return 0.5 * SEEKING_DISTANCE;
-                if (runNumber <= 4) return 0.75 * SEEKING_DISTANCE;
+                if (runNumber <= 3) return 0.75 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
             default: // NORMAL
                 if (runNumber <= 4) return 0.01;
