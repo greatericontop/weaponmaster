@@ -37,12 +37,15 @@ public class ExcaliburRecipe {
         excalibur.addEnchantment(Enchantment.DURABILITY, 2);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("excalibur"), excalibur);
         recipe.shape("dNt",
-                     "NNN",
+                     "zNs",
                      "dCt");
         recipe.setIngredient('N', Material.NETHER_STAR);
         recipe.setIngredient('C', Material.END_CRYSTAL);
         recipe.setIngredient('d', Material.DIAMOND_BLOCK);
         recipe.setIngredient('t', Material.TNT);
+        recipe.setIngredient('z', Material.ZOMBIE_HEAD);
+        recipe.setIngredient('s', Material.SKELETON_SKULL);
+
         Bukkit.getServer().addRecipe(recipe);
     }
 

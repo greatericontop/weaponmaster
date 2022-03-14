@@ -37,6 +37,7 @@ import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
+import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -135,6 +136,7 @@ public class WeaponMasterMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
+        new FlaskRecipe().regRecipe();
         // Custom Item Listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getLogger().info("done");
