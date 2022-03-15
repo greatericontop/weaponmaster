@@ -56,14 +56,12 @@ public class ExodusItemListener implements Listener {
         if (cooldown.getOrDefault(player.getUniqueId(), true)) {
             PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 80, 0, true);
             player.addPotionEffect(effect);
-            player.sendMessage("§7[Debug] regen for 80 ticks");
             cooldown.put(player.getUniqueId(), false);
             new BukkitRunnable() {
                 public void run() {
                     cooldown.put(player.getUniqueId(), true);
-                    player.sendMessage("§7[Debug] cooldown over");
                 }
-            }.runTaskLater(plugin, 360L); // after 18 seconds
+            }.runTaskLater(plugin, 120L); // after 6 seconds
         }
     }
 

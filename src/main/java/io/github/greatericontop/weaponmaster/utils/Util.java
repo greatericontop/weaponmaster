@@ -131,7 +131,7 @@ public class Util {
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§3Regenerate a small portion");
         EXODUS_LORE.add("§3of health when you hit any");
-        EXODUS_LORE.add("§3entity! (18 second cooldown)");
+        EXODUS_LORE.add("§3entity! (6 second cooldown)");
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§6---------------");
         // Assault Rifle
