@@ -90,7 +90,7 @@ public class Util {
         DRAGON_SWORD_LORE.add("§6Crafted from a dragon's head, it carries power.");
         DRAGON_SWORD_LORE.add("");
         DRAGON_SWORD_LORE.add("§eAbility: §4One With The Dragon");
-        DRAGON_SWORD_LORE.add("§3Gain §bStrength §cI §3for §b10 §3seconds after a hit.");
+        DRAGON_SWORD_LORE.add("§3Chance to deal up to §c80% §3more damage!");
         DRAGON_SWORD_LORE.add("");
         DRAGON_SWORD_LORE.add("§6LEGENDARY WEAPON");
         DRAGON_SWORD_LORE.add("§6---------------");

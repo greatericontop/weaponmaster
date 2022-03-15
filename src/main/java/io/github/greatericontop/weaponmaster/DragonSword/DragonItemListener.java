@@ -25,11 +25,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class DragonItemListener implements Listener {
+
+    // triangular distribution parameters
+    // on average, if the ability triggers, deal 35% more damage
+    private final double A = 0.0;
+    private final double B = 0.8;
+    private final double C = 0.25;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -38,7 +41,17 @@ public class DragonItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    private double triangular(double random) {
+        // triangular distribution code stolen from https://stackoverflow.com/questions/33220176/triangular-distribution-in-java
+        double F = (C - A) / (B - A);
+        if (random < F) {
+            return A + Math.sqrt(random * (B - A) * (C - A));
+        } else {
+            return B - Math.sqrt((1-random) * (B - A) * (B - C));
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST) // runs last to stack up all the bonuses
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player)event.getDamager();
@@ -47,14 +60,12 @@ public class DragonItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonsword.use§3.");
             return;
         }
-        // add strength
-        new BukkitRunnable() {
-            public void run() {
-                PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 200, 0, true);
-                player.addPotionEffect(effect);
-                player.sendMessage("§4[One With The Dragon] §3You received §bStrength §cI §3for §b10 §3seconds.");
-            }
-        }.runTaskLater(plugin, 1L);
+        // increment damage
+        if (Math.random() < 0.5) {
+            double multiplier = triangular(Math.random());
+            event.setDamage(event.getDamage()*(1+multiplier));
+            player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
+        }
     }
 
 }
