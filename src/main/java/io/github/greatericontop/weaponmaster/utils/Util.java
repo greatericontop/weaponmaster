@@ -164,6 +164,7 @@ public class Util {
     }
 
     private boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
+        if (item == null) { return false; }
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
         boolean nameCorrect = iMeta.getDisplayName().equals(requiredName);
