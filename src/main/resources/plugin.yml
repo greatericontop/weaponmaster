@@ -48,6 +48,11 @@ commands:
     usage: "U: /exodus [give]"
     permission: "weaponmaster.exodus.command"
     permission-message: "§cYou are not allowed to do this!"
+  rocketstick:
+    description: "[Weapon Master] command for Rocket Stick"
+    usage: "U: /rocketstick [give]"
+    permission: "weaponmaster.rocketstick.give"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -76,6 +81,8 @@ permissions:
       weaponmaster.excalibur.use: true
       weaponmaster.exodus.command: true
       weaponmaster.exodus.use: true
+      weaponmaster.rocketstick.command: true
+      weaponmaster.rocketstick.use: true
       weaponmaster.assaultrifle.command: true
       weaponmaster.assaultrifle.use: true
   weaponmaster.weaponmaster:
@@ -135,6 +142,13 @@ permissions:
     description: "Allows usage of /exodus"
     default: op
   weaponmaster.exodus.use:
+    description: "Lets you use the item"
+    default: true
+  #
+  weaponmaster.rocketstick.command:
+    description: "Allows usage of /rocketstick"
+    default: op
+  weaponmaster.rocketstick.use:
     description: "Lets you use the item"
     default: true
   #

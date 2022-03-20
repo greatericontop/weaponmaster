@@ -34,6 +34,8 @@ import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
+import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
+import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
@@ -134,6 +136,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Exodus
         getCommand("exodus").setExecutor(new ExodusCommand());
         getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
+        // Rocket Stick
+        getCommand("rocketstick").setExecutor(new RocketCommand());
+        getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

@@ -35,6 +35,7 @@ public class Util {
     public final String ANDURIL_NAME = "§f§lAnduril §6⚝⚝⚝⚝⚝";
     public final String EXCALIBUR_NAME = "§e§lExcalibur §6⚝⚝⚝⚝⚝";
     public final String EXODUS_NAME = "§b§lExodus §6⚝⚝⚝⚝⚝";
+    public final String ROCKET_STICK_NAME = "§9Rocket Stick §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -45,6 +46,7 @@ public class Util {
     public List<String> ANDURIL_LORE = new ArrayList<String>();
     public List<String> EXCALIBUR_LORE = new ArrayList<String>();
     public List<String> EXODUS_LORE = new ArrayList<String>();
+    public List<String> ROCKET_STICK_LORE = new ArrayList<>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     private final WeaponMasterMain plugin;
@@ -134,6 +136,19 @@ public class Util {
         EXODUS_LORE.add("§3entity! (6 second cooldown)");
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§6---------------");
+        // Rocket Stick
+        ROCKET_STICK_LORE.add("id: ROCKET_STICK");
+        ROCKET_STICK_LORE.add("§6---------------");
+        ROCKET_STICK_LORE.add("");
+        ROCKET_STICK_LORE.add("§6Launch your enemies into the air!");
+        ROCKET_STICK_LORE.add("§7Hit with stick to use. (players only)");
+        ROCKET_STICK_LORE.add("");
+        ROCKET_STICK_LORE.add("§6Teleport forward! §3§lSHIT RIGHT CLICK");
+        ROCKET_STICK_LORE.add("");
+        ROCKET_STICK_LORE.add("§6Launch yourself in the direction");
+        ROCKET_STICK_LORE.add("§6you are facing! §3§lRIGHT CLICK");
+        ROCKET_STICK_LORE.add("");
+        ROCKET_STICK_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -195,6 +210,9 @@ public class Util {
     }
     public boolean checkForExodus(ItemStack item) {
         return this.checkFor(item, EXODUS_NAME, 0, "id: EXODUS");
+    }
+    public boolean checkForRocketStick(ItemStack item) {
+        return this.checkFor(item, ROCKET_STICK_NAME, 0, "id: ROCKET_STICK");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
