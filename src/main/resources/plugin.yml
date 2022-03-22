@@ -1,7 +1,8 @@
 name: 'WeaponMaster'
-version: '1.0.1'
+version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
 api-version: 1.17
+authors: [greateric]
 commands:
   weaponmaster:
     description: "WeaponMaster"
@@ -51,7 +52,7 @@ commands:
   rocketstick:
     description: "[Weapon Master] command for Rocket Stick"
     usage: "U: /rocketstick [give]"
-    permission: "weaponmaster.rocketstick.give"
+    permission: "weaponmaster.rocketstick.command"
     permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
@@ -59,102 +60,55 @@ commands:
     permission: "weaponmaster.assaultrifle.command"
     permission-message: "§cYou are not allowed to do this!"
 permissions:
-  #
-  weaponmaster.*:
-    description: "All weaponmaster commands"
-    default: false
-    children:
-      weaponmaster.weaponmaster: true
-      weaponmaster.rpgl.command: true
-      weaponmaster.rpgl.use: true
-      weaponmaster.vampaxe.command: true
-      weaponmaster.vampaxe.use: true
-      weaponmaster.deathscythe.command: true
-      weaponmaster.deathscythe.use: true
-      weaponmaster.dragonsword.command: true
-      weaponmaster.dragonsword.use: true
-      weaponmaster.artemis.command: true
-      weaponmaster.artemis.use: true
-      weaponmaster.anduril.command: true
-      weaponmaster.anduril.use: true
-      weaponmaster.excalibur.command: true
-      weaponmaster.excalibur.use: true
-      weaponmaster.exodus.command: true
-      weaponmaster.exodus.use: true
-      weaponmaster.rocketstick.command: true
-      weaponmaster.rocketstick.use: true
-      weaponmaster.assaultrifle.command: true
-      weaponmaster.assaultrifle.use: true
   weaponmaster.weaponmaster:
-    description: "Allows usage of /weaponmaster"
     default: true
   #
   weaponmaster.rpgl.command:
-    description: "Allows usage of /rpgl"
     default: op
   weaponmaster.rpgl.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.vampaxe.command:
-    description: "Allows usage of /vampaxe"
     default: op
   weaponmaster.vampaxe.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.deathscythe.command:
-    description: "Allows usage of /scythe"
     default: op
   weaponmaster.deathscythe.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.dragonsword.command:
-    description: "Allows usage of /dragonsword"
     default: op
   weaponmaster.dragonsword.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.artemisbow.command:
-    description: "Allows usage of /artemis"
     default: op
   weaponmaster.artemisbow.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.anduril.command:
-    description: "Allows usage of /anduril"
     default: op
   weaponmaster.anduril.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.excalibur.command:
-    description: "Allows usage of /excalibur"
     default: op
   weaponmaster.excalibur.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.exodus.command:
-    description: "Allows usage of /exodus"
     default: op
   weaponmaster.exodus.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.rocketstick.command:
-    description: "Allows usage of /rocketstick"
     default: op
   weaponmaster.rocketstick.use:
-    description: "Lets you use the item"
     default: true
   #
   weaponmaster.assaultrifle.command:
-    description: "Allows usage of /assaultrifle"
     default: op
   weaponmaster.assaultrifle.use:
-    description: "Lets you use the item"
     default: true
