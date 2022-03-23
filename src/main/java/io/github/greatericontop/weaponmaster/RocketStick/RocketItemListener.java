@@ -75,7 +75,7 @@ public class RocketItemListener implements Listener {
                 Vector tp = player.getEyeLocation().getDirection().multiply(TELEPORT_DISTANCE);
                 // check raytrace
                 RayTraceResult rtxResult = player.getWorld()
-                        .rayTrace(player.getEyeLocation(), tp, TELEPORT_DISTANCE + 1.5, FluidCollisionMode.NEVER, true, 0.3, null);
+                        .rayTrace(player.getEyeLocation(), tp, TELEPORT_DISTANCE + 1.5, FluidCollisionMode.NEVER, true, 0.4, null);
                 if (rtxResult != null && rtxResult.getHitBlock() != null) {
                     Location loc = rtxResult.getHitBlock().getLocation();
                     player.sendMessage(String.format("§7Canceled due to: %s %s %s", loc.getX(), loc.getY(), loc.getZ()));
