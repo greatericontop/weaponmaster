@@ -70,7 +70,7 @@ public class Util {
         RPG_LAUNCHER_LORE.add("§eImpact Strength: §3Similar to bed or anchor");
         RPG_LAUNCHER_LORE.add("§7Major recoil");
         RPG_LAUNCHER_LORE.add("");
-        RPG_LAUNCHER_LORE.add("§cSUPREME WEAPON");
+        RPG_LAUNCHER_LORE.add("§cSUPREME");
         RPG_LAUNCHER_LORE.add("§6---------------");
         // Vampire's Axe
         VAMP_AXE_LORE.add("id: VAMP_AXE");
@@ -79,7 +79,7 @@ public class Util {
         VAMP_AXE_LORE.add("§eAbility: §4Vampiric");
         VAMP_AXE_LORE.add("§3Life steal §b§l16% §3of dealt damage.");
         VAMP_AXE_LORE.add("");
-        VAMP_AXE_LORE.add("§6LEGENDARY WEAPON");
+        VAMP_AXE_LORE.add("§6LEGENDARY");
         VAMP_AXE_LORE.add("§6---------------");
         // Death's Scythe
         DEATH_SCYTHE_LORE.add("id: DEATH_SCYTHE");
@@ -89,7 +89,7 @@ public class Util {
         DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l50% §3of your target's");
         DEATH_SCYTHE_LORE.add("§3health as true damage.");
         DEATH_SCYTHE_LORE.add("");
-        DEATH_SCYTHE_LORE.add("§6LEGENDARY WEAPON");
+        DEATH_SCYTHE_LORE.add("§cSUPREME");
         DEATH_SCYTHE_LORE.add("§6---------------");
         // Dragon Sword
         DRAGON_SWORD_LORE.add("id: DRAGON_SWORD");
@@ -100,7 +100,7 @@ public class Util {
         DRAGON_SWORD_LORE.add("§eAbility: §4One With The Dragon");
         DRAGON_SWORD_LORE.add("§3Chance to deal up to §c80% §3more damage!");
         DRAGON_SWORD_LORE.add("");
-        DRAGON_SWORD_LORE.add("§6LEGENDARY WEAPON");
+        DRAGON_SWORD_LORE.add("§6LEGENDARY");
         DRAGON_SWORD_LORE.add("§6---------------");
         // Artemis Bow
         ARTEMIS_BOW_LORE.add("id: ARTEMIS_BOW");
@@ -112,7 +112,7 @@ public class Util {
         ARTEMIS_BOW_LORE.add("");
         ARTEMIS_BOW_LORE.add("§7LEFT CLICK to cycle ability");
         ARTEMIS_BOW_LORE.add("");
-        ARTEMIS_BOW_LORE.add("§6LEGENDARY WEAPON");
+        ARTEMIS_BOW_LORE.add("§6LEGENDARY");
         ARTEMIS_BOW_LORE.add("§6---------------");
         // Anduril
         ANDURIL_LORE.add("id: ANDURIL");
@@ -122,7 +122,7 @@ public class Util {
         ANDURIL_LORE.add("§9Speed I");
         ANDURIL_LORE.add("§9Resistance I");
         ANDURIL_LORE.add("");
-        ANDURIL_LORE.add("§6LEGENDARY WEAPON");
+        ANDURIL_LORE.add("§6LEGENDARY");
         ANDURIL_LORE.add("§6---------------");
         // Excalibur
         EXCALIBUR_LORE.add("id: EXCALIBUR");
@@ -132,6 +132,7 @@ public class Util {
         EXCALIBUR_LORE.add("§3Violently explode dealing §b3");
         EXCALIBUR_LORE.add("§3damage. (6 second cooldown)");
         EXCALIBUR_LORE.add("");
+        EXCALIBUR_LORE.add("§6LEGENDARY");
         EXCALIBUR_LORE.add("§6---------------");
         // Exodus
         EXODUS_LORE.add("id: EXODUS");
@@ -141,6 +142,7 @@ public class Util {
         EXODUS_LORE.add("§3of health when you hit any");
         EXODUS_LORE.add("§3entity! (6 second cooldown)");
         EXODUS_LORE.add("");
+        EXODUS_LORE.add("§6LEGENDARY");
         EXODUS_LORE.add("§6---------------");
         // Rocket Stick
         ROCKET_STICK_LORE.add("id: ROCKET_STICK");
@@ -154,6 +156,7 @@ public class Util {
         ROCKET_STICK_LORE.add("§6Launch yourself in the direction");
         ROCKET_STICK_LORE.add("§6you are facing! §3§lRIGHT CLICK");
         ROCKET_STICK_LORE.add("");
+        ROCKET_STICK_LORE.add("§cSUPREME");
         ROCKET_STICK_LORE.add("§6---------------");
         // Helios
         HELIOS_LORE.add("id: HELIOS");
@@ -168,7 +171,7 @@ public class Util {
         HELIOS_LORE.add("§3targets within 5 blocks!");
         HELIOS_LORE.add("§3Costs hunger to use.");
         HELIOS_LORE.add("");
-        HELIOS_LORE.add("§6LEGENDARY WEAPON");
+        HELIOS_LORE.add("§6LEGENDARY");
         HELIOS_LORE.add("§6---------------");
         // Scylla's Chestplate
         SCYLLA_CHESTPLATE_LORE.add("id: SCYLLA_CHESTPLATE");
@@ -178,7 +181,7 @@ public class Util {
         SCYLLA_CHESTPLATE_LORE.add("§3Gain more resistance when your");
         SCYLLA_CHESTPLATE_LORE.add("§3health is low.");
         SCYLLA_CHESTPLATE_LORE.add("");
-        SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY WEAPON");
+        SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY");
         SCYLLA_CHESTPLATE_LORE.add("§6---------------");
         // Herme's Boots
         HERMES_BOOTS_LORE.add("id: HERMES_BOOTS");
@@ -192,7 +195,7 @@ public class Util {
         HERMES_BOOTS_LORE.add("§3Gain a §c12% §3chance to dodge an attack.");
         HERMES_BOOTS_LORE.add("§3(16 second cooldown)");
         HERMES_BOOTS_LORE.add("");
-        HERMES_BOOTS_LORE.add("§6LEGENDARY WEAPON");
+        HERMES_BOOTS_LORE.add("§6LEGENDARY");
         HERMES_BOOTS_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
@@ -210,7 +213,7 @@ public class Util {
         ASSAULT_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
         ASSAULT_RIFLE_LORE.add("§7Minor recoil");
         ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§6LEGENDARY WEAPON");
+        ASSAULT_RIFLE_LORE.add("§6LEGENDARY");
         ASSAULT_RIFLE_LORE.add("§6---------------");
     }
 
