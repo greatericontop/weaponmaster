@@ -38,6 +38,7 @@ public class Util {
     public final String ROCKET_STICK_NAME = "§9Rocket Stick §6⚝⚝⚝⚝⚝";
     public final String HELIOS_NAME = "§f§lHelios §6⚝⚝⚝⚝⚝";
     public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
+    public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -48,9 +49,10 @@ public class Util {
     public List<String> ANDURIL_LORE = new ArrayList<String>();
     public List<String> EXCALIBUR_LORE = new ArrayList<String>();
     public List<String> EXODUS_LORE = new ArrayList<String>();
-    public List<String> ROCKET_STICK_LORE = new ArrayList<>();
-    public List<String> HELIOS_LORE = new ArrayList<>();
-    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<>();
+    public List<String> ROCKET_STICK_LORE = new ArrayList<String>();
+    public List<String> HELIOS_LORE = new ArrayList<String>();
+    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<String>();
+    public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     private final WeaponMasterMain plugin;
@@ -181,6 +183,20 @@ public class Util {
         SCYLLA_CHESTPLATE_LORE.add("");
         SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY WEAPON");
         SCYLLA_CHESTPLATE_LORE.add("§6---------------");
+        // Herme's Boots
+        HERMES_BOOTS_LORE.add("id: HERMES_BOOTS");
+        HERMES_BOOTS_LORE.add("§6---------------");
+        HERMES_BOOTS_LORE.add("");
+        HERMES_BOOTS_LORE.add("§aProvides §b+5 §aarmor toughness.");
+        HERMES_BOOTS_LORE.add("");
+        HERMES_BOOTS_LORE.add("§aGain §b+10% §aspeed while wearing.");
+        HERMES_BOOTS_LORE.add("");
+        HERMES_BOOTS_LORE.add("§eAbility: §4Mythic Speed");
+        HERMES_BOOTS_LORE.add("§3Gain a §c12% §3chance to dodge an attack.");
+        HERMES_BOOTS_LORE.add("§3(16 second cooldown)");
+        HERMES_BOOTS_LORE.add("");
+        HERMES_BOOTS_LORE.add("§6LEGENDARY WEAPON");
+        HERMES_BOOTS_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -251,6 +267,9 @@ public class Util {
     }
     public boolean checkForScylla(ItemStack item) {
         return this.checkFor(item, SCYLLA_CHESTPLATE_NAME, 0, "id: SCYLLA_CHESTPLATE");
+    }
+    public boolean checkForHermesBoots(ItemStack item) {
+        return this.checkFor(item, HERMES_BOOTS_NAME, 0, "id: HERMES_BOOTS");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");

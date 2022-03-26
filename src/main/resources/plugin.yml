@@ -64,6 +64,11 @@ commands:
     usage: "U: /scylla [give]"
     permission: "weaponmaster.scylla.command"
     permission-message: "§cYou are not allowed to do this!"
+  hermesboots:
+    description: "[Weapon Master] command for Herme's Boots"
+    usage: "U: /hermesboots [give]"
+    permission: "weaponmaster.hermesboots.command"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -126,6 +131,11 @@ permissions:
   weaponmaster.scylla.command:
     default: op
   weaponmaster.scylla.use:
+    default: true
+  #
+  weaponmaster.hermesboots.command:
+    default: op
+  weaponmaster.hermesboots.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

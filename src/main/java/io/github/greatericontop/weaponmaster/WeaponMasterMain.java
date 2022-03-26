@@ -34,6 +34,8 @@ import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
 import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
+import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
+import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
@@ -149,6 +151,10 @@ public class WeaponMasterMain extends JavaPlugin {
         // Scylla's Chestplate
         getCommand("scylla").setExecutor(new ScyllaCommand());
         getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
+        // Herme's Boots
+        getCommand("hermesboots").setExecutor(new HermesCommand());
+        getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
+        // think of an event to add
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
