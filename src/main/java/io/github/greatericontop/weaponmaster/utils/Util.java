@@ -178,9 +178,6 @@ public class Util {
         SCYLLA_CHESTPLATE_LORE.add("§3Gain more resistance when your");
         SCYLLA_CHESTPLATE_LORE.add("§3health is low.");
         SCYLLA_CHESTPLATE_LORE.add("");
-        SCYLLA_CHESTPLATE_LORE.add("§eAbility: §4Revitalized");
-        SCYLLA_CHESTPLATE_LORE.add("§3Gain 3 hearts of maximum health.");
-        SCYLLA_CHESTPLATE_LORE.add("");
         SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY WEAPON");
         SCYLLA_CHESTPLATE_LORE.add("§6---------------");
         // Herme's Boots

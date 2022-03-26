@@ -33,8 +33,6 @@ import java.util.UUID;
 
 public class ScyllaCommand implements CommandExecutor {
 
-    private final UUID modifierUUID = UUID.fromString("00000000-1111-0000-0000-285386b0eebb");
-
     private final Util util;
     public ScyllaCommand() {
         util = new Util(null);
@@ -60,9 +58,6 @@ public class ScyllaCommand implements CommandExecutor {
             }
             ItemStack scylla = util.generateMeta(util.SCYLLA_CHESTPLATE_LORE, util.SCYLLA_CHESTPLATE_NAME, Material.DIAMOND_CHESTPLATE);
             ItemMeta itemMeta = scylla.getItemMeta();
-            itemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH,
-                    new AttributeModifier(modifierUUID, "scylla",6.0,
-                            AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));
             scylla.setItemMeta(itemMeta);
             ((Player) sender).getInventory().addItem(scylla);
             sender.sendMessage("§7Gave you §f[" + util.SCYLLA_CHESTPLATE_NAME + "§f]§7.");
