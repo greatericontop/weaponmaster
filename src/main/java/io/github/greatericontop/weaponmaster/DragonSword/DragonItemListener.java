@@ -51,7 +51,7 @@ public class DragonItemListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST) // runs last to stack up all the bonuses
+    @EventHandler(priority = EventPriority.HIGH) // runs at the end (before life helmet though) to stack bonuses
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player)event.getDamager();

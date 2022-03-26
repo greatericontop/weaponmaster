@@ -36,6 +36,8 @@ import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
+import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
+import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
@@ -154,7 +156,10 @@ public class WeaponMasterMain extends JavaPlugin {
         // Herme's Boots
         getCommand("hermesboots").setExecutor(new HermesCommand());
         getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
-        // think of an event to add
+        // Helmet of Life
+        LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
+        getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
+        getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

@@ -39,6 +39,7 @@ public class Util {
     public final String HELIOS_NAME = "§f§lHelios §6⚝⚝⚝⚝⚝";
     public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
     public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
+    public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -53,6 +54,7 @@ public class Util {
     public List<String> HELIOS_LORE = new ArrayList<String>();
     public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<String>();
     public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
+    public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     private final WeaponMasterMain plugin;
@@ -197,6 +199,17 @@ public class Util {
         HERMES_BOOTS_LORE.add("");
         HERMES_BOOTS_LORE.add("§6LEGENDARY");
         HERMES_BOOTS_LORE.add("§6---------------");
+        // Helmet of Life
+        LIFE_HELMET_LORE.add("id: LIFE_HELMET");
+        LIFE_HELMET_LORE.add("§6---------------");
+        LIFE_HELMET_LORE.add("");
+        LIFE_HELMET_LORE.add("§eAbility: §4Rekindle");
+        LIFE_HELMET_LORE.add("§3On the brink of death, gain §cResistance §3and");
+        LIFE_HELMET_LORE.add("§cRegeneration §3for §b15 §3seconds.");
+        LIFE_HELMET_LORE.add("§710 minute cooldown");
+        LIFE_HELMET_LORE.add("");
+        LIFE_HELMET_LORE.add("§6LEGENDARY");
+        LIFE_HELMET_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -270,6 +283,9 @@ public class Util {
     }
     public boolean checkForHermesBoots(ItemStack item) {
         return this.checkFor(item, HERMES_BOOTS_NAME, 0, "id: HERMES_BOOTS");
+    }
+    public boolean checkForLifeHelmet(ItemStack item) {
+        return this.checkFor(item, LIFE_HELMET_NAME, 0, "id: LIFE_HELMET");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");

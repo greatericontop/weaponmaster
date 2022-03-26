@@ -69,6 +69,11 @@ commands:
     usage: "U: /hermesboots [give]"
     permission: "weaponmaster.hermesboots.command"
     permission-message: "§cYou are not allowed to do this!"
+  lifehelmet:
+    description: "[Weapon Master] command for Helmet of Life"
+    usage: "U: /lifehelmet [give]"
+    permission: "weaponmaster.lifehelmet.command"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -136,6 +141,11 @@ permissions:
   weaponmaster.hermesboots.command:
     default: op
   weaponmaster.hermesboots.use:
+    default: true
+  #
+  weaponmaster.lifehelmet.command:
+    default: op
+  weaponmaster.lifehelmet.use:
     default: true
   #
   weaponmaster.assaultrifle.command:
