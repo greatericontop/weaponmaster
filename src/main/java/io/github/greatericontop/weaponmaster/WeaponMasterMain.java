@@ -32,10 +32,14 @@ import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
+import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
+import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
+import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
+import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
@@ -139,6 +143,12 @@ public class WeaponMasterMain extends JavaPlugin {
         // Rocket Stick
         getCommand("rocketstick").setExecutor(new RocketCommand());
         getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
+        // Helios
+        getCommand("helios").setExecutor(new HeliosCommand());
+        getServer().getPluginManager().registerEvents(new HeliosItemListener(this), this);
+        // Scylla's Chestplate
+        getCommand("scylla").setExecutor(new ScyllaCommand());
+        getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

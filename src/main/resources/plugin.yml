@@ -54,6 +54,16 @@ commands:
     usage: "U: /rocketstick [give]"
     permission: "weaponmaster.rocketstick.command"
     permission-message: "§cYou are not allowed to do this!"
+  helios:
+    description: "[Weapon Master] command for Helios"
+    usage: "U: /helios [give]"
+    permission: "weaponmaster.helios.command"
+    permission-message: "§cYou are not allowed to do this!"
+  scylla:
+    description: "[Weapon Master] command for Scylla's Chestplate"
+    usage: "U: /scylla [give]"
+    permission: "weaponmaster.scylla.command"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -106,6 +116,16 @@ permissions:
   weaponmaster.rocketstick.command:
     default: op
   weaponmaster.rocketstick.use:
+    default: true
+  #
+  weaponmaster.helios.command:
+    default: op
+  weaponmaster.helios.use:
+    default: true
+  #
+  weaponmaster.scylla.command:
+    default: op
+  weaponmaster.scylla.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

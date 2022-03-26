@@ -36,6 +36,8 @@ public class Util {
     public final String EXCALIBUR_NAME = "§e§lExcalibur §6⚝⚝⚝⚝⚝";
     public final String EXODUS_NAME = "§b§lExodus §6⚝⚝⚝⚝⚝";
     public final String ROCKET_STICK_NAME = "§9Rocket Stick §6⚝⚝⚝⚝⚝";
+    public final String HELIOS_NAME = "§f§lHelios §6⚝⚝⚝⚝⚝";
+    public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -47,6 +49,8 @@ public class Util {
     public List<String> EXCALIBUR_LORE = new ArrayList<String>();
     public List<String> EXODUS_LORE = new ArrayList<String>();
     public List<String> ROCKET_STICK_LORE = new ArrayList<>();
+    public List<String> HELIOS_LORE = new ArrayList<>();
+    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     private final WeaponMasterMain plugin;
@@ -149,6 +153,34 @@ public class Util {
         ROCKET_STICK_LORE.add("§6you are facing! §3§lRIGHT CLICK");
         ROCKET_STICK_LORE.add("");
         ROCKET_STICK_LORE.add("§6---------------");
+        // Helios
+        HELIOS_LORE.add("id: HELIOS");
+        HELIOS_LORE.add("§6---------------");
+        HELIOS_LORE.add("");
+        HELIOS_LORE.add("§aUp to 50 levels, this sword increases");
+        HELIOS_LORE.add("§ain power with more experience levels.");
+        HELIOS_LORE.add("§aSword damage is increased by 1% per level.");
+        HELIOS_LORE.add("");
+        HELIOS_LORE.add("§eAbility: §4Godly Swarm §e§lRIGHT CLICK");
+        HELIOS_LORE.add("§3Summon fire and deal damage to any");
+        HELIOS_LORE.add("§3targets within 5 blocks!");
+        HELIOS_LORE.add("§3Costs hunger to use.");
+        HELIOS_LORE.add("");
+        HELIOS_LORE.add("§6LEGENDARY WEAPON");
+        HELIOS_LORE.add("§6---------------");
+        // Scylla's Chestplate
+        SCYLLA_CHESTPLATE_LORE.add("id: SCYLLA_CHESTPLATE");
+        SCYLLA_CHESTPLATE_LORE.add("§6---------------");
+        SCYLLA_CHESTPLATE_LORE.add("");
+        SCYLLA_CHESTPLATE_LORE.add("§eAbility: §4Last Wind");
+        SCYLLA_CHESTPLATE_LORE.add("§3Gain more resistance when your");
+        SCYLLA_CHESTPLATE_LORE.add("§3health is low.");
+        SCYLLA_CHESTPLATE_LORE.add("");
+        SCYLLA_CHESTPLATE_LORE.add("§eAbility: §4Revitalized");
+        SCYLLA_CHESTPLATE_LORE.add("§3Gain 3 hearts of maximum health.");
+        SCYLLA_CHESTPLATE_LORE.add("");
+        SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY WEAPON");
+        SCYLLA_CHESTPLATE_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -213,6 +245,12 @@ public class Util {
     }
     public boolean checkForRocketStick(ItemStack item) {
         return this.checkFor(item, ROCKET_STICK_NAME, 0, "id: ROCKET_STICK");
+    }
+    public boolean checkForHelios(ItemStack item) {
+        return this.checkFor(item, HELIOS_NAME, 0, "id: HELIOS");
+    }
+    public boolean checkForScylla(ItemStack item) {
+        return this.checkFor(item, SCYLLA_CHESTPLATE_NAME, 0, "id: SCYLLA_CHESTPLATE");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");

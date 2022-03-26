@@ -30,6 +30,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
@@ -63,6 +64,7 @@ public class RocketItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();
         if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
