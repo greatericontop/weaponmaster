@@ -87,11 +87,12 @@ public class Util {
         DEATH_SCYTHE_LORE.add("id: DEATH_SCYTHE");
         DEATH_SCYTHE_LORE.add("§6---------------");
         DEATH_SCYTHE_LORE.add("");
-        DEATH_SCYTHE_LORE.add("§eAbility: §4Deathly");
-        DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l50% §3of your target's");
-        DEATH_SCYTHE_LORE.add("§3health as true damage.");
+        DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l30% §3of your target's");
+        DEATH_SCYTHE_LORE.add("§3health as true damage and gain increasing");
+        DEATH_SCYTHE_LORE.add("§3levels of §cStrength §3depending on the");
+        DEATH_SCYTHE_LORE.add("§3damage dealt!");
         DEATH_SCYTHE_LORE.add("");
-        DEATH_SCYTHE_LORE.add("§cSUPREME");
+        DEATH_SCYTHE_LORE.add("§6LEGENDARY");
         DEATH_SCYTHE_LORE.add("§6---------------");
         // Dragon Sword
         DRAGON_SWORD_LORE.add("id: DRAGON_SWORD");
