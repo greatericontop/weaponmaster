@@ -78,6 +78,7 @@ public class ScytheItemListener implements Listener {
         Damageable iMeta = (Damageable) scythe.getItemMeta();
         if (iMeta.getDamage() >= DURABILITY_THRESHOLD) { // 1 durability
             player.sendMessage("§3Not enough durability!");
+            return;
         }
 
         LivingEntity target = (LivingEntity) event.getEntity();
