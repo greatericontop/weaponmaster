@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.utils;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -40,6 +41,7 @@ public class Util {
     public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
     public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
     public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
+    public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -55,7 +57,12 @@ public class Util {
     public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<String>();
     public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
     public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
+    public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
+
+    public final int CAVEMAN_EXP_I = 3;
+    public final int CAVEMAN_REQ_I = 4;
+    public final int CAVEMAN_LVL_I = 5;
 
     private final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
@@ -211,6 +218,22 @@ public class Util {
         LIFE_HELMET_LORE.add("");
         LIFE_HELMET_LORE.add("§6LEGENDARY");
         LIFE_HELMET_LORE.add("§6---------------");
+        // Caveman Sword
+        CAVEMAN_SWORD_LORE.add("id: CAVEMAN_SWORD");
+        CAVEMAN_SWORD_LORE.add("§6---------------");
+        CAVEMAN_SWORD_LORE.add("");
+        CAVEMAN_SWORD_LORE.add("§6Experience: §70");
+        CAVEMAN_SWORD_LORE.add("§6Required: §7Hit Something!");
+        CAVEMAN_SWORD_LORE.add("§6Sharpness Level: §70");
+        CAVEMAN_SWORD_LORE.add("");
+        CAVEMAN_SWORD_LORE.add("§eAbility: §4Caveman's Strength");
+        CAVEMAN_SWORD_LORE.add("§3As you use the sword more, it will gain more levels");
+        CAVEMAN_SWORD_LORE.add("§3of §bSharpness§3, up to §b20 §3levels.");
+        CAVEMAN_SWORD_LORE.add("");
+        CAVEMAN_SWORD_LORE.add("§cDo not enchant this item with Sharpness.");
+        CAVEMAN_SWORD_LORE.add("");
+        CAVEMAN_SWORD_LORE.add("§6LEGENDARY");
+        CAVEMAN_SWORD_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -287,6 +310,9 @@ public class Util {
     }
     public boolean checkForLifeHelmet(ItemStack item) {
         return this.checkFor(item, LIFE_HELMET_NAME, 0, "id: LIFE_HELMET");
+    }
+    public boolean checkForCavemanSword(ItemStack item) {
+        return this.checkFor(item, CAVEMAN_SWORD_NAME, 0, "id: CAVEMAN_SWORD");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");

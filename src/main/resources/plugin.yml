@@ -24,6 +24,7 @@ commands:
     usage: "U: /scythe [give]"
     permission: "weaponmaster.deathscythe.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["deathscythe", "deaths-scythe"]
   dragonsword:
     description: "[Weapon Master] command for Dragon Sword"
     usage: "U: /dragonsword [give]"
@@ -73,6 +74,11 @@ commands:
     description: "[Weapon Master] command for Helmet of Life"
     usage: "U: /lifehelmet [give]"
     permission: "weaponmaster.lifehelmet.command"
+    permission-message: "§cYou are not allowed to do this!"
+  cavemansword:
+    description: "[Weapon Master] command for Caveman Sword"
+    usage: "U: /cavemansword [give]"
+    permission: "weaponmaster.cavemansword.command"
     permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
@@ -146,6 +152,11 @@ permissions:
   weaponmaster.lifehelmet.command:
     default: op
   weaponmaster.lifehelmet.use:
+    default: true
+  #
+  weaponmaster.cavemansword.command:
+    default: op
+  weaponmaster.cavemansword.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

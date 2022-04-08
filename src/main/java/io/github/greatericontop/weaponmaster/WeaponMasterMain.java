@@ -22,6 +22,8 @@ import io.github.greatericontop.weaponmaster.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisRecipe;
+import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
+import io.github.greatericontop.weaponmaster.CavemanSword.CavemanItemListener;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
@@ -160,6 +162,9 @@ public class WeaponMasterMain extends JavaPlugin {
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
         getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
         getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
+        // Caveman Sword
+        getCommand("cavemansword").setExecutor(new CavemanCommand());
+        getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
