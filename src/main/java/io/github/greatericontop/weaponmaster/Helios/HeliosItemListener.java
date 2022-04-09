@@ -83,6 +83,10 @@ public class HeliosItemListener implements Listener {
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
+        if (player.getFoodLevel() < 12) {
+            player.sendMessage("§7You don't have enough hunger to use this!");
+            return;
+        }
 
         Location loc = player.getLocation();
         List<Entity> entitiesClose = player.getNearbyEntities(IMPACT_DISTANCE, IMPACT_DISTANCE, IMPACT_DISTANCE);
@@ -94,7 +98,7 @@ public class HeliosItemListener implements Listener {
             LivingEntity target = (LivingEntity) e;
             target.damage(damageMultiply(player, 4.5));
             target.setFireTicks(target.getFireTicks() + 300);
-            target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.6, 0.0)));
+            target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));
         }
         player.setExhaustion(player.getExhaustion() + FOOD_COST);
         loc.getWorld().spawnParticle(Particle.FLAME, loc, 20);
