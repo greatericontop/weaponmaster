@@ -80,6 +80,12 @@ commands:
     usage: "U: /cavemansword [give]"
     permission: "weaponmaster.cavemansword.command"
     permission-message: "§cYou are not allowed to do this!"
+  warlockpants:
+    description: "[Weapon Master] command for Warlock Pants"
+    usage: "U: /warlockpants [give]"
+    permission: "weaponmaster.warlockpants.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["warlock"]
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -157,6 +163,11 @@ permissions:
   weaponmaster.cavemansword.command:
     default: op
   weaponmaster.cavemansword.use:
+    default: true
+  #
+  weaponmaster.warlockpants.command:
+    default: op
+  weaponmaster.warlockpants.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

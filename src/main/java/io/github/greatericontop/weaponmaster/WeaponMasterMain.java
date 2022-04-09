@@ -49,6 +49,8 @@ import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
+import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
+import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -165,6 +167,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Caveman Sword
         getCommand("cavemansword").setExecutor(new CavemanCommand());
         getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
+        // Warlock Pants
+        getCommand("warlockpants").setExecutor(new WarlockCommand());
+        new WarlockItemListener(this).regWarlockRunnable();
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

@@ -42,6 +42,7 @@ public class Util {
     public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
     public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
+    public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -58,6 +59,7 @@ public class Util {
     public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
     public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
+    public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP_I = 3;
@@ -234,6 +236,16 @@ public class Util {
         CAVEMAN_SWORD_LORE.add("");
         CAVEMAN_SWORD_LORE.add("§6LEGENDARY");
         CAVEMAN_SWORD_LORE.add("§6---------------");
+        // Warlock Pants
+        WARLOCK_PANTS_LORE.add("id: WARLOCK_PANTS");
+        WARLOCK_PANTS_LORE.add("§6---------------");
+        WARLOCK_PANTS_LORE.add("");
+        WARLOCK_PANTS_LORE.add("§eAbility: §4Hasty Rejuvenation");
+        WARLOCK_PANTS_LORE.add("§3Gain permanent §cRegeneration I");
+        WARLOCK_PANTS_LORE.add("§3while wearing.");
+        WARLOCK_PANTS_LORE.add("");
+        WARLOCK_PANTS_LORE.add("§6LEGENDARY");
+        WARLOCK_PANTS_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -313,6 +325,9 @@ public class Util {
     }
     public boolean checkForCavemanSword(ItemStack item) {
         return this.checkFor(item, CAVEMAN_SWORD_NAME, 0, "id: CAVEMAN_SWORD");
+    }
+    public boolean checkForWarlockPants(ItemStack item) {
+        return this.checkFor(item, WARLOCK_PANTS_NAME, 0, "id: WARLOCK_PANTS");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
