@@ -102,8 +102,7 @@ public class WeaponMasterMain extends JavaPlugin {
         String hexenc = hexencBuilder.toString();
         if (!getConfig().getString("license.key").equalsIgnoreCase(hexenc)) {
             getLogger().warning("Invalid license! Check license in config.yml");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
+            getLogger().warning("WeaponMaster cracked by greateric 'n co. Starting...");
         }
         getLogger().info("--------------------");
         getLogger().info("#######################################################################################################################");
