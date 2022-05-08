@@ -45,7 +45,7 @@ public class Util {
     public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
     public final String ATOM_BOMB_NAME = "§cAtom Bomb §6⚝⚝⚝⚝⚝";
     public final String NETHERITE_STAFF_NAME = "§b§lNetherite Staff §6⚝⚝⚝⚝⚝";
-    public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
+    public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -65,7 +65,7 @@ public class Util {
     public List<String> FIREBALL_LORE = new ArrayList<String>();
     public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
     public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
-    public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
+    public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP_I = 3;
     public final int CAVEMAN_REQ_I = 4;
@@ -279,23 +279,19 @@ public class Util {
         NETHERITE_STAFF_LORE.add("§cSUPREME");
         NETHERITE_STAFF_LORE.add("§6---------------");
         // Assault Rifle
-        ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
-        ASSAULT_RIFLE_LORE.add("§6---------------");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§bBurst Fire §l§eLEFT CLICK");
-        ASSAULT_RIFLE_LORE.add("§6Slow burst fire 3x 5.56 bullets.");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§bBigger Burst §l§eRIGHT CLICK");
-        ASSAULT_RIFLE_LORE.add("§6Fire 25 rounds of 5.56 in a row.");
-        ASSAULT_RIFLE_LORE.add("§6Rounds are fired at an extreme speed of 1200 per minute.");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§eMuzzle Velocity: §33038 f/s §eor §3926 m/s");
-        ASSAULT_RIFLE_LORE.add("§eMax Spread: §30.6m §eat §3100 §eblocks + drop");
-        ASSAULT_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
-        ASSAULT_RIFLE_LORE.add("§7Minor recoil");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§6LEGENDARY");
-        ASSAULT_RIFLE_LORE.add("§6---------------");
+        SNIPER_RIFLE_LORE.add("id: SNIPER_RIFLE");
+        SNIPER_RIFLE_LORE.add("§6---------------");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§bShoot §l§eLEFT CLICK");
+        SNIPER_RIFLE_LORE.add("§6Shoots a precise bullet.");
+        SNIPER_RIFLE_LORE.add("§70.5 second cooldown §4[PLEASE IMPLEMENT THIS]");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§eMuzzle Velocity: §33343 f/s §eor §31019 m/s");
+        SNIPER_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
+        SNIPER_RIFLE_LORE.add("§7Minor recoil");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§6LEGENDARY");
+        SNIPER_RIFLE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -370,7 +366,7 @@ public class Util {
     public boolean checkForNetheriteStaff(ItemStack item) {
         return this.checkFor(item, NETHERITE_STAFF_NAME, 0, "id: NETHERITE_STAFF");
     }
-    //public boolean checkForAssaultRifle(ItemStack item) {
-    //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
-    //}
+    public boolean checkForSniperRifle(ItemStack item) {
+        return this.checkFor(item, SNIPER_RIFLE_NAME, 0, "id: SNIPER_RIFLE");
+    }
 }

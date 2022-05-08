@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.AssaultRifle_dead_dont_use;
+package io.github.greatericontop.weaponmaster.SniperRifle;
 
 /*
     Copyright (C) 2021 greateric.
@@ -25,18 +25,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class AssaultCommand implements CommandExecutor {
+public class SniperCommand implements CommandExecutor {
 
     private final Util util;
-    public AssaultCommand() {
+    public SniperCommand() {
         util = new Util(null);
     }
 
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§lAssault Rifle");
+        to.sendMessage("§4§lSniper Rifle");
         to.sendMessage("§e§oby greateric");
-        to.sendMessage("§3Use §2/assaultrifle give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/sniperrifle give§3 to give yourself the item.");
     }
 
     @Override
@@ -50,9 +50,9 @@ public class AssaultCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack rpgl = util.generateMeta(util.ASSAULT_RIFLE_LORE, util.ASSAULT_RIFLE_NAME, Material.BOW);
-            ((Player) sender).getInventory().addItem(rpgl);
-            sender.sendMessage("§7Gave you §f[" + util.ASSAULT_RIFLE_NAME + "§f]§7.");
+            ItemStack sniper = util.generateMeta(util.SNIPER_RIFLE_LORE, util.SNIPER_RIFLE_NAME, Material.BOW);
+            ((Player) sender).getInventory().addItem(sniper);
+            sender.sendMessage("§7Gave you §f[" + util.SNIPER_RIFLE_NAME + "§f]§7.");
             return true;
         }
         return false;
