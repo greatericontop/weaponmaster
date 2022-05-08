@@ -103,11 +103,12 @@ commands:
     permission: "weaponmaster.netheritestaff.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["netherite-st", "staff"]
-  assaultrifle:
-    description: "[Weapon Master] command for Assault Rifle"
-    usage: "U: /assaultrifle [give]"
-    permission: "weaponmaster.assaultrifle.command"
+  sniperrifle:
+    description: "[Weapon Master] command for Sniper Rifle"
+    usage: "U: /sniperrifle [give]"
+    permission: "weaponmaster.sniperrifle.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["sniper", "sniper-rifle"]
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -200,6 +201,11 @@ permissions:
   weaponmaster.netheritestaff.command:
     default: op
   weaponmaster.netheritestaff.use:
+    default: true
+  #
+  weaponmaster.sniperrifle.command:
+    default: op
+  weaponmaster.sniperrifle.use:
     default: true
   #
   weaponmaster.assaultrifle.command:
