@@ -34,7 +34,6 @@ public class FireballCommand implements CommandExecutor {
                 return true;
             }
             ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
-            fireball.addEnchantment(Enchantment.DURABILITY, 0);
             ((Player) sender).getInventory().addItem(fireball);
             sender.sendMessage("§7Gave you §f[" + util.FIREBALL_NAME + "§f]§7.");
             return true;
