@@ -44,6 +44,8 @@ import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
@@ -177,6 +179,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Fireball
         getCommand("fireball").setExecutor(new FireballCommand());
         getServer().getPluginManager().registerEvents(new FireballListener(this), this);
+        // Netherite Staff
+        getCommand("netheritest").setExecutor(new NetheriteStaffCommand());
+        getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
         // Atom Bomb
         getCommand("atombomb").setExecutor(new AtomCommand());
         getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);

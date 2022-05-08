@@ -44,6 +44,7 @@ public class Util {
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
+    public final String NETHERITE_STAFF_NAME = "§9§lNetherite Staff §6⚝⚝⚝⚝⚝";
     public final String ATOM_BOMB_NAME = "§cAtom Bomb §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
@@ -63,6 +64,7 @@ public class Util {
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
     public List<String> FIREBALL_LORE = new ArrayList<String>();
+    public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
     public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
@@ -259,6 +261,15 @@ public class Util {
         FIREBALL_LORE.add("");
         FIREBALL_LORE.add("§6LEGENDARY");
         FIREBALL_LORE.add("§6---------------");
+        // Netherite Staff
+        NETHERITE_STAFF_LORE.add("idL NETHERITE_STAFF");
+        NETHERITE_STAFF_LORE.add("§6---------------");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when attacked.");
+        NETHERITE_STAFF_LORE.add("§3Effects can be good or bad.");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§cSUPREME");
+        NETHERITE_STAFF_LORE.add("§6---------------");
         // Atom Bomb
         ATOM_BOMB_LORE.add("id: ATOM_BOMB");
         ATOM_BOMB_LORE.add("§6---------------");
@@ -353,6 +364,9 @@ public class Util {
     }
     public boolean checkForFireball(ItemStack item) {
         return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+    }
+    public boolean checkNeitheriteStaff(ItemStack item) {
+        return this.checkFor(item, NETHERITE_STAFF_NAME, 0, "id: NETHERITE_STAFF");
     }
     public boolean checkForAtomBomb(ItemStack item) {
         return this.checkFor(item, ATOM_BOMB_NAME, 0, "id: ATOM_BOMB");
