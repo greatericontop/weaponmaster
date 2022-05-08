@@ -21,12 +21,14 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class AtomItemListener implements Listener {
 
@@ -67,8 +69,25 @@ public class AtomItemListener implements Listener {
         }
 
         Location at = event.getBlock().getLocation();
-        propagate(at, 30);
-
+        Deque<Location> queue = new LinkedList<Location>();
+        queue.add(at.clone());
+        int runCount = 0;
+        while (!queue.isEmpty()) {
+            runCount++;
+            Location current = queue.getFirst();
+            queue.removeFirst();
+            if (current.getBlock().getType() == Material.AIR) { continue; }
+            current.getBlock().setType(Material.AIR);
+            // rng propagation
+            if (runCount <= 10_000 || Math.random() < (runCount <= 40_000 ? 0.5 : (runCount <= 300_000 ? 0.35 : 0.22))) {
+                queue.addLast(current.clone().add(1.0, 0.0, 0.0));
+                queue.addLast(current.clone().add(-1.0, 0.0, 0.0));
+                queue.addLast(current.clone().add(0.0, 1.0, 0.0));
+                queue.addLast(current.clone().add(0.0, -1.0, 0.0));
+                queue.addLast(current.clone().add(0.0, 0.0, 1.0));
+                queue.addLast(current.clone().add(0.0, 0.0, -1.0));
+            }
+        }
         player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
     }
 
