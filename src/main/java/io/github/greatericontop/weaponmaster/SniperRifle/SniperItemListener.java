@@ -87,7 +87,7 @@ public class SniperItemListener implements Listener {
         ItemStack sniper = player.getInventory().getItemInMainHand();
         Damageable durability = (Damageable) sniper.getItemMeta();
         if (durability.getDamage() > 1) {
-            player.sendMessage("§cThis weapon is reloading!");
+            player.sendMessage("§cThis weapon is reloading! This takes 1.5 seconds.");
             return;
         }
 
