@@ -102,6 +102,7 @@ public class SniperItemListener implements Listener {
                 public void run() {
                     if (ticksLeft == 0) {
                         durability.setDamage(0);
+                        sniper.setItemMeta(durability);
                         cancel();
                         return;
                     }
