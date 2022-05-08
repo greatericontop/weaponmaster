@@ -21,14 +21,17 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.util.Vector;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class AtomItemListener implements Listener {
 
@@ -37,21 +40,6 @@ public class AtomItemListener implements Listener {
     public AtomItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
-    }
-
-    public void propagate(Location loc, int power) {
-        if (power <= 1) { return; }
-        power -= Math.random() < 0.4 ? 2 : 1;
-        if (loc.getBlock().getType() == Material.AIR) {
-            power -= 10;
-        }
-        loc.getBlock().setType(Material.AIR);
-        propagate(loc.clone().add(1.0, 0.0, 0.0), power);
-        propagate(loc.clone().add(-1.0, 0.0, 0.0), power);
-        propagate(loc.clone().add(0.0, 1.0, 0.0), power);
-        propagate(loc.clone().add(0.0, -1.0, 0.0), power);
-        propagate(loc.clone().add(0.0, 0.0, 1.0), power);
-        propagate(loc.clone().add(0.0, 0.0, -1.0), power);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -68,26 +56,42 @@ public class AtomItemListener implements Listener {
             return;
         }
 
+        float MIN_VALUE = -1.0F;
+        float MAX_VALUE = 1.0F;
+        float STEP = 1.0F / 64.0F;
+        float MIN = -0.999F;
+        float MAX = 0.999F;
+        // An attempt to copy the minecraft explosion algorithm
+        // This is O(scary); but it seems to work decently in practice.
         Location at = event.getBlock().getLocation();
-        Deque<Location> queue = new LinkedList<Location>();
-        queue.add(at.clone());
-        int runCount = 0;
-        while (!queue.isEmpty()) {
-            runCount++;
-            Location current = queue.getFirst();
-            queue.removeFirst();
-            if (current.getBlock().getType() == Material.AIR) { continue; }
-            current.getBlock().setType(Material.AIR);
-            // rng propagation
-            if (runCount <= 10_000 || Math.random() < (runCount <= 40_000 ? 0.5 : (runCount <= 300_000 ? 0.35 : 0.22))) {
-                queue.addLast(current.clone().add(1.0, 0.0, 0.0));
-                queue.addLast(current.clone().add(-1.0, 0.0, 0.0));
-                queue.addLast(current.clone().add(0.0, 1.0, 0.0));
-                queue.addLast(current.clone().add(0.0, -1.0, 0.0));
-                queue.addLast(current.clone().add(0.0, 0.0, 1.0));
-                queue.addLast(current.clone().add(0.0, 0.0, -1.0));
+        World world = at.getWorld();
+        Random rnd = new Random();
+        for (float deltaX = MIN_VALUE; deltaX <= MAX_VALUE; deltaX += STEP) {
+            for (float deltaY = MIN_VALUE; deltaY <= MAX_VALUE; deltaY += STEP) {
+                for (float deltaZ = MIN_VALUE; deltaZ <= MAX_VALUE; deltaZ += STEP) {
+                    if (!(deltaX <= MIN || deltaX >= MAX || deltaY <= MIN || deltaY >= MAX || deltaZ <= MIN || deltaZ >= MAX)) {
+                        continue;
+                    }
+
+                    Location loc = at.clone();
+                    Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
+                    float rayPower = 19.0F * (0.9F + 0.2F * rnd.nextFloat());
+                    while (true) {
+                        rayPower -= 0.45F;
+                        if (loc.getBlock().getType() != Material.AIR) {
+                            rayPower -= (loc.getBlock().getType().getBlastResistance() + 0.6F) * 0.6F;
+                        }
+                        if (rayPower <= 0) {
+                            break;
+                        }
+                        loc.getBlock().setType(Material.AIR);
+                        loc = loc.add(ray);
+                    }
+                }
             }
         }
+
+
         player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
     }
 
