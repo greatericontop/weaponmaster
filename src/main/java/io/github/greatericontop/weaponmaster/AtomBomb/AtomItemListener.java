@@ -105,7 +105,7 @@ public class AtomItemListener implements Listener {
                                         if (f < 0.00_1F) {
                                             loc.getBlock().setType(Material.COBBLESTONE);
                                         } else if (f < 0.00_22F) {
-                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.3F, 2, rnd);
+                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
                                         } else if (f < 0.00_32F) {
                                             loc.getBlock().setType(Material.COBWEB);
                                         } else if (f < 0.00_38F) {
@@ -114,7 +114,7 @@ public class AtomItemListener implements Listener {
                                             loc.getBlock().setType(Material.FIRE);
                                         }
                                         if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
-                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.6F, 4, rnd);
+                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
                                             diamondFlag = true;
                                         }
                                     }
