@@ -5,6 +5,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.DragonFireball;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -13,8 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
-
-import java.util.Random;
 
 public class FireballListener implements Listener {
 
@@ -44,7 +43,8 @@ public class FireballListener implements Listener {
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
         if (Math.random() < 0.025) {
-            world.spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+            DragonFireball draogonFireballEntity = (DragonFireball) world.spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+            draogonFireballEntity.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
             event.getPlayer().sendMessage("§3You summoned a dragon fireball!");
         } else {
             Fireball fireballEntity = (Fireball) world.spawnEntity(spawnLoc, EntityType.FIREBALL);
