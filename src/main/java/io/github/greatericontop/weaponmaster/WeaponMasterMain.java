@@ -52,6 +52,8 @@ import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
+import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
+import io.github.greatericontop.weaponmaster.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
@@ -185,6 +187,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Netherite Staff
         getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
         getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
+        // Sniper Rifle
+        getCommand("sniperrifle").setExecutor(new SniperCommand());
+        getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
