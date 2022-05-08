@@ -284,7 +284,7 @@ public class Util {
         SNIPER_RIFLE_LORE.add("");
         SNIPER_RIFLE_LORE.add("§bShoot §l§eLEFT CLICK");
         SNIPER_RIFLE_LORE.add("§6Shoots a precise bullet.");
-        SNIPER_RIFLE_LORE.add("§70.5 second cooldown §4[PLEASE IMPLEMENT THIS]");
+        SNIPER_RIFLE_LORE.add("§71.5 second cooldown §4[PLEASE IMPLEMENT THIS]");
         SNIPER_RIFLE_LORE.add("");
         SNIPER_RIFLE_LORE.add("§eMuzzle Velocity: §33343 f/s §eor §31019 m/s");
         SNIPER_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");

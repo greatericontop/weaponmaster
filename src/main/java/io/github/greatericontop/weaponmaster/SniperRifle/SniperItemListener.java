@@ -25,14 +25,19 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class SniperItemListener implements Listener {
@@ -56,6 +61,17 @@ public class SniperItemListener implements Listener {
         player.getWorld().spawnParticle(Particle.SMALL_FLAME, eyeLoc, 20);
     }
 
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onBowShoot(EntityShootBowEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+        if (!util.checkForSniperRifle(event.getBow())) {
+            ((Player) event.getEntity()).sendMessage("§cYou need to use LEFT CLICK to shoot this.");
+            event.setCancelled(true);
+        }
+    }
+
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
@@ -68,13 +84,32 @@ public class SniperItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.sniperrifle.use§3.");
             return;
         }
+        ItemStack sniper = player.getInventory().getItemInMainHand();
+        Damageable durability = (Damageable) sniper.getItemMeta();
+        if (durability.getDamage() > 1) {
+            player.sendMessage("§cThis weapon is reloading!");
+            return;
+        }
 
-        if (player.getInventory().containsAtLeast(new ItemStack(Material.ARROW), 1)) {
+        if (player.getGameMode() == GameMode.CREATIVE || player.getInventory().containsAtLeast(new ItemStack(Material.ARROW), 1)) {
             player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.02)));
             fireOneRound(player);
             if (player.getGameMode() != GameMode.CREATIVE) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
+            new BukkitRunnable() {
+                int ticksLeft = 29;
+                public void run() {
+                    if (ticksLeft == 0) {
+                        durability.setDamage(0);
+                        cancel();
+                        return;
+                    }
+                    durability.setDamage(384 / 29 * (1-ticksLeft));
+                    sniper.setItemMeta(durability);
+                    ticksLeft--;
+                }
+            }.runTaskTimer(plugin, 1L, 1L);
         }
     }
 
