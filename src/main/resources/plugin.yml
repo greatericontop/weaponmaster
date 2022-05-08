@@ -91,6 +91,11 @@ commands:
     usage: "U: /fireball [give]"
     permission: "weaponmaster.fireball.command"
     permission-message: "§cYou are not allowed to do this!"
+  atombomb:
+    description: "[Weapon Master] command for Atom Bomb"
+    usage: "U: /atombomb [give]"
+    permission: "weaponmaster.atombomb.command"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -178,6 +183,11 @@ permissions:
   weaponmaster.fireball.command:
     default: op
   weaponmaster.fireball.use:
+    default: true
+  #
+  weaponmaster.atombomb.command:
+    default: op
+  weaponmaster.atombomb.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

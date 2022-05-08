@@ -44,6 +44,7 @@ public class Util {
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
+    public final String ATOM_BOMB_NAME = "§cAtom Bomb §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
@@ -62,6 +63,7 @@ public class Util {
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
     public List<String> FIREBALL_LORE = new ArrayList<String>();
+    public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP_I = 3;
@@ -257,6 +259,15 @@ public class Util {
         FIREBALL_LORE.add("");
         FIREBALL_LORE.add("§6LEGENDARY");
         FIREBALL_LORE.add("§6---------------");
+        // Atom Bomb
+        ATOM_BOMB_LORE.add("id: ATOM_BOMB");
+        ATOM_BOMB_LORE.add("§6---------------");
+        ATOM_BOMB_LORE.add("");
+        ATOM_BOMB_LORE.add("§cDetonates immediately upon placing.");
+        ATOM_BOMB_LORE.add("§cCauses extreme damage.");
+        ATOM_BOMB_LORE.add("");
+        ATOM_BOMB_LORE.add("§cSUPREME");
+        ATOM_BOMB_LORE.add("§6---------------");
         // Assault Rifle
         ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
         ASSAULT_RIFLE_LORE.add("§6---------------");
@@ -342,6 +353,9 @@ public class Util {
     }
     public boolean checkForFireball(ItemStack item) {
         return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+    }
+    public boolean checkForAtomBomb(ItemStack item) {
+        return this.checkFor(item, ATOM_BOMB_NAME, 0, "id: ATOM_BOMB");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
