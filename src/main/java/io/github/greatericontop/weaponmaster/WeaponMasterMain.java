@@ -34,6 +34,8 @@ import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
+import io.github.greatericontop.weaponmaster.Fireball.FireballCommand;
+import io.github.greatericontop.weaponmaster.Fireball.FireballListener;
 import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
@@ -170,6 +172,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
+        // Fireball
+        getCommand("fireball").setExecutor(new FireballCommand());
+        getServer().getPluginManager().registerEvents(new FireballListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
