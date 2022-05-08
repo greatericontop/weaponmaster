@@ -45,6 +45,8 @@ public class Util {
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
 
+    public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
+
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
     public List<String> DEATH_SCYTHE_LORE = new ArrayList<String>();
@@ -61,6 +63,8 @@ public class Util {
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
+
+    public List<String> FIREBALL_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP_I = 3;
     public final int CAVEMAN_REQ_I = 4;
@@ -264,6 +268,14 @@ public class Util {
         ASSAULT_RIFLE_LORE.add("");
         ASSAULT_RIFLE_LORE.add("§6LEGENDARY");
         ASSAULT_RIFLE_LORE.add("§6---------------");
+        // Fireball
+        FIREBALL_LORE.add("id: FIREBALL");
+        FIREBALL_LORE.add("§6---------------");
+        FIREBALL_LORE.add("");
+        FIREBALL_LORE.add("§3Right Click to summon fireball.");
+        FIREBALL_LORE.add("§3Small chance of summoning a dragon fireball.");
+        FIREBALL_LORE.add("");
+        FIREBALL_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -332,5 +344,7 @@ public class Util {
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
     //}
-
+    public boolean checkForFireball(ItemStack item) {
+        return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+    }
 }
