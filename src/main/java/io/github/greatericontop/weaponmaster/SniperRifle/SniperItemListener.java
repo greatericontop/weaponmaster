@@ -105,7 +105,7 @@ public class SniperItemListener implements Listener {
                         cancel();
                         return;
                     }
-                    int remainingDurability = 384 / (29 * (30-ticksLeft));
+                    int remainingDurability = (int) ( 384.0/30.0 * (30-ticksLeft) );
                     player.sendMessage("§7test " + remainingDurability);
                     durability.setDamage(384 - remainingDurability);
                     sniper.setItemMeta(durability);
