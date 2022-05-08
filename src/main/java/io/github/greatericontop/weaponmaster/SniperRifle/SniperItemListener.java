@@ -53,7 +53,7 @@ public class SniperItemListener implements Listener {
         arrow.setKnockbackStrength(3);
         arrow.setVelocity(velocityVector);
         arrow.setShooter(player);
-        player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, eyeLoc, 20);
+        player.getWorld().spawnParticle(Particle.SMALL_FLAME, eyeLoc, 20);
     }
 
     @EventHandler
@@ -70,7 +70,7 @@ public class SniperItemListener implements Listener {
         }
 
         if (player.getInventory().containsAtLeast(new ItemStack(Material.ARROW), 1)) {
-            player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.05)));
+            player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.02)));
             fireOneRound(player);
             if (player.getGameMode() != GameMode.CREATIVE) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
