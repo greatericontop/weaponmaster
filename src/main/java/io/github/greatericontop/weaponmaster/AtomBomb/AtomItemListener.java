@@ -37,6 +37,21 @@ public class AtomItemListener implements Listener {
         util = new Util(plugin);
     }
 
+    public void propagate(Location loc, int power) {
+        if (power <= 1) { return; }
+        power -= Math.random() < 0.4 ? 2 : 1;
+        if (loc.getBlock().getType() == Material.AIR) {
+            power -= 10;
+        }
+        loc.getBlock().setType(Material.AIR);
+        propagate(loc.clone().add(1.0, 0.0, 0.0), power);
+        propagate(loc.clone().add(-1.0, 0.0, 0.0), power);
+        propagate(loc.clone().add(0.0, 1.0, 0.0), power);
+        propagate(loc.clone().add(0.0, -1.0, 0.0), power);
+        propagate(loc.clone().add(0.0, 0.0, 1.0), power);
+        propagate(loc.clone().add(0.0, 0.0, -1.0), power);
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
@@ -51,31 +66,8 @@ public class AtomItemListener implements Listener {
             return;
         }
 
-        // This is O(scary); but it works well enough
         Location at = event.getBlock().getLocation();
-        World world = at.getWorld();
-        double MIN = -4.0;
-        double MAX = 4.0;
-        double MIN_CLOSE = -3.9;
-        double MAX_CLOSE = 3.9;
-        for (double deltaX = MIN; deltaX <= MAX; deltaX += 0.8) {
-            for (double deltaY = MIN; deltaY <= MAX; deltaY += 0.8) {
-                for (double deltaZ = MIN; deltaZ <= MAX; deltaZ += 0.8) {
-                    if (!(
-                            deltaX <= MIN_CLOSE || deltaX >= MAX_CLOSE
-                            || deltaY <= MIN_CLOSE || deltaY >= MAX_CLOSE
-                            || deltaZ <= MIN_CLOSE || deltaZ >= MAX_CLOSE
-                            )) {
-                        continue;
-                    }
-                    Location loc = at.clone();
-                    for (int i = 0; i < 20; i++) {
-                        loc = loc.add(deltaX, deltaY, deltaZ);
-                        world.createExplosion(loc, 6.0F);
-                    }
-                }
-            }
-        }
+        propagate(at, 30);
 
         player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
     }
