@@ -17,7 +17,7 @@ public class FireballRecipe {
     public void fireballRecipe() {
         ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
         fireball.setAmount(4);
-        fireball.addEnchantment(Enchantment.DURABILITY, 0);
+        fireball.addEnchantment(Enchantment.DURABILITY, 3);
         ShapelessRecipe fireballRec = new ShapelessRecipe(NamespacedKey.minecraft("fireball"), fireball);
         fireballRec.addIngredient(Material.FIRE_CHARGE);
         fireballRec.addIngredient(Material.TNT);

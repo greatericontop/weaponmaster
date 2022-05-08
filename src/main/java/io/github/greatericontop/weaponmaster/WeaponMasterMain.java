@@ -38,6 +38,7 @@ import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
 import io.github.greatericontop.weaponmaster.Fireball.FireballCommand;
 import io.github.greatericontop.weaponmaster.Fireball.FireballListener;
+import io.github.greatericontop.weaponmaster.Fireball.FireballRecipe;
 import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
@@ -181,6 +182,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Fireball
         getCommand("fireball").setExecutor(new FireballCommand());
         getServer().getPluginManager().registerEvents(new FireballListener(this), this);
+        new FireballRecipe().fireballRecipe();
         // Atom Bomb
         getCommand("atombomb").setExecutor(new AtomCommand());
         getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
