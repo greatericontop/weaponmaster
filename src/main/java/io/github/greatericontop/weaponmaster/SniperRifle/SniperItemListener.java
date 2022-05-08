@@ -66,7 +66,7 @@ public class SniperItemListener implements Listener {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
-        if (!util.checkForSniperRifle(event.getBow())) {
+        if (util.checkForSniperRifle(event.getBow())) {
             ((Player) event.getEntity()).sendMessage("§cYou need to use LEFT CLICK to shoot this.");
             event.setCancelled(true);
         }
