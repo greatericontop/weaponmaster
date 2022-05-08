@@ -35,6 +35,7 @@ commands:
     usage: "U: /artemis [give]"
     permission: "weaponmaster.artemisbow.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["artemis-bow"]
   anduril:
     description: "[Weapon Master] command for Anduril"
     usage: "U: /anduril [give]"
@@ -96,6 +97,12 @@ commands:
     usage: "U: /atombomb [give]"
     permission: "weaponmaster.atombomb.command"
     permission-message: "§cYou are not allowed to do this!"
+  netheritestaff:
+    description: "[Weapon Master] command for Netherite Staff"
+    usage: "U: /netheritestaff [give]"
+    permission: "weaponmaster.netheritestaff.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["netherite-st", "staff"]
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -188,6 +195,11 @@ permissions:
   weaponmaster.atombomb.command:
     default: op
   weaponmaster.atombomb.use:
+    default: true
+  #
+  weaponmaster.netheritestaff.command:
+    default: op
+  weaponmaster.netheritestaff.use:
     default: true
   #
   weaponmaster.assaultrifle.command:

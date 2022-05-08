@@ -179,12 +179,12 @@ public class WeaponMasterMain extends JavaPlugin {
         // Fireball
         getCommand("fireball").setExecutor(new FireballCommand());
         getServer().getPluginManager().registerEvents(new FireballListener(this), this);
-        // Netherite Staff
-        getCommand("netheritest").setExecutor(new NetheriteStaffCommand());
-        getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
         // Atom Bomb
         getCommand("atombomb").setExecutor(new AtomCommand());
         getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
+        // Netherite Staff
+        getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
+        getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

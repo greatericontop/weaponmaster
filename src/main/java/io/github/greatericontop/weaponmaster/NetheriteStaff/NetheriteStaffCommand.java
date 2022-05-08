@@ -20,7 +20,7 @@ public class NetheriteStaffCommand implements CommandExecutor {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§lNetherite Staff");
         to.sendMessage("§e§oby greateric, gerseneck");
-        to.sendMessage("§3Use §2/netheritest give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/netheritestaff give§3 to give yourself the item.");
     }
 
     @Override
