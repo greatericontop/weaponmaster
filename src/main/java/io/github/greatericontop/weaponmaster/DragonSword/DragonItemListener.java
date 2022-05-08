@@ -26,6 +26,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class DragonItemListener implements Listener {
 
     // triangular distribution parameters
@@ -64,7 +67,15 @@ public class DragonItemListener implements Listener {
         if (Math.random() < 0.5) {
             double multiplier = triangular(Math.random());
             event.setDamage(event.getDamage()*(1+multiplier));
-            player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
+            //try {
+            //    Method method = player.getClass().getDeclaredMethod("sendActionBar");
+            //    method.invoke(player,
+            //            new Object[]{String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage())}
+            //    );
+            //} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                //e.printStackTrace();
+                player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
+            //}
         }
     }
 
