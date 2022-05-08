@@ -24,6 +24,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
 
 public class CavemanCommand implements CommandExecutor {
 
@@ -54,6 +57,28 @@ public class CavemanCommand implements CommandExecutor {
             ((Player) sender).getInventory().addItem(caveman);
             sender.sendMessage("§7Gave you §f[" + util.CAVEMAN_SWORD_NAME + "§f]§7.");
             return true;
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setStats")) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("§3Sorry, players only.");
+                return true;
+            }
+            int level, exp;
+            try {
+                level = Integer.parseInt(args[1]);
+                exp = Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cError: §4You need integers <level> and <exp>.");
+                return true;
+            }
+            Player player = (Player) sender;
+            ItemMeta iMeta = player.getInventory().getItemInMainHand().getItemMeta();
+            List<String> lore = iMeta.getLore();
+            lore.set(util.CAVEMAN_LVL_I, String.format("§6Sharpness Level: §b%d", level));
+            lore.set(util.CAVEMAN_EXP_I, String.format("§6Experience: §b%d", exp));
+            iMeta.setLore(lore);
+            player.getInventory().getItemInMainHand().setItemMeta(iMeta);
+            player.sendMessage("§3Success. You may need to level up to fully update the changes.");
         }
         return false;
     }
