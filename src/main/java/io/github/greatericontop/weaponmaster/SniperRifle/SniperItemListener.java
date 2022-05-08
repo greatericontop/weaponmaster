@@ -92,7 +92,7 @@ public class SniperItemListener implements Listener {
         }
 
         if (player.getGameMode() == GameMode.CREATIVE || player.getInventory().containsAtLeast(new ItemStack(Material.ARROW), 1)) {
-            player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.02)));
+            player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.06)));
             fireOneRound(player);
             if (player.getGameMode() != GameMode.CREATIVE) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
