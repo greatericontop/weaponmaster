@@ -29,6 +29,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -61,6 +62,7 @@ public class RPGItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onLeftClick(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
         Player player = event.getPlayer();
         if (!util.checkForRPGLauncher(player.getInventory().getItemInMainHand())) { return; }

@@ -18,7 +18,7 @@ public class FireballCommand implements CommandExecutor {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§lFireball");
         to.sendMessage("§e§oby greateric, gerseneck");
-        to.sendMessage("§3Use §2/exodus give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/fireball give§3 to give yourself the item.");
     }
 
     @Override
@@ -32,8 +32,8 @@ public class FireballCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack exodus = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
-            ((Player) sender).getInventory().addItem(exodus);
+            ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
+            ((Player) sender).getInventory().addItem(fireball);
             sender.sendMessage("§7Gave you §f[" + util.FIREBALL_NAME + "§f]§7.");
             return true;
         }

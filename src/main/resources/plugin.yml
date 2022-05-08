@@ -77,7 +77,7 @@ commands:
     permission-message: "§cYou are not allowed to do this!"
   cavemansword:
     description: "[Weapon Master] command for Caveman Sword"
-    usage: "U: /cavemansword [give]"
+    usage: "U: /cavemansword [give | setStats <level> <exp>]"
     permission: "weaponmaster.cavemansword.command"
     permission-message: "§cYou are not allowed to do this!"
   warlockpants:
@@ -86,6 +86,11 @@ commands:
     permission: "weaponmaster.warlockpants.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["warlock"]
+  fireball:
+    description: "[Weapon Master] command for Fireball"
+    usage: "U: /fireball [give]"
+    permission: "weaponmaster.fireball.command"
+    permission-message: "§cYou are not allowed to do this!"
   assaultrifle:
     description: "[Weapon Master] command for Assault Rifle"
     usage: "U: /assaultrifle [give]"
@@ -168,6 +173,11 @@ permissions:
   weaponmaster.warlockpants.command:
     default: op
   weaponmaster.warlockpants.use:
+    default: true
+  #
+  weaponmaster.fireball.command:
+    default: op
+  weaponmaster.fireball.use:
     default: true
   #
   weaponmaster.assaultrifle.command:
