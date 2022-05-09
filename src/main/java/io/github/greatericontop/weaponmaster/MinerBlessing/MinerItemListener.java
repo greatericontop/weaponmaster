@@ -47,7 +47,7 @@ public class MinerItemListener implements Listener {
     }
     private int parseLevelInt(String s) {
         // §6Tier: §b<DATA>
-        String data = s.substring(8, s.length());
+        String data = s.substring(10, s.length());
         return Integer.parseInt(data);
     }
 
@@ -56,12 +56,12 @@ public class MinerItemListener implements Listener {
             return 2147483600;
         }
         return new int[]{
-                1_000,
-                1_500, // 1
-                2_500,
-                4_000,
-                6_000,
-                9_000_00000, // 5
+                10_000,
+                15_000, // 1
+                25_000,
+                40_000,
+                60_000,
+                90_000, // 5
         }[level];
     }
 
@@ -82,7 +82,8 @@ public class MinerItemListener implements Listener {
         switch (newTier) {
             case 1:
                 im.addEnchant(Enchantment.DIG_SPEED, 1, false);
-                lore.add(util.MINER_INSERTION, "§eEfficiency I");
+                lore.add(util.MINER_INSERTION, "");
+                lore.add(util.MINER_INSERTION+1, "§eEfficiency I");
                 break;
             case 2:
                 im.removeEnchant(Enchantment.DIG_SPEED);
@@ -104,9 +105,18 @@ public class MinerItemListener implements Listener {
             case 5:
                 im.removeEnchant(Enchantment.DIG_SPEED);
                 im.removeEnchant(Enchantment.DURABILITY);
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
                 im.addEnchant(Enchantment.DIG_SPEED, 5, false);
                 im.addEnchant(Enchantment.DURABILITY, 2, false);
-                lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking II, Sharpness I");
+                im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+                lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking II, Sharpness II");
+                break;
+            case 6:
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.addEnchant(Enchantment.DURABILITY, 3, false);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+                lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking III, Sharpness III");
                 break;
         }
     }
