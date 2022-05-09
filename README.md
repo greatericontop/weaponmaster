@@ -1,9 +1,8 @@
-# weaponmaster
+# WeaponMaster
 
 a weapons plugin
 
-
-# weapons
+# Weapons
 
 ## RPG Launcher
 
@@ -12,7 +11,14 @@ a weapons plugin
 ## Vampire's Axe
 
 `/vampaxe give` - life steals damage when you hit  
-Craft:
+
+Crafting Recipe:
+- 3 Netherite Axe
+- 2 Redstone Block
+- 1 Wither Skeleton Skill
+
+![](assets/vampaxe.png)
+
 
 ## Death's Scythe
 
@@ -21,12 +27,27 @@ Craft:
 ## Dragon Sword
 
 `/dragonsword give` - deals extra damage  
-Craft:
+
+Crafting Recipe:
+- 1 Netherite Sword
+- 2 Dragon Head
+- 6 Blaze Rod
+
+![](assets/dragsword.png)
 
 ## Artemis Bow
 
 `/artemis give` - heat seeking arrows attack nearby targets  
-Craft:
+
+Crafting Recipe:
+- 3 Bow
+- 2 Netherite Ingot
+- 1 Netherite Block
+- 1 Eye of Ender
+- 1 Diamond Block
+- 1 Wither Skeleton Skull
+
+![](assets/artemis.png)
 
 ## Anduril
 
@@ -35,7 +56,16 @@ Craft:
 ## Excalibur
 
 `/excalibur give` - explodes on impact and deals true damage (stolen as well)  
-Craft:
+
+Crafting Recipe:
+- 2 TNT
+- 2 Nether Star
+- 1 End Crystal
+- 1 Zombie Head
+- 1 Skeleton Skull
+- 2 Diamond Block
+
+![](assets/excal.png)
 
 ## Exodus
 
@@ -73,26 +103,59 @@ Craft:
 
 `/fireball give` - boom
 
+Crafting Recipe: (Shapeless)
+- 1 TNT
+- 1 Arrow
+- 1 Fire Charge
+
+![](assets/fireball.png)
+
 ## Atom Bomb
 
 `/atombomb give` - absolutely mauls terrain
 
 ## Netherite Staff
 
-`/netheritestaff` - what does this do again?
+`/netheritestaff` - gives random effects to the entity being attacked
 
 ## Sniper Rifle
 
 `/sniperrifle give` - shoots fast and accurate bullets
 
-## Extras
+# Others
 
-- Hide of Leviathan
-- Flask of Ichor
+## Hide of Leviathan
+
+Netherite Leggings with `Protection IV`, `Blast Protection IV`, `Fire Protection IV`, and `Projectile Protection IV`.
+
+Crafting Recipe:
+- 1 Netherite Leggings
+- 2 Netherite Block
+- 4 Diamond Block
+- 1 Heart of Leviathan
+
+![](assets/hide.png)
+
+## Flask of Ichor
+
+Potion of `Instant Damage IV`
+
+Crafting Recipe:
+- 1 Fermented Spider Eye
+- 1 Glass Bottle
+- 1 Blaze Rod
+- 1 Iron Block
+- 1 Wither Skeleton Skull
+
+![](assets/flask.png)
+
+## Heart of Leviathan
+
+A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
 
 ---
 
-# usage
+# Usage
 
 build using maven
 
