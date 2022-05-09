@@ -82,8 +82,7 @@ public class MinerItemListener implements Listener {
         switch (newTier) {
             case 1:
                 im.addEnchant(Enchantment.DIG_SPEED, 1, false);
-                lore.add(util.MINER_INSERTION, "");
-                lore.add(util.MINER_INSERTION+1, "§eEfficiency I");
+                lore.add(util.MINER_INSERTION, "§eEfficiency I");
                 break;
             case 2:
                 im.removeEnchant(Enchantment.DIG_SPEED);

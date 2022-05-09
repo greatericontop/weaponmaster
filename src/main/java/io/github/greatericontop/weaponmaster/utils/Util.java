@@ -75,7 +75,7 @@ public class Util {
     public final int MINER_EXP = 3;
     public final int MINER_REQ = 4;
     public final int MINER_LVL = 5;
-    public final int MINER_INSERTION = 6;
+    public final int MINER_INSERTION = 7;
 
     private final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
