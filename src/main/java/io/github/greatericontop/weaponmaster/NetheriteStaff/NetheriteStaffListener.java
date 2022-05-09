@@ -13,14 +13,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-/*enum PotionEffects {
-    BLINDNESS,
-}*/
 public class NetheriteStaffListener implements Listener {
 
     Random rand = new Random();
-    int duration = rand.nextInt(101);
-    int amplifier = rand.nextInt(10);
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -40,7 +35,10 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
         LivingEntity attacked = (LivingEntity) event.getEntity();
-        PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, duration, amplifier);
+        int duration = rand.nextInt(580) + 20;
+        int amplifier = rand.nextInt(10);
+        PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
+        PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
         attacked.addPotionEffect(effect);
     }
 }
