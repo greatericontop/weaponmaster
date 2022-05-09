@@ -45,6 +45,8 @@ import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerCommand;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerItemListener;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
@@ -191,6 +193,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Sniper Rifle
         getCommand("sniperrifle").setExecutor(new SniperCommand());
         getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
+        // Miner's Blessing
+        getCommand("minersblessing").setExecutor(new MinerCommand());
+        getServer().getPluginManager().registerEvents(new MinerItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

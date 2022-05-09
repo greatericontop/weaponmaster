@@ -19,7 +19,6 @@ package io.github.greatericontop.weaponmaster.CavemanSword;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -106,8 +105,8 @@ public class CavemanItemListener implements Listener {
         if (amount > lastAmount) {
             ItemMeta iMeta = player.getInventory().getItemInMainHand().getItemMeta();
             List<String> lore = iMeta.getLore();
-            int exp = parseExpInt(lore.get(util.CAVEMAN_EXP_I));
-            int level = parseLevelInt(lore.get(util.CAVEMAN_LVL_I));
+            int exp = parseExpInt(lore.get(util.CAVEMAN_EXP));
+            int level = parseLevelInt(lore.get(util.CAVEMAN_LVL));
 
             amount -= lastAmount;
             exp += amount;
@@ -119,11 +118,11 @@ public class CavemanItemListener implements Listener {
                 iMeta.removeEnchant(Enchantment.DAMAGE_ALL);
                 iMeta.addEnchant(Enchantment.DAMAGE_ALL, level, true);
                 player.sendMessage(String.format("§9Your %s §9is now level §6%d.", util.CAVEMAN_SWORD_NAME, level));
-                lore.set(util.CAVEMAN_LVL_I, String.format("§6Sharpness Level: §b%d", level));
+                lore.set(util.CAVEMAN_LVL, String.format("§6Sharpness Level: §b%d", level));
             }
-            lore.set(util.CAVEMAN_EXP_I, String.format("§6Experience: §b%d", exp));
+            lore.set(util.CAVEMAN_EXP, String.format("§6Experience: §b%d", exp));
             double xpPercent = (100.0 * exp) / getRequirementToLevelUp(level);
-            lore.set(util.CAVEMAN_REQ_I, String.format("§6Required Experience: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(level), xpPercent));
+            lore.set(util.CAVEMAN_REQ, String.format("§6Required Experience: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(level), xpPercent));
 
             iMeta.setLore(lore);
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);

@@ -1,0 +1,146 @@
+package io.github.greatericontop.weaponmaster.MinerBlessing;
+
+/*
+    Copyright (C) 2021 greateric.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
+
+public class MinerItemListener implements Listener {
+
+    private final WeaponMasterMain plugin;
+    private final Util util;
+    public MinerItemListener(WeaponMasterMain plugin) {
+        this.plugin = plugin;
+        util = new Util(plugin);
+    }
+
+    private int parseExpInt(String s) {
+        // §6Experience: §b<DATA>
+        String data = s.substring(16, s.length());
+        return Integer.parseInt(data);
+    }
+    private int parseLevelInt(String s) {
+        // §6Tier: §b<DATA>
+        String data = s.substring(8, s.length());
+        return Integer.parseInt(data);
+    }
+
+    private int getRequirementToLevelUp(int level) {
+        if (level >= 6) {
+            return 2147483600;
+        }
+        return new int[]{
+                1_000,
+                1_500, // 1
+                2_500,
+                4_000,
+                6_000,
+                9_000_00000, // 5
+        }[level];
+    }
+
+    public int xpToAdd(Material mat) {
+        if (mat == Material.DEEPSLATE_COAL_ORE)  return 2100;
+        if (mat == Material.DEEPSLATE_EMERALD_ORE || mat == Material.DEEPSLATE_DIAMOND_ORE)  return 1000;
+        if (mat == Material.EMERALD_ORE || mat == Material.DIAMOND_ORE)  return 840;
+        if (mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_REDSTONE_ORE || mat == Material.DEEPSLATE_GOLD_ORE || mat == Material.DEEPSLATE_LAPIS_ORE)  return 610;
+        if (mat == Material.COAL_ORE || mat == Material.IRON_ORE || mat == Material.REDSTONE_ORE || mat == Material.GOLD_ORE || mat == Material.LAPIS_ORE)  return 400;
+        if (mat == Material.OBSIDIAN || mat == Material.ANCIENT_DEBRIS)  return 50;
+        if (mat == Material.DEEPSLATE)  return 15;
+        if (mat == Material.STONE)  return 6;
+        if (mat == Material.NETHERRACK) return 2;
+        return 1;
+    }
+
+    public void runLevelUp(int newTier, ItemMeta im, List<String> lore) {
+        switch (newTier) {
+            case 1:
+                im.addEnchant(Enchantment.DIG_SPEED, 1, false);
+                lore.add(util.MINER_INSERTION, "§eEfficiency I");
+                break;
+            case 2:
+                im.removeEnchant(Enchantment.DIG_SPEED);
+                im.addEnchant(Enchantment.DIG_SPEED, 2, false);
+                lore.set(util.MINER_INSERTION, "§eEfficiency II");
+                break;
+            case 3:
+                im.removeEnchant(Enchantment.DIG_SPEED);
+                im.addEnchant(Enchantment.DIG_SPEED, 3, false);
+                im.addEnchant(Enchantment.DURABILITY, 1, false);
+                lore.set(util.MINER_INSERTION, "§eEfficiency III, Unbreaking I");
+                break;
+            case 4:
+                im.removeEnchant(Enchantment.DIG_SPEED);
+                im.addEnchant(Enchantment.DIG_SPEED, 4, false);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                lore.set(util.MINER_INSERTION, "§eEfficiency IV, Unbreaking I, Sharpness I");
+                break;
+            case 5:
+                im.removeEnchant(Enchantment.DIG_SPEED);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
+                im.addEnchant(Enchantment.DURABILITY, 2, false);
+                lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking II, Sharpness I");
+                break;
+        }
+    }
+
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        if (!util.checkForMinersBlessing(player.getInventory().getItemInMainHand())) { return; }
+        if (!player.hasPermission("weaponmaster.minersblessing.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.minersblessing.use§3.");
+            return;
+        }
+
+        int amount = xpToAdd(event.getBlock().getType());
+        ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
+        List<String> lore = im.getLore();
+        int exp = parseExpInt(lore.get(util.MINER_EXP));
+        int tier = parseLevelInt(lore.get(util.MINER_LVL));
+        exp += amount;
+
+        if (exp >= getRequirementToLevelUp(tier)) {
+            exp = 0;
+            tier++;
+            runLevelUp(tier, im, lore);
+            player.sendMessage(String.format("§9Your %s §9is now level §6%d.", util.MINERS_BLESSING_NAME, tier));
+            lore.set(util.MINER_LVL, String.format("§6Tier: §b%d", tier));
+        }
+        lore.set(util.MINER_EXP, String.format("§6Experience: §b%d", exp));
+        double xpPercent = (100.0 * exp) / getRequirementToLevelUp(tier);
+        lore.set(util.MINER_REQ, String.format("§6Required: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(tier), xpPercent));
+
+        im.setLore(lore);
+        player.getInventory().getItemInMainHand().setItemMeta(im);
+    }
+
+}

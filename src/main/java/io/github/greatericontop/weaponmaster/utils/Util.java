@@ -46,6 +46,7 @@ public class Util {
     public final String ATOM_BOMB_NAME = "§cAtom Bomb §6⚝⚝⚝⚝⚝";
     public final String NETHERITE_STAFF_NAME = "§b§lNetherite Staff §6⚝⚝⚝⚝⚝";
     public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
+    public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -66,10 +67,15 @@ public class Util {
     public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
     public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
     public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
+    public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
 
-    public final int CAVEMAN_EXP_I = 3;
-    public final int CAVEMAN_REQ_I = 4;
-    public final int CAVEMAN_LVL_I = 5;
+    public final int CAVEMAN_EXP = 3;
+    public final int CAVEMAN_REQ = 4;
+    public final int CAVEMAN_LVL = 5;
+    public final int MINER_EXP = 3;
+    public final int MINER_REQ = 4;
+    public final int MINER_LVL = 5;
+    public final int MINER_INSERTION = 6;
 
     private final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
@@ -292,6 +298,18 @@ public class Util {
         SNIPER_RIFLE_LORE.add("");
         SNIPER_RIFLE_LORE.add("§6LEGENDARY");
         SNIPER_RIFLE_LORE.add("§6---------------");
+        // Miner's Blessing
+        MINERS_BLESSING_LORE.add("id: MINERS_BLESSING");
+        MINERS_BLESSING_LORE.add("§6---------------");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§6Experience: §70");
+        MINERS_BLESSING_LORE.add("§6Required: §7Break Something!");
+        MINERS_BLESSING_LORE.add("§6Tier: §70");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§eAbility: §7???");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§6LEGENDARY");
+        MINERS_BLESSING_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -368,5 +386,8 @@ public class Util {
     }
     public boolean checkForSniperRifle(ItemStack item) {
         return this.checkFor(item, SNIPER_RIFLE_NAME, 0, "id: SNIPER_RIFLE");
+    }
+    public boolean checkForMinersBlessing(ItemStack item) {
+        return this.checkFor(item, MINERS_BLESSING_NAME, 0, "id: MINERS_BLESSING");
     }
 }

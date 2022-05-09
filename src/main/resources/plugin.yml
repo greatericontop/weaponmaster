@@ -109,6 +109,12 @@ commands:
     permission: "weaponmaster.sniperrifle.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["sniper", "sniper-rifle"]
+  minersblessing:
+    description: "[Weapon Master] command for Miner's Blessing"
+    usage: "U: /minersblessing [give]"
+    permission: "weaponmaster.minersblessing.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["miners-blessing"]
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -206,6 +212,11 @@ permissions:
   weaponmaster.sniperrifle.command:
     default: op
   weaponmaster.sniperrifle.use:
+    default: true
+  #
+  weaponmaster.minersblessing.command:
+    default: op
+  weaponmaster.minersblessing.use:
     default: true
   #
   weaponmaster.assaultrifle.command:
