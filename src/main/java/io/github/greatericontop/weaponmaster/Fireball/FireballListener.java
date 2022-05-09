@@ -42,7 +42,7 @@ public class FireballListener implements Listener {
         Location eyeLocation = player.getEyeLocation();
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
-        if (Math.random() < 0.025) {
+        if (Math.random() < 0.02) {
             DragonFireball draogonFireballEntity = (DragonFireball) world.spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
             draogonFireballEntity.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
             event.getPlayer().sendMessage("§3You summoned a dragon fireball!");

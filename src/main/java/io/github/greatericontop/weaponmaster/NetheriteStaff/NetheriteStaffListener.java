@@ -35,7 +35,7 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
         LivingEntity attacked = (LivingEntity) event.getEntity();
-        int duration = rand.nextInt(580) + 20;
+        int duration = rand.nextInt(520) + 60;
         int amplifier = rand.nextInt(10);
         PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
         PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
