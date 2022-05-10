@@ -143,6 +143,7 @@ public class MinerItemListener implements Listener {
             case 8:
                 lore.add(util.MINER_INSERTION+4, "");
                 lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience.");
+                lore.add(util.MINER_INSERTION+6, "§a§oNOTE: Automatically smelting ores will be disabled in Silk Touch mode.");
                 break;
         }
     }
@@ -182,6 +183,9 @@ public class MinerItemListener implements Listener {
     }
 
     public void doSmeltingOres(BlockBreakEvent event, Player player) {
+        ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
+        List<String> lore = im.getLore();
+        if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; }
         Material mat = event.getBlock().getType();
         World world = event.getBlock().getLocation().getWorld();
         if (mat == Material.COPPER_ORE || mat == Material.DEEPSLATE_COPPER_ORE) {
@@ -221,15 +225,17 @@ public class MinerItemListener implements Listener {
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
         if (tier < 7) { return; }
 
-        String text = lore.get(util.MINER_INSERTION+3);
+        String text = lore.get(util.MINER_INSERTION + 3);
         if (text.equals("§6Currently set to §9Silk Touch")) {
             im.removeEnchant(Enchantment.SILK_TOUCH);
             im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
             lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Fortune III");
+            player.sendMessage("§6 Pickaxe currently set to §9Fortune III");
         } else {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
             lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Silk Touch");
+            player.sendMessage("§6 Pickaxe currently set to §9FSilk Touch");
         }
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);

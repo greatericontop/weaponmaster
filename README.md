@@ -122,6 +122,10 @@ Crafting Recipe: (Shapeless)
 
 `/sniperrifle give` - shoots fast and accurate bullets
 
+## Miner's Blessing
+
+`/minersblessing give` - super pickaxe, need to mine to level up
+
 # Others
 
 ## Hide of Leviathan
