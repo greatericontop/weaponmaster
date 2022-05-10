@@ -306,7 +306,7 @@ public class Util {
         MINERS_BLESSING_LORE.add("§6Required: §7Break Something!");
         MINERS_BLESSING_LORE.add("§6Tier: §70");
         MINERS_BLESSING_LORE.add("");
-        MINERS_BLESSING_LORE.add("§eAbility: §7???");
+        MINERS_BLESSING_LORE.add("§7Unlock more abilities by levelling up!");
         MINERS_BLESSING_LORE.add("");
         MINERS_BLESSING_LORE.add("§6LEGENDARY");
         MINERS_BLESSING_LORE.add("§6---------------");

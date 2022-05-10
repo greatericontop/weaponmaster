@@ -136,10 +136,13 @@ public class MinerItemListener implements Listener {
                 lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking III, Sharpness III");
                 break;
             case 7:
-                lore.add(util.MINER_INSERTION, "§3RIGHT CLICK to cycle between Silk Touch and Fortune III.");
+                lore.add(util.MINER_INSERTION+1, "");
+                lore.add(util.MINER_INSERTION+2, "§3RIGHT CLICK to cycle between Silk Touch and Fortune III.");
                 break;
             case 8:
-                lore.add(util.MINER_INSERTION, "§aAutomatically smelts some ores and drops additional experience.");
+                lore.add(util.MINER_INSERTION+3, "");
+                lore.add(util.MINER_INSERTION+4, "§aAutomatically smelts some ores and drops additional experience.");
+                lore.add(util.MINER_INSERTION+5, "§6Currently set to §7none");
                 break;
         }
     }
