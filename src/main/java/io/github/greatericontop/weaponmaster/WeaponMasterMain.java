@@ -47,6 +47,7 @@ import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerCommand;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerItemListener;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerRecipe;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
@@ -183,7 +184,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Fireball
         getCommand("fireball").setExecutor(new FireballCommand());
         getServer().getPluginManager().registerEvents(new FireballListener(this), this);
-        new FireballRecipe().fireballRecipe();
+        new FireballRecipe().regRecipe();
         // Atom Bomb
         getCommand("atombomb").setExecutor(new AtomCommand());
         getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
@@ -196,6 +197,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Miner's Blessing
         getCommand("minersblessing").setExecutor(new MinerCommand());
         getServer().getPluginManager().registerEvents(new MinerItemListener(this), this);
+        new MinerRecipe().regRecipe();
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

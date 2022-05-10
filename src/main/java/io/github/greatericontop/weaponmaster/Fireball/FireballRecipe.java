@@ -9,12 +9,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 
 public class FireballRecipe {
+
     private final Util util;
     public FireballRecipe() {
         util = new Util(null);
     }
 
-    public void fireballRecipe() {
+    public void regRecipe() {
         ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
         fireball.setAmount(4);
         ShapelessRecipe fireballRec = new ShapelessRecipe(NamespacedKey.minecraft("fireball"), fireball);

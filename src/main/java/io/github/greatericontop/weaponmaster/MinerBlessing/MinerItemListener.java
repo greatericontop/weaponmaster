@@ -157,6 +157,7 @@ public class MinerItemListener implements Listener {
             return;
         }
 
+
         int amount = xpToAdd(event.getBlock().getType());
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();

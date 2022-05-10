@@ -105,8 +105,8 @@ Crafting Recipe:
 
 Crafting Recipe: (Shapeless)
 - 1 TNT
-- 1 Arrow
 - 1 Fire Charge
+- 1 Arrow
 
 ![](assets/fireball.png)
 
@@ -124,7 +124,15 @@ Crafting Recipe: (Shapeless)
 
 ## Miner's Blessing
 
-`/minersblessing give` - super pickaxe, need to mine to level up
+`/minersblessing give` - super pickaxe, mine to level up
+
+Crafting Recipe:
+- 1 Netherite Pickaxe
+- 2 Netherite Ingot
+- 2 Blaze Rod
+- 2 Blast Furnace
+
+![](assets/miner.png)
 
 # Others
 
