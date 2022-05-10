@@ -138,11 +138,11 @@ public class MinerItemListener implements Listener {
             case 7:
                 lore.add(util.MINER_INSERTION+1, "");
                 lore.add(util.MINER_INSERTION+2, "§3RIGHT CLICK to cycle between Silk Touch and Fortune III.");
+                lore.add(util.MINER_INSERTION+3, "§6Currently set to §7none");
                 break;
             case 8:
-                lore.add(util.MINER_INSERTION+3, "");
-                lore.add(util.MINER_INSERTION+4, "§aAutomatically smelts some ores and drops additional experience.");
-                lore.add(util.MINER_INSERTION+5, "§6Currently set to §7none");
+                lore.add(util.MINER_INSERTION+4, "");
+                lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience.");
                 break;
         }
     }
@@ -221,9 +221,17 @@ public class MinerItemListener implements Listener {
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
         if (tier < 7) { return; }
 
-        player.sendMessage("§7this is a test, adding you fortune");
-        im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
-
+        String text = lore.get(util.MINER_INSERTION+3);
+        if (text.equals("§6Currently set to §9Silk Touch")) {
+            im.removeEnchant(Enchantment.SILK_TOUCH);
+            im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
+            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Fortune III");
+        } else {
+            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
+            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Silk Touch");
+        }
+        im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
 
