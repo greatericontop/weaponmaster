@@ -18,8 +18,10 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -98,6 +100,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 10:
                 lore.set(util.MINER_INSERTION+7, "§aFortune III applies to this mode and smelted ores. §7§oTIER 10");
                 break;
+            case 11:
+                lore.add(util.MINER_INSERTION+11, "");
+                lore.add(util.MINER_INSERTION+12, "§2Small chance for ores to spawn around you. §7§oTIER 11");
         }
     }
 
@@ -132,6 +137,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
         if (tier >= 9) {
             doDeepslateBlockMultiply(event, player);
+        }
+        if (tier >= 11) {
+            attemptSpawnBlock(event, player);
         }
 
         im.setLore(lore);
@@ -168,11 +176,11 @@ public class MinerItemListener extends MinerUtil implements Listener {
 
     public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player) {
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
-        if (rnd.nextFloat() >= 0.01) { return; }
+        if (rnd.nextFloat() >= 0.01F) { return; }
         List<String> lore = im.getLore();
         if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; } // prevent abuse
         World world = event.getBlock().getLocation().getWorld();
-        event.setExpToDrop((event.getExpToDrop() + 2) * 9);
+        event.setExpToDrop(event.getExpToDrop() * 9);
         // drops an extra item (does not invalidate the current one)
         switch (event.getBlock().getType()) {
             case DEEPSLATE_COAL_ORE:
@@ -199,6 +207,41 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case DEEPSLATE_DIAMOND_ORE:
                 world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND_BLOCK, 1));
                 break;
+        }
+    }
+
+    /*
+     * Attempt to replace nearby netherrack, stone, deepslate into a random ore of the corresponding type
+     */
+    public void attemptSpawnBlock(BlockBreakEvent event, Player player) {
+        Location loc = event.getBlock().getLocation();
+        attemptSpawnBlockSingle(loc.clone().add(1.0, 0.0, 0.0), player, event.getBlock().getType());
+        attemptSpawnBlockSingle(loc.clone().add(-1.0, 0.0, 0.0), player, event.getBlock().getType());
+        attemptSpawnBlockSingle(loc.clone().add(0.0, 1.0, 0.0), player, event.getBlock().getType());
+        attemptSpawnBlockSingle(loc.clone().add(0.0, -1.0, 0.0), player, event.getBlock().getType());
+        attemptSpawnBlockSingle(loc.clone().add(0.0, 0.0, 1.0), player, event.getBlock().getType());
+        attemptSpawnBlockSingle(loc.clone().add(0.0, 0.0, -1.0), player, event.getBlock().getType());
+    }
+    final Material[] stoneMats = {Material.COAL_ORE, Material.IRON_ORE, Material.GOLD_ORE, Material.REDSTONE_ORE, Material.LAPIS_ORE};
+    final Material[] deepMats = {Material.DEEPSLATE_COAL_ORE, Material.DEEPSLATE_IRON_ORE, Material.DEEPSLATE_GOLD_ORE, Material.DEEPSLATE_REDSTONE_ORE, Material.DEEPSLATE_LAPIS_ORE};
+    final Material[] netherMats = {Material.NETHER_QUARTZ_ORE, Material.NETHER_GOLD_ORE};
+    private void attemptSpawnBlockSingle(Location loc, Player player, Material blockType) {
+        Block blockAt = loc.getBlock();
+        if (blockAt.getType() == Material.STONE && (blockType == Material.STONE || blockType == Material.ANDESITE || blockType == Material.DIORITE || blockType == Material.GRANITE)) {
+            if (rnd.nextFloat() >= 0.00_07F) { return; }
+            Material replacement = stoneMats[rnd.nextInt(stoneMats.length)];
+            blockAt.setType(replacement);
+            player.sendMessage("§7A new ore just spawned!");
+        } else if (blockAt.getType() == Material.DEEPSLATE && blockType == Material.DEEPSLATE) {
+            if (rnd.nextFloat() >= 0.00_14F) { return; }
+            Material replacement = deepMats[rnd.nextInt(deepMats.length)];
+            blockAt.setType(replacement);
+            player.sendMessage("§7A new ore just spawned!");
+        } else if (blockAt.getType() == Material.NETHERRACK && blockType == Material.NETHERRACK) {
+            if (rnd.nextFloat() >= 0.00_045F) { return; }
+            Material replacement = netherMats[rnd.nextInt(netherMats.length)];
+            blockAt.setType(replacement);
+            player.sendMessage("§7A new ore just spawned!");
         }
     }
 
