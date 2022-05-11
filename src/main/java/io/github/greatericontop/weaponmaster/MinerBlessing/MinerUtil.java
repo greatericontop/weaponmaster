@@ -56,9 +56,12 @@ public class MinerUtil   {
      * Applies to coal, diamond, emerald, iron, copper, gold
      * NOT redstone
      */
-    protected int doFortuneOre(int amount) {
+    protected int doFortuneOre(int amount, boolean hasFortune) {
+        if (!hasFortune) {
+            return amount;
+        }
         float f = rnd.nextFloat();
-        int multiplier = Math.min((int) (f * 5), 1);
+        int multiplier = Math.max((int) (f * 5), 1);
         return amount * multiplier;
     }
 
@@ -74,8 +77,8 @@ public class MinerUtil   {
     }
 
     protected int getRequirementToLevelUp(int level) {
-        if (level >= 9) {
-            return 2147483600;
+        if (level >= 10) {
+            return 700_000;
         }
         return new int[]{
                 10_000,
@@ -87,6 +90,7 @@ public class MinerUtil   {
                 60_000,
                 70_000,
                 80_000,
+                90_000,
         }[level];
 //        return new int[]{
 //                10_000,

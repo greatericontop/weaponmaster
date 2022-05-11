@@ -86,13 +86,17 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 8:
                 lore.add(util.MINER_INSERTION+4, "");
                 lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience. §7§oTIER 8");
-                lore.add(util.MINER_INSERTION+6, "§aNOTE: §7Experience will be greatly reduced in Silk Touch mode.");
+                lore.add(util.MINER_INSERTION+6, "§7Experience will be greatly reduced in Silk Touch mode.");
+                lore.add(util.MINER_INSERTION+7, "§7Fortune cannot be used in this mode.");
                 // TODO: Add individual xp table to silk touch so it does not penalize everything
                 break;
             case 9:
-                lore.add(util.MINER_INSERTION+7, "");
-                lore.add(util.MINER_INSERTION+8, "§dWhen breaking some deepslate ores while not in Silk Touch");
-                lore.add(util.MINER_INSERTION+9, "§dmode, gain a §41% §dchance to drop a block instead. §7§oTIER 9");
+                lore.add(util.MINER_INSERTION+8, "");
+                lore.add(util.MINER_INSERTION+9, "§dWhen breaking some deepslate ores while not in Silk Touch");
+                lore.add(util.MINER_INSERTION+10, "§dmode, gain a §41% §dchance to drop a block instead. §7§oTIER 9");
+                break;
+            case 10:
+                lore.set(util.MINER_INSERTION+7, "§aFortune III applies to this mode and smelted ores. §7§oTIER 10");
                 break;
         }
     }
@@ -124,7 +128,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         lore.set(util.MINER_REQ, String.format("§6Required: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(tier), xpPercent));
 
         if (tier >= 8 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
-            doSmeltingOres(event, player);
+            doSmeltingOres(event, player, tier>=10);
         }
         if (tier >= 9) {
             doDeepslateBlockMultiply(event, player);
@@ -134,7 +138,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
 
-    public void doSmeltingOres(BlockBreakEvent event, Player player) {
+    public void doSmeltingOres(BlockBreakEvent event, Player player, boolean hasFortune) {
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
         if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; }
@@ -142,17 +146,17 @@ public class MinerItemListener extends MinerUtil implements Listener {
         World world = event.getBlock().getLocation().getWorld();
         if (mat == Material.COPPER_ORE || mat == Material.DEEPSLATE_COPPER_ORE) {
             event.setDropItems(false);
-            int amount = rnd.nextInt(3) + 2;
+            int amount = doFortuneOre(rnd.nextInt(3) + 2, hasFortune);
             world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_INGOT, amount));
             event.setExpToDrop(3*amount);
         } else if (mat == Material.IRON_ORE || mat == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
-            int amount = 1;
+            int amount = doFortuneOre(1, hasFortune);
             world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, amount));
             event.setExpToDrop(3*amount);
         } else if (mat == Material.GOLD_ORE || mat == Material.DEEPSLATE_GOLD_ORE) {
             event.setDropItems(false);
-            int amount = 1;
+            int amount = doFortuneOre(1, hasFortune);
             world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, amount));
             event.setExpToDrop(5*amount);
         } else if (mat == Material.ANCIENT_DEBRIS) {
@@ -222,7 +226,12 @@ public class MinerItemListener extends MinerUtil implements Listener {
         } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
-            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
+            if (tier >= 10) {
+                im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
+                player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune III");
+            } else {
+                player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
+            }
         } else {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
