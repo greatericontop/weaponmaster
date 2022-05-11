@@ -84,7 +84,7 @@ public class MinerItemListener implements Listener {
     }
 
     public int xpToAdd(Material mat, List<String> lore) {
-        if (getMode(lore).equals("§6Currently set to §9Smelting Touch"))  return 1;
+        if (getMode(lore).equals("§6Currently set to §9Silk Touch"))  return 1;
         if (mat == Material.DEEPSLATE_COAL_ORE)  return 2700;
         if (mat == Material.DEEPSLATE_EMERALD_ORE || mat == Material.DEEPSLATE_DIAMOND_ORE)  return 1500;
         if (mat == Material.EMERALD_ORE || mat == Material.DIAMOND_ORE)  return 1000;
@@ -142,13 +142,14 @@ public class MinerItemListener implements Listener {
                 break;
             case 7:
                 lore.add(util.MINER_INSERTION+1, "");
-                lore.add(util.MINER_INSERTION+2, "§3RIGHT CLICK to cycle between Silk Touch and Fortune III.");
-                lore.add(util.MINER_INSERTION+3, "§6Currently set to §7none");
+                lore.add(util.MINER_INSERTION+2, "§3RIGHT CLICK to cycle between different modes. §7§oTIER 7");
+                lore.add(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §7none");
                 break;
             case 8:
                 lore.add(util.MINER_INSERTION+4, "");
-                lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience.");
-                lore.add(util.MINER_INSERTION+6, "§a§oNOTE: Automatically smelting ores will be disabled in Silk Touch mode.");
+                lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience. §7§oTIER 8");
+                lore.add(util.MINER_INSERTION+6, "§aNOTE: §7Experience will be greatly reduced in Silk Touch mode.");
+                // TODO: Add individual xp table to silk touch so it does not penalize everything
                 break;
         }
     }
