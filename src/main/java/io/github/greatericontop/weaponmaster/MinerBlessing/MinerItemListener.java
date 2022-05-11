@@ -83,7 +83,8 @@ public class MinerItemListener implements Listener {
 //        }[level];
     }
 
-    public int xpToAdd(Material mat) {
+    public int xpToAdd(Material mat, List<String> lore) {
+        if (getMode(lore).equals("§6Currently set to §9Smelting Touch"))  return 1;
         if (mat == Material.DEEPSLATE_COAL_ORE)  return 2700;
         if (mat == Material.DEEPSLATE_EMERALD_ORE || mat == Material.DEEPSLATE_DIAMOND_ORE)  return 1500;
         if (mat == Material.EMERALD_ORE || mat == Material.DIAMOND_ORE)  return 1000;
@@ -94,6 +95,10 @@ public class MinerItemListener implements Listener {
         if (mat == Material.STONE)  return 6;
         if (mat == Material.NETHERRACK) return 2;
         return 1;
+    }
+
+    public String getMode(List<String> lore) {
+        return lore.get(util.MINER_INSERTION + 3);
     }
 
     public void runLevelUp(int newTier, ItemMeta im, List<String> lore) {
@@ -157,10 +162,9 @@ public class MinerItemListener implements Listener {
             return;
         }
 
-
-        int amount = xpToAdd(event.getBlock().getType());
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
+        int amount = xpToAdd(event.getBlock().getType(), lore);
         int exp = parseExpInt(lore.get(util.MINER_EXP));
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
         exp += amount;
@@ -175,7 +179,7 @@ public class MinerItemListener implements Listener {
         double xpPercent = (100.0 * exp) / getRequirementToLevelUp(tier);
         lore.set(util.MINER_REQ, String.format("§6Required: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(tier), xpPercent));
 
-        if (tier >= 8) {
+        if (tier >= 8 && getMode(lore).equals("§6Currently set to §9Smelting Touch")) {
             doSmeltingOres(event, player);
         }
 
@@ -226,17 +230,21 @@ public class MinerItemListener implements Listener {
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
         if (tier < 7) { return; }
 
-        String text = lore.get(util.MINER_INSERTION + 3);
+        String text = getMode(lore);
         if (text.equals("§6Currently set to §9Silk Touch")) {
             im.removeEnchant(Enchantment.SILK_TOUCH);
             im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
-            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Fortune III");
-            player.sendMessage("§6 Pickaxe currently set to §9Fortune III");
+            lore.set(util.MINER_INSERTION + 3, "§6Currently set to §9Fortune III");
+            player.sendMessage("§6Pickaxe set to §9Fortune III");
+        } else if (tier >= 8 && text.equals("§6Currently set to §9Fortune III")) {
+            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Smelting Touch");
+            player.sendMessage("§6Pickaxe set to §9Smelting Touch");
         } else {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
             lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Silk Touch");
-            player.sendMessage("§6 Pickaxe currently set to §9FSilk Touch");
+            player.sendMessage("§6Pickaxe set to §9Silk Touch");
         }
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);

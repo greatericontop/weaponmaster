@@ -39,7 +39,7 @@ public class MinerCommand implements CommandExecutor {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§lMiner's Blessing");
         to.sendMessage("§e§oby greateric");
-        to.sendMessage("§3Use §2/cavemansword give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/minersblessing give§3 to give yourself the item.");
     }
 
     @Override
