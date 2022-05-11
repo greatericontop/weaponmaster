@@ -84,7 +84,7 @@ public class MinerItemListener implements Listener {
     }
 
     public int xpToAdd(Material mat, List<String> lore) {
-        if (getMode(lore).equals("§6Currently set to §9Silk Touch"))  return 1;
+        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch"))  return 1;
         if (mat == Material.DEEPSLATE_COAL_ORE)  return 2700;
         if (mat == Material.DEEPSLATE_EMERALD_ORE || mat == Material.DEEPSLATE_DIAMOND_ORE)  return 1500;
         if (mat == Material.EMERALD_ORE || mat == Material.DIAMOND_ORE)  return 1000;
@@ -180,7 +180,7 @@ public class MinerItemListener implements Listener {
         double xpPercent = (100.0 * exp) / getRequirementToLevelUp(tier);
         lore.set(util.MINER_REQ, String.format("§6Required: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(tier), xpPercent));
 
-        if (tier >= 8 && getMode(lore).equals("§6Currently set to §9Smelting Touch")) {
+        if (tier >= 8 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
             doSmeltingOres(event, player);
         }
 
@@ -232,20 +232,20 @@ public class MinerItemListener implements Listener {
         if (tier < 7) { return; }
 
         String text = getMode(lore);
-        if (text.equals("§6Currently set to §9Silk Touch")) {
+        if (text.equals("§a>§b>§c> §6Currently set to §9Silk Touch")) {
             im.removeEnchant(Enchantment.SILK_TOUCH);
             im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
-            lore.set(util.MINER_INSERTION + 3, "§6Currently set to §9Fortune III");
-            player.sendMessage("§6Pickaxe set to §9Fortune III");
-        } else if (tier >= 8 && text.equals("§6Currently set to §9Fortune III")) {
+            lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune III");
+            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
+        } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Smelting Touch");
-            player.sendMessage("§6Pickaxe set to §9Smelting Touch");
+            lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
+            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
         } else {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
-            lore.set(util.MINER_INSERTION+3, "§6Currently set to §9Silk Touch");
-            player.sendMessage("§6Pickaxe set to §9Silk Touch");
+            lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Silk Touch");
+            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Silk Touch");
         }
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
