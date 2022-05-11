@@ -227,18 +227,19 @@ public class MinerItemListener extends MinerUtil implements Listener {
     final Material[] netherMats = {Material.NETHER_QUARTZ_ORE, Material.NETHER_GOLD_ORE};
     private void attemptSpawnBlockSingle(Location loc, Player player, Material blockType) {
         Block blockAt = loc.getBlock();
+        // around 4 attempts (max 6) are called for each break
         if (blockAt.getType() == Material.STONE && (blockType == Material.STONE || blockType == Material.ANDESITE || blockType == Material.DIORITE || blockType == Material.GRANITE)) {
-            if (rnd.nextFloat() >= 0.00_07F) { return; }
+            if (rnd.nextFloat() >= 0.00_15F) { return; }
             Material replacement = stoneMats[rnd.nextInt(stoneMats.length)];
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
         } else if (blockAt.getType() == Material.DEEPSLATE && blockType == Material.DEEPSLATE) {
-            if (rnd.nextFloat() >= 0.00_14F) { return; }
+            if (rnd.nextFloat() >= 0.00_23F) { return; }
             Material replacement = deepMats[rnd.nextInt(deepMats.length)];
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
         } else if (blockAt.getType() == Material.NETHERRACK && blockType == Material.NETHERRACK) {
-            if (rnd.nextFloat() >= 0.00_045F) { return; }
+            if (rnd.nextFloat() >= 0.00_09F) { return; }
             Material replacement = netherMats[rnd.nextInt(netherMats.length)];
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
