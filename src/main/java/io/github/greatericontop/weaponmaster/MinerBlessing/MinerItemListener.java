@@ -58,7 +58,7 @@ public class MinerItemListener implements Listener {
     }
 
     private int getRequirementToLevelUp(int level) {
-        if (level >= 8) {
+        if (level >= 9) {
             return 2147483600;
         }
         return new int[]{
@@ -70,6 +70,7 @@ public class MinerItemListener implements Listener {
                 50_000, // 5
                 60_000,
                 70_000,
+                80_000,
         }[level];
 //        return new int[]{
 //                10_000,
@@ -151,6 +152,11 @@ public class MinerItemListener implements Listener {
                 lore.add(util.MINER_INSERTION+6, "§aNOTE: §7Experience will be greatly reduced in Silk Touch mode.");
                 // TODO: Add individual xp table to silk touch so it does not penalize everything
                 break;
+            case 9:
+                lore.add(util.MINER_INSERTION+7, "");
+                lore.add(util.MINER_INSERTION+8, "§dWhen breaking some deepslate ores while not in Silk Touch");
+                lore.add(util.MINER_INSERTION+9, "§dmode, gain a §41% §dchance to drop a block instead. §7§oTIER 9");
+                break;
         }
     }
 
@@ -183,6 +189,9 @@ public class MinerItemListener implements Listener {
         if (tier >= 8 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
             doSmeltingOres(event, player);
         }
+        if (tier >= 9) {
+            doDeepslateBlockMultiply(event, player);
+        }
 
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
@@ -213,6 +222,42 @@ public class MinerItemListener implements Listener {
             event.setDropItems(false);
             world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.NETHERITE_SCRAP, 1));
             event.setExpToDrop(14);
+        }
+    }
+
+    public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player) {
+        ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
+        if (rnd.nextFloat() >= 0.01) { return; }
+        List<String> lore = im.getLore();
+        if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; } // prevent abuse
+        World world = event.getBlock().getLocation().getWorld();
+        event.setExpToDrop((event.getExpToDrop() + 2) * 9);
+        // drops an extra item (does not invalidate the current one)
+        switch (event.getBlock().getType()) {
+            case DEEPSLATE_COAL_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COAL_BLOCK, 1));
+                break;
+            case DEEPSLATE_COPPER_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_BLOCK, 1));
+                break;
+            case DEEPSLATE_IRON_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_BLOCK, 1));
+                break;
+            case DEEPSLATE_GOLD_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_BLOCK, 1));
+                break;
+            case DEEPSLATE_EMERALD_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.EMERALD_BLOCK, 1));
+                break;
+            case DEEPSLATE_REDSTONE_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.REDSTONE_BLOCK, 1));
+                break;
+            case DEEPSLATE_LAPIS_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.LAPIS_BLOCK, 1));
+                break;
+            case DEEPSLATE_DIAMOND_ORE:
+                world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND_BLOCK, 1));
+                break;
         }
     }
 
