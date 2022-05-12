@@ -20,8 +20,12 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MinerUtil   {
@@ -103,6 +107,48 @@ public class MinerUtil   {
 //                135_000,
 //                180_000,
 //        }[level];
+    }
+
+    /*
+     * Set EFFICIENCY and UNBREAKING to the proper levels depending on the tier of the pickaxe
+     * Remove FORTUNE and SILK TOUCH completely
+     * Don't touch SHARPNESS because it can't be messed with
+     */
+    public void fixEnchants(int tier, ItemMeta im, Player player) {
+        if (tier >= 7) { return; }
+        im.removeEnchant(Enchantment.DIG_SPEED);
+        im.removeEnchant(Enchantment.DURABILITY);
+        im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+        im.removeEnchant(Enchantment.SILK_TOUCH);
+        switch (tier) {
+            case 0:
+                break;
+            case 1:
+                im.addEnchant(Enchantment.DIG_SPEED, 1, false);
+                break;
+            case 2:
+                im.addEnchant(Enchantment.DIG_SPEED, 2, false);
+                break;
+            case 3:
+                im.addEnchant(Enchantment.DIG_SPEED, 3, false);
+                im.addEnchant(Enchantment.DURABILITY, 1, false);
+                break;
+            case 4:
+                im.addEnchant(Enchantment.DIG_SPEED, 4, false);
+                im.addEnchant(Enchantment.DURABILITY, 1, false);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                break;
+            case 5:
+                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
+                im.addEnchant(Enchantment.DURABILITY, 2, false);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 2, false);
+                break;
+            case 6:
+                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
+                im.addEnchant(Enchantment.DURABILITY, 3, false);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
+                break;
+        }
     }
 
 }

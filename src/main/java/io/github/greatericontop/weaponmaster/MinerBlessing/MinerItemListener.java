@@ -33,7 +33,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.List;
 
@@ -143,7 +142,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             attemptSpawnBlock(event, player);
         }
 
-        removeIllegalEnchantments(tier, im, player);
+        fixEnchants(tier, im, player);
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
@@ -286,100 +285,6 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
-    }
-
-    public void removeIllegalEnchantments(int tier, ItemMeta im, Player player) {
-        switch (tier) {
-            case 0:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DIG_SPEED) >= 1) {
-                    im.removeEnchant(Enchantment.DIG_SPEED);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) >= 1) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                }
-            case 1:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DIG_SPEED) > 1) {
-                    im.removeEnchant(Enchantment.DIG_SPEED);
-                    im.addEnchant(Enchantment.DIG_SPEED, 1, false);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) >= 1) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                }
-            case 2:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DIG_SPEED) > 2) {
-                    im.removeEnchant(Enchantment.DIG_SPEED);
-                    im.addEnchant(Enchantment.DIG_SPEED, 2, false);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) >= 1) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                }
-            case 3:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DIG_SPEED) > 3) {
-                    im.removeEnchant(Enchantment.DIG_SPEED);
-                    im.addEnchant(Enchantment.DIG_SPEED, 3, false);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) > 1) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                    im.addEnchant(Enchantment.DURABILITY, 1, false);
-                }
-            case 4:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DIG_SPEED) > 4) {
-                    im.removeEnchant(Enchantment.DIG_SPEED);
-                    im.addEnchant(Enchantment.DIG_SPEED, 4, false);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) > 1) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                    im.addEnchant(Enchantment.DURABILITY, 1, false);
-                }
-            case 5:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-                if (im.getEnchantLevel(Enchantment.DURABILITY) > 2) {
-                    im.removeEnchant(Enchantment.DURABILITY);
-                    im.addEnchant(Enchantment.DURABILITY, 2, false);
-                }
-            case 6:
-                if (im.getEnchantLevel(Enchantment.LOOT_BONUS_BLOCKS) >= 1) {
-                    im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-                }
-                if (im.getEnchantLevel(Enchantment.SILK_TOUCH) == 1) {
-                    im.removeEnchant(Enchantment.SILK_TOUCH);
-                }
-        }
     }
 
 }
