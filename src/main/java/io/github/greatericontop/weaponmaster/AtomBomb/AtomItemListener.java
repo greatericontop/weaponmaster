@@ -36,6 +36,7 @@ public class AtomItemListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
+    private final Random rnd = new Random();
     public AtomItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
@@ -93,16 +94,11 @@ public class AtomItemListener implements Listener {
         // This is O(scary); but it seems to work decently in practice.
         Location at = event.getBlock().getLocation();
         World world = at.getWorld();
-        Random rnd = new Random();
         new BukkitRunnable() {
-            boolean worldChangeFlag = false;
             float deltaY = MAX_VALUE;
             public void run() {
                 if (deltaY < MIN_VALUE) {
                     player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
-                    if (worldChangeFlag) {
-                        player.sendMessage("§eYour explosion has caused immense pressure conditions that changed the world!");
-                    }
                     cancel();
                     return;
                 }
@@ -112,44 +108,47 @@ public class AtomItemListener implements Listener {
                             if (!(deltaX <= MIN || deltaX >= MAX || deltaY <= MIN || deltaY >= MAX || deltaZ <= MIN || deltaZ >= MAX)) {
                                 continue;
                             }
-                            Location loc = at.clone();
-                            Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-                            float rayPower = 32.0F * (0.8F + 0.4F * rnd.nextFloat());
-                            while (true) {
-                                rayPower -= 0.45F;
-                                if (loc.getBlock().getType() != Material.AIR) {
-                                    rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
-                                }
-                                if (rayPower <= 0) {
-                                    if (loc.getBlock().getType() != Material.AIR) {
-                                        float f = rnd.nextFloat();
-                                        if (f < 0.00_1F) {
-                                            loc.getBlock().setType(Material.COBBLESTONE);
-                                        } else if (f < 0.00_22F) {
-                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
-                                        } else if (f < 0.00_32F) {
-                                            loc.getBlock().setType(Material.COBWEB);
-                                        } else if (f < 0.00_36F) {
-                                            spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
-                                        } else if (f < 0.00_65F) {
-                                            loc.getBlock().setType(Material.FIRE);
-                                        }
-                                        if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
-                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
-                                            worldChangeFlag = true;
-                                        }
-                                    }
-                                    break;
-                                }
-                                loc.getBlock().setType(Material.AIR);
-                                loc = loc.add(ray);
-                            }
+                            ray(at, deltaX, deltaY, deltaZ);
                         }
                     }
                     deltaY -= STEP;
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
+    }
+
+    public void ray(Location at, float deltaX, float deltaY, float deltaZ) {
+        Location loc = at.clone();
+        Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
+        float rayPower = 32.0F * (0.8F + 0.4F * rnd.nextFloat());
+        while (true) {
+            rayPower -= 0.45F;
+            if (loc.getBlock().getType() != Material.AIR) {
+                rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
+            }
+            if (rayPower <= 0) {
+                if (loc.getBlock().getType() != Material.AIR) {
+                    float f = rnd.nextFloat();
+                    if (f < 0.00_1F) {
+                        loc.getBlock().setType(Material.COBBLESTONE);
+                    } else if (f < 0.00_22F) {
+                        spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
+                    } else if (f < 0.00_32F) {
+                        loc.getBlock().setType(Material.COBWEB);
+                    } else if (f < 0.00_36F) {
+                        spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
+                    } else if (f < 0.00_65F) {
+                        loc.getBlock().setType(Material.FIRE);
+                    }
+                    if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
+                        spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
+                    }
+                }
+                break;
+            }
+            loc.getBlock().setType(Material.AIR);
+            loc = loc.add(ray);
+        }
     }
 
 }
