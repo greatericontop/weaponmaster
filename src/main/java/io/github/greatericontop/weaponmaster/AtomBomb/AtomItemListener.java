@@ -102,53 +102,50 @@ public class AtomItemListener implements Listener {
                     cancel();
                     return;
                 }
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 6; i++) {
                     for (float deltaX = MIN_VALUE; deltaX <= MAX_VALUE; deltaX += STEP) {
                         for (float deltaZ = MIN_VALUE; deltaZ <= MAX_VALUE; deltaZ += STEP) {
                             if (!(deltaX <= MIN || deltaX >= MAX || deltaY <= MIN || deltaY >= MAX || deltaZ <= MIN || deltaZ >= MAX)) {
                                 continue;
                             }
-                            ray(at, deltaX, deltaY, deltaZ);
+
+                            Location loc = at.clone();
+                            Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
+                            float rayPower = 32.0F * (0.8F + 0.4F * rnd.nextFloat());
+                            while (true) {
+                                rayPower -= 0.45F;
+                                if (loc.getBlock().getType() != Material.AIR) {
+                                    rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
+                                }
+                                if (rayPower <= 0) {
+                                    if (loc.getBlock().getType() != Material.AIR) {
+                                        float f = rnd.nextFloat();
+                                        if (f < 0.00_1F) {
+                                            loc.getBlock().setType(Material.COBBLESTONE);
+                                        } else if (f < 0.00_22F) {
+                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
+                                        } else if (f < 0.00_32F) {
+                                            loc.getBlock().setType(Material.COBWEB);
+                                        } else if (f < 0.00_36F) {
+                                            spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
+                                        } else if (f < 0.00_65F) {
+                                            loc.getBlock().setType(Material.FIRE);
+                                        }
+                                        if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
+                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
+                                        }
+                                    }
+                                    break;
+                                }
+                                loc.getBlock().setType(Material.AIR);
+                                loc = loc.add(ray);
+                            }
                         }
                     }
                     deltaY -= STEP;
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
-    }
-
-    public void ray(Location at, float deltaX, float deltaY, float deltaZ) {
-        Location loc = at.clone();
-        Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-        float rayPower = 32.0F * (0.8F + 0.4F * rnd.nextFloat());
-        while (true) {
-            rayPower -= 0.45F;
-            if (loc.getBlock().getType() != Material.AIR) {
-                rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
-            }
-            if (rayPower <= 0) {
-                if (loc.getBlock().getType() != Material.AIR) {
-                    float f = rnd.nextFloat();
-                    if (f < 0.00_1F) {
-                        loc.getBlock().setType(Material.COBBLESTONE);
-                    } else if (f < 0.00_22F) {
-                        spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
-                    } else if (f < 0.00_32F) {
-                        loc.getBlock().setType(Material.COBWEB);
-                    } else if (f < 0.00_36F) {
-                        spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
-                    } else if (f < 0.00_65F) {
-                        loc.getBlock().setType(Material.FIRE);
-                    }
-                    if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
-                        spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
-                    }
-                }
-                break;
-            }
-            loc.getBlock().setType(Material.AIR);
-            loc = loc.add(ray);
-        }
     }
 
 }
