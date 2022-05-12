@@ -29,9 +29,10 @@ public class NetheriteStaffListener implements Listener {
     public void OnAttack(EntityDamageByEntityEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        System.out.printf("You are an idiot");
+        System.out.println("You are an idiot");
         Player player = (Player) event.getDamager();
         if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
+        System.out.println("passed check");
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
