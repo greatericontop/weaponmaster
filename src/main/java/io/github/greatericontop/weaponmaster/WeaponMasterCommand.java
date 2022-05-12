@@ -35,19 +35,24 @@ public class WeaponMasterCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length >= 1 && args[0].equals("forceenchant")) {
             if (args.length < 3) {
-                sender.sendMessage("§cError: §4usage: /weaponmaster forceenchant <enchant> <level>");
+                sender.sendMessage("§cError: §4Missing arguments: /weaponmaster forceenchant <enchant> <level>");
                 return true;
             }
-            // TODO: fix null enchant. change except e to NumberFormatException, add alias "max"->lvl255
-            // TODO: make nicer error message, or use ACF or something once you figure it out
             Enchantment enchant;
             int level;
             try {
                 enchant = Enchantment.getByKey(NamespacedKey.minecraft(args[1]));
-                level = Integer.parseInt(args[2]);
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage("§cError: §4usage: /weaponmaster forceenchant <enchant> <level>");
+                if (args[2].equalsIgnoreCase("max")) {
+                    level = 255;
+                } else {
+                    level = Integer.parseInt(args[2]);
+                }
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cError: §4You gave an invalid number. Please give an int, or use 'max'.");
+                return true;
+            }
+            if (enchant == null) {
+                sender.sendMessage("§cError: §4That enchant does not exist. Try using Minecraft namespaced IDs.");
                 return true;
             }
             if (level > 255) {
