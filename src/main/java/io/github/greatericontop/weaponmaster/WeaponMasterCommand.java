@@ -17,9 +17,12 @@ package io.github.greatericontop.weaponmaster;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 
 public class WeaponMasterCommand implements CommandExecutor {
 
@@ -30,14 +33,41 @@ public class WeaponMasterCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length >= 1 && args[0].equals("forceenchant")) {
+            if (args.length < 3) {
+                sender.sendMessage("§cError: §4usage: /weaponmaster forceenchant <enchant> <level>");
+                return true;
+            }
+            // TODO: fix null enchant. change except e to NumberFormatException, add alias "max"->lvl255
+            // TODO: make nicer error message, or use ACF or something once you figure it out
+            Enchantment enchant;
+            int level;
+            try {
+                enchant = Enchantment.getByKey(NamespacedKey.minecraft(args[1]));
+                level = Integer.parseInt(args[2]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                sender.sendMessage("§cError: §4usage: /weaponmaster forceenchant <enchant> <level>");
+                return true;
+            }
+            if (level > 255) {
+                level = 255;
+                sender.sendMessage("§cWarning: §4Enchantment level in 1.18 is limited to 255.");
+            }
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("§cError: §4Must be a player.");
+                return true;
+            }
+            ((Player) sender).getInventory().getItemInMainHand().addUnsafeEnchantment(enchant, level);
+            sender.sendMessage(String.format("§3Added %s level %d!", enchant, level));
+            return true;
+        }
         sender.sendMessage("----------------------------------------");
         sender.sendMessage("");
         sender.sendMessage("§4§lWeaponMaster");
         sender.sendMessage("§7§oby greateric");
         sender.sendMessage("");
-        sender.sendMessage("§eThis server is running a valid license!");
-        sender.sendMessage("§eLicensed to: §3" + plugin.getConfig().getString("license.issued-to"));
-        sender.sendMessage("§eLicense: §3" + plugin.getConfig().getString("license.key").substring(0, 10) + "...");
+        sender.sendMessage("§e/weaponmaster forceenchant");
         sender.sendMessage("");
         sender.sendMessage("----------------------------------------");
         return true;
