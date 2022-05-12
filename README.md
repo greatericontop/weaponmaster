@@ -126,6 +126,8 @@ Crafting Recipe: (Shapeless)
 
 `/minersblessing give` - super pickaxe, mine to level up
 
+**WARNING: ADDING ENCHANTMENTS OTHER THAN MENDING WILL GET AUTOMATICALLY REMOVE DUE TO LEVEL SYSTEM**
+
 Crafting Recipe:
 - 1 Netherite Pickaxe
 - 2 Netherite Ingot

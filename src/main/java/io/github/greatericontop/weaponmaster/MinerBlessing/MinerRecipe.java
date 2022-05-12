@@ -4,6 +4,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
@@ -16,6 +17,7 @@ public class MinerRecipe {
 
     public void regRecipe() {
         ItemStack miner = util.generateMeta(util.MINERS_BLESSING_LORE, util.MINERS_BLESSING_NAME, Material.NETHERITE_PICKAXE);
+        miner.addUnsafeEnchantment(Enchantment.ARROW_FIRE,1);
         ShapedRecipe minerRec = new ShapedRecipe(NamespacedKey.minecraft("miner"), miner);
         minerRec.shape("BNB",
                        "rir",
