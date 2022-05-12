@@ -27,18 +27,20 @@ public class NetheriteStaffListener implements Listener {
 
     @EventHandler
     public void OnAttack(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        System.out.printf("You are an idiot");
         Player player = (Player) event.getDamager();
         if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player attacked = (Player) event.getEntity();
         int duration = rand.nextInt(520) + 60;
         int amplifier = rand.nextInt(10);
         PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
+        System.out.printf("PT: %s, d=%d, a=%d", effectType, duration, amplifier);
         PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
         attacked.addPotionEffect(effect);
     }
