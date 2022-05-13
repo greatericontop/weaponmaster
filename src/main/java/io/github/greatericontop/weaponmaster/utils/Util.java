@@ -43,7 +43,7 @@ public class Util {
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
-    public final String ATOM_BOMB_NAME = "§cAtom Bomb §6⚝⚝⚝⚝⚝";
+    public final String ATOM_BOMB_NAME = "§cC§4a§cs§4t§cl§4e §cB§4r§ca§4v§co §6⚝⚝⚝⚝⚝";
     public final String NETHERITE_STAFF_NAME = "§b§lNetherite Staff §6⚝⚝⚝⚝⚝";
     public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
     public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";

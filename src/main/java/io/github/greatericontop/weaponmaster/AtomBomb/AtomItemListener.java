@@ -85,10 +85,11 @@ public class AtomItemListener implements Listener {
             return;
         }
 
-        int STEPS = 384;
+        int STEPS = 256;
         double STEPGAP = 1.0 / STEPS;
         // An attempt to copy the minecraft explosion algorithm
         // This is O(scary); but it seems to work decently in practice.
+        // I have tried 384 steps and 53 power, but this was too much.
         Location at = event.getBlock().getLocation();
         World world = at.getWorld();
         new BukkitRunnable() {
@@ -112,7 +113,7 @@ public class AtomItemListener implements Listener {
 
                             Location loc = at.clone();
                             Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-                            float rayPower = 53.0F * (0.8F + 0.4F * rnd.nextFloat());
+                            float rayPower = 41.0F * (0.8F + 0.4F * rnd.nextFloat());
                             while (true) {
                                 rayPower -= 0.45F;
                                 if (loc.getBlock().getType() != Material.AIR) {
