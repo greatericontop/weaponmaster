@@ -85,34 +85,34 @@ public class AtomItemListener implements Listener {
             return;
         }
 
-        double MIN_VALUE = -1.0;
-        double MAX_VALUE = 1.0;
-        double STEP = 1.0 / 384.0;
-        double MIN = -1.0001 + STEP;
-        double MAX = 1.0001 - STEP;
+        int STEPS = 384;
+        double STEPGAP = 1.0 / STEPS;
         // An attempt to copy the minecraft explosion algorithm
         // This is O(scary); but it seems to work decently in practice.
         Location at = event.getBlock().getLocation();
         World world = at.getWorld();
         new BukkitRunnable() {
-            double deltaY = MAX_VALUE;
+            int y = STEPS;
             public void run() {
-                if (deltaY < MIN_VALUE) {
+                if (y < -STEPS) {
                     player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
                     cancel();
                     return;
                 }
                 for (int i = 0; i < 2; i++) {
-                    player.sendMessage(String.format("§7dy: %.12f", deltaY));
-                    for (double deltaX = MIN_VALUE; deltaX <= MAX_VALUE; deltaX += STEP) {
-                        for (double deltaZ = MIN_VALUE; deltaZ <= MAX_VALUE; deltaZ += STEP) {
-                            if (!(deltaX <= MIN || deltaX >= MAX || deltaY <= MIN || deltaY >= MAX || deltaZ <= MIN || deltaZ >= MAX)) {
+                    for (int x = -STEPS; x <= STEPS; x++) {
+                        for (int z = -STEPS; z <= STEPS; z++) {
+                            //player.sendMessage(String.format("§7coords: %d %d %d", x, y, z));
+                            if (!(x == -STEPS || x == STEPS || y == -STEPS || y == STEPS || z == -STEPS || z == STEPS)) {
                                 continue;
                             }
+                            double deltaX = x * STEPGAP;
+                            double deltaY = y * STEPGAP;
+                            double deltaZ = z * STEPGAP;
 
                             Location loc = at.clone();
                             Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-                            float rayPower = 66.0F * (0.8F + 0.4F * rnd.nextFloat());
+                            float rayPower = 53.0F * (0.8F + 0.4F * rnd.nextFloat());
                             while (true) {
                                 rayPower -= 0.45F;
                                 if (loc.getBlock().getType() != Material.AIR) {
@@ -138,12 +138,12 @@ public class AtomItemListener implements Listener {
                                     }
                                     break;
                                 }
-                                loc.getBlock().setType(Material.AIR);
+                                loc.getBlock().setType(Material.AIR, false);
                                 loc = loc.add(ray);
                             }
                         }
                     }
-                    deltaY -= STEP;
+                    y--;
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
