@@ -85,33 +85,34 @@ public class AtomItemListener implements Listener {
             return;
         }
 
-        float MIN_VALUE = -1.0F;
-        float MAX_VALUE = 1.0F;
-        float STEP = 1.0F / 192.0F;
-        float MIN = -1.0001F + STEP;
-        float MAX = 1.0001F - STEP;
+        double MIN_VALUE = -1.0;
+        double MAX_VALUE = 1.0;
+        double STEP = 1.0 / 384.0;
+        double MIN = -1.0001 + STEP;
+        double MAX = 1.0001 - STEP;
         // An attempt to copy the minecraft explosion algorithm
         // This is O(scary); but it seems to work decently in practice.
         Location at = event.getBlock().getLocation();
         World world = at.getWorld();
         new BukkitRunnable() {
-            float deltaY = MAX_VALUE;
+            double deltaY = MAX_VALUE;
             public void run() {
                 if (deltaY < MIN_VALUE) {
                     player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
                     cancel();
                     return;
                 }
-                for (int i = 0; i < 6; i++) {
-                    for (float deltaX = MIN_VALUE; deltaX <= MAX_VALUE; deltaX += STEP) {
-                        for (float deltaZ = MIN_VALUE; deltaZ <= MAX_VALUE; deltaZ += STEP) {
+                for (int i = 0; i < 2; i++) {
+                    player.sendMessage(String.format("§7dy: %.12f", deltaY));
+                    for (double deltaX = MIN_VALUE; deltaX <= MAX_VALUE; deltaX += STEP) {
+                        for (double deltaZ = MIN_VALUE; deltaZ <= MAX_VALUE; deltaZ += STEP) {
                             if (!(deltaX <= MIN || deltaX >= MAX || deltaY <= MIN || deltaY >= MAX || deltaZ <= MIN || deltaZ >= MAX)) {
                                 continue;
                             }
 
                             Location loc = at.clone();
                             Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-                            float rayPower = 32.0F * (0.8F + 0.4F * rnd.nextFloat());
+                            float rayPower = 66.0F * (0.8F + 0.4F * rnd.nextFloat());
                             while (true) {
                                 rayPower -= 0.45F;
                                 if (loc.getBlock().getType() != Material.AIR) {
