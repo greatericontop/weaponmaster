@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -30,6 +31,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -103,6 +105,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 11:
                 lore.add(util.MINER_INSERTION+11, "");
                 lore.add(util.MINER_INSERTION+12, "§2Small chance for ores to spawn around you. §7§oTIER 11");
+            case 12:
+                lore.add(util.MINER_INSERTION+13, "");
+                lore.add(util.MINER_INSERTION+14, "§fIncreased Mending power, no longer limited §7§oTIER 12");
         }
     }
 
@@ -285,6 +290,21 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
+    }
+
+    @EventHandler(priority = EventPriority.LOW)
+    public void onMending(PlayerItemMendEvent event) {
+        if (util.checkForDeathScythe(event.getItem())) {
+            return;
+        }
+        ItemMeta im = event.getItem().getItemMeta();
+        List<String> lore = im.getLore();
+        if (parseLevelInt(lore.get(util.MINER_LVL)) >= 12) {
+            return;
+        }
+        int xp = event.getRepairAmount();
+        int newXp = MathHelper.roundProbability(xp / 8.0);
+        event.setRepairAmount(newXp);
     }
 
 }
