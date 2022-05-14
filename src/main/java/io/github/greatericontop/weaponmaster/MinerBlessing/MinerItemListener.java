@@ -105,9 +105,11 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 11:
                 lore.add(util.MINER_INSERTION+11, "");
                 lore.add(util.MINER_INSERTION+12, "§2Small chance for ores to spawn around you. §7§oTIER 11");
+                break;
             case 12:
                 lore.add(util.MINER_INSERTION+13, "");
                 lore.add(util.MINER_INSERTION+14, "§fIncreased Mending power, no longer limited §7§oTIER 12");
+                break;
         }
     }
 
@@ -292,9 +294,10 @@ public class MinerItemListener extends MinerUtil implements Listener {
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    private final double REPAIR_PENALTY = 1.0 / 7.0;
+    @EventHandler(priority = EventPriority.HIGH)
     public void onMending(PlayerItemMendEvent event) {
-        if (util.checkForDeathScythe(event.getItem())) {
+        if (!util.checkForMinersBlessing(event.getItem())) {
             return;
         }
         ItemMeta im = event.getItem().getItemMeta();
@@ -302,9 +305,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
         if (parseLevelInt(lore.get(util.MINER_LVL)) >= 12) {
             return;
         }
-        int xp = event.getRepairAmount();
-        int newXp = MathHelper.roundProbability(xp / 8.0);
-        event.setRepairAmount(newXp);
+        if (Math.random() >= REPAIR_PENALTY) {
+            event.setCancelled(true);
+        }
     }
 
 }
