@@ -18,12 +18,14 @@ public class MinerRecipe {
         ItemStack miner = util.generateMeta(util.MINERS_BLESSING_LORE, util.MINERS_BLESSING_NAME, Material.NETHERITE_PICKAXE);
         ShapedRecipe minerRec = new ShapedRecipe(NamespacedKey.minecraft("miner"), miner);
         minerRec.shape("BNB",
-                       "rir",
-                       " i ");
+                       "iDi",
+                       "HrH");
         minerRec.setIngredient('N', Material.NETHERITE_PICKAXE);
         minerRec.setIngredient('B', Material.BLAST_FURNACE);
         minerRec.setIngredient('i', Material.NETHERITE_INGOT);
         minerRec.setIngredient('r', Material.BLAZE_ROD);
+        minerRec.setIngredient('D', Material.DIAMOND_BLOCK);
+        minerRec.setIngredient('H', Material.HEART_OF_THE_SEA);
         Bukkit.getServer().addRecipe(minerRec);
     }
 }

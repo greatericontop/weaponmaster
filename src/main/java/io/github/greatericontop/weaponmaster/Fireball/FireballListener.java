@@ -60,7 +60,7 @@ public class FireballListener implements Listener {
                     }
                     Location fireballLoc = fireball.getLocation();
                     fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 100);
-                    List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING, SEEKING, SEEKING);
+                    /*List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING, SEEKING, SEEKING);
                     nearEntities.sort(
                             (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(fireballLoc) - b.getLocation().distanceSquared(fireballLoc)))
                     );
@@ -69,7 +69,7 @@ public class FireballListener implements Listener {
                             fireball.setVelocity(target.getLocation().toVector().subtract(fireballLoc.toVector()).normalize().multiply(VELOCITY));
                             break;
                         }
-                    }
+                    }*/
                 }
             }.runTaskTimer(plugin, 1L, 1L);
         }

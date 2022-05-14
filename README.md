@@ -130,9 +130,11 @@ Crafting Recipe: (Shapeless)
 
 Crafting Recipe:
 - 1 Netherite Pickaxe
+- 1 Blaze Rod
+- 1 Diamond Block
 - 2 Netherite Ingot
-- 2 Blaze Rod
 - 2 Blast Furnace
+- 2 Heart of the Sea
 
 ![](assets/miner.png)
 
