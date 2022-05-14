@@ -264,6 +264,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             return;
         }
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) { return; }
+        if (util.checkForInteractableBlock(event)) { return; }
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
         int tier = parseLevelInt(lore.get(util.MINER_LVL));

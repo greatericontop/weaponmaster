@@ -18,7 +18,10 @@ package io.github.greatericontop.weaponmaster.utils;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.block.Block;
 import org.bukkit.Material;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -328,6 +331,14 @@ public class Util {
         boolean nameCorrect = iMeta.getDisplayName().equals(requiredName);
         boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
         return nameCorrect && loreCorrect;
+    }
+    
+    public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  { return false; }
+        Block block = event.getClickedBlock();
+        if (block == null) { return false; }
+        Material type = block.getType();
+        return (block.getType().isInteractable());
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {
