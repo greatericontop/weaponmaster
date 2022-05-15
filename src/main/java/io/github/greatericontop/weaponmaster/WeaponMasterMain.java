@@ -195,8 +195,10 @@ public class WeaponMasterMain extends JavaPlugin {
         getCommand("sniperrifle").setExecutor(new SniperCommand());
         getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
         // Miner's Blessing
+        MinerItemListener minerListener = new MinerItemListener(this);
         getCommand("minersblessing").setExecutor(new MinerCommand());
-        getServer().getPluginManager().registerEvents(new MinerItemListener(this), this);
+        getServer().getPluginManager().registerEvents(minerListener, this);
+        minerListener.regHasteRunnable();
         new MinerRecipe().regRecipe();
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();

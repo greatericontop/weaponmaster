@@ -81,7 +81,7 @@ public class MinerUtil   {
     }
 
     protected int getRequirementToLevelUp(int level) {
-        if (level >= 12) {
+        if (level >= 13) {
             return 700_000;
         }
         return new int[]{
@@ -95,8 +95,9 @@ public class MinerUtil   {
                 70_000,
                 80_000,
                 90_000,
-                95_000,
+                95_000, // 10
                 96_000,
+                97_000
         }[level];
 //        return new int[]{
 //                10_000,

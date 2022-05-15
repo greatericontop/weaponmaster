@@ -19,6 +19,8 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
+import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -35,6 +37,9 @@ import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
@@ -103,12 +108,13 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.set(util.MINER_INSERTION+7, "§aFortune III applies to this mode and smelted ores. §7§oTIER 10");
                 break;
             case 11:
-                lore.add(util.MINER_INSERTION+11, "");
-                lore.add(util.MINER_INSERTION+12, "§2Small chance for ores to spawn around you. §7§oTIER 11");
+                lore.add(util.MINER_INSERTION+11, "§2Small chance for ores to spawn around you. §7§oTIER 11");
                 break;
             case 12:
-                lore.add(util.MINER_INSERTION+13, "");
-                lore.add(util.MINER_INSERTION+14, "§fIncreased Mending power, no longer limited §7§oTIER 12");
+                lore.add(util.MINER_INSERTION+12, "§fIncreased Mending power, no longer limited §7§oTIER 12");
+                break;
+            case 13:
+                lore.add(util.MINER_INSERTION+13, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
                 break;
         }
     }
@@ -264,7 +270,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             return;
         }
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) { return; }
-        if (util.checkForInteractableBlock(event)) { return; }
+        if (Util.checkForInteractableBlock(event)) { return; }
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
@@ -309,6 +315,23 @@ public class MinerItemListener extends MinerUtil implements Listener {
         if (Math.random() >= REPAIR_PENALTY) {
             event.setCancelled(true);
         }
+    }
+
+    public void regHasteRunnable() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (!player.hasPermission("weaponmaster.minersblessing.use")) { continue; }
+                    if (!(util.checkForMinersBlessing(player.getInventory().getItemInMainHand()))) { continue; }
+                    List<String> lore = player.getInventory().getItemInMainHand().getItemMeta().getLore();
+                    if (parseLevelInt(lore.get(util.MINER_LVL)) >= 13) {
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, 0, true));
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 200L, 60L);
+        // switched from 50L and 55 effects
     }
 
 }
