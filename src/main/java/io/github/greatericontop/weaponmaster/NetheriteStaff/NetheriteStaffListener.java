@@ -66,22 +66,27 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
 
+        Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
+
+        if (iMeta.getDamage() <= 25) {
+            player.sendMessage("§c[Low Durability]: §3You may not shoot an arrow now.");
+        }
+
         Location eyeLocation = player.getEyeLocation();
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
 
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
-        int duration = rand.nextInt(520) + 60;
-        int amplifier = rand.nextInt(10);
+        int duration = rand.nextInt(200) + 60;
+        int amplifier = rand.nextInt(5);
         PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
         PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
         arrow.setColor(Color.BLACK);
         arrow.setDamage(0.5F);
-        Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-            iMeta.setDamage(iMeta.getDamage() + 10);
+            iMeta.setDamage(iMeta.getDamage() + 5);
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
             player.updateInventory();
         }
