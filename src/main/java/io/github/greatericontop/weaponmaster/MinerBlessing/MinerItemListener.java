@@ -124,8 +124,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.add(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
                 break;
             case 15:
-                lore.set(util.MINER_INSERTION+10, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER §m9 §r§7§o15");
-                lore.set(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER §m14 §r§7§o15");
+                lore.set(util.MINER_INSERTION+10, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER §m9§r§7§o 15");
+                lore.set(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER §m14§r§7§o 15");
                 break;
         }
     }
