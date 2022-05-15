@@ -44,6 +44,7 @@ public class Util {
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
+    public final String REAL_HOE_NAME = "§2§lReal Hoe §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -61,6 +62,7 @@ public class Util {
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
+    public List<String> REAL_HOE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP_I = 3;
     public final int CAVEMAN_REQ_I = 4;
@@ -264,6 +266,15 @@ public class Util {
         ASSAULT_RIFLE_LORE.add("");
         ASSAULT_RIFLE_LORE.add("§6LEGENDARY");
         ASSAULT_RIFLE_LORE.add("§6---------------");
+        // Real Hoe
+        REAL_HOE_LORE.add("id: REAL_HOE");
+        REAL_HOE_LORE.add("§6---------------");
+        REAL_HOE_LORE.add("");
+        REAL_HOE_LORE.add("§bPleasure §l§eRIGHT CLICK");
+        REAL_HOE_LORE.add("§6Right click a player and they release sugar.");
+        REAL_HOE_LORE.add("");
+        REAL_HOE_LORE.add("§6LEGENDARY");
+        REAL_HOE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -328,6 +339,9 @@ public class Util {
     }
     public boolean checkForWarlockPants(ItemStack item) {
         return this.checkFor(item, WARLOCK_PANTS_NAME, 0, "id: WARLOCK_PANTS");
+    }
+    public boolean checkForRealHoe(ItemStack item) {
+        return this.checkFor(item, REAL_HOE_NAME, 0, "id: REAL_HOE");
     }
     //public boolean checkForAssaultRifle(ItemStack item) {
     //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");

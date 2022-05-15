@@ -53,6 +53,8 @@ import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
+import io.github.greatericontop.weaponmaster.RealHoe.RealHoeCommand;
+import io.github.greatericontop.weaponmaster.RealHoe.RealHoeListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.net.InetAddress;
@@ -176,6 +178,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Custom Item Listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getLogger().info("done");
+        // Real Hoe
+        getCommand("realhoe").setExecutor(new RealHoeCommand());
+        getServer().getPluginManager().registerEvents(new RealHoeListener(this), this);
     }
 
 }
