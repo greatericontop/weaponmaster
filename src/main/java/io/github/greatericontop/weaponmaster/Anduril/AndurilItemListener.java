@@ -42,12 +42,11 @@ public class AndurilItemListener implements Listener {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (!player.hasPermission("weaponmaster.anduril.use")) { continue; }
                     if (!(util.checkForAnduril(player.getInventory().getItemInMainHand()))) { continue; }
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 32, 0, true));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 32, 0, true));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 19, 0, true));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 19, 0, true));
                 }
             }
-        }.runTaskTimer(plugin, 200L, 30L);
-        // switched from 50L and 55 effects
+        }.runTaskTimer(plugin, 200L, 10L);
     }
 
 }
