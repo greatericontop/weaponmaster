@@ -116,7 +116,7 @@ Crafting Recipe: (Shapeless)
 
 ## Netherite Staff
 
-`/netheritestaff` - gives random effects to the entity being attacked
+`/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
 ## Sniper Rifle
 

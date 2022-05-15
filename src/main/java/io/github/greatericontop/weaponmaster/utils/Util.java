@@ -282,8 +282,10 @@ public class Util {
         NETHERITE_STAFF_LORE.add("id: NETHERITE_STAFF");
         NETHERITE_STAFF_LORE.add("§6---------------");
         NETHERITE_STAFF_LORE.add("");
-        NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when attacked.");
+        NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when hit.");
         NETHERITE_STAFF_LORE.add("§3Effects can be good or bad.");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§eRIGHT CLICK §3 Shoots an arrow with random effect.");
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§cSUPREME");
         NETHERITE_STAFF_LORE.add("§6---------------");

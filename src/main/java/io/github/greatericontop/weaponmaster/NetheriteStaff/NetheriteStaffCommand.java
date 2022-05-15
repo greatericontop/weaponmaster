@@ -42,9 +42,10 @@ public class NetheriteStaffCommand implements CommandExecutor {
             }
             ItemStack netheriteStaff = util.generateMeta(util.NETHERITE_STAFF_LORE, util.NETHERITE_STAFF_NAME, Material.NETHERITE_SHOVEL);
             netheriteStaff.addUnsafeEnchantment(Enchantment.LUCK, 1);
+            netheriteStaff.addUnsafeEnchantment(Enchantment.MENDING, 1);
             ItemMeta im = netheriteStaff.getItemMeta();
-            UUID uuid = UUID.randomUUID();
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(uuid, "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             netheriteStaff.setItemMeta(im);
             ((Player) sender).getInventory().addItem(netheriteStaff);
             sender.sendMessage("§7Gave you §f[" + util.NETHERITE_STAFF_NAME + "§f]§7.");
