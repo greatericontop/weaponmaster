@@ -17,6 +17,9 @@ package io.github.greatericontop.weaponmaster.utils;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.meta.ItemMeta;
+
 public class MathHelper {
 
     public static int roundProbability(double number) {
@@ -26,6 +29,24 @@ public class MathHelper {
             intPart++;
         }
         return intPart;
+    }
+
+    /*
+     * Minecraft's implementation of unbreaking. Not exactly the fastest with high durability values.
+     */
+    public static int getDamageWithUnbreaking(int rawDamage, int unbreakingLevel) {
+        int newAmount = 0;
+        for (int i = 0; i < rawDamage; i++) {
+            if (Math.random() < 1.0/unbreakingLevel) {
+                newAmount++;
+            }
+        }
+        return newAmount;
+    }
+
+    public static int getDamageWithUnbreaking(int rawDamage, ItemMeta im) {
+        int unbreakingLevel = im.getEnchantLevel(Enchantment.DURABILITY);
+        return getDamageWithUnbreaking(rawDamage, unbreakingLevel);
     }
 
 }
