@@ -121,8 +121,11 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.add(util.MINER_INSERTION+13, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
                 break;
             case 14:
-                lore.add(util.MINER_INSERTION+14, "");
-                lore.add(util.MINER_INSERTION+15, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
+                lore.add(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
+                break;
+            case 15:
+                lore.set(util.MINER_INSERTION+10, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER 15");
+                lore.set(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER 15");
                 break;
         }
     }
@@ -163,7 +166,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             attemptSpawnBlock(event, player);
         }
         if (tier >= 14 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Area Mine")) {
-            areaBlockBreak(event.getBlock().getLocation(), player, player.getInventory().getItemInMainHand(), (Damageable) im);
+            areaBlockBreak(event.getBlock().getLocation(), player, player.getInventory().getItemInMainHand(), (Damageable) im, tier);
         }
 
         fixEnchants(tier, im, player);
@@ -197,7 +200,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
     }
 
     public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player, List<String> lore, int tier) {
-        if (rnd.nextFloat() >= 0.01F) { return; }
+        if (rnd.nextFloat() >= (tier >= 15 ? 0.035F : 0.01F)) { return; }
         if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch")) { return; } // prevent abuse
         World world = event.getBlock().getLocation().getWorld();
         event.setExpToDrop(event.getExpToDrop() * 9);
@@ -346,7 +349,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
 
     private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
     private final int RANGE = 5;
-    public void areaBlockBreak(Location loc, Player player, ItemStack tool, Damageable im) {
+    public void areaBlockBreak(Location loc, Player player, ItemStack tool, Damageable im, int tier) {
         if (!cooldown.getOrDefault(player.getUniqueId(), true)) { return; }
         for (int dx = -RANGE; dx <= RANGE; dx++) {
             for (int dy = RANGE; dy >= -RANGE; dy--) {
@@ -368,7 +371,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             public void run() {
                 cooldown.put(player.getUniqueId(), true);
             }
-        }.runTaskLater(plugin, 120L); // 600
+        }.runTaskLater(plugin, tier >= 15 ? 500L : 600L);
     }
 
 }
