@@ -99,33 +99,32 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 8:
                 lore.add(util.MINER_INSERTION+4, "");
                 lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience. §7§oTIER 8");
-                lore.add(util.MINER_INSERTION+6, "§7Experience will be greatly reduced in Silk Touch mode.");
-                lore.add(util.MINER_INSERTION+7, "§7Fortune cannot be used in this mode.");
+                lore.add(util.MINER_INSERTION+6, "§7Fortune cannot be used in this mode.");
                 // TODO: Add individual xp table to silk touch so it does not penalize everything
                 break;
             case 9:
-                lore.add(util.MINER_INSERTION+8, "");
-                lore.add(util.MINER_INSERTION+9, "§dWhen breaking some deepslate ores while not in Silk Touch");
-                lore.add(util.MINER_INSERTION+10, "§dmode, gain a §41% §dchance to drop a block instead. §7§oTIER 9");
+                lore.add(util.MINER_INSERTION+7, "");
+                lore.add(util.MINER_INSERTION+8, "§dWhen breaking some deepslate ores while not in Silk Touch");
+                lore.add(util.MINER_INSERTION+9, "§dmode, gain a §41% §dchance to drop a block instead. §7§oTIER 9");
                 break;
             case 10:
-                lore.set(util.MINER_INSERTION+7, "§aFortune III applies to this mode and smelted ores. §7§oTIER 10");
+                lore.set(util.MINER_INSERTION+6, "§aFortune III applies to this mode and smelted ores. §7§oTIER 10");
                 break;
             case 11:
-                lore.add(util.MINER_INSERTION+11, "§2Small chance for ores to spawn around you. §7§oTIER 11");
+                lore.add(util.MINER_INSERTION+10, "§2Small chance for ores to spawn around you. §7§oTIER 11");
                 break;
             case 12:
-                lore.add(util.MINER_INSERTION+12, "§fIncreased Mending power, no longer limited §7§oTIER 12");
+                lore.add(util.MINER_INSERTION+11, "§fIncreased Mending power, no longer limited §7§oTIER 12");
                 break;
             case 13:
-                lore.add(util.MINER_INSERTION+13, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
+                lore.add(util.MINER_INSERTION+12, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
                 break;
             case 14:
-                lore.add(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
+                lore.add(util.MINER_INSERTION+13, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
                 break;
             case 15:
-                lore.set(util.MINER_INSERTION+10, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER §m9§r§7§o 15");
-                lore.set(util.MINER_INSERTION+14, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER §m14§r§7§o 15");
+                lore.set(util.MINER_INSERTION+9, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER §m9§r§7§o 15");
+                lore.set(util.MINER_INSERTION+13, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER §m14§r§7§o 15");
                 break;
         }
     }
