@@ -1,13 +1,19 @@
 package io.github.greatericontop.weaponmaster.NetheriteStaff;
 
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.UUID;
 
 public class NetheriteStaffCommand implements CommandExecutor {
 
@@ -36,6 +42,10 @@ public class NetheriteStaffCommand implements CommandExecutor {
             }
             ItemStack netheriteStaff = util.generateMeta(util.NETHERITE_STAFF_LORE, util.NETHERITE_STAFF_NAME, Material.NETHERITE_SHOVEL);
             netheriteStaff.addUnsafeEnchantment(Enchantment.LUCK, 1);
+            ItemMeta im = netheriteStaff.getItemMeta();
+            UUID uuid = UUID.randomUUID();
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(uuid, "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            netheriteStaff.setItemMeta(im);
             ((Player) sender).getInventory().addItem(netheriteStaff);
             sender.sendMessage("§7Gave you §f[" + util.NETHERITE_STAFF_NAME + "§f]§7.");
             return true;

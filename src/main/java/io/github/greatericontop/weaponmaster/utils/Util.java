@@ -47,7 +47,7 @@ public class Util {
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
     public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
     public final String ATOM_BOMB_NAME = "§cC§4a§cs§4t§cl§4e §cB§4r§ca§4v§co §6⚝⚝⚝⚝⚝";
-    public final String NETHERITE_STAFF_NAME = "§b§lNetherite Staff §6⚝⚝⚝⚝⚝";
+    public final String NETHERITE_STAFF_NAME = "§bNetherite Staff §6⚝⚝⚝⚝⚝";
     public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
     public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
 
@@ -279,7 +279,7 @@ public class Util {
         ATOM_BOMB_LORE.add("§cSUPREME");
         ATOM_BOMB_LORE.add("§6---------------");
         // Netherite Staff
-        NETHERITE_STAFF_LORE.add("idL NETHERITE_STAFF");
+        NETHERITE_STAFF_LORE.add("id: NETHERITE_STAFF");
         NETHERITE_STAFF_LORE.add("§6---------------");
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when attacked.");
