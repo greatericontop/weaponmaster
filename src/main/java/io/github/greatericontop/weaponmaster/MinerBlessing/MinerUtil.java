@@ -43,15 +43,34 @@ public class MinerUtil   {
     }
 
     protected int xpToAdd(Material mat, List<String> lore) {
-        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch"))  return 1;
+        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch"))  return silkLoot(mat);
+        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch"))  return smeltingLoot(mat);
+        return defaultLoot(mat);
+    }
+    protected int silkLoot(Material mat) {
+        if (mat == Material.OBSIDIAN || mat == Material.ANCIENT_DEBRIS)  return 55;
+        if (mat == Material.DEEPSLATE)  return 15;
+        if (mat == Material.STONE)  return 6;
+        if (mat == Material.NETHERRACK) return 2;
+        return 1;
+    }
+    protected int smeltingLoot(Material mat) {
+        if (mat == Material.ANCIENT_DEBRIS)  return 2400;
+        if (mat == Material.DEEPSLATE_COPPER_ORE || mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_GOLD_ORE)  return 810;
+        if (mat == Material.COPPER_ORE || mat == Material.IRON_ORE || mat == Material.GOLD_ORE)  return 600;
+        return defaultLoot(mat);
+    }
+    protected int defaultLoot(Material mat) {
         if (mat == Material.DEEPSLATE_COAL_ORE)  return 2700;
         if (mat == Material.DEEPSLATE_EMERALD_ORE || mat == Material.DEEPSLATE_DIAMOND_ORE)  return 1500;
         if (mat == Material.EMERALD_ORE || mat == Material.DIAMOND_ORE)  return 1000;
-        if (mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_REDSTONE_ORE || mat == Material.DEEPSLATE_GOLD_ORE || mat == Material.DEEPSLATE_LAPIS_ORE)  return 810;
-        if (mat == Material.COAL_ORE || mat == Material.IRON_ORE || mat == Material.REDSTONE_ORE || mat == Material.GOLD_ORE || mat == Material.LAPIS_ORE)  return 600;
-        if (mat == Material.OBSIDIAN || mat == Material.ANCIENT_DEBRIS)  return 70;
-        if (mat == Material.DEEPSLATE || mat == Material.DEEPSLATE_COPPER_ORE)  return 15;
-        if (mat == Material.STONE || mat == Material.COPPER_ORE)  return 6;
+        if (mat == Material.DEEPSLATE_REDSTONE_ORE || mat == Material.DEEPSLATE_LAPIS_ORE)  return 810;
+        if (mat == Material.COAL_ORE || mat == Material.REDSTONE_ORE || mat == Material.LAPIS_ORE)  return 600;
+        if (mat == Material.OBSIDIAN || mat == Material.ANCIENT_DEBRIS)  return 55;
+        if (mat == Material.DEEPSLATE_COPPER_ORE || mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_GOLD_ORE)  return 25;
+        if (mat == Material.DEEPSLATE)  return 15;
+        if (mat == Material.COPPER_ORE || mat == Material.IRON_ORE || mat == Material.GOLD_ORE)  return 10;
+        if (mat == Material.STONE)  return 6;
         if (mat == Material.NETHERRACK) return 2;
         return 1;
     }
