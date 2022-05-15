@@ -52,17 +52,17 @@ public class NetheriteStaffListener implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK
-                && (event.getClickedBlock().getType() == Material.DIRT || event.getClickedBlock().getType() == Material.GRASS_BLOCK)) {
-            event.setCancelled(true);
-        }
-        if (Util.checkForInteractableBlock(event)) { return; }
         Player player = event.getPlayer();
         if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK
+                && (event.getClickedBlock().getType() == Material.DIRT || event.getClickedBlock().getType() == Material.GRASS_BLOCK)) {
+            event.setCancelled(true);
+        }
+        if (Util.checkForInteractableBlock(event)) { return; }
         Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (iMeta.getDamage() > (2031-101)) {
             player.sendMessage("§3Not enough durability to shoot an arrow!");
