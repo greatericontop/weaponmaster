@@ -36,12 +36,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class MinerItemListener extends MinerUtil implements Listener {
     public MinerItemListener(WeaponMasterMain plugin) {
@@ -116,6 +120,10 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case 13:
                 lore.add(util.MINER_INSERTION+13, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
                 break;
+            case 14:
+                lore.add(util.MINER_INSERTION+14, "");
+                lore.add(util.MINER_INSERTION+15, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
+                break;
         }
     }
 
@@ -149,10 +157,13 @@ public class MinerItemListener extends MinerUtil implements Listener {
             doSmeltingOres(event, player, tier>=10);
         }
         if (tier >= 9) {
-            doDeepslateBlockMultiply(event, player);
+            doDeepslateBlockMultiply(event, player, lore, tier);
         }
         if (tier >= 11) {
             attemptSpawnBlock(event, player);
+        }
+        if (tier >= 14 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Area Mine")) {
+            areaBlockBreak(event.getBlock().getLocation(), player, player.getInventory().getItemInMainHand(), (Damageable) im);
         }
 
         fixEnchants(tier, im, player);
@@ -161,9 +172,6 @@ public class MinerItemListener extends MinerUtil implements Listener {
     }
 
     public void doSmeltingOres(BlockBreakEvent event, Player player, boolean hasFortune) {
-        ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
-        List<String> lore = im.getLore();
-        if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; }
         Material mat = event.getBlock().getType();
         World world = event.getBlock().getLocation().getWorld();
         if (mat == Material.COPPER_ORE || mat == Material.DEEPSLATE_COPPER_ORE) {
@@ -188,11 +196,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
     }
 
-    public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player) {
-        ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
+    public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player, List<String> lore, int tier) {
         if (rnd.nextFloat() >= 0.01F) { return; }
-        List<String> lore = im.getLore();
-        if (lore.get(util.MINER_INSERTION + 3).equals("§6Currently set to §9Silk Touch")) { return; } // prevent abuse
+        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch")) { return; } // prevent abuse
         World world = event.getBlock().getLocation().getWorld();
         event.setExpToDrop(event.getExpToDrop() * 9);
         // drops an extra item (does not invalidate the current one)
@@ -284,13 +290,17 @@ public class MinerItemListener extends MinerUtil implements Listener {
             player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
         } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
-            lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
+            lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
             if (tier >= 10) {
                 im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune III");
             } else {
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
             }
+        } else if (tier >= 14 && text.equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
+            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Area Mine");
+            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9§nArea Mine");
         } else {
             im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
@@ -332,6 +342,33 @@ public class MinerItemListener extends MinerUtil implements Listener {
             }
         }.runTaskTimer(plugin, 200L, 60L);
         // switched from 50L and 55 effects
+    }
+
+    private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
+    private final int RANGE = 5;
+    public void areaBlockBreak(Location loc, Player player, ItemStack tool, Damageable im) {
+        if (!cooldown.getOrDefault(player.getUniqueId(), true)) { return; }
+        for (int dx = -RANGE; dx <= RANGE; dx++) {
+            for (int dy = RANGE; dy >= -RANGE; dy--) {
+                for (int dz = -RANGE; dz <= RANGE; dz++) {
+                    Location newLoc = loc.clone().add(dx, dy, dz);
+                    Block block = newLoc.getBlock();
+                    player.sendMessage(String.format("block type %s, hardness %.1f", block.getType(), block.getType().getHardness()));
+                    if (0.0F <= block.getType().getHardness() && block.getType().getHardness() <= 15.0F) {
+                        if (block.getType() != Material.AIR && Math.random() < 0.025) { // unbreaking 3: 0.25
+                            im.setDamage(im.getDamage() + 1);
+                        }
+                        block.breakNaturally(tool);
+                    }
+                }
+            }
+        }
+        cooldown.put(player.getUniqueId(), false);
+        new BukkitRunnable() {
+            public void run() {
+                cooldown.put(player.getUniqueId(), true);
+            }
+        }.runTaskLater(plugin, 120L); // 600
     }
 
 }
