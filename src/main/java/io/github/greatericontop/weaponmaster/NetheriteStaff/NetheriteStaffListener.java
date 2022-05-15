@@ -64,7 +64,7 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
         Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
-        if (iMeta.getDamage() <= (2031-101)) {
+        if (iMeta.getDamage() > (2031-101)) {
             player.sendMessage("§3Not enough durability to shoot an arrow!");
             return;
         }
