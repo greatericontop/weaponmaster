@@ -12,6 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -68,6 +69,12 @@ public class NetheriteStaffListener implements Listener {
             player.sendMessage("§3Not enough durability to shoot an arrow!");
             return;
         }
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+            if (!event.getPlayer().getInventory().contains(Material.ARROW)) {
+                player.sendMessage("§3You must have arrows in your inventory to shoot!");
+                return;
+            }
+        }
 
         Location eyeLocation = player.getEyeLocation();
         Location spawnLoc = eyeLocation.clone().add(eyeLocation.getDirection().multiply(1.9));
@@ -86,6 +93,7 @@ public class NetheriteStaffListener implements Listener {
         arrow.setDamage(1.5F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
+            player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
         }
     }
