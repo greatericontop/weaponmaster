@@ -75,6 +75,7 @@ public class NetheriteStaffListener implements Listener {
 
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
         arrow.setShooter(player);
+        arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
         int duration = rand.nextInt(180) + 20;
         int amplifier = Math.min(rand.nextInt(3) - 1, 0);
         PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
