@@ -50,6 +50,9 @@ import io.github.greatericontop.weaponmaster.MinerBlessing.MinerItemListener;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerRecipe;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffRecipe;
+import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
+import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
@@ -200,6 +203,9 @@ public class WeaponMasterMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(minerListener, this);
         minerListener.regHasteRunnable();
         new MinerRecipe().regRecipe();
+        // Pilot's Sword
+        getCommand("pilotsword").setExecutor(new PilotCommand());
+        getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

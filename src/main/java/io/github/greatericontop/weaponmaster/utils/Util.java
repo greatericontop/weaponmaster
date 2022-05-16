@@ -50,6 +50,7 @@ public class Util {
     public final String NETHERITE_STAFF_NAME = "§bNetherite Staff §6⚝⚝⚝⚝⚝";
     public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
     public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
+    public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -71,6 +72,7 @@ public class Util {
     public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
     public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
     public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
+    public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -315,6 +317,15 @@ public class Util {
         MINERS_BLESSING_LORE.add("");
         MINERS_BLESSING_LORE.add("§6LEGENDARY");
         MINERS_BLESSING_LORE.add("§6---------------");
+        // Pilot's Sword
+        PILOT_SWORD_LORE.add("id: PILOT_SWORD");
+        PILOT_SWORD_LORE.add("§6---------------");
+        PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§3Attack people super fast!");
+        PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
+        PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§6LEGENDARY");
+        PILOT_SWORD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -402,5 +413,8 @@ public class Util {
     }
     public boolean checkForMinersBlessing(ItemStack item) {
         return this.checkFor(item, MINERS_BLESSING_NAME, 0, "id: MINERS_BLESSING");
+    }
+    public boolean checkForPilotSword(ItemStack item) {
+        return this.checkFor(item, PILOT_SWORD_NAME, 0, "id: PILOT_SWORD");
     }
 }

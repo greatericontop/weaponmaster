@@ -115,6 +115,12 @@ commands:
     permission: "weaponmaster.minersblessing.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["miners-blessing"]
+  pilotsword:
+    description: "[Weapon Master] command for Pilot's Sword"
+    usage: "U: /pilotsword [give]"
+    permission: "weaponmaster.minersblessing.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["pilots-sword"]
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -219,7 +225,7 @@ permissions:
   weaponmaster.minersblessing.use:
     default: true
   #
-  weaponmaster.assaultrifle.command:
+  weaponmaster.pilotsword.command:
     default: op
-  weaponmaster.assaultrifle.use:
+  weaponmaster.pilotsword.use:
     default: true
