@@ -23,6 +23,7 @@ public class NetheriteStaffRecipe {
     private CustomItems customItems;
     public NetheriteStaffRecipe() {
         util = new Util(null);
+        customItems = new CustomItems();
     }
 
     public void regRecipe() {

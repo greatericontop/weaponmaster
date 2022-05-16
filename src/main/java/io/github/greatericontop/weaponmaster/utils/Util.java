@@ -51,6 +51,7 @@ public class Util {
     public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
     public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
     public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
+    public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -73,6 +74,7 @@ public class Util {
     public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
     public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
     public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
+    public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -326,6 +328,16 @@ public class Util {
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");
+        // Shredded Axe
+        SHREDDED_AXE_LORE.add("id: SHREDDED_AXE");
+        SHREDDED_AXE_LORE.add("§6---------------");
+        SHREDDED_AXE_LORE.add("");
+        SHREDDED_AXE_LORE.add("§eAbility: §4Reanimation");
+        SHREDDED_AXE_LORE.add("§3Spawn a powerful §2Zombie §3whenever you");
+        SHREDDED_AXE_LORE.add("§3hit anything. You can get up to §b10 §3of them.");
+        SHREDDED_AXE_LORE.add("");
+        SHREDDED_AXE_LORE.add("§6LEGENDARY");
+        SHREDDED_AXE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -416,5 +428,8 @@ public class Util {
     }
     public boolean checkForPilotSword(ItemStack item) {
         return this.checkFor(item, PILOT_SWORD_NAME, 0, "id: PILOT_SWORD");
+    }
+    public boolean checkForShreddedAxe(ItemStack item) {
+        return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
     }
 }

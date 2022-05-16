@@ -121,6 +121,12 @@ commands:
     permission: "weaponmaster.minersblessing.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["pilots-sword"]
+  shreddedaxe:
+    description: "[Weapon Master] command for Shredded Axe"
+    usage: "U: /shreddedaxe [give]"
+    permission: "weaponmaster.shreddedaxe.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["shredded", "shredded-axe"]
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -228,4 +234,9 @@ permissions:
   weaponmaster.pilotsword.command:
     default: op
   weaponmaster.pilotsword.use:
+    default: true
+  #
+  weaponmaster.shreddedaxe.command:
+    default: op
+  weaponmaster.shreddedaxe.use:
     default: true

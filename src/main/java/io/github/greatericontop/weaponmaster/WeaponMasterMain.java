@@ -59,6 +59,8 @@ import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
+import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedCommand;
+import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedListener;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
@@ -208,6 +210,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Pilot's Sword
         getCommand("pilotsword").setExecutor(new PilotCommand());
         getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
+        // Shredded Axe
+        getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
+        getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
         // Hide Of Leviathan
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
