@@ -42,6 +42,7 @@ import java.util.*;
 public class ShreddedListener implements Listener {
     private final Map<UUID, Integer> zombieCount = new HashMap<>();
     private final Set<UUID> allZombies = new HashSet<>();
+    private final int SURVIVAL_DURATION = 800;
     private final WeaponMasterMain plugin;
     private final Util util;
     public ShreddedListener(WeaponMasterMain plugin) {
@@ -72,9 +73,9 @@ public class ShreddedListener implements Listener {
         zombieCount.put(player.getUniqueId(), zombieCount.getOrDefault(player.getUniqueId(), 0) + 1);
         LivingEntity victim = (LivingEntity) event.getEntity();
         Zombie zombie = (Zombie) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE, true);
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1000000, 0, true));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1000000, 2, true));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000, 0, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, SURVIVAL_DURATION*5, 0, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, SURVIVAL_DURATION*5, 2, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION*5, 0, true));
         zombie.setTarget(victim);
         zombie.setCanPickupItems(false);
         allZombies.add(zombie.getUniqueId());
@@ -92,7 +93,7 @@ public class ShreddedListener implements Listener {
                     player.sendMessage(String.format("§7changing from %s to %s", zombie.getTarget(), victim));
                     zombie.setTarget(victim);
                 }
-                if (ticks >= 300 && ticks % 20 == 0) { // zombies slowly die after 15 sec
+                if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
                     TrueDamageHelper.dealTrueDamage(zombie,2.0, player);
                     zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0), 10);
                 }
