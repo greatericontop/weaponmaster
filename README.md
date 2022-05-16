@@ -118,13 +118,18 @@ Crafting Recipe: (Shapeless)
 
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
-Crafting Recipe:
-- 2 Nether Star
-- 1 Netherite Ingot
-- 1 Netherite Block
-- 1 Nether Reactor Core
+[//]: # (Crafting Recipe:)
 
-![](assets/netheritestaff.png)
+[//]: # (- 2 Nether Star)
+
+[//]: # (- 1 Netherite Ingot)
+
+[//]: # (- 1 Netherite Block)
+
+[//]: # (- 1 Nether Reactor Core)
+
+[//]: # ()
+[//]: # (![]&#40;assets/netheritestaff.png&#41;)
 
 ## Sniper Rifle
 
@@ -177,18 +182,26 @@ Crafting Recipe:
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
 
-## Nether Reactor Core
+[//]: # (## Nether Reactor Core)
 
-A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
-1.5% chance of dropping from a `Wither Skeleton`.
+[//]: # ()
+[//]: # (A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.)
 
-Crafting Recipe:
-- 4 Blaze Rod
-- 2 Obsidian
-- 2 Wither Skeleton Skull
-- 1 Diamond Block
+[//]: # (1.5% chance of dropping from a `Wither Skeleton`.)
 
-![](assets/corestaff.png)
+[//]: # ()
+[//]: # (Crafting Recipe:)
+
+[//]: # (- 4 Blaze Rod)
+
+[//]: # (- 2 Obsidian)
+
+[//]: # (- 2 Wither Skeleton Skull)
+
+[//]: # (- 1 Diamond Block)
+
+[//]: # ()
+[//]: # (![]&#40;assets/corestaff.png&#41;)
 ---
 
 # Usage
