@@ -118,6 +118,12 @@ Crafting Recipe: (Shapeless)
 
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
+Crafting Recipe:
+- 2 Nether Star
+- 1 Netherite Ingot
+- 1 Netherite Block
+- 1 Nether Reactor Core
+
 ## Sniper Rifle
 
 `/sniperrifle give` - shoots fast and accurate bullets
@@ -168,6 +174,15 @@ Crafting Recipe:
 ## Heart of Leviathan
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
+
+## Nether Reactor Core
+
+A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
+
+Crafting Recipe:
+- 6 Netherite ingot
+- 2 Obsidian
+- 1 Wither Skeleton Skull
 
 ---
 

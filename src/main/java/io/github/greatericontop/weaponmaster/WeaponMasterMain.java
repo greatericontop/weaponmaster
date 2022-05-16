@@ -194,6 +194,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Netherite Staff
         getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
         getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
+        new NetheriteStaffRecipe().regRecipe();
         // Sniper Rifle
         getCommand("sniperrifle").setExecutor(new SniperCommand());
         getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
