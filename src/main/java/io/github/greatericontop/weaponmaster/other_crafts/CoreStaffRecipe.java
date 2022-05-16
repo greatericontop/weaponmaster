@@ -18,10 +18,11 @@ public class CoreStaffRecipe {
         ItemStack core = customItems.generateCoreStaffItemStack();
         ShapedRecipe coreRec = new ShapedRecipe(NamespacedKey.minecraft("core_staff"), core);
         coreRec.shape("non",
-                      "nSn",
+                      "SdS",
                       "non");
-        coreRec.setIngredient('n', Material.NETHERITE_INGOT);
+        coreRec.setIngredient('n', Material.BLAZE_ROD);
         coreRec.setIngredient('S', Material.WITHER_SKELETON_SKULL);
+        coreRec.setIngredient('d', Material.DIAMOND_BLOCK);
         coreRec.setIngredient('o', Material.OBSIDIAN);
         Bukkit.getServer().addRecipe(coreRec);
     }

@@ -182,9 +182,10 @@ A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used t
 A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
 
 Crafting Recipe:
-- 6 Netherite ingot
+- 4 Blaze Rod
 - 2 Obsidian
-- 1 Wither Skeleton Skull
+- 2 Wither Skeleton Skull
+- 1 Diamond Block
 
 ![](assets/corestaff.png)
 ---
