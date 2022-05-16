@@ -4,6 +4,7 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -93,7 +94,9 @@ public class NetheriteStaffListener implements Listener {
         arrow.setDamage(1.5F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
-            player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
+            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) != 4 || Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.15) > 0.95) {
+                player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
+            }
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
         }
     }

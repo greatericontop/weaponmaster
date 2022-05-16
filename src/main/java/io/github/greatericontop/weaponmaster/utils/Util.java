@@ -271,7 +271,7 @@ public class Util {
         FIREBALL_LORE.add("§3Right Click to summon fireball.");
         FIREBALL_LORE.add("§3Small chance of summoning a dragon fireball.");
         FIREBALL_LORE.add("");
-        FIREBALL_LORE.add("§6LEGENDARY");
+        FIREBALL_LORE.add("§dEPIC");
         FIREBALL_LORE.add("§6---------------");
         // Atom Bomb
         ATOM_BOMB_LORE.add("id: ATOM_BOMB");
