@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -31,8 +32,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.loot.LootTable;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -43,6 +42,7 @@ public class ShreddedListener implements Listener {
     private final Map<UUID, Integer> zombieCount = new HashMap<>();
     private final Set<UUID> allZombies = new HashSet<>();
     private final int SURVIVAL_DURATION = 800;
+    private final double NEW_MAX_HP = 60.0;
     private final WeaponMasterMain plugin;
     private final Util util;
     public ShreddedListener(WeaponMasterMain plugin) {
@@ -74,10 +74,12 @@ public class ShreddedListener implements Listener {
         LivingEntity victim = (LivingEntity) event.getEntity();
         Zombie zombie = (Zombie) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE, true);
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, SURVIVAL_DURATION*5, 0, true));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, SURVIVAL_DURATION*5, 2, true));
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION*5, 0, true));
         zombie.setTarget(victim);
         zombie.setCanPickupItems(false);
+        zombie.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(64.0);
+        zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(NEW_MAX_HP);
+        zombie.setHealth(NEW_MAX_HP);
         allZombies.add(zombie.getUniqueId());
         new BukkitRunnable() {
             int ticks = 0;
@@ -90,7 +92,6 @@ public class ShreddedListener implements Listener {
                     return;
                 }
                 if (zombie.getTarget() != victim) {
-                    player.sendMessage(String.format("§7changing from %s to %s", zombie.getTarget(), victim));
                     zombie.setTarget(victim);
                 }
                 if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
