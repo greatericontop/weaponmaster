@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.ShreddedAxe;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
@@ -94,7 +95,7 @@ public class ShreddedListener implements Listener {
                     return;
                 }
                 double healthPercent = zombie.getHealth() / NEW_MAX_HP * 100;
-                zombie.setCustomName(String.format("%s§7's §2Zombie §7- §%s%.0f%%", player.getDisplayName(), healthPercent > 40 ? "e" : "6", healthPercent));
+                zombie.setCustomName(String.format("%s§7's §2Zombie §7- §%s%.0f%%", player.getDisplayName(), MathHelper.getColor(healthPercent), healthPercent));
                 if (zombie.getTarget() != victim) {
                     zombie.setTarget(victim);
                 }

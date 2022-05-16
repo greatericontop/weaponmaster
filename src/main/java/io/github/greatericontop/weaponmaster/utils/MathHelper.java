@@ -49,4 +49,11 @@ public class MathHelper {
         return getDamageWithUnbreaking(rawDamage, unbreakingLevel);
     }
 
+    public static String getColor(double percent) {
+        if (percent >= 90)  return "a";
+        if (percent >= 50)  return "e";
+        if (percent >= 25)  return "6";
+        return "c";
+    }
+
 }
