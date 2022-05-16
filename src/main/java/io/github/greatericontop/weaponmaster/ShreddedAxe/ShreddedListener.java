@@ -42,8 +42,8 @@ import java.util.*;
 public class ShreddedListener implements Listener {
     private final Map<UUID, Integer> zombieCount = new HashMap<>();
     private final Set<UUID> allZombies = new HashSet<>();
-    private final int SURVIVAL_DURATION = 800;
-    private final double NEW_MAX_HP = 70.0;
+    private final int SURVIVAL_DURATION = 700;
+    private final double NEW_MAX_HP = 50.0;
     private final WeaponMasterMain plugin;
     private final Util util;
     public ShreddedListener(WeaponMasterMain plugin) {
@@ -54,6 +54,7 @@ public class ShreddedListener implements Listener {
     @EventHandler(priority = EventPriority.LOW)
     public void onDeath(EntityDeathEvent event) {
         if (allZombies.contains(event.getEntity().getUniqueId())) {
+            event.getEntity().setCustomName("§2Zombie");
             event.setDroppedExp(0);
             event.getDrops().clear();
         }
