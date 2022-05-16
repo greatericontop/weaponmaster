@@ -124,6 +124,8 @@ Crafting Recipe:
 - 1 Netherite Block
 - 1 Nether Reactor Core
 
+![](assets/netheritestaff.png)
+
 ## Sniper Rifle
 
 `/sniperrifle give` - shoots fast and accurate bullets
@@ -184,6 +186,7 @@ Crafting Recipe:
 - 2 Obsidian
 - 1 Wither Skeleton Skull
 
+![](assets/corestaff.png)
 ---
 
 # Usage
