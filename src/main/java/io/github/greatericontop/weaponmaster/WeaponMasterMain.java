@@ -194,7 +194,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Atom Bomb
         getCommand("atombomb").setExecutor(new AtomCommand());
         getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
-        // Netherite Staff
+        // Netherite Staff e
         getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
         getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
         // Sniper Rifle
