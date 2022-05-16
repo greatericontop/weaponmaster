@@ -180,6 +180,7 @@ A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used t
 ## Nether Reactor Core
 
 A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
+1.5% chance of dropping from a `Wither Skeleton`.
 
 Crafting Recipe:
 - 4 Blaze Rod

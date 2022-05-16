@@ -70,7 +70,7 @@ public class NetheriteStaffListener implements Listener {
         }
 
         Location eyeLocation = player.getEyeLocation();
-        Location spawnLoc = eyeLocation.clone().add(eyeLocation.getDirection().multiply(0.9));
+        Location spawnLoc = eyeLocation.clone().add(eyeLocation.getDirection().multiply(1.9));
         World world = player.getWorld();
 
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
@@ -83,7 +83,7 @@ public class NetheriteStaffListener implements Listener {
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
         arrow.setColor(Color.BLACK);
-        arrow.setDamage(0.5F);
+        arrow.setDamage(1.5F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);

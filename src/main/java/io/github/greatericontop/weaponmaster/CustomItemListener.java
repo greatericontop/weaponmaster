@@ -17,13 +17,24 @@ public class CustomItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntityType() != EntityType.ELDER_GUARDIAN) { return; }
-        if (Math.random() < 0.12) {
-            ItemStack leviathan = customItems.generateLeviathanHeartItemStack();
-            event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), leviathan);
-            Player killer = event.getEntity().getKiller();
-            if (killer != null) {
-                killer.sendMessage("§eRARE DROP! " + customItems.LEVIATHAN_HEART_NAME);
+        if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
+            if (Math.random() < 0.12) {
+                ItemStack leviathan = customItems.generateLeviathanHeartItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), leviathan);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + customItems.LEVIATHAN_HEART_NAME);
+                }
+            }
+        }
+        if (event.getEntityType() == EntityType.WITHER_SKELETON) {
+            if (Math.random() < 0.015) {
+                ItemStack core = customItems.generateCoreStaffItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + customItems.CORE_STAFF_NAME);
+                }
             }
         }
     }
