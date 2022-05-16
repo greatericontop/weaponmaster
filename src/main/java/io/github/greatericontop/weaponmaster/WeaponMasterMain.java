@@ -205,7 +205,7 @@ public class WeaponMasterMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(minerListener, this);
         minerListener.regHasteRunnable();
         new MinerRecipe().regRecipe();
-        // Pilot's Sword e
+        // Pilot's Sword
         getCommand("pilotsword").setExecutor(new PilotCommand());
         getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
         // Hide Of Leviathan
