@@ -42,7 +42,7 @@ public class ShreddedListener implements Listener {
     private final Map<UUID, Integer> zombieCount = new HashMap<>();
     private final Set<UUID> allZombies = new HashSet<>();
     private final int SURVIVAL_DURATION = 800;
-    private final double NEW_MAX_HP = 60.0;
+    private final double NEW_MAX_HP = 70.0;
     private final WeaponMasterMain plugin;
     private final Util util;
     public ShreddedListener(WeaponMasterMain plugin) {
@@ -93,11 +93,13 @@ public class ShreddedListener implements Listener {
                     allZombies.remove(zombie.getUniqueId());
                     return;
                 }
+                double healthPercent = zombie.getHealth() / NEW_MAX_HP * 100;
+                zombie.setCustomName(String.format("%s§7's §2Zombie §7- §%s%.0f%%", player.getDisplayName(), healthPercent > 40 ? "e" : "6", healthPercent));
                 if (zombie.getTarget() != victim) {
                     zombie.setTarget(victim);
                 }
                 if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
-                    TrueDamageHelper.dealTrueDamage(zombie,2.0, player);
+                    TrueDamageHelper.dealTrueDamage(zombie,4.0, player);
                     zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0), 10);
                 }
             }
