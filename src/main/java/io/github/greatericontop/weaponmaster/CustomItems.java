@@ -1,6 +1,7 @@
 package io.github.greatericontop.weaponmaster;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -39,6 +40,7 @@ public class CustomItems {
     public ItemStack generateCoreStaffItemStack() {
         ItemStack stack = new ItemStack(Material.NETHER_BRICK, 1);
         ItemMeta iMeta = stack.getItemMeta();
+        iMeta.addEnchant(Enchantment.SOUL_SPEED, 1, false);
         iMeta.setDisplayName(CORE_STAFF_NAME);
         iMeta.setLore(CORE_STAFF_LORE);
         stack.setItemMeta(iMeta);
