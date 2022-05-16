@@ -77,6 +77,8 @@ public class ShreddedListener implements Listener {
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION*5, 0, true));
         zombie.setTarget(victim);
         zombie.setCanPickupItems(false);
+        zombie.setCustomName(String.format("%s§7's §2Zombie", player.getDisplayName()));
+        zombie.setCustomNameVisible(true);
         zombie.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(64.0);
         zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(NEW_MAX_HP);
         zombie.setHealth(NEW_MAX_HP);
