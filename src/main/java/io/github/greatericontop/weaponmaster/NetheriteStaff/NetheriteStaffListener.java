@@ -70,7 +70,8 @@ public class NetheriteStaffListener implements Listener {
             player.sendMessage("§3Not enough durability to shoot an arrow!");
             return;
         }
-        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL
+                && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4) {
             if (!event.getPlayer().getInventory().contains(Material.ARROW)) {
                 player.sendMessage("§3You must have arrows in your inventory to shoot!");
                 return;
@@ -94,8 +95,8 @@ public class NetheriteStaffListener implements Listener {
         arrow.setDamage(1.5F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
-            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) != 4
-                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.15) > 0.95) {
+            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4
+                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.15) < 0.95) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
