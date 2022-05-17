@@ -23,9 +23,9 @@ import java.util.Random;
 
 public class EffectPicker {
 
-    private final Random rnd = new Random();
+    private static final Random rnd = new Random();
 
-    public final Object[][] effects = {
+    public static final Object[][] effects = {
             // https://minecraft.fandom.com/wiki/Effect
             // weight, identifier, minimumTime, maximumTime, minimumAmplifier, maximumAmplifier, modifiedAmplifierForArrow
             // {10, PotionEffectType., 80, , 0, },
@@ -63,7 +63,7 @@ public class EffectPicker {
             {10, PotionEffectType.HERO_OF_THE_VILLAGE, 80, 600, 0, 4, 4},
     };
 
-    public Object[] getRandomEffect() {
+    public static Object[] getRandomEffect() {
         Object[] selectedEffect = null;
         int totalWeight = 0;
         for (Object[] effect : effects) {
@@ -77,7 +77,7 @@ public class EffectPicker {
         return selectedEffect;
     }
 
-    public Object[] getRandomEffect(boolean isShortened) {
+    public static Object[] getRandomEffect(boolean isShortened) {
         Object[] data = getRandomEffect();
         int minDuration = (int) data[2];
         int maxDuration = isShortened ? ((int) data[3]) / 2 : (int) data[3];
