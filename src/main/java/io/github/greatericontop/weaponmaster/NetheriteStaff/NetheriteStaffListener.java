@@ -59,9 +59,6 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
         LivingEntity attacked = (LivingEntity) event.getEntity();
-//        int duration = rand.nextInt(520) + 60;
-//        int amplifier = rand.nextInt(10);
-//        PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
         Object[] effectData = EffectPicker.getRandomEffect(false);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
         attacked.addPotionEffect(effect);
@@ -102,10 +99,8 @@ public class NetheriteStaffListener implements Listener {
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
         arrow.setShooter(player);
         arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-        int duration = rand.nextInt(180) + 20;
-        int amplifier = Math.min(rand.nextInt(3) - 1, 0);
-        PotionEffectType effectType = PotionEffectType.getById(rand.nextInt(32) + 1);
-        PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
+        Object[] effectData = EffectPicker.getRandomEffect(true);
+        PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
         arrow.setColor(Color.BLACK);
