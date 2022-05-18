@@ -1,5 +1,8 @@
 # WeaponMaster
+
+
 ![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
