@@ -101,7 +101,7 @@ public class MinerUtil   {
 
     protected int getRequirementToLevelUp(int level) {
         if (level >= 16) {
-            return 2_000_000 + (1 << Math.max(level-16, 30));
+            return 2_000_000 + (1 << Math.min(level-16, 30));
         }
         return new int[]{
                 // (n choose 4)/2 + (n+1 choose 3) + (n+1 choose 2) + 1
