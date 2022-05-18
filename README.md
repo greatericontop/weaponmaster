@@ -28,6 +28,10 @@ a weapons plugin
   - [Flask of Ichor](#flask-of-inchor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Nether Reactor Core](#nether-reactor-core)
+- [Commands](#commands)
+  - [Attribute Modifier](#attribute-modifier)
+  - [Force Enchant](#force-enchant)
+  - [Illegal Stack](#illegal-stack)
 - [Usage](#usage)
 
 
@@ -225,8 +229,41 @@ Crafting Recipe:
 ![](assets/corestaff.png)
 ---
 
+# Commands
+
+## Attribute Modifier
+
+`/weaponmaster attributemodifier <attribute> <operation> <amount> <slot> [<optional uuid>]`
+
+Modifies the item's attributes.
+
+**Arguments**
+- **attribute** any valid [bukkit attributes](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html)
+- **operation** any valid [bukkit operation](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html)
+- **amount** any valid double
+- **slot** `HAND`, `OFFHAND`, `HEAD`, `CHEST`, `LEGS`, or `FEET`
+- **optional uuid** any uuid that is not taken
+
+## Force Enchant
+
+`/weaponmaster forceenchant <enchantment> <level>`
+
+Forcefully echants items with enchantments.
+
+**Arguments**
+- **enchantment** minecraft enchantment namespace. e.g. `fire_protection`
+- **level** any integer with a value from 1 - 255
+
+## Illegal Stack 
+
+`/weaponmaster illegalstack <amount>`
+
+Sets the item in hand to any amount.
+
+**Arguments**
+- **amount** any integer with a value from 1 - 127
+
+---
 # Usage
 
 build using maven
-
-license under GPL v3
