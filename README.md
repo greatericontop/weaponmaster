@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
 
 
-Weaponmaster is a minecraft paper plugin that adds more tools and weapons to the game.
+Weaponmaster is a minecraft server plugin made using the paper api that adds more tools and weapons to the game.
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
