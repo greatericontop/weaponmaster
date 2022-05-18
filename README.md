@@ -2,6 +2,35 @@
 
 a weapons plugin
 
+- [Weapons](#weapons)
+  - [RPG Launcher](#rpg-launcher)
+  - [Vampire's Axe](#vampires-axe)
+  - [Death's Scythe](#deaths-scythe)
+  - [Dragon Sword](#dragon-sword)
+  - [Artemis](#artemis-bow)
+  - [Anduril](#anduril)
+  - [Excalibur](#excalibur)
+  - [Exodus](#exodus)
+  - [Rocket Stick](#rocket-stick)
+  - [Helios](#helios)
+  - [Scylla's Chestplate](#scylla-chestplate)
+  - [Herme's Boots](#hermesboots-boots)
+  - [Helmet of Life](#helmet-of-life)
+  - [Cave Man Sword](#cave-man-sword)
+  - [Warlock Pants](#warlock-pants)
+  - [Fireball](#fireball)
+  - [Atom Bomb](#atom-bomb)
+  - [Netherite Staff](#netherite-staff)
+  - [Sniper Rifle](#sniper-rifle)
+  - [Miner's Blessing](#miners-blessing)
+- [Others](#others)
+  - [Hide of Leviathan](#hide-of-leviathan)
+  - [Flask of Ichor](#flask-of-inchor)
+  - [Heart of Leviathan](#heart-of-leviathan)
+  - [Nether Reactor Core](#nether-reactor-core)
+- [Usage](#usage)
+
+
 # Weapons
 
 ## RPG Launcher
@@ -118,18 +147,18 @@ Crafting Recipe: (Shapeless)
 
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
-[//]: # (Crafting Recipe:)
+Crafting Recipe:
 
-[//]: # (- 2 Nether Star)
+- 2 Nether Star
 
-[//]: # (- 1 Netherite Ingot)
+- 1 Netherite Ingot
 
-[//]: # (- 1 Netherite Block)
+- 1 Netherite Block
 
-[//]: # (- 1 Nether Reactor Core)
+- 1 Nether Reactor Core
 
-[//]: # ()
-[//]: # (![]&#40;assets/netheritestaff.png&#41;)
+
+![](assets/netheritestaff.png)
 
 ## Sniper Rifle
 
@@ -182,26 +211,18 @@ Crafting Recipe:
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
 
-[//]: # (## Nether Reactor Core)
+## Nether Reactor Core
 
-[//]: # ()
-[//]: # (A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.)
+A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
+1.5% chance of dropping from a `Wither Skeleton`.
 
-[//]: # (1.5% chance of dropping from a `Wither Skeleton`.)
+Crafting Recipe:
+- 4 Blaze Rod
+- 2 Obsidian
+- 2 Wither Skeleton Skull
+- 1 Diamond Block
 
-[//]: # ()
-[//]: # (Crafting Recipe:)
-
-[//]: # (- 4 Blaze Rod)
-
-[//]: # (- 2 Obsidian)
-
-[//]: # (- 2 Wither Skeleton Skull)
-
-[//]: # (- 1 Diamond Block)
-
-[//]: # ()
-[//]: # (![]&#40;assets/corestaff.png&#41;)
+![](assets/corestaff.png)
 ---
 
 # Usage
