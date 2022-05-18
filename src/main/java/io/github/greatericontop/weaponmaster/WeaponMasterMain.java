@@ -197,6 +197,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Netherite Staff
         getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
         getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
+        new NetheriteStaffRecipe().regRecipe();
         // Sniper Rifle
         getCommand("sniperrifle").setExecutor(new SniperCommand());
         getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
@@ -212,9 +213,10 @@ public class WeaponMasterMain extends JavaPlugin {
         // Shredded Axe
         getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
-        // Hide Of Leviathan
+        // Custom Items
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
+        new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getLogger().info("Finished setting up!");
