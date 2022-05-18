@@ -1,4 +1,5 @@
 # WeaponMaster
+[![Contributors](contributors-shield])](https://github.com/greatericontop/weaponmaster/graphs/contributors)
 
 a weapons plugin
 
