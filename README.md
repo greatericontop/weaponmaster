@@ -1,8 +1,12 @@
 # WeaponMaster
-[![Contributors](contributors-shield])](https://github.com/greatericontop/weaponmaster/graphs/contributors)
+![](https://img.shields.io/badge/Contributors-3-red?style=for-the-badge)
+![](https://img.shields.io/badge/License-GPL%20v3-green?style=for-the-badge)
 
-a weapons plugin
 
+Weaponmaster is a minecraft paper plugin that adds more tools and weapons to the game.
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Weapons](#weapons)
   - [RPG Launcher](#rpg-launcher)
   - [Vampire's Axe](#vampires-axe)
@@ -33,9 +37,21 @@ a weapons plugin
   - [Attribute Modifier](#attribute-modifier)
   - [Force Enchant](#force-enchant)
   - [Illegal Stack](#illegal-stack)
-- [Usage](#usage)
+- [License](#license)
 
+# Prerequisites
 
+Before you begin, ensure you have met the following requirements:
+- A paper server that is 1.18 or above
+- A Java JDK version 17
+
+# Installation
+
+To install the project, first download the `jar` file. 
+
+Paste the jar file into the server `./plugins` directory
+
+---
 # Weapons
 
 ## RPG Launcher
@@ -265,6 +281,6 @@ Sets the item in hand to any amount.
 - **amount** any integer with a value from 1 - 127
 
 ---
-# Usage
+# License
 
-build using maven
+This project is licensed under the terms and conditions of GPL v3.
