@@ -1,6 +1,8 @@
 # WeaponMaster
-![](https://img.shields.io/badge/Contributors-3-red?style=for-the-badge)
-![](https://img.shields.io/badge/License-GPL%20v3-green?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
 
 
 Weaponmaster is a minecraft paper plugin that adds more tools and weapons to the game.
