@@ -1,14 +1,14 @@
 # WeaponMaster
 
 
-![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=plastic)
-![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=plastic)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=plastic)
-![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=plastic)
-![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=plastic)
+![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
 
 
-Weaponmaster is a minecraft server plugin made using the paper api that adds more tools and weapons to the game.
+Weaponmaster is a minecraft server plugin made using the spigot api that adds more tools and weapons to the game.
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -47,7 +47,7 @@ Weaponmaster is a minecraft server plugin made using the paper api that adds mor
 # Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-- A paper server that is 1.18 or above
+- A spigot (or any of the spigot forks) server that is 1.18 or above
 - A Java JDK version 17
 
 # Installation
