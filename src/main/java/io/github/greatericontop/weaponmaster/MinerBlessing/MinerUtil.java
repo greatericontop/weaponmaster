@@ -54,6 +54,7 @@ public class MinerUtil   {
         return 1;
     }
     protected int smeltingLoot(Material mat) {
+        if (mat == Material.BARRIER)  return 100_000;
         if (mat == Material.ANCIENT_DEBRIS)  return 2400;
         if (mat == Material.DEEPSLATE_COPPER_ORE || mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_GOLD_ORE)  return 810;
         if (mat == Material.COPPER_ORE || mat == Material.IRON_ORE || mat == Material.GOLD_ORE)  return 600;
@@ -99,36 +100,28 @@ public class MinerUtil   {
     }
 
     protected int getRequirementToLevelUp(int level) {
-        if (level >= 15) {
-            return 700_000;
+        if (level >= 16) {
+            return 2_000_000;
         }
         return new int[]{
-                10_000,
-                15_000, // 1
-                20_000,
-                25_000,
-                30_000,
-                31_000, // 5
-                32_000,
-                33_000,
-                34_000,
-                35_000,
-                36_000, // 10
-                37_000,
+                // (n choose 4)/2 + (n+1 choose 3) + (n+1 choose 2) + 1
+                2_000,
+                5_000, // 1
+                11_000,
+                21_000,
                 38_000,
-                39_000,
-                40_000,
+                64_000, // 5
+                102_000,
+                156_000,
+                229_000,
+                326_000,
+                452_000, // 10
+                612_000,
+                813_000,
+                1_061_000,
+                1_363_000,
+                1_727_000, // 15
         }[level];
-//        return new int[]{
-//                10_000,
-//                15_000, // 1
-//                25_000,
-//                40_000,
-//                60_000,
-//                90_000, // 5
-//                135_000,
-//                180_000,
-//        }[level];
     }
 
     /*
