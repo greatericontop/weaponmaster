@@ -54,7 +54,9 @@ public class MinerUtil   {
         return 1;
     }
     protected int smeltingLoot(Material mat) {
-        if (mat == Material.BARRIER)  return 100_000;
+        if (mat == Material.JIGSAW)  return 5_000_000;
+        if (mat == Material.STRUCTURE_BLOCK)  return 500_000;
+        if (mat == Material.BEDROCK)  return 100_000;
         if (mat == Material.ANCIENT_DEBRIS)  return 2400;
         if (mat == Material.DEEPSLATE_COPPER_ORE || mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_GOLD_ORE)  return 810;
         if (mat == Material.COPPER_ORE || mat == Material.IRON_ORE || mat == Material.GOLD_ORE)  return 600;
