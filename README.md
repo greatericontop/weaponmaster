@@ -1,11 +1,5 @@
 # WeaponMaster
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![GPL v3][license-shield]][license-url]
-
 a weapons plugin
 
 - [Weapons](#weapons)
