@@ -10,7 +10,6 @@
 
 Weaponmaster is a minecraft server plugin made using the spigot api that adds more tools and weapons to the game.
 
-- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Weapons](#weapons)
   - [RPG Launcher](#rpg-launcher)
@@ -43,12 +42,6 @@ Weaponmaster is a minecraft server plugin made using the spigot api that adds mo
   - [Force Enchant](#force-enchant)
   - [Illegal Stack](#illegal-stack)
 - [License](#license)
-
-# Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-- A spigot (or any of the spigot forks) server that is 1.18 or above
-- A Java JDK version 17
 
 # Installation
 
