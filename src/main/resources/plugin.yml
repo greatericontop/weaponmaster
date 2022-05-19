@@ -127,10 +127,10 @@ commands:
     permission: "weaponmaster.shreddedaxe.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["shredded", "shredded-axe"]
-  realhoe:
-    description: "[Weapon Master] command for Real Hoe"
-    usage: "U: /realhoe [give]"
-    permission: "weaponmastser.realhoe.command"
+  napalm:
+    description: "[Weapon Master] command for Napalm Missile"
+    usage: "U: /napalm [give]"
+    permission: "weaponmastser.napalm.command"
     permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
@@ -246,7 +246,7 @@ permissions:
   weaponmaster.shreddedaxe.use:
     default: true
   #
-  weaponmaster.realhoe.command:
+  weaponmaster.napalm.command:
     deafult: op
-  weaponmaster.realhoe.use:
+  weaponmaster.napalm.use:
     default: true

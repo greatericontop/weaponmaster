@@ -52,7 +52,7 @@ public class Util {
     public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
     public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
     public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
-    public final String REAL_HOE_NAME = "§2Real Hoe §6⚝⚝⚝⚝⚝";
+    public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -76,7 +76,7 @@ public class Util {
     public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
     public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
     public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
-    public List<String> REAL_HOE_LORE = new ArrayList<String>();
+    public List<String> NAPALM_MISSILE_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -343,15 +343,14 @@ public class Util {
         SHREDDED_AXE_LORE.add("");
         SHREDDED_AXE_LORE.add("§6LEGENDARY");
         SHREDDED_AXE_LORE.add("§6---------------");
-        // Real Hoe
-        REAL_HOE_LORE.add("id: REAL_HOE");
-        REAL_HOE_LORE.add("§6---------------");
-        REAL_HOE_LORE.add("");
-        REAL_HOE_LORE.add("§3Till land to gather sugar!");
-        REAL_HOE_LORE.add("§3Small chance of powdered snow");
-        REAL_HOE_LORE.add("");
-        REAL_HOE_LORE.add("§dEPIC");
-        REAL_HOE_LORE.add("§6---------------");
+        // Napalm Missile
+        NAPALM_MISSILE_LORE.add("id: NAPALM_MISSILE");
+        NAPALM_MISSILE_LORE.add("§6---------------");
+        NAPALM_MISSILE_LORE.add("");
+        NAPALM_MISSILE_LORE.add("§3Creates massive fire when thrown!");
+        NAPALM_MISSILE_LORE.add("");
+        NAPALM_MISSILE_LORE.add("§6LEGENDARY");
+        NAPALM_MISSILE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -446,7 +445,7 @@ public class Util {
     public boolean checkForShreddedAxe(ItemStack item) {
         return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
     }
-    public boolean checkForRealHoe(ItemStack item) {
-        return this.checkFor(item, REAL_HOE_NAME, 0, "id: REAL_HOE");
+    public boolean checkForNapalmMissile(ItemStack item) {
+        return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
     }
 }

@@ -55,8 +55,8 @@ import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
-import io.github.greatericontop.weaponmaster.RealHoe.RealHoeCommand;
-import io.github.greatericontop.weaponmaster.RealHoe.RealHoeItemListener;
+import io.github.greatericontop.weaponmaster.NapalmMissile.NapalmCommand;
+import io.github.greatericontop.weaponmaster.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
@@ -216,8 +216,8 @@ public class WeaponMasterMain extends JavaPlugin {
         getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
         // Real Hoe
-        getCommand("realhoe").setExecutor(new RealHoeCommand());
-        getServer().getPluginManager().registerEvents(new RealHoeItemListener(this), this);
+        getCommand("napalm").setExecutor(new NapalmCommand());
+        getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
         // Custom Items
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

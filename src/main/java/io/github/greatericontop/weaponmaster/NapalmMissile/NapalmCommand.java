@@ -1,27 +1,25 @@
-package io.github.greatericontop.weaponmaster.RealHoe;
+package io.github.greatericontop.weaponmaster.NapalmMissile;
 
+import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.greatericontop.weaponmaster.utils.Util;
-
-public class RealHoeCommand implements CommandExecutor {
+public class NapalmCommand implements CommandExecutor {
     
     private final Util util;
-    public RealHoeCommand() {
+    public NapalmCommand() {
         util = new Util(null);
     }
 
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§lReal Hoe");
-        to.sendMessage("§e§oby bigfatmiget");
-        to.sendMessage("§3Use §2/realhoe give§3 to give yourself the item.");
+        to.sendMessage("§4§lNapalm Missile");
+        to.sendMessage("§e§oby greateric");
+        to.sendMessage("§3Use §2/napalm give§3 to give yourself the item.");
     }
 
     @Override
@@ -35,9 +33,9 @@ public class RealHoeCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack realHoe = util.generateMeta(util.REAL_HOE_LORE, util.REAL_HOE_NAME, Material.DIAMOND_HOE);
-            ((Player) sender).getInventory().addItem(realHoe);
-            sender.sendMessage("§7Gave you §f[" + util.REAL_HOE_NAME + "§f]§7.");
+            ItemStack napalm = util.generateMeta(util.NAPALM_MISSILE_LORE, util.NAPALM_MISSILE_NAME, Material.SNOWBALL);
+            ((Player) sender).getInventory().addItem(napalm);
+            sender.sendMessage("§7Gave you §f[" + util.NAPALM_MISSILE_NAME + "§f]§7.");
             return true;
         }
         return false;
