@@ -18,8 +18,10 @@ package io.github.greatericontop.weaponmaster.utils;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.block.Block;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -43,7 +45,14 @@ public class Util {
     public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
-    public final String ASSAULT_RIFLE_NAME = "§9§lAssault Rifle §6⚝⚝⚝⚝⚝";
+    public final String FIREBALL_NAME = "§9§lFireball §6⚝⚝⚝⚝⚝";
+    public final String ATOM_BOMB_NAME = "§cC§4a§cs§4t§cl§4e §cB§4r§ca§4v§co §6⚝⚝⚝⚝⚝";
+    public final String NETHERITE_STAFF_NAME = "§bNetherite Staff §6⚝⚝⚝⚝⚝";
+    public final String SNIPER_RIFLE_NAME = "§3Sniper Rifle §6⚝⚝⚝⚝⚝";
+    public final String MINERS_BLESSING_NAME = "§a§lMiner's Blessing §6⚝⚝⚝⚝⚝";
+    public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
+    public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
+    public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -60,11 +69,22 @@ public class Util {
     public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
     public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
     public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
-    public List<String> ASSAULT_RIFLE_LORE = new ArrayList<String>();
+    public List<String> FIREBALL_LORE = new ArrayList<String>();
+    public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
+    public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
+    public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
+    public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
+    public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
+    public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
+    public List<String> NAPALM_MISSILE_LORE = new ArrayList<String>();
 
-    public final int CAVEMAN_EXP_I = 3;
-    public final int CAVEMAN_REQ_I = 4;
-    public final int CAVEMAN_LVL_I = 5;
+    public final int CAVEMAN_EXP = 3;
+    public final int CAVEMAN_REQ = 4;
+    public final int CAVEMAN_LVL = 5;
+    public final int MINER_EXP = 3;
+    public final int MINER_REQ = 4;
+    public final int MINER_LVL = 5;
+    public final int MINER_INSERTION = 7;
 
     private final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
@@ -246,24 +266,91 @@ public class Util {
         WARLOCK_PANTS_LORE.add("");
         WARLOCK_PANTS_LORE.add("§6LEGENDARY");
         WARLOCK_PANTS_LORE.add("§6---------------");
-        // Assault Rifle
-        ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
-        ASSAULT_RIFLE_LORE.add("§6---------------");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§bBurst Fire §l§eLEFT CLICK");
-        ASSAULT_RIFLE_LORE.add("§6Slow burst fire 3x 5.56 bullets.");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§bBigger Burst §l§eRIGHT CLICK");
-        ASSAULT_RIFLE_LORE.add("§6Fire 25 rounds of 5.56 in a row.");
-        ASSAULT_RIFLE_LORE.add("§6Rounds are fired at an extreme speed of 1200 per minute.");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§eMuzzle Velocity: §33038 f/s §eor §3926 m/s");
-        ASSAULT_RIFLE_LORE.add("§eMax Spread: §30.6m §eat §3100 §eblocks + drop");
-        ASSAULT_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
-        ASSAULT_RIFLE_LORE.add("§7Minor recoil");
-        ASSAULT_RIFLE_LORE.add("");
-        ASSAULT_RIFLE_LORE.add("§6LEGENDARY");
-        ASSAULT_RIFLE_LORE.add("§6---------------");
+        // Fireball
+        FIREBALL_LORE.add("id: FIREBALL");
+        FIREBALL_LORE.add("§6---------------");
+        FIREBALL_LORE.add("");
+        FIREBALL_LORE.add("§e§lRIGHT CLICK §3to summon fireball.");
+        FIREBALL_LORE.add("§3Small chance of summoning a dragon fireball.");
+        FIREBALL_LORE.add("");
+        FIREBALL_LORE.add("§dEPIC");
+        FIREBALL_LORE.add("§6---------------");
+        // Atom Bomb
+        ATOM_BOMB_LORE.add("id: ATOM_BOMB");
+        ATOM_BOMB_LORE.add("§6---------------");
+        ATOM_BOMB_LORE.add("");
+        ATOM_BOMB_LORE.add("§cDetonates immediately upon placing.");
+        ATOM_BOMB_LORE.add("§cCauses extreme damage.");
+        ATOM_BOMB_LORE.add("");
+        ATOM_BOMB_LORE.add("§cSUPREME");
+        ATOM_BOMB_LORE.add("§6---------------");
+        // Netherite Staff
+        NETHERITE_STAFF_LORE.add("id: NETHERITE_STAFF");
+        NETHERITE_STAFF_LORE.add("§6---------------");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when hit.");
+        NETHERITE_STAFF_LORE.add("§3Effects can be good or bad and have high levels.");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§3Shoots an arrow with random effect. §e§lRIGHT CLICK");
+        NETHERITE_STAFF_LORE.add("");
+        NETHERITE_STAFF_LORE.add("§cSUPREME");
+        NETHERITE_STAFF_LORE.add("§6---------------");
+        // Sniper Rifle
+        SNIPER_RIFLE_LORE.add("id: SNIPER_RIFLE");
+        SNIPER_RIFLE_LORE.add("§6---------------");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§eAbility: §4Shoot §e§lLEFT CLICK");
+        SNIPER_RIFLE_LORE.add("§6Shoots a precise bullet.");
+        SNIPER_RIFLE_LORE.add("§71.5 second cooldown");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§eMuzzle Velocity: §33343 f/s §eor §31019 m/s");
+        SNIPER_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
+        SNIPER_RIFLE_LORE.add("§7Minor recoil");
+        SNIPER_RIFLE_LORE.add("");
+        SNIPER_RIFLE_LORE.add("§6LEGENDARY");
+        SNIPER_RIFLE_LORE.add("§6---------------");
+        // Miner's Blessing
+        MINERS_BLESSING_LORE.add("id: MINERS_BLESSING");
+        MINERS_BLESSING_LORE.add("§6---------------");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§6Experience: §70");
+        MINERS_BLESSING_LORE.add("§6Required: §7Break Something!");
+        MINERS_BLESSING_LORE.add("§6Tier: §70");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§7Unlock more abilities by levelling up!");
+        MINERS_BLESSING_LORE.add("");
+        MINERS_BLESSING_LORE.add("§6LEGENDARY");
+        MINERS_BLESSING_LORE.add("§6---------------");
+        // Pilot's Sword
+        PILOT_SWORD_LORE.add("id: PILOT_SWORD");
+        PILOT_SWORD_LORE.add("§6---------------");
+        PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§eAbility: §4Airliner");
+        PILOT_SWORD_LORE.add("§3Attack people super fast!");
+        PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
+        PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§7Deals §c5.5 §7damage, but can be increased with enchants.");
+        PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§6LEGENDARY");
+        PILOT_SWORD_LORE.add("§6---------------");
+        // Shredded Axe
+        SHREDDED_AXE_LORE.add("id: SHREDDED_AXE");
+        SHREDDED_AXE_LORE.add("§6---------------");
+        SHREDDED_AXE_LORE.add("");
+        SHREDDED_AXE_LORE.add("§eAbility: §4Reanimation");
+        SHREDDED_AXE_LORE.add("§3Spawn a powerful §2Zombie §3whenever you");
+        SHREDDED_AXE_LORE.add("§3hit anything. You can get up to §b10 §3of them.");
+        SHREDDED_AXE_LORE.add("");
+        SHREDDED_AXE_LORE.add("§6LEGENDARY");
+        SHREDDED_AXE_LORE.add("§6---------------");
+        // Napalm Missile
+        NAPALM_MISSILE_LORE.add("id: NAPALM_MISSILE");
+        NAPALM_MISSILE_LORE.add("§6---------------");
+        NAPALM_MISSILE_LORE.add("");
+        NAPALM_MISSILE_LORE.add("§3Creates massive fire when thrown!");
+        NAPALM_MISSILE_LORE.add("");
+        NAPALM_MISSILE_LORE.add("§6LEGENDARY");
+        NAPALM_MISSILE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -282,6 +369,14 @@ public class Util {
         boolean nameCorrect = iMeta.getDisplayName().equals(requiredName);
         boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
         return nameCorrect && loreCorrect;
+    }
+    
+    public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  { return false; }
+        Block block = event.getClickedBlock();
+        if (block == null) { return false; }
+        Material type = block.getType();
+        return (block.getType().isInteractable());
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {
@@ -329,8 +424,28 @@ public class Util {
     public boolean checkForWarlockPants(ItemStack item) {
         return this.checkFor(item, WARLOCK_PANTS_NAME, 0, "id: WARLOCK_PANTS");
     }
-    //public boolean checkForAssaultRifle(ItemStack item) {
-    //    return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
-    //}
-
+    public boolean checkForFireball(ItemStack item) {
+        return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+    }
+    public boolean checkForAtomBomb(ItemStack item) {
+        return this.checkFor(item, ATOM_BOMB_NAME, 0, "id: ATOM_BOMB");
+    }
+    public boolean checkForNetheriteStaff(ItemStack item) {
+        return this.checkFor(item, NETHERITE_STAFF_NAME, 0, "id: NETHERITE_STAFF");
+    }
+    public boolean checkForSniperRifle(ItemStack item) {
+        return this.checkFor(item, SNIPER_RIFLE_NAME, 0, "id: SNIPER_RIFLE");
+    }
+    public boolean checkForMinersBlessing(ItemStack item) {
+        return this.checkFor(item, MINERS_BLESSING_NAME, 0, "id: MINERS_BLESSING");
+    }
+    public boolean checkForPilotSword(ItemStack item) {
+        return this.checkFor(item, PILOT_SWORD_NAME, 0, "id: PILOT_SWORD");
+    }
+    public boolean checkForShreddedAxe(ItemStack item) {
+        return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
+    }
+    public boolean checkForNapalmMissile(ItemStack item) {
+        return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
+    }
 }

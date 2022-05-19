@@ -2,7 +2,7 @@ name: 'WeaponMaster'
 version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
 api-version: 1.17
-authors: [greateric]
+authors: [greateric, gerseneck, bigfatmidget]
 commands:
   weaponmaster:
     description: "WeaponMaster"
@@ -35,6 +35,7 @@ commands:
     usage: "U: /artemis [give]"
     permission: "weaponmaster.artemisbow.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["artemis-bow"]
   anduril:
     description: "[Weapon Master] command for Anduril"
     usage: "U: /anduril [give]"
@@ -77,7 +78,7 @@ commands:
     permission-message: "§cYou are not allowed to do this!"
   cavemansword:
     description: "[Weapon Master] command for Caveman Sword"
-    usage: "U: /cavemansword [give]"
+    usage: "U: /cavemansword [give | setStats <level> <exp>]"
     permission: "weaponmaster.cavemansword.command"
     permission-message: "§cYou are not allowed to do this!"
   warlockpants:
@@ -86,10 +87,50 @@ commands:
     permission: "weaponmaster.warlockpants.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["warlock"]
-  assaultrifle:
-    description: "[Weapon Master] command for Assault Rifle"
-    usage: "U: /assaultrifle [give]"
-    permission: "weaponmaster.assaultrifle.command"
+  fireball:
+    description: "[Weapon Master] command for Fireball"
+    usage: "U: /fireball [give]"
+    permission: "weaponmaster.fireball.command"
+    permission-message: "§cYou are not allowed to do this!"
+  atombomb:
+    description: "[Weapon Master] command for Atom Bomb"
+    usage: "U: /atombomb [give]"
+    permission: "weaponmaster.atombomb.command"
+    permission-message: "§cYou are not allowed to do this!"
+  netheritestaff:
+    description: "[Weapon Master] command for Netherite Staff"
+    usage: "U: /netheritestaff [give]"
+    permission: "weaponmaster.netheritestaff.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["netherite-st", "staff"]
+  sniperrifle:
+    description: "[Weapon Master] command for Sniper Rifle"
+    usage: "U: /sniperrifle [give]"
+    permission: "weaponmaster.sniperrifle.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["sniper", "sniper-rifle"]
+  minersblessing:
+    description: "[Weapon Master] command for Miner's Blessing"
+    usage: "U: /minersblessing [give]"
+    permission: "weaponmaster.minersblessing.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["miners-blessing"]
+  pilotsword:
+    description: "[Weapon Master] command for Pilot's Sword"
+    usage: "U: /pilotsword [give]"
+    permission: "weaponmaster.minersblessing.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["pilots-sword"]
+  shreddedaxe:
+    description: "[Weapon Master] command for Shredded Axe"
+    usage: "U: /shreddedaxe [give]"
+    permission: "weaponmaster.shreddedaxe.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["shredded", "shredded-axe"]
+  napalm:
+    description: "[Weapon Master] command for Napalm Missile"
+    usage: "U: /napalm [give]"
+    permission: "weaponmastser.napalm.command"
     permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
@@ -170,7 +211,42 @@ permissions:
   weaponmaster.warlockpants.use:
     default: true
   #
-  weaponmaster.assaultrifle.command:
+  weaponmaster.fireball.command:
     default: op
-  weaponmaster.assaultrifle.use:
+  weaponmaster.fireball.use:
+    default: true
+  #
+  weaponmaster.atombomb.command:
+    default: op
+  weaponmaster.atombomb.use:
+    default: true
+  #
+  weaponmaster.netheritestaff.command:
+    default: op
+  weaponmaster.netheritestaff.use:
+    default: true
+  #
+  weaponmaster.sniperrifle.command:
+    default: op
+  weaponmaster.sniperrifle.use:
+    default: true
+  #
+  weaponmaster.minersblessing.command:
+    default: op
+  weaponmaster.minersblessing.use:
+    default: true
+  #
+  weaponmaster.pilotsword.command:
+    default: op
+  weaponmaster.pilotsword.use:
+    default: true
+  #
+  weaponmaster.shreddedaxe.command:
+    default: op
+  weaponmaster.shreddedaxe.use:
+    default: true
+  #
+  weaponmaster.napalm.command:
+    deafult: op
+  weaponmaster.napalm.use:
     default: true

@@ -22,6 +22,8 @@ import io.github.greatericontop.weaponmaster.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisRecipe;
+import io.github.greatericontop.weaponmaster.AtomBomb.AtomCommand;
+import io.github.greatericontop.weaponmaster.AtomBomb.AtomItemListener;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanItemListener;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
@@ -34,23 +36,41 @@ import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
+import io.github.greatericontop.weaponmaster.Fireball.FireballCommand;
+import io.github.greatericontop.weaponmaster.Fireball.FireballListener;
+import io.github.greatericontop.weaponmaster.Fireball.FireballRecipe;
 import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerCommand;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerItemListener;
+import io.github.greatericontop.weaponmaster.MinerBlessing.MinerRecipe;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
+import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffRecipe;
+import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
+import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
+import io.github.greatericontop.weaponmaster.NapalmMissile.NapalmCommand;
+import io.github.greatericontop.weaponmaster.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
+import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedCommand;
+import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedListener;
+import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
+import io.github.greatericontop.weaponmaster.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
+import io.github.greatericontop.weaponmaster.other_crafts.CoreStaffRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -93,8 +113,7 @@ public class WeaponMasterMain extends JavaPlugin {
         String hexenc = hexencBuilder.toString();
         if (!getConfig().getString("license.key").equalsIgnoreCase(hexenc)) {
             getLogger().warning("Invalid license! Check license in config.yml");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
+            getLogger().warning("WeaponMaster cracked by greateric 'n co. Starting...");
         }
         getLogger().info("--------------------");
         getLogger().info("#######################################################################################################################");
@@ -170,12 +189,42 @@ public class WeaponMasterMain extends JavaPlugin {
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
-        // Hide Of Leviathan
+        // Fireball
+        getCommand("fireball").setExecutor(new FireballCommand());
+        getServer().getPluginManager().registerEvents(new FireballListener(this), this);
+        new FireballRecipe().regRecipe();
+        // Atom Bomb
+        getCommand("atombomb").setExecutor(new AtomCommand());
+        getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
+        // Netherite Staff
+        getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
+        getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
+        new NetheriteStaffRecipe().regRecipe();
+        // Sniper Rifle
+        getCommand("sniperrifle").setExecutor(new SniperCommand());
+        getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
+        // Miner's Blessing
+        MinerItemListener minerListener = new MinerItemListener(this);
+        getCommand("minersblessing").setExecutor(new MinerCommand());
+        getServer().getPluginManager().registerEvents(minerListener, this);
+        minerListener.regHasteRunnable();
+        new MinerRecipe().regRecipe();
+        // Pilot's Sword
+        getCommand("pilotsword").setExecutor(new PilotCommand());
+        getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
+        // Shredded Axe
+        getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
+        getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
+        // Real Hoe
+        getCommand("napalm").setExecutor(new NapalmCommand());
+        getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
+        // Custom Items
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
+        new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
-        getLogger().info("done");
+        getLogger().info("Finished setting up!");
     }
 
 }

@@ -29,6 +29,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -49,11 +50,8 @@ public class RPGItemListener implements Listener {
         Location eyeLoc = player.getEyeLocation();
         Vector velocityVector = eyeLoc.getDirection().multiply(14.5); // 14.5 block/tick is 290 meter/s
         Vector inaccuracy = InaccuracyAdder.generateInaccuracy(SPREAD_RADIUS);
-        player.sendMessage(String.format("§3[Debug] §7velocityVector: %s", velocityVector));//
         velocityVector.add(inaccuracy);
-        player.sendMessage(String.format("§3[Debug] §7velocityVector: %s", velocityVector));//
         Arrow arrow = (Arrow) player.getWorld().spawnEntity(eyeLoc.add(velocityVector.clone().multiply(0.1)), EntityType.ARROW);
-        player.sendMessage(String.format("§3[Debug] §7velocityVector: %s; inaccuracy: %s", velocityVector, inaccuracy));//
         arrow.setVelocity(velocityVector);
         arrow.setShooter(player);
         return arrow;
@@ -61,6 +59,7 @@ public class RPGItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onLeftClick(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
         Player player = event.getPlayer();
         if (!util.checkForRPGLauncher(player.getInventory().getItemInMainHand())) { return; }
@@ -70,17 +69,15 @@ public class RPGItemListener implements Listener {
         }
         // TODO: Actually make this thing cost an arrow/grenade to fire instead of firing blindly.
         Arrow arrow = fireOneGrenade(player);
-        projectilesInFlightUUIDs.add(arrow.getUniqueId().toString()); // a special projectile to be updated later
-        // Recoil against the player, throwing them back at a speed of 6.5 m/s
-        player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.325)));
-        // Spawn smoke while the arrow is in the air
+        projectilesInFlightUUIDs.add(arrow.getUniqueId().toString());
+        player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.2)));
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (arrow.isDead()) {
                     cancel();
                 } else {
-                    player.getWorld().spawnParticle(Particle.SMOKE_LARGE, arrow.getLocation(), 250);
+                    player.getWorld().spawnParticle(Particle.SMOKE_LARGE, arrow.getLocation(), 190);
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
@@ -91,9 +88,14 @@ public class RPGItemListener implements Listener {
         Projectile entity = event.getEntity();
         if (!projectilesInFlightUUIDs.contains(entity.getUniqueId().toString())) { return; } // we added the UUID earlier, so there shouldn't be a player NPE
         Player player = (Player) entity.getShooter();
-        entity.getLocation().getWorld().createExplosion(entity.getLocation(), 5.0F, true, true, player);
+        // We want to detonate it slightly before it hits the block
+        // Pull it back by :magnitude: blocks, in the reverse direction that its last velocity came from
+        double magnitude = Math.min(entity.getVelocity().length()*0.1, 0.2);
+        Location explosionLocation = entity.getLocation().subtract(entity.getVelocity().normalize().multiply(magnitude));
+        entity.getLocation().getWorld().createExplosion(explosionLocation, 5.0F, true, true, player);
         entity.remove(); // stop spawning smoke above
         player.sendMessage("§3FWOOM!");
+        player.sendMessage(String.format("§7[Debug] pulled back by %.3f", magnitude));
 }
 
 }

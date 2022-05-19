@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.CavemanSword;
+package io.github.greatericontop.weaponmaster.MinerBlessing;
 
 /*
     Copyright (C) 2021 greateric.
@@ -28,18 +28,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class CavemanCommand implements CommandExecutor {
+public class MinerCommand implements CommandExecutor {
 
     private final Util util;
-    public CavemanCommand() {
+    public MinerCommand() {
         util = new Util(null);
     }
 
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§lCaveman Sword");
+        to.sendMessage("§4§lMiner's Blessing");
         to.sendMessage("§e§oby greateric");
-        to.sendMessage("§3Use §2/cavemansword give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/minersblessing give§3 to give yourself the item.");
     }
 
     @Override
@@ -53,9 +53,9 @@ public class CavemanCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack caveman = util.generateMeta(util.CAVEMAN_SWORD_LORE, util.CAVEMAN_SWORD_NAME, Material.STONE_SWORD);
-            ((Player) sender).getInventory().addItem(caveman);
-            sender.sendMessage("§7Gave you §f[" + util.CAVEMAN_SWORD_NAME + "§f]§7.");
+            ItemStack miner = util.generateMeta(util.MINERS_BLESSING_LORE, util.MINERS_BLESSING_NAME, Material.NETHERITE_PICKAXE);
+            ((Player) sender).getInventory().addItem(miner);
+            sender.sendMessage("§7Gave you §f[" + util.MINERS_BLESSING_NAME + "§f]§7.");
             return true;
         }
         if (args.length == 3 && args[0].equalsIgnoreCase("setStats")) {
@@ -63,19 +63,19 @@ public class CavemanCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            int level, exp;
+            int tier, exp;
             try {
-                level = Integer.parseInt(args[1]);
+                tier = Integer.parseInt(args[1]);
                 exp = Integer.parseInt(args[2]);
             } catch (NumberFormatException e) {
-                sender.sendMessage("§cError: §4You need integers <level> and <exp>.");
+                sender.sendMessage("§cError: §4You need integers <tier> and <exp>.");
                 return true;
             }
             Player player = (Player) sender;
             ItemMeta iMeta = player.getInventory().getItemInMainHand().getItemMeta();
             List<String> lore = iMeta.getLore();
-            lore.set(util.CAVEMAN_LVL, String.format("§6Sharpness Level: §b%d", level));
-            lore.set(util.CAVEMAN_EXP, String.format("§6Experience: §b%d", exp));
+            lore.set(util.MINER_LVL, String.format("§6Tier: §b%d", tier));
+            lore.set(util.MINER_EXP, String.format("§6Experience: §b%d", exp));
             iMeta.setLore(lore);
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
             player.sendMessage("§3Success. You may need to level up to fully update the changes.");
