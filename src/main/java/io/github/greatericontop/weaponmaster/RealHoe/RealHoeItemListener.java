@@ -10,13 +10,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Farmland;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockCanBuildEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
@@ -32,9 +30,9 @@ public class RealHoeItemListener implements Listener{
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onLandTill(BlockPlaceEvent event) {
+    public void onLandTill(PlayerInteractEvent event) {
         if (event.getPlayer().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player) event.getPlayer();
+        Player player = event.getPlayer();
         if (!util.checkForRealHoe(player.getInventory().getItemInMainHand())) {
             return;
         }
@@ -42,7 +40,7 @@ public class RealHoeItemListener implements Listener{
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.realhoe.use§3.");
             return;
         }
-        Block farmland = (Block) event.getBlockPlaced();
+        Block farmland = event.getClickedBlock();
         if (farmland.getType() == Material.FARMLAND) {
             Location target = farmland.getLocation();
             Location real = target.add(0.5, 1.0, 0.5);
