@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster.DragonSword;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.entity.EntityType;
@@ -67,15 +68,8 @@ public class DragonItemListener implements Listener {
         if (Math.random() < 0.5) {
             double multiplier = triangular(Math.random());
             event.setDamage(event.getDamage()*(1+multiplier));
-            //try {
-            //    Method method = player.getClass().getDeclaredMethod("sendActionBar");
-            //    method.invoke(player,
-            //            new Object[]{String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage())}
-            //    );
-            //} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                //e.printStackTrace();
-                player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
-            //}
+            PaperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
+            player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
         }
     }
 
