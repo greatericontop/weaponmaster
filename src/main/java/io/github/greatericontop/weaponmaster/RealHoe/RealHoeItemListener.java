@@ -14,6 +14,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -41,7 +42,7 @@ public class RealHoeItemListener implements Listener{
             return;
         }
         Block farmland = event.getClickedBlock();
-        if (farmland.getType() == Material.FARMLAND) {
+        if (farmland.getType() == Material.DIRT && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Location target = farmland.getLocation();
             Location real = target.add(0.5, 1.0, 0.5);
             ItemStack sugar = new ItemStack(Material.SUGAR);
