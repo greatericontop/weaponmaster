@@ -1,11 +1,11 @@
 # WeaponMaster
 
 
-![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)
-![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
+[![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/graphs/contributors)
+[![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/releases)
+[![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/issues)
+[![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/blob/main/LICENSE)
 
 
 Weaponmaster is a minecraft server plugin made using the spigot api that adds more tools and weapons to the game.

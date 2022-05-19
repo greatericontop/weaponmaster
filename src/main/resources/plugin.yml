@@ -2,7 +2,7 @@ name: 'WeaponMaster'
 version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
 api-version: 1.17
-authors: [greateric]
+authors: [greateric, gerseneck, bigfatmidget]
 commands:
   weaponmaster:
     description: "WeaponMaster"
