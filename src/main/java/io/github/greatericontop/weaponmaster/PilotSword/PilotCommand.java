@@ -59,7 +59,7 @@ public class PilotCommand implements CommandExecutor {
             ItemStack pilotSword = util.generateMeta(util.PILOT_SWORD_LORE, util.PILOT_SWORD_NAME, Material.NETHERITE_SWORD);
             ItemMeta im = pilotSword.getItemMeta();
             // +5.5 == 6.5, between iron sword and diamond sword
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 5.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 4.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             pilotSword.setItemMeta(im);
             ((Player) sender).getInventory().addItem(pilotSword);
