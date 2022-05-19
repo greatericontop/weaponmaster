@@ -1,7 +1,17 @@
 # WeaponMaster
 
-a weapons plugin
 
+![GitHub contributors](https://img.shields.io/github/contributors/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/greatericontop/weaponmaster?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)
+
+
+Weaponmaster is a minecraft server plugin made using the spigot api that adds more tools and weapons to the game.
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Weapons](#weapons)
   - [RPG Launcher](#rpg-launcher)
   - [Vampire's Axe](#vampires-axe)
@@ -32,9 +42,21 @@ a weapons plugin
   - [Attribute Modifier](#attribute-modifier)
   - [Force Enchant](#force-enchant)
   - [Illegal Stack](#illegal-stack)
-- [Usage](#usage)
+- [License](#license)
 
+# Prerequisites
 
+Before you begin, ensure you have met the following requirements:
+- A spigot (or any of the spigot forks) server that is 1.18 or above
+- A Java JDK version 17
+
+# Installation
+
+To install the project, first download the `jar` file. 
+
+Paste the jar file into the server `./plugins` directory
+
+---
 # Weapons
 
 ## RPG Launcher
@@ -238,32 +260,33 @@ Crafting Recipe:
 Modifies the item's attributes.
 
 **Arguments**
-- **attribute** any valid [bukkit attributes](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html)
-- **operation** any valid [bukkit operation](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html)
+- **attribute** Any valid value from the [bukkit `Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
+- **operation** Any valid value from the [bukkit `Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
 - **amount** any valid double
-- **slot** `HAND`, `OFFHAND`, `HEAD`, `CHEST`, `LEGS`, or `FEET`
-- **optional uuid** any uuid that is not taken
+- **slot** any valid value from the [bukkit `EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
+- **optional uuid** any uuid (using one that is taken may result in weird behavior), or leave blank to randomly generate a new one
 
 ## Force Enchant
 
 `/weaponmaster forceenchant <enchantment> <level>`
 
-Forcefully echants items with enchantments.
+Forcefully echants items with enchantments. Allows you to add incompatible or ridiculously high level enchantments to an item.
 
 **Arguments**
-- **enchantment** minecraft enchantment namespace. e.g. `fire_protection`
-- **level** any integer with a value from 1 - 255
+- **enchantment** enchantment with namespaced ID, e.g. `fire_protection`, `sharpness`
+- **level** any integer or `"max" -> 255`, enchants are capped to level 255
 
-## Illegal Stack 
+## Illegal Stack
 
 `/weaponmaster illegalstack <amount>`
 
 Sets the item in hand to any amount.
 
 **Arguments**
-- **amount** any integer with a value from 1 - 127
+- **amount** any signed byte `-128..127`, negative values will delete the item
 
 ---
-# Usage
 
-build using maven
+# License
+
+This project is licensed under the terms and conditions of GPL v3.
