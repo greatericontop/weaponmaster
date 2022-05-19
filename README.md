@@ -283,7 +283,7 @@ Forcefully echants items with enchantments. Allows you to add incompatible or ri
 Sets the item in hand to any amount.
 
 **Arguments**
-- **amount** any signed byte `-128..127`, negative values will delete the item
+- **amount** Any signed byte `-128..127`, nonpositive values will delete the item. Be careful when moving illegally stacked items around.
 
 ---
 
