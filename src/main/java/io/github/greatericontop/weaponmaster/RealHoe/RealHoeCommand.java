@@ -35,7 +35,7 @@ public class RealHoeCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack realHoe = util.generateMeta(util.REAL_HOE_LORE, util.REAL_HOE_NAME, Material.IRON_HOE);
+            ItemStack realHoe = util.generateMeta(util.REAL_HOE_LORE, util.REAL_HOE_NAME, Material.DIAMOND_HOE);
             ((Player) sender).getInventory().addItem(realHoe);
             sender.sendMessage("§7Gave you §f[" + util.REAL_HOE_NAME + "§f]§7.");
             return true;

@@ -270,7 +270,7 @@ public class Util {
         FIREBALL_LORE.add("id: FIREBALL");
         FIREBALL_LORE.add("§6---------------");
         FIREBALL_LORE.add("");
-        FIREBALL_LORE.add("§3Right Click to summon fireball.");
+        FIREBALL_LORE.add("§e§lRIGHT CLICK §3to summon fireball.");
         FIREBALL_LORE.add("§3Small chance of summoning a dragon fireball.");
         FIREBALL_LORE.add("");
         FIREBALL_LORE.add("§dEPIC");
@@ -289,17 +289,17 @@ public class Util {
         NETHERITE_STAFF_LORE.add("§6---------------");
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§3Gives random effects to opponent when hit.");
-        NETHERITE_STAFF_LORE.add("§3Effects can be good or bad.");
+        NETHERITE_STAFF_LORE.add("§3Effects can be good or bad and have high levels.");
         NETHERITE_STAFF_LORE.add("");
-        NETHERITE_STAFF_LORE.add("§eRIGHT CLICK §3Shoots an arrow with random effect.");
+        NETHERITE_STAFF_LORE.add("§3Shoots an arrow with random effect. §e§lRIGHT CLICK");
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§cSUPREME");
         NETHERITE_STAFF_LORE.add("§6---------------");
-        // Assault Rifle
+        // Sniper Rifle
         SNIPER_RIFLE_LORE.add("id: SNIPER_RIFLE");
         SNIPER_RIFLE_LORE.add("§6---------------");
         SNIPER_RIFLE_LORE.add("");
-        SNIPER_RIFLE_LORE.add("§bShoot §l§eLEFT CLICK");
+        SNIPER_RIFLE_LORE.add("§eAbility: §4Shoot §e§lLEFT CLICK");
         SNIPER_RIFLE_LORE.add("§6Shoots a precise bullet.");
         SNIPER_RIFLE_LORE.add("§71.5 second cooldown");
         SNIPER_RIFLE_LORE.add("");
@@ -325,6 +325,7 @@ public class Util {
         PILOT_SWORD_LORE.add("id: PILOT_SWORD");
         PILOT_SWORD_LORE.add("§6---------------");
         PILOT_SWORD_LORE.add("");
+        PILOT_SWORD_LORE.add("§eAbility: §4Airliner");
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
@@ -345,9 +346,9 @@ public class Util {
         REAL_HOE_LORE.add("§6---------------");
         REAL_HOE_LORE.add("");
         REAL_HOE_LORE.add("§3Till land to gather sugar!");
-        REAL_HOE_LORE.add("Small chance of powdered snow ;).");
+        REAL_HOE_LORE.add("§3Small chance of powdered snow");
         REAL_HOE_LORE.add("");
-        REAL_HOE_LORE.add("§6NOT VERY LEGENDARY");
+        REAL_HOE_LORE.add("§dEPIC");
         REAL_HOE_LORE.add("§6---------------");
     }
 
