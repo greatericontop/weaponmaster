@@ -132,7 +132,6 @@ commands:
     usage: "U: /realhoe [give]"
     permission: "weaponmastser.realhoe.command"
     permission-message: "§cYou are not allowed to do this!"
-    aliases: ["hoe","suckmedaddy","real-hoe"]
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -246,7 +245,7 @@ permissions:
     default: op
   weaponmaster.shreddedaxe.use:
     default: true
-  #Real Hoe
+  #
   weaponmaster.realhoe.command:
     deafult: op
   weaponmaster.realhoe.use:
