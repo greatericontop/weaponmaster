@@ -34,24 +34,22 @@ public class RealHoeItemListener implements Listener{
     public void onLandTill(PlayerInteractEvent event) {
         if (event.getPlayer().getType() != EntityType.PLAYER) { return; }
         Player player = event.getPlayer();
-        if (!util.checkForRealHoe(player.getInventory().getItemInMainHand())) {
-            return;
-        }
+        if (!util.checkForRealHoe(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.realhoe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.realhoe.use§3.");
             return;
         }
         Block farmland = event.getClickedBlock();
-        if (farmland.getType() == Material.DIRT && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if (farmland.getType() == Material.DIRT || farmland.getType() == Material.GRASS_BLOCK || farmland.getType() == Material.DIRT_PATH || farmland.getType() == Material.ROOTED_DIRT || farmland.getType() == Material.COARSE_DIRT) {
             Location target = farmland.getLocation();
             Location real = target.add(0.5, 1.0, 0.5);
             ItemStack sugar = new ItemStack(Material.SUGAR);
             farmland.getWorld().dropItem(real, sugar);
-            player.playSound(real, Sound.ENTITY_CHICKEN_EGG, SoundCategory.BLOCKS, 100, 1);
+            player.playSound(real, Sound.ENTITY_CHICKEN_EGG, SoundCategory.BLOCKS, 50, 1);
             Random number = new Random();
-            if (number.nextInt(12) == 1) {
-                farmland.getWorld().getBlockAt(real).setType(Material.POWDER_SNOW);
-                player.playSound(real, Sound.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 250, (float) 0.5);
+            if (number.nextInt(8) == 1) {
+                farmland.getWorld().getBlockAt(target).setType(Material.POWDER_SNOW);
+                player.playSound(real, Sound.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 250, 1);
             }
         }
     }

@@ -444,6 +444,6 @@ public class Util {
         return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
     }
     public boolean checkForRealHoe(ItemStack item) {
-        return this.checkFor(item, REAL_HOE_NAME, 0, "id:REAL_HOE");
+        return this.checkFor(item, REAL_HOE_NAME, 0, "id: REAL_HOE");
     }
 }
