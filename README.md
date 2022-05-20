@@ -28,7 +28,7 @@ Weaponmaster is a minecraft server plugin made using the spigot api that adds mo
   - [Cave Man Sword](#cave-man-sword)
   - [Warlock Pants](#warlock-pants)
   - [Fireball](#fireball)
-  - [Naplam Missile](#naplam-missile)
+  - [Naplam Missle](#naplam-missile)
   - [Atom Bomb](#atom-bomb)
   - [Netherite Staff](#netherite-staff)
   - [Sniper Rifle](#sniper-rifle)

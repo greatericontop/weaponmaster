@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -158,6 +159,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
         lore.set(util.MINER_EXP, String.format("§6Experience: §b%d", exp));
         double xpPercent = (100.0 * exp) / getRequirementToLevelUp(tier);
         lore.set(util.MINER_REQ, String.format("§6Required: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(tier), xpPercent));
+
+        PaperUtils.sendActionBar(player, String.format("+ §2%d EXP\n§6Experience: §b%d/§b%d §6(§b%.1f§6%%)", amount, exp, getRequirementToLevelUp(tier), xpPercent));
 
         if (tier >= 8 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
             doSmeltingOres(event, player, tier>=10);
