@@ -93,7 +93,7 @@ public class NetheriteStaffListener implements Listener {
         }
 
         Location eyeLocation = player.getEyeLocation();
-        Location spawnLoc = eyeLocation.clone().add(eyeLocation.getDirection().multiply(1.9));
+        Location spawnLoc = eyeLocation.clone().add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
 
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
