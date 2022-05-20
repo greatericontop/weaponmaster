@@ -17,6 +17,8 @@ package io.github.greatericontop.weaponmaster.utils;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -24,6 +26,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class PaperUtils {
+
+    public static boolean HAS_PAPER = false;
+    public static void setHasPaperStatus(WeaponMasterMain plugin) {
+        try {
+            Class serverClass = plugin.getServer().getClass();
+            Method paperExclusiveMethod = serverClass.getMethod("get");
+        } catch (NoSuchMethodException e) {
+            HAS_PAPER = false;
+        }
+    }
 
     public static void sendActionBar(Player player, String text) {
         Method sendActionBarMethod = null;
