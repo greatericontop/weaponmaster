@@ -50,6 +50,8 @@ To install the project, first download the `jar` file.
 
 Paste the jar file into the server `./plugins` directory
 
+For better aesthetic, you can also install the [WeaponMasterOverlay](https://github.com/Gerseneck/weaponmasterresources) pack.
+
 ---
 # Weapons
 
