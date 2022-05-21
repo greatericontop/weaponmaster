@@ -8,7 +8,9 @@
 [![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/blob/main/LICENSE)
 
 
-Weaponmaster is a minecraft server plugin made using the spigot api that adds more tools and weapons to the game.
+**WeaponMaster** is a minecraft server plugin made using Spigot and Paper that adds weapons, tools, and armor items to the game.
+
+---
 
 - [Installation](#installation)
 - [Weapons](#weapons)
@@ -33,6 +35,8 @@ Weaponmaster is a minecraft server plugin made using the spigot api that adds mo
   - [Netherite Staff](#netherite-staff)
   - [Sniper Rifle](#sniper-rifle)
   - [Miner's Blessing](#miners-blessing)
+  - [Napalm Missile](#napalm-missile)
+  - [Ninja Bow](#ninja-bow)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-inchor)
@@ -44,6 +48,8 @@ Weaponmaster is a minecraft server plugin made using the spigot api that adds mo
   - [Illegal Stack](#illegal-stack)
 - [License](#license)
 
+---
+
 # Installation
 
 To install the project, first download the `jar` file. 
@@ -53,6 +59,7 @@ Paste the jar file into the server `./plugins` directory
 For better aesthetic, you can also install the [WeaponMasterOverlay](https://github.com/Gerseneck/weaponmasterresources) pack.
 
 ---
+
 # Weapons
 
 ## RPG Launcher
@@ -206,6 +213,18 @@ Crafting Recipe:
 
 ![](assets/miner.png)
 
+## Napalm Missile
+
+`/napalm give` - firey explosive device, use with caution
+
+## Ninja Bow
+
+`/ninjabow give` - left click instantly fires triple shot arrows
+
+Crafting Recipe: (not) coming soon
+
+---
+
 # Others
 
 ## Hide of Leviathan
@@ -249,6 +268,7 @@ Crafting Recipe:
 - 1 Diamond Block
 
 ![](assets/corestaff.png)
+
 ---
 
 # Commands
@@ -260,11 +280,11 @@ Crafting Recipe:
 Modifies the item's attributes.
 
 **Arguments**
-- **attribute** Any valid value from the [bukkit `Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
-- **operation** Any valid value from the [bukkit `Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
-- **amount** any valid double
-- **slot** any valid value from the [bukkit `EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
-- **optional uuid** any uuid (using one that is taken may result in weird behavior), or leave blank to randomly generate a new one
+- **attribute** ≫ Any valid value from the [bukkit `Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
+- **operation** ≫ Any valid value from the [bukkit `Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
+- **amount** ≫ any valid double
+- **slot** ≫ any valid value from the [bukkit `EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
+- **optional uuid** ≫ any uuid (using one that is taken may result in weird behavior), or leave blank to randomly generate a new one
 
 ## Force Enchant
 
@@ -273,8 +293,8 @@ Modifies the item's attributes.
 Forcefully echants items with enchantments. Allows you to add incompatible or ridiculously high level enchantments to an item.
 
 **Arguments**
-- **enchantment** enchantment with namespaced ID, e.g. `fire_protection`, `sharpness`
-- **level** any integer or `"max" -> 255`, enchants are capped to level 255
+- **enchantment** ≫ enchantment with namespaced ID, e.g. `fire_protection`, `sharpness`
+- **level** ≫ any integer or `"max" -> 255`, enchants are capped to level 255
 
 ## Illegal Stack
 
@@ -283,7 +303,9 @@ Forcefully echants items with enchantments. Allows you to add incompatible or ri
 Sets the item in hand to any amount.
 
 **Arguments**
-- **amount** Any signed byte `-128..127`, nonpositive values will delete the item. Be careful when moving illegally stacked items around.
+- **amount** ≫ Any signed byte `-128..127`, nonpositive values will delete the item.
+
+Note: Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
 
 ---
 
