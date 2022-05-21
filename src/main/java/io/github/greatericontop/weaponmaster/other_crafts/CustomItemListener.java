@@ -1,5 +1,6 @@
-package io.github.greatericontop.weaponmaster;
+package io.github.greatericontop.weaponmaster.other_crafts;
 
+import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

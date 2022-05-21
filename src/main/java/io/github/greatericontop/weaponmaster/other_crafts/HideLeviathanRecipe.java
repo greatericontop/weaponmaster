@@ -17,7 +17,6 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.CustomItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

@@ -1,6 +1,5 @@
 package io.github.greatericontop.weaponmaster.other_crafts;
 
-import io.github.greatericontop.weaponmaster.CustomItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

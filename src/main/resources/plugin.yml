@@ -137,9 +137,17 @@ commands:
     usage: "U: /ninjabow [give]"
     permission: "weaponmastser.ninjabow.command"
     permission-message: "§cYou are not allowed to do this!"
+  minoritem:
+    description: "[Weapon Master] command for minor items"
+    usage: "U: /minoritem list"
+    permission: "weaponmaster.command.minoritem"
+    permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
     default: true
+  #
+  weaponmaster.command.minoritem:
+    default: op
   #
   weaponmaster.rpgl.command:
     default: op

@@ -17,7 +17,6 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.CustomItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -37,12 +36,7 @@ public class FlaskRecipe {
     }
 
     public void regRecipe() {
-        ItemStack flask = new ItemStack(Material.SPLASH_POTION, 1);
-        PotionMeta itemMeta = (PotionMeta) flask.getItemMeta();
-        itemMeta.setDisplayName("§cFlask of Ichor");
-        itemMeta.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 3), true);
-        itemMeta.setColor(Color.MAROON);
-        flask.setItemMeta(itemMeta);
+        ItemStack flask = customItems.generateFlaskIchorItemStack();
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("flask_ichor"), flask);
         recipe.shape(" S ",
                      " g ",
