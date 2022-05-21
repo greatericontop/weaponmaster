@@ -54,7 +54,7 @@ public class VampItemListener implements Listener {
         double previousHealth = player.getHealth();
         double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
         player.setHealth(min(previousHealth+healAmount, maxHealth));
-        player.sendMessage(String.format("§3Healed you for §4%.1f§3.", player.getHealth()-previousHealth));
+        plugin.paperUtils.sendActionBar(player, String.format("§3Healed you for §4%.1f§3.", player.getHealth()-previousHealth), true);
     }
 
 }

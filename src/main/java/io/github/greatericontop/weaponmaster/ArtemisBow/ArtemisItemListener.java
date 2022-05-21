@@ -58,18 +58,16 @@ public class ArtemisItemListener implements Listener {
     private double doCompensation(int runNumber, ArtemisMode mode) {
         switch (mode) {
             case WEAK:
-                if (runNumber <= 19) return 0.01;
-                if (runNumber <= 39) return 0.25 * SEEKING_DISTANCE;
-                if (runNumber <= 59) return 0.5 * SEEKING_DISTANCE;
-                return 0.75 * SEEKING_DISTANCE;
+                if (runNumber <= 9)  return 0.01;
+                if (runNumber <= 19)  return 0.25 * SEEKING_DISTANCE;
+                if (runNumber <= 29)  return 0.5 * SEEKING_DISTANCE;
+                if (runNumber <= 39)  return 0.75 * SEEKING_DISTANCE;
+                return SEEKING_DISTANCE;
             case STRONGEST:
-                if (runNumber <= 3) return 0.75 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
             default: // NORMAL
-                if (runNumber <= 4) return 0.01;
-                if (runNumber <= 7) return 0.25 * SEEKING_DISTANCE;
-                if (runNumber <= 12) return 0.5 * SEEKING_DISTANCE;
-                if (runNumber <= 14) return 0.75 * SEEKING_DISTANCE;
+                if (runNumber <= 2)  return 0.01;
+                if (runNumber <= 7)  return 0.5 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
         }
     }
@@ -92,6 +90,7 @@ public class ArtemisItemListener implements Listener {
             player.sendMessage("§7Heat seeking was disabled, LEFT CLICK with Artemis to toggle.");
             return;
         }
+        player.sendMessage("§7velo: "+arrow.getVelocity().length());
         new BukkitRunnable() {
             ArtemisMode mode = artemisModes.getOrDefault(player.getUniqueId().toString(), ArtemisMode.NORMAL);
             int runs = 0;
@@ -120,9 +119,7 @@ public class ArtemisItemListener implements Listener {
                             arrow.setVelocity(target.getLocation().toVector().subtract(arrow.getLocation().toVector())
                                     .normalize().multiply(speed));
                             arrow.getWorld().spawnParticle(Particle.FLAME, arrowLoc, 150);
-                            player.sendMessage(String.format("§3[Debug] §7target acquired: %s ; speed = %.2f block/tick", target, speed));
                             maxCurves--;
-                            player.sendMessage("§3[Debug] §7maxCurves:" + maxCurves);
                             curveCoolDown = 4;
                             break;
                         }
