@@ -87,6 +87,7 @@ public class Util {
     public final int MINER_REQ = 4;
     public final int MINER_LVL = 5;
     public final int MINER_INSERTION = 7;
+    public final int DRAGON_UPGRADE = 8;
 
     public final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
@@ -134,6 +135,7 @@ public class Util {
         DRAGON_SWORD_LORE.add("§eAbility: §4One With The Dragon");
         DRAGON_SWORD_LORE.add("§3Chance to deal up to §c80% §3more damage!");
         DRAGON_SWORD_LORE.add("");
+        // a blank line will be inserted here if legendary is detected; index 8 this will carry upgrades data in the future
         DRAGON_SWORD_LORE.add("§6LEGENDARY");
         DRAGON_SWORD_LORE.add("§6---------------");
         // Artemis Bow
@@ -374,11 +376,11 @@ public class Util {
         return items;
     }
 
-    private boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
+    public boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
         if (item == null) { return false; }
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
-        boolean nameCorrect = iMeta.getDisplayName().equals(requiredName);
+        boolean nameCorrect = requiredName == null || iMeta.getDisplayName().equals(requiredName);
         boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
         return nameCorrect && loreCorrect;
     }

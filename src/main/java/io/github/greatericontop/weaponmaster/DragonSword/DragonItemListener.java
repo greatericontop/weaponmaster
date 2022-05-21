@@ -40,9 +40,11 @@ public class DragonItemListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
+    private final DragonUpgradeListener dragonUpgrade;
     public DragonItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
-        util = new Util(plugin);
+        this.util = new Util(plugin);
+        this.dragonUpgrade = new DragonUpgradeListener(plugin);
     }
 
     private double triangular(double random) {
@@ -65,7 +67,7 @@ public class DragonItemListener implements Listener {
             return;
         }
         // increment damage
-        if (Math.random() < 0.5) {
+        if (Math.random() < dragonUpgrade.abilityTriggerProbability(player.getInventory().getItemInMainHand().getItemMeta().getLore())) {
             double multiplier = triangular(Math.random());
             event.setDamage(event.getDamage()*(1+multiplier));
             plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()), true);

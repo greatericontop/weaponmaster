@@ -31,6 +31,7 @@ import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonRecipe;
+import io.github.greatericontop.weaponmaster.DragonSword.DragonUpgradeListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburCommand;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
@@ -158,6 +159,7 @@ public class WeaponMasterMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DragonItemListener(this), this);
         getCommand("dragonsword").setExecutor(new DragonCommand());
         new DragonRecipe().regRecipe();
+        getServer().getPluginManager().registerEvents(new DragonUpgradeListener(this), this);
         // Artemis Bow
         getServer().getPluginManager().registerEvents(new ArtemisItemListener(this), this);
         getCommand("artemis").setExecutor(new ArtemisCommand());
