@@ -51,6 +51,8 @@ import io.github.greatericontop.weaponmaster.MinerBlessing.MinerRecipe;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffRecipe;
+import io.github.greatericontop.weaponmaster.NinjaBow.NinjaCommand;
+import io.github.greatericontop.weaponmaster.NinjaBow.NinjaItemListener;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
@@ -220,9 +222,12 @@ public class WeaponMasterMain extends JavaPlugin {
         // Shredded Axe
         getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
-        // Real Hoe
+        // Napalm Missile
         getCommand("napalm").setExecutor(new NapalmCommand());
         getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
+        // Ninja Bow
+        getCommand("ninjabow").setExecutor(new NinjaCommand());
+        getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
         // Custom Items
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();

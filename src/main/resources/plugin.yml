@@ -132,6 +132,11 @@ commands:
     usage: "U: /napalm [give]"
     permission: "weaponmastser.napalm.command"
     permission-message: "§cYou are not allowed to do this!"
+  ninjabow:
+    description: "[Weapon Master] command for Ninja Bow"
+    usage: "U: /ninjabow [give]"
+    permission: "weaponmastser.ninjabow.command"
+    permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -219,7 +224,7 @@ permissions:
   weaponmaster.atombomb.command:
     default: op
   weaponmaster.atombomb.use:
-    default: true
+    default: op
   #
   weaponmaster.netheritestaff.command:
     default: op
@@ -249,4 +254,9 @@ permissions:
   weaponmaster.napalm.command:
     deafult: op
   weaponmaster.napalm.use:
+    default: true
+  #
+  weaponmaster.ninjabow.command:
+    deafult: op
+  weaponmaster.ninjabow.use:
     default: true

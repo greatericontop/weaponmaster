@@ -53,6 +53,7 @@ public class Util {
     public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
     public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
     public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
+    public final String NINJA_BOW_NAME = "§7§lNinja Bow §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
     public List<String> VAMP_AXE_LORE = new ArrayList<String>();
@@ -77,6 +78,7 @@ public class Util {
     public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
     public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
     public List<String> NAPALM_MISSILE_LORE = new ArrayList<String>();
+    public List<String> NINJA_BOW_LORE = new ArrayList<String>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -351,6 +353,16 @@ public class Util {
         NAPALM_MISSILE_LORE.add("");
         NAPALM_MISSILE_LORE.add("§6LEGENDARY");
         NAPALM_MISSILE_LORE.add("§6---------------");
+        // Ninja Bow
+        NINJA_BOW_LORE.add("id: NINJA_BOW");
+        NINJA_BOW_LORE.add("§6---------------");
+        NINJA_BOW_LORE.add("");
+        NINJA_BOW_LORE.add("§eAbility: §4Shuriken Shot §e§lLEFT CLICK");
+        NINJA_BOW_LORE.add("§3Unleash a triple shot to rain down upon your enemies.");
+        NINJA_BOW_LORE.add("§3Other arrows are slightly inaccurate and deal 75% damage.");
+        NINJA_BOW_LORE.add("");
+        NINJA_BOW_LORE.add("§6LEGENDARY");
+        NINJA_BOW_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -447,5 +459,8 @@ public class Util {
     }
     public boolean checkForNapalmMissile(ItemStack item) {
         return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
+    }
+    public boolean checkForNinjaBow(ItemStack item) {
+        return this.checkFor(item, NINJA_BOW_NAME, 0, "id: NINJA_BOW");
     }
 }
