@@ -34,9 +34,11 @@ public class CustomItems {
     public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
+    public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<String>();
     public List<String> CORE_STAFF_LORE = new ArrayList<String>();
+    public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -46,6 +48,11 @@ public class CustomItems {
         CORE_STAFF_LORE.add("id: CORE_STAFF");
         CORE_STAFF_LORE.add("§9The powerful core From the depths of the Nether.");
         CORE_STAFF_LORE.add("§7Crafted using the finest magic.");
+
+        DRAGON_SCALE_LORE.add("id: DRAGON_SCALE");
+        DRAGON_SCALE_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
+        DRAGON_SCALE_LORE.add("§dThis dragon scale carries an immense magical power of the dragon.");
+        DRAGON_SCALE_LORE.add("§dIt can be added to other dragon items to multiply their strength.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -73,6 +80,15 @@ public class CustomItems {
         iMeta.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 3), true);
         iMeta.setColor(Color.MAROON);
         iMeta.setDisplayName(FLASK_ICHOR_NAME);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateDragonScaleItemStack() {
+        ItemStack stack = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DRAGON_SCALE_NAME);
+        iMeta.setLore(DRAGON_SCALE_LORE);
         stack.setItemMeta(iMeta);
         return stack;
     }

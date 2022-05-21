@@ -49,7 +49,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Heart of Leviathan - /minoritem leviathanHeart");
             sender.sendMessage("§7Netherite Staff Core - /minoritem coreStaff");
             sender.sendMessage("§7Flask of Ichor - /minoritem flaskIchor");
-            sender.sendMessage("§7coming soon - /minoritem dragonScale");
+            sender.sendMessage("§7Dragon Scale - /minoritem dragonScale");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -68,6 +68,12 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateFlaskIchorItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.FLASK_ICHOR_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("dragonScale")) {
+            ItemStack item = customItems.generateDragonScaleItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_SCALE_NAME + "§f]§7.");
             return true;
         }
         if (!(sender instanceof Player)) {
