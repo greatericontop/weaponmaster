@@ -17,8 +17,6 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,9 +25,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class MinorItemCommand implements CommandExecutor {
 
-    private final CustomItems customItems;
+    private final MinorItemUtil customItems;
     public MinorItemCommand() {
-        this.customItems = new CustomItems();
+        this.customItems = new MinorItemUtil();
     }
 
     private void sendInfo(CommandSender to) {

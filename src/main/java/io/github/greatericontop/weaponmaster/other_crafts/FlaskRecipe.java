@@ -18,21 +18,17 @@ package io.github.greatericontop.weaponmaster.other_crafts;
  */
 
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class FlaskRecipe {
 
-    private CustomItems customItems;
+    private MinorItemUtil customItems;
 
     public FlaskRecipe() {
-        customItems = new CustomItems();
+        customItems = new MinorItemUtil();
     }
 
     public void regRecipe() {

@@ -17,7 +17,6 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -33,12 +32,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
-public class CustomItemListener implements Listener {
+public class MinorItemListener implements Listener {
 
     private final Random rnd = new Random();
-    private final CustomItems customItems;
-    public CustomItemListener() {
-        customItems = new CustomItems();
+    private final MinorItemUtil customItems;
+    public MinorItemListener() {
+        customItems = new MinorItemUtil();
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

@@ -32,14 +32,14 @@ import java.util.Map;
 public class HideLeviathanRecipe {
 
     private final Map<Enchantment, Integer> hideEnchants = new HashMap<Enchantment, Integer>();
-    private CustomItems customItems;
+    private MinorItemUtil customItems;
 
     public HideLeviathanRecipe() {
         hideEnchants.put(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
         hideEnchants.put(Enchantment.PROTECTION_EXPLOSIONS, 4);
         hideEnchants.put(Enchantment.PROTECTION_FIRE, 4);
         hideEnchants.put(Enchantment.PROTECTION_PROJECTILE, 4);
-        customItems = new CustomItems();
+        customItems = new MinorItemUtil();
     }
 
     public void regRecipe() {

@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.NetheriteStaff;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
+import io.github.greatericontop.weaponmaster.other_crafts.MinorItemUtil;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -36,10 +36,10 @@ import java.util.UUID;
 public class NetheriteStaffRecipe {
 
     private final Util util;
-    private CustomItems customItems;
+    private MinorItemUtil customItems;
     public NetheriteStaffRecipe() {
         util = new Util(null);
-        customItems = new CustomItems();
+        customItems = new MinorItemUtil();
     }
 
     public void regRecipe() {
