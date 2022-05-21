@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.NetheriteStaff;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
@@ -81,13 +82,13 @@ public class NetheriteStaffListener implements Listener {
         if (Util.checkForInteractableBlock(event)) { return; }
         Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (iMeta.getDamage() > (2031-101)) {
-            player.sendMessage("§3Not enough durability to shoot an arrow!");
+            plugin.paperUtils.sendActionBar(player, "§3Not enough durability to shoot an arrow!", true);
             return;
         }
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL
                 && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4) {
             if (!event.getPlayer().getInventory().contains(Material.ARROW)) {
-                player.sendMessage("§3You must have arrows in your inventory to shoot!");
+                plugin.paperUtils.sendActionBar(player, "§3You must have arrows in your inventory to shoot!", true);
                 return;
             }
         }
