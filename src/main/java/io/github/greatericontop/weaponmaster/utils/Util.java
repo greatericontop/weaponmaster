@@ -86,7 +86,7 @@ public class Util {
     public final int MINER_LVL = 5;
     public final int MINER_INSERTION = 7;
 
-    private final WeaponMasterMain plugin;
+    public final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
         this.plugin = plugin;
         // RPG Launcher

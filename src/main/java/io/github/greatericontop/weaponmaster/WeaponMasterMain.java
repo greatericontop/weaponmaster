@@ -73,12 +73,15 @@ import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.other_crafts.CoreStaffRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class WeaponMasterMain extends JavaPlugin {
+
+    public PaperUtils paperUtils = null;
 
     private String encryption(String s, byte[] key) {
         StringBuilder sb = new StringBuilder();
@@ -137,6 +140,8 @@ public class WeaponMasterMain extends JavaPlugin {
         getLogger().info("Initializing WeaponMaster by greateric");
         getLogger().info("---> /rpgl /vampaxe /scythe /dragonsword /artemis /anduril /excalibur");
         getLogger().info("--------------------");
+
+        this.paperUtils = new PaperUtils(this);
 
         getCommand("weaponmaster").setExecutor(new WeaponMasterCommand(this));
         // RPG Launcher

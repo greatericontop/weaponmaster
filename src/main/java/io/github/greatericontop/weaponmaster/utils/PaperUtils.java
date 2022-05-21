@@ -18,38 +18,54 @@ package io.github.greatericontop.weaponmaster.utils;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class PaperUtils {
 
-    public static boolean HAS_PAPER = false;
-    public static void setHasPaperStatus(WeaponMasterMain plugin) {
+    public final WeaponMasterMain plugin;
+    public boolean WARN_NO_PAPER = false;
+    public boolean HAS_PAPER = false;
+    public PaperUtils(WeaponMasterMain plugin) {
+        this.plugin = plugin;
         try {
-            Class serverClass = plugin.getServer().getClass();
-            Method paperExclusiveMethod = serverClass.getMethod("get");
-        } catch (NoSuchMethodException e) {
-            HAS_PAPER = false;
+            Class.forName("com.destroystokyo.paper.event.server.ServerTickStartEvent");
+            this.HAS_PAPER = true;
+        } catch (ClassNotFoundException e) {
+            this.HAS_PAPER = false;
         }
+        this.WARN_NO_PAPER = plugin.getConfig().getBoolean("warnOnNoPaper");
     }
 
-    public static void sendActionBar(Player player, String text) {
+    private void sendActionBar(Player player, String text) {
         Method sendActionBarMethod = null;
         try {
             sendActionBarMethod = player.getClass().getMethod("sendActionBar", String.class);
         } catch (NoSuchMethodException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         try {
             sendActionBarMethod.invoke(player, text);
         } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
 
+    public void sendActionBar(Player player, String text, boolean sendTextIfUnavailable) {
+        if (!HAS_PAPER) {
+            if (WARN_NO_PAPER) {
+                player.sendMessage("§cPaper methods not detected! Some features have been disabled. (To suppress this warning check config.yml)");
+            }
+            if (sendTextIfUnavailable) {
+                player.sendMessage(text);
+            }
+            return;
+        }
+        sendActionBar(player, text);
     }
 
 }

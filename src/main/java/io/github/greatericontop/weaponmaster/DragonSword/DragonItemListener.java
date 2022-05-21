@@ -68,8 +68,7 @@ public class DragonItemListener implements Listener {
         if (Math.random() < 0.5) {
             double multiplier = triangular(Math.random());
             event.setDamage(event.getDamage()*(1+multiplier));
-            PaperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
-            player.sendMessage(String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()));
+            plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()), true);
         }
     }
 
