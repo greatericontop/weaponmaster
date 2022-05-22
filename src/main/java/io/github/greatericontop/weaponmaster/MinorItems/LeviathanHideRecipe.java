@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.other_crafts;
+package io.github.greatericontop.weaponmaster.MinorItems;
 
 /*
     Copyright (C) 2021 greateric.
@@ -29,12 +29,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HideLeviathanRecipe {
+public class LeviathanHideRecipe {
 
     private final Map<Enchantment, Integer> hideEnchants = new HashMap<Enchantment, Integer>();
     private MinorItemUtil customItems;
 
-    public HideLeviathanRecipe() {
+    public LeviathanHideRecipe() {
         hideEnchants.put(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
         hideEnchants.put(Enchantment.PROTECTION_EXPLOSIONS, 4);
         hideEnchants.put(Enchantment.PROTECTION_FIRE, 4);
@@ -43,10 +43,7 @@ public class HideLeviathanRecipe {
     }
 
     public void regRecipe() {
-        ItemStack hide = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
-        ItemMeta itemMeta = hide.getItemMeta();
-        itemMeta.setDisplayName("§9§lHide Of Leviathan");
-        hide.setItemMeta(itemMeta);
+        ItemStack hide = customItems.generateLeviathanHideItemStack();
         hide.addUnsafeEnchantments(hideEnchants);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("hide_of_leviathan"), hide);
         recipe.shape("dnd",

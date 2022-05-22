@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.other_crafts;
+package io.github.greatericontop.weaponmaster.MinorItems;
 
 /*
     Copyright (C) 2021 greateric.
@@ -33,7 +33,7 @@ public class MinorItemCommand implements CommandExecutor {
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§lMinor Items");
-        to.sendMessage("§e§oby greateric");
+        to.sendMessage("§e§oby greateric and bigfatmidget");
         to.sendMessage("§3Use §2/minoritem list§3 to list the minor items.");
     }
 

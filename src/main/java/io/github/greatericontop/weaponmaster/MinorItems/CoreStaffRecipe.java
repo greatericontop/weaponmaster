@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.other_crafts;
+package io.github.greatericontop.weaponmaster.MinorItems;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

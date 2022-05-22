@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.NetheriteStaff;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.other_crafts.MinorItemUtil;
+import io.github.greatericontop.weaponmaster.MinorItems.MinorItemUtil;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
