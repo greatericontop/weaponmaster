@@ -54,31 +54,33 @@ public class Util {
     public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
     public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
     public final String NINJA_BOW_NAME = "§7§lNinja Bow §6⚝⚝⚝⚝⚝";
+    public final String DRAGON_ARMOR_NAME = "§aDragon Armor §6⚝⚝⚝⚝⚝";
 
-    public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
-    public List<String> VAMP_AXE_LORE = new ArrayList<String>();
-    public List<String> DEATH_SCYTHE_LORE = new ArrayList<String>();
-    public List<String> DRAGON_SWORD_LORE = new ArrayList<String>();
-    public List<String> ARTEMIS_BOW_LORE = new ArrayList<String>();
-    public List<String> ANDURIL_LORE = new ArrayList<String>();
-    public List<String> EXCALIBUR_LORE = new ArrayList<String>();
-    public List<String> EXODUS_LORE = new ArrayList<String>();
-    public List<String> ROCKET_STICK_LORE = new ArrayList<String>();
-    public List<String> HELIOS_LORE = new ArrayList<String>();
-    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<String>();
-    public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
-    public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
-    public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
-    public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
-    public List<String> FIREBALL_LORE = new ArrayList<String>();
-    public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
-    public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
-    public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
-    public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
-    public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
-    public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
-    public List<String> NAPALM_MISSILE_LORE = new ArrayList<String>();
-    public List<String> NINJA_BOW_LORE = new ArrayList<String>();
+    public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
+    public List<String> VAMP_AXE_LORE = new ArrayList<>();
+    public List<String> DEATH_SCYTHE_LORE = new ArrayList<>();
+    public List<String> DRAGON_SWORD_LORE = new ArrayList<>();
+    public List<String> ARTEMIS_BOW_LORE = new ArrayList<>();
+    public List<String> ANDURIL_LORE = new ArrayList<>();
+    public List<String> EXCALIBUR_LORE = new ArrayList<>();
+    public List<String> EXODUS_LORE = new ArrayList<>();
+    public List<String> ROCKET_STICK_LORE = new ArrayList<>();
+    public List<String> HELIOS_LORE = new ArrayList<>();
+    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<>();
+    public List<String> HERMES_BOOTS_LORE = new ArrayList<>();
+    public List<String> LIFE_HELMET_LORE = new ArrayList<>();
+    public List<String> CAVEMAN_SWORD_LORE = new ArrayList<>();
+    public List<String> WARLOCK_PANTS_LORE = new ArrayList<>();
+    public List<String> FIREBALL_LORE = new ArrayList<>();
+    public List<String> ATOM_BOMB_LORE = new ArrayList<>();
+    public List<String> NETHERITE_STAFF_LORE = new ArrayList<>();
+    public List<String> SNIPER_RIFLE_LORE = new ArrayList<>();
+    public List<String> MINERS_BLESSING_LORE = new ArrayList<>();
+    public List<String> PILOT_SWORD_LORE = new ArrayList<>();
+    public List<String> SHREDDED_AXE_LORE = new ArrayList<>();
+    public List<String> NAPALM_MISSILE_LORE = new ArrayList<>();
+    public List<String> NINJA_BOW_LORE = new ArrayList<>();
+    public List<String> DRAGON_ARMOR_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -365,6 +367,18 @@ public class Util {
         NINJA_BOW_LORE.add("");
         NINJA_BOW_LORE.add("§6LEGENDARY");
         NINJA_BOW_LORE.add("§6---------------");
+        // Dragon Armor
+        DRAGON_ARMOR_LORE.add("id: DRAGON_ARMOR");
+        DRAGON_ARMOR_LORE.add("§6---------------");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§eAbility: §4Dragon Protection");
+        DRAGON_ARMOR_LORE.add("§3Reduces damage taken by §b5%§3. (Up to 20%)");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b25%§3.");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§6LEGENDARY");
+        DRAGON_ARMOR_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -464,5 +478,8 @@ public class Util {
     }
     public boolean checkForNinjaBow(ItemStack item) {
         return this.checkFor(item, NINJA_BOW_NAME, 0, "id: NINJA_BOW");
+    }
+    public boolean checkForDragonArmor(ItemStack item) {
+        return this.checkFor(item, DRAGON_ARMOR_NAME, 0, "id: DRAGON_ARMOR");
     }
 }

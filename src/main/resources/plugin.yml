@@ -142,6 +142,11 @@ commands:
     usage: "U: /minoritem list"
     permission: "weaponmaster.command.minoritem"
     permission-message: "§cYou are not allowed to do this!"
+  dragonarmor:
+    description: "[Weapon Master] command for Dragon Armor"
+    usage: "U: /dragonarmor [give]"
+    permission: "weaponmaster.dragonarmor.command"
+    permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -267,4 +272,9 @@ permissions:
   weaponmaster.ninjabow.command:
     deafult: op
   weaponmaster.ninjabow.use:
+    default: true
+  #
+  weaponmaster.dragonarmor.command:
+    deafult: op
+  weaponmaster.dragonarmor.use:
     default: true

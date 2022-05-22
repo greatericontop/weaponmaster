@@ -68,9 +68,17 @@ public class DragonItemListener implements Listener {
         }
         // increment damage
         if (Math.random() < dragonUpgrade.abilityTriggerProbability(player.getInventory().getItemInMainHand().getItemMeta().getLore())) {
-            double multiplier = triangular(Math.random());
-            event.setDamage(event.getDamage()*(1+multiplier));
-            plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", multiplier*100, event.getDamage()), true);
+            double multiplier = 1.0 + triangular(Math.random());
+            if (
+                    util.checkForDragonArmor(player.getInventory().getHelmet())
+                    && util.checkForDragonArmor(player.getInventory().getChestplate())
+                    && util.checkForDragonArmor(player.getInventory().getLeggings())
+                    && util.checkForDragonArmor(player.getInventory().getBoots())
+            ) { // multiplicative increase in damage when a full set of dragon armor is found
+                multiplier *= 1.25;
+            }
+            event.setDamage(event.getDamage()*multiplier);
+            plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", (multiplier-1)*100, event.getDamage()), true);
         }
     }
 

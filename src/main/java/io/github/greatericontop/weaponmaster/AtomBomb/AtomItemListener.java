@@ -34,12 +34,14 @@ import java.util.Random;
 
 public class AtomItemListener implements Listener {
 
+    private boolean globalCooldownLocked;
     private final WeaponMasterMain plugin;
     private final Util util;
     private final Random rnd = new Random();
     public AtomItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        globalCooldownLocked = false;
     }
 
     public void spawnVein(Location loc, Material type, float size, int limitDepth, Random rnd) {
@@ -79,11 +81,21 @@ public class AtomItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.atombomb.use§3.");
             return;
         }
+        if (plugin.getConfig().getBoolean("atomBomb.disable")) {
+            player.sendMessage("§cDue to the destructive nature and lag caused by this item, this weapon is disabled by default.");
+            player.sendMessage("§cIf you wish to use this item, go to config.yml and set atomBomb.disabled to false.");
+            return;
+        }
+        if (plugin.getConfig().getBoolean("atomBomb.enforceGlobalCooldown") && globalCooldownLocked) {
+            player.sendMessage("§cDue to the lag caused by this item, it is currently on global cooldown.");
+            return;
+        }
         if (event.getBlockAgainst().getType() != Material.REDSTONE_BLOCK) {
             player.sendMessage("§cYou must place it on a redstone block!");
             event.setCancelled(true);
             return;
         }
+        globalCooldownLocked = true;
 
         int STEPS = 256;
         double STEPGAP = 1.0 / STEPS;
@@ -97,6 +109,11 @@ public class AtomItemListener implements Listener {
             public void run() {
                 if (y < -STEPS) {
                     player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
+                    new BukkitRunnable() {
+                        public void run() {
+                            globalCooldownLocked = false;
+                        }
+                    }.runTaskLater(plugin, 400L);
                     cancel();
                     return;
                 }
