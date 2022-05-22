@@ -37,6 +37,8 @@
   - [Miner's Blessing](#miners-blessing)
   - [Napalm Missile](#napalm-missile)
   - [Ninja Bow](#ninja-bow)
+  - [Pilot Sword](#pilot-sword)
+  - [Shredded Axe](#shredded-axe)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-inchor)
@@ -222,6 +224,14 @@ Crafting Recipe:
 `/ninjabow give` - left click instantly fires triple shot arrows
 
 Crafting Recipe: (not) coming soon
+
+## Pilot Sword
+
+`/pilot-sword give` - a combo sword, no attack cooldown.
+
+## Shredded Axe
+
+`/shredded-axe give` - Summons a zombie when hitting an enemy.
 
 ---
 
