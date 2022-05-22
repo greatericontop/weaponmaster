@@ -27,16 +27,21 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -123,6 +128,28 @@ public class CustomItemListener implements Listener {
         Player player = event.getPlayer();
         modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onExpertSeal(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
+        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
+        Player player = (Player) event.getWhoClicked();
+        if (!util.checkFor(event.getCursor(), null, 0, "id: EXPERT_SEAL")) { return; }
+        ItemMeta targetItem = event.getCurrentItem().getItemMeta();
+        if (targetItem == null || !targetItem.hasEnchants()) {
+            player.sendMessage("§cYou can't use Expert Seal on this item!");
+            return;
+        }
+        Map<Enchantment, Integer> enchants = targetItem.getEnchants();
+        for (Enchantment enchant : enchants.keySet()) {
+            targetItem.addEnchant(enchant, enchants.get(enchant)+1, true);
+        }
+        event.getCurrentItem().setItemMeta(targetItem);
+        event.setCancelled(true);
+        player.updateInventory();
+        event.setCursor(new ItemStack(Material.AIR));
+        player.sendMessage("§3Success!");
     }
 
 }

@@ -39,11 +39,13 @@ public class CustomItems {
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
     public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
     public final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
+    public final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
 
-    public List<String> LEVIATHAN_HEART_LORE = new ArrayList<String>();
-    public List<String> CORE_STAFF_LORE = new ArrayList<String>();
-    public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
-    public List<String> MAGIC_ENERGY_BAR_LORE = new ArrayList<String>();
+    public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
+    public List<String> CORE_STAFF_LORE = new ArrayList<>();
+    public List<String> DRAGON_SCALE_LORE = new ArrayList<>();
+    public List<String> MAGIC_ENERGY_BAR_LORE = new ArrayList<>();
+    public List<String> EXPERT_SEAL_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -62,6 +64,10 @@ public class CustomItems {
         MAGIC_ENERGY_BAR_LORE.add("id: MAGIC_ENERGY_BAR");
         MAGIC_ENERGY_BAR_LORE.add("§9Consume this item to gain an additional heart.");
         MAGIC_ENERGY_BAR_LORE.add("§7You can accumulate up to 6 hearts, but 2 are lost per death.");
+
+        EXPERT_SEAL_LORE.add("id: EXPERT_SEAL");
+        EXPERT_SEAL_LORE.add("§9Move this item over another to increase all enchantments");
+        EXPERT_SEAL_LORE.add("§9in the target item by 1 level!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -110,6 +116,18 @@ public class CustomItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(MAGIC_ENERGY_BAR_NAME);
         iMeta.setLore(MAGIC_ENERGY_BAR_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateExpertSealItemStack() {
+        ItemStack stack = new ItemStack(Material.NETHER_STAR, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(EXPERT_SEAL_NAME);
+        List<String> lore = new ArrayList<String>();
+        lore.addAll(EXPERT_SEAL_LORE);
+        lore.add(String.format("§7#%s", UUID.randomUUID()));
+        iMeta.setLore(lore);
         stack.setItemMeta(iMeta);
         return stack;
     }

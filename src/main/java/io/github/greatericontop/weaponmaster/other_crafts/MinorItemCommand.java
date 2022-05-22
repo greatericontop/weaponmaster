@@ -49,6 +49,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Flask of Ichor - /minoritem flaskIchor");
             sender.sendMessage("§7Dragon Scale - /minoritem dragonScale");
             sender.sendMessage("§7Magic Energy Bar - /minoritem magicEnergyBar");
+            sender.sendMessage("§7Expert Seal - /minoritem expertSeal");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -79,6 +80,12 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateMagicEnergyBarItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.MAGIC_ENERGY_BAR_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("expertSeal")) {
+            ItemStack item = customItems.generateExpertSealItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.EXPERT_SEAL_NAME + "§f]§7.");
             return true;
         }
         if (!(sender instanceof Player)) {
