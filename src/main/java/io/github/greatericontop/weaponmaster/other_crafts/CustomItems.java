@@ -28,6 +28,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomItems {
 
@@ -88,7 +89,10 @@ public class CustomItems {
         ItemStack stack = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(DRAGON_SCALE_NAME);
-        iMeta.setLore(DRAGON_SCALE_LORE);
+        List<String> lore = new ArrayList<String>();
+        lore.addAll(DRAGON_SCALE_LORE);
+        lore.add(String.format("§7#%s", UUID.randomUUID())); // make similar items unstackable - they are bulk deleted in anvils
+        iMeta.setLore(lore);
         stack.setItemMeta(iMeta);
         return stack;
     }

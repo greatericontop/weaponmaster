@@ -76,6 +76,10 @@ public class DragonUpgradeListener implements Listener {
         return abilityTriggerProbability(getUpgradeCount(lore));
     }
 
+    public int getLevelsForItem(List<String> lore) {
+        return 10 * ((getUpgradeCount(lore) + 1) * (getUpgradeCount(lore) + 2));
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void onAnvil(PrepareAnvilEvent event) {
         ItemStack dragon = event.getInventory().getItem(0);
@@ -93,6 +97,7 @@ public class DragonUpgradeListener implements Listener {
         ItemMeta newIM = dragonIM.clone();
         List<String> newLore = newIM.getLore();
         newLore.set(util.DRAGON_UPGRADE, String.format("§6Upgrade Level: §b%d%s", currentUpgradeLevel, currentUpgradeLevel >= 5 ? " §a(MAXED!)" : ""));
+        newLore.add(String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(newLore)));
         newIM.setLore(newLore);
         for (Enchantment enchant : newIM.getEnchants().keySet()) {
             newIM.removeEnchant(enchant);
@@ -104,16 +109,31 @@ public class DragonUpgradeListener implements Listener {
         player.sendMessage("§7done!");//
     }
 
+    public void stripLastLoreLine(ItemStack itemStack) {
+        ItemMeta im = itemStack.getItemMeta();
+        List<String> lore = im.getLore();
+        lore.remove(lore.size() - 1);
+        im.setLore(lore);
+        itemStack.setItemMeta(im);
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     private void onPickingResultingItem(InventoryClickEvent event) {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }
         Player player = (Player) event.getWhoClicked();
         if (event.getRawSlot() == 2 && event.getCurrentItem().getItemMeta().hasLore() && util.checkForDragonSword(event.getCurrentItem())) {
-            player.sendMessage("§7caught event!");
+            ItemMeta im = event.getCurrentItem().getItemMeta();
+            int levelsRequired = getLevelsForItem(im.getLore());
+            if (player.getLevel() < levelsRequired) {
+                player.sendMessage(String.format("§cYou must have §b%d §clevels to perform this action.", levelsRequired));
+                event.setCancelled(true);
+                return;
+            }
+            player.setLevel(player.getLevel()-levelsRequired);
+            stripLastLoreLine(event.getCurrentItem());
             event.setCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
-            event.setCancelled(false);
         }
     }
 
