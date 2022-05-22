@@ -18,9 +18,13 @@ package io.github.greatericontop.weaponmaster.other_crafts;
  */
 
 import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
+import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.EntityType;
@@ -29,16 +33,42 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collection;
 import java.util.Random;
+import java.util.UUID;
 
 public class CustomItemListener implements Listener {
 
     private final Random rnd = new Random();
     private final CustomItems customItems;
+    private final Util util;
     public CustomItemListener() {
         customItems = new CustomItems();
+        util = new Util(null);
+    }
+
+    public void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
+        AttributeModifier savedAM = null;
+        double amount = 0;
+        for (AttributeModifier am : instance.getModifiers()) {
+            if (am.getUniqueId().equals(withUUID)) {
+                double oldAmount = am.getAmount();
+                amount = Math.min(Math.max(oldAmount + amountDelta, min), max);
+                savedAM = am;
+                break;
+            }
+        }
+        AttributeModifier newAM;
+        if (savedAM == null) {
+            newAM = new AttributeModifier(withUUID, "weaponmaster", Math.min(Math.max(amountDelta, min), max), AttributeModifier.Operation.ADD_NUMBER);
+        } else {
+            instance.removeModifier(savedAM);
+            newAM = new AttributeModifier(withUUID, "weaponmaster", amount, AttributeModifier.Operation.ADD_NUMBER);
+        }
+        instance.addModifier(newAM);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -80,6 +110,19 @@ public class CustomItemListener implements Listener {
                 }
             }
         }
+
+        if (event.getEntityType() == EntityType.PLAYER) {
+            Player player = (Player) event.getEntity();
+            modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onEat(PlayerItemConsumeEvent event) {
+        if (!util.checkFor(event.getItem(), null, 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        Player player = event.getPlayer();
+        modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
+        player.sendMessage("§3Successfully gained a heart!");
     }
 
 }

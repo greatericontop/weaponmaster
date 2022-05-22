@@ -17,8 +17,6 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -50,6 +48,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Netherite Staff Core - /minoritem coreStaff");
             sender.sendMessage("§7Flask of Ichor - /minoritem flaskIchor");
             sender.sendMessage("§7Dragon Scale - /minoritem dragonScale");
+            sender.sendMessage("§7Magic Energy Bar - /minoritem magicEnergyBar");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -74,6 +73,12 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateDragonScaleItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_SCALE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("magicEnergyBar")) {
+            ItemStack item = customItems.generateMagicEnergyBarItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.MAGIC_ENERGY_BAR_NAME + "§f]§7.");
             return true;
         }
         if (!(sender instanceof Player)) {

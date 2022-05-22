@@ -32,14 +32,18 @@ import java.util.UUID;
 
 public class CustomItems {
 
+    public final UUID ENERGY_MODIFIER_UUID = UUID.fromString("00000000-1111-0000-0000-c61288850beb");
+
     public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
     public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
+    public final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<String>();
     public List<String> CORE_STAFF_LORE = new ArrayList<String>();
     public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
+    public List<String> MAGIC_ENERGY_BAR_LORE = new ArrayList<String>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -54,6 +58,10 @@ public class CustomItems {
         DRAGON_SCALE_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
         DRAGON_SCALE_LORE.add("§dThis dragon scale carries an immense magical power of the dragon.");
         DRAGON_SCALE_LORE.add("§dIt can be added to other dragon items to multiply their strength.");
+
+        MAGIC_ENERGY_BAR_LORE.add("id: MAGIC_ENERGY_BAR");
+        MAGIC_ENERGY_BAR_LORE.add("§9Consume this item to gain an additional heart.");
+        MAGIC_ENERGY_BAR_LORE.add("§7You can accumulate up to 6 hearts, but 2 are lost per death.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -93,6 +101,15 @@ public class CustomItems {
         lore.addAll(DRAGON_SCALE_LORE);
         lore.add(String.format("§7#%s", UUID.randomUUID())); // make similar items unstackable - they are bulk deleted in anvils
         iMeta.setLore(lore);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateMagicEnergyBarItemStack() {
+        ItemStack stack = new ItemStack(Material.COOKIE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(MAGIC_ENERGY_BAR_NAME);
+        iMeta.setLore(MAGIC_ENERGY_BAR_LORE);
         stack.setItemMeta(iMeta);
         return stack;
     }
