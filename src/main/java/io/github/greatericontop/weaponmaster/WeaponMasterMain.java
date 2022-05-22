@@ -28,6 +28,8 @@ import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanItemListener;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
+import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorCommand;
+import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonRecipe;
@@ -202,6 +204,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Ninja Bow
         getCommand("ninjabow").setExecutor(new NinjaCommand());
         getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
+        // Dragon Armor
+        getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
+        getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
         // Custom Items
         getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
