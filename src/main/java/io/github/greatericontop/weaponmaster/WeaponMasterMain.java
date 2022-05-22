@@ -77,9 +77,6 @@ import io.github.greatericontop.weaponmaster.other_crafts.*;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 public class WeaponMasterMain extends JavaPlugin {
 
     public PaperUtils paperUtils = null;
@@ -94,31 +91,6 @@ public class WeaponMasterMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // License
-        this.saveDefaultConfig();
-        getConfig().options().copyDefaults(true);
-        byte[] instanceKey = "P2Z3paaFh8mWFJ0VOnzOglqmAeP-xW9VVeykKGPn5SxeXSV1bthIEtenZOur-Heay_DBO3wSBF/UkMhdc9FaobqwOX+U-ZTI1l1R6q-dRNbb5zhXIW1whp-tmGG03vmT".getBytes();
-        String instanceName = "greatericWeaponMaster";
-        String hostname;
-        try {
-            hostname = InetAddress.getLocalHost().getHostName();
-        } catch (UnknownHostException e) {
-            getLogger().warning("Failed to reach license! Do you have an internet connection?");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-        String issuedTo = getConfig().getString("license.issued-to");
-        if (issuedTo == null) { issuedTo = "none"; }
-        byte[] enc = encryption(instanceName.concat(hostname), instanceKey).getBytes();
-        StringBuilder hexencBuilder = new StringBuilder();
-        for (byte b : enc) {
-            hexencBuilder.append(String.format("%02x", b));
-        }
-        String hexenc = hexencBuilder.toString();
-        if (!getConfig().getString("license.key").equalsIgnoreCase(hexenc)) {
-            getLogger().warning("Invalid license! Check license in config.yml");
-            getLogger().warning("WeaponMaster cracked by greateric 'n co. Starting...");
-        }
         getLogger().info("--------------------");
         getLogger().info("#######################################################################################################################");
         getLogger().info("# ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ #");
@@ -136,11 +108,13 @@ public class WeaponMasterMain extends JavaPlugin {
         getLogger().info("");
         getLogger().info("WeaponMaster");
         getLogger().info("");
-        getLogger().info("License verified!");
-        getLogger().info("Copyright (C) greateric 2022. Do not distribute!");
+        getLogger().info("Copyright (C) greateric 2021-2022. Licensed under GPL v3.");
         getLogger().info("Initializing WeaponMaster by greateric");
-        getLogger().info("---> /rpgl /vampaxe /scythe /dragonsword /artemis /anduril /excalibur");
         getLogger().info("--------------------");
+
+        // Config
+        this.saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
 
         this.paperUtils = new PaperUtils(this);
 
@@ -234,7 +208,7 @@ public class WeaponMasterMain extends JavaPlugin {
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
-        getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
+        getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
         getLogger().info("Finished setting up!");
     }
 

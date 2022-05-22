@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster.other_crafts;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
@@ -35,12 +36,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -50,9 +49,11 @@ public class CustomItemListener implements Listener {
     private final Random rnd = new Random();
     private final CustomItems customItems;
     private final Util util;
-    public CustomItemListener() {
-        customItems = new CustomItems();
-        util = new Util(null);
+    private final WeaponMasterMain plugin;
+    public CustomItemListener(WeaponMasterMain plugin) {
+        this.customItems = new CustomItems();
+        this.plugin = plugin;
+        this.util = new Util(plugin);
     }
 
     public void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
@@ -79,7 +80,7 @@ public class CustomItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
-            if (Math.random() < 0.12) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.leviathanHeart")) {
                 ItemStack leviathan = customItems.generateLeviathanHeartItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), leviathan);
                 Player killer = event.getEntity().getKiller();
@@ -88,7 +89,7 @@ public class CustomItemListener implements Listener {
                 }
             }
         } else if (event.getEntityType() == EntityType.WITHER_SKELETON) {
-            if (Math.random() < 0.01) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.coreStaff")) {
                 ItemStack core = customItems.generateCoreStaffItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
                 Player killer = event.getEntity().getKiller();
@@ -97,7 +98,7 @@ public class CustomItemListener implements Listener {
                 }
             }
         } else if (event.getEntityType() == EntityType.ENDER_DRAGON) {
-            if (Math.random() < 0.04) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.dragonScale")) {
                 int locX = rnd.nextInt(141) - 70;
                 int locZ = rnd.nextInt(141) - 70;
                 Location newBlockLocation = event.getEntity().getWorld().getHighestBlockAt(locX, locZ).getLocation().add(0, 1, 0);
