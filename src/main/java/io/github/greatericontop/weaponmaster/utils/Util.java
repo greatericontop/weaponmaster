@@ -373,12 +373,14 @@ public class Util {
         DRAGON_ARMOR_LORE.add("id: DRAGON_ARMOR");
         DRAGON_ARMOR_LORE.add("§6---------------");
         DRAGON_ARMOR_LORE.add("");
-        DRAGON_ARMOR_LORE.add("§eAbility: §4Dragon Protection");
+        DRAGON_ARMOR_LORE.add("§eAbility: §4Dragon Blood");
         DRAGON_ARMOR_LORE.add("§3Reduces damage taken by §b5%§3. (Up to 20%)");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b3.5%§3. (Up to 14%)");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b25%§3.");
         DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
+        DRAGON_ARMOR_LORE.add("§3Reduce damage further by §b0.75% §3per §aProtection §3level.");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§6LEGENDARY");
         DRAGON_ARMOR_LORE.add("§6---------------");
