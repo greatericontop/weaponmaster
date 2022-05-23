@@ -2,17 +2,14 @@ package io.github.greatericontop.weaponmaster.other_crafts;
 
 /*
     Copyright (C) 2021 greateric.
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -48,6 +45,8 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Netherite Staff Core - /minoritem coreStaff");
             sender.sendMessage("§7Flask of Ichor - /minoritem flaskIchor");
             sender.sendMessage("§7Dragon Scale - /minoritem dragonScale");
+            sender.sendMessage("§7Magic Energy Bar - /minoritem magicEnergyBar");
+            sender.sendMessage("§7Expert Seal - /minoritem expertSeal");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -72,6 +71,18 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateDragonScaleItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_SCALE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("magicEnergyBar")) {
+            ItemStack item = customItems.generateMagicEnergyBarItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.MAGIC_ENERGY_BAR_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("expertSeal")) {
+            ItemStack item = customItems.generateExpertSealItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.EXPERT_SEAL_NAME + "§f]§7.");
             return true;
         }
         if (!(sender instanceof Player)) {
