@@ -35,9 +35,9 @@ import java.util.Random;
 public class MinorItemListener implements Listener {
 
     private final Random rnd = new Random();
-    private final MinorItemUtil customItems;
+    private final CustomItems customItems;
     public MinorItemListener() {
-        customItems = new MinorItemUtil();
+        customItems = new CustomItems();
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

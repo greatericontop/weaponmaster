@@ -25,10 +25,10 @@ import org.bukkit.inventory.ShapedRecipe;
 
 public class FlaskRecipe {
 
-    private MinorItemUtil customItems;
+    private CustomItems customItems;
 
     public FlaskRecipe() {
-        customItems = new MinorItemUtil();
+        customItems = new CustomItems();
     }
 
     public void regRecipe() {

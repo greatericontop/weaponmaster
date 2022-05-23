@@ -7,10 +7,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CoreStaffRecipe {
-    private MinorItemUtil customItems;
+    private CustomItems customItems;
 
     public CoreStaffRecipe() {
-        customItems = new MinorItemUtil();
+        customItems = new CustomItems();
     }
 
     public void regRecipe() {

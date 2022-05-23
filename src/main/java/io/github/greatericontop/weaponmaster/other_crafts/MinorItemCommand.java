@@ -25,9 +25,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class MinorItemCommand implements CommandExecutor {
 
-    private final MinorItemUtil customItems;
+    private final CustomItems customItems;
     public MinorItemCommand() {
-        this.customItems = new MinorItemUtil();
+        this.customItems = new CustomItems();
     }
 
     private void sendInfo(CommandSender to) {

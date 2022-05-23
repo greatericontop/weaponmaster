@@ -29,7 +29,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinorItemUtil {
+public class CustomItems {
 
     public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
@@ -40,7 +40,7 @@ public class MinorItemUtil {
     public List<String> CORE_STAFF_LORE = new ArrayList<String>();
     public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
 
-    public MinorItemUtil() {
+    public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
         LEVIATHAN_HEART_LORE.add("§9The heart of a sea monster.");
         LEVIATHAN_HEART_LORE.add("§712% chance to drop on elder guardian kills");
