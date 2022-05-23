@@ -55,6 +55,7 @@ public class Util {
     public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
     public final String NINJA_BOW_NAME = "§7§lNinja Bow §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ARMOR_NAME = "§aDragon Armor §6⚝⚝⚝⚝⚝";
+    public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -81,6 +82,7 @@ public class Util {
     public List<String> NAPALM_MISSILE_LORE = new ArrayList<>();
     public List<String> NINJA_BOW_LORE = new ArrayList<>();
     public List<String> DRAGON_ARMOR_LORE = new ArrayList<>();
+    public List<String> COPPER_SWORD_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -379,6 +381,14 @@ public class Util {
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§6LEGENDARY");
         DRAGON_ARMOR_LORE.add("§6---------------");
+        // Copper Sword
+        COPPER_SWORD_LORE.add("id: COPPER_SWORD");
+        COPPER_SWORD_LORE.add("§6---------------");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy up to 3 seconds.");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§dEpic");
+        COPPER_SWORD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -481,5 +491,8 @@ public class Util {
     }
     public boolean checkForDragonArmor(ItemStack item) {
         return this.checkFor(item, DRAGON_ARMOR_NAME, 0, "id: DRAGON_ARMOR");
+    }
+    public boolean checkForCopperSword(ItemStack item) {
+        return this.checkFor(item, COPPER_SWORD_NAME, 0, "id: COPPER_SWORD");
     }
 }

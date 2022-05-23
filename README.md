@@ -39,6 +39,7 @@
   - [Ninja Bow](#ninja-bow)
   - [Pilot Sword](#pilot-sword)
   - [Shredded Axe](#shredded-axe)
+  - [Copper Sword](#copper-sword)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-inchor)
@@ -232,6 +233,16 @@ Crafting Recipe: (not) coming soon
 ## Shredded Axe
 
 `/shredded-axe give` - Summons a zombie when hitting an enemy.
+
+## Copper sword
+
+`/coppersword give` - has a chance of stunning the enemy up to 3 seconds.
+
+Crafting Recipe:
+- 8 Copper Ingot
+- 1 Iron Sword
+
+![](assets/coppersword.png)
 
 ---
 

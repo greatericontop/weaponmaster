@@ -26,6 +26,9 @@ import io.github.greatericontop.weaponmaster.AtomBomb.AtomCommand;
 import io.github.greatericontop.weaponmaster.AtomBomb.AtomItemListener;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanItemListener;
+import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordCommand;
+import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordListener;
+import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordRecipe;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorCommand;
@@ -207,6 +210,10 @@ public class WeaponMasterMain extends JavaPlugin {
         // Dragon Armor
         getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
         getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
+        // Copper Sword
+        getCommand("coppersword").setExecutor(new CopperSwordCommand());
+        getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
+        new CopperSwordRecipe().regRecipe();
         // Custom Items
         getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();

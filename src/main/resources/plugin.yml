@@ -147,6 +147,11 @@ commands:
     usage: "U: /dragonarmor [give]"
     permission: "weaponmaster.dragonarmor.command"
     permission-message: "§cYou are not allowed to do this!"
+  coppersword:
+    description: "[Weapon Master] command for Copper Sword"
+    usage: "U: /coppersword give"
+    permission: "weaponmaster.coppersword.command"
+    permission-message: "§cYou are not allowed to do this!"
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -277,4 +282,9 @@ permissions:
   weaponmaster.dragonarmor.command:
     deafult: op
   weaponmaster.dragonarmor.use:
+    default: true
+  #
+  weaponmaster.coppersword.command:
+    default: op
+  weaponmaster.coppersword.use:
     default: true
