@@ -213,7 +213,7 @@ public class WeaponMasterMain extends JavaPlugin {
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
-        getServer().getPluginManager().registerEvents(new MinorItemListener(), this);
+        getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
         getLogger().info("Finished setting up!");
     }
 

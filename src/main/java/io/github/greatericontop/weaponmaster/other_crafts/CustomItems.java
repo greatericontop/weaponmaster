@@ -1,18 +1,17 @@
+
+
 package io.github.greatericontop.weaponmaster.other_crafts;
 
 /*
     Copyright (C) 2021 greateric.
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -28,17 +27,24 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomItems {
+
+    public final UUID ENERGY_MODIFIER_UUID = UUID.fromString("00000000-1111-0000-0000-c61288850beb");
 
     public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
     public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
+    public final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
+    public final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
 
-    public List<String> LEVIATHAN_HEART_LORE = new ArrayList<String>();
-    public List<String> CORE_STAFF_LORE = new ArrayList<String>();
-    public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
+    public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
+    public List<String> CORE_STAFF_LORE = new ArrayList<>();
+    public List<String> DRAGON_SCALE_LORE = new ArrayList<>();
+    public List<String> MAGIC_ENERGY_BAR_LORE = new ArrayList<>();
+    public List<String> EXPERT_SEAL_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -53,6 +59,14 @@ public class CustomItems {
         DRAGON_SCALE_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
         DRAGON_SCALE_LORE.add("§dThis dragon scale carries an immense magical power of the dragon.");
         DRAGON_SCALE_LORE.add("§dIt can be added to other dragon items to multiply their strength.");
+
+        MAGIC_ENERGY_BAR_LORE.add("id: MAGIC_ENERGY_BAR");
+        MAGIC_ENERGY_BAR_LORE.add("§9Consume this item to gain an additional heart.");
+        MAGIC_ENERGY_BAR_LORE.add("§7You can accumulate up to 6 hearts, but 2 are lost per death.");
+
+        EXPERT_SEAL_LORE.add("id: EXPERT_SEAL");
+        EXPERT_SEAL_LORE.add("§9Move this item over another to increase all enchantments");
+        EXPERT_SEAL_LORE.add("§9in the target item by 1 level!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -88,7 +102,31 @@ public class CustomItems {
         ItemStack stack = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(DRAGON_SCALE_NAME);
-        iMeta.setLore(DRAGON_SCALE_LORE);
+        List<String> lore = new ArrayList<String>();
+        lore.addAll(DRAGON_SCALE_LORE);
+        lore.add(String.format("§7#%s", UUID.randomUUID())); // make similar items unstackable - they are bulk deleted in anvils
+        iMeta.setLore(lore);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateMagicEnergyBarItemStack() {
+        ItemStack stack = new ItemStack(Material.COOKIE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(MAGIC_ENERGY_BAR_NAME);
+        iMeta.setLore(MAGIC_ENERGY_BAR_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateExpertSealItemStack() {
+        ItemStack stack = new ItemStack(Material.NETHER_STAR, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(EXPERT_SEAL_NAME);
+        List<String> lore = new ArrayList<String>();
+        lore.addAll(EXPERT_SEAL_LORE);
+        lore.add(String.format("§7#%s", UUID.randomUUID()));
+        iMeta.setLore(lore);
         stack.setItemMeta(iMeta);
         return stack;
     }
