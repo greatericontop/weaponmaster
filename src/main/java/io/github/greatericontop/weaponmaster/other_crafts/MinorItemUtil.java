@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.MinorItems;
+package io.github.greatericontop.weaponmaster.other_crafts;
 
 /*
     Copyright (C) 2021 greateric.
@@ -35,15 +35,10 @@ public class MinorItemUtil {
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
     public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
-    public final String LEVIATHAN_HIDE_NAME = "§9Hide of Leviathan";
-    public final String WITHER_SOUL_NAME = "§e§lWither Soul";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<String>();
     public List<String> CORE_STAFF_LORE = new ArrayList<String>();
-    public List<String> FLASK_ICHOR_LORE = new ArrayList<String>();
     public List<String> DRAGON_SCALE_LORE = new ArrayList<String>();
-    public List<String> LEVIATHAN_HIDE_LORE = new ArrayList<String>();
-    public List<String> WITHER_SOUL_LORE = new ArrayList<String>();
 
     public MinorItemUtil() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -54,21 +49,10 @@ public class MinorItemUtil {
         CORE_STAFF_LORE.add("§9The powerful core From the depths of the Nether.");
         CORE_STAFF_LORE.add("§7Crafted using the finest magic.");
 
-        FLASK_ICHOR_LORE.add("id: FLASK_ICHOR");
-        FLASK_ICHOR_LORE.add("§9The magical potion of a powerful hero.");
-        FLASK_ICHOR_LORE.add("§7Craftable");
-
         DRAGON_SCALE_LORE.add("id: DRAGON_SCALE");
         DRAGON_SCALE_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
         DRAGON_SCALE_LORE.add("§dThis dragon scale carries an immense magical power of the dragon.");
         DRAGON_SCALE_LORE.add("§dIt can be added to other dragon items to multiply their strength.");
-
-        LEVIATHAN_HIDE_LORE.add("id: LEVIATHAN_HIDE");
-        LEVIATHAN_HIDE_LORE.add("§9The armorpiece of a mighty hero.");
-        LEVIATHAN_HIDE_LORE.add("§7Craftable from the rare drop of a powerful sea creature.");
-
-        
-
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -106,14 +90,6 @@ public class MinorItemUtil {
         iMeta.setDisplayName(DRAGON_SCALE_NAME);
         iMeta.setLore(DRAGON_SCALE_LORE);
         stack.setItemMeta(iMeta);
-        return stack;
-    }
-
-    public ItemStack generateLeviathanHideItemStack() {
-        ItemStack stack = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
-        ItemMeta itemMeta = stack.getItemMeta();
-        itemMeta.setDisplayName("§9§lHide Of Leviathan");
-        stack.setItemMeta(itemMeta);
         return stack;
     }
 

@@ -75,7 +75,7 @@ import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
-import io.github.greatericontop.weaponmaster.MinorItems.*;
+import io.github.greatericontop.weaponmaster.other_crafts.*;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -209,7 +209,7 @@ public class WeaponMasterMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
         // Custom Items
         getCommand("minoritem").setExecutor(new MinorItemCommand());
-        new LeviathanHideRecipe().regRecipe();
+        new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
