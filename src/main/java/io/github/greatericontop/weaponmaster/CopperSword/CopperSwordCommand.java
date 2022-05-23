@@ -37,7 +37,7 @@ public class CopperSwordCommand implements CommandExecutor {
             copperSword.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
             copperSword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
             ((Player) sender).getInventory().addItem(copperSword);
-            sender.sendMessage("§7Gave you §f[" + util.DEATH_SCYTHE_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + util.COPPER_SWORD_NAME + "§f]§7.");
             return true;
         }
         return false;

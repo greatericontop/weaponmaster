@@ -17,8 +17,6 @@ import java.util.Random;
 public class CopperSwordListener implements Listener {
 
     Random rnd = new Random();
-    int duration = rnd.nextInt(40) + 20;
-
     private final WeaponMasterMain plugin;
     private final Util util;
     public CopperSwordListener(WeaponMasterMain plugin) {
@@ -35,16 +33,15 @@ public class CopperSwordListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
-        if (Math.random() <= 0.30) {
-            LivingEntity attacked = (LivingEntity) event.getEntity();
-            PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW, duration, 126);
-            PotionEffect weakness = new PotionEffect(PotionEffectType.WEAKNESS, duration, 126);
-            attacked.addPotionEffect(slowness);
-            attacked.addPotionEffect(weakness);
-            plugin.paperUtils.sendActionBar(player, String.format("§bYou have been stunned your enemy for %d", (int) duration/20), true);
-            if (attacked.getType() == EntityType.PLAYER) {
-                plugin.paperUtils.sendActionBar((Player) attacked, String.format("§bYou have been stunned for %d", (int) duration/20), true);
-            }
+        if (Math.random() >= 0.2) { return; }
+        LivingEntity attacked = (LivingEntity) event.getEntity();
+        int duration = rnd.nextInt(41) + 40;
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 127));
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
+        plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
+        if (attacked.getType() == EntityType.PLAYER) {
+            plugin.paperUtils.sendActionBar((Player) attacked, String.format("§3You were stunned for %d seconds.", duration/20), true);
         }
     }
 }

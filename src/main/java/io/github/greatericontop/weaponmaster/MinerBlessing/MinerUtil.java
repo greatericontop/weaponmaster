@@ -66,7 +66,7 @@ public class MinerUtil   {
         if (mat == Material.EMERALD_ORE)  return 1000;
         if (mat == Material.DEEPSLATE_LAPIS_ORE || mat == Material.DEEPSLATE_COPPER_ORE || mat == Material.DEEPSLATE_IRON_ORE || mat == Material.DEEPSLATE_GOLD_ORE)  return 810;
         if (mat == Material.IRON_ORE || mat == Material.GOLD_ORE || mat == Material.DEEPSLATE_REDSTONE_ORE || mat == Material.REDSTONE_ORE || mat == Material.LAPIS_ORE)  return 600;
-        if (mat == Material.COAL_ORE || mat == Material.COPPER_ORE)  return 220;
+        if (mat == Material.COAL_ORE || mat == Material.COPPER_ORE || mat == Material.NETHER_QUARTZ_ORE || mat == Material.NETHER_GOLD_ORE)  return 220;
         if (mat == Material.OBSIDIAN || mat == Material.ANCIENT_DEBRIS)  return 55;
         if (mat == Material.DEEPSLATE)  return 15;
         if (mat == Material.STONE || mat == Material.TUFF)  return 4;
