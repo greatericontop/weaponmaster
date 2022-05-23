@@ -376,6 +376,7 @@ public class Util {
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b25%§3.");
+        DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§6LEGENDARY");
         DRAGON_ARMOR_LORE.add("§6---------------");
