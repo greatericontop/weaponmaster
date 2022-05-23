@@ -25,9 +25,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExhaustionEvent;
 
 public class DragonArmorListener implements Listener {
 
+    private final double PROTECTION_EACH = 0.05;
+    private final float REDUCTION_HUNGER = 0.6666666666666666F;
     private final WeaponMasterMain plugin;
     private final Util util;
     public DragonArmorListener(WeaponMasterMain plugin) {
@@ -40,10 +43,10 @@ public class DragonArmorListener implements Listener {
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getEntity();
         double damageProtection = 1.0;
-        if (util.checkForDragonArmor(player.getInventory().getHelmet())) { damageProtection -= 0.05; }
-        if (util.checkForDragonArmor(player.getInventory().getChestplate())) { damageProtection -= 0.05; }
-        if (util.checkForDragonArmor(player.getInventory().getLeggings())) { damageProtection -= 0.05; }
-        if (util.checkForDragonArmor(player.getInventory().getBoots())) { damageProtection -= 0.05; }
+        if (util.checkForDragonArmor(player.getInventory().getHelmet())) { damageProtection -= PROTECTION_EACH; }
+        if (util.checkForDragonArmor(player.getInventory().getChestplate())) { damageProtection -= PROTECTION_EACH; }
+        if (util.checkForDragonArmor(player.getInventory().getLeggings())) { damageProtection -= PROTECTION_EACH; }
+        if (util.checkForDragonArmor(player.getInventory().getBoots())) { damageProtection -= PROTECTION_EACH; }
         if (damageProtection >= 0.999) { return; }
         if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
@@ -52,6 +55,22 @@ public class DragonArmorListener implements Listener {
 
         event.setDamage(event.getDamage() * damageProtection);
         plugin.paperUtils.sendActionBar(player, String.format("§eDamage was reduced by %.0f%% to %.1f.", 100*(1-damageProtection), event.getDamage()), false);
+    }
+
+    @EventHandler(priority = EventPriority.HIGH) // runs near the end
+    public void onExhaustion(EntityExhaustionEvent event) {
+        Player player = (Player) event.getEntity();
+        if (!(
+                util.checkForDragonArmor(player.getInventory().getHelmet())
+                && util.checkForDragonArmor(player.getInventory().getChestplate())
+                && util.checkForDragonArmor(player.getInventory().getLeggings())
+                && util.checkForDragonArmor(player.getInventory().getBoots())
+        )) { return; }
+        if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
+            return;
+        }
+        event.setExhaustion(event.getExhaustion() * REDUCTION_HUNGER);
     }
 
 }
