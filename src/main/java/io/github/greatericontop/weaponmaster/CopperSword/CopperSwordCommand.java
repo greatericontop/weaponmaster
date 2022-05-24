@@ -19,7 +19,7 @@ public class CopperSwordCommand implements CommandExecutor {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§Copper Sword");
         to.sendMessage("§e§oby gerseneck");
-        to.sendMessage("§3Use §2/scythe give§3 to give yourself the item.");
+        to.sendMessage("§3Use §2/coppersword give§3 to give yourself the item.");
     }
 
     @Override

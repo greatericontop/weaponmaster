@@ -239,7 +239,7 @@ Crafting Recipe: (not) coming soon
 `/coppersword give` - has a chance of stunning the enemy up to 3 seconds.
 
 Crafting Recipe:
-- 8 Copper Ingot
+- 8 Copper Block
 - 1 Iron Sword
 
 ![](assets/coppersword.png)

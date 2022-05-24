@@ -24,7 +24,7 @@ public class CopperSwordRecipe {
         copperRec.shape("ccc",
                         "cic",
                         "ccc");
-        copperRec.setIngredient('c', Material.COPPER_INGOT);
+        copperRec.setIngredient('c', Material.COPPER_BLOCK);
         copperRec.setIngredient('i', Material.IRON_SWORD);
         Bukkit.getServer().addRecipe(copperRec);
     }

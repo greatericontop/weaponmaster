@@ -30,10 +30,10 @@ public class CopperSwordListener implements Listener {
         Player player = (Player) event.getDamager();
         if (!util.checkForCopperSword(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.coppersword.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.coppersword.use§3.");
             return;
         }
-        if (Math.random() >= 0.2) { return; }
+        if (Math.random() >= 0.15) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
         int duration = rnd.nextInt(41) + 40;
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
