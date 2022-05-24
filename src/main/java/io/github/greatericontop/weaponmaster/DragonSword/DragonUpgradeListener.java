@@ -45,9 +45,7 @@ public class DragonUpgradeListener implements Listener {
     public int getUpgradeCount(List<String> lore) {
         String loreData = lore.get(util.DRAGON_UPGRADE);
         if (loreData.equals("§6LEGENDARY")) {
-            lore.add(util.DRAGON_UPGRADE, "");
-            lore.add(util.DRAGON_UPGRADE+1, "§7§oUpgrades increase the chance to deal even higher damage.");
-            loreData = "";
+            return 0;
         }
         if (loreData.length() <= 2) {
             return 0;
@@ -96,6 +94,10 @@ public class DragonUpgradeListener implements Listener {
 
         ItemMeta newIM = dragonIM.clone();
         List<String> newLore = newIM.getLore();
+        if (newLore.get(util.DRAGON_UPGRADE).equals("§6LEGENDARY")) {
+            newLore.add(util.DRAGON_UPGRADE, "");
+            newLore.add(util.DRAGON_UPGRADE+1, "§7§oUpgrades increase the chance to deal even higher damage.");
+        }
         newLore.set(util.DRAGON_UPGRADE, String.format("§6Upgrade Level: §b%d%s", currentUpgradeLevel, currentUpgradeLevel >= 5 ? " §a(MAXED!)" : ""));
         newLore.add(String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(newLore)));
         newIM.setLore(newLore);

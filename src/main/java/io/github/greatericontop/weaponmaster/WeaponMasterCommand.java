@@ -60,7 +60,7 @@ public class WeaponMasterCommand implements CommandExecutor {
             try {
                 operation = AttributeModifier.Operation.valueOf(args[2]);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage("§cError: §4You gave an invalid operation. Choose from 'ADD_NUMBER', 'ADD_SCALAR', 'MULTIPLY_SCALAR'");
+                sender.sendMessage("§cError: §4You gave an invalid operation. Choose from 'ADD_NUMBER', 'ADD_SCALAR', 'MULTIPLY_SCALAR_1'");
                 return true;
             }
             try {

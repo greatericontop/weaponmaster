@@ -124,6 +124,7 @@ public class WeaponMasterMain extends JavaPlugin {
         this.paperUtils = new PaperUtils(this);
 
         getCommand("weaponmaster").setExecutor(new WeaponMasterCommand(this));
+        getCommand("weaponmaster").setTabCompleter(new WeaponMasterCommandTabCompleter());
         // RPG Launcher
         getServer().getPluginManager().registerEvents(new RPGItemListener(this), this);
         getCommand("rpgl").setExecutor(new LauncherCommand());
