@@ -389,6 +389,10 @@ public class Util {
         COPPER_SWORD_LORE.add("§6---------------");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy with a charged attack.");
+        COPPER_SWORD_LORE.add("§cThis sword will oxidize over time, making it weaker and weaker.");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§bNORMAL");
+        COPPER_SWORD_LORE.add("§6NOT WAXED");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§dEpic");
         COPPER_SWORD_LORE.add("§6---------------");
