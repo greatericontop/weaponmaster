@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
@@ -30,6 +31,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
@@ -79,12 +81,13 @@ public class MidFightTasks {
                 }
                 doHiveAnger();
                 spawnEndGuard();
+                doLightningAttack();
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
     public void doHiveAnger() {
-        if (rejectWithChance(30.0)) { return; }
+        if (rejectWithChance(35.0)) { return; }
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         int angeredCount = 0;
@@ -128,5 +131,17 @@ public class MidFightTasks {
         target.sendMessage("§5Ender Dragon §cused §3Call Help §con you. Kill the guards before they get too powerful!");
     }
 
+    public void doLightningAttack() {
+        // TODO: add tick counter in main runner and limit to at most once every 10 seconds
+        if (rejectWithChance(30.0)) { return; }
+        for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
+            if (!(entity instanceof Player)) { continue; }
+            Player target = (Player) entity;
+            double damage = 9.0 + rnd.nextInt(8); // 9 ~ 16 in true damage
+            TrueDamageHelper.dealTrueDamage(target, damage, target);
+            target.getWorld().strikeLightningEffect(target.getLocation());
+            target.sendMessage(String.format("§5Ender Dragon §cused §3Lightning §con you for §4%.1f §cdamage.", damage));
+        }
+    }
 
 }
