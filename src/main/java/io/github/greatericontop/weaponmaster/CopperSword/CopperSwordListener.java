@@ -41,7 +41,8 @@ public class CopperSwordListener implements Listener {
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
         plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
         if (attacked.getType() == EntityType.PLAYER) {
-            plugin.paperUtils.sendActionBar((Player) attacked, String.format("§3You were stunned for %d seconds.", duration/20), true);
+            //attacked.playSound();
+            plugin.paperUtils.sendActionBar((Player) attacked, String.format("§3You were stunned for %d seconds.", duration / 20), true);
         }
     }
 }

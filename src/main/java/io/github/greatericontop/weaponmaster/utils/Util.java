@@ -388,7 +388,7 @@ public class Util {
         COPPER_SWORD_LORE.add("id: COPPER_SWORD");
         COPPER_SWORD_LORE.add("§6---------------");
         COPPER_SWORD_LORE.add("");
-        COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy up to 3 seconds.");
+        COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy up to 4 seconds.");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§dEpic");
         COPPER_SWORD_LORE.add("§6---------------");
