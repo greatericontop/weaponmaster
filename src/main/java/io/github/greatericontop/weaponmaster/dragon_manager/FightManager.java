@@ -26,6 +26,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
@@ -53,7 +55,8 @@ public class FightManager implements Listener {
      * This gets executed every tick while the fight lasts.
      */
     public void midFightTasks() {
-        if (Math.random() < 0.005) { // average 10s
+        // TODO: move each individual task into its own method and the mid fight tasks be its own class
+        if (Math.random() < 0.05 / 30) {
             // Pick a random player nearby
             int i = 1;
             Player target = null;
@@ -65,15 +68,20 @@ public class FightManager implements Listener {
             }
             if (target == null) { return; }
             // Make endermen angry at them
+            int angeredCount = 0;
             for (Entity entity : currentlyActiveDragon.getNearbyEntities(DISTANCE, DISTANCE, DISTANCE)) {
                 if (!(entity instanceof Enderman)) { continue; }
                 Enderman enderman = (Enderman) entity;
-                if (enderman.getTarget() == null) { return; } // we don't want to reassign their anger
-                if (Math.random() < 0.2) {
+                if (enderman.getTarget() != null) { continue; } // we don't want to reassign their anger
+                if (Math.random() < 0.1) {
+                    // TODO: maybe increase the chance when less endermen are angered, because more need to be angered instead of 2-7
+                    //       and its also very variant; maybe make this fire less but in exchange anger more endermen (8-10 i guess)
                     enderman.setTarget(target);
+                    enderman.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0, true));
+                    angeredCount++;
                 }
             }
-
+            target.sendMessage(String.format("§5Ender Dragon §cused §3Hive Anger §con you and angered §b%d §cendermen.", angeredCount));
         }
     }
 
@@ -81,7 +89,7 @@ public class FightManager implements Listener {
         UUID cachedDragon = currentlyActiveDragon.getUniqueId();
         new BukkitRunnable() {
             public void run() {
-                if (currentlyActiveDragon == null || !currentlyActiveDragon.getUniqueId().equals(cachedDragon)) {
+                if (currentlyActiveDragon == null || !currentlyActiveDragon.getUniqueId().equals(cachedDragon) || currentlyActiveDragon.isDead()) {
                     cancel();
                     return;
                 }
