@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.DeathScythe;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -31,7 +30,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -83,7 +81,7 @@ public class ScytheItemListener implements Listener {
 
         LivingEntity target = (LivingEntity) event.getEntity();
         double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * 0.3;
-        TrueDamageHelper.dealTrueDamage(target, damageAmount, player);
+        TrueDamageHelper.dealTrueDamage(target, damageAmount);
         int strengthLevel = getStrengthLevel(damageAmount);
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 300, strengthLevel, true));
         player.sendMessage(String.format("§3Dealt §4%.1f §3damage. You gained §bStrength §c%d§3 for §b15 §3seconds.", damageAmount, strengthLevel+1));

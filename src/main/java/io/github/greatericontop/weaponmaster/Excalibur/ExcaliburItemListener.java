@@ -65,7 +65,7 @@ public class ExcaliburItemListener implements Listener {
                     victim.setNoDamageTicks(0);
                     victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
                     victim.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, victim.getLocation(), 4);
-                    TrueDamageHelper.dealTrueDamage(victim, 3.0, player);
+                    TrueDamageHelper.dealTrueDamage(victim, 3.0);
                 }
             }.runTaskLater(plugin, 1L);
             cooldowns.put(player.getUniqueId(), false);

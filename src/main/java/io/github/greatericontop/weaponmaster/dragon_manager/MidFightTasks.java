@@ -19,11 +19,8 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,7 +28,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
@@ -138,7 +134,7 @@ public class MidFightTasks {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
             double damage = 9.0 + rnd.nextInt(8); // 9 ~ 16 in true damage
-            TrueDamageHelper.dealTrueDamage(target, damage, target);
+            TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
             target.sendMessage(String.format("§5Ender Dragon §cused §3Lightning §con you for §4%.1f §cdamage.", damage));
         }

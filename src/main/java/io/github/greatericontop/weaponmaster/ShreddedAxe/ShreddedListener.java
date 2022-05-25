@@ -21,7 +21,6 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
@@ -101,7 +100,7 @@ public class ShreddedListener implements Listener {
                     zombie.setTarget(victim);
                 }
                 if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
-                    TrueDamageHelper.dealTrueDamage(zombie,4.0, player);
+                    TrueDamageHelper.dealTrueDamage(zombie,4.0);
                     zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0), 10);
                 }
             }
