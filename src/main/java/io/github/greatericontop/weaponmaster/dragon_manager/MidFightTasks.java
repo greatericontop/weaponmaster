@@ -124,6 +124,17 @@ public class MidFightTasks {
                 }
             }
         }.runTaskTimer(plugin, 100L, 200L);
+        new BukkitRunnable() {
+            public void run() {
+                if (endGuard.isDead()) {
+                    cancel();
+                    return;
+                }
+                if (!endGuard.getTarget().getUniqueId().equals(target.getUniqueId())) {
+                    endGuard.setTarget(target);
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
         target.sendMessage("§5Ender Dragon §cused §3Call Help §con you. Kill the guards before they get too powerful!");
     }
 
