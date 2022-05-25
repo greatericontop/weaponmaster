@@ -12,6 +12,7 @@ public class TrueDamageHelper {
             // all the damage was used on absorption hearts
             target.setAbsorptionAmount(absorptionAmount - amount);
         } else {
+            target.setAbsorptionAmount(0.0);
             // damage left over for health
             double newHealth = target.getHealth() - leftAmount;
             if (newHealth <= 0.000_001) {
