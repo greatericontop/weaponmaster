@@ -96,14 +96,16 @@ public class CopperSwordListener implements Listener {
             event.setResult(itemStack);
         }
         if (event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
-            if (event.getInventory().getItem(1).getAmount() != 4) {
-                player.sendMessage("§cYou must have exactly §b4 §cof §6Copper Block §cto execute this operation.");
+            if (event.getInventory().getItem(1).getAmount() != 5) {
+                player.sendMessage("§cYou must have exactly §b5 §cof §6Copper Block §cto execute this operation.");
             } else {
                 ItemStack itemStack = event.getInventory().getItem(0);
                 ItemMeta im = itemStack.getItemMeta();
                 List<String> lore = im.getLore();
                 lore.set(6, "§bNORMAL");
                 im.setLore(lore);
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
                 itemStack.setItemMeta(im);
                 event.setResult(itemStack);
             }
@@ -119,7 +121,7 @@ public class CopperSwordListener implements Listener {
 
         if (event.getInventory().getItem(1).getType() == Material.GOLD_INGOT) {
             event.setCancelled(true);
-            player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
+            // player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
         } else if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB || event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
             event.setCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
