@@ -41,6 +41,10 @@ public class WeaponMasterCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        if (args.length >= 1 && args[0].equals("debug")) {
+            sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
+            return true;
+        }
         if (args.length >= 1 && args[0].equals("attributemodifier")) {
             if (args.length < 5) {
                 sender.sendMessage("§cError: §4Missing arguments: /weaponmaster attributemodifier <attribute> <operation> <amount> <slot> [<optional uuid>]");

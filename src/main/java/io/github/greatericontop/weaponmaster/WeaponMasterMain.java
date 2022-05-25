@@ -78,6 +78,7 @@ import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
+import io.github.greatericontop.weaponmaster.dragon_manager.FightManager;
 import io.github.greatericontop.weaponmaster.other_crafts.*;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -85,6 +86,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class WeaponMasterMain extends JavaPlugin {
 
     public PaperUtils paperUtils = null;
+    public FightManager dragonManager = null;
 
     private String encryption(String s, byte[] key) {
         StringBuilder sb = new StringBuilder();
@@ -222,6 +224,10 @@ public class WeaponMasterMain extends JavaPlugin {
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
         getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
+        // Dragon Fight
+        this.dragonManager = new FightManager(this);
+        getServer().getPluginManager().registerEvents(dragonManager, this);
+
         getLogger().info("Finished setting up!");
     }
 
