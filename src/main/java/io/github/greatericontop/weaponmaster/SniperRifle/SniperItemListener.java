@@ -52,7 +52,7 @@ public class SniperItemListener implements Listener {
 
     private void fireOneRound(Player player) {
         Location eyeLoc = player.getEyeLocation();
-        Vector velocityVector = eyeLoc.getDirection().multiply(50.95); // 46.3 block/tick is 1019 meter/s is 3343 feet/s
+        Vector velocityVector = eyeLoc.getDirection().multiply(50.95); // 50.95 block/tick is 1019 meter/s is 3343 feet/s
         Arrow arrow = (Arrow) player.getWorld().spawnEntity(eyeLoc, EntityType.ARROW);
         arrow.setDamage(13.0);
         arrow.setKnockbackStrength(3);
@@ -87,8 +87,14 @@ public class SniperItemListener implements Listener {
         ItemStack sniper = player.getInventory().getItemInMainHand();
         Damageable durability = (Damageable) sniper.getItemMeta();
         if (durability.getDamage() > 1) {
-            plugin.paperUtils.sendActionBar(player, "§cThis weapon is reloading! This takes 1.5 seconds.", true);
-            return;
+            if (player.getGameMode() == GameMode.CREATIVE) {
+                durability.setDamage(0);
+                sniper.setItemMeta(durability);
+                player.sendMessage("§cFixed durability!");
+            } else {
+                plugin.paperUtils.sendActionBar(player, "§cThis weapon is reloading! This takes 1.5 seconds.", true);
+                return;
+            }
         }
 
         if (player.getGameMode() == GameMode.CREATIVE || player.getInventory().containsAtLeast(new ItemStack(Material.ARROW), 1)) {

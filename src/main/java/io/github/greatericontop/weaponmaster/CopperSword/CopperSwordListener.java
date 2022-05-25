@@ -45,7 +45,7 @@ public class CopperSwordListener implements Listener {
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
-        if (Math.random() < 0.5 &&
+        if (Math.random() < 0.05 &&
                 lore.get(7).equals("§6NOT WAXED") &&
                 !lore.get(6).equals("§bOXIDIZED")) {
             int lvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
