@@ -2,6 +2,8 @@ package io.github.greatericontop.weaponmaster.CopperSword;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.EntityEffect;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -33,16 +35,19 @@ public class CopperSwordListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.coppersword.use§3.");
             return;
         }
-        if (Math.random() >= 0.15) { return; }
+        if (player.getAttackCooldown() != 1.0) { return; }
+        if (Math.random() > 0.15) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
         int duration = rnd.nextInt(41) + 40;
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 127));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
+        // player.playSound(player, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
         plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
         if (attacked.getType() == EntityType.PLAYER) {
-            //attacked.playSound();
-            plugin.paperUtils.sendActionBar((Player) attacked, String.format("§3You were stunned for %d seconds.", duration / 20), true);
+            Player attackedPlayer = (Player) event.getEntity();
+            attackedPlayer.playSound(attackedPlayer, Sound.BLOCK_ANVIL_LAND, 0.5F, 1.0F);
+            plugin.paperUtils.sendActionBar(attackedPlayer, String.format("§3You were stunned for %d seconds.", duration / 20), true);
         }
     }
 }
