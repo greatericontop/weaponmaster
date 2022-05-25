@@ -19,20 +19,24 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
     private final double GUARD_MAX_HP = 120.0; // 3x their default of 40
+    private final int STORM_SIZE = 4;
+    private final double FIREBALL_SEEK = 11.0;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -78,12 +82,13 @@ public class MidFightTasks {
                 doHiveAnger();
                 spawnEndGuard();
                 doLightningAttack();
+                doFireballStorm();
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
     public void doHiveAnger() {
-        if (rejectWithChance(35.0)) { return; }
+        if (rejectWithChance(65.0)) { return; }
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         int angeredCount = 0;
@@ -130,7 +135,7 @@ public class MidFightTasks {
                     cancel();
                     return;
                 }
-                if (!endGuard.getTarget().getUniqueId().equals(target.getUniqueId())) {
+                if (endGuard.getTarget() == null || !endGuard.getTarget().equals(target)) {
                     endGuard.setTarget(target);
                 }
             }
@@ -140,14 +145,56 @@ public class MidFightTasks {
 
     public void doLightningAttack() {
         // TODO: add tick counter in main runner and limit to at most once every 10 seconds
-        if (rejectWithChance(30.0)) { return; }
+        if (rejectWithChance(45.0)) { return; }
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
-            double damage = 9.0 + rnd.nextInt(8); // 9 ~ 16 in true damage
+            double damage = 8.0 + rnd.nextInt(9); // 8 ~ 16 in true damage
             TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
             target.sendMessage(String.format("§5Ender Dragon §cused §3Lightning §con you for §4%.1f §cdamage.", damage));
+        }
+    }
+
+    public void doFireballStorm() {
+        if (rejectWithChance(40.0)) { return; }
+        Location loc = currentlyActiveDragon.getLocation();
+        Set<DragonFireball> seekingFireballs = new HashSet<>();
+        for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
+            for (int z = -STORM_SIZE; z <= STORM_SIZE; z++) {
+                Vector ray = new Vector(x, -STORM_SIZE*0.25, z).normalize().multiply(1.9);
+                Location spawnLoc = loc.clone().add(ray.multiply(4.0));
+                DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+                fireball.setVelocity(ray);
+                if (Math.random() < 0.1) {
+                    seekingFireballs.add(fireball);
+                }
+            }
+        }
+        new BukkitRunnable() {
+            public void run() {
+                if (seekingFireballs.isEmpty()) {
+                    cancel();
+                    return;
+                }
+                for (DragonFireball fireball : new HashSet<DragonFireball>(seekingFireballs)) {
+                    if (fireball.isDead()) {
+                        seekingFireballs.remove(fireball);
+                        continue;
+                    }
+                    for (Entity entity : fireball.getNearbyEntities(FIREBALL_SEEK, FIREBALL_SEEK, FIREBALL_SEEK)) {
+                        if (!(entity instanceof Player)) { continue; }
+                        Vector targetDirection = entity.getLocation().subtract(fireball.getLocation()).toVector();
+                        Vector newVelocity = targetDirection.normalize().multiply(fireball.getVelocity().length());
+                        fireball.setVelocity(newVelocity);
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getWorld().equals(loc.getWorld())) {
+                player.sendMessage("§5Ender Dragon §cused §3Fireball Storm§c.");
+            }
         }
     }
 
