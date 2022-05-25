@@ -1,5 +1,8 @@
 package io.github.greatericontop.weaponmaster.utils;
 
+import org.bukkit.EntityEffect;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -22,7 +25,8 @@ public class TrueDamageHelper {
             }
             target.setHealth(newHealth);
         }
-        target.damage(0.000_001);
+        target.playEffect(EntityEffect.HURT);
+        target.getWorld().playSound(target, Sound.ENTITY_PLAYER_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 
 }
