@@ -18,20 +18,25 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.entity.EnderDragon;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.UUID;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
+    private final double GUARD_MAX_HP = 120.0; // 3x their default of 40
 
+    private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
     private final EnderDragon currentlyActiveDragon;
     private final UUID cachedDragonId;
@@ -46,8 +51,23 @@ public class MidFightTasks {
      * Use it like this: if (rejectWithChance(30.0)) { return; }
      */
     public static boolean rejectWithChance(double averageSeconds) {
-        averageSeconds = averageSeconds / 5; // testing
         return Math.random() >= 0.05 / averageSeconds;
+    }
+
+    /*
+     * Helper function to get a random nearby player within SEARCH_DIST of the dragon.
+     */
+    @Nullable
+    public Player getRandomNearbyPlayer() {
+        int i = 1;
+        Player target = null;
+        for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
+            if (!(entity instanceof Player)) { continue; }
+            if (Math.random() < 1.0/(i++)) { // knuth algorithm: #i has a 1/i chance to overwrite the current selection
+                target = (Player) entity;
+            }
+        }
+        return target;
     }
 
     public void startFightTasks() {
@@ -57,24 +77,16 @@ public class MidFightTasks {
                     cancel();
                     return;
                 }
-                hiveAnger();
+                doHiveAnger();
+                spawnEndGuard();
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    public void hiveAnger() {
+    public void doHiveAnger() {
         if (rejectWithChance(30.0)) { return; }
-        // Pick a random player nearby
-        int i = 1;
-        Player target = null;
-        for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
-            if (!(entity instanceof Player)) { continue; }
-            if (Math.random() < 1.0/(i++)) {
-                target = (Player) entity;
-            }
-        }
+        Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
-        // Make endermen angry at them
         int angeredCount = 0;
         for (Entity entity : target.getNearbyEntities(ANGER_DIST, ANGER_DIST, ANGER_DIST)) {
             if (!(entity instanceof Enderman)) { continue; }
@@ -89,6 +101,31 @@ public class MidFightTasks {
             }
         }
         target.sendMessage(String.format("§5Ender Dragon §cused §3Hive Anger §con you and angered §b%d §cendermen.", angeredCount));
+    }
+
+    public void spawnEndGuard() {
+        if (rejectWithChance(80.0)) { return; }
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        Enderman endGuard = (Enderman) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.ENDERMAN);
+        endGuard.setTarget(target);
+        endGuard.setCustomName("§dEnd Guard");
+        endGuard.setCustomNameVisible(true);
+        endGuard.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(GUARD_MAX_HP);
+        endGuard.setHealth(GUARD_MAX_HP);
+        new BukkitRunnable() {
+            int amplifier = 0;
+            public void run() {
+                amplifier++;
+                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, amplifier, true));
+                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, Math.min(amplifier/2, 2), true));
+                if (amplifier >= 7) {
+                    cancel();
+                    return;
+                }
+            }
+        }.runTaskTimer(plugin, 100L, 200L);
+        target.sendMessage("§5Ender Dragon §cused §3Call Help §con you. Kill the guards before they get too powerful!");
     }
 
 
