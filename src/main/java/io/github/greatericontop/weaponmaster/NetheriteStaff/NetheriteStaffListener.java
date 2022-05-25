@@ -59,6 +59,7 @@ public class NetheriteStaffListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
+        if (!(event.getEntity() instanceof LivingEntity)) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
         Object[] effectData = EffectPicker.getRandomEffect(false);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);

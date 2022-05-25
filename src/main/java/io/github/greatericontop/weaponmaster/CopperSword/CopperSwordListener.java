@@ -37,6 +37,7 @@ public class CopperSwordListener implements Listener {
         }
         if (player.getAttackCooldown() != 1.0) { return; }
         if (Math.random() > 0.15) { return; }
+        if (!(event.getEntity() instanceof LivingEntity)) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
         int duration = rnd.nextInt(41) + 40;
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
@@ -46,7 +47,7 @@ public class CopperSwordListener implements Listener {
         plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
         if (attacked.getType() == EntityType.PLAYER) {
             Player attackedPlayer = (Player) event.getEntity();
-            attackedPlayer.playSound(attackedPlayer, Sound.BLOCK_ANVIL_LAND, 0.5F, 1.0F);
+            attackedPlayer.playSound(attackedPlayer, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
             plugin.paperUtils.sendActionBar(attackedPlayer, String.format("§3You were stunned for %d seconds.", duration / 20), true);
         }
     }
