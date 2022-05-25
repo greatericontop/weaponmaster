@@ -228,11 +228,11 @@ Crafting Recipe: (not) coming soon
 
 ## Pilot Sword
 
-`/pilot-sword give` - a combo sword, no attack cooldown.
+`/pilotsword give` - a combo sword, no attack cooldown.
 
 ## Shredded Axe
 
-`/shredded-axe give` - Summons a zombie when hitting an enemy.
+`/shreddedaxe give` - Summons a zombie when hitting an enemy.
 
 ## Copper sword
 
