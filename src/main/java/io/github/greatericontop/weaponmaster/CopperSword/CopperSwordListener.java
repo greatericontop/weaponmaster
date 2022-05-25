@@ -5,7 +5,6 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -13,12 +12,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
 import java.util.Random;
 
 public class CopperSwordListener implements Listener {
@@ -42,18 +44,21 @@ public class CopperSwordListener implements Listener {
         }
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
-        if (Math.random() < 0.01 &&
-                im.getLore().get(7) == "§6NOT WAXED" &&
-                im.getLore().get(6) != "§bOXIDIZED") {
+        List<String> lore = im.getLore();
+        if (Math.random() < 0.5 &&
+                lore.get(7).equals("§6NOT WAXED") &&
+                !lore.get(6).equals("§bOXIDIZED")) {
             int lvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
             im.removeEnchant(Enchantment.DAMAGE_ALL);
             im.addEnchant(Enchantment.DAMAGE_ALL, lvl - 1, false);
-            plugin.paperUtils.sendActionBar(player, "§cOh no, your Copper Sword Oxidized.", true);
-            if (im.getLore().get(6) == "§bEXPOSED") {
-                im.getLore().set(6, "§bOXIDIZED");
+            player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
+            if (lore.get(6).equals("§bEXPOSED")) {
+                lore.set(6, "§bOXIDIZED");
             } else {
-                im.getLore().set(6, "§bEXPOSED");
+                lore.set(6, "§bEXPOSED");
             }
+            im.setLore(lore);
+            player.getInventory().getItemInMainHand().setItemMeta(im);
         }
 
         if (player.getAttackCooldown() != 1.0) { return; }
@@ -76,22 +81,48 @@ public class CopperSwordListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void OnRepair(PrepareAnvilEvent event) {
         if (!util.checkForCopperSword(event.getInventory().getItem(0))) { return; }
-        if (event.getInventory().getItem(1).getData().getItemType() == Material.GOLD_INGOT) {
-            event.setResult(null);
+        Player player = (Player) event.getView().getPlayer();
+        if (event.getInventory().getItem(1).getType() == Material.GOLD_INGOT) {
+            event.setResult(new ItemStack(Material.AIR, 1));
+            event.getInventory().setRepairCost(0);
         }
-        if (event.getInventory().getItem(1).getData().getItemType() == Material.HONEYCOMB) {
-            ItemStack it = event.getInventory().getItem(0);
-            ItemMeta im = it.getItemMeta();
-            im.getLore().set(7, "§6WAXED");
-            it.setItemMeta(im);
-            event.setResult(it);
+        if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB) {
+            ItemStack itemStack = event.getInventory().getItem(0);
+            ItemMeta im = itemStack.getItemMeta();
+            List<String> lore = im.getLore();
+            lore.set(7, "§6WAXED");
+            im.setLore(lore);
+            itemStack.setItemMeta(im);
+            event.setResult(itemStack);
         }
-        if (event.getInventory().getItem(1).getData().getItemType() == Material.COPPER_BLOCK) {
-            ItemStack it = event.getInventory().getItem(0);
-            ItemMeta im = it.getItemMeta();
-            im.getLore().set(6, "§bNORMAL");
-            it.setItemMeta(im);
-            event.setResult(it);
+        if (event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
+            if (event.getInventory().getItem(1).getAmount() != 4) {
+                player.sendMessage("§cYou must have exactly §b4 §cof §6Copper Block §cto execute this operation.");
+            } else {
+                ItemStack itemStack = event.getInventory().getItem(0);
+                ItemMeta im = itemStack.getItemMeta();
+                List<String> lore = im.getLore();
+                lore.set(6, "§bNORMAL");
+                im.setLore(lore);
+                itemStack.setItemMeta(im);
+                event.setResult(itemStack);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onAnvilClick(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null) { return; }
+        if (event.getView().getType() != InventoryType.ANVIL) { return; }
+        Player player = (Player) event.getWhoClicked();
+        if (!(event.getRawSlot() == 2 && util.checkForCopperSword(event.getInventory().getItem(0)))) { return; }
+
+        if (event.getInventory().getItem(1).getType() == Material.GOLD_INGOT) {
+            event.setCancelled(true);
+            player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
+        } else if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB || event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
+            event.setCursor(event.getCurrentItem());
+            event.getClickedInventory().clear();
         }
     }
 }
