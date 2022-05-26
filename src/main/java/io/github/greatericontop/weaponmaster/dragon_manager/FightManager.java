@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
@@ -42,8 +43,17 @@ public class FightManager implements Listener {
         if (!(entity instanceof EnderDragon)) { return; }
         // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
+        buffDragon(currentlyActiveDragon);
         this.damageDealtToDragonThroughExplosions = 0.0;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
+    }
+
+    public void buffDragon(EnderDragon dragon) {
+        double DRAGON_MAX_HP = 700.0;
+        dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DRAGON_MAX_HP); // up from 200, the default
+        dragon.setHealth(DRAGON_MAX_HP);
+        dragon.setCustomName("§cWeaponMaster Dragon");
+        dragon.setCustomNameVisible(true);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -51,10 +61,10 @@ public class FightManager implements Listener {
         if (currentlyActiveDragon == null) { return; }
         if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
         if (!(event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) { return; }
-        if (damageDealtToDragonThroughExplosions >= 60.0) {
+        if (damageDealtToDragonThroughExplosions >= 80.0) {
             event.setDamage(event.getDamage() * 0.1);
-        } else if (damageDealtToDragonThroughExplosions + event.getDamage() >= 60.0) {
-            double fullDamage = 60.0 - damageDealtToDragonThroughExplosions;
+        } else if (damageDealtToDragonThroughExplosions + event.getDamage() >= 80.0) {
+            double fullDamage = 80.0 - damageDealtToDragonThroughExplosions;
             event.setDamage(fullDamage + 0.1 * (event.getDamage()-fullDamage));
         }
         damageDealtToDragonThroughExplosions += event.getFinalDamage();
