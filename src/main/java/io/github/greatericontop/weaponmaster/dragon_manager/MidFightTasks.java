@@ -20,9 +20,12 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.Bukkit;
+import org.bukkit.EntityEffect;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -37,6 +40,12 @@ public class MidFightTasks {
     private final double GUARD_MAX_HP = 120.0; // 3x their default of 40
     private final int STORM_SIZE = 4;
     private final double FIREBALL_SEEK = 11.0;
+
+    private int hiveAnger_lastTickRan = -1000;
+    private int endGuard_lastTickRan = -1000;
+    private int lightningAttack_lastTickRan = -1000;
+    private int fireballStorm_lastTickRan = -1000;
+    private int toxicStorm_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -74,21 +83,26 @@ public class MidFightTasks {
 
     public void startFightTasks() {
         new BukkitRunnable() {
+            int tickNumber = 0;
             public void run() {
+                tickNumber++;
                 if ((!currentlyActiveDragon.getUniqueId().equals(cachedDragonId)) || currentlyActiveDragon.isDead()) {
                     cancel();
                     return;
                 }
-                doHiveAnger();
-                spawnEndGuard();
-                doLightningAttack();
-                doFireballStorm();
+                doHiveAnger(tickNumber);
+                spawnEndGuard(tickNumber);
+                doLightningAttack(tickNumber);
+                doFireballStorm(tickNumber);
+                doToxicStorm(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    public void doHiveAnger() {
+    public void doHiveAnger(int tickNumber) {
         if (rejectWithChance(65.0)) { return; }
+        if (tickNumber < hiveAnger_lastTickRan + 800) { return; }
+        hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         int angeredCount = 0;
@@ -107,8 +121,10 @@ public class MidFightTasks {
         target.sendMessage(String.format("§5Ender Dragon §cused §3Hive Anger §con you and angered §b%d §cendermen.", angeredCount));
     }
 
-    public void spawnEndGuard() {
+    public void spawnEndGuard(int tickNumber) {
         if (rejectWithChance(80.0)) { return; }
+        if (tickNumber < endGuard_lastTickRan + 600) { return; }
+        endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         Enderman endGuard = (Enderman) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.ENDERMAN);
@@ -143,9 +159,10 @@ public class MidFightTasks {
         target.sendMessage("§5Ender Dragon §cused §3Call Help §con you. Kill the guards before they get too powerful!");
     }
 
-    public void doLightningAttack() {
-        // TODO: add tick counter in main runner and limit to at most once every 10 seconds
+    public void doLightningAttack(int tickNumber) {
         if (rejectWithChance(45.0)) { return; }
+        if (tickNumber < lightningAttack_lastTickRan + 200) { return; }
+        lightningAttack_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
@@ -156,8 +173,10 @@ public class MidFightTasks {
         }
     }
 
-    public void doFireballStorm() {
+    public void doFireballStorm(int tickNumber) {
         if (rejectWithChance(40.0)) { return; }
+        if (tickNumber < fireballStorm_lastTickRan + 200) { return; }
+        fireballStorm_lastTickRan = tickNumber;
         Location loc = currentlyActiveDragon.getLocation();
         // Spawn fireballs below the dragon as some kind of protection
         for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
@@ -193,6 +212,22 @@ public class MidFightTasks {
             if (player.getWorld().equals(loc.getWorld())) {
                 player.sendMessage("§5Ender Dragon §cused §3Fireball Storm§c.");
             }
+        }
+    }
+
+    public void doToxicStorm(int tickNumber) {
+        if (rejectWithChance(120.0)) { return; }
+        if (tickNumber < toxicStorm_lastTickRan + 300) { return; }
+        toxicStorm_lastTickRan = tickNumber;
+        for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
+            if (!(entity instanceof Player)) { continue; }
+            Player target = (Player) entity;
+            target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0, true));
+            target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0, true));
+            target.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, true));
+            target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
+            target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
+            target.sendMessage("§5Ender Dragon §cused §3Toxic Storm §cand gave you §4Weakness§c, §4Poison§c, §4Hunger§c, and §4Mining Fatigue §cfor §410 §cseconds.");
         }
     }
 
