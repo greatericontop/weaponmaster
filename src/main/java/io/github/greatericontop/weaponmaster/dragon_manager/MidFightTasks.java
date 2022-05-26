@@ -101,7 +101,7 @@ public class MidFightTasks {
 
     public void doHiveAnger(int tickNumber) {
         if (rejectWithChance(65.0)) { return; }
-        if (tickNumber < hiveAnger_lastTickRan + 800) { return; }
+        if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -123,7 +123,7 @@ public class MidFightTasks {
 
     public void spawnEndGuard(int tickNumber) {
         if (rejectWithChance(80.0)) { return; }
-        if (tickNumber < endGuard_lastTickRan + 600) { return; }
+        if (tickNumber < endGuard_lastTickRan + 500) { return; }
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -161,7 +161,7 @@ public class MidFightTasks {
 
     public void doLightningAttack(int tickNumber) {
         if (rejectWithChance(45.0)) { return; }
-        if (tickNumber < lightningAttack_lastTickRan + 200) { return; }
+        if (tickNumber < lightningAttack_lastTickRan + 160) { return; }
         lightningAttack_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
