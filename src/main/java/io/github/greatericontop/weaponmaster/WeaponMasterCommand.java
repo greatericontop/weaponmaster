@@ -43,6 +43,7 @@ public class WeaponMasterCommand implements CommandExecutor {
 
         if (args.length >= 1 && args[0].equals("debug")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
+            sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
             return true;
         }
         if (args.length >= 1 && args[0].equals("attributemodifier")) {
