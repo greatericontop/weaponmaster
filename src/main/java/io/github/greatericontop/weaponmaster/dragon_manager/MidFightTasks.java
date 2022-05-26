@@ -95,6 +95,7 @@ public class MidFightTasks {
                 doLightningAttack(tickNumber);
                 doFireballStorm(tickNumber);
                 doToxicStorm(tickNumber);
+                regenerateOnLowHealth(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -229,6 +230,13 @@ public class MidFightTasks {
             target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
             target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
             target.sendMessage("§5Ender Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
+        }
+    }
+
+    public void regenerateOnLowHealth(int tickNumber) {
+        // TODO: add multiple tiers to the regen, when the dragon is lower it regenerates faster
+        if (currentlyActiveDragon.getHealth() <= 150.0 && tickNumber % 60 == 0) {
+            currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
         }
     }
 
