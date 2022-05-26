@@ -53,6 +53,7 @@ public class DragonArmorListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW) // runs near the beginning
     public void onDamageByEntity(EntityDamageEvent event) {
+        if (event.getCause() == EntityDamageEvent.DamageCause.VOID) { return; }
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getEntity();
         double damageProtection = 1.0;
@@ -68,6 +69,7 @@ public class DragonArmorListener implements Listener {
             damageProtection -= (a + b + c + d) * PROTECTION_ENCHANT;
         }
         if (damageProtection >= 0.999) { return; }
+        damageProtection = Math.max(damageProtection, 0.02);
         if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
             return;
