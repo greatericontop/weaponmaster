@@ -100,7 +100,7 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(65.0)) { return; }
+        if (rejectWithChance(60.0)) { return; }
         if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -110,7 +110,7 @@ public class MidFightTasks {
             if (!(entity instanceof Enderman)) { continue; }
             Enderman enderman = (Enderman) entity;
             if (enderman.getTarget() != null) { continue; } // we don't want to reassign their anger
-            if (Math.random() < 0.1) {
+            if (Math.random() < 0.13) {
                 // TODO: maybe increase the chance when less endermen are angered, because more need to be angered instead of 2-7
                 //       and its also very variant; maybe make this fire less but in exchange anger more endermen (8-10 i guess)
                 enderman.setTarget(target);
@@ -118,11 +118,11 @@ public class MidFightTasks {
                 angeredCount++;
             }
         }
-        target.sendMessage(String.format("§5Ender Dragon §cused §3Hive Anger §con you and angered §b%d §cendermen.", angeredCount));
+        target.sendMessage(String.format("§5Ender Dragon §7used §3Hive Anger §7on you and angered §b%d §7endermen.", angeredCount));
     }
 
     public void spawnEndGuard(int tickNumber) {
-        if (rejectWithChance(80.0)) { return; }
+        if (rejectWithChance(75.0)) { return; }
         if (tickNumber < endGuard_lastTickRan + 500) { return; }
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -156,7 +156,7 @@ public class MidFightTasks {
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
-        target.sendMessage("§5Ender Dragon §cused §3Call Help §con you. Kill the guards before they get too powerful!");
+        target.sendMessage("§5Ender Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
 
     public void doLightningAttack(int tickNumber) {
@@ -166,10 +166,11 @@ public class MidFightTasks {
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
-            double damage = 8.0 + rnd.nextInt(9); // 8 ~ 16 in true damage
+            double damage = 7.0 + rnd.nextInt(12); // 7 ~ 18 in true damage
+            if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 18.5 uniform
             TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
-            target.sendMessage(String.format("§5Ender Dragon §cused §3Lightning §con you for §4%.1f §cdamage.", damage));
+            target.sendMessage(String.format("§5Ender Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
         }
     }
 
@@ -189,7 +190,7 @@ public class MidFightTasks {
         }
         // Spew out many fireballs in the direction of players
         new BukkitRunnable() {
-            int attacksLeft = 20;
+            int attacksLeft = 16;
             public void run() {
                 if (attacksLeft <= 0) {
                     cancel();
@@ -206,11 +207,11 @@ public class MidFightTasks {
                 }
                 attacksLeft--;
             }
-        }.runTaskTimer(plugin, 1L, 3L);
+        }.runTaskTimer(plugin, 1L, 4L);
         // Message everyone in the end
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getWorld().equals(loc.getWorld())) {
-                player.sendMessage("§5Ender Dragon §cused §3Fireball Storm§c.");
+                player.sendMessage("§5Ender Dragon §7used §3Fireball Storm§7.");
             }
         }
     }
@@ -227,7 +228,7 @@ public class MidFightTasks {
             target.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
             target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
-            target.sendMessage("§5Ender Dragon §cused §3Toxic Storm §cand gave you §4Weakness§c, §4Poison§c, §4Hunger§c, and §4Mining Fatigue §cfor §410 §cseconds.");
+            target.sendMessage("§5Ender Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
         }
     }
 
