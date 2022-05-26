@@ -23,11 +23,13 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 
 public class FightManager implements Listener {
 
     public EnderDragon currentlyActiveDragon = null;
+    private double damageDealtToDragonThroughExplosions = 0.0;
     private final WeaponMasterMain plugin;
     public FightManager(WeaponMasterMain plugin) {
         this.plugin = plugin;
@@ -41,6 +43,17 @@ public class FightManager implements Listener {
         // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDragonExplosionDamage(EntityDamageEvent event) {
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (!(event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) { return; }
+        if (damageDealtToDragonThroughExplosions >= 50.0) {
+            System.out.println("debug: reducing, orig was "+event.getDamage()+", final was"+event.getFinalDamage()+", dmg"+damageDealtToDragonThroughExplosions);
+            event.setDamage(event.getDamage() * 0.1);
+        }
+        damageDealtToDragonThroughExplosions += event.getFinalDamage();
     }
 
 }
