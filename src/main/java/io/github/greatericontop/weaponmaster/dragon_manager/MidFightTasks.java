@@ -159,38 +159,36 @@ public class MidFightTasks {
     public void doFireballStorm() {
         if (rejectWithChance(40.0)) { return; }
         Location loc = currentlyActiveDragon.getLocation();
-        Set<DragonFireball> seekingFireballs = new HashSet<>();
+        // Spawn fireballs below the dragon as some kind of protection
         for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
             for (int z = -STORM_SIZE; z <= STORM_SIZE; z++) {
-                Vector ray = new Vector(x, -STORM_SIZE*0.25, z).normalize().multiply(1.9);
+                Vector ray = new Vector(x, -STORM_SIZE*0.35, z).normalize().multiply(1.9);
                 Location spawnLoc = loc.clone().add(ray.multiply(4.0));
                 DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
                 fireball.setVelocity(ray);
-                if (Math.random() < 0.1) {
-                    seekingFireballs.add(fireball);
-                }
             }
         }
+        // Spew out many fireballs in the direction of players
         new BukkitRunnable() {
+            int attacksLeft = 20;
             public void run() {
-                if (seekingFireballs.isEmpty()) {
+                if (attacksLeft <= 0) {
                     cancel();
                     return;
                 }
-                for (DragonFireball fireball : new HashSet<DragonFireball>(seekingFireballs)) {
-                    if (fireball.isDead()) {
-                        seekingFireballs.remove(fireball);
-                        continue;
-                    }
-                    for (Entity entity : fireball.getNearbyEntities(FIREBALL_SEEK, FIREBALL_SEEK, FIREBALL_SEEK)) {
-                        if (!(entity instanceof Player)) { continue; }
-                        Vector targetDirection = entity.getLocation().subtract(fireball.getLocation()).toVector();
-                        Vector newVelocity = targetDirection.normalize().multiply(fireball.getVelocity().length());
-                        fireball.setVelocity(newVelocity);
-                    }
+                for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
+                    if (!(entity instanceof Player)) { continue; }
+                    Player target = (Player) entity;
+                    Vector direction = target.getLocation().subtract(currentlyActiveDragon.getLocation()).toVector();
+                    Vector velocity = direction.normalize().multiply(3.8);
+                    Location spawnLoc = currentlyActiveDragon.getLocation().add(velocity);
+                    DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+                    fireball.setVelocity(velocity);
                 }
+                attacksLeft--;
             }
-        }.runTaskTimer(plugin, 1L, 1L);
+        }.runTaskTimer(plugin, 1L, 3L);
+        // Message everyone in the end
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getWorld().equals(loc.getWorld())) {
                 player.sendMessage("§5Ender Dragon §cused §3Fireball Storm§c.");
