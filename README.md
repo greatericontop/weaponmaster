@@ -236,7 +236,7 @@ Crafting Recipe: (not) coming soon
 
 ## Copper sword
 
-`/coppersword give` - has a chance of stunning the enemy up to 3 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
+`/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
 
 Crafting Recipe:
 - 8 Copper Block

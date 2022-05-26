@@ -48,9 +48,12 @@ public class CopperSwordListener implements Listener {
         if (Math.random() < 0.05 &&
                 lore.get(7).equals("§6NOT WAXED") &&
                 !lore.get(6).equals("§bOXIDIZED")) {
-            int lvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
+            int sharpLvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
+            int unbreakingLvl = im.getEnchantLevel(Enchantment.DURABILITY);
             im.removeEnchant(Enchantment.DAMAGE_ALL);
-            im.addEnchant(Enchantment.DAMAGE_ALL, lvl - 1, false);
+            im.addEnchant(Enchantment.DAMAGE_ALL, sharpLvl - 1, false);
+            im.removeEnchant(Enchantment.DURABILITY);
+            im.addEnchant(Enchantment.DURABILITY, unbreakingLvl - 1, false);
             player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
             if (lore.get(6).equals("§bEXPOSED")) {
                 lore.set(6, "§bOXIDIZED");
@@ -106,6 +109,8 @@ public class CopperSwordListener implements Listener {
                 im.setLore(lore);
                 im.removeEnchant(Enchantment.DAMAGE_ALL);
                 im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DURABILITY, 9, false);
                 itemStack.setItemMeta(im);
                 event.setResult(itemStack);
             }
@@ -121,7 +126,7 @@ public class CopperSwordListener implements Listener {
 
         if (event.getInventory().getItem(1).getType() == Material.GOLD_INGOT) {
             event.setCancelled(true);
-            // player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
+            player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
         } else if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB || event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
             event.setCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
