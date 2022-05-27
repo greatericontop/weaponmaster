@@ -21,9 +21,11 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.DragonFireball;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
@@ -31,6 +33,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.WitherSkeleton;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
@@ -46,7 +50,7 @@ public class MidFightTasks {
     private final double ANGER_DIST = 100.0;
     private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
     private final int STORM_SIZE = 4;
-    private final double FIREBALL_SEEK = 11.0;
+    private final double DEFENDER_MAX_HEALTH = 80.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -54,6 +58,7 @@ public class MidFightTasks {
     private int fireballStorm_lastTickRan = -1000;
     private int toxicStorm_lastTickRan = -1000;
     private int endDweller_lastTickRan = -1000;
+    private int endstoneDefender_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -105,6 +110,7 @@ public class MidFightTasks {
                 doToxicStorm(tickNumber);
                 regenerateOnLowHealth(tickNumber);
                 spawnEndDweller(tickNumber);
+                spawnEndstoneDefender(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -262,8 +268,7 @@ public class MidFightTasks {
         endDweller.setTarget(target);
         endDweller.setCustomName("§7End Dweller");
         endDweller.setCustomNameVisible(true);
-        target.sendMessage(String.format("§7attackdamage: %.1f", endDweller.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
-        target.sendMessage(String.format("§7movespeed: %.1f", endDweller.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()));
+        endDweller.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.45); // up from 0.25
         PersistentDataContainer pdc = endDweller.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         new BukkitRunnable() {
@@ -279,5 +284,30 @@ public class MidFightTasks {
         }.runTaskTimer(plugin, 1L, 1L);
         target.sendMessage("§5Ender Dragon §7used §3Summon End Dweller §7on you.");
     }
+
+    public void spawnEndstoneDefender(int tickNumber) {
+        if (rejectWithChance(90.0)) { return; }
+        if (tickNumber < endstoneDefender_lastTickRan + 300) { return; }
+        endstoneDefender_lastTickRan = tickNumber;
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        WitherSkeleton defender = (WitherSkeleton) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.WITHER_SKELETON);
+        defender.setTarget(target);
+        defender.setCustomName("§6§lEndstone Protector");
+        defender.setCustomNameVisible(true);
+        defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
+        defender.setHealth(DEFENDER_MAX_HEALTH);
+        target.sendMessage(String.format("§7attackdamage: %.1f", defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
+        ItemStack endStone = new ItemStack(Material.END_STONE, 1);
+        endStone.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        defender.getEquipment().setHelmet(endStone);
+        defender.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE, 1));
+        defender.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+        defender.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
+        PersistentDataContainer pdc = defender.getPersistentDataContainer();
+        pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
+        target.sendMessage("§5Ender Dragon §7used §3Endstone Defense §7on you.");
+    }
+
 
 }
