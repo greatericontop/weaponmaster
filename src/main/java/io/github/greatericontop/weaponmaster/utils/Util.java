@@ -380,7 +380,7 @@ public class Util {
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b3.5%§3. (Up to 14%)");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
-        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b25%§3.");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b15%§3.");
         DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
         DRAGON_ARMOR_LORE.add("§3Reduce damage further by §b0.75% §3per §aProtection §3level.");
         DRAGON_ARMOR_LORE.add("");

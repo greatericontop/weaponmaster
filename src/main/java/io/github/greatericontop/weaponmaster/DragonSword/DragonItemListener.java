@@ -75,7 +75,7 @@ public class DragonItemListener implements Listener {
                     && util.checkForDragonArmor(player.getInventory().getLeggings())
                     && util.checkForDragonArmor(player.getInventory().getBoots())
             ) { // multiplicative increase in damage when a full set of dragon armor is found
-                multiplier *= 1.25;
+                multiplier *= 1.15;
             }
             event.setDamage(event.getDamage()*multiplier);
             plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", (multiplier-1)*100, event.getDamage()), true);
