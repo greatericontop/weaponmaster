@@ -44,7 +44,7 @@ import java.util.*;
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
-    private final double GUARD_MAX_HP = 120.0; // 3x their default of 40
+    private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
     private final int STORM_SIZE = 4;
     private final double FIREBALL_SEEK = 11.0;
 
@@ -253,8 +253,8 @@ public class MidFightTasks {
     }
 
     public void spawnEndDweller(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
-        if (tickNumber < endDweller_lastTickRan + 400) { return; }
+        if (rejectWithChance(55.0)) { return; }
+        if (tickNumber < endDweller_lastTickRan + 200) { return; }
         endDweller_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -262,7 +262,8 @@ public class MidFightTasks {
         endDweller.setTarget(target);
         endDweller.setCustomName("§7End Dweller");
         endDweller.setCustomNameVisible(true);
-        target.sendMessage(String.format("§7attackdamage: %.1f", endDweller.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue()));
+        target.sendMessage(String.format("§7attackdamage: %.1f", endDweller.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
+        target.sendMessage(String.format("§7movespeed: %.1f", endDweller.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getValue()));
         PersistentDataContainer pdc = endDweller.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         new BukkitRunnable() {
