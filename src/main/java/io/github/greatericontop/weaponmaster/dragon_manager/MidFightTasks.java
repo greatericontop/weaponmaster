@@ -234,8 +234,11 @@ public class MidFightTasks {
     }
 
     public void regenerateOnLowHealth(int tickNumber) {
-        // TODO: add multiple tiers to the regen, when the dragon is lower it regenerates faster
-        if (currentlyActiveDragon.getHealth() <= 150.0 && tickNumber % 60 == 0) {
+        if (currentlyActiveDragon.getHealth() <= 150.0 && tickNumber % 40 == 0) {
+            currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
+        } else if (currentlyActiveDragon.getHealth() <= 250.0 && tickNumber % 60 == 0) {
+            currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
+        } else if (tickNumber % 160 == 0) {
             currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
         }
     }
