@@ -18,14 +18,19 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 public class FightManager implements Listener {
 
@@ -68,6 +73,16 @@ public class FightManager implements Listener {
             event.setDamage(fullDamage + 0.1 * (event.getDamage()-fullDamage));
         }
         damageDealtToDragonThroughExplosions += event.getFinalDamage();
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDeath(EntityDeathEvent event) {
+        LivingEntity entity = event.getEntity();
+        PersistentDataContainer pdc = entity.getPersistentDataContainer();
+        if (pdc.has(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER)) {
+            event.getDrops().clear();
+            event.setDroppedExp(0);
+        }
     }
 
 }

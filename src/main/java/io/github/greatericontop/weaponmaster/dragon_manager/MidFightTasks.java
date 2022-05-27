@@ -21,6 +21,7 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.DragonFireball;
@@ -30,6 +31,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -245,7 +248,7 @@ public class MidFightTasks {
         } else if (currentlyActiveDragon.getHealth() <= 250.0 && tickNumber % 60 == 0) {
             currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
         } else if (tickNumber % 160 == 0) {
-            currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
+            currentlyActiveDragon.setHealth(Math.min(currentlyActiveDragon.getHealth() + 1.0, currentlyActiveDragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         }
     }
 
@@ -260,6 +263,8 @@ public class MidFightTasks {
         endDweller.setCustomName("§7End Dweller");
         endDweller.setCustomNameVisible(true);
         target.sendMessage(String.format("§7attackdamage: %.1f", endDweller.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue()));
+        PersistentDataContainer pdc = endDweller.getPersistentDataContainer();
+        pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         new BukkitRunnable() {
             public void run() {
                 if (endDweller.isDead()) {
