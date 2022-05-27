@@ -20,7 +20,7 @@ public class TridentRecipe {
                 " T ",
                 "T  ");
         recipe.setIngredient('T', Material.TRIDENT);
-        recipe.setIngredient('D', Material.DRAGON_HEAD);
+        recipe.setIngredient('H', Material.HEART_OF_THE_SEA);
         recipe.setIngredient('b', Material.BLAZE_ROD);
         Bukkit.getServer().addRecipe(recipe);
     }

@@ -41,7 +41,6 @@ public class TridentListener implements Listener {
                     ItemStack it = player.getInventory().getItemInMainHand();
                     ItemMeta im = it.getItemMeta();
                     im.removeEnchant(Enchantment.RIPTIDE);
-                    im.removeEnchant(Enchantment.CHANNELING);
                     it.setItemMeta(im);
                 }
             }
