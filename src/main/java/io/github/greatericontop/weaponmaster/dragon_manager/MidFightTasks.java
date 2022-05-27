@@ -20,12 +20,16 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.*;
-import org.bukkit.potion.Potion;
+import org.bukkit.entity.DragonFireball;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Enderman;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -46,6 +50,7 @@ public class MidFightTasks {
     private int lightningAttack_lastTickRan = -1000;
     private int fireballStorm_lastTickRan = -1000;
     private int toxicStorm_lastTickRan = -1000;
+    private int endDweller_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -96,6 +101,7 @@ public class MidFightTasks {
                 doFireballStorm(tickNumber);
                 doToxicStorm(tickNumber);
                 regenerateOnLowHealth(tickNumber);
+                spawnEndDweller(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -241,6 +247,31 @@ public class MidFightTasks {
         } else if (tickNumber % 160 == 0) {
             currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
         }
+    }
+
+    public void spawnEndDweller(int tickNumber) {
+        if (rejectWithChance(85.0)) { return; }
+        if (tickNumber < endDweller_lastTickRan + 400) { return; }
+        endDweller_lastTickRan = tickNumber;
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        IronGolem endDweller = (IronGolem) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.IRON_GOLEM);
+        endDweller.setTarget(target);
+        endDweller.setCustomName("§7End Dweller");
+        endDweller.setCustomNameVisible(true);
+        target.sendMessage(String.format("§7attackdamage: %.1f", endDweller.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getBaseValue()));
+        new BukkitRunnable() {
+            public void run() {
+                if (endDweller.isDead()) {
+                    cancel();
+                    return;
+                }
+                if (endDweller.getTarget() == null || !endDweller.getTarget().equals(target)) {
+                    endDweller.setTarget(target);
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
+        target.sendMessage("§5Ender Dragon §7used §3Summon End Dweller §7on you.");
     }
 
 }
