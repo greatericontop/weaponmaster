@@ -152,6 +152,13 @@ commands:
     usage: "U: /coppersword give"
     permission: "weaponmaster.coppersword.command"
     permission-message: "§cYou are not allowed to do this!"
+  poseidontrident:
+    description: "[Weapon Master] command for Poseidon's Trident"
+    usage: "U: /poseidontrident give"
+    permission: "weaponmaster.poseidontrident.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["poseidon", "poseidon-trident"]
+
 permissions:
   weaponmaster.weaponmaster:
     default: true
@@ -287,4 +294,9 @@ permissions:
   weaponmaster.coppersword.command:
     default: op
   weaponmaster.coppersword.use:
+    default: true
+  #
+  weaponmaster.poseidontrident.command:
+    default: op
+  weaponmaster.poseidontrident.use:
     default: true

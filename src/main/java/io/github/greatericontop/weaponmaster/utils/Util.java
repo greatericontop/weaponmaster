@@ -56,6 +56,7 @@ public class Util {
     public final String NINJA_BOW_NAME = "§7§lNinja Bow §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ARMOR_NAME = "§aDragon Armor §6⚝⚝⚝⚝⚝";
     public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
+    public final String POSEIDON_TRIDENT_NAME = "§bPoseidon's Trident §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -83,6 +84,7 @@ public class Util {
     public List<String> NINJA_BOW_LORE = new ArrayList<>();
     public List<String> DRAGON_ARMOR_LORE = new ArrayList<>();
     public List<String> COPPER_SWORD_LORE = new ArrayList<>();
+    public List<String> POSEIDON_TRIDENT_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -396,6 +398,13 @@ public class Util {
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§dEpic");
         COPPER_SWORD_LORE.add("§6---------------");
+        // Poseidon's Trident
+        POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
+        POSEIDON_TRIDENT_LORE.add("§6---------------");
+        POSEIDON_TRIDENT_LORE.add("§3A Trident with immense power.");
+        POSEIDON_TRIDENT_LORE.add("");
+        POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
+        POSEIDON_TRIDENT_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -501,5 +510,8 @@ public class Util {
     }
     public boolean checkForCopperSword(ItemStack item) {
         return this.checkFor(item, COPPER_SWORD_NAME, 0, "id: COPPER_SWORD");
+    }
+    public boolean checkForPoseidonTrident(ItemStack item) {
+        return this.checkFor(item, POSEIDON_TRIDENT_NAME, 0, "id: POSEIDON_TRIDENT");
     }
 }
