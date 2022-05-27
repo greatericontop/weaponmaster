@@ -61,6 +61,8 @@ import io.github.greatericontop.weaponmaster.NinjaBow.NinjaCommand;
 import io.github.greatericontop.weaponmaster.NinjaBow.NinjaItemListener;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
+import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentCommand;
+import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentListener;
 import io.github.greatericontop.weaponmaster.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.NapalmMissile.NapalmCommand;
@@ -217,6 +219,9 @@ public class WeaponMasterMain extends JavaPlugin {
         getCommand("coppersword").setExecutor(new CopperSwordCommand());
         getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
         new CopperSwordRecipe().regRecipe();
+        // Poseidon's Trident
+        getCommand("poseidontrident").setExecutor(new TridentCommand());
+        getServer().getPluginManager().registerEvents(new TridentListener(this), this);
         // Custom Items
         getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
