@@ -33,18 +33,15 @@ public class TridentListener implements Listener {
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (!player.hasPermission("weaponmaster.poseidontrident.use")) { continue; }
-                    if (!(util.checkForPoseidonTrident(player.getInventory().getItemInMainHand()))) {
-                        player.removePotionEffect(PotionEffectType.CONDUIT_POWER);
-                        continue;
-                    }
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, Integer.MAX_VALUE, 0));
+                    if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { continue; }
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 39, 0));
                     ItemStack it = player.getInventory().getItemInMainHand();
                     ItemMeta im = it.getItemMeta();
                     im.removeEnchant(Enchantment.RIPTIDE);
                     it.setItemMeta(im);
                 }
             }
-        }.runTaskTimer(plugin, 200L, 10L);
+        }.runTaskTimer(plugin, 200L, 5L);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

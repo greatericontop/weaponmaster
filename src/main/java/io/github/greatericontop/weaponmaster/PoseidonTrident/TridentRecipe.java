@@ -16,9 +16,9 @@ public class TridentRecipe {
     public void regRecipe() {
         ItemStack trident = util.generateMeta(util.POSEIDON_TRIDENT_LORE, util.POSEIDON_TRIDENT_NAME, Material.TRIDENT);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("poseidon_trident"), trident);
-        recipe.shape(" HTH",
-                " T ",
-                "T  ");
+        recipe.shape(" HT",
+                     "bTH",
+                     "Tb ");
         recipe.setIngredient('T', Material.TRIDENT);
         recipe.setIngredient('H', Material.HEART_OF_THE_SEA);
         recipe.setIngredient('b', Material.BLAZE_ROD);
