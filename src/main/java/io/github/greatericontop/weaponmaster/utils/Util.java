@@ -97,6 +97,12 @@ public class Util {
     public final int MINER_INSERTION = 7;
     public final int DRAGON_UPGRADE = 8;
 
+    /*
+        §cSUPREME     Uncraftable admin abuse weapons
+        §6LENGENDARY  Craftable weapons but the highest tier (very late game)
+        §dEpic        Midgame weapons/early game strong weapons
+    */
+
     public final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
         this.plugin = plugin;
@@ -361,7 +367,7 @@ public class Util {
         NAPALM_MISSILE_LORE.add("");
         NAPALM_MISSILE_LORE.add("§3Creates massive fire when thrown!");
         NAPALM_MISSILE_LORE.add("");
-        NAPALM_MISSILE_LORE.add("§6LEGENDARY");
+        NAPALM_MISSILE_LORE.add("§cSUPREME");
         NAPALM_MISSILE_LORE.add("§6---------------");
         // Ninja Bow
         NINJA_BOW_LORE.add("id: NINJA_BOW");

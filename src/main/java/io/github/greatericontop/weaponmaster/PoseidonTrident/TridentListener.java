@@ -22,11 +22,15 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Trident;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
@@ -75,6 +79,14 @@ public class TridentListener implements Listener {
         }
         player.removePotionEffect(PotionEffectType.CONDUIT_POWER);
         player.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, player.getEyeLocation().add(player.getEyeLocation().getDirection().multiply(0.9)), 15);
+        if (Math.random() < 0.15) {
+            for (int amount = 0; amount < 10; amount++) {
+                Trident trident = (Trident) player.getWorld().spawnEntity(player.getEyeLocation().multiply(0.9), EntityType.TRIDENT);
+                trident.setDamage(2.0F);
+                trident.setShooter(player);
+                trident.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
+            }
+        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -90,6 +102,19 @@ public class TridentListener implements Listener {
                 !(player.getWorld().isThundering()) &&
                 Math.random() < 0.15) {
             event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onHit(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof LivingEntity)) { return; }
+        Player player = (Player) event.getDamager();
+        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { return; }
+
+        LivingEntity attacked = (LivingEntity) event.getEntity();
+        if (Math.random() < 0.1) {
+            attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 1));
         }
     }
 }
