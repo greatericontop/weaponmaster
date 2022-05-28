@@ -1,5 +1,22 @@
 package io.github.greatericontop.weaponmaster.ValkyrieAxe;
 
+/*
+    Copyright (C) 2021 greateric.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -7,19 +24,17 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.w3c.dom.Attr;
 
 import java.util.UUID;
 
-public class ValkyrieAxeCommand implements CommandExecutor {
+public class ValkyrieCommand implements CommandExecutor {
 
     private final Util util;
-    public ValkyrieAxeCommand() {
+    public ValkyrieCommand() {
         util = new Util(null);
     }
 
@@ -41,12 +56,12 @@ public class ValkyrieAxeCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack valkyrieaxe = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
-            ItemMeta im = valkyrieaxe.getItemMeta();
+            ItemStack valkyrie = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
+            ItemMeta im = valkyrie.getItemMeta();
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", -3.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-            valkyrieaxe.setItemMeta(im);
-            ((Player) sender).getInventory().addItem(valkyrieaxe);
+            valkyrie.setItemMeta(im);
+            ((Player) sender).getInventory().addItem(valkyrie);
             sender.sendMessage("§7Gave you §f[" + util.VALKYRIE_AXE_NAME + "§f]§7.");
             return true;
         }

@@ -415,7 +415,10 @@ public class Util {
         VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§2A treasure against many enemies.");
         VALKYRIE_AXE_LORE.add("");
-        VALKYRIE_AXE_LORE.add("§dEpic");
+        VALKYRIE_AXE_LORE.add("§eAbility: §4Area Damage");
+        VALKYRIE_AXE_LORE.add("§3Nearby entities take 75% of the damage of your attack.");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§dEPIC");
         VALKYRIE_AXE_LORE.add("§6---------------");
     }
 

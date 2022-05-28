@@ -1,0 +1,88 @@
+package io.github.greatericontop.weaponmaster.ValkyrieAxe;
+
+/*
+    Copyright (C) 2021 greateric.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.util.Vector;
+
+public class ValkyrieItemListener implements Listener {
+
+    private final double DAMAGE_FACTOR = 0.75;
+    private final double FIRESTORM_RADIUS = 10.0;
+    private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
+    private final double MAX_ANGLE_DEG = 23.5;
+    private final double FIRESTORM_KNOCKBACK = 4.0;
+    private final WeaponMasterMain plugin;
+    private final Util util;
+    public ValkyrieItemListener(WeaponMasterMain plugin) {
+        this.plugin = plugin;
+        util = new Util(plugin);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onHitEntity(EntityDamageByEntityEvent event) {
+        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getDamager();
+        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!player.hasPermission("weaponmaster.valkryieaxe.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrie.use§3.");
+            return;
+        }
+        for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
+            if (!(entity instanceof LivingEntity)) { continue; }
+            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR);
+        }
+    }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onRightClick(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (Util.checkForInteractableBlock(event)) { return; }
+        Player player = event.getPlayer();
+        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!player.hasPermission("weaponmaster.valkyrieaxe.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrieaxe.use§3.");
+            return;
+        }
+
+        for (Entity entity : player.getNearbyEntities(FIRESTORM_RADIUS, FIRESTORM_RADIUS, FIRESTORM_RADIUS)) {
+            if (!(entity instanceof LivingEntity)) { continue; }
+            if (entity.getLocation().distanceSquared(player.getEyeLocation()) > FIRESTORM_RADIUS_SQUARED) { continue; }
+            Vector playerToEntity = entity.getLocation().subtract(player.getEyeLocation()).toVector();
+            Vector playerLooking = player.getEyeLocation().getDirection();
+            double angleDegrees = playerLooking.angle(playerToEntity) * 180.0 / Math.PI;
+            if (angleDegrees < MAX_ANGLE_DEG) {
+                Vector knockbackVector = playerToEntity.normalize().multiply(FIRESTORM_KNOCKBACK);
+                ((LivingEntity) entity).damage(10.0, player);
+                entity.setVelocity(knockbackVector);
+            }
+        }
+    }
+}
