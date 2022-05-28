@@ -58,6 +58,8 @@ public class Util {
     public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
     public final String POSEIDON_TRIDENT_NAME = "§bPoseidon's Trident §6⚝⚝⚝⚝⚝";
 
+    public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
+
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
     public List<String> DEATH_SCYTHE_LORE = new ArrayList<>();
@@ -85,6 +87,7 @@ public class Util {
     public List<String> DRAGON_ARMOR_LORE = new ArrayList<>();
     public List<String> COPPER_SWORD_LORE = new ArrayList<>();
     public List<String> POSEIDON_TRIDENT_LORE = new ArrayList<>();
+    public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -405,6 +408,13 @@ public class Util {
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
+        // Valkyrie Axe
+        VALKYRIE_AXE_LORE.add("id: VALKYRIE_AXE");
+        VALKYRIE_AXE_LORE.add("§6---------------");
+        VALKYRIE_AXE_LORE.add("§2A treasure against many enemies.");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§dEpic");
+        VALKYRIE_AXE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -513,5 +523,8 @@ public class Util {
     }
     public boolean checkForPoseidonTrident(ItemStack item) {
         return this.checkFor(item, POSEIDON_TRIDENT_NAME, 0, "id: POSEIDON_TRIDENT");
+    }
+    public boolean checkForValkyrieAxe(ItemStack item) {
+        return this.checkFor(item, VALKYRIE_AXE_NAME, 0, "id: VALKYRIE_AXE");
     }
 }

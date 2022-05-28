@@ -17,7 +17,7 @@ public class CopperSwordCommand implements CommandExecutor {
 
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§Copper Sword");
+        to.sendMessage("§4§lCopper Sword");
         to.sendMessage("§e§oby gerseneck");
         to.sendMessage("§3Use §2/coppersword give§3 to give yourself the item.");
     }

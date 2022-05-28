@@ -40,7 +40,7 @@ public class PilotCommand implements CommandExecutor {
 
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§lNetherite Staff");
+        to.sendMessage("§4§lPilot Sword");
         to.sendMessage("§e§oby greateric");
         to.sendMessage("§3Use §2/pilotsword give§3 to give yourself the item.");
     }

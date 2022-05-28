@@ -158,6 +158,12 @@ commands:
     permission: "weaponmaster.poseidontrident.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["poseidon", "poseidon-trident"]
+  valkyrieaxe:
+    description: "[Weapon Master] command for Valkyrie Axe"
+    usage: "U: /valkyrieaxe give"
+    permission: "weaponmaster.valkyrieaxe.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["valkyrie", "valkaxe"]
 
 permissions:
   weaponmaster.weaponmaster:
@@ -299,4 +305,9 @@ permissions:
   weaponmaster.poseidontrident.command:
     default: op
   weaponmaster.poseidontrident.use:
+    default: true
+  #
+  weaponmaster.valkyrieaxe.command:
+    default: op
+  weaponmaster.valkyrieaxe.use:
     default: true
