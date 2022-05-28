@@ -57,7 +57,6 @@ public class Util {
     public final String DRAGON_ARMOR_NAME = "§aDragon Armor §6⚝⚝⚝⚝⚝";
     public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
     public final String POSEIDON_TRIDENT_NAME = "§bPoseidon's Trident §6⚝⚝⚝⚝⚝";
-
     public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
