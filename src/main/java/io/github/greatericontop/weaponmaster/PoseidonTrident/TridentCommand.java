@@ -22,6 +22,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -50,6 +51,7 @@ public class TridentCommand implements CommandExecutor {
                 return true;
             }
             ItemStack trident = util.generateMeta(util.POSEIDON_TRIDENT_LORE, util.POSEIDON_TRIDENT_NAME, Material.TRIDENT);
+            trident.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
             ((Player) sender).getInventory().addItem(trident);
             sender.sendMessage("§7Gave you §f[" + util.POSEIDON_TRIDENT_NAME + "§f]§7.");
             return true;

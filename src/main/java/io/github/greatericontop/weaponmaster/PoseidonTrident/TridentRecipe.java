@@ -21,6 +21,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
@@ -32,6 +33,7 @@ public class TridentRecipe {
 
     public void regRecipe() {
         ItemStack trident = util.generateMeta(util.POSEIDON_TRIDENT_LORE, util.POSEIDON_TRIDENT_NAME, Material.TRIDENT);
+        trident.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("poseidon_trident"), trident);
         recipe.shape(" HT",
                      "bTH",
