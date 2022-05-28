@@ -78,6 +78,7 @@ import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.ValkyrieAxe.ValkyrieCommand;
 import io.github.greatericontop.weaponmaster.ValkyrieAxe.ValkyrieItemListener;
+import io.github.greatericontop.weaponmaster.ValkyrieAxe.ValkyrieRecipe;
 import io.github.greatericontop.weaponmaster.VampAxe.VampCommand;
 import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
@@ -231,6 +232,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Valkyrie Axe
         getCommand("valkyrieaxe").setExecutor(new ValkyrieCommand());
         getServer().getPluginManager().registerEvents(new ValkyrieItemListener(this), this);
+        new ValkyrieRecipe().regRecipe();
         // Custom Items
         getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
