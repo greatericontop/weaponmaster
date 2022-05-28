@@ -306,7 +306,7 @@ public class Util {
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§3Shoots an arrow with random effect. §e§lRIGHT CLICK");
         NETHERITE_STAFF_LORE.add("");
-        NETHERITE_STAFF_LORE.add("§cSUPREME");
+        NETHERITE_STAFF_LORE.add("§6LEGENDARY");
         NETHERITE_STAFF_LORE.add("§6---------------");
         // Sniper Rifle
         SNIPER_RIFLE_LORE.add("id: SNIPER_RIFLE");
@@ -404,6 +404,7 @@ public class Util {
         // Poseidon's Trident
         POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
+        POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§3A Trident with immense power.");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
@@ -411,6 +412,7 @@ public class Util {
         // Valkyrie Axe
         VALKYRIE_AXE_LORE.add("id: VALKYRIE_AXE");
         VALKYRIE_AXE_LORE.add("§6---------------");
+        VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§2A treasure against many enemies.");
         VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§dEpic");
