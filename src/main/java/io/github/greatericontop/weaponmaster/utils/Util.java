@@ -99,7 +99,7 @@ public class Util {
 
     /*
         §cSUPREME     Uncraftable admin abuse weapons
-        §6LENGENDARY  Craftable weapons but the highest tier (very late game)
+        §6LEGENDARY   Craftable weapons but the highest tier (very late game)
         §dEpic        Midgame weapons/early game strong weapons
     */
 
