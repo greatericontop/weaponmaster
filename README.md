@@ -40,6 +40,8 @@
   - [Pilot Sword](#pilot-sword)
   - [Shredded Axe](#shredded-axe)
   - [Copper Sword](#copper-sword)
+  - [Poseidon's Trident](#poseidons-trident)
+  - [Valkyrie Axe](#valkyrie-axe)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-inchor)
@@ -243,6 +245,28 @@ Crafting Recipe:
 - 1 Iron Sword
 
 ![](assets/coppersword.png)
+
+## Poseidon's Trident
+
+`/poseidontrident give` - a very powerful Trident
+
+Crafting Recipe:
+- 3 Trident
+- 2 Heart of Sea
+- 2 Blaze Rod
+
+![](assets/trident.png)
+
+## Valkyrie Axe
+
+`/valkyrie give` - sample description
+
+Crafting Recipe:
+- 4 Iron Block
+- 1 Netherite Ingot
+- 2 Stick
+
+![](assets/valk.png)
 
 ---
 
