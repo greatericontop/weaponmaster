@@ -58,7 +58,7 @@ public class ValkyrieCommand implements CommandExecutor {
             }
             ItemStack valkyrie = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
             ItemMeta im = valkyrie.getItemMeta();
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 13.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", -3.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             valkyrie.setItemMeta(im);
             ((Player) sender).getInventory().addItem(valkyrie);

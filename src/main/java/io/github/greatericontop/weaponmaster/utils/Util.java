@@ -423,7 +423,12 @@ public class Util {
         VALKYRIE_AXE_LORE.add("§eAbility: §4Area Damage");
         VALKYRIE_AXE_LORE.add("§3Nearby entities take 75% of the damage of your attack.");
         VALKYRIE_AXE_LORE.add("");
-        VALKYRIE_AXE_LORE.add("§dEPIC");
+        VALKYRIE_AXE_LORE.add("§eAbility: §4Fire Storm");
+        VALKYRIE_AXE_LORE.add("§3A vortex of fire engulfs entities in your path.");
+        VALKYRIE_AXE_LORE.add("§3Attacked entities take massive knockback.");
+        VALKYRIE_AXE_LORE.add("§7Costs 20 durability and 1 true damage to use");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§6LEGENDARY");
         VALKYRIE_AXE_LORE.add("§6---------------");
     }
 

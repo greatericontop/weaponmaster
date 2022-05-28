@@ -79,9 +79,10 @@ public class TridentListener implements Listener {
         }
         player.removePotionEffect(PotionEffectType.CONDUIT_POWER);
         player.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, player.getEyeLocation().add(player.getEyeLocation().getDirection().multiply(0.9)), 15);
-        if (Math.random() < 0.15) {
+        if (Math.random() < 10.15) {
             for (int amount = 0; amount < 10; amount++) {
-                Trident trident = (Trident) player.getWorld().spawnEntity(player.getEyeLocation().multiply(0.9), EntityType.TRIDENT);
+                Trident trident = (Trident) player.getWorld().spawnEntity(player.getEyeLocation(), EntityType.TRIDENT);
+                trident.setVelocity(player.getEyeLocation().getDirection().multiply(0.9));
                 trident.setDamage(2.0F);
                 trident.setShooter(player);
                 trident.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);

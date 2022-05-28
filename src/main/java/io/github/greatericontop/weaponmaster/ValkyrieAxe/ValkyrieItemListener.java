@@ -18,7 +18,12 @@ package io.github.greatericontop.weaponmaster.ValkyrieAxe;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -30,15 +35,18 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class ValkyrieItemListener implements Listener {
 
     private final double DAMAGE_FACTOR = 0.75;
-    private final double FIRESTORM_RADIUS = 10.0;
+    private final double FIRESTORM_RADIUS = 25.0;
     private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
-    private final double MAX_ANGLE_DEG = 23.5;
-    private final double FIRESTORM_KNOCKBACK = 4.0;
+    private final double MAX_ANGLE_DEG = 32.0;
+    private final double FIRESTORM_KNOCKBACK = 9.0;
+    private final int DURABILITY_THRESHOLD = 249;
     private final WeaponMasterMain plugin;
     private final Util util;
     public ValkyrieItemListener(WeaponMasterMain plugin) {
@@ -58,8 +66,11 @@ public class ValkyrieItemListener implements Listener {
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
             ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR);
+            player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, entity.getLocation(), 3);
+            player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         }
     }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
@@ -71,6 +82,14 @@ public class ValkyrieItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrieaxe.use§3.");
             return;
         }
+        Damageable im = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
+        if (im.getDamage() >= DURABILITY_THRESHOLD-50 && player.getGameMode() != GameMode.CREATIVE) { // 51 durability
+            player.sendMessage("§cNot enough durability!");
+            return;
+        }
+        im.setDamage(Math.min(im.getDamage() + 20, DURABILITY_THRESHOLD));
+        player.getInventory().getItemInMainHand().setItemMeta(im);
+        TrueDamageHelper.dealTrueDamage(player, 1.0);
 
         for (Entity entity : player.getNearbyEntities(FIRESTORM_RADIUS, FIRESTORM_RADIUS, FIRESTORM_RADIUS)) {
             if (!(entity instanceof LivingEntity)) { continue; }
@@ -80,9 +99,25 @@ public class ValkyrieItemListener implements Listener {
             double angleDegrees = playerLooking.angle(playerToEntity) * 180.0 / Math.PI;
             if (angleDegrees < MAX_ANGLE_DEG) {
                 Vector knockbackVector = playerToEntity.normalize().multiply(FIRESTORM_KNOCKBACK);
-                ((LivingEntity) entity).damage(10.0, player);
+                ((LivingEntity) entity).damage(12.0, player);
                 entity.setVelocity(knockbackVector);
             }
         }
+        new BukkitRunnable() {
+            Location currentLoc = player.getEyeLocation();
+            Vector lookingAt = currentLoc.getDirection().multiply(0.35);
+            int runsLeft = 60;
+            public void run() {
+                if (runsLeft < 0) {
+                    cancel();
+                    return;
+                }
+                for (int i = 0; i < 3; i++) {
+                    player.getWorld().spawnParticle(Particle.FLAME, currentLoc, 4);
+                    currentLoc.add(lookingAt);
+                }
+                runsLeft--;
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
     }
 }
