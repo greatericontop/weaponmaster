@@ -43,7 +43,6 @@ public class WarlockItemListener implements Listener {
                     if (!player.hasPermission("weaponmaster.warlockpants.use")) { continue; }
                     if (!(util.checkForWarlockPants(player.getInventory().getLeggings()))) { continue; }
                     player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 119, 0, true));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 119, 0, true));
                 }
             }
         }.runTaskTimer(plugin, 100L, 100L);

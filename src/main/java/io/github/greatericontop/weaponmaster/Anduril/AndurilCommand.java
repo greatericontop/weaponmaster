@@ -52,7 +52,6 @@ public class AndurilCommand implements CommandExecutor {
                 return true;
             }
             ItemStack anduril = util.generateMeta(util.ANDURIL_LORE, util.ANDURIL_NAME, Material.IRON_SWORD);
-            anduril.addEnchantment(Enchantment.DAMAGE_ALL, 3);
             ((Player) sender).getInventory().addItem(anduril);
             sender.sendMessage("§7Gave you §f[" + util.ANDURIL_NAME + "§f]§7.");
             return true;

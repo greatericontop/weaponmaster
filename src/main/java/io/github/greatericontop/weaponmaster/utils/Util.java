@@ -168,11 +168,11 @@ public class Util {
         ANDURIL_LORE.add("id: ANDURIL");
         ANDURIL_LORE.add("§6---------------");
         ANDURIL_LORE.add("");
-        ANDURIL_LORE.add("§9Grants permanent effects while holding.");
+        ANDURIL_LORE.add("§3Grants permanent effects while holding.");
         ANDURIL_LORE.add("§9Speed I");
         ANDURIL_LORE.add("§9Resistance I");
         ANDURIL_LORE.add("");
-        ANDURIL_LORE.add("§6LEGENDARY");
+        ANDURIL_LORE.add("§dEPIC");
         ANDURIL_LORE.add("§6---------------");
         // Excalibur
         EXCALIBUR_LORE.add("id: EXCALIBUR");

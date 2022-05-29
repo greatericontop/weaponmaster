@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster;
 
 import io.github.greatericontop.weaponmaster.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.Anduril.AndurilItemListener;
+import io.github.greatericontop.weaponmaster.Anduril.AndurilRecipe;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisRecipe;
@@ -94,16 +95,10 @@ public class WeaponMasterMain extends JavaPlugin {
     public PaperUtils paperUtils = null;
     public FightManager dragonManager = null;
 
-    private String encryption(String s, byte[] key) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            sb.append((char) (s.charAt(i) ^ key[i]));
-        }
-        return sb.toString();
-    }
-
     @Override
     public void onEnable() {
+        long t = System.currentTimeMillis();
+
         getLogger().info("--------------------");
         getLogger().info("#######################################################################################################################");
         getLogger().info("# ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ #");
@@ -155,6 +150,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Anduril
         getCommand("anduril").setExecutor(new AndurilCommand());
         new AndurilItemListener(this).regAndurilRunnable();
+        new AndurilRecipe().regRecipe();
         // Excalibur
         getCommand("excalibur").setExecutor(new ExcaliburCommand());
         getServer().getPluginManager().registerEvents(new ExcaliburItemListener(this), this);
@@ -244,7 +240,7 @@ public class WeaponMasterMain extends JavaPlugin {
         this.dragonManager = new FightManager(this);
         getServer().getPluginManager().registerEvents(dragonManager, this);
 
-        getLogger().info("Finished setting up!");
+        getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
     }
 
 }
