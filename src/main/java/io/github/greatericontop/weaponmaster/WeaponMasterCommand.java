@@ -17,6 +17,8 @@ package io.github.greatericontop.weaponmaster;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.dragon_manager.LootDropper;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -40,10 +42,13 @@ public class WeaponMasterCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         if (args.length >= 1 && args[0].equals("debug")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
+            new LootDropper(plugin, plugin.dragonManager.currentlyActiveDragon)
+                    .createDrop(plugin.dragonManager.currentlyActiveDragon.getWorld(),
+                            10, 10, new ItemStack(Material.OBSIDIAN, 2),
+                            ((Player) sender).getUniqueId());
             sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
             return true;
         }
