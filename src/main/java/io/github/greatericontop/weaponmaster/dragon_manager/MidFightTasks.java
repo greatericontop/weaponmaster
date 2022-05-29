@@ -50,7 +50,7 @@ public class MidFightTasks {
     private final double ANGER_DIST = 100.0;
     private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
     private final int STORM_SIZE = 4;
-    private final double DEFENDER_MAX_HEALTH = 80.0;
+    private final double DEFENDER_MAX_HEALTH = 90.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -293,7 +293,7 @@ public class MidFightTasks {
         if (target == null) { return; }
         WitherSkeleton defender = (WitherSkeleton) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.WITHER_SKELETON);
         defender.setTarget(target);
-        defender.setCustomName("§6§lEndstone Protector");
+        defender.setCustomName("§6§lEndstone Defender");
         defender.setCustomNameVisible(true);
         defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
         defender.setHealth(DEFENDER_MAX_HEALTH);
@@ -307,6 +307,11 @@ public class MidFightTasks {
         PersistentDataContainer pdc = defender.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         target.sendMessage("§5Ender Dragon §7used §3Endstone Defense §7on you.");
+        new BukkitRunnable() {
+            public void run() {
+                defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(100.0);
+            }
+        }.runTaskLater(plugin, 40L); // spawned on top of the player, so don't immediately kill them
     }
 
 
