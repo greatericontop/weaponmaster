@@ -116,7 +116,7 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(60.0)) { return; }
+        if (rejectWithChance(85.0)) { return; }
         if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -126,9 +126,7 @@ public class MidFightTasks {
             if (!(entity instanceof Enderman)) { continue; }
             Enderman enderman = (Enderman) entity;
             if (enderman.getTarget() != null) { continue; } // we don't want to reassign their anger
-            if (Math.random() < 0.13) {
-                // TODO: maybe increase the chance when less endermen are angered, because more need to be angered instead of 2-7
-                //       and its also very variant; maybe make this fire less but in exchange anger more endermen (8-10 i guess)
+            if (Math.random() < 0.1 + (angeredCount < 10 ? 0.05 : 0) + (angeredCount < 5 ? 0.2 : 0)) {
                 enderman.setTarget(target);
                 enderman.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0, true));
                 angeredCount++;
