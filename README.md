@@ -216,7 +216,8 @@ Crafting Recipe:
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe: (not) coming soon
+Crafting Recipe: 
+- 
 
 ## Poseidon's Trident
 
