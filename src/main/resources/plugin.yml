@@ -3,6 +3,7 @@ version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
 api-version: 1.17
 authors: [greateric, gerseneck, bigfatmidget]
+
 commands:
   weaponmaster:
     description: "WeaponMaster"
@@ -163,7 +164,7 @@ commands:
     usage: "U: /valkyrieaxe give"
     permission: "weaponmaster.valkyrieaxe.command"
     permission-message: "§cYou are not allowed to do this!"
-    aliases: ["valkyrie", "valkaxe"]
+    aliases: ["valkyrie"]
 
 permissions:
   weaponmaster.weaponmaster:
@@ -252,6 +253,7 @@ permissions:
   weaponmaster.fireball.use:
     default: true
   #
+  # This item's permissions are intentionally more restricted due to the destructive nature of it.
   weaponmaster.atombomb.command:
     default: op
   weaponmaster.atombomb.use:
