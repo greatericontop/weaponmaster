@@ -14,34 +14,35 @@
 
 - [Installation](#installation)
 - [Weapons](#weapons)
-  - [RPG Launcher](#rpg-launcher)
-  - [Vampire's Axe](#vampires-axe)
-  - [Death's Scythe](#deaths-scythe)
-  - [Dragon Sword](#dragon-sword)
-  - [Artemis](#artemis-bow)
-  - [Anduril](#anduril)
-  - [Excalibur](#excalibur)
-  - [Exodus](#exodus)
-  - [Rocket Stick](#rocket-stick)
-  - [Helios](#helios)
-  - [Scylla's Chestplate](#scylla-chestplate)
-  - [Herme's Boots](#hermesboots-boots)
-  - [Helmet of Life](#helmet-of-life)
-  - [Cave Man Sword](#cave-man-sword)
-  - [Warlock Pants](#warlock-pants)
-  - [Fireball](#fireball)
-  - [Napalm Missile](#napalm-missile)
-  - [Atom Bomb](#atom-bomb)
-  - [Netherite Staff](#netherite-staff)
-  - [Sniper Rifle](#sniper-rifle)
-  - [Miner's Blessing](#miners-blessing)
-  - [Napalm Missile](#napalm-missile)
-  - [Ninja Bow](#ninja-bow)
-  - [Pilot Sword](#pilot-sword)
-  - [Shredded Axe](#shredded-axe)
-  - [Copper Sword](#copper-sword)
-  - [Poseidon's Trident](#poseidons-trident)
-  - [Valkyrie Axe](#valkyrie-axe)
+  - [SUPREME](#supreme)
+    - [Anduril](#anduril)
+    - [Atom Bomb](#atom-bomb)
+    - [Caveman Sword](#caveman-sword)
+    - [Death's Scythe](#deaths-scythe)
+    - [Exodus](#exodus)
+    - [Helios](#helios)
+    - [Helmet of Life](#helmet-of-life)
+    - [Herme's Boots](#hermes-boots)
+    - [Napalm Missile](#napalm-missile)
+    - [Pilot Sword](#pilot-sword)
+    - [Rocket Stick](#rocket-stick)
+    - [Scylla's Chestplate](#scyllas-chestplate)
+    - [Shredded Axe](#shredded-axe)
+    - [Sniper Rifle](#sniper-rifle)
+    - [Warlock Pants](#warlock-pants)
+  - [LEGENDARY](#legendary)
+    - [Artemis Bow](#artemis-bow)
+    - [Dragon Sword](#dragon-sword)
+    - [Excalibur](#excalibur)
+    - [Miner's Blessing](#miners-blessing)
+    - [Netherite Staff](#netherite-staff)
+    - [Ninja Bow](#ninja-bow)
+    - [Poseidon's Trident](#poseidons-trident)
+    - [Valkyrie Axe](#valkyrie-axe)
+    - [Vampire's Axe](#vampires-axe)
+  - [Epic](#epic)
+    - [Copper Sword](#coppersword)
+    - [Fireball](#fireball)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-inchor)
@@ -67,25 +68,96 @@ For better aesthetic, you can also install the [WeaponMasterOverlay](https://git
 
 # Weapons
 
+A long list of Weapons that are in this plugin. 
+
+
+# SUPREME
+
+Uncraftable weapons of mass destruction.
+
+## Anduril
+
+`/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
+
+## Atom Bomb
+
+`/atombomb give` - absolutely mauls terrain
+
 ## RPG Launcher
 
 `/rpgl give` - shoot explosive projectiles at high speed
 
-## Vampire's Axe
+## Caveman Sword
 
-`/vampaxe give` - life steals damage when you hit  
-
-Crafting Recipe:
-- 3 Netherite Axe
-- 2 Redstone Block
-- 1 Wither Skeleton Skill
-
-![](assets/vampaxe.png)
-
+`/cavemansword give` - deal more damage as you level it up by using it
 
 ## Death's Scythe
 
 `/scythe give` - deal true damage and gain increasing levels of strength based on the damage dealt
+
+## Exodus
+
+`/exodus give` - heal whenever you hit anything (stolen x3)
+
+## Helios
+
+`/helios give` - increases in power as you gain experience levels, right click to deal area damage
+
+## Helmet of Life
+
+`/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
+
+## Herme's Boots
+
+`/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
+
+## Napalm Missile
+
+`/napalm give` - firey explosive device, use with caution
+
+## Pilot Sword
+
+`/pilotsword give` - a combo sword, no attack cooldown.
+
+## Rocket Stick
+
+`/rocketstick give` - throw yourself or other players into the air
+
+## Scylla's Chestplate
+
+`/scylla give` - damage resistance during low health
+
+## Shredded Axe
+
+`/shreddedaxe give` - Summons a zombie when hitting an enemy.
+
+## Sniper Rifle
+
+`/sniperrifle give` - shoots fast and accurate bullets
+
+## Warlock Pants
+
+`/warlockpants give` - permanent regeneration and resistance while wearing
+
+---
+
+# LEGENDARY
+
+Craftable weapons for late game users.
+
+## Artemis Bow
+
+`/artemis give` - heat seeking arrows attack nearby targets
+
+Crafting Recipe:
+- 3 Bow
+- 2 Netherite Ingot
+- 1 Netherite Block
+- 1 Eye of Ender
+- 1 Diamond Block
+- 1 Wither Skeleton Skull
+
+![](assets/artemis.png)
 
 ## Dragon Sword
 
@@ -98,27 +170,9 @@ Crafting Recipe:
 
 ![](assets/dragsword.png)
 
-## Artemis Bow
-
-`/artemis give` - heat seeking arrows attack nearby targets  
-
-Crafting Recipe:
-- 3 Bow
-- 2 Netherite Ingot
-- 1 Netherite Block
-- 1 Eye of Ender
-- 1 Diamond Block
-- 1 Wither Skeleton Skull
-
-![](assets/artemis.png)
-
-## Anduril
-
-`/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
-
 ## Excalibur
 
-`/excalibur give` - explodes on impact and deals true damage (stolen as well)  
+`/excalibur give` - explodes on impact and deals true damage (stolen as well)
 
 Crafting Recipe:
 - 2 TNT
@@ -129,78 +183,6 @@ Crafting Recipe:
 - 2 Diamond Block
 
 ![](assets/excal.png)
-
-## Exodus
-
-`/exodus give` - heal whenever you hit anything (stolen x3)
-
-## Rocket Stick
-
-`/rocketstick give` - throw yourself or other players into the air
-
-## Helios
-
-`/helios give` - increases in power as you gain experience levels, right click to deal area damage
-
-## Scylla's Chestplate
-
-`/scylla give` - damage resistance during low health
-
-## Herme's Boots
-
-`/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
-
-## Helmet of Life
-
-`/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
-
-## Caveman Sword
-
-`/cavemansword give` - deal more damage as you level it up by using it
-
-## Warlock Pants
-
-`/warlockpants give` - permanent regeneration and resistance while wearing
-
-## Fireball
-
-`/fireball give` - boom
-
-Crafting Recipe: (Shapeless)
-- 1 TNT
-- 1 Fire Charge
-- 1 Arrow
-
-![](assets/fireball.png)
-
-## Napalm Missile
-
-`/napalm give` - a missle that is pretty strong.
-
-## Atom Bomb
-
-`/atombomb give` - absolutely mauls terrain
-
-## Netherite Staff
-
-`/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
-
-Crafting Recipe:
-
-- 2 Nether Star
-
-- 1 Netherite Ingot
-
-- 1 Netherite Block
-
-- 1 Nether Reactor Core
-
-
-![](assets/netheritestaff.png)
-
-## Sniper Rifle
-
-`/sniperrifle give` - shoots fast and accurate bullets
 
 ## Miner's Blessing
 
@@ -218,33 +200,23 @@ Crafting Recipe:
 
 ![](assets/miner.png)
 
-## Napalm Missile
+## Netherite Staff
 
-`/napalm give` - firey explosive device, use with caution
+`/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
+
+Crafting Recipe:
+- 2 Nether Star
+- 1 Netherite Ingot
+- 1 Netherite Block
+- 1 Nether Reactor Core
+
+- ![](assets/netheritestaff.png)
 
 ## Ninja Bow
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
 Crafting Recipe: (not) coming soon
-
-## Pilot Sword
-
-`/pilotsword give` - a combo sword, no attack cooldown.
-
-## Shredded Axe
-
-`/shreddedaxe give` - Summons a zombie when hitting an enemy.
-
-## Copper sword
-
-`/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
-
-Crafting Recipe:
-- 8 Copper Block
-- 1 Iron Sword
-
-![](assets/coppersword.png)
 
 ## Poseidon's Trident
 
@@ -267,6 +239,44 @@ Crafting Recipe:
 - 2 Stick
 
 ![](assets/valk.png)
+
+## Vampire's Axe
+
+`/vampaxe give` - life steals damage when you hit
+
+Crafting Recipe:
+- 3 Netherite Axe
+- 2 Redstone Block
+- 1 Wither Skeleton Skill
+
+![](assets/vampaxe.png)
+
+---
+
+# Epic
+
+Early/Midgame Weapons
+
+## Copper sword
+
+`/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
+
+Crafting Recipe:
+- 8 Copper Block
+- 1 Iron Sword
+
+![](assets/coppersword.png)
+
+## Fireball
+
+`/fireball give` - boom
+
+Crafting Recipe: (Shapeless)
+- 1 TNT
+- 1 Fire Charge
+- 1 Arrow
+
+![](assets/fireball.png)
 
 ---
 
