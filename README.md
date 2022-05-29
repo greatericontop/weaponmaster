@@ -205,12 +205,12 @@ Crafting Recipe:
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
 Crafting Recipe:
-- 2 Nether Star
+- 2 Nether Star 
 - 1 Netherite Ingot
-- 1 Netherite Block
+- 1 Netherite Block 
 - 1 Nether Reactor Core
 
-- ![](assets/netheritestaff.png)
+![](assets/netheritestaff.png)
 
 ## Ninja Bow
 
