@@ -43,6 +43,7 @@ import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusCommand;
 import io.github.greatericontop.weaponmaster.Exodus.ExodusItemListener;
+import io.github.greatericontop.weaponmaster.Exodus.ExodusRecipe;
 import io.github.greatericontop.weaponmaster.Fireball.FireballCommand;
 import io.github.greatericontop.weaponmaster.Fireball.FireballListener;
 import io.github.greatericontop.weaponmaster.Fireball.FireballRecipe;
@@ -85,6 +86,7 @@ import io.github.greatericontop.weaponmaster.VampAxe.VampItemListener;
 import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
+import io.github.greatericontop.weaponmaster.WarlockPants.WarlockRecipe;
 import io.github.greatericontop.weaponmaster.dragon_manager.FightManager;
 import io.github.greatericontop.weaponmaster.other_crafts.*;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
@@ -158,6 +160,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Exodus
         getCommand("exodus").setExecutor(new ExodusCommand());
         getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
+        new ExodusRecipe().regRecipe();
         // Rocket Stick
         getCommand("rocketstick").setExecutor(new RocketCommand());
         getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
@@ -180,6 +183,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
+        new WarlockRecipe().regRecipe();
         // Fireball
         getCommand("fireball").setExecutor(new FireballCommand());
         getServer().getPluginManager().registerEvents(new FireballListener(this), this);

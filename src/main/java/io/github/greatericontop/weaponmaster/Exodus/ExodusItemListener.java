@@ -47,21 +47,22 @@ public class ExodusItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player)event.getDamager();
+        Player player = (Player) event.getDamager();
         if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
         if (!player.hasPermission("weaponmaster.exodus.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
             return;
         }
         if (cooldown.getOrDefault(player.getUniqueId(), true)) {
-            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 80, 0, true);
+            // health is regenerated at 25 and 50
+            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 60, 0, true);
             player.addPotionEffect(effect);
             cooldown.put(player.getUniqueId(), false);
             new BukkitRunnable() {
                 public void run() {
                     cooldown.put(player.getUniqueId(), true);
                 }
-            }.runTaskLater(plugin, 120L); // after 6 seconds
+            }.runTaskLater(plugin, 80L);
         }
     }
 

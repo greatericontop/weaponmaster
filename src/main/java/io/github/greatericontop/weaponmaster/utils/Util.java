@@ -190,7 +190,8 @@ public class Util {
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§3Regenerate a small portion");
         EXODUS_LORE.add("§3of health when you hit any");
-        EXODUS_LORE.add("§3entity! (6 second cooldown)");
+        EXODUS_LORE.add("§3entity!");
+        EXODUS_LORE.add("§74 second cooldown");
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§6LEGENDARY");
         EXODUS_LORE.add("§6---------------");
@@ -278,8 +279,8 @@ public class Util {
         WARLOCK_PANTS_LORE.add("id: WARLOCK_PANTS");
         WARLOCK_PANTS_LORE.add("§6---------------");
         WARLOCK_PANTS_LORE.add("");
-        WARLOCK_PANTS_LORE.add("§eAbility: §4Hasty Rejuvenation");
-        WARLOCK_PANTS_LORE.add("§3Gain permanent §cRegeneration I");
+        WARLOCK_PANTS_LORE.add("§eAbility: §4Hasty Power");
+        WARLOCK_PANTS_LORE.add("§3Gain permanent §cStrength I");
         WARLOCK_PANTS_LORE.add("§3while wearing.");
         WARLOCK_PANTS_LORE.add("");
         WARLOCK_PANTS_LORE.add("§6LEGENDARY");
