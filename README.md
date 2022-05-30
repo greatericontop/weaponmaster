@@ -57,9 +57,12 @@
   - [Illegal Stack](#illegal-stack)
 - [License](#license)
 
+
 <br/>
 
 ---
+
+<br/>
 
 
 # Installation
@@ -70,9 +73,12 @@ Paste the jar file into the server `./plugins` directory
 
 For better aesthetic, you can also install the [WeaponMasterOverlay](https://github.com/Gerseneck/weaponmasterresources) pack.
 
+
 <br/>
 
 ---
+
+<br/>
 
 
 # Weapons
@@ -262,7 +268,7 @@ Crafting Recipe: \[coming soon\]
 
 <br/>
 
-## Epic
+## EPIC
 
 Early to mid-game weapons
 
@@ -301,9 +307,11 @@ Crafting Recipe:
 
 ![](assets/fireball.png)
 
-<br>
+<br/>
 
 ---
+
+<br/>
 
 
 # Others
@@ -350,9 +358,12 @@ Crafting Recipe:
 
 ![](assets/corestaff.png)
 
+
 <br/>
 
 ---
+
+<br/>
 
 
 # Commands
@@ -391,9 +402,12 @@ Sets the item in hand to any amount.
 
 Note: Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
 
+
 <br/>
 
 ---
+
+<br/>
 
 
 # License
