@@ -15,7 +15,6 @@
 - [Installation](#installation)
 - [Weapons](#weapons)
   - [SUPREME](#supreme)
-    - [Anduril](#anduril)
     - [Atom Bomb](#atom-bomb)
     - [Caveman Sword](#caveman-sword)
     - [Death's Scythe](#deaths-scythe)
@@ -41,6 +40,7 @@
     - [Valkyrie Axe](#valkyrie-axe)
     - [Vampire's Axe](#vampires-axe)
   - [Epic](#epic)
+    - [Anduril](#anduril)
     - [Copper Sword](#coppersword)
     - [Fireball](#fireball)
 - [Others](#others)
@@ -74,10 +74,6 @@ A long list of Weapons that are in this plugin.
 # SUPREME
 
 Uncraftable weapons of mass destruction.
-
-## Anduril
-
-`/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
 
 ## Atom Bomb
 
@@ -216,8 +212,7 @@ Crafting Recipe:
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe: 
-- 
+Crafting Recipe:
 
 ## Poseidon's Trident
 
@@ -248,7 +243,7 @@ Crafting Recipe:
 Crafting Recipe:
 - 3 Netherite Axe
 - 2 Redstone Block
-- 1 Wither Skeleton Skill
+- 1 Wither Skeleton Skull
 
 ![](assets/vampaxe.png)
 
@@ -257,6 +252,19 @@ Crafting Recipe:
 # Epic
 
 Early/Midgame Weapons
+
+
+## Anduril
+
+`/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
+
+Crafting Recipe:
+- 6 Feather
+- 1 Anvil
+- 1 Iron Block
+- 1 Iron Sword
+
+![](assets/anduril.png)
 
 ## Copper sword
 
