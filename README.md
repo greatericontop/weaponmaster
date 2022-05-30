@@ -25,10 +25,7 @@
     - [Pilot Sword](#pilot-sword)
     - [Rocket Stick](#rocket-stick)
     - [RPG Launcher](#rpg-launcher)
-    - [Scylla's Chestplate](#scyllas-chestplate)
-    - [Shredded Axe](#shredded-axe)
     - [Sniper Rifle](#sniper-rifle)
-    - [Warlock Pants](#warlock-pants)
   - [LEGENDARY](#legendary)
     - [Artemis Bow](#artemis-bow)
     - [Caveman Sword](#caveman-sword)
@@ -38,8 +35,11 @@
     - [Netherite Staff](#netherite-staff)
     - [Ninja Bow](#ninja-bow)
     - [Poseidon's Trident](#poseidons-trident)
+    - [Scylla's Chestplate](#scyllas-chestplate)
+    - [Shredded Axe](#shredded-axe)
     - [Valkyrie Axe](#valkyrie-axe)
     - [Vampire's Axe](#vampires-axe)
+    - [Warlock Pants](#warlock-pants)
   - [EPIC](#epic)
     - [Anduril](#anduril)
     - [Copper Sword](#copper-sword)
@@ -116,21 +116,9 @@ Uncraftable (command-only) weapons of extreme power and mass destruction.
 
 `/rpgl give` - shoot explosive projectiles at high speed
 
-## Scylla's Chestplate
-
-`/scylla give` - damage resistance during low health
-
-## Shredded Axe
-
-`/shreddedaxe give` - Summons a zombie when hitting an enemy.
-
 ## Sniper Rifle
 
 `/sniperrifle give` - shoots fast and accurate bullets
-
-## Warlock Pants
-
-`/warlockpants give` - permanent regeneration and resistance while wearing
 
 ---
 
@@ -226,6 +214,14 @@ Crafting Recipe:
 
 ![](assets/trident.png)
 
+## Scylla's Chestplate
+
+`/scylla give` - damage resistance during low health
+
+## Shredded Axe
+
+`/shreddedaxe give` - Summons a zombie when hitting an enemy.
+
 ## Valkyrie Axe
 
 `/valkyrie give` - sample description
@@ -247,6 +243,12 @@ Crafting Recipe:
 - 1 Wither Skeleton Skull
 
 ![](assets/vampaxe.png)
+
+## Warlock Pants
+
+`/warlockpants give` - permanent strength while wearing
+
+Crafting Recipe: \[coming soon\]
 
 ---
 
