@@ -48,7 +48,7 @@
     - [Fireball](#fireball)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
-  - [Flask of Ichor](#flask-of-inchor)
+  - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Nether Reactor Core](#nether-reactor-core)
 - [Commands](#commands)
