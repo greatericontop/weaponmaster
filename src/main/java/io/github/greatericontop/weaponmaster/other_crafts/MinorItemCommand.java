@@ -47,6 +47,8 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Dragon Scale - /minoritem dragonScale");
             sender.sendMessage("§7Magic Energy Bar - /minoritem magicEnergyBar");
             sender.sendMessage("§7Expert Seal - /minoritem expertSeal");
+            sender.sendMessage("§7Dragon Wing [unused] - /minoritem dragonWing");
+            sender.sendMessage("§7Dragon Horn [unused] - /minoritem dragonHorn");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -83,6 +85,18 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateExpertSealItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.EXPERT_SEAL_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("dragonWing")) {
+            ItemStack item = customItems.generateDragonWingItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_WING_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("dragonHorn")) {
+            ItemStack item = customItems.generateDragonHornItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_HORN_NAME + "§f]§7.");
             return true;
         }
         if (!(sender instanceof Player)) {

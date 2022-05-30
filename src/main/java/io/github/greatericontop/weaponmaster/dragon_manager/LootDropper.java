@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,15 +30,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class LootDropper {
 
     private final WeaponMasterMain plugin;
-    private final Util util;
+    private final CustomItems customItems;
     private final EnderDragon currentlyActiveDragon;
     public LootDropper(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
         this.plugin = plugin;
-        this.util = new Util(plugin);
+        this.customItems = new CustomItems();
         this.currentlyActiveDragon = currentlyActiveDragon;
     }
 
@@ -55,6 +57,32 @@ public class LootDropper {
         Location loc = new Location(world, x, y, z).add(0, 1, 0);
         loc.getBlock().setType(Material.PURPUR_BLOCK);
         dropItemAt(world, loc.clone().add(0.5, 1.25, 0.5), itemStack, owner, 60);
+    }
+
+    public void createDrop(World world, ItemStack itemStack, UUID owner) {
+        int x = ThreadLocalRandom.current().nextInt(-30, 31);
+        int z = ThreadLocalRandom.current().nextInt(-30, 31);
+        createDrop(world, x, z, itemStack, owner);
+    }
+
+    public int doMajorDrops(World world, int weight, UUID owner) {
+        double rand = Math.random();
+        if (weight >= 600 && rand < 0.15) {
+            createDrop(world, customItems.generateDragonScaleItemStack(), owner);
+            weight -= 600;
+            return weight;
+        }
+        if (weight >= 550 && rand < 0.35) {
+            createDrop(world, customItems.generateDragonHornItemStack(), owner);
+            weight -= 550;
+            return weight;
+        }
+        if (weight >= 550 && rand < 0.55) {
+            createDrop(world, customItems.generateDragonWingItemStack(), owner);
+            weight -= 550;
+            return weight;
+        }
+        return weight;
     }
 
 }

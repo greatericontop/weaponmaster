@@ -36,15 +36,19 @@ public class CustomItems {
     public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
     public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
     public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
-    public final String DRAGON_SCALE_NAME = "§d§lDragon Scale";
+    public final String DRAGON_SCALE_NAME = "§dDragon Scale";
     public final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
     public final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
+    public final String DRAGON_WING_NAME = "§dDragon Wing";
+    public final String DRAGON_HORN_NAME = "§dDragon Horn";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
     public List<String> DRAGON_SCALE_LORE = new ArrayList<>();
     public List<String> MAGIC_ENERGY_BAR_LORE = new ArrayList<>();
     public List<String> EXPERT_SEAL_LORE = new ArrayList<>();
+    public List<String> DRAGON_WING_LORE = new ArrayList<>();
+    public List<String> DRAGON_HORN_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -67,6 +71,14 @@ public class CustomItems {
         EXPERT_SEAL_LORE.add("id: EXPERT_SEAL");
         EXPERT_SEAL_LORE.add("§9Move this item over another to increase all enchantments");
         EXPERT_SEAL_LORE.add("§9in the target item by 1 level!");
+
+        DRAGON_WING_LORE.add("id: DRAGON_WING");
+        DRAGON_WING_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
+        DRAGON_WING_LORE.add("§dThe wing of the dragon can be used to craft powerful dragon items.");
+
+        DRAGON_HORN_LORE.add("id: DRAGON_HORN");
+        DRAGON_HORN_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
+        DRAGON_HORN_LORE.add("§dThe horn of the dragon can be used to craft powerful dragon items.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -99,7 +111,7 @@ public class CustomItems {
     }
 
     public ItemStack generateDragonScaleItemStack() {
-        ItemStack stack = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
+        ItemStack stack = new ItemStack(Material.PRISMARINE_SHARD, 1);
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(DRAGON_SCALE_NAME);
         List<String> lore = new ArrayList<String>();
@@ -127,6 +139,24 @@ public class CustomItems {
         lore.addAll(EXPERT_SEAL_LORE);
         lore.add(String.format("§7#%s", UUID.randomUUID()));
         iMeta.setLore(lore);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateDragonWingItemStack() {
+        ItemStack stack = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DRAGON_WING_NAME);
+        iMeta.setLore(DRAGON_WING_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateDragonHornItemStack() {
+        ItemStack stack = new ItemStack(Material.END_ROD, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DRAGON_HORN_NAME);
+        iMeta.setLore(DRAGON_HORN_LORE);
         stack.setItemMeta(iMeta);
         return stack;
     }

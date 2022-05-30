@@ -45,10 +45,10 @@ public class WeaponMasterCommand implements CommandExecutor {
         if (args.length >= 1 && args[0].equals("debug")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
-            new LootDropper(plugin, plugin.dragonManager.currentlyActiveDragon)
-                    .createDrop(plugin.dragonManager.currentlyActiveDragon.getWorld(),
-                            10, 10, new ItemStack(Material.OBSIDIAN, 2),
-                            ((Player) sender).getUniqueId());
+            new LootDropper(plugin, plugin.dragonManager.currentlyActiveDragon).doMajorDrops(
+                    plugin.dragonManager.currentlyActiveDragon.getWorld(),
+                    1000, ((Player) sender).getUniqueId()
+            );
             sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
             return true;
         }
