@@ -49,6 +49,7 @@ import io.github.greatericontop.weaponmaster.Fireball.FireballListener;
 import io.github.greatericontop.weaponmaster.Fireball.FireballRecipe;
 import io.github.greatericontop.weaponmaster.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
+import io.github.greatericontop.weaponmaster.Helios.HeliosRecipe;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
@@ -167,6 +168,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Helios
         getCommand("helios").setExecutor(new HeliosCommand());
         getServer().getPluginManager().registerEvents(new HeliosItemListener(this), this);
+        new HeliosRecipe().regRecipe();
         // Scylla's Chestplate
         getCommand("scylla").setExecutor(new ScyllaCommand());
         getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);

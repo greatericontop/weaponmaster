@@ -83,7 +83,7 @@ public class HeliosItemListener implements Listener {
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
-        if (util.checkForInteractableBlock(event)) { return; }
+        if (Util.checkForInteractableBlock(event)) { return; }
         if (player.getFoodLevel() < 12) {
             player.sendMessage("§7You don't have enough hunger to use this!");
             return;

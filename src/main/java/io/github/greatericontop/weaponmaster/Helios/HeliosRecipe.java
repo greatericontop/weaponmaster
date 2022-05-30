@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.Exodus;
+package io.github.greatericontop.weaponmaster.Helios;
 
 /*
     Copyright (C) 2021 greateric.
@@ -24,23 +24,23 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class ExodusRecipe {
+public class HeliosRecipe {
 
     private final Util util;
-    public ExodusRecipe() {
+    public HeliosRecipe() {
         util = new Util(null);
     }
 
     public void regRecipe() {
-        ItemStack exodus = util.generateMeta(util.EXODUS_LORE, util.EXODUS_NAME, Material.DIAMOND_HELMET);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("exodus"), exodus);
-        recipe.shape("ddd",
-                     "dGd",
-                     "cEc");
-        recipe.setIngredient('d', Material.DIAMOND_BLOCK);
-        recipe.setIngredient('G', Material.ENCHANTED_GOLDEN_APPLE);
-        recipe.setIngredient('E', Material.END_CRYSTAL);
-        recipe.setIngredient('c', Material.GOLDEN_CARROT);
+        ItemStack helios = util.generateMeta(util.HELIOS_LORE, util.HELIOS_NAME, Material.IRON_SWORD);
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("helios"), helios);
+        recipe.shape("tNt",
+                     "tnt",
+                     "tIt");
+        recipe.setIngredient('I', Material.IRON_SWORD);
+        recipe.setIngredient('n', Material.NETHERITE_BLOCK);
+        recipe.setIngredient('N', Material.NETHER_STAR);
+        recipe.setIngredient('t', Material.RESPAWN_ANCHOR);
         Bukkit.getServer().addRecipe(recipe);
     }
 
