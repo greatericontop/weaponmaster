@@ -16,7 +16,6 @@
 - [Weapons](#weapons)
   - [SUPREME](#supreme)
     - [Atom Bomb](#atom-bomb)
-    - [Caveman Sword](#caveman-sword)
     - [Death's Scythe](#deaths-scythe)
     - [Exodus](#exodus)
     - [Helios](#helios)
@@ -25,12 +24,14 @@
     - [Napalm Missile](#napalm-missile)
     - [Pilot Sword](#pilot-sword)
     - [Rocket Stick](#rocket-stick)
+    - [RPG Launcher](#rpg-launcher)
     - [Scylla's Chestplate](#scyllas-chestplate)
     - [Shredded Axe](#shredded-axe)
     - [Sniper Rifle](#sniper-rifle)
     - [Warlock Pants](#warlock-pants)
   - [LEGENDARY](#legendary)
     - [Artemis Bow](#artemis-bow)
+    - [Caveman Sword](#caveman-sword)
     - [Dragon Sword](#dragon-sword)
     - [Excalibur](#excalibur)
     - [Miner's Blessing](#miners-blessing)
@@ -79,14 +80,6 @@ Uncraftable (command-only) weapons of extreme power and mass destruction.
 
 `/atombomb give` - absolutely mauls terrain
 
-## RPG Launcher
-
-`/rpgl give` - shoot explosive projectiles at high speed
-
-## Caveman Sword
-
-`/cavemansword give` - deal more damage as you level it up by using it
-
 ## Death's Scythe
 
 `/scythe give` - deal true damage and gain increasing levels of strength based on the damage dealt
@@ -118,6 +111,10 @@ Uncraftable (command-only) weapons of extreme power and mass destruction.
 ## Rocket Stick
 
 `/rocketstick give` - throw yourself or other players into the air
+
+## RPG Launcher
+
+`/rpgl give` - shoot explosive projectiles at high speed
 
 ## Scylla's Chestplate
 
@@ -154,6 +151,10 @@ Crafting Recipe:
 - 1 Wither Skeleton Skull
 
 ![](assets/artemis.png)
+
+## Caveman Sword
+
+`/cavemansword give` - deal more damage as you level it up by using it
 
 ## Dragon Sword
 
