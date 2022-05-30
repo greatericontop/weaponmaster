@@ -39,9 +39,9 @@
     - [Poseidon's Trident](#poseidons-trident)
     - [Valkyrie Axe](#valkyrie-axe)
     - [Vampire's Axe](#vampires-axe)
-  - [Epic](#epic)
+  - [EPIC](#epic)
     - [Anduril](#anduril)
-    - [Copper Sword](#coppersword)
+    - [Copper Sword](#copper-sword)
     - [Fireball](#fireball)
 - [Others](#others)
   - [Hide of Leviathan](#hide-of-leviathan)
@@ -73,7 +73,7 @@ A long list of Weapons that are in this plugin.
 
 # SUPREME
 
-Uncraftable weapons of mass destruction.
+Uncraftable (command-only) weapons of extreme power and mass destruction.
 
 ## Atom Bomb
 
@@ -139,7 +139,7 @@ Uncraftable weapons of mass destruction.
 
 # LEGENDARY
 
-Craftable weapons for late game users.
+Craftable weapons for late and end game players. These are very powerful.
 
 ## Artemis Bow
 
@@ -251,7 +251,7 @@ Crafting Recipe:
 
 # Epic
 
-Early/Midgame Weapons
+Early to mid-game weapons
 
 
 ## Anduril
@@ -266,7 +266,7 @@ Crafting Recipe:
 
 ![](assets/anduril.png)
 
-## Copper sword
+## Copper Sword
 
 `/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
 
