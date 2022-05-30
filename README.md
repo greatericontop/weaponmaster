@@ -173,6 +173,8 @@ Crafting Recipe: \[COMING SOON\]
 
 `/helios give` - increases in power as you gain experience levels, right click to deal area damage
 
+Crafting Recipe: \[COMING SOON\]
+
 ### Helmet of Life
 
 `/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
@@ -264,7 +266,7 @@ Crafting Recipe:
 
 `/warlockpants give` - permanent strength while wearing
 
-Crafting Recipe: \[coming soon\]
+Crafting Recipe: \[COMING SOON\]
 
 <br/>
 
