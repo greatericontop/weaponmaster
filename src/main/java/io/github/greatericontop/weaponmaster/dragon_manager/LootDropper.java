@@ -67,20 +67,39 @@ public class LootDropper {
 
     public int doMajorDrops(World world, int weight, UUID owner) {
         double rand = Math.random();
-        if (weight >= 600 && rand < 0.15) {
-            createDrop(world, customItems.generateDragonScaleItemStack(), owner);
-            weight -= 600;
-            return weight;
-        }
-        if (weight >= 550 && rand < 0.35) {
+        if (weight >= 600 && rand < 0.04) { // 4%
             createDrop(world, customItems.generateDragonHornItemStack(), owner);
             weight -= 550;
             return weight;
         }
-        if (weight >= 550 && rand < 0.55) {
+        if (weight >= 550 && 0.04 <= rand && rand < 0.12) { // 8%
+            createDrop(world, customItems.generateDragonScaleItemStack(), owner);
+            weight -= 600;
+            return weight;
+        }
+        if (weight >= 550 && 0.12 <= rand && rand < 0.22) { // 10%
             createDrop(world, customItems.generateDragonWingItemStack(), owner);
             weight -= 550;
             return weight;
+        }
+        return weight;
+    }
+
+    public int doMinorDrops(World world, int weight, UUID owner) {
+        int i = 0;
+        while (weight > 0 && i < 50) { // max 50 attempts to spawn items because each only drops 1, and they can fail
+            double rand = Math.random();
+            if (weight >= 90 && rand < 0.1) { // 10%
+                createDrop(world, new ItemStack(Material.SHULKER_SHELL, 1), owner);
+                weight -= 90;
+            } else if (weight >= 20 && 0.1 <= rand && rand < 0.4) { // 30%
+                createDrop(world, new ItemStack(Material.OBSIDIAN, 1), owner);
+                weight -= 20;
+            } else if (weight >= 20 && 0.4 <= rand && rand < 0.7) { // 30%
+                createDrop(world, new ItemStack(Material.ENDER_PEARL, 1), owner);
+                weight -= 20;
+            }
+            i++;
         }
         return weight;
     }

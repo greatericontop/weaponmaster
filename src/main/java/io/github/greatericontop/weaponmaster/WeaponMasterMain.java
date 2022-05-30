@@ -34,6 +34,7 @@ import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorCommand;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorListener;
+import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorRecipe;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonRecipe;
@@ -221,6 +222,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Dragon Armor
         getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
         getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
+        new DragonArmorRecipe().registerAll();
         // Copper Sword
         getCommand("coppersword").setExecutor(new CopperSwordCommand());
         getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
