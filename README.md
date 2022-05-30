@@ -10,30 +10,32 @@
 
 **WeaponMaster** is a minecraft server plugin made using Spigot and Paper that adds weapons, tools, and armor items to the game.
 
+
 ---
+
 
 - [Installation](#installation)
 - [Weapons](#weapons)
   - [SUPREME](#supreme)
     - [Atom Bomb](#atom-bomb)
-    - [Death's Scythe](#deaths-scythe)
-    - [Exodus](#exodus)
-    - [Helios](#helios)
-    - [Helmet of Life](#helmet-of-life)
-    - [Herme's Boots](#hermes-boots)
     - [Napalm Missile](#napalm-missile)
-    - [Pilot Sword](#pilot-sword)
     - [Rocket Stick](#rocket-stick)
     - [RPG Launcher](#rpg-launcher)
     - [Sniper Rifle](#sniper-rifle)
   - [LEGENDARY](#legendary)
     - [Artemis Bow](#artemis-bow)
     - [Caveman Sword](#caveman-sword)
+    - [Death's Scythe](#deaths-scythe)
     - [Dragon Sword](#dragon-sword)
     - [Excalibur](#excalibur)
+    - [Exodus](#exodus)
+    - [Helios](#helios)
+    - [Helmet of Life](#helmet-of-life)
+    - [Herme's Boots](#hermes-boots)
     - [Miner's Blessing](#miners-blessing)
     - [Netherite Staff](#netherite-staff)
     - [Ninja Bow](#ninja-bow)
+    - [Pilot Sword](#pilot-sword)
     - [Poseidon's Trident](#poseidons-trident)
     - [Scylla's Chestplate](#scyllas-chestplate)
     - [Shredded Axe](#shredded-axe)
@@ -55,7 +57,10 @@
   - [Illegal Stack](#illegal-stack)
 - [License](#license)
 
+<br/>
+
 ---
+
 
 # Installation
 
@@ -65,68 +70,45 @@ Paste the jar file into the server `./plugins` directory
 
 For better aesthetic, you can also install the [WeaponMasterOverlay](https://github.com/Gerseneck/weaponmasterresources) pack.
 
+<br/>
+
 ---
+
 
 # Weapons
 
-A long list of Weapons that are in this plugin. 
 
-
-# SUPREME
+## SUPREME
 
 Uncraftable (command-only) weapons of extreme power and mass destruction.
 
-## Atom Bomb
+### Atom Bomb
 
 `/atombomb give` - absolutely mauls terrain
 
-## Death's Scythe
-
-`/scythe give` - deal true damage and gain increasing levels of strength based on the damage dealt
-
-## Exodus
-
-`/exodus give` - heal whenever you hit anything (stolen x3)
-
-## Helios
-
-`/helios give` - increases in power as you gain experience levels, right click to deal area damage
-
-## Helmet of Life
-
-`/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
-
-## Herme's Boots
-
-`/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
-
-## Napalm Missile
+### Napalm Missile
 
 `/napalm give` - firey explosive device, use with caution
 
-## Pilot Sword
-
-`/pilotsword give` - a combo sword, no attack cooldown.
-
-## Rocket Stick
+### Rocket Stick
 
 `/rocketstick give` - throw yourself or other players into the air
 
-## RPG Launcher
+### RPG Launcher
 
 `/rpgl give` - shoot explosive projectiles at high speed
 
-## Sniper Rifle
+### Sniper Rifle
 
 `/sniperrifle give` - shoots fast and accurate bullets
 
----
+<br/>
 
-# LEGENDARY
+## LEGENDARY
 
 Craftable weapons for late and end game players. These are very powerful.
 
-## Artemis Bow
+### Artemis Bow
 
 `/artemis give` - heat seeking arrows attack nearby targets
 
@@ -140,11 +122,17 @@ Crafting Recipe:
 
 ![](assets/artemis.png)
 
-## Caveman Sword
+### Caveman Sword
 
 `/cavemansword give` - deal more damage as you level it up by using it
 
-## Dragon Sword
+### Death's Scythe
+
+`/scythe give` - deal true damage (30% of target's health instantly) and gain increasing levels of strength based on the damage dealt
+
+Note: you only get 10 hits until durability runs out, and you can't use mending.
+
+### Dragon Sword
 
 `/dragonsword give` - deals extra damage  
 
@@ -155,7 +143,7 @@ Crafting Recipe:
 
 ![](assets/dragsword.png)
 
-## Excalibur
+### Excalibur
 
 `/excalibur give` - explodes on impact and deals true damage (stolen as well)
 
@@ -169,7 +157,25 @@ Crafting Recipe:
 
 ![](assets/excal.png)
 
-## Miner's Blessing
+### Exodus
+
+`/exodus give` - heal whenever you hit anything (stolen x3)
+
+Crafting Recipe: \[COMING SOON\]
+
+### Helios
+
+`/helios give` - increases in power as you gain experience levels, right click to deal area damage
+
+### Helmet of Life
+
+`/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
+
+### Herme's Boots
+
+`/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
+
+### Miner's Blessing
 
 `/minersblessing give` - super pickaxe, mine to level up
 
@@ -185,7 +191,7 @@ Crafting Recipe:
 
 ![](assets/miner.png)
 
-## Netherite Staff
+### Netherite Staff
 
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
@@ -197,13 +203,17 @@ Crafting Recipe:
 
 ![](assets/netheritestaff.png)
 
-## Ninja Bow
+### Ninja Bow
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe:
+Crafting Recipe: \[not coming soon\]
 
-## Poseidon's Trident
+### Pilot Sword
+
+`/pilotsword give` - a combo sword, no attack cooldown (but less damage)
+
+### Poseidon's Trident
 
 `/poseidontrident give` - a very powerful Trident
 
@@ -214,17 +224,17 @@ Crafting Recipe:
 
 ![](assets/trident.png)
 
-## Scylla's Chestplate
+### Scylla's Chestplate
 
 `/scylla give` - damage resistance during low health
 
-## Shredded Axe
+### Shredded Axe
 
 `/shreddedaxe give` - Summons a zombie when hitting an enemy.
 
-## Valkyrie Axe
+### Valkyrie Axe
 
-`/valkyrie give` - sample description
+`/valkyrie give` - heavy axe gives high damage and low swing speed, but can deal massive knockback
 
 Crafting Recipe:
 - 4 Iron Block
@@ -233,7 +243,7 @@ Crafting Recipe:
 
 ![](assets/valk.png)
 
-## Vampire's Axe
+### Vampire's Axe
 
 `/vampaxe give` - life steals damage when you hit
 
@@ -244,20 +254,20 @@ Crafting Recipe:
 
 ![](assets/vampaxe.png)
 
-## Warlock Pants
+### Warlock Pants
 
 `/warlockpants give` - permanent strength while wearing
 
 Crafting Recipe: \[coming soon\]
 
----
+<br/>
 
-# Epic
+## Epic
 
 Early to mid-game weapons
 
 
-## Anduril
+### Anduril
 
 `/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
 
@@ -269,7 +279,7 @@ Crafting Recipe:
 
 ![](assets/anduril.png)
 
-## Copper Sword
+### Copper Sword
 
 `/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
 
@@ -279,18 +289,22 @@ Crafting Recipe:
 
 ![](assets/coppersword.png)
 
-## Fireball
+### Fireball
 
 `/fireball give` - boom
 
-Crafting Recipe: (Shapeless)
+Crafting Recipe:  
+(Shapeless)
 - 1 TNT
 - 1 Fire Charge
 - 1 Arrow
 
 ![](assets/fireball.png)
 
+<br>
+
 ---
+
 
 # Others
 
@@ -336,7 +350,10 @@ Crafting Recipe:
 
 ![](assets/corestaff.png)
 
+<br/>
+
 ---
+
 
 # Commands
 
@@ -374,7 +391,10 @@ Sets the item in hand to any amount.
 
 Note: Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
 
+<br/>
+
 ---
+
 
 # License
 
