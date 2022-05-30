@@ -316,7 +316,7 @@ Crafting Recipe:
 
 # Others
 
-## Hide of Leviathan
+### Hide of Leviathan
 
 Netherite Leggings with `Protection IV`, `Blast Protection IV`, `Fire Protection IV`, and `Projectile Protection IV`.
 
@@ -328,7 +328,7 @@ Crafting Recipe:
 
 ![](assets/hide.png)
 
-## Flask of Ichor
+### Flask of Ichor
 
 Potion of `Instant Damage IV`
 
@@ -341,11 +341,11 @@ Crafting Recipe:
 
 ![](assets/flask.png)
 
-## Heart of Leviathan
+### Heart of Leviathan
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
 
-## Nether Reactor Core
+### Nether Reactor Core
 
 A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
 1.5% chance of dropping from a `Wither Skeleton`.
