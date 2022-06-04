@@ -19,11 +19,10 @@ package io.github.greatericontop.weaponmaster.ArtemisBow;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -113,6 +112,16 @@ public class ArtemisItemListener implements Listener {
                             (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(arrowLoc)-b.getLocation().distanceSquared(arrowLoc)))
                     );
                     for (Entity target : nearEntities) {
+
+                        // Ignore entites that are immune to arrows
+                        if (target instanceof Enderman) { continue; }
+                        if (target instanceof Player) {
+                            GameMode gm = ((Player) target).getGameMode();
+                            if (gm == GameMode.CREATIVE || gm == GameMode.SPECTATOR) { continue; }
+                        }
+
+
+                        // Curve code
                         if (player.hasLineOfSight(target) && target instanceof LivingEntity && (!target.isDead()) && target.getEntityId() != player.getEntityId()) {
                             Vector velo = arrow.getVelocity();
                             double speed = Math.sqrt(velo.getX()*velo.getX() + velo.getY()*velo.getY() + velo.getZ()*velo.getZ());
