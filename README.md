@@ -239,6 +239,8 @@ Crafting Recipe: COMING SOON
 
 `/pilotsword give` - a combo sword, no attack cooldown (but less damage)
 
+Crafting Recipe: COMING SOON
+
 ### Poseidon's Trident
 
 `/poseidontrident give` - a very powerful Trident

@@ -70,6 +70,7 @@ import io.github.greatericontop.weaponmaster.NinjaBow.NinjaItemListener;
 import io.github.greatericontop.weaponmaster.NinjaBow.NinjaRecipe;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
+import io.github.greatericontop.weaponmaster.PilotSword.PilotRecipe;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentCommand;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentListener;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentRecipe;
@@ -81,6 +82,7 @@ import io.github.greatericontop.weaponmaster.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
+import io.github.greatericontop.weaponmaster.Scylla.ScyllaRecipe;
 import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedCommand;
 import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedListener;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
@@ -179,6 +181,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Scylla's Chestplate
         getCommand("scylla").setExecutor(new ScyllaCommand());
         getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
+        new ScyllaRecipe().regRecipe();
         // Herme's Boots
         getCommand("hermesboots").setExecutor(new HermesCommand());
         getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);

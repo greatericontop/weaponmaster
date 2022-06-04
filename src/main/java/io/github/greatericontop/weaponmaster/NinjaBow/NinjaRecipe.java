@@ -23,16 +23,12 @@ public class NinjaRecipe {
     public void regRecipe() {
         ItemStack ninjabow = util.generateMeta(util.NINJA_BOW_LORE, util.NINJA_BOW_NAME, Material.BOW);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("ninja_bow"), ninjabow);
-        recipe.shape(" WT",
-                     "WUT",
-                     " WT");
-        ItemStack crossbow = new ItemStack(Material.CROSSBOW, 1);
-        ItemMeta bowmeta = crossbow.getItemMeta();
-        bowmeta.addEnchant(Enchantment.QUICK_CHARGE, 3, true);
-        crossbow.setItemMeta(bowmeta);
-        recipe.setIngredient('W', new RecipeChoice.ExactChoice(crossbow));
-        recipe.setIngredient('T', new RecipeChoice.ExactChoice(customitems.generateSilkyStringItemStack()));
-        recipe.setIngredient('U', Material.BLAZE_ROD);
+        recipe.shape(" bS",
+                     "brS",
+                     " bS");
+        recipe.setIngredient('b', new RecipeChoice.ExactChoice(new ItemStack(Material.BOW, 1)));
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(customitems.generateSilkyStringItemStack()));
+        recipe.setIngredient('r', Material.BLAZE_ROD);
         Bukkit.getServer().addRecipe(recipe);
     }
 }
