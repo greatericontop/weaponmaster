@@ -38,17 +38,17 @@ public class ScyllaRecipe {
     public void regRecipe() {
         ItemStack scylla = util.generateMeta(util.SCYLLA_CHESTPLATE_LORE, util.SCYLLA_CHESTPLATE_NAME, Material.DIAMOND_CHESTPLATE);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("scylla_chestplate"), scylla);
-        recipe.shape("AnA",
+        recipe.shape("sNs",
                      "PCP",
-                     "AnA");
+                     "sNs");
         recipe.setIngredient('C', Material.DIAMOND_CHESTPLATE);
-        recipe.setIngredient('n', Material.NETHERITE_INGOT);
+        recipe.setIngredient('N', Material.NETHERITE_INGOT);
         ItemStack resistance = new ItemStack(Material.POTION, 1);
         PotionMeta im = (PotionMeta) resistance.getItemMeta();
         im.setBasePotionData(new PotionData(PotionType.TURTLE_MASTER, false, true));
         resistance.setItemMeta(im);
         recipe.setIngredient('P', new RecipeChoice.ExactChoice(resistance));
-        recipe.setIngredient('A', Material.SPONGE);
+        recipe.setIngredient('s', Material.SPONGE);
         Bukkit.getServer().addRecipe(recipe);
     }
 }
