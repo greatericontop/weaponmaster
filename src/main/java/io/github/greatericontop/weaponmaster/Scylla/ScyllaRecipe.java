@@ -41,11 +41,12 @@ public class ScyllaRecipe {
         recipe.shape("AnA",
                      "PCP",
                      "AnA");
-        recipe.setIngredient('C', new RecipeChoice.ExactChoice(new ItemStack(Material.DIAMOND_CHESTPLATE, 1)));
+        recipe.setIngredient('C', Material.DIAMOND_CHESTPLATE);
         recipe.setIngredient('n', Material.NETHERITE_INGOT);
         ItemStack resistance = new ItemStack(Material.POTION, 1);
         PotionMeta im = (PotionMeta) resistance.getItemMeta();
         im.setBasePotionData(new PotionData(PotionType.TURTLE_MASTER, false, true));
+        resistance.setItemMeta(im);
         recipe.setIngredient('P', new RecipeChoice.ExactChoice(resistance));
         recipe.setIngredient('A', Material.SPONGE);
         Bukkit.getServer().addRecipe(recipe);

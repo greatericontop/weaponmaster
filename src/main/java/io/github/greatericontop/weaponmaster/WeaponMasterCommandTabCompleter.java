@@ -31,7 +31,7 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
-            List<String> mainCommands = Arrays.asList("attributemodifier", "illegalstack", "forceenchant");
+            List<String> mainCommands = Arrays.asList("attributemodifier", "illegalstack", "forceenchant", "debug");
             ArrayList<String> result = StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<String>(mainCommands.size()));
             return result;
         }

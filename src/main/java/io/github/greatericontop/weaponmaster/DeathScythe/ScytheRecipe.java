@@ -15,19 +15,15 @@ package io.github.greatericontop.weaponmaster.DeathScythe;
  */
 
 import org.bukkit.inventory.ItemStack;
-import java.util.List;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Material;
-import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 
-public class ScytheRecipe
-{
+public class ScytheRecipe {
+
     public final Util util;
-    
     public ScytheRecipe() {
         util = new Util(null);
     }

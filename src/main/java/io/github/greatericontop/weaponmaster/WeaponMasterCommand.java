@@ -30,6 +30,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.UUID;
 
@@ -43,6 +46,15 @@ public class WeaponMasterCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length >= 1 && args[0].equals("debug")) {
+            Player player = (Player) sender;
+            ItemStack itemStack = new ItemStack(Material.POTION, 1);
+            PotionMeta im = (PotionMeta) itemStack.getItemMeta();
+            im.setBasePotionData(new PotionData(PotionType.SPEED, true, false));
+            itemStack.setItemMeta(im);
+            player.getInventory().addItem(itemStack);
+            player.sendMessage("§7Given!");
+        }
+        if (args.length >= 1 && args[0].equals("debug1")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
             new LootDropper(plugin, plugin.dragonManager.currentlyActiveDragon).doMajorDrops(
