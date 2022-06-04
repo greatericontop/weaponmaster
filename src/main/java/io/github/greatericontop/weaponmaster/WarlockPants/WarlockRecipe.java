@@ -45,7 +45,7 @@ public class WarlockRecipe {
         recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
         recipe.setIngredient('n', Material.NETHERITE_INGOT);
         recipe.setIngredient('m', Material.MAGMA_CREAM);
-        recipe.setIngredient('S', Material.DIAMOND_SWORD);
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(new ItemStack(Material.DIAMOND_SWORD, 1)));
         recipe.setIngredient('E', Material.END_CRYSTAL);
         Bukkit.getServer().addRecipe(recipe);
     }
