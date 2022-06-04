@@ -284,7 +284,7 @@ Crafting Recipe:
 - 2 Blaze Rod
 - 1 Netherite Leggings
 - 1 Magma Cream
-- 1 Diamond Sword
+- 1 Diamond Sword (must be full durability and unenchanted)
 - 1 End Crystal
 
 ![](assets/warlock.png)
@@ -398,10 +398,10 @@ Crafting Recipe:
 Modifies the item's attributes.
 
 **Arguments**
-- **attribute** ≫ Any valid value from the [bukkit `Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
-- **operation** ≫ Any valid value from the [bukkit `Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
+- **attribute** ≫ Any valid value from the [`Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
+- **operation** ≫ Any valid value from the [`Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
 - **amount** ≫ any valid double
-- **slot** ≫ any valid value from the [bukkit `EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
+- **slot** ≫ any valid value from the [`EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
 - **optional uuid** ≫ any uuid (using one that is taken may result in weird behavior), or leave blank to randomly generate a new one
 
 ## Force Enchant
