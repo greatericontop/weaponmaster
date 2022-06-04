@@ -269,7 +269,7 @@ public class Util {
         CAVEMAN_SWORD_LORE.add("");
         CAVEMAN_SWORD_LORE.add("§eAbility: §4Caveman's Strength");
         CAVEMAN_SWORD_LORE.add("§3As you use the sword more, it will gain more levels");
-        CAVEMAN_SWORD_LORE.add("§3of §bSharpness§3, up to §b20 §3levels.");
+        CAVEMAN_SWORD_LORE.add("§3of §bSharpness§3, up to §b16 §3levels.");
         CAVEMAN_SWORD_LORE.add("");
         CAVEMAN_SWORD_LORE.add("§cDo not enchant this item with Sharpness.");
         CAVEMAN_SWORD_LORE.add("");

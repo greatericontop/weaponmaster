@@ -59,35 +59,26 @@ public class CavemanItemListener implements Listener {
 
 
     private int getRequirementToLevelUp(int level) {
-        if (level >= 25) {
+        if (level >= 16) {
             return 2147483600;
         }
         return new int[]{
                 1,
-                10, // 1
-                13,
-                16,
-                20,
-                25, // 5
-                31,
-                38,
-                46,
-                55,
-                65, // 10
-                77,
-                91,
-                108,
-                128,
-                144, // 15
-                173,
-                208,
-                250,
-                300,
-                360, // 20
-                432,
-                517,
-                617,
-                757
+                20, // 1
+                30,
+                50,
+                70,
+                90, // 5
+                110,
+                140,
+                170,
+                210,
+                260, // 10
+                320,
+                400,
+                510,
+                670,
+                910, // 15
         }[level] * 1000;
     }
 
