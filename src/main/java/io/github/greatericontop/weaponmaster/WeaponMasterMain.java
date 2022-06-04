@@ -222,7 +222,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Pilot's Sword
         getCommand("pilotsword").setExecutor(new PilotCommand());
         getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
-        //new PilotRecipe()
+        //new PilotRecipe().regRecipe();
         // Shredded Axe
         getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
