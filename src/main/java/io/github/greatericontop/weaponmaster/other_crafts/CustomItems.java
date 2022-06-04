@@ -41,6 +41,7 @@ public class CustomItems {
     public final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
     public final String DRAGON_WING_NAME = "§dDragon Wing";
     public final String DRAGON_HORN_NAME = "§dDragon Horn";
+    public final String SILKY_STRING_NAME = "§5Silky String";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -49,6 +50,7 @@ public class CustomItems {
     public List<String> EXPERT_SEAL_LORE = new ArrayList<>();
     public List<String> DRAGON_WING_LORE = new ArrayList<>();
     public List<String> DRAGON_HORN_LORE = new ArrayList<>();
+    public List<String> SILKY_STRING_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -79,6 +81,10 @@ public class CustomItems {
         DRAGON_HORN_LORE.add("id: DRAGON_HORN");
         DRAGON_HORN_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
         DRAGON_HORN_LORE.add("§dThe horn of the dragon can be used to craft powerful dragon items.");
+
+        SILKY_STRING_LORE.add("id: SILKY_STRING");
+        SILKY_STRING_LORE.add("§dA rare drop from a naturally-spawning spider.");
+        SILKY_STRING_LORE.add("§dA spider might have a rare mutation, but you can't tell...");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -161,4 +167,12 @@ public class CustomItems {
         return stack;
     }
 
+    public ItemStack generateSilkyStringItemStack() {
+        ItemStack stack = new ItemStack(Material.STRING, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(SILKY_STRING_NAME);
+        iMeta.setLore(SILKY_STRING_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
 }

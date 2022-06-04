@@ -118,25 +118,27 @@ Craftable weapons for late and end game players. These are very powerful.
 
 `/artemis give` - heat seeking arrows attack nearby targets
 
-Crafting Recipe:
-- 3 Bow
-- 2 Netherite Ingot
-- 1 Netherite Block
-- 1 Eye of Ender
-- 1 Diamond Block
-- 1 Wither Skeleton Skull
-
-![](assets/artemis.png)
-
 ### Caveman Sword
 
 `/cavemansword give` - deal more damage as you level it up by using it
+
+Crafting Recipe:
+- 1 Netherite Ingot
+- 1 Netherite Sword (must be full durability and unenchanted)
+- 2 Sharpness V Book
+- 1 Blaze Rod
+
+![](/assets/cavemansword.png)
+
+Crafting Recipe: COMING SOON
 
 ### Death's Scythe
 
 `/scythe give` - deal true damage (30% of target's health instantly) and gain increasing levels of strength based on the damage dealt
 
 Note: you only get 10 hits until durability runs out, and you can't use mending.
+
+Crafting Recipe: COMING SOON
 
 ### Dragon Sword
 
@@ -191,9 +193,13 @@ Crafting Recipe:
 
 `/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
 
+Crafting Recipe: COMING SOON
+
 ### Herme's Boots
 
 `/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
+
+Crafting Recipe: COMING SOON
 
 ### Miner's Blessing
 
@@ -227,7 +233,7 @@ Crafting Recipe:
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe: \[not coming soon\]
+Crafting Recipe: COMING SOON
 
 ### Pilot Sword
 

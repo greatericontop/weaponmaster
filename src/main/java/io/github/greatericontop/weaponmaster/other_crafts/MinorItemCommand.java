@@ -30,7 +30,7 @@ public class MinorItemCommand implements CommandExecutor {
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
         to.sendMessage("§4§lMinor Items");
-        to.sendMessage("§e§oby greateric");
+        to.sendMessage("§e§oby greateric & bigfatmidget");
         to.sendMessage("§3Use §2/minoritem list§3 to list the minor items.");
     }
 
@@ -49,6 +49,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Expert Seal - /minoritem expertSeal");
             sender.sendMessage("§7Dragon Wing [unused] - /minoritem dragonWing");
             sender.sendMessage("§7Dragon Horn [unused] - /minoritem dragonHorn");
+            sender.sendMessage("§7SilkyString - /minoritem silkystring");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -98,6 +99,11 @@ public class MinorItemCommand implements CommandExecutor {
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_HORN_NAME + "§f]§7.");
             return true;
+        }
+        if (args[0].equalsIgnoreCase("silkyString")) {
+            ItemStack item = customItems.generateSilkyStringItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.SILKY_STRING_NAME + "§f]§7.");
         }
         if (!(sender instanceof Player)) {
             sender.sendMessage("§3Sorry, players only.");

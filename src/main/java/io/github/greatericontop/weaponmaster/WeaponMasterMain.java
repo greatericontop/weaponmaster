@@ -27,11 +27,13 @@ import io.github.greatericontop.weaponmaster.AtomBomb.AtomCommand;
 import io.github.greatericontop.weaponmaster.AtomBomb.AtomItemListener;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanItemListener;
+import io.github.greatericontop.weaponmaster.CavemanSword.CavemanRecipe;
 import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordCommand;
 import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordListener;
 import io.github.greatericontop.weaponmaster.CopperSword.CopperSwordRecipe;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.DeathScythe.ScytheItemListener;
+import io.github.greatericontop.weaponmaster.DeathScythe.ScytheRecipe;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorCommand;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorListener;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorRecipe;
@@ -53,8 +55,10 @@ import io.github.greatericontop.weaponmaster.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.Helios.HeliosRecipe;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesCommand;
 import io.github.greatericontop.weaponmaster.HermesBoots.HermesItemListener;
+import io.github.greatericontop.weaponmaster.HermesBoots.HermesRecipe;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetCommand;
 import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetListener;
+import io.github.greatericontop.weaponmaster.LifeHelmet.LifeHelmetRecipe;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerCommand;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerItemListener;
 import io.github.greatericontop.weaponmaster.MinerBlessing.MinerRecipe;
@@ -63,6 +67,7 @@ import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffListen
 import io.github.greatericontop.weaponmaster.NetheriteStaff.NetheriteStaffRecipe;
 import io.github.greatericontop.weaponmaster.NinjaBow.NinjaCommand;
 import io.github.greatericontop.weaponmaster.NinjaBow.NinjaItemListener;
+import io.github.greatericontop.weaponmaster.NinjaBow.NinjaRecipe;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentCommand;
@@ -142,6 +147,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Scythe
         getServer().getPluginManager().registerEvents(new ScytheItemListener(this), this);
         getCommand("scythe").setExecutor(new ScytheCommand());
+        new ScytheRecipe().regRecipe();
         // Dragon Sword
         getServer().getPluginManager().registerEvents(new DragonItemListener(this), this);
         getCommand("dragonsword").setExecutor(new DragonCommand());
@@ -176,13 +182,16 @@ public class WeaponMasterMain extends JavaPlugin {
         // Herme's Boots
         getCommand("hermesboots").setExecutor(new HermesCommand());
         getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
+        new HermesRecipe().regRecipe();
         // Helmet of Life
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
         getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
         getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
+        new LifeHelmetRecipe().regRecipe();
         // Caveman Sword
         getCommand("cavemansword").setExecutor(new CavemanCommand());
         getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
+        new CavemanRecipe().regRecipe();
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
@@ -219,6 +228,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Ninja Bow
         getCommand("ninjabow").setExecutor(new NinjaCommand());
         getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
+        new NinjaRecipe().regRecipe();
         // Dragon Armor
         getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
         getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
