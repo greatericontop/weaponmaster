@@ -167,13 +167,25 @@ Crafting Recipe:
 
 `/exodus give` - heal whenever you hit anything (stolen x3)
 
-Crafting Recipe: \[COMING SOON\]
+Crafting Recipe:
+- 5 Diamond Block
+- 1 Enchanted Golden Apple
+- 2 Golden Carrot
+- 1 End Crystal
+
+![](assets/exodus.png)
 
 ### Helios
 
 `/helios give` - increases in power as you gain experience levels, right click to deal area damage
 
-Crafting Recipe: \[COMING SOON\]
+Crafting Recipe: 
+- 6 Respawn Anchor
+- 1 Nether Star
+- 1 Netherite Block
+- 1 Iron Sword
+
+![](assets/helios.png)
 
 ### Helmet of Life
 
@@ -266,7 +278,16 @@ Crafting Recipe:
 
 `/warlockpants give` - permanent strength while wearing
 
-Crafting Recipe: \[COMING SOON\]
+Crafting Recipe: 
+- 2 Netherite Ingot
+- 1 Wither Skeleton Skull
+- 2 Blaze Rod
+- 1 Netherite Leggings
+- 1 Magma Cream
+- 1 Diamond Sword
+- 1 End Crystal
+
+![](assets/warlock.png)
 
 <br/>
 
