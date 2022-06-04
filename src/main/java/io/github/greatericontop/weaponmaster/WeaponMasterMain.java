@@ -190,11 +190,11 @@ public class WeaponMasterMain extends JavaPlugin {
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
         getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
         getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
-        new LifeHelmetRecipe().regRecipe();
+        //new LifeHelmetRecipe().regRecipe();
         // Caveman Sword
         getCommand("cavemansword").setExecutor(new CavemanCommand());
         getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
-        new CavemanRecipe().regRecipe();
+        //new CavemanRecipe().regRecipe();
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
@@ -222,6 +222,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Pilot's Sword
         getCommand("pilotsword").setExecutor(new PilotCommand());
         getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
+        //new PilotRecipe()
         // Shredded Axe
         getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);

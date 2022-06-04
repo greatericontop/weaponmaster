@@ -24,10 +24,9 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-public class CavemanRecipe
-{
+public class CavemanRecipe {
+
     private final Util util;
-    
     public CavemanRecipe() {
         util = new Util(null);
     }

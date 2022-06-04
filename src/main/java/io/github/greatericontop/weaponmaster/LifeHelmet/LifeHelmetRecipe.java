@@ -25,10 +25,9 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-public class LifeHelmetRecipe
-{
+public class LifeHelmetRecipe {
+
     public final Util util;
-    
     public LifeHelmetRecipe() {
         this.util = new Util(null);
     }
