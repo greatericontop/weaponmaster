@@ -42,7 +42,7 @@ public class NinjaRecipe {
         recipe.shape(" bS",
                      "brS",
                      " bS");
-        recipe.setIngredient('b', new RecipeChoice.ExactChoice(new ItemStack(Material.BOW, 1)));
+        recipe.setIngredient('b', Material.BOW);
         recipe.setIngredient('S', new RecipeChoice.ExactChoice(customitems.generateSilkyStringItemStack()));
         recipe.setIngredient('r', Material.BLAZE_ROD);
         Bukkit.getServer().addRecipe(recipe);
