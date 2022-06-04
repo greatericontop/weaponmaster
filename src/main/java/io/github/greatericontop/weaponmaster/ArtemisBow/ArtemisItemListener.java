@@ -89,7 +89,7 @@ public class ArtemisItemListener implements Listener {
             player.sendMessage("§7Heat seeking was disabled, LEFT CLICK with Artemis to toggle.");
             return;
         }
-        player.sendMessage("§7velo: "+arrow.getVelocity().length());
+        // player.sendMessage("§7velo: "+arrow.getVelocity().length());
         new BukkitRunnable() {
             ArtemisMode mode = artemisModes.getOrDefault(player.getUniqueId().toString(), ArtemisMode.NORMAL);
             int runs = 0;
