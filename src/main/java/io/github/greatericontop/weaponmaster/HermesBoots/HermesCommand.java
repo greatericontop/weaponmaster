@@ -33,20 +33,37 @@ import java.util.UUID;
 
 public class HermesCommand implements CommandExecutor {
 
-    // echo "hermes" | md5sum
-    private final UUID modifierToughness = UUID.fromString("00000000-1111-0000-0000-bd1d2340551d");
-    private final UUID modifierSpeed = UUID.fromString("00000000-1111-0000-0000-510c1e6d1ca7");
-    private final UUID modifierArmor = UUID.fromString("00000000-1111-0000-0000-000000000001");
-    private final UUID modifierKnockback = UUID.fromString("00000000-1111-0000-0000-000000000002");
-
+    private static final UUID modifierToughness = UUID.fromString("00000000-1111-0000-0000-bd1d2340551d");
+    private static final UUID modifierSpeed = UUID.fromString("00000000-1111-0000-0000-510c1e6d1ca7");
+    private static final UUID modifierArmor = UUID.fromString("00000000-1111-0000-0000-000000000001");
+    private static final UUID modifierKnockback = UUID.fromString("00000000-1111-0000-0000-000000000002");
     private final Util util;
     public HermesCommand() {
         util = new Util(null);
     }
 
+    public static ItemStack giveHermes(Util util) {
+        ItemStack hermes = util.generateMeta(util.HERMES_BOOTS_LORE, util.HERMES_BOOTS_NAME, Material.NETHERITE_BOOTS);
+        ItemMeta itemMeta = hermes.getItemMeta();
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS,
+                new AttributeModifier(modifierToughness, "hermesToughness", 5.0,
+                        AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
+        itemMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED,
+                new AttributeModifier(modifierSpeed, "hermesSpeed", 0.1,
+                        AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlot.FEET));
+        itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR,
+                new AttributeModifier(modifierArmor, "hermesDefaultArmor", 3.0,
+                        AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
+        itemMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE,
+                new AttributeModifier(modifierKnockback, "hermesDefaultKnockback", 0.1,
+                        AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
+        hermes.setItemMeta(itemMeta);
+        return hermes;
+    }
+
     private void sendInfo(CommandSender to) {
         to.sendMessage("§6----------------------------------------");
-        to.sendMessage("§4§lHerme's Boots");
+        to.sendMessage("§4§lHermes' Boots");
         to.sendMessage("§e§oby greateric");
         to.sendMessage("§3Use §2/hermesboots give§3 to give yourself the item.");
     }
@@ -62,21 +79,7 @@ public class HermesCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack hermes = util.generateMeta(util.HERMES_BOOTS_LORE, util.HERMES_BOOTS_NAME, Material.NETHERITE_BOOTS);
-            ItemMeta itemMeta = hermes.getItemMeta();
-            itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS,
-                    new AttributeModifier(modifierToughness, "hermesToughness", 5.0,
-                            AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
-            itemMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED,
-                    new AttributeModifier(modifierSpeed, "hermesSpeed", 0.1,
-                            AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlot.FEET));
-            itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR,
-                    new AttributeModifier(modifierArmor, "hermesDefaultArmor", 3.0,
-                            AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
-            itemMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE,
-                    new AttributeModifier(modifierKnockback, "hermesDefaultKnockback", 0.1,
-                            AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
-            hermes.setItemMeta(itemMeta);
+            ItemStack hermes = giveHermes(util);
             ((Player) sender).getInventory().addItem(hermes);
             sender.sendMessage("§7Gave you §f[" + util.HERMES_BOOTS_NAME + "§f]§7.");
             return true;

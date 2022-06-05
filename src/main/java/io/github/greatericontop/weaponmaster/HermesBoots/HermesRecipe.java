@@ -19,33 +19,27 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionType;
 
-public class HermesRecipe
-{
+public class HermesRecipe {
+
     public final Util util;
     public HermesRecipe() {
         util = new Util(null);
     }
     
     public void regRecipe() {
-        ItemStack hermesboots = util.generateMeta(util.HERMES_BOOTS_LORE, util.HERMES_BOOTS_NAME, Material.NETHERITE_BOOTS);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("hermes_boots"), hermesboots);
-        recipe.shape("TTT",
-                     "MXM",
-                     "NNN");
-        recipe.setIngredient('T', Material.TOTEM_OF_UNDYING);
-        ItemStack speedpotion = new ItemStack(Material.POTION, 1);
-        PotionMeta speedmeta = (PotionMeta) speedpotion.getItemMeta();
-        speedmeta.setBasePotionData(new PotionData(PotionType.SPEED, false, false));
-        speedpotion.setItemMeta(speedmeta);
-        recipe.setIngredient('M', (RecipeChoice)new RecipeChoice.ExactChoice(speedpotion));
+        ItemStack hermes = HermesCommand.giveHermes(util);
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("hermes_boots"), hermes);
+        recipe.shape("fBf",
+                     "nXn",
+                     "btb");
+        recipe.setIngredient('B', Material.BEACON);
+        recipe.setIngredient('f', Material.FEATHER);
         recipe.setIngredient('X', Material.NETHERITE_BOOTS);
-        recipe.setIngredient('N', Material.NETHERITE_INGOT);
+        recipe.setIngredient('b', Material.BLAZE_ROD);
+        recipe.setIngredient('t', Material.TNT);
+        recipe.setIngredient('n', Material.NETHERITE_INGOT);
         Bukkit.getServer().addRecipe(recipe);
     }
 }

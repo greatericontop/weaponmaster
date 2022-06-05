@@ -41,7 +41,7 @@ public class Util {
     public final String ROCKET_STICK_NAME = "§9Rocket Stick §6⚝⚝⚝⚝⚝";
     public final String HELIOS_NAME = "§f§lHelios §6⚝⚝⚝⚝⚝";
     public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
-    public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
+    public final String HERMES_BOOTS_NAME = "§eHermes' Boots §6⚝⚝⚝⚝⚝";
     public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
@@ -96,12 +96,6 @@ public class Util {
     public final int MINER_LVL = 5;
     public final int MINER_INSERTION = 7;
     public final int DRAGON_UPGRADE = 8;
-
-    /*
-        §cSUPREME     Uncraftable admin abuse weapons
-        §6LEGENDARY   Craftable weapons but the highest tier (very late game)
-        §dEpic        Midgame weapons/early game strong weapons
-    */
 
     public final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
@@ -234,7 +228,7 @@ public class Util {
         SCYLLA_CHESTPLATE_LORE.add("");
         SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY");
         SCYLLA_CHESTPLATE_LORE.add("§6---------------");
-        // Herme's Boots
+        // Hermes' Boots
         HERMES_BOOTS_LORE.add("id: HERMES_BOOTS");
         HERMES_BOOTS_LORE.add("§6---------------");
         HERMES_BOOTS_LORE.add("");
@@ -244,7 +238,7 @@ public class Util {
         HERMES_BOOTS_LORE.add("");
         HERMES_BOOTS_LORE.add("§eAbility: §4Mythic Speed");
         HERMES_BOOTS_LORE.add("§3Gain a §c12% §3chance to dodge an attack.");
-        HERMES_BOOTS_LORE.add("§3(16 second cooldown)");
+        HERMES_BOOTS_LORE.add("§716 second cooldown");
         HERMES_BOOTS_LORE.add("");
         HERMES_BOOTS_LORE.add("§6LEGENDARY");
         HERMES_BOOTS_LORE.add("§6---------------");
@@ -405,7 +399,7 @@ public class Util {
         COPPER_SWORD_LORE.add("§bNORMAL");
         COPPER_SWORD_LORE.add("§6NOT WAXED");
         COPPER_SWORD_LORE.add("");
-        COPPER_SWORD_LORE.add("§dEpic");
+        COPPER_SWORD_LORE.add("§dEPIC");
         COPPER_SWORD_LORE.add("§6---------------");
         // Poseidon's Trident
         POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
