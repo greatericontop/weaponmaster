@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.CavemanSword;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -101,7 +102,6 @@ public class CavemanItemListener implements Listener {
 
             amount -= lastAmount;
             exp += amount;
-            player.sendMessage(String.format("§a+%d experience", amount));
 
             if (exp >= getRequirementToLevelUp(level)) {
                 exp = 0;
@@ -115,6 +115,7 @@ public class CavemanItemListener implements Listener {
             double xpPercent = (100.0 * exp) / getRequirementToLevelUp(level);
             lore.set(util.CAVEMAN_REQ, String.format("§6Required Experience: §b%d §6(§b%.1f§6%%)", getRequirementToLevelUp(level), xpPercent));
 
+            plugin.paperUtils.sendActionBar(player, String.format("§a+%d  §7|  §b%d§6/§b%d §6(§b%.1f§6%%)", amount, exp, getRequirementToLevelUp(level), xpPercent), true);
             iMeta.setLore(lore);
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);
 

@@ -194,7 +194,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Caveman Sword
         getCommand("cavemansword").setExecutor(new CavemanCommand());
         getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
-        //new CavemanRecipe().regRecipe();
+        new CavemanRecipe().regRecipe();
         // Warlock Pants
         getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();

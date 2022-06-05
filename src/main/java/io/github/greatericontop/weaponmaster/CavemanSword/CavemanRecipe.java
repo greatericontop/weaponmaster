@@ -18,11 +18,9 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 public class CavemanRecipe {
 
@@ -34,17 +32,13 @@ public class CavemanRecipe {
     public void regRecipe() {
         ItemStack caveman = util.generateMeta(util.CAVEMAN_SWORD_LORE, util.CAVEMAN_SWORD_NAME, Material.STONE_SWORD);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("caveman_sword"), caveman);
-        recipe.shape(" X ",
-                     "wEw",
-                     " l ");
-        recipe.setIngredient('X', Material.NETHERITE_INGOT);
-        recipe.setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHERITE_SWORD, 1)));
-        ItemStack book = new ItemStack(Material.ENCHANTED_BOOK, 1);
-        EnchantmentStorageMeta im = (EnchantmentStorageMeta)book.getItemMeta();
-        im.addStoredEnchant(Enchantment.DAMAGE_ALL, 5, true);
-        book.setItemMeta(im);
-        recipe.setIngredient('w', new RecipeChoice.ExactChoice(book));
-        recipe.setIngredient('l', Material.BLAZE_ROD);
+        recipe.shape(" n ",
+                     "SSS",
+                     "drd");
+        recipe.setIngredient('n', Material.NETHERITE_INGOT);
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHERITE_SWORD, 1)));
+        recipe.setIngredient('r', Material.BLAZE_ROD);
+        recipe.setIngredient('d', Material.DEEPSLATE);
         Bukkit.getServer().addRecipe(recipe);
     }
 }
