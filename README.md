@@ -47,10 +47,11 @@
     - [Copper Sword](#copper-sword)
     - [Fireball](#fireball)
 - [Others](#others)
-  - [Hide of Leviathan](#hide-of-leviathan)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
+  - [Hide of Leviathan](#hide-of-leviathan)
   - [Nether Reactor Core](#nether-reactor-core)
+  - [Silky String](#silky-string)
 - [Commands](#commands)
   - [Attribute Modifier](#attribute-modifier)
   - [Force Enchant](#force-enchant)
@@ -123,14 +124,12 @@ Craftable weapons for late and end game players. These are very powerful.
 `/cavemansword give` - deal more damage as you level it up by using it
 
 Crafting Recipe:
-- 1 Netherite Ingot
-- 1 Netherite Sword (must be full durability and unenchanted)
-- 2 Sharpness V Book
-- 1 Blaze Rod
+- 2x Sharpness V Book
+- 1x Netherite Ingot
+- 1x Netherite Sword (must be full durability and unenchanted)
+- 1x Blaze Rod
 
 ![](/assets/cavemansword.png)
-
-Crafting Recipe: COMING SOON
 
 ### Death's Scythe
 
@@ -145,9 +144,9 @@ Crafting Recipe: COMING SOON
 `/dragonsword give` - deals extra damage  
 
 Crafting Recipe:
-- 1 Netherite Sword
-- 2 Dragon Head
-- 6 Blaze Rod
+- 6x Blaze Rod
+- 2x Dragon Head
+- 1x Netherite Sword
 
 ![](assets/dragsword.png)
 
@@ -156,12 +155,12 @@ Crafting Recipe:
 `/excalibur give` - explodes on impact and deals true damage (stolen as well)
 
 Crafting Recipe:
-- 2 TNT
-- 2 Nether Star
-- 1 End Crystal
-- 1 Zombie Head
-- 1 Skeleton Skull
-- 2 Diamond Block
+- 2x TNT
+- 2x Nether Star
+- 2x Diamond Block
+- 1x End Crystal
+- 1x Zombie Head
+- 1x Skeleton Skull
 
 ![](assets/excal.png)
 
@@ -170,10 +169,10 @@ Crafting Recipe:
 `/exodus give` - heal whenever you hit anything (stolen x3)
 
 Crafting Recipe:
-- 5 Diamond Block
-- 1 Enchanted Golden Apple
-- 2 Golden Carrot
-- 1 End Crystal
+- 5x Diamond Block
+- 2x Golden Carrot
+- 1x Enchanted Golden Apple
+- 1x End Crystal
 
 ![](assets/exodus.png)
 
@@ -182,10 +181,10 @@ Crafting Recipe:
 `/helios give` - increases in power as you gain experience levels, right click to deal area damage
 
 Crafting Recipe: 
-- 6 Respawn Anchor
-- 1 Nether Star
-- 1 Netherite Block
-- 1 Iron Sword
+- 6x Respawn Anchor
+- 1x Nether Star
+- 1x Netherite Block
+- 1x Iron Sword
 
 ![](assets/helios.png)
 
@@ -208,12 +207,12 @@ Crafting Recipe: COMING SOON
 Note: Adding enchantments other than `Mending` will be automatically removed. Don't try to game the level system.
 
 Crafting Recipe:
-- 1 Netherite Pickaxe
-- 1 Blaze Rod
-- 1 Diamond Block
-- 2 Netherite Ingot
-- 2 Blast Furnace
-- 2 Heart of the Sea
+- 2x Netherite Ingot
+- 2x Blast Furnace
+- 2x Heart of the Sea
+- 1x Netherite Pickaxe
+- 1x Blaze Rod
+- 1x Diamond Block
 
 ![](assets/miner.png)
 
@@ -222,18 +221,19 @@ Crafting Recipe:
 `/netheritestaff` - gives random effects to the entity being hit, right click to shoot an arrow with random effects
 
 Crafting Recipe:
-- 2 Nether Star 
-- 1 Netherite Ingot
-- 1 Netherite Block 
-- 1 Nether Reactor Core
+- 2x Nether Star 
+- 1x Netherite Ingot
+- 1x Netherite Block 
+- 1x Nether Reactor Core
 
-![](assets/netheritestaff.png)
+![](assets/staff.png)
 
 ### Ninja Bow
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 
 
 ### Pilot Sword
 
@@ -246,9 +246,9 @@ Crafting Recipe: COMING SOON
 `/poseidontrident give` - a very powerful Trident
 
 Crafting Recipe:
-- 3 Trident
-- 2 Heart of Sea
-- 2 Blaze Rod
+- 3x Trident
+- 2x Heart of Sea
+- 2x Blaze Rod
 
 ![](assets/trident.png)
 
@@ -265,9 +265,9 @@ Crafting Recipe:
 `/valkyrie give` - heavy axe gives high damage and low swing speed, but can deal massive knockback
 
 Crafting Recipe:
-- 4 Iron Block
-- 1 Netherite Ingot
-- 2 Stick
+- 4x Iron Block
+- 1x Netherite Ingot
+- 2x Stick
 
 ![](assets/valk.png)
 
@@ -276,9 +276,9 @@ Crafting Recipe:
 `/vampaxe give` - life steals damage when you hit
 
 Crafting Recipe:
-- 3 Netherite Axe
-- 2 Redstone Block
-- 1 Wither Skeleton Skull
+- 3x Netherite Axe
+- 2x Redstone Block
+- 1x Wither Skeleton Skull
 
 ![](assets/vampaxe.png)
 
@@ -287,13 +287,13 @@ Crafting Recipe:
 `/warlockpants give` - permanent strength while wearing
 
 Crafting Recipe: 
-- 2 Netherite Ingot
-- 1 Wither Skeleton Skull
-- 2 Blaze Rod
-- 1 Netherite Leggings
-- 1 Magma Cream
-- 1 Diamond Sword (must be full durability and unenchanted)
-- 1 End Crystal
+- 2x Netherite Ingot
+- 1x Wither Skeleton Skull
+- 2x Blaze Rod
+- 1x Netherite Leggings
+- 1x Magma Cream
+- 1x Diamond Sword (must be full durability and unenchanted)
+- 1x End Crystal
 
 ![](assets/warlock.png)
 
@@ -309,10 +309,10 @@ Early to mid-game weapons
 `/anduril give` - permanent speed and strength while holding (yep, this idea was stolen from hypixel)
 
 Crafting Recipe:
-- 6 Feather
-- 1 Anvil
-- 1 Iron Block
-- 1 Iron Sword
+- 6x Feather
+- 1x Anvil
+- 1x Iron Block
+- 1x Iron Sword
 
 ![](assets/anduril.png)
 
@@ -321,8 +321,8 @@ Crafting Recipe:
 `/coppersword give` - has a chance of stunning the enemy up to 4 seconds. It gets weaker and weaker over time. Use honeycomb in an anvil to wax it and prevent it from oxidizing.
 
 Crafting Recipe:
-- 8 Copper Block
-- 1 Iron Sword
+- 8x Copper Block
+- 1x Iron Sword
 
 ![](assets/coppersword.png)
 
@@ -332,9 +332,9 @@ Crafting Recipe:
 
 Crafting Recipe:  
 (Shapeless)
-- 1 TNT
-- 1 Fire Charge
-- 1 Arrow
+- 1x TNT
+- 1x Fire Charge
+- 1x Arrow
 
 ![](assets/fireball.png)
 
@@ -347,28 +347,18 @@ Crafting Recipe:
 
 # Others
 
-### Hide of Leviathan
-
-Netherite Leggings with `Protection IV`, `Blast Protection IV`, `Fire Protection IV`, and `Projectile Protection IV`.
-
-Crafting Recipe:
-- 1 Netherite Leggings
-- 2 Netherite Block
-- 4 Diamond Block
-- 1 Heart of Leviathan
-
-![](assets/hide.png)
+`/minoritem list` - a list of commands for minor items.m
 
 ### Flask of Ichor
 
 Potion of `Instant Damage IV`
 
 Crafting Recipe:
-- 1 Fermented Spider Eye
-- 1 Glass Bottle
-- 1 Blaze Rod
-- 1 Iron Block
-- 1 Wither Skeleton Skull
+- 1x Fermented Spider Eye
+- 1x Glass Bottle
+- 1x Blaze Rod
+- 1x Iron Block
+- 1x Wither Skeleton Skull
 
 ![](assets/flask.png)
 
@@ -376,19 +366,35 @@ Crafting Recipe:
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
 
+### Hide of Leviathan
+
+Netherite Leggings with `Protection IV`, `Blast Protection IV`, `Fire Protection IV`, and `Projectile Protection IV`.
+
+Crafting Recipe:
+- 4x Diamond Block
+- 2x Netherite Block
+- 1x Netherite Leggings
+- 1x Heart of Leviathan
+
+![](assets/hide.png)
+
 ### Nether Reactor Core
 
 A power core that stores the energy required for a staff. Used to craft `Netherite Staff`.
 1.5% chance of dropping from a `Wither Skeleton`.
 
 Crafting Recipe:
-- 4 Blaze Rod
-- 2 Obsidian
-- 2 Wither Skeleton Skull
-- 1 Diamond Block
+- 4x Blaze Rod
+- 2x Obsidian
+- 2x Wither Skeleton Skull
+- 1x Diamond Block
 
 ![](assets/corestaff.png)
 
+### Silky String
+
+A magical string used to craft `Artemis Bow` and `Ninja Bow`.
+0.1% chance of dropping from a `Cave Spider``.
 
 <br/>
 
