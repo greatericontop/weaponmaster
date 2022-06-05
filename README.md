@@ -119,17 +119,13 @@ Craftable weapons for late and end game players. These are very powerful.
 
 `/artemis give` - heat seeking arrows attack nearby targets
 
+Crafting Recipe: COMING SOON
+
 ### Caveman Sword
 
 `/cavemansword give` - deal more damage as you level it up by using it
 
-Crafting Recipe:
-- 2x Sharpness V Book
-- 1x Netherite Ingot
-- 1x Netherite Sword (must be full durability and unenchanted)
-- 1x Blaze Rod
-
-![](/assets/cavemansword.png)
+Crafting Recipe: COMING SOON
 
 ### Death's Scythe
 
@@ -232,8 +228,7 @@ Crafting Recipe:
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe:
-- 
+Crafting Recipe: COMING SOON
 
 ### Pilot Sword
 
@@ -255,6 +250,8 @@ Crafting Recipe:
 ### Scylla's Chestplate
 
 `/scylla give` - damage resistance during low health
+
+Crafting Recipe: COMING SOON
 
 ### Shredded Axe
 
@@ -292,7 +289,7 @@ Crafting Recipe:
 - 2x Blaze Rod
 - 1x Netherite Leggings
 - 1x Magma Cream
-- 1x Diamond Sword (must be full durability and unenchanted)
+- 1x Diamond Sword (you need to make a new one - it must be full durability and unenchanted)
 - 1x End Crystal
 
 ![](assets/warlock.png)
