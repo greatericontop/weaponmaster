@@ -54,6 +54,7 @@ public class LifeHelmetListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.lifehelmet.use§3.");
             return;
         }
+        if (event.getCause() == EntityDamageEvent.DamageCause.VOID) { return; } // don't interact with void damage or /kill
         if (cooldown.getOrDefault(player.getUniqueId(), 0) == 0) {
             // EntityDamageEvent and check if fatal, because spigot doesn't let you cancel EntityDeathEvent
             if (player.getHealth() + player.getAbsorptionAmount() - event.getFinalDamage() <= 0) {
@@ -62,7 +63,6 @@ public class LifeHelmetListener implements Listener {
                 event.setDamage(0.000_001);
                 player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1, true));
                 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 4, true));
-                player.sendMessage("§7[Debug] revived, sending message");//////
                 player.sendTitle("§cYou were saved from death!", "", 0, 100, 100);
                 player.sendMessage("§9------------------------------");
                 player.sendMessage("§eYou were saved from death!");
