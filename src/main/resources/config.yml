@@ -9,3 +9,5 @@ rng:
   dragonScale: 0.04
   coreStaff: 0.01
   leviathanHeart: 0.12
+  silkyString: 0.001
+  lifeCore: 0.008

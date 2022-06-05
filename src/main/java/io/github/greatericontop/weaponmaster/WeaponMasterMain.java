@@ -190,7 +190,7 @@ public class WeaponMasterMain extends JavaPlugin {
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
         getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
         getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
-        //new LifeHelmetRecipe().regRecipe();
+        new LifeHelmetRecipe().regRecipe();
         // Caveman Sword
         getCommand("cavemansword").setExecutor(new CavemanCommand());
         getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);

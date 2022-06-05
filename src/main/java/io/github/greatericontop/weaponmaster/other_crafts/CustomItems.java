@@ -42,6 +42,7 @@ public class CustomItems {
     public final String DRAGON_WING_NAME = "§dDragon Wing";
     public final String DRAGON_HORN_NAME = "§dDragon Horn";
     public final String SILKY_STRING_NAME = "§5Silky String";
+    public final String LIFE_CORE_NAME = "§bLife Core";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -51,6 +52,7 @@ public class CustomItems {
     public List<String> DRAGON_WING_LORE = new ArrayList<>();
     public List<String> DRAGON_HORN_LORE = new ArrayList<>();
     public List<String> SILKY_STRING_LORE = new ArrayList<>();
+    public List<String> LIFE_CORE_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -85,6 +87,10 @@ public class CustomItems {
         SILKY_STRING_LORE.add("id: SILKY_STRING");
         SILKY_STRING_LORE.add("§dA rare drop from a naturally-spawning spider.");
         SILKY_STRING_LORE.add("§dA spider might have a rare mutation, but you can't tell...");
+
+        LIFE_CORE_LORE.add("id: LIFE_CORE");
+        LIFE_CORE_LORE.add("§9The secrets of life are stored in this core.");
+        LIFE_CORE_LORE.add("§9It was created with the power of the Evoker.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -172,6 +178,16 @@ public class CustomItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(SILKY_STRING_NAME);
         iMeta.setLore(SILKY_STRING_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateLifeCoreItemStack() {
+        ItemStack stack = new ItemStack(Material.TOTEM_OF_UNDYING, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(LIFE_CORE_NAME);
+        iMeta.setLore(LIFE_CORE_LORE);
+        iMeta.addEnchant(Enchantment.LUCK, 1, true);
         stack.setItemMeta(iMeta);
         return stack;
     }
