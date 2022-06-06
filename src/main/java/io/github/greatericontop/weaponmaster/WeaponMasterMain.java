@@ -182,7 +182,7 @@ public class WeaponMasterMain extends JavaPlugin {
         getCommand("scylla").setExecutor(new ScyllaCommand());
         getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
         new ScyllaRecipe().regRecipe();
-        // Herme's Boots
+        // Hermes' Boots
         getCommand("hermesboots").setExecutor(new HermesCommand());
         getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
         new HermesRecipe().regRecipe();

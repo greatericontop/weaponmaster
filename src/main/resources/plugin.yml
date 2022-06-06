@@ -68,7 +68,7 @@ commands:
     permission: "weaponmaster.scylla.command"
     permission-message: "§cYou are not allowed to do this!"
   hermesboots:
-    description: "[Weapon Master] command for Herme's Boots"
+    description: "[Weapon Master] command for Hermes' Boots"
     usage: "U: /hermesboots [give]"
     permission: "weaponmaster.hermesboots.command"
     permission-message: "§cYou are not allowed to do this!"

@@ -87,7 +87,7 @@ For better aesthetic, you can also install the [WeaponMasterOverlay](https://git
 
 ## SUPREME
 
-Uncraftable (command-only) weapons of extreme power and mass destruction.
+Admin, command-only weapons of extreme power and mass destruction.
 
 ### Atom Bomb
 
@@ -119,13 +119,27 @@ Craftable weapons for late and end game players. These are very powerful.
 
 `/artemis give` - heat seeking arrows attack nearby targets
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 1x Wither Skeleton Skull
+- 1x Diamond Block
+- 1x Eye of Ender
+- 1x Netherite Block
+- 2x Netherite Ingot
+- 3x Silky String
+
+![](assets/artemisNew.png)
 
 ### Caveman Sword
 
 `/cavemansword give` - deal more damage as you level it up by using it
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 3x Netherite Sword (you need to make a new one - it must be full durability and unenchanted)
+- 2x Deepslate
+- 1x Netherite Ingot
+- 1x Blaze Rod
+
+![](assets/caveman.png)
 
 ### Death's Scythe
 
@@ -133,7 +147,15 @@ Crafting Recipe: COMING SOON
 
 Note: you only get 10 hits until durability runs out, and you can't use mending.
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 1x Netherite Block
+- 1x Netherite Ingot
+- 1x Netherite Sword (might change)
+- 1x Netherite Axe (might change)
+- 2x Blaze Rod
+- 2x Redstone Block
+
+![](assets/scythe.png)
 
 ### Dragon Sword
 
@@ -188,13 +210,29 @@ Crafting Recipe:
 
 `/lifehelmet give` - revives you when you're about to die, 10 minute cooldown
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 4x Diamond Block
+- 1x Netherite Block
+- 1x Totem of Undying
+- 1x Lingering Regeneration Potion (extended; Regeneration I 0:22)
+- 1x Lingering Healing Potion (upgraded; Instant Health II)
+- 1x Life Core
 
-### Herme's Boots
+![](assets/lifehelmet.png)
+
+### Herme's Bootsa
 
 `/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 2x Feather
+- 2x Netherite Ingot
+- 2x Blaze Rod
+- 1x Beacon
+- 1x Netherite Boots
+- 1x TNT
+
+![](assets/hermes.png)
 
 ### Miner's Blessing
 
@@ -228,13 +266,18 @@ Crafting Recipe:
 
 `/ninjabow give` - left click instantly fires triple shot arrows
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 3x Bow
+- 1x Blaze Rod
+- 3x Silky String
+
+![](assets/ninja.png)
 
 ### Pilot Sword
 
 `/pilotsword give` - a combo sword, no attack cooldown (but less damage)
 
-Crafting Recipe: COMING SOON
+Crafting Recipe: NOT REALLY COMING SOON
 
 ### Poseidon's Trident
 
@@ -251,7 +294,13 @@ Crafting Recipe:
 
 `/scylla give` - damage resistance during low health
 
-Crafting Recipe: COMING SOON
+Crafting Recipe:
+- 1x Diamond Chestplate
+- 4x Sponge
+- 2x Netherite Ingot
+- 2x Potion of the Turtle Master (upgraded; Slowness VI and Resistance IV)
+
+![](assets/scylla.png)
 
 ### Shredded Axe
 
