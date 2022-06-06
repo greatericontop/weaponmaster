@@ -32,10 +32,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class NinjaItemListener implements Listener {
 
+    private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
     private final WeaponMasterMain plugin;
     private final Util util;
     public NinjaItemListener(WeaponMasterMain plugin) {
@@ -76,6 +82,7 @@ public class NinjaItemListener implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
         Player player = event.getPlayer();
         if (!util.checkForNinjaBow(player.getInventory().getItemInMainHand())) { return; }
+        if (!cooldown.getOrDefault(player.getUniqueId(), true)) { return; }
         if (player.getGameMode() != GameMode.CREATIVE) {
             if (!player.getInventory().contains(Material.ARROW)) {
                 return;
@@ -95,6 +102,13 @@ public class NinjaItemListener implements Listener {
         Arrow sideArrow1 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow1Direction.clone().multiply(0.2)), arrow1Direction, 3.0, INACCURACY * 2.4, damageValue*0.75, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
         Vector arrow2Direction = mainArrowDirection.clone().rotateAroundY(-Math.PI / 12);
         Arrow sideArrow2 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow2Direction.clone().multiply(0.2)), arrow2Direction, 3.0, INACCURACY * 2.4, damageValue*0.75, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
+
+        cooldown.put(player.getUniqueId(), false);
+        new BukkitRunnable() {
+            public void run() {
+                cooldown.put(player.getUniqueId(), true);
+            }
+        }.runTaskLater(plugin, 6L);
     }
 
 }
