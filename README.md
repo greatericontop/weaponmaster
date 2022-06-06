@@ -148,10 +148,10 @@ Crafting Recipe:
 Note: you only get 10 hits until durability runs out, and you can't use mending.
 
 Crafting Recipe:
-- 1x Netherite Block
-- 1x Netherite Ingot
-- 1x Netherite Sword (might change)
-- 1x Netherite Axe (might change)
+- 1x Clock
+- 2x Netherite Ingot
+- 1x Wither Skeleton Skull
+- 1x Nether Star
 - 2x Blaze Rod
 - 2x Redstone Block
 
@@ -268,6 +268,7 @@ Crafting Recipe:
 
 Crafting Recipe:
 - 3x Bow
+- 2x Amethyst Shard
 - 1x Blaze Rod
 - 3x Silky String
 

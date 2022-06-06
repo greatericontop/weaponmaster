@@ -31,14 +31,14 @@ public class ScytheRecipe {
     public void regRecipe() {
         ItemStack scythe = util.generateMeta(util.DEATH_SCYTHE_LORE, util.DEATH_SCYTHE_NAME, Material.IRON_HOE);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("death_scythe"), scythe);
-        recipe.shape("nN ",
-                     "SbA",
+        recipe.shape("NNC",
+                     "WbS",
                      "rbr");
-        recipe.setIngredient('N', Material.NETHERITE_BLOCK);
-        recipe.setIngredient('n', Material.NETHERITE_INGOT);
+        recipe.setIngredient('C', Material.CLOCK);
+        recipe.setIngredient('N', Material.NETHERITE_INGOT);
         recipe.setIngredient('b', Material.BLAZE_ROD);
-        recipe.setIngredient('S', Material.NETHERITE_SWORD);
-        recipe.setIngredient('A', Material.NETHERITE_AXE);
+        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
+        recipe.setIngredient('S', Material.NETHER_STAR);
         recipe.setIngredient('r', Material.REDSTONE_BLOCK);
         Bukkit.getServer().addRecipe(recipe);
     }

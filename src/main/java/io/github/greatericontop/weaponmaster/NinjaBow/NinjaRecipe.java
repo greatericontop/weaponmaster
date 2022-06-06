@@ -39,12 +39,13 @@ public class NinjaRecipe {
     public void regRecipe() {
         ItemStack ninjabow = util.generateMeta(util.NINJA_BOW_LORE, util.NINJA_BOW_NAME, Material.BOW);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("ninja_bow"), ninjabow);
-        recipe.shape(" bS",
+        recipe.shape("AbS",
                      "brS",
-                     " bS");
+                     "AbS");
         recipe.setIngredient('b', Material.BOW);
         recipe.setIngredient('S', new RecipeChoice.ExactChoice(customitems.generateSilkyStringItemStack()));
         recipe.setIngredient('r', Material.BLAZE_ROD);
+        recipe.setIngredient('A', Material.AMETHYST_SHARD);
         Bukkit.getServer().addRecipe(recipe);
     }
 }
