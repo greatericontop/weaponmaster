@@ -70,7 +70,7 @@ public class CopperSwordListener implements Listener {
         LivingEntity attacked = (LivingEntity) event.getEntity();
         int duration = rnd.nextInt(41) + 40;
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
-        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 127));
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 9));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
         // player.playSound(player, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
         plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
@@ -99,8 +99,8 @@ public class CopperSwordListener implements Listener {
             event.setResult(itemStack);
         }
         if (event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
-            if (event.getInventory().getItem(1).getAmount() != 5) {
-                player.sendMessage("§cYou must have exactly §b5 §cof §6Copper Block §cto execute this operation.");
+            if (event.getInventory().getItem(1).getAmount() != 4) {
+                player.sendMessage("§cYou must have exactly §b4 §cof §6Copper Block §cto execute this operation.");
             } else {
                 ItemStack itemStack = event.getInventory().getItem(0);
                 ItemMeta im = itemStack.getItemMeta();
