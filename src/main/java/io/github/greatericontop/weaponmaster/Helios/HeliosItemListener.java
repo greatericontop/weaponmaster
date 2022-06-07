@@ -19,8 +19,10 @@ package io.github.greatericontop.weaponmaster.Helios;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -32,6 +34,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.List;
@@ -41,7 +44,7 @@ public class HeliosItemListener implements Listener {
     private final double IMPACT_DISTANCE = 5.0;
     private final double IMPACT_DISTANCE_SQUARED = 25.0;
     private final float FOOD_COST = 8.0F / 3.0F; // 4 exhaustion = 1 hunger point (8 = bar)
-    private final int MAX_DAMAGE_LEVEL = 150;
+    private final int MAX_DAMAGE_LEVEL = 80;
     private final double DAMAGE_INCREASE_PER_LEVEL = 0.5 / MAX_DAMAGE_LEVEL;
 
     private final WeaponMasterMain plugin;
@@ -75,14 +78,15 @@ public class HeliosItemListener implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();
-        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) { return; }
+        ItemStack helios = player.getInventory().getItemInMainHand();
+        if (!util.checkForHelios(helios)) { return; }
         if (!player.hasPermission("weaponmaster.helios.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.helios.use§3.");
             return;
         }
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) { return; }
         if (Util.checkForInteractableBlock(event)) { return; }
-        if (player.getFoodLevel() < 12) {
+        if (player.getFoodLevel() < 12 && player.getGameMode() != GameMode.CREATIVE) {
             player.sendMessage("§7You don't have enough hunger to use this!");
             return;
         }
@@ -95,11 +99,14 @@ public class HeliosItemListener implements Listener {
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
-            target.damage(damageMultiply(player, 4.5));
-            target.setFireTicks(target.getFireTicks() + 300);
+            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL) * 0.25;
+            target.damage(damageMultiply(player, damage));
+            target.setFireTicks(target.getFireTicks() + 200);
             target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));
         }
-        player.setExhaustion(player.getExhaustion() + FOOD_COST);
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            player.setExhaustion(player.getExhaustion() + FOOD_COST);
+        }
         loc.getWorld().spawnParticle(Particle.FLAME, loc, 20);
     }
 
