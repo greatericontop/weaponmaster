@@ -97,22 +97,34 @@ public class LootDropper {
     }
 
     public int doMinorDrops(World world, int weight, Player player) {
+        int shulkerShellAmount = 0, obsidianAmount = 0, enderPearlAmount = 0;
+        if (weight >= 150) {
+            obsidianAmount++;
+            enderPearlAmount++;
+        }
         int i = 0;
-        while (weight > 0 && i < 50) { // max 50 attempts to spawn items because each only drops 1, and they can fail
+        while (weight > 0 && i < 20) {
             double rand = Math.random();
-            if (weight >= 90 && rand < 0.1) { // 10%
-                createDrop(world, new ItemStack(Material.SHULKER_SHELL, 1), player, "Shulker Shell");
-                weight -= 90;
-            } else if (weight >= 20 && 0.1 <= rand && rand < 0.4) { // 30%
-                int amount = Math.min(weight / 20, 4);
-                createDrop(world, new ItemStack(Material.OBSIDIAN, amount), player, "Obsidian");
-                weight -= 20 * amount;
-            } else if (weight >= 20 && 0.4 <= rand && rand < 0.7) { // 30%
-                int amount = Math.min(weight / 20, 4);
-                createDrop(world, new ItemStack(Material.ENDER_PEARL, amount), player, "Ender Pearl");
-                weight -= 20 * amount;
+            if (weight >= 110 && rand < 0.1) { // 10%
+                shulkerShellAmount++;
+                weight -= 110;
+            } else if (weight >= 25 && 0.1 <= rand && rand < 0.4) { // 30%
+                obsidianAmount++;
+                weight -= 25;
+            } else if (weight >= 25 && 0.4 <= rand && rand < 0.7) { // 30%
+                enderPearlAmount++;
+                weight -= 25;
             }
             i++;
+        }
+        if (shulkerShellAmount > 0) {
+            createDrop(world, new ItemStack(Material.SHULKER_SHELL, shulkerShellAmount), player, "Shulker Shell");
+        }
+        if (obsidianAmount > 0) {
+            createDrop(world, new ItemStack(Material.OBSIDIAN, obsidianAmount), player, "Obsidian");
+        }
+        if (enderPearlAmount > 0) {
+            createDrop(world, new ItemStack(Material.ENDER_PEARL, enderPearlAmount), player, "Ender Pearl");
         }
         return weight;
     }
