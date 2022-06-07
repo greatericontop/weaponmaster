@@ -61,6 +61,12 @@ public class HeliosItemListener implements Listener {
         return damage * (1 + multiplier);
     }
 
+    private double distanceSquaredXZ(Location loc1, Location loc2) {
+        double deltaX = loc1.getX() - loc2.getX();
+        double deltaZ = loc1.getZ() - loc2.getZ();
+        return deltaX*deltaX + deltaZ*deltaZ;
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
@@ -95,7 +101,7 @@ public class HeliosItemListener implements Listener {
         List<Entity> entitiesClose = player.getNearbyEntities(IMPACT_DISTANCE, IMPACT_DISTANCE, IMPACT_DISTANCE);
         for (Entity e : entitiesClose) {
             if (!(e instanceof LivingEntity)) { continue; }
-            if (loc.distanceSquared(e.getLocation()) > IMPACT_DISTANCE_SQUARED) { // forces cube shape into spherical shape
+            if (distanceSquaredXZ(loc, e.getLocation()) > IMPACT_DISTANCE_SQUARED) { // forces cube shape into cylindrical shape
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
@@ -107,7 +113,13 @@ public class HeliosItemListener implements Listener {
         if (player.getGameMode() != GameMode.CREATIVE) {
             player.setExhaustion(player.getExhaustion() + FOOD_COST);
         }
-        loc.getWorld().spawnParticle(Particle.FLAME, loc, 20);
+
+        for (int step = 0; step < 40; step++) {
+            double theta = Math.PI * step / 20;
+            double deltaX = IMPACT_DISTANCE * Math.cos(theta);
+            double deltaY = IMPACT_DISTANCE * Math.sin(theta);
+            loc.getWorld().spawnParticle(Particle.FLAME, loc.clone().add(deltaX, 0.0, deltaY), 2);
+        }
     }
 
 }
