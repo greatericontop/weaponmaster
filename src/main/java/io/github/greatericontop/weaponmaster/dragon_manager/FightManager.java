@@ -26,6 +26,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -35,12 +36,12 @@ import org.bukkit.persistence.PersistentDataType;
 public class FightManager implements Listener {
 
     public EnderDragon currentlyActiveDragon = null;
+    public DragonWeightManager dragonWeightManager = null;
     public double damageDealtToDragonThroughExplosions = 0.0;
     private final WeaponMasterMain plugin;
     public FightManager(WeaponMasterMain plugin) {
         this.plugin = plugin;
     }
-
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonSpawn(EntitySpawnEvent event) {
@@ -51,6 +52,7 @@ public class FightManager implements Listener {
         buffDragon(currentlyActiveDragon);
         this.damageDealtToDragonThroughExplosions = 0.0;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
+        this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon);
     }
 
     public void buffDragon(EnderDragon dragon) {
@@ -83,6 +85,17 @@ public class FightManager implements Listener {
             event.getDrops().clear();
             event.setDroppedExp(0);
         }
+    }
+
+    /*
+     * Serves as a proxy call to the actual event handler so the class can be reset every new dragon.
+     */
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if (dragonWeightManager == null) {
+            return;
+        }
+        dragonWeightManager.onDamage(event);
     }
 
 }

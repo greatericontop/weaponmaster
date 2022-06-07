@@ -3,23 +3,20 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class DragonWeight implements Listener {
+public class DragonWeightManager {
 
     private final Map<UUID, Double> dragonDamage = new HashMap<>();
 
     private final WeaponMasterMain plugin;
     private final EnderDragon currentlyActiveDragon;
     private boolean enabled;
-    public DragonWeight(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
+    public DragonWeightManager(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
         this.plugin = plugin;
         this.currentlyActiveDragon = currentlyActiveDragon;
         this.enabled = true;
@@ -37,12 +34,11 @@ public class DragonWeight implements Listener {
         setDamage(player, getDamage(player) + amount);
     }
 
-    public DragonWeight setEnabled(boolean v) {
+    public DragonWeightManager setEnabled(boolean v) {
         enabled = v;
         return this;
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
     public void onDamage(EntityDamageByEntityEvent event) {
         // TODO: should non-player damage be attributed to the nearest player?
         if (!enabled) { return; }
