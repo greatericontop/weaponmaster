@@ -342,7 +342,7 @@ public class Util {
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
-        PILOT_SWORD_LORE.add("§7Deals §c5.5 §7damage, but can be increased with enchants.");
+        PILOT_SWORD_LORE.add("§7Deals §c4.5 §7damage, but can be increased with enchants.");
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");
