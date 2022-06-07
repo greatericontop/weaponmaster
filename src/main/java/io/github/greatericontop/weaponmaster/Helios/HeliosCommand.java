@@ -52,7 +52,6 @@ public class HeliosCommand implements CommandExecutor {
                 return true;
             }
             ItemStack helios = util.generateMeta(util.HELIOS_LORE, util.HELIOS_NAME, Material.IRON_SWORD);
-            helios.addEnchantment(Enchantment.DAMAGE_ALL, 3);
             ((Player) sender).getInventory().addItem(helios);
             sender.sendMessage("§7Gave you §f[" + util.HELIOS_NAME + "§f]§7.");
             return true;

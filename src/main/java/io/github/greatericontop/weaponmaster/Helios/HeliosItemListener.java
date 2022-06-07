@@ -41,6 +41,8 @@ public class HeliosItemListener implements Listener {
     private final double IMPACT_DISTANCE = 5.0;
     private final double IMPACT_DISTANCE_SQUARED = 25.0;
     private final float FOOD_COST = 8.0F / 3.0F; // 4 exhaustion = 1 hunger point (8 = bar)
+    private final int MAX_DAMAGE_LEVEL = 150;
+    private final double DAMAGE_INCREASE_PER_LEVEL = 0.5 / MAX_DAMAGE_LEVEL;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -50,7 +52,7 @@ public class HeliosItemListener implements Listener {
     }
 
     private double damageMultiply(Player player, double damage) {
-        double multiplier = 0.01 * Math.min(player.getLevel(), 50);
+        double multiplier = DAMAGE_INCREASE_PER_LEVEL * Math.min(player.getLevel(), MAX_DAMAGE_LEVEL);
         player.sendMessage(String.format("§7[Debug] Hit increased by %.1f%%, damage %.1f -> %.1f.",
                 multiplier*100, damage, damage*(1+multiplier)));
         return damage * (1 + multiplier);
@@ -73,16 +75,12 @@ public class HeliosItemListener implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();
-        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) {
-            return;
-        }
+        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.helios.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.helios.use§3.");
             return;
         }
-        if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-            return;
-        }
+        if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) { return; }
         if (Util.checkForInteractableBlock(event)) { return; }
         if (player.getFoodLevel() < 12) {
             player.sendMessage("§7You don't have enough hunger to use this!");

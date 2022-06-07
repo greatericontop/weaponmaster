@@ -207,9 +207,9 @@ public class Util {
         HELIOS_LORE.add("id: HELIOS");
         HELIOS_LORE.add("§6---------------");
         HELIOS_LORE.add("");
-        HELIOS_LORE.add("§aUp to 50 levels, this sword increases");
-        HELIOS_LORE.add("§ain power with more experience levels.");
-        HELIOS_LORE.add("§aSword damage is increased by 1% per level.");
+        HELIOS_LORE.add("§aThis sword increases in power as you");
+        HELIOS_LORE.add("§again more experience levels.");
+        HELIOS_LORE.add("§aYou can increase damage by up to §b50% §aat §b150 §alevels.");
         HELIOS_LORE.add("");
         HELIOS_LORE.add("§eAbility: §4Godly Swarm §e§lRIGHT CLICK");
         HELIOS_LORE.add("§3Summon fire and deal damage to any");
