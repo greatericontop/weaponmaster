@@ -19,7 +19,6 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
@@ -33,9 +32,12 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DragonWeightManager {
+    private final double DAMAGE_WEIGHT_MAX = 700.0;
 
     private final Map<UUID, Double> dragonDamage = new HashMap<>();
+    private double totalDamageDealt = 0.0;
     private final Map<UUID, Double> weightBonus = new HashMap<>();
+    private int crystalsDestroyed = 0;
 
     private final WeaponMasterMain plugin;
     private final EnderDragon currentlyActiveDragon;
@@ -51,11 +53,17 @@ public class DragonWeightManager {
     public double getDamage(UUID player) {
         return dragonDamage.getOrDefault(player, 0.0);
     }
-    public void setDamage(UUID player, double amount) {
+    public void setDamageRaw(UUID player, double amount) {
         dragonDamage.put(player, amount);
     }
     public void incrementDamage(UUID player, double amount) {
-        setDamage(player, getDamage(player) + amount);
+        totalDamageDealt += amount;
+        setDamageRaw(player, getDamage(player) + amount);
+    }
+    public double getDamageDragonWeight(UUID player) {
+        double damageDealt = getDamage(player);
+        double weightFactor = Math.min(DAMAGE_WEIGHT_MAX / totalDamageDealt, 1.0);
+        return damageDealt * weightFactor;
     }
 
     public double getBonus(UUID player) {
@@ -66,6 +74,20 @@ public class DragonWeightManager {
     }
     public void giveBonus(UUID player, double amount) {
         setBonus(player, getBonus(player) + amount);
+    }
+
+    public int getDragonWeight(UUID player) {
+        int baseWeight = (int) (getDamageDragonWeight(player) + getBonus(player));
+        UUID maxPlayer = null; double maxAmount = 200.0;
+        for (UUID p : dragonDamage.keySet()) {
+            // your score is lowered to require you to beat people by a margin and to prevent tie abuse
+            double pAmount = getDamage(p) - (p.equals(player) ? 30.0 : 0.0);
+            if (pAmount > maxAmount) {
+                maxAmount = pAmount;
+                maxPlayer = p;
+            }
+        }
+        return baseWeight + (maxPlayer != null && maxPlayer.equals(player) ? 75 : 0);
     }
 
     public DragonWeightManager setEnabled(boolean v) {
@@ -87,23 +109,25 @@ public class DragonWeightManager {
             return;
         }
         Entity victim = event.getEntity();
-        System.out.println("ok working");
 
         if (victim instanceof EnderDragon && victim.getUniqueId().equals(currentlyActiveDragon.getUniqueId())) {
-            Bukkit.getServer().getLogger().info(String.format("%s dealt %.2f damage to dragon", player.getName(), event.getFinalDamage()));
             incrementDamage(player.getUniqueId(), event.getFinalDamage());
         }
 
         if (victim instanceof EnderCrystal) {
             EnderCrystal crystal = (EnderCrystal) victim;
-            //if (event.getFinalDamage() <= 0) { return; }
-            if (crystal.isShowingBottom()) { // only naturally generated crystals show the bottom
+            // only naturally generated crystals show the bottom (no placing them yourself)
+            // to prevent people from using pistons to push crystals, only 10 bonuses exist per fight
+            // after breaking 10 crystals you can't farm more weight with them
+            if (crystal.isShowingBottom() && crystalsDestroyed < 10) {
                 Bukkit.getServer().getLogger().info(String.format("%s damaged an end crystal by %.1f", player.getName(), event.getFinalDamage()));
-                giveBonus(player.getUniqueId(), 40.0);
+                giveBonus(player.getUniqueId(), 60.0);
+                crystalsDestroyed++;
             }
         }
 
-        player.sendMessage(String.format("§7You now have %.3f damage + %.1f bonus weight.", getDamage(player.getUniqueId()), getBonus(player.getUniqueId())));
+        player.sendMessage(String.format("§7You now have %.3f damage + %.1f bonus weight -> §6%d",
+                getDamage(player.getUniqueId()), getBonus(player.getUniqueId()), getDragonWeight(player.getUniqueId())));
     }
 
 }

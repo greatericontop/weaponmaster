@@ -80,12 +80,12 @@ public class LootDropper {
         double rand = Math.random();
         if (weight >= 600 && rand < 0.04) { // 4%
             createDrop(world, customItems.generateDragonHornItemStack(), player, "Dragon Horn");
-            weight -= 550;
+            weight -= 600;
             return weight;
         }
         if (weight >= 550 && 0.04 <= rand && rand < 0.12) { // 8%
             createDrop(world, customItems.generateDragonScaleItemStack(), player, "Dragon Scale");
-            weight -= 600;
+            weight -= 550;
             return weight;
         }
         if (weight >= 550 && 0.12 <= rand && rand < 0.22) { // 10%
