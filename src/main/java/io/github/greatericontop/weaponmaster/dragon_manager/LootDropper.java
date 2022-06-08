@@ -103,15 +103,15 @@ public class LootDropper {
             enderPearlAmount++;
         }
         int i = 0;
-        while (weight > 0 && i < 20) {
+        while (weight > 0 && i < 40) {
             double rand = Math.random();
-            if (weight >= 110 && rand < 0.1) { // 10%
+            if (weight >= 130 && rand < 0.04) { // 4%
                 shulkerShellAmount++;
-                weight -= 110;
-            } else if (weight >= 25 && 0.1 <= rand && rand < 0.4) { // 30%
+                weight -= 130;
+            } else if (weight >= 25 && 0.04 <= rand && rand < 0.34) { // 30%
                 obsidianAmount++;
                 weight -= 25;
-            } else if (weight >= 25 && 0.4 <= rand && rand < 0.7) { // 30%
+            } else if (weight >= 25 && 0.34 <= rand && rand < 0.64) { // 30%
                 enderPearlAmount++;
                 weight -= 25;
             }
@@ -129,8 +129,8 @@ public class LootDropper {
         return weight;
     }
 
-    public void doAllDrops(World world, int totalWeight, Player player) {
-        doMinorDrops(world, doMajorDrops(world, totalWeight, player), player);
+    public int doAllDrops(World world, int totalWeight, Player player) {
+        return doMinorDrops(world, doMajorDrops(world, totalWeight, player), player);
     }
 
 }
