@@ -110,159 +110,158 @@ public class WeaponMasterMain extends JavaPlugin {
     public void onEnable() {
         long t = System.currentTimeMillis();
 
-        getLogger().info("--------------------");
-        getLogger().info("#######################################################################################################################");
-        getLogger().info("# ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ #");
-        getLogger().info("#▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌#");
-        getLogger().info("#▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ #");
-        getLogger().info("#▐░▌          ▐░▌       ▐░▌▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          #");
-        getLogger().info("#▐░▌ ▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌     ▐░▌          #");
-        getLogger().info("#▐░▌▐░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░▌          #");
-        getLogger().info("#▐░▌ ▀▀▀▀▀▀█░▌▐░█▀▀▀▀█░█▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌     ▐░▌     ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀█░█▀▀      ▐░▌     ▐░▌          #");
-        getLogger().info("#▐░▌       ▐░▌▐░▌     ▐░▌  ▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          ▐░▌     ▐░▌       ▐░▌     ▐░▌          #");
-        getLogger().info("#▐░█▄▄▄▄▄▄▄█░▌▐░▌      ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌     ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌      ▐░▌  ▄▄▄▄█░█▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ #");
-        getLogger().info("#▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌#");
-        getLogger().info("# ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀       ▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ #");
-        getLogger().info("#######################################################################################################################");
-        getLogger().info("");
-        getLogger().info("WeaponMaster");
-        getLogger().info("");
-        getLogger().info("Copyright (C) greateric 2021-2022. Licensed under GPL v3.");
-        getLogger().info("Initializing WeaponMaster by greateric");
-        getLogger().info("--------------------");
+        this.getLogger().info("--------------------");
+        this.getLogger().info("#######################################################################################################################");
+        this.getLogger().info("# ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ #");
+        this.getLogger().info("#▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌#");
+        this.getLogger().info("#▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ #");
+        this.getLogger().info("#▐░▌          ▐░▌       ▐░▌▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          #");
+        this.getLogger().info("#▐░▌ ▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌     ▐░▌          #");
+        this.getLogger().info("#▐░▌▐░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌     ▐░▌          #");
+        this.getLogger().info("#▐░▌ ▀▀▀▀▀▀█░▌▐░█▀▀▀▀█░█▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌     ▐░▌     ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀█░█▀▀      ▐░▌     ▐░▌          #");
+        this.getLogger().info("#▐░▌       ▐░▌▐░▌     ▐░▌  ▐░▌          ▐░▌       ▐░▌     ▐░▌     ▐░▌          ▐░▌     ▐░▌       ▐░▌     ▐░▌          #");
+        this.getLogger().info("#▐░█▄▄▄▄▄▄▄█░▌▐░▌      ▐░▌ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌     ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌      ▐░▌  ▄▄▄▄█░█▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ #");
+        this.getLogger().info("#▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌#");
+        this.getLogger().info("# ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀       ▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ #");
+        this.getLogger().info("#######################################################################################################################");
+        this.getLogger().info("");
+        this.getLogger().info("WeaponMaster");
+        this.getLogger().info("");
+        this.getLogger().info("Copyright (C) greateric 2021-2022. Licensed under GPL v3.");
+        this.getLogger().info("Initializing WeaponMaster by greateric");
+        this.getLogger().info("--------------------");
 
-        // Config
         this.saveDefaultConfig();
-        getConfig().options().copyDefaults(true);
+        this.getConfig().options().copyDefaults(true);
 
-        this.paperUtils = new PaperUtils(this);
+        paperUtils = new PaperUtils(this);
 
-        getCommand("weaponmaster").setExecutor(new WeaponMasterCommand(this));
-        getCommand("weaponmaster").setTabCompleter(new WeaponMasterCommandTabCompleter());
+        this.getCommand("weaponmaster").setExecutor(new WeaponMasterCommand(this));
+        this.getCommand("weaponmaster").setTabCompleter(new WeaponMasterCommandTabCompleter());
         // RPG Launcher
-        getServer().getPluginManager().registerEvents(new RPGItemListener(this), this);
-        getCommand("rpgl").setExecutor(new LauncherCommand());
+        this.getServer().getPluginManager().registerEvents(new RPGItemListener(this), this);
+        this.getCommand("rpgl").setExecutor(new LauncherCommand());
         // Vamp Axe
-        getServer().getPluginManager().registerEvents(new VampItemListener(this), this);
-        getCommand("vampaxe").setExecutor(new VampCommand());
+        this.getServer().getPluginManager().registerEvents(new VampItemListener(this), this);
+        this.getCommand("vampaxe").setExecutor(new VampCommand());
         new VampRecipe().regRecipe();
         // Scythe
-        getServer().getPluginManager().registerEvents(new ScytheItemListener(this), this);
-        getCommand("scythe").setExecutor(new ScytheCommand());
+        this.getServer().getPluginManager().registerEvents(new ScytheItemListener(this), this);
+        this.getCommand("scythe").setExecutor(new ScytheCommand());
         new ScytheRecipe().regRecipe();
         // Dragon Sword
-        getServer().getPluginManager().registerEvents(new DragonItemListener(this), this);
-        getCommand("dragonsword").setExecutor(new DragonCommand());
+        this.getServer().getPluginManager().registerEvents(new DragonItemListener(this), this);
+        this.getCommand("dragonsword").setExecutor(new DragonCommand());
         new DragonRecipe().regRecipe();
-        getServer().getPluginManager().registerEvents(new DragonUpgradeListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new DragonUpgradeListener(this), this);
         // Artemis Bow
-        getServer().getPluginManager().registerEvents(new ArtemisItemListener(this), this);
-        getCommand("artemis").setExecutor(new ArtemisCommand());
+        this.getServer().getPluginManager().registerEvents(new ArtemisItemListener(this), this);
+        this.getCommand("artemis").setExecutor(new ArtemisCommand());
         new ArtemisRecipe().regRecipe();
         // Anduril
-        getCommand("anduril").setExecutor(new AndurilCommand());
+        this.getCommand("anduril").setExecutor(new AndurilCommand());
         new AndurilItemListener(this).regAndurilRunnable();
         new AndurilRecipe().regRecipe();
         // Excalibur
-        getCommand("excalibur").setExecutor(new ExcaliburCommand());
-        getServer().getPluginManager().registerEvents(new ExcaliburItemListener(this), this);
+        this.getCommand("excalibur").setExecutor(new ExcaliburCommand());
+        this.getServer().getPluginManager().registerEvents(new ExcaliburItemListener(this), this);
         new ExcaliburRecipe().regRecipe();
         // Exodus
-        getCommand("exodus").setExecutor(new ExodusCommand());
-        getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
+        this.getCommand("exodus").setExecutor(new ExodusCommand());
+        this.getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
         new ExodusRecipe().regRecipe();
         // Rocket Stick
-        getCommand("rocketstick").setExecutor(new RocketCommand());
-        getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
+        this.getCommand("rocketstick").setExecutor(new RocketCommand());
+        this.getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
         // Helios
-        getCommand("helios").setExecutor(new HeliosCommand());
-        getServer().getPluginManager().registerEvents(new HeliosItemListener(this), this);
+        this.getCommand("helios").setExecutor(new HeliosCommand());
+        this.getServer().getPluginManager().registerEvents(new HeliosItemListener(this), this);
         new HeliosRecipe().regRecipe();
         // Scylla's Chestplate
-        getCommand("scylla").setExecutor(new ScyllaCommand());
-        getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
+        this.getCommand("scylla").setExecutor(new ScyllaCommand());
+        this.getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
         new ScyllaRecipe().regRecipe();
         // Hermes' Boots
-        getCommand("hermesboots").setExecutor(new HermesCommand());
-        getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
+        this.getCommand("hermesboots").setExecutor(new HermesCommand());
+        this.getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
         new HermesRecipe().regRecipe();
         // Helmet of Life
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
-        getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
-        getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
+        this.getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
+        this.getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
         new LifeHelmetRecipe().regRecipe();
         // Caveman Sword
-        getCommand("cavemansword").setExecutor(new CavemanCommand());
-        getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
+        this.getCommand("cavemansword").setExecutor(new CavemanCommand());
+        this.getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
         new CavemanRecipe().regRecipe();
         // Warlock Pants
-        getCommand("warlockpants").setExecutor(new WarlockCommand());
+        this.getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
         new WarlockRecipe().regRecipe();
         // Fireball
-        getCommand("fireball").setExecutor(new FireballCommand());
-        getServer().getPluginManager().registerEvents(new FireballListener(this), this);
+        this.getCommand("fireball").setExecutor(new FireballCommand());
+        this.getServer().getPluginManager().registerEvents(new FireballListener(this), this);
         new FireballRecipe().regRecipe();
         // Atom Bomb
-        getCommand("atombomb").setExecutor(new AtomCommand());
-        getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
+        this.getCommand("atombomb").setExecutor(new AtomCommand());
+        this.getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
         // Netherite Staff
-        getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
-        getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
+        this.getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
+        this.getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
         new NetheriteStaffRecipe().regRecipe();
         // Sniper Rifle
-        getCommand("sniperrifle").setExecutor(new SniperCommand());
-        getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
+        this.getCommand("sniperrifle").setExecutor(new SniperCommand());
+        this.getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
         // Miner's Blessing
         MinerItemListener minerListener = new MinerItemListener(this);
-        getCommand("minersblessing").setExecutor(new MinerCommand());
-        getServer().getPluginManager().registerEvents(minerListener, this);
+        this.getCommand("minersblessing").setExecutor(new MinerCommand());
+        this.getServer().getPluginManager().registerEvents(minerListener, this);
         minerListener.regHasteRunnable();
         new MinerRecipe().regRecipe();
         // Pilot's Sword
-        getCommand("pilotsword").setExecutor(new PilotCommand());
-        getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
+        this.getCommand("pilotsword").setExecutor(new PilotCommand());
+        this.getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
         //new PilotRecipe().regRecipe();
         // Shredded Axe
-        getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
-        getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
+        this.getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
+        this.getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
         // Napalm Missile
-        getCommand("napalm").setExecutor(new NapalmCommand());
-        getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
+        this.getCommand("napalm").setExecutor(new NapalmCommand());
+        this.getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
         // Ninja Bow
-        getCommand("ninjabow").setExecutor(new NinjaCommand());
-        getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
+        this.getCommand("ninjabow").setExecutor(new NinjaCommand());
+        this.getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
         new NinjaRecipe().regRecipe();
         // Dragon Armor
-        getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
-        getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
+        this.getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
+        this.getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
         new DragonArmorRecipe().registerAll();
         // Copper Sword
-        getCommand("coppersword").setExecutor(new CopperSwordCommand());
-        getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
+        this.getCommand("coppersword").setExecutor(new CopperSwordCommand());
+        this.getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
         new CopperSwordRecipe().regRecipe();
         // Poseidon's Trident
         TridentListener tridentListener = new TridentListener(this);
-        getCommand("poseidontrident").setExecutor(new TridentCommand());
-        getServer().getPluginManager().registerEvents(tridentListener, this);
+        this.getCommand("poseidontrident").setExecutor(new TridentCommand());
+        this.getServer().getPluginManager().registerEvents(tridentListener, this);
         tridentListener.regTridentRunnable();
         new TridentRecipe().regRecipe();
         // Valkyrie Axe
-        getCommand("valkyrieaxe").setExecutor(new ValkyrieCommand());
-        getServer().getPluginManager().registerEvents(new ValkyrieItemListener(this), this);
+        this.getCommand("valkyrieaxe").setExecutor(new ValkyrieCommand());
+        this.getServer().getPluginManager().registerEvents(new ValkyrieItemListener(this), this);
         new ValkyrieRecipe().regRecipe();
         // Custom Items
-        getCommand("minoritem").setExecutor(new MinorItemCommand());
+        this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
-        getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
         // Dragon Fight
-        this.dragonManager = new FightManager(this);
-        getServer().getPluginManager().registerEvents(dragonManager, this);
+        dragonManager = new FightManager(this);
+        this.getServer().getPluginManager().registerEvents(dragonManager, this);
 
-        getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
+        this.getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
     }
 
 }
