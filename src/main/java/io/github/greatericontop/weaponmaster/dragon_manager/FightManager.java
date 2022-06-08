@@ -52,7 +52,7 @@ public class FightManager implements Listener {
         buffDragon(currentlyActiveDragon);
         this.damageDealtToDragonThroughExplosions = 0.0;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
-        this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon);
+        this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon).setEnabled(true);
     }
 
     public void buffDragon(EnderDragon dragon) {
