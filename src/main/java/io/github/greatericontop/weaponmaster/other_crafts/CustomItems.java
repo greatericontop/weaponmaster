@@ -3,7 +3,7 @@
 package io.github.greatericontop.weaponmaster.other_crafts;
 
 /*
- * WeaponMaster Copyright (C) greateric 2021-present.
+ * WeaponMaster Copyright (C) 2021-present greateric.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
