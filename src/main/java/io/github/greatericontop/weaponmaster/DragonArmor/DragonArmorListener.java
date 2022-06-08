@@ -34,7 +34,7 @@ public class DragonArmorListener implements Listener {
 
     private final double PROTECTION_EACH = 0.05;
     private final double PROTECTION_ENCHANT = 0.00_75;
-    private final double BONUS_EACH = 0.03_5;
+    private final double BONUS_EACH = 0.03;
     private final float REDUCTION_HUNGER = 0.6666666666666666F;
 
     private final WeaponMasterMain plugin;
@@ -96,7 +96,6 @@ public class DragonArmorListener implements Listener {
         }
 
         event.setDamage(event.getDamage() * damageBonus);
-        plugin.paperUtils.sendActionBar(player, String.format("§eDamage was increased by %.0f%% to %.1f.", 100*(damageBonus-1), event.getDamage()), false);
     }
 
     @EventHandler(priority = EventPriority.HIGH) // runs near the end

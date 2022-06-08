@@ -381,7 +381,7 @@ public class Util {
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eAbility: §4Dragon Blood");
         DRAGON_ARMOR_LORE.add("§3Reduces damage taken by §b5%§3. (Up to 20%)");
-        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b3.5%§3. (Up to 14%)");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b2%§3. (Up to 8%)");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b15%§3.");
