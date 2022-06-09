@@ -85,6 +85,7 @@ import io.github.greatericontop.weaponmaster.Scylla.ScyllaItemListener;
 import io.github.greatericontop.weaponmaster.Scylla.ScyllaRecipe;
 import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedCommand;
 import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedListener;
+import io.github.greatericontop.weaponmaster.ShreddedAxe.ShreddedRecipe;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperCommand;
 import io.github.greatericontop.weaponmaster.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.ValkyrieAxe.ValkyrieCommand;
@@ -225,6 +226,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Shredded Axe
         this.getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         this.getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
+        new ShreddedRecipe().regRecipe();
         // Napalm Missile
         this.getCommand("napalm").setExecutor(new NapalmCommand());
         this.getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);

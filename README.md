@@ -220,7 +220,7 @@ Crafting Recipe:
 
 ![](assets/lifehelmet.png)
 
-### Herme's Bootsa
+### Hermes' Boots
 
 `/hermesboots give` - extra walk speed, gain armor toughness, and small chance to dodge attacks (basically stolen)
 
@@ -306,6 +306,13 @@ Crafting Recipe:
 ### Shredded Axe
 
 `/shreddedaxe give` - Summons a zombie when hitting an enemy.
+
+Crafting Recipe:
+- 1x Diamond Block
+- 2x Bone
+- 3x Zombie Head
+
+![](assets/shredded.png)
 
 ### Valkyrie Axe
 
