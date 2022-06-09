@@ -58,6 +58,7 @@ public class Util {
     public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
     public final String POSEIDON_TRIDENT_NAME = "§bPoseidon's Trident §6⚝⚝⚝⚝⚝";
     public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
+    public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -87,6 +88,7 @@ public class Util {
     public List<String> COPPER_SWORD_LORE = new ArrayList<>();
     public List<String> POSEIDON_TRIDENT_LORE = new ArrayList<>();
     public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
+    public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -426,6 +428,22 @@ public class Util {
         VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§6LEGENDARY");
         VALKYRIE_AXE_LORE.add("§6---------------");
+        // Assault Rifle
+        ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
+        ASSAULT_RIFLE_LORE.add("§6---------------");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§eLEFT CLICK §3to fire.");
+        ASSAULT_RIFLE_LORE.add("§7Use §eRIGHT CLICK §7to cycle between modes: §3single shot§7, §3burst§7.");
+        ASSAULT_RIFLE_LORE.add("§eSHIFT RIGHT CLICK §7to reload.");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§eMuzzle Velocity: §33038 f/s §eor §3926 m/s");
+        ASSAULT_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
+        ASSAULT_RIFLE_LORE.add("§7Minor recoil");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§3Up to §b64 §3rounds can be loaded at once.");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§cSUPREME");
+        ASSAULT_RIFLE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -537,5 +555,8 @@ public class Util {
     }
     public boolean checkForValkyrieAxe(ItemStack item) {
         return this.checkFor(item, VALKYRIE_AXE_NAME, 0, "id: VALKYRIE_AXE");
+    }
+    public boolean checkForAssaultRifle(ItemStack item) {
+        return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
     }
 }

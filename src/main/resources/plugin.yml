@@ -165,6 +165,11 @@ commands:
     permission: "weaponmaster.valkyrieaxe.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["valkyrie"]
+  assaultrifle:
+    description: "[Weapon Master] command for Assault Rifle"
+    usage: "U: /assaultrifle give"
+    permission: "weaponmaster.assaultrifle.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 permissions:
   weaponmaster.weaponmaster:
@@ -312,4 +317,9 @@ permissions:
   weaponmaster.valkyrieaxe.command:
     default: op
   weaponmaster.valkyrieaxe.use:
+    default: true
+  #
+  weaponmaster.assaultrifle.command:
+    default: op
+  weaponmaster.assaultrifle.use:
     default: true

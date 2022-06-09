@@ -23,6 +23,8 @@ import io.github.greatericontop.weaponmaster.Anduril.AndurilRecipe;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.ArtemisBow.ArtemisRecipe;
+import io.github.greatericontop.weaponmaster.AssaultRifle.AssaultCommand;
+import io.github.greatericontop.weaponmaster.AssaultRifle.AssaultListener;
 import io.github.greatericontop.weaponmaster.AtomBomb.AtomCommand;
 import io.github.greatericontop.weaponmaster.AtomBomb.AtomItemListener;
 import io.github.greatericontop.weaponmaster.CavemanSword.CavemanCommand;
@@ -252,6 +254,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("valkyrieaxe").setExecutor(new ValkyrieCommand());
         this.getServer().getPluginManager().registerEvents(new ValkyrieItemListener(this), this);
         new ValkyrieRecipe().regRecipe();
+        // Assault Rifle
+        this.getCommand("assaultrifle").setExecutor(new AssaultCommand());
+        this.getServer().getPluginManager().registerEvents(new AssaultListener(this), this);
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
