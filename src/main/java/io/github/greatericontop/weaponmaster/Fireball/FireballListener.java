@@ -38,7 +38,6 @@ public class FireballListener implements Listener {
 
     private final float VELOCITY = 2.5F;
     private final float POWER = 3.0F;
-    private final double SEEKING = 9.0;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -52,7 +51,7 @@ public class FireballListener implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (util.checkForInteractableBlock(event)) { return; }
+        if (Util.checkForInteractableBlock(event)) { return; }
         Player player = event.getPlayer();
         if (!util.checkForFireball(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.fireball.use")) {
@@ -64,8 +63,8 @@ public class FireballListener implements Listener {
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
         if (Math.random() < 0.02) {
-            DragonFireball draogonFireballEntity = (DragonFireball) world.spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
-            draogonFireballEntity.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
+            DragonFireball dragonFireballEntity = (DragonFireball) world.spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+            dragonFireballEntity.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
             event.getPlayer().sendMessage("§3You summoned a dragon fireball!");
         } else {
             Fireball fireball = (Fireball) world.spawnEntity(spawnLoc, EntityType.FIREBALL);
@@ -78,7 +77,7 @@ public class FireballListener implements Listener {
                         return;
                     }
                     Location fireballLoc = fireball.getLocation();
-                    fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 100);
+                    fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 10, 0.0, 0.0, 0.0, 0.001);
                     /*List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING, SEEKING, SEEKING);
                     nearEntities.sort(
                             (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(fireballLoc) - b.getLocation().distanceSquared(fireballLoc)))
