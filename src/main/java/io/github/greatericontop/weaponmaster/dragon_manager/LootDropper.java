@@ -62,7 +62,8 @@ public class LootDropper {
         int y = world.getHighestBlockYAt(x, z);
         Location loc = new Location(world, x, y, z).add(0, 1, 0);
         loc.getBlock().setType(Material.PURPUR_BLOCK);
-        dropItemAt(world, loc.clone().add(0.5, 1.25, 0.5), itemStack, owner, displayName, 60);
+        Location itemLoc = loc.clone().add(0.5, 1.25, 0.5);
+        dropItemAt(world, itemLoc, itemStack, owner, displayName, 60);
         new BukkitRunnable() {
             int i = 0;
             public void run() {
@@ -70,7 +71,7 @@ public class LootDropper {
                     cancel();
                     return;
                 }
-                loc.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, loc, 100);
+                loc.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, itemLoc, 200);
                 i++;
             }
         }.runTaskTimer(plugin, 1L, 40L);

@@ -114,11 +114,11 @@ public class HeliosItemListener implements Listener {
             player.setExhaustion(player.getExhaustion() + FOOD_COST);
         }
 
-        for (int step = 0; step < 40; step++) {
-            double theta = Math.PI * step / 20;
+        for (int step = 0; step < 280; step++) {
+            double theta = Math.PI * step / 140;
             double deltaX = IMPACT_DISTANCE * Math.cos(theta);
             double deltaY = IMPACT_DISTANCE * Math.sin(theta);
-            loc.getWorld().spawnParticle(Particle.FLAME, loc.clone().add(deltaX, 0.0, deltaY), 2);
+            loc.getWorld().spawnParticle(Particle.FLAME, loc.clone().add(deltaX, 0.0, deltaY), 1, 0.0, 0.0, 0.0, 0.001);
         }
     }
 
