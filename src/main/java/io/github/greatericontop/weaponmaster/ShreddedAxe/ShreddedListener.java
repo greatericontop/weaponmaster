@@ -126,13 +126,4 @@ public class ShreddedListener implements Listener {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.LOW)
-    public void preventFromDamagingOwnZombiesWithShreddedAxe(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player) event.getDamager();
-        if (!util.checkForShreddedAxe(player.getInventory().getItemInMainHand())) { return; }
-        if (!(event.getEntity() instanceof Zombie)) { return; }
-
-    }
-
 }
