@@ -57,7 +57,7 @@ public class WeaponMasterCommand implements CommandExecutor {
         if (args.length >= 1 && args[0].equals("debug1")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
-            int wasted = new LootDropper(plugin, plugin.dragonManager.dragonWeightManager, plugin.dragonManager.currentlyActiveDragon)
+            int wasted = new LootDropper(plugin)
                     .doAllDrops(
                             plugin.dragonManager.currentlyActiveDragon.getWorld(),
                             1000, ((Player) sender)

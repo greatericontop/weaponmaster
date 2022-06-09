@@ -28,12 +28,15 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class DragonWeightManager {
     private final double DAMAGE_WEIGHT_MAX = 700.0;
 
+    public final Set<Player> players = new HashSet<>();
     private final Map<UUID, Double> dragonDamage = new HashMap<>();
     private double totalDamageDealt = 0.0;
     private final Map<UUID, Double> weightBonus = new HashMap<>();
@@ -111,6 +114,9 @@ public class DragonWeightManager {
         Entity victim = event.getEntity();
 
         if (victim instanceof EnderDragon && victim.getUniqueId().equals(currentlyActiveDragon.getUniqueId())) {
+            if (!players.contains(player)) {
+                players.add(player);
+            }
             incrementDamage(player.getUniqueId(), event.getFinalDamage());
         }
 

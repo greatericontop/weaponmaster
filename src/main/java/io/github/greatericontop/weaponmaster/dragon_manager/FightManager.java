@@ -23,6 +23,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -96,6 +97,19 @@ public class FightManager implements Listener {
             return;
         }
         dragonWeightManager.onDamage(event);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDragonDeath(EntityDeathEvent event) {
+        if (currentlyActiveDragon == null) { return; }
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+
+        LootDropper lootDropper = new LootDropper(plugin);
+        for (Player player : dragonWeightManager.players) {
+            int weight = dragonWeightManager.getDragonWeight(player.getUniqueId());
+            player.sendMessage("§7[Debug] giving you drops with weight="+weight);///
+            lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
+        }
     }
 
 }

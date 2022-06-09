@@ -22,12 +22,14 @@ import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.UUID;
@@ -37,13 +39,10 @@ public class LootDropper {
 
     private final WeaponMasterMain plugin;
     private final CustomItems customItems;
-    private final DragonWeightManager dragonWeightManager;
-    private final EnderDragon currentlyActiveDragon;
-    public LootDropper(WeaponMasterMain plugin, DragonWeightManager dragonWeightManager, EnderDragon currentlyActiveDragon) {
+
+    public LootDropper(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.customItems = new CustomItems();
-        this.dragonWeightManager = dragonWeightManager;
-        this.currentlyActiveDragon = currentlyActiveDragon;
     }
 
     public void dropItemAt(World world, Location loc, ItemStack toDrop, UUID owner, String displayName, int pickupDelay) {
@@ -64,6 +63,17 @@ public class LootDropper {
         Location loc = new Location(world, x, y, z).add(0, 1, 0);
         loc.getBlock().setType(Material.PURPUR_BLOCK);
         dropItemAt(world, loc.clone().add(0.5, 1.25, 0.5), itemStack, owner, displayName, 60);
+        new BukkitRunnable() {
+            int i = 0;
+            public void run() {
+                if (i >= 20) {
+                    cancel();
+                    return;
+                }
+                loc.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, loc, 100);
+                i++;
+            }
+        }.runTaskTimer(plugin, 1L, 40L);
     }
 
     public void createDrop(World world, ItemStack itemStack, UUID owner, String displayName) {
@@ -98,12 +108,8 @@ public class LootDropper {
 
     public int doMinorDrops(World world, int weight, Player player) {
         int shulkerShellAmount = 0, obsidianAmount = 0, enderPearlAmount = 0;
-        if (weight >= 150) {
-            obsidianAmount++;
-            enderPearlAmount++;
-        }
         int i = 0;
-        while (weight > 0 && i < 40) {
+        while (weight > 0 && i < 32) {
             double rand = Math.random();
             if (weight >= 130 && rand < 0.04) { // 4%
                 shulkerShellAmount++;
