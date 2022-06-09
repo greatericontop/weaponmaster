@@ -35,6 +35,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 public class FightManager implements Listener {
+    final double DRAGON_MAX_HP = 700.0;
 
     public EnderDragon currentlyActiveDragon = null;
     public DragonWeightManager dragonWeightManager = null;
@@ -53,11 +54,10 @@ public class FightManager implements Listener {
         buffDragon(currentlyActiveDragon);
         this.damageDealtToDragonThroughExplosions = 0.0;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
-        this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon).setEnabled(true);
+        this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon, DRAGON_MAX_HP).setEnabled(true);
     }
 
     public void buffDragon(EnderDragon dragon) {
-        double DRAGON_MAX_HP = 700.0;
         dragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DRAGON_MAX_HP); // up from 200, the default
         dragon.setHealth(DRAGON_MAX_HP);
         dragon.setCustomName("§cWeaponMaster Dragon");

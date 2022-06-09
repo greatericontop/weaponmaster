@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class DragonWeightManager {
-    private final double DAMAGE_WEIGHT_MAX = 700.0;
+    private final double DAMAGE_WEIGHT_MAX;
 
     public final Set<Player> players = new HashSet<>();
     private final Map<UUID, Double> dragonDamage = new HashMap<>();
@@ -45,10 +45,11 @@ public class DragonWeightManager {
     private final WeaponMasterMain plugin;
     private final EnderDragon currentlyActiveDragon;
     private boolean enabled;
-    public DragonWeightManager(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
+    public DragonWeightManager(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon, double damageWeightMax) {
         this.plugin = plugin;
         this.currentlyActiveDragon = currentlyActiveDragon;
         this.enabled = true;
+        this.DAMAGE_WEIGHT_MAX = damageWeightMax;
     }
 
     // TODO: limit the total amount of damage, eg only the first 1000 damage can count towards damage weight
