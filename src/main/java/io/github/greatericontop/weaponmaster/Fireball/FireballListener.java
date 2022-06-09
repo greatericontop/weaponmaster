@@ -70,6 +70,7 @@ public class FireballListener implements Listener {
             Fireball fireball = (Fireball) world.spawnEntity(spawnLoc, EntityType.FIREBALL);
             fireball.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
             fireball.setYield(POWER);
+            fireball.setShooter(player);
             new BukkitRunnable() {
                 public void run() {
                     if (fireball.isDead()) {
