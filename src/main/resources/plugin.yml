@@ -170,6 +170,12 @@ commands:
     usage: "U: /assaultrifle give"
     permission: "weaponmaster.assaultrifle.command"
     permission-message: "§cYou are not allowed to do this!"
+  dragonelytra:
+    description: "[Weapon Master] command for Dragon Elytra"
+    usage: "U: /dragonelytra give"
+    permission: "weaponmaster.dragonelytra.command"
+    permission-message: "§cYou are not allowed to do this!"
+
 
 permissions:
   weaponmaster.weaponmaster:
@@ -322,4 +328,9 @@ permissions:
   weaponmaster.assaultrifle.command:
     default: op
   weaponmaster.assaultrifle.use:
+    default: true
+  #
+  weaponmaster.dragonelytra.command:
+    default: op
+  weaponmaster.dragonelytra.use:
     default: true
