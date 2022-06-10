@@ -36,10 +36,11 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LootDropper {
+    private final int[] dx = {-1, -1, -1, 0, 0, 0, 1, 1, 1};
+    private final int[] dz = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
 
     private final WeaponMasterMain plugin;
     private final CustomItems customItems;
-
     public LootDropper(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.customItems = new CustomItems();
@@ -58,10 +59,21 @@ public class LootDropper {
         }
     }
 
+    public int getYLevel(World world, int x, int z) {
+        int maxY = 0;
+        for (int i = 0; i < 9; i++) {
+            int yHere = world.getHighestBlockYAt(x + dx[i], z + dz[i]);
+            maxY = Math.max(yHere, maxY);
+        }
+        return maxY;
+    }
+
     public void createDrop(World world, int x, int z, ItemStack itemStack, UUID owner, String displayName) {
-        int y = world.getHighestBlockYAt(x, z);
+        int y = getYLevel(world, x, z);
         Location loc = new Location(world, x, y, z).add(0, 1, 0);
-        loc.getBlock().setType(Material.PURPUR_BLOCK);
+        for (int i = 0; i < 9; i++) { // sets the 3x3
+            loc.clone().add(dx[i], 0, dz[i]).getBlock().setType(Material.PURPUR_BLOCK);
+        }
         Location itemLoc = loc.clone().add(0.5, 1.25, 0.5);
         dropItemAt(world, itemLoc, itemStack, owner, displayName, 60);
         new BukkitRunnable() {
@@ -71,7 +83,7 @@ public class LootDropper {
                     cancel();
                     return;
                 }
-                loc.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, itemLoc, 200);
+                loc.getWorld().spawnParticle(Particle.FLAME, itemLoc, 200, 0.0, 0.0, 0.0, 0.07);
                 i++;
             }
         }.runTaskTimer(plugin, 1L, 40L);
