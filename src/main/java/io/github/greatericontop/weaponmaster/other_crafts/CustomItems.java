@@ -70,6 +70,7 @@ public class CustomItems {
         DRAGON_SCALE_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
         DRAGON_SCALE_LORE.add("§dThis dragon scale carries an immense magical power of the dragon.");
         DRAGON_SCALE_LORE.add("§dIt can be added to other dragon items to multiply their strength.");
+        DRAGON_SCALE_LORE.add("§7Can upgrade §fDragon Sword §7and §fDragon Elytra§7.");
 
         MAGIC_ENERGY_BAR_LORE.add("id: MAGIC_ENERGY_BAR");
         MAGIC_ENERGY_BAR_LORE.add("§9Consume this item to gain an additional heart.");
