@@ -39,6 +39,7 @@ import io.github.greatericontop.weaponmaster.DeathScythe.ScytheRecipe;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorCommand;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorListener;
 import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorRecipe;
+import io.github.greatericontop.weaponmaster.DragonElytra.DragonElytraUpgradeListener;
 import io.github.greatericontop.weaponmaster.DragonElytra.ElytraCommand;
 import io.github.greatericontop.weaponmaster.DragonElytra.ElytraItemListener;
 import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
@@ -262,6 +263,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Dragon Elytra
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
+        this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
