@@ -374,7 +374,7 @@ public class Util {
         NINJA_BOW_LORE.add("");
         NINJA_BOW_LORE.add("§eAbility: §4Shuriken Shot §e§lLEFT CLICK");
         NINJA_BOW_LORE.add("§3Unleash a triple shot to rain down upon your enemies.");
-        NINJA_BOW_LORE.add("§3Other arrows are slightly inaccurate and deal 75% damage.");
+        NINJA_BOW_LORE.add("§3Other arrows are slightly inaccurate and deal 60% damage.");
         NINJA_BOW_LORE.add("§70.3 second cooldown, but the bow need not be charged");
         NINJA_BOW_LORE.add("");
         NINJA_BOW_LORE.add("§6LEGENDARY");

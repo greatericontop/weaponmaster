@@ -93,15 +93,15 @@ public class NinjaItemListener implements Listener {
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         double damageValue = 2.0 + (im.hasEnchant(Enchantment.ARROW_DAMAGE) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.ARROW_DAMAGE) * 0.5);
         int punchValue = im.getEnchantLevel(Enchantment.ARROW_KNOCKBACK);
-        double INACCURACY = 0.0155;
+        double INACCURACY = 0.0165;
 
         Location eyeLoc = player.getEyeLocation();
         Vector mainArrowDirection = eyeLoc.getDirection();
         Arrow mainArrow = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(mainArrowDirection.clone().multiply(0.1)), mainArrowDirection, 3.0, INACCURACY, damageValue, punchValue, player, AbstractArrow.PickupStatus.DISALLOWED);
         Vector arrow1Direction = mainArrowDirection.clone().rotateAroundY(Math.PI / 12);
-        Arrow sideArrow1 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow1Direction.clone().multiply(0.2)), arrow1Direction, 3.0, INACCURACY * 2.4, damageValue*0.75, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
+        Arrow sideArrow1 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow1Direction.clone().multiply(0.2)), arrow1Direction, 3.0, INACCURACY * 3.5, damageValue * 0.6, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
         Vector arrow2Direction = mainArrowDirection.clone().rotateAroundY(-Math.PI / 12);
-        Arrow sideArrow2 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow2Direction.clone().multiply(0.2)), arrow2Direction, 3.0, INACCURACY * 2.4, damageValue*0.75, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
+        Arrow sideArrow2 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow2Direction.clone().multiply(0.2)), arrow2Direction, 3.0, INACCURACY * 3.5, damageValue * 0.6, Math.max(punchValue-1, 0), player, AbstractArrow.PickupStatus.DISALLOWED);
 
         cooldown.put(player.getUniqueId(), false);
         new BukkitRunnable() {
