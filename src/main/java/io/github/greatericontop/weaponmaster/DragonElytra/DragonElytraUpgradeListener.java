@@ -55,14 +55,14 @@ public class DragonElytraUpgradeListener implements Listener {
         }
         for (AttributeModifier aMod : modifiers) {
             if (aMod.getUniqueId().equals(modifierUUID)) {
-                return (int) aMod.getAmount(); // +1 armor per upgrade level
+                return (int) (aMod.getAmount() / 0.5); // +0.5 armor per upgrade level
             }
         }
         return 0;
     }
 
     public int getLevelsForItem(ItemMeta im) {
-        return 100 * getUpgradeCount(im);
+        return 50 * getUpgradeCount(im);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -75,7 +75,7 @@ public class DragonElytraUpgradeListener implements Listener {
 
         ItemMeta elytraIM = elytra.getItemMeta();
         int currentUpgradeLevel = getUpgradeCount(elytraIM);
-        if (currentUpgradeLevel >= 4) {
+        if (currentUpgradeLevel >= 10) {
             ItemStack barrier = new ItemStack(Material.BARRIER, 1);
             ItemMeta barrierIM = barrier.getItemMeta();
             barrierIM.setDisplayName("§cError");
@@ -90,9 +90,9 @@ public class DragonElytraUpgradeListener implements Listener {
         List<String> newLore = newIM.getLore();
         newIM.removeAttributeModifier(Attribute.GENERIC_ARMOR);
         newIM.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(modifierUUID, "weaponmaster",
-                currentUpgradeLevel*1.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));
+                currentUpgradeLevel*0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST));
         newLore.add(String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(newIM)));
-        newLore.add(String.format("§4§l[!] §eWeaponMaster: §3Upgrading to level §b%d%s§3!", currentUpgradeLevel, currentUpgradeLevel == 4 ? " §2(MAXED)" : ""));
+        newLore.add(String.format("§4§l[!] §eWeaponMaster: §3Upgrading to level §b%d%s§3!", currentUpgradeLevel, currentUpgradeLevel == 10 ? " §2(MAXED)" : ""));
         newIM.setLore(newLore);
 
         ItemStack newItemStack = new ItemStack(Material.ELYTRA, 1);
