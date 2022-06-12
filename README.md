@@ -148,12 +148,13 @@ Crafting Recipe:
 Note: you only get 10 hits until durability runs out, and you can't use mending.
 
 Crafting Recipe:
-- 1x Clock
-- 2x Netherite Ingot
-- 1x Wither Skeleton Skull
-- 1x Nether Star
 - 2x Blaze Rod
 - 2x Redstone Block
+- 2x Netherite Ingot
+- 1x Clock
+- 1x Wither Skeleton Skull
+- 1x Nether Star
+
 
 ![](assets/scythe.png)
 

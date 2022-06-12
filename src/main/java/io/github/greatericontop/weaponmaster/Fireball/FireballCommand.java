@@ -50,7 +50,7 @@ public class FireballCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.SLIME_BALL);
+            ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.FIRE_CHARGE);
             ((Player) sender).getInventory().addItem(fireball);
             sender.sendMessage("§7Gave you §f[" + util.FIREBALL_NAME + "§f]§7.");
             return true;
