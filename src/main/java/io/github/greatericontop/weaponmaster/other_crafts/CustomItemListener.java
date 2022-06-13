@@ -98,24 +98,6 @@ public class CustomItemListener implements Listener {
                     killer.sendMessage("§eRARE DROP! " + customItems.CORE_STAFF_NAME);
                 }
             }
-        } else if (event.getEntityType() == EntityType.ENDER_DRAGON) {
-            if (Math.random() < plugin.getConfig().getDouble("rng.dragonScale")) {
-                int locX = rnd.nextInt(141) - 70;
-                int locZ = rnd.nextInt(141) - 70;
-                Location newBlockLocation = event.getEntity().getWorld().getHighestBlockAt(locX, locZ).getLocation().add(0, 1, 0);
-                if (newBlockLocation.getY() < 10) {
-                    newBlockLocation.setY(10);
-                }
-                Block topBlock = newBlockLocation.getBlock();
-                topBlock.setType(Material.TRAPPED_CHEST);
-                Chest chest = (Chest) topBlock.getState();
-                chest.getBlockInventory().setItem(13, customItems.generateDragonScaleItemStack());
-                Bukkit.getServer().getLogger().info(String.format("Placing chest for DRAGON SCALE at %d, %d, %d", locX, (int)newBlockLocation.getY(), locZ));
-                Player killer = event.getEntity().getKiller();
-                if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.DRAGON_SCALE_NAME);
-                }
-            }
         } else if (event.getEntityType() == EntityType.CAVE_SPIDER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.silkyString")) {
                 ItemStack silky = customItems.generateSilkyStringItemStack();
