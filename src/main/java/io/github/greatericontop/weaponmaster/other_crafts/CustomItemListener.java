@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -38,6 +39,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
 import java.util.Random;
@@ -159,10 +161,16 @@ public class CustomItemListener implements Listener {
             player.sendMessage("§cYou can't use Expert Seal on this item!");
             return;
         }
+        final NamespacedKey key = new NamespacedKey(plugin, "expert_seal");
+        if (targetItem.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) {
+            player.sendMessage("§cYou can only upgrade once!");
+            return;
+        }
         Map<Enchantment, Integer> enchants = targetItem.getEnchants();
         for (Enchantment enchant : enchants.keySet()) {
             targetItem.addEnchant(enchant, enchants.get(enchant)+1, true);
         }
+        targetItem.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
         event.getCurrentItem().setItemMeta(targetItem);
         event.setCancelled(true);
         player.updateInventory();
