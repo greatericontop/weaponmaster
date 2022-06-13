@@ -109,11 +109,20 @@ public class CustomItemListener implements Listener {
             }
         } else if (event.getEntityType() == EntityType.EVOKER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.lifeCore")) {
-                ItemStack life = customItems.generateSilkyStringItemStack();
+                ItemStack life = customItems.generateLifeCoreItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), life);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
                     killer.sendMessage("§eRARE DROP! " + customItems.LIFE_CORE_NAME);
+                }
+            }
+        } else if (event.getEntityType() == EntityType.WITHER) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.expertSeal")) {
+                ItemStack seal = customItems.generateExpertSealItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), seal);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + customItems.EXPERT_SEAL_NAME);
                 }
             }
         }
