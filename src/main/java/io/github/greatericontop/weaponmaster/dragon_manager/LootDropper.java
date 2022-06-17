@@ -149,6 +149,7 @@ public class LootDropper {
     }
 
     public int doAllDrops(World world, int totalWeight, Player player) {
+        player.sendMessage("§7Debug: sending drops for "+player);
         return doMinorDrops(world, doMajorDrops(world, totalWeight, player), player);
     }
 
