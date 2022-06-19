@@ -53,6 +53,7 @@ public class LootDropper {
         item.setOwner(owner);
         item.setPickupDelay(pickupDelay);
         item.setVelocity(new Vector(0.0, 0.5, 0.0));
+        item.setInvulnerable(true);
         if (displayName != null) {
             item.setCustomName(displayName);
             item.setCustomNameVisible(true);
