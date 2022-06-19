@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster.utils;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -39,6 +40,7 @@ public class TrueDamageHelper {
                 target.setHealth(0.0);
                 return;
             }
+            Bukkit.getServer().getLogger().warning("unhandled damage may occur; setting health right now");
             target.setHealth(newHealth);
         }
         target.playEffect(EntityEffect.HURT);

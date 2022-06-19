@@ -46,7 +46,7 @@ public class MidFightTasks {
     private final double ANGER_DIST = 100.0;
     private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
     private final int STORM_SIZE = 4;
-    private final double DEFENDER_MAX_HEALTH = 90.0;
+    private final double DEFENDER_MAX_HEALTH = 75.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -188,7 +188,7 @@ public class MidFightTasks {
 
     public void doFireballStorm(int tickNumber) {
         if (rejectWithChance(40.0)) { return; }
-        if (tickNumber < fireballStorm_lastTickRan + 200) { return; }
+        if (tickNumber < fireballStorm_lastTickRan + 300) { return; }
         fireballStorm_lastTickRan = tickNumber;
         Location loc = currentlyActiveDragon.getLocation();
         // Spawn fireballs below the dragon as some kind of protection
@@ -202,7 +202,7 @@ public class MidFightTasks {
         }
         // Spew out many fireballs in the direction of players
         new BukkitRunnable() {
-            int attacksLeft = 16;
+            int attacksLeft = 15;
             public void run() {
                 if (attacksLeft <= 0) {
                     cancel();
@@ -213,13 +213,13 @@ public class MidFightTasks {
                     Player target = (Player) entity;
                     Vector direction = target.getLocation().subtract(currentlyActiveDragon.getLocation()).toVector();
                     Vector velocity = direction.normalize().multiply(3.8);
-                    Location spawnLoc = currentlyActiveDragon.getLocation().add(velocity);
+                    Location spawnLoc = currentlyActiveDragon.getLocation().add(velocity.multiply(2.5));
                     DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
                     fireball.setVelocity(velocity);
                 }
                 attacksLeft--;
             }
-        }.runTaskTimer(plugin, 1L, 4L);
+        }.runTaskTimer(plugin, 1L, 8L);
         // Message everyone in the end
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getWorld().equals(loc.getWorld())) {
@@ -293,7 +293,6 @@ public class MidFightTasks {
         defender.setCustomNameVisible(true);
         defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
         defender.setHealth(DEFENDER_MAX_HEALTH);
-        target.sendMessage(String.format("§7attackdamage: %.1f", defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
         ItemStack endStone = new ItemStack(Material.END_STONE, 1);
         endStone.addUnsafeEnchantment(Enchantment.LUCK, 1);
         defender.getEquipment().setHelmet(endStone);
