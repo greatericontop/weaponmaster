@@ -19,15 +19,11 @@ package io.github.greatericontop.weaponmaster.other_crafts;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
