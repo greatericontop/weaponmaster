@@ -18,8 +18,9 @@ package io.github.greatericontop.weaponmaster.Excalibur;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.Util.TrueDamageHelper;
+import io.github.greatericontop.weaponmaster.Util.Util;
+
 import org.bukkit.Particle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;

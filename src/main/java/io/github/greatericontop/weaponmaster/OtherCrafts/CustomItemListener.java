@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.other_crafts;
+package io.github.greatericontop.weaponmaster.OtherCrafts;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.other_crafts;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.Util.Util;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;

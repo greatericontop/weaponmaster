@@ -18,8 +18,8 @@ package io.github.greatericontop.weaponmaster.NinjaBow;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.InaccuracyAdder;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.Util.InaccuracyAdder;
+import io.github.greatericontop.weaponmaster.Util.Util;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;

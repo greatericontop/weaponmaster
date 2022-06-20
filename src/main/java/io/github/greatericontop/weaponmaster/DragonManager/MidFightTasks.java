@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragon_manager;
+package io.github.greatericontop.weaponmaster.DragonManager;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -18,7 +18,7 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
+import io.github.greatericontop.weaponmaster.Util.TrueDamageHelper;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

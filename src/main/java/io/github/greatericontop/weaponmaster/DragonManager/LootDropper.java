@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragon_manager;
+package io.github.greatericontop.weaponmaster.DragonManager;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
+import io.github.greatericontop.weaponmaster.OtherCrafts.CustomItems;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;

@@ -18,9 +18,9 @@ package io.github.greatericontop.weaponmaster.ShreddedAxe;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.MathHelper;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.Util.MathHelper;
+import io.github.greatericontop.weaponmaster.Util.TrueDamageHelper;
+import io.github.greatericontop.weaponmaster.Util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
