@@ -21,6 +21,11 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
@@ -39,8 +44,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
-
 public class ShreddedListener implements Listener {
     private final int SURVIVAL_DURATION = 400;
     private final double NEW_MAX_HP = 50.0;
@@ -49,6 +52,7 @@ public class ShreddedListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
+
     public ShreddedListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
@@ -67,11 +71,16 @@ public class ShreddedListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER) {
+            return;
+        }
         Player player = (Player) event.getDamager();
-        if (!util.checkForShreddedAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForShreddedAxe(player.getInventory().getItemInMainHand())) {
+            return;
+        }
         if (!player.hasPermission("weaponmaster.shreddedaxe.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.shreddedaxe.use§3.");
+            player.sendMessage(
+                    "§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.shreddedaxe.use§3.");
             return;
         }
 
@@ -80,7 +89,8 @@ public class ShreddedListener implements Listener {
         PersistentDataContainer victimPdc = event.getEntity().getPersistentDataContainer();
         String value = victimPdc.get(pdcKeyOwner, PersistentDataType.STRING);
         if (value != null && player.getUniqueId().equals(UUID.fromString(value))) {
-            player.sendMessage("§7Stopped you from damaging your own zombie! If you want to do so anyway, use a different weapon.");
+            player.sendMessage(
+                    "§7Stopped you from damaging your own zombie! If you want to do so anyway, use a different weapon.");
             event.setCancelled(true);
             return;
         }
@@ -91,8 +101,8 @@ public class ShreddedListener implements Listener {
         zombieCount.put(player.getUniqueId(), zombieCount.getOrDefault(player.getUniqueId(), 0) + 1);
 
         Zombie zombie = (Zombie) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE, true);
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, SURVIVAL_DURATION*5, 0, true));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION*5, 0, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, SURVIVAL_DURATION * 5, 0, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION * 5, 0, true));
         zombie.setTarget(victim);
         zombie.setCanPickupItems(false);
         zombie.setCustomName(String.format("%s§7's §2Zombie", player.getDisplayName()));
@@ -106,6 +116,7 @@ public class ShreddedListener implements Listener {
 
         new BukkitRunnable() {
             int ticks = 0;
+
             public void run() {
                 ticks++;
                 if (zombie.isDead()) {
@@ -114,13 +125,15 @@ public class ShreddedListener implements Listener {
                     return;
                 }
                 double healthPercent = zombie.getHealth() / NEW_MAX_HP * 100;
-                zombie.setCustomName(String.format("%s§7's §2Zombie §7- §%s%.0f%%", player.getDisplayName(), MathHelper.getColor(healthPercent), healthPercent));
+                zombie.setCustomName(String.format("%s§7's §2Zombie §7- §%s%.0f%%", player.getDisplayName(),
+                        MathHelper.getColor(healthPercent), healthPercent));
                 if (zombie.getTarget() != victim) {
                     zombie.setTarget(victim);
                 }
                 if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
-                    TrueDamageHelper.dealTrueDamage(zombie,4.0);
-                    zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0), 10);
+                    TrueDamageHelper.dealTrueDamage(zombie, 4.0);
+                    zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0),
+                            10);
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);

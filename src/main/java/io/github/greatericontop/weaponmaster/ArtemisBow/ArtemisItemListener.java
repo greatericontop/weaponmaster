@@ -22,7 +22,10 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Enderman;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -49,6 +52,7 @@ public class ArtemisItemListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
+
     public ArtemisItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
@@ -57,16 +61,22 @@ public class ArtemisItemListener implements Listener {
     private double doCompensation(int runNumber, ArtemisMode mode) {
         switch (mode) {
             case WEAK:
-                if (runNumber <= 9)  return 0.01;
-                if (runNumber <= 19)  return 0.25 * SEEKING_DISTANCE;
-                if (runNumber <= 29)  return 0.5 * SEEKING_DISTANCE;
-                if (runNumber <= 39)  return 0.75 * SEEKING_DISTANCE;
+                if (runNumber <= 9)
+                    return 0.01;
+                if (runNumber <= 19)
+                    return 0.25 * SEEKING_DISTANCE;
+                if (runNumber <= 29)
+                    return 0.5 * SEEKING_DISTANCE;
+                if (runNumber <= 39)
+                    return 0.75 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
             case STRONGEST:
                 return SEEKING_DISTANCE;
             default: // NORMAL
-                if (runNumber <= 2)  return 0.01;
-                if (runNumber <= 7)  return 0.5 * SEEKING_DISTANCE;
+                if (runNumber <= 2)
+                    return 0.01;
+                if (runNumber <= 7)
+                    return 0.5 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
         }
     }
@@ -74,11 +84,16 @@ public class ArtemisItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBowShoot(EntityShootBowEvent event) {
         Entity arrow = event.getProjectile();
-        if (!(event.getEntity() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
         Player player = (Player) event.getEntity();
-        if (!util.checkForArtemisBow(event.getBow())) { return; }
+        if (!util.checkForArtemisBow(event.getBow())) {
+            return;
+        }
         if (!player.hasPermission("weaponmaster.artemisbow.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.artemisbow.use§3.");
+            player.sendMessage(
+                    "§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.artemisbow.use§3.");
             return;
         }
         if (event.getForce() < 0.99) { // only allow fully charged shots
@@ -95,6 +110,7 @@ public class ArtemisItemListener implements Listener {
             int runs = 0;
             int maxCurves = 9;
             int curveCoolDown = 0;
+
             public void run() {
                 runs++;
                 if (arrow.isOnGround() || arrow.isDead()) {
@@ -107,24 +123,30 @@ public class ArtemisItemListener implements Listener {
                     Location arrowLoc = arrow.getLocation();
                     arrow.getWorld().spawnParticle(Particle.FLAME, arrowLoc, 2);
                     double seekingDistance = doCompensation(runs, mode);
-                    List<Entity> nearEntities = arrow.getNearbyEntities(seekingDistance, seekingDistance, seekingDistance);
+                    List<Entity> nearEntities = arrow.getNearbyEntities(seekingDistance, seekingDistance,
+                            seekingDistance);
                     nearEntities.sort(
-                            (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(arrowLoc)-b.getLocation().distanceSquared(arrowLoc)))
-                    );
+                            (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(arrowLoc)
+                                    - b.getLocation().distanceSquared(arrowLoc))));
                     for (Entity target : nearEntities) {
 
                         // Ignore entites that are immune to arrows
-                        if (target instanceof Enderman) { continue; }
+                        if (target instanceof Enderman) {
+                            continue;
+                        }
                         if (target instanceof Player) {
                             GameMode gm = ((Player) target).getGameMode();
-                            if (gm == GameMode.CREATIVE || gm == GameMode.SPECTATOR) { continue; }
+                            if (gm == GameMode.CREATIVE || gm == GameMode.SPECTATOR) {
+                                continue;
+                            }
                         }
 
-
                         // Curve code
-                        if (player.hasLineOfSight(target) && target instanceof LivingEntity && (!target.isDead()) && target.getEntityId() != player.getEntityId()) {
+                        if (player.hasLineOfSight(target) && target instanceof LivingEntity && (!target.isDead())
+                                && target.getEntityId() != player.getEntityId()) {
                             Vector velo = arrow.getVelocity();
-                            double speed = Math.sqrt(velo.getX()*velo.getX() + velo.getY()*velo.getY() + velo.getZ()*velo.getZ());
+                            double speed = Math.sqrt(
+                                    velo.getX() * velo.getX() + velo.getY() * velo.getY() + velo.getZ() * velo.getZ());
                             arrow.setVelocity(target.getLocation().toVector().subtract(arrow.getLocation().toVector())
                                     .normalize().multiply(speed));
                             arrow.getWorld().spawnParticle(Particle.FLAME, arrowLoc, 150);
@@ -140,10 +162,16 @@ public class ArtemisItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onLeftClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
+        if (event.getHand() != EquipmentSlot.HAND) {
+            return;
+        }
+        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) {
+            return;
+        }
         Player player = event.getPlayer();
-        if (!util.checkForArtemisBow(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForArtemisBow(player.getInventory().getItemInMainHand())) {
+            return;
+        }
         ArtemisMode currentMode = artemisModes.getOrDefault(player.getUniqueId().toString(), ArtemisMode.NORMAL);
         if (currentMode == ArtemisMode.DISABLED) {
             artemisModes.put(player.getUniqueId().toString(), ArtemisMode.WEAK);

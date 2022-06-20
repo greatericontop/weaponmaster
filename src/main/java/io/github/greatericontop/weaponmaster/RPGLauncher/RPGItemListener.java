@@ -22,7 +22,10 @@ import io.github.greatericontop.weaponmaster.utils.InaccuracyAdder;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -39,19 +42,22 @@ public class RPGItemListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
+
     public RPGItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
     }
+
     private ArrayList<String> projectilesInFlightUUIDs = new ArrayList<String>();
-    private final double SPREAD_RADIUS = 0.4495; // 3.1m at 100 blocks;  sp / ( 100 / (v / 20) )
+    private final double SPREAD_RADIUS = 0.4495; // 3.1m at 100 blocks; sp / ( 100 / (v / 20) )
 
     private Arrow fireOneGrenade(Player player) {
         Location eyeLoc = player.getEyeLocation();
         Vector velocityVector = eyeLoc.getDirection().multiply(14.5); // 14.5 block/tick is 290 meter/s
         Vector inaccuracy = InaccuracyAdder.generateInaccuracy(SPREAD_RADIUS);
         velocityVector.add(inaccuracy);
-        Arrow arrow = (Arrow) player.getWorld().spawnEntity(eyeLoc.add(velocityVector.clone().multiply(0.1)), EntityType.ARROW);
+        Arrow arrow = (Arrow) player.getWorld().spawnEntity(eyeLoc.add(velocityVector.clone().multiply(0.1)),
+                EntityType.ARROW);
         arrow.setVelocity(velocityVector);
         arrow.setShooter(player);
         return arrow;
@@ -59,15 +65,23 @@ public class RPGItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onLeftClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
-        Player player = event.getPlayer();
-        if (!util.checkForRPGLauncher(player.getInventory().getItemInMainHand())) { return; }
-        if (!player.hasPermission("weaponmaster.rpgl.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rpgl.use§3.");
+        if (event.getHand() != EquipmentSlot.HAND) {
             return;
         }
-        // TODO: Actually make this thing cost an arrow/grenade to fire instead of firing blindly.
+        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) {
+            return;
+        }
+        Player player = event.getPlayer();
+        if (!util.checkForRPGLauncher(player.getInventory().getItemInMainHand())) {
+            return;
+        }
+        if (!player.hasPermission("weaponmaster.rpgl.use")) {
+            player.sendMessage(
+                    "§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rpgl.use§3.");
+            return;
+        }
+        // TODO: Actually make this thing cost an arrow/grenade to fire instead of
+        // firing blindly.
         Arrow arrow = fireOneGrenade(player);
         projectilesInFlightUUIDs.add(arrow.getUniqueId().toString());
         player.setVelocity(player.getVelocity().subtract(player.getEyeLocation().getDirection().multiply(0.2)));
@@ -86,16 +100,20 @@ public class RPGItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile entity = event.getEntity();
-        if (!projectilesInFlightUUIDs.contains(entity.getUniqueId().toString())) { return; } // we added the UUID earlier, so there shouldn't be a player NPE
+        if (!projectilesInFlightUUIDs.contains(entity.getUniqueId().toString())) {
+            return;
+        } // we added the UUID earlier, so there shouldn't be a player NPE
         Player player = (Player) entity.getShooter();
         // We want to detonate it slightly before it hits the block
-        // Pull it back by :magnitude: blocks, in the reverse direction that its last velocity came from
-        double magnitude = Math.min(entity.getVelocity().length()*0.1, 0.2);
-        Location explosionLocation = entity.getLocation().subtract(entity.getVelocity().normalize().multiply(magnitude));
+        // Pull it back by :magnitude: blocks, in the reverse direction that its last
+        // velocity came from
+        double magnitude = Math.min(entity.getVelocity().length() * 0.1, 0.2);
+        Location explosionLocation = entity.getLocation()
+                .subtract(entity.getVelocity().normalize().multiply(magnitude));
         entity.getLocation().getWorld().createExplosion(explosionLocation, 5.0F, true, true, player);
         entity.remove(); // stop spawning smoke above
         player.sendMessage("§3FWOOM!");
         player.sendMessage(String.format("§7[Debug] pulled back by %.3f", magnitude));
-}
+    }
 
 }
