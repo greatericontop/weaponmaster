@@ -45,6 +45,15 @@ public class ValkyrieCommand implements CommandExecutor {
         to.sendMessage("§3Use §2/valkyrieaxe give§3 to give yourself the item.");
     }
 
+    public static ItemStack giveValkyrie(Util util) {
+        ItemStack valkyrie = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
+        ItemMeta im = valkyrie.getItemMeta();
+        im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 13.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", -3.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        valkyrie.setItemMeta(im);
+        return valkyrie;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
@@ -56,11 +65,7 @@ public class ValkyrieCommand implements CommandExecutor {
                 sender.sendMessage("§3Sorry, players only.");
                 return true;
             }
-            ItemStack valkyrie = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
-            ItemMeta im = valkyrie.getItemMeta();
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 13.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", -3.4, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
-            valkyrie.setItemMeta(im);
+            ItemStack valkyrie = giveValkyrie(util);
             ((Player) sender).getInventory().addItem(valkyrie);
             sender.sendMessage("§7Gave you §f[" + util.VALKYRIE_AXE_NAME + "§f]§7.");
             return true;

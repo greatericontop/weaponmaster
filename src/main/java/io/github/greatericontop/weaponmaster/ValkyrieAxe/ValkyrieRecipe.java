@@ -31,8 +31,8 @@ public class ValkyrieRecipe {
     }
 
     public void regRecipe() {
-        ItemStack valkyrieaxe = util.generateMeta(util.VALKYRIE_AXE_LORE, util.VALKYRIE_AXE_NAME, Material.IRON_AXE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("valkyrie_axe"), valkyrieaxe);
+        ItemStack valkyrie = ValkyrieCommand.giveValkyrie(util);
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("valkyrie_axe"), valkyrie);
         recipe.shape("WnW",
                      "WxW",
                      " x ");
