@@ -33,7 +33,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import io.github.greatericontop.weaponmaster.DragonManager.LootDropper;
+import io.github.greatericontop.weaponmaster.dragon_manager.LootDropper;
 
 import java.util.UUID;
 
