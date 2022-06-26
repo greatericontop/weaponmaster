@@ -485,7 +485,7 @@ public class Util {
         Block block = event.getClickedBlock();
         if (block == null) { return false; }
         Material type = block.getType();
-        return (block.getType().isInteractable());
+        return (type.isInteractable());
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {

@@ -74,7 +74,7 @@ public class RocketItemListener implements Listener {
         }
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (util.checkForInteractableBlock(event)) { return; }
+            if (Util.checkForInteractableBlock(event)) { return; }
             if (player.isSneaking()) {
                 Vector tp = player.getEyeLocation().getDirection().multiply(TELEPORT_DISTANCE);
                 // check raytrace

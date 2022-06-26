@@ -62,22 +62,16 @@ public class ArtemisItemListener implements Listener {
     private double doCompensation(int runNumber, ArtemisMode mode) {
         switch (mode) {
             case WEAK:
-                if (runNumber <= 9)
-                    return 0.01;
-                if (runNumber <= 19)
-                    return 0.25 * SEEKING_DISTANCE;
-                if (runNumber <= 29)
-                    return 0.5 * SEEKING_DISTANCE;
-                if (runNumber <= 39)
-                    return 0.75 * SEEKING_DISTANCE;
+                if (runNumber <= 9) return 0.01;
+                if (runNumber <= 19) return 0.25 * SEEKING_DISTANCE;
+                if (runNumber <= 29) return 0.5 * SEEKING_DISTANCE;
+                if (runNumber <= 39) return 0.75 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
             case STRONGEST:
                 return SEEKING_DISTANCE;
             default: // NORMAL
-                if (runNumber <= 2)
-                    return 0.01;
-                if (runNumber <= 7)
-                    return 0.5 * SEEKING_DISTANCE;
+                if (runNumber <= 2) return 0.01;
+                if (runNumber <= 7) return 0.5 * SEEKING_DISTANCE;
                 return SEEKING_DISTANCE;
         }
     }

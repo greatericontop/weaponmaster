@@ -234,6 +234,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case DEEPSLATE_DIAMOND_ORE:
                 world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND_BLOCK, 1));
                 break;
+            default:
+                break;
         }
     }
 
@@ -276,14 +278,18 @@ public class MinerItemListener extends MinerUtil implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
+        
         Player player = event.getPlayer();
+
         if (!util.checkForMinersBlessing(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.minersblessing.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.minersblessing.use§3.");
             return;
         }
+
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) { return; }
         if (Util.checkForInteractableBlock(event)) { return; }
+
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         List<String> lore = im.getLore();
         int tier = parseLevelInt(lore.get(util.MINER_LVL));
@@ -314,6 +320,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Silk Touch");
             player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Silk Touch");
         }
+
         im.setLore(lore);
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
@@ -324,11 +331,14 @@ public class MinerItemListener extends MinerUtil implements Listener {
         if (!util.checkForMinersBlessing(event.getItem())) {
             return;
         }
+
         ItemMeta im = event.getItem().getItemMeta();
         List<String> lore = im.getLore();
+
         if (parseLevelInt(lore.get(util.MINER_LVL)) >= 12) {
             return;
         }
+
         if (Math.random() >= REPAIR_PENALTY) {
             event.setCancelled(true);
         }
@@ -370,7 +380,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 }
             }
         }
+
         cooldown.put(player.getUniqueId(), false);
+
         new BukkitRunnable() {
             public void run() {
                 cooldown.put(player.getUniqueId(), true);
