@@ -45,7 +45,7 @@ public class ValkyrieItemListener implements Listener {
     private final double FIRESTORM_RADIUS = 25.0;
     private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
     private final double MAX_ANGLE_DEG = 32.0;
-    private final double FIRESTORM_KNOCKBACK = 9.0;
+    private final double FIRESTORM_KNOCKBACK = 14.0;
     private final int DURABILITY_THRESHOLD = 249;
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -83,13 +83,16 @@ public class ValkyrieItemListener implements Listener {
             return;
         }
         Damageable im = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
-        if (im.getDamage() >= DURABILITY_THRESHOLD-50 && player.getGameMode() != GameMode.CREATIVE) { // 51 durability
-            player.sendMessage("§cNot enough durability!");
-            return;
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            if (im.getDamage() >= DURABILITY_THRESHOLD - 50) { // 51 durability
+                player.sendMessage("§cNot enough durability!");
+                return;
+            }
+            im.setDamage(Math.min(im.getDamage() + 20, DURABILITY_THRESHOLD));
+            TrueDamageHelper.dealTrueDamage(player, 1.0);
         }
-        im.setDamage(Math.min(im.getDamage() + 20, DURABILITY_THRESHOLD));
         player.getInventory().getItemInMainHand().setItemMeta(im);
-        TrueDamageHelper.dealTrueDamage(player, 1.0);
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);
 
         for (Entity entity : player.getNearbyEntities(FIRESTORM_RADIUS, FIRESTORM_RADIUS, FIRESTORM_RADIUS)) {
             if (!(entity instanceof LivingEntity)) { continue; }
@@ -105,8 +108,8 @@ public class ValkyrieItemListener implements Listener {
         }
         new BukkitRunnable() {
             Location currentLoc = player.getEyeLocation();
-            Vector lookingAt = currentLoc.getDirection().multiply(0.35);
-            int runsLeft = 60;
+            Vector lookingAt = currentLoc.getDirection().multiply(0.5);
+            int runsLeft = 50;
             public void run() {
                 if (runsLeft < 0) {
                     cancel();
