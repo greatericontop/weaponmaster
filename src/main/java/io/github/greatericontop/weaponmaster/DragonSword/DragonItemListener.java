@@ -17,7 +17,6 @@ package io.github.greatericontop.weaponmaster.DragonSword;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.entity.EntityType;
@@ -26,9 +25,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class DragonItemListener implements Listener {
 

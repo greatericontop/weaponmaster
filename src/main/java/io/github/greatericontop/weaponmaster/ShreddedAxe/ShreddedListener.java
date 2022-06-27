@@ -21,6 +21,11 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
@@ -38,8 +43,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.*;
 
 public class ShreddedListener implements Listener {
     private final int SURVIVAL_DURATION = 400;

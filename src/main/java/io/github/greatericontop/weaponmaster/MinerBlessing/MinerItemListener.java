@@ -18,8 +18,6 @@ package io.github.greatericontop.weaponmaster.MinerBlessing;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.MathHelper;
-import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -234,6 +232,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 break;
             case DEEPSLATE_DIAMOND_ORE:
                 world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND_BLOCK, 1));
+                break;
+            default:
                 break;
         }
     }

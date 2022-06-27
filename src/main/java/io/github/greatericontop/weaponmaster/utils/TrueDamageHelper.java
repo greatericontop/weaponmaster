@@ -22,7 +22,6 @@ import org.bukkit.EntityEffect;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 
 public class TrueDamageHelper {
 

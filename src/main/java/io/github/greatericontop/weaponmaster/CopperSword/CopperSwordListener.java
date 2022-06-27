@@ -145,7 +145,7 @@ public class CopperSwordListener implements Listener {
             event.setCancelled(true);
             player.sendMessage("§cYou're not allowed to execute this anvil operation on " + util.COPPER_SWORD_NAME + "§c. This item can't be repaired.");
         } else if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB || event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
-            event.setCursor(event.getCurrentItem());
+            event.getWhoClicked().setItemOnCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
         }
     }

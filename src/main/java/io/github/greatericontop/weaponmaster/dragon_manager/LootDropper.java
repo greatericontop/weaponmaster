@@ -19,12 +19,10 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
-import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.World;
-import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;

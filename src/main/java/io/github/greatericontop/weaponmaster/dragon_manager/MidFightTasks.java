@@ -19,7 +19,13 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-import org.bukkit.*;
+
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.DragonFireball;
@@ -38,8 +44,10 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.Random;
+import java.util.UUID;
+
 import javax.annotation.Nullable;
-import java.util.*;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
@@ -60,6 +68,7 @@ public class MidFightTasks {
     private final WeaponMasterMain plugin;
     private final EnderDragon currentlyActiveDragon;
     private final UUID cachedDragonId;
+    
     public MidFightTasks(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
         this.plugin = plugin;
         this.currentlyActiveDragon = currentlyActiveDragon;
