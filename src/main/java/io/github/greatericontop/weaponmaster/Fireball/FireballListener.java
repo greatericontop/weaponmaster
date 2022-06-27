@@ -35,8 +35,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.List;
-
 public class FireballListener implements Listener {
 
     private final float VELOCITY = 2.5F;
