@@ -233,6 +233,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
             case DEEPSLATE_DIAMOND_ORE:
                 world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND_BLOCK, 1));
                 break;
+            default:
+                break;
         }
     }
 
