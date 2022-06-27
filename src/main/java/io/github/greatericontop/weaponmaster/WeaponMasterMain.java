@@ -75,7 +75,6 @@ import io.github.greatericontop.weaponmaster.NinjaBow.NinjaItemListener;
 import io.github.greatericontop.weaponmaster.NinjaBow.NinjaRecipe;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.PilotSword.PilotItemListener;
-import io.github.greatericontop.weaponmaster.PilotSword.PilotRecipe;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentCommand;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentListener;
 import io.github.greatericontop.weaponmaster.PoseidonTrident.TridentRecipe;
