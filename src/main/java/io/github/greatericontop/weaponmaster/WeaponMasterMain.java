@@ -103,7 +103,11 @@ import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockRecipe;
 import io.github.greatericontop.weaponmaster.dragon_manager.FightManager;
-import io.github.greatericontop.weaponmaster.other_crafts.*;
+import io.github.greatericontop.weaponmaster.other_crafts.CoreStaffRecipe;
+import io.github.greatericontop.weaponmaster.other_crafts.CustomItemListener;
+import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
+import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
+import io.github.greatericontop.weaponmaster.other_crafts.MinorItemCommand;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
