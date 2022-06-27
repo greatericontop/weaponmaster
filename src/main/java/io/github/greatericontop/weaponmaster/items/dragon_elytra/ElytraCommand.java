@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragon_elytra;
+package io.github.greatericontop.weaponmaster.items.dragon_elytra;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

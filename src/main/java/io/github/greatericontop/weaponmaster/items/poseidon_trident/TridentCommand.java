@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.poseidon_trident;
+package io.github.greatericontop.weaponmaster.items.poseidon_trident;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

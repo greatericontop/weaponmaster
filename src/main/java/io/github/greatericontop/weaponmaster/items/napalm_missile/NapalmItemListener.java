@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.napalm_missile;
+package io.github.greatericontop.weaponmaster.items.napalm_missile;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

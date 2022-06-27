@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.netherite_staff;
+package io.github.greatericontop.weaponmaster.items.netherite_staff;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

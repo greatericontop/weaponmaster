@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.valkyrie_axe;
+package io.github.greatericontop.weaponmaster.items.valkyrie_axe;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

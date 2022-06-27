@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.scylla;
+package io.github.greatericontop.weaponmaster.items.scylla;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.death_scythe;
+package io.github.greatericontop.weaponmaster.items.death_scythe;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

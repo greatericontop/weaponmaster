@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.fireball;
+package io.github.greatericontop.weaponmaster.items.fireball;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.pilot_sword;
+package io.github.greatericontop.weaponmaster.items.pilot_sword;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

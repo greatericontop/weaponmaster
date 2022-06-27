@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.hermes_boots;
+package io.github.greatericontop.weaponmaster.items.hermes_boots;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

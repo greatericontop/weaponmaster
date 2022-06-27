@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.assault_rifle;
+package io.github.greatericontop.weaponmaster.items.assault_rifle;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

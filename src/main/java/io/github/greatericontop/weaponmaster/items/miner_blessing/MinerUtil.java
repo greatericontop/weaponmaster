@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.miner_blessing;
+package io.github.greatericontop.weaponmaster.items.miner_blessing;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

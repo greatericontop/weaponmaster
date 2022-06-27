@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.life_helmet;
+package io.github.greatericontop.weaponmaster.items.life_helmet;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

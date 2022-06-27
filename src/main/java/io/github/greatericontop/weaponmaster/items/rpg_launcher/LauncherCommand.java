@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.rpg_launcher;
+package io.github.greatericontop.weaponmaster.items.rpg_launcher;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.artemis_bow;
+package io.github.greatericontop.weaponmaster.items.artemis_bow;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

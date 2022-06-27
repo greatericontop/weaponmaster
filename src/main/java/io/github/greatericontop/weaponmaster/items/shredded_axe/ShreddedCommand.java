@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.shredded_axe;
+package io.github.greatericontop.weaponmaster.items.shredded_axe;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

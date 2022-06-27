@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.anduril;
+package io.github.greatericontop.weaponmaster.items.anduril;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

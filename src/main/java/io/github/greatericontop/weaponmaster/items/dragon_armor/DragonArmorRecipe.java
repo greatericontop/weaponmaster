@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragon_armor;
+package io.github.greatericontop.weaponmaster.items.dragon_armor;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

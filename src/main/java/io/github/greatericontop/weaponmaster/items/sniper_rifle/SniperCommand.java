@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.sniper_rifle;
+package io.github.greatericontop.weaponmaster.items.sniper_rifle;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

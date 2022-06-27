@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.caveman_sword;
+package io.github.greatericontop.weaponmaster.items.caveman_sword;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

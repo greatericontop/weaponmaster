@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.atom_bomb;
+package io.github.greatericontop.weaponmaster.items.atom_bomb;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

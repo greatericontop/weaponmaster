@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.vamp_axe;
+package io.github.greatericontop.weaponmaster.items.vamp_axe;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

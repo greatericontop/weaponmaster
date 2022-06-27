@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.ninja_bow;
+package io.github.greatericontop.weaponmaster.items.ninja_bow;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

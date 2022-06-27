@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.warlock_pants;
+package io.github.greatericontop.weaponmaster.items.warlock_pants;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

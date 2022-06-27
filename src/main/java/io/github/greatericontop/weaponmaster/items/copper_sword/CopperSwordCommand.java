@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.copper_sword;
+package io.github.greatericontop.weaponmaster.items.copper_sword;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

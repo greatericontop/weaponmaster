@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.helios;
+package io.github.greatericontop.weaponmaster.items.helios;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
