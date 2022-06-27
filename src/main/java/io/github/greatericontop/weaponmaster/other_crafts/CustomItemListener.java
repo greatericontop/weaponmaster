@@ -165,7 +165,7 @@ public class CustomItemListener implements Listener {
         event.getCurrentItem().setItemMeta(targetItem);
         event.setCancelled(true);
         player.updateInventory();
-        event.setCursor(new ItemStack(Material.AIR));
+        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
         player.sendMessage("§3Success!");
     }
 

@@ -134,7 +134,7 @@ public class DragonUpgradeListener implements Listener {
             }
             player.setLevel(player.getLevel()-levelsRequired);
             stripLastLoreLine(event.getCurrentItem());
-            event.setCursor(event.getCurrentItem());
+            event.getWhoClicked().setItemOnCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
         }
     }

@@ -125,7 +125,7 @@ public class DragonElytraUpgradeListener implements Listener {
             }
             player.setLevel(player.getLevel()-levelsRequired);
             stripLastLoreLines(event.getCurrentItem());
-            event.setCursor(event.getCurrentItem());
+            event.getWhoClicked().setItemOnCursor(event.getCurrentItem());
             event.getClickedInventory().clear();
         }
     }
