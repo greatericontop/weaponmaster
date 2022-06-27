@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.exodus;
+package io.github.greatericontop.weaponmaster.items.exodus;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

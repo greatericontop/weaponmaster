@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.excalibur;
+package io.github.greatericontop.weaponmaster.items.excalibur;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

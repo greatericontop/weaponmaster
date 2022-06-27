@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.rocket_stick;
+package io.github.greatericontop.weaponmaster.items.rocket_stick;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
