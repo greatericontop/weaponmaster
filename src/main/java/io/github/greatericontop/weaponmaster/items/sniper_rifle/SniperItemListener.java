@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.items.sniper_rifle;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;

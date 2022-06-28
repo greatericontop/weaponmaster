@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.utils;
+package io.github.greatericontop.weaponmaster.util;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

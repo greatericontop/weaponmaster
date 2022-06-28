@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.items.copper_sword;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;

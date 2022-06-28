@@ -18,7 +18,7 @@ package io.github.greatericontop.weaponmaster.dragon_manager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
+import io.github.greatericontop.weaponmaster.util.TrueDamageHelper;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

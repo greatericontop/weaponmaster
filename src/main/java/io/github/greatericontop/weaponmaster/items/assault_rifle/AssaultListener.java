@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.items.assault_rifle;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;

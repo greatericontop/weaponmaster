@@ -18,8 +18,9 @@ package io.github.greatericontop.weaponmaster.items.valkyrie_axe;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.TrueDamageHelper;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;

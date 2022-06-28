@@ -18,7 +18,8 @@ package io.github.greatericontop.weaponmaster.items.artemis_bow;
  */
 
 import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

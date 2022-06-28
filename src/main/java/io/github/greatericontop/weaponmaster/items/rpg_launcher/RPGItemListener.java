@@ -18,8 +18,9 @@ package io.github.greatericontop.weaponmaster.items.rpg_launcher;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.InaccuracyAdder;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.InaccuracyAdder;
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;

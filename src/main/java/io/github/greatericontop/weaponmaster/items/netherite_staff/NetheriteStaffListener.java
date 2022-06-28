@@ -18,8 +18,8 @@ package io.github.greatericontop.weaponmaster.items.netherite_staff;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.MathHelper;
-import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.util.MathHelper;
+import io.github.greatericontop.weaponmaster.util.Util;
 
 import org.bukkit.Color;
 import org.bukkit.GameMode;

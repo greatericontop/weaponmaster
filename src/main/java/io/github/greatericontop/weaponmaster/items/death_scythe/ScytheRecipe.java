@@ -20,9 +20,11 @@ package io.github.greatericontop.weaponmaster.items.death_scythe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ShapedRecipe;
+
+import io.github.greatericontop.weaponmaster.util.Util;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.Material;
-import io.github.greatericontop.weaponmaster.utils.Util;
 
 public class ScytheRecipe {
 
