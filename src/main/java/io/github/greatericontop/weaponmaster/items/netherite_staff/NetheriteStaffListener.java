@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.items.netherite_staff;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.util.MathHelper;
+import io.github.greatericontop.weaponmaster.util.RandomPotionEffectPicker;
 import io.github.greatericontop.weaponmaster.util.Util;
 
 import org.bukkit.Color;
@@ -69,7 +70,7 @@ public class NetheriteStaffListener implements Listener {
         }
         if (!(event.getEntity() instanceof LivingEntity)) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
-        Object[] effectData = EffectPicker.getRandomEffect(false);
+        Object[] effectData = RandomPotionEffectPicker.getRandomEffect(false);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
         attacked.addPotionEffect(effect);
     }
@@ -109,7 +110,7 @@ public class NetheriteStaffListener implements Listener {
         Arrow arrow = (Arrow) world.spawnEntity(spawnLoc, EntityType.ARROW);
         arrow.setShooter(player);
         arrow.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-        Object[] effectData = EffectPicker.getRandomEffect(true);
+        Object[] effectData = RandomPotionEffectPicker.getRandomEffect(true);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
