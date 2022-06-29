@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.DragonSword;
+package io.github.greatericontop.weaponmaster.othercrafts;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -17,29 +17,31 @@ package io.github.greatericontop.weaponmaster.DragonSword;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class DragonRecipe {
+public class FlaskRecipe {
 
-    private final Util util;
-    public DragonRecipe() {
-        util = new Util(null);
+    private CustomItems customItems;
+
+    public FlaskRecipe() {
+        customItems = new CustomItems();
     }
 
     public void regRecipe() {
-        ItemStack drag = util.generateMeta(util.DRAGON_SWORD_LORE, util.DRAGON_SWORD_NAME, Material.NETHERITE_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_sword"), drag);
-        recipe.shape("bDb",
-                     "bDb",
-                     "bSb");
-        recipe.setIngredient('S', Material.NETHERITE_SWORD);
-        recipe.setIngredient('D', Material.DRAGON_HEAD);
+        ItemStack flask = customItems.generateFlaskIchorItemStack();
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("flask_ichor"), flask);
+        recipe.shape(" S ",
+                     " g ",
+                     "IbW");
+        recipe.setIngredient('S', Material.FERMENTED_SPIDER_EYE);
+        recipe.setIngredient('g', Material.GLASS_BOTTLE);
         recipe.setIngredient('b', Material.BLAZE_ROD);
+        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
+        recipe.setIngredient('I', Material.IRON_BLOCK);
         Bukkit.getServer().addRecipe(recipe);
     }
 

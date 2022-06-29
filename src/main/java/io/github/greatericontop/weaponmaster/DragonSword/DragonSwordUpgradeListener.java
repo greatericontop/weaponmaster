@@ -33,11 +33,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class DragonUpgradeListener implements Listener {
+public class DragonSwordUpgradeListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
-    public DragonUpgradeListener(WeaponMasterMain plugin) {
+    public DragonSwordUpgradeListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.util = new Util(plugin);
     }

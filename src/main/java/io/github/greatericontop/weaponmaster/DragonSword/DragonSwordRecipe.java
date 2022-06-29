@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.other_crafts;
+package io.github.greatericontop.weaponmaster.DragonSword;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -17,29 +17,30 @@ package io.github.greatericontop.weaponmaster.other_crafts;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class CoreStaffRecipe {
-    private CustomItems customItems;
+public class DragonSwordRecipe {
 
-    public CoreStaffRecipe() {
-        customItems = new CustomItems();
+    private final Util util;
+    public DragonSwordRecipe() {
+        util = new Util(null);
     }
 
     public void regRecipe() {
-        ItemStack core = customItems.generateCoreStaffItemStack();
-        ShapedRecipe coreRec = new ShapedRecipe(NamespacedKey.minecraft("core_staff"), core);
-        coreRec.shape("non",
-                      "SdS",
-                      "non");
-        coreRec.setIngredient('n', Material.BLAZE_ROD);
-        coreRec.setIngredient('S', Material.WITHER_SKELETON_SKULL);
-        coreRec.setIngredient('d', Material.DIAMOND_BLOCK);
-        coreRec.setIngredient('o', Material.OBSIDIAN);
-        Bukkit.getServer().addRecipe(coreRec);
+        ItemStack drag = util.generateMeta(util.DRAGON_SWORD_LORE, util.DRAGON_SWORD_NAME, Material.NETHERITE_SWORD);
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_sword"), drag);
+        recipe.shape("bDb",
+                     "bDb",
+                     "bSb");
+        recipe.setIngredient('S', Material.NETHERITE_SWORD);
+        recipe.setIngredient('D', Material.DRAGON_HEAD);
+        recipe.setIngredient('b', Material.BLAZE_ROD);
+        Bukkit.getServer().addRecipe(recipe);
     }
+
 }

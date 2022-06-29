@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.LifeHelmet;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.other_crafts.CustomItems;
+import io.github.greatericontop.weaponmaster.othercrafts.CustomItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

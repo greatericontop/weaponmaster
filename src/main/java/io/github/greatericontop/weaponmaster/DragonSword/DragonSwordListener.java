@@ -26,7 +26,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class DragonItemListener implements Listener {
+public class DragonSwordListener implements Listener {
 
     // triangular distribution parameters
     // on average, if the ability triggers, deal 35% more damage
@@ -36,11 +36,11 @@ public class DragonItemListener implements Listener {
 
     private final WeaponMasterMain plugin;
     private final Util util;
-    private final DragonUpgradeListener dragonUpgrade;
-    public DragonItemListener(WeaponMasterMain plugin) {
+    private final DragonSwordUpgradeListener dragonUpgrade;
+    public DragonSwordListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.util = new Util(plugin);
-        this.dragonUpgrade = new DragonUpgradeListener(plugin);
+        this.dragonUpgrade = new DragonSwordUpgradeListener(plugin);
     }
 
     private double triangular(double random) {

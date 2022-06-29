@@ -25,10 +25,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class DragonCommand implements CommandExecutor {
+public class DragonSwordCommand implements CommandExecutor {
 
     private final Util util;
-    public DragonCommand() {
+    public DragonSwordCommand() {
         util = new Util(null);
     }
 

@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.dragon_manager.LootDropper;
+import io.github.greatericontop.weaponmaster.dragonmanager.LootDropper;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;

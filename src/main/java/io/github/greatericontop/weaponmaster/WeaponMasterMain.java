@@ -42,10 +42,10 @@ import io.github.greatericontop.weaponmaster.DragonArmor.DragonArmorRecipe;
 import io.github.greatericontop.weaponmaster.DragonElytra.DragonElytraUpgradeListener;
 import io.github.greatericontop.weaponmaster.DragonElytra.ElytraCommand;
 import io.github.greatericontop.weaponmaster.DragonElytra.ElytraItemListener;
-import io.github.greatericontop.weaponmaster.DragonSword.DragonCommand;
-import io.github.greatericontop.weaponmaster.DragonSword.DragonItemListener;
-import io.github.greatericontop.weaponmaster.DragonSword.DragonRecipe;
-import io.github.greatericontop.weaponmaster.DragonSword.DragonUpgradeListener;
+import io.github.greatericontop.weaponmaster.DragonSword.DragonSwordCommand;
+import io.github.greatericontop.weaponmaster.DragonSword.DragonSwordListener;
+import io.github.greatericontop.weaponmaster.DragonSword.DragonSwordRecipe;
+import io.github.greatericontop.weaponmaster.DragonSword.DragonSwordUpgradeListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburCommand;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.Excalibur.ExcaliburRecipe;
@@ -101,12 +101,12 @@ import io.github.greatericontop.weaponmaster.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.WarlockPants.WarlockRecipe;
-import io.github.greatericontop.weaponmaster.dragon_manager.FightManager;
-import io.github.greatericontop.weaponmaster.other_crafts.CoreStaffRecipe;
-import io.github.greatericontop.weaponmaster.other_crafts.CustomItemListener;
-import io.github.greatericontop.weaponmaster.other_crafts.FlaskRecipe;
-import io.github.greatericontop.weaponmaster.other_crafts.HideLeviathanRecipe;
-import io.github.greatericontop.weaponmaster.other_crafts.MinorItemCommand;
+import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
+import io.github.greatericontop.weaponmaster.othercrafts.CoreStaffRecipe;
+import io.github.greatericontop.weaponmaster.othercrafts.CustomItemListener;
+import io.github.greatericontop.weaponmaster.othercrafts.FlaskRecipe;
+import io.github.greatericontop.weaponmaster.othercrafts.HideLeviathanRecipe;
+import io.github.greatericontop.weaponmaster.othercrafts.MinorItemCommand;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -159,10 +159,10 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("scythe").setExecutor(new ScytheCommand());
         new ScytheRecipe().regRecipe();
         // Dragon Sword
-        this.getServer().getPluginManager().registerEvents(new DragonItemListener(this), this);
-        this.getCommand("dragonsword").setExecutor(new DragonCommand());
-        new DragonRecipe().regRecipe();
-        this.getServer().getPluginManager().registerEvents(new DragonUpgradeListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new DragonSwordListener(this), this);
+        this.getCommand("dragonsword").setExecutor(new DragonSwordCommand());
+        new DragonSwordRecipe().regRecipe();
+        this.getServer().getPluginManager().registerEvents(new DragonSwordUpgradeListener(this), this);
         // Artemis Bow
         this.getServer().getPluginManager().registerEvents(new ArtemisItemListener(this), this);
         this.getCommand("artemis").setExecutor(new ArtemisCommand());
