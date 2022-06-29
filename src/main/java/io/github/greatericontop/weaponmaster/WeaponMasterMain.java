@@ -102,11 +102,11 @@ import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockComma
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
 import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
-import io.github.greatericontop.weaponmaster.othercrafts.CoreStaffRecipe;
-import io.github.greatericontop.weaponmaster.othercrafts.CustomItemListener;
-import io.github.greatericontop.weaponmaster.othercrafts.FlaskRecipe;
-import io.github.greatericontop.weaponmaster.othercrafts.HideLeviathanRecipe;
-import io.github.greatericontop.weaponmaster.othercrafts.MinorItemCommand;
+import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
+import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
+import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -273,7 +273,7 @@ public class WeaponMasterMain extends JavaPlugin {
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
-        this.getServer().getPluginManager().registerEvents(new CustomItemListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
         // Dragon Fight
         dragonManager = new FightManager(this);
         this.getServer().getPluginManager().registerEvents(dragonManager, this);

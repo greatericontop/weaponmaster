@@ -18,7 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.othercrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;

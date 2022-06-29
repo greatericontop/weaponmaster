@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.othercrafts;
+package io.github.greatericontop.weaponmaster.minorcrafts;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -41,13 +41,13 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class CustomItemListener implements Listener {
+public class MinorItemListener implements Listener {
 
     private final Random rnd = new Random();
     private final CustomItems customItems;
     private final Util util;
     private final WeaponMasterMain plugin;
-    public CustomItemListener(WeaponMasterMain plugin) {
+    public MinorItemListener(WeaponMasterMain plugin) {
         this.customItems = new CustomItems();
         this.plugin = plugin;
         this.util = new Util(plugin);

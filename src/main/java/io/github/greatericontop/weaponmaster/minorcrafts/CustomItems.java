@@ -1,6 +1,6 @@
 
 
-package io.github.greatericontop.weaponmaster.othercrafts;
+package io.github.greatericontop.weaponmaster.minorcrafts;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

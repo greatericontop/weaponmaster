@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.othercrafts;
+package io.github.greatericontop.weaponmaster.minorcrafts;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -23,26 +23,23 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class FlaskRecipe {
-
+public class CoreStaffRecipe {
     private CustomItems customItems;
 
-    public FlaskRecipe() {
+    public CoreStaffRecipe() {
         customItems = new CustomItems();
     }
 
     public void regRecipe() {
-        ItemStack flask = customItems.generateFlaskIchorItemStack();
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("flask_ichor"), flask);
-        recipe.shape(" S ",
-                     " g ",
-                     "IbW");
-        recipe.setIngredient('S', Material.FERMENTED_SPIDER_EYE);
-        recipe.setIngredient('g', Material.GLASS_BOTTLE);
-        recipe.setIngredient('b', Material.BLAZE_ROD);
-        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
-        recipe.setIngredient('I', Material.IRON_BLOCK);
-        Bukkit.getServer().addRecipe(recipe);
+        ItemStack core = customItems.generateCoreStaffItemStack();
+        ShapedRecipe coreRec = new ShapedRecipe(NamespacedKey.minecraft("core_staff"), core);
+        coreRec.shape("non",
+                      "SdS",
+                      "non");
+        coreRec.setIngredient('n', Material.BLAZE_ROD);
+        coreRec.setIngredient('S', Material.WITHER_SKELETON_SKULL);
+        coreRec.setIngredient('d', Material.DIAMOND_BLOCK);
+        coreRec.setIngredient('o', Material.OBSIDIAN);
+        Bukkit.getServer().addRecipe(coreRec);
     }
-
 }
