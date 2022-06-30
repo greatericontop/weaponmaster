@@ -449,7 +449,7 @@ Crafting Recipe:
 ### Silky String
 
 A magical string used to craft `Artemis Bow` and `Ninja Bow`.
-0.1% chance of dropping from a `Cave Spider``.
+0.1% chance of dropping from a `Cave Spider`.
 
 <br/>
 
