@@ -148,7 +148,7 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
+        if (rejectWithChance(105.0)) { return; }
         if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -158,7 +158,7 @@ public class MidFightTasks {
             if (!(entity instanceof Enderman)) { continue; }
             Enderman enderman = (Enderman) entity;
             if (enderman.getTarget() != null) { continue; } // we don't want to reassign their anger
-            if (Math.random() < 0.1 + (angeredCount < 10 ? 0.05 : 0) + (angeredCount < 5 ? 0.2 : 0)) {
+            if (Math.random() < 0.1 + (angeredCount < 10 ? 0.05 : 0)) {
                 enderman.setTarget(target);
                 enderman.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0, true));
                 angeredCount++;
