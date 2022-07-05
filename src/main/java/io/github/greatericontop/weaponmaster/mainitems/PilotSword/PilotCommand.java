@@ -26,6 +26,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -58,9 +59,9 @@ public class PilotCommand implements CommandExecutor {
             }
             ItemStack pilotSword = util.generateMeta(util.PILOT_SWORD_LORE, util.PILOT_SWORD_NAME, Material.NETHERITE_SWORD);
             ItemMeta im = pilotSword.getItemMeta();
-            // +3.5 == 4.5
-            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 3.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 7.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+            im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
             pilotSword.setItemMeta(im);
             ((Player) sender).getInventory().addItem(pilotSword);
             sender.sendMessage("§7Gave you §f[" + util.PILOT_SWORD_NAME + "§f]§7.");
