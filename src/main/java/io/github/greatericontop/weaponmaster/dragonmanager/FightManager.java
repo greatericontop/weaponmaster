@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
@@ -77,7 +76,6 @@ public class FightManager implements Listener {
             event.setDamage(fullDamage + 0.1 * (event.getDamage()-fullDamage));
         }
         damageDealtToDragonThroughExplosions += event.getFinalDamage();
-        Bukkit.broadcast(String.format("§7caught and decreased damage §f%.1f§7, now §f%.1f", event.getFinalDamage(), damageDealtToDragonThroughExplosions), "greatericsmp");
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
