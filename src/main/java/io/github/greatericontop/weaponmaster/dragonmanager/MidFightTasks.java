@@ -26,6 +26,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.DragonFireball;
 import org.bukkit.entity.EnderDragon;
@@ -35,6 +36,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
+import org.bukkit.entity.Phantom;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.WitherSkeleton;
@@ -49,6 +51,7 @@ import org.bukkit.util.Vector;
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
@@ -65,6 +68,7 @@ public class MidFightTasks {
     private int endDweller_lastTickRan = -1000;
     private int endstoneDefender_lastTickRan = -1000;
     private int sniper_lastTickRan = -1000;
+    private int ghost_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -138,6 +142,7 @@ public class MidFightTasks {
                 spawnEndDweller(tickNumber);
                 spawnEndstoneDefender(tickNumber);
                 summonSniper(tickNumber);
+                summonGhosts(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -339,5 +344,31 @@ public class MidFightTasks {
         target.sendMessage("§5Ender Dragon §7used §3Summon Sniper §7on you.");
         lockTarget(sniper, target);
     }
+
+    public void summonGhosts(int tickNumber) {
+        if (rejectWithChance(130.0)) { return; }
+        if (tickNumber < ghost_lastTickRan + 500) { return; }
+        ghost_lastTickRan = tickNumber;
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        for (int i = 0; i < 4 + rnd.nextInt(2); i++) {
+            double x = target.getLocation().getX() + ThreadLocalRandom.current().nextDouble(-5.0, 5.0);
+            double y = target.getLocation().getY() + rnd.nextInt(64);
+            double z = target.getLocation().getZ() + ThreadLocalRandom.current().nextDouble(-5.0, 5.0);
+            Location spawnLoc = new Location(currentlyActiveDragon.getWorld(), x, y, z);
+            Phantom ghost = (Phantom) currentlyActiveDragon.getWorld().spawnEntity(spawnLoc, EntityType.PHANTOM);
+            ghost.setTarget(target);
+            ghost.setCustomName("§4Ghost");
+            ghost.setCustomNameVisible(true);
+            final double attackModifier = 9.0; // 10 times more attack damage because phantoms are WEAK
+            ghost.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", attackModifier, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+            PersistentDataContainer pdc = ghost.getPersistentDataContainer();
+            pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
+            lockTarget(ghost, target);
+        }
+        target.sendMessage("§5Ender Dragon §7used §3Summon Ghosts §7on you.");
+    }
+
+    // TODO: add illagers, but also decrease the frequencies of these
 
 }
