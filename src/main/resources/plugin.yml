@@ -179,7 +179,7 @@ commands:
 
 permissions:
   weaponmaster.weaponmaster:
-    default: true
+    default: op
   #
   weaponmaster.command.minoritem:
     default: op
