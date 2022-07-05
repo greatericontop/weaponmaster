@@ -19,7 +19,6 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -34,7 +33,10 @@ import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -44,10 +46,9 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
@@ -63,6 +64,7 @@ public class MidFightTasks {
     private int toxicStorm_lastTickRan = -1000;
     private int endDweller_lastTickRan = -1000;
     private int endstoneDefender_lastTickRan = -1000;
+    private int sniper_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -101,6 +103,23 @@ public class MidFightTasks {
         return target;
     }
 
+    /*
+     * Helper function to lock the target of a mob to another.
+     */
+    public void lockTarget(Mob source, LivingEntity target) {
+        new BukkitRunnable() {
+            public void run() {
+                if (source.isDead()) {
+                    cancel();
+                    return;
+                }
+                if (source.getTarget() == null || !source.getTarget().equals(target)) {
+                    source.setTarget(target);
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
+    }
+
     public void startFightTasks() {
         new BukkitRunnable() {
             int tickNumber = 0;
@@ -118,6 +137,7 @@ public class MidFightTasks {
                 regenerateOnLowHealth(tickNumber);
                 spawnEndDweller(tickNumber);
                 spawnEndstoneDefender(tickNumber);
+                summonSniper(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -166,17 +186,7 @@ public class MidFightTasks {
                 }
             }
         }.runTaskTimer(plugin, 100L, 200L);
-        new BukkitRunnable() {
-            public void run() {
-                if (endGuard.isDead()) {
-                    cancel();
-                    return;
-                }
-                if (endGuard.getTarget() == null || !endGuard.getTarget().equals(target)) {
-                    endGuard.setTarget(target);
-                }
-            }
-        }.runTaskTimer(plugin, 1L, 1L);
+        lockTarget(endGuard, target);
         target.sendMessage("§5Ender Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
 
@@ -276,17 +286,7 @@ public class MidFightTasks {
         endDweller.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.45); // up from 0.25
         PersistentDataContainer pdc = endDweller.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
-        new BukkitRunnable() {
-            public void run() {
-                if (endDweller.isDead()) {
-                    cancel();
-                    return;
-                }
-                if (endDweller.getTarget() == null || !endDweller.getTarget().equals(target)) {
-                    endDweller.setTarget(target);
-                }
-            }
-        }.runTaskTimer(plugin, 1L, 1L);
+        lockTarget(endDweller, target);
         target.sendMessage("§5Ender Dragon §7used §3Summon End Dweller §7on you.");
     }
 
@@ -318,5 +318,26 @@ public class MidFightTasks {
         }.runTaskLater(plugin, 40L); // spawned on top of the player, so don't immediately kill them
     }
 
+    public void summonSniper(int tickNumber) {
+        if (rejectWithChance(60.0)) { return; }
+        if (tickNumber < sniper_lastTickRan + 300) { return; }
+        sniper_lastTickRan = tickNumber;
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        // TODO: don't spawn it on top of the player, spawn it at a random end stone block somewhere on the island
+        Skeleton sniper = (Skeleton) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.SKELETON);
+        sniper.setTarget(target);
+        sniper.setCustomName("§bEnder Sniper");
+        ItemStack sniperItem = sniper.getEquipment().getItemInMainHand();
+        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 20);
+        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 4);
+        sniperItem.addEnchantment(Enchantment.ARROW_FIRE, 1);
+        sniper.getEquipment().setItemInMainHand(sniperItem);
+        sniper.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(40.0);
+        PersistentDataContainer pdc = sniper.getPersistentDataContainer(); // no overpowered bows!
+        pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
+        target.sendMessage("§5Ender Dragon §7used §3Summon Sniper §7on you.");
+        lockTarget(sniper, target);
+    }
 
 }
