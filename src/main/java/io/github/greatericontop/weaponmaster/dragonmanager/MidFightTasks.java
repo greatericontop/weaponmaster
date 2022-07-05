@@ -33,6 +33,7 @@ import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Illager;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -59,6 +60,7 @@ public class MidFightTasks {
     private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
     private final int STORM_SIZE = 4;
     private final double DEFENDER_MAX_HEALTH = 75.0;
+    private final double AGENT_HEALTH = 110.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -69,6 +71,7 @@ public class MidFightTasks {
     private int endstoneDefender_lastTickRan = -1000;
     private int sniper_lastTickRan = -1000;
     private int ghost_lastTickRan = -1000;
+    private int agents_lastTickRan = -1000;
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
@@ -143,6 +146,7 @@ public class MidFightTasks {
                 spawnEndstoneDefender(tickNumber);
                 summonSniper(tickNumber);
                 summonGhosts(tickNumber);
+                callAgents(tickNumber);
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
@@ -370,5 +374,26 @@ public class MidFightTasks {
     }
 
     // TODO: add illagers, but also decrease the frequencies of these
+
+    public void callAgents(int tickNumber) {
+        if (rejectWithChance(100.0)) { return; }
+        if (tickNumber < agents_lastTickRan + 300) { return; }
+        agents_lastTickRan = tickNumber;
+        Player target = getRandomNearbyPlayer();
+        if (target == null) { return; }
+        final String[] names = {"§2Brown", "§2Smith", "§2Jones"};
+        final EntityType[] types = {EntityType.VINDICATOR, EntityType.EVOKER, EntityType.PILLAGER};
+        for (int i = 0; i < 3; i++) {
+            Illager agent = (Illager) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), types[i]);
+            agent.setTarget(target);
+            agent.setCustomName(names[i]);
+            agent.setCustomNameVisible(true);
+            agent.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(AGENT_HEALTH);
+            PersistentDataContainer pdc = agent.getPersistentDataContainer();
+            pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
+            lockTarget(agent, target);
+        }
+        target.sendMessage("§5Ender Dragon §7used §3Call Agents §7on you.");
+    }
 
 }
