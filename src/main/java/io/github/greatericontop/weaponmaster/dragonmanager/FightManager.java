@@ -35,7 +35,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 public class FightManager implements Listener {
-    public static final double DRAGON_MAX_HP = 700.0;
+    public static final double DRAGON_MAX_HP = 1000.0;
 
     public EnderDragon currentlyActiveDragon = null;
     public DragonWeightManager dragonWeightManager = null;

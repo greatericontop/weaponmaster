@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
@@ -119,6 +118,10 @@ public class DragonWeightManager {
                 players.add(player);
             }
             incrementDamage(player.getUniqueId(), event.getFinalDamage());
+            plugin.paperUtils.sendActionBar(player,
+                    String.format("§7Your damage: §c%.0f  §7|  Weight: §c%d",
+                            getDamage(player.getUniqueId()), getDragonWeight(player.getUniqueId())),
+                    true);
         }
 
         if (victim instanceof EnderCrystal) {
@@ -127,14 +130,14 @@ public class DragonWeightManager {
             // to prevent people from using pistons to push crystals, only 10 bonuses exist per fight
             // after breaking 10 crystals you can't farm more weight with them
             if (crystal.isShowingBottom() && crystalsDestroyed < 10) {
-                Bukkit.getServer().getLogger().info(String.format("%s damaged an end crystal by %.1f", player.getName(), event.getFinalDamage()));
-                giveBonus(player.getUniqueId(), 60.0);
+                giveBonus(player.getUniqueId(), 30.0);
                 crystalsDestroyed++;
+                plugin.paperUtils.sendActionBar(player,
+                        String.format("§7You destroyed a crystal! You have §c%.0f §7bonus weight in total!",
+                                getBonus(player.getUniqueId())), true);
             }
         }
 
-        player.sendMessage(String.format("§7You now have %.3f damage + %.1f bonus weight -> §6%d",
-                getDamage(player.getUniqueId()), getBonus(player.getUniqueId()), getDragonWeight(player.getUniqueId())));
     }
 
 }
