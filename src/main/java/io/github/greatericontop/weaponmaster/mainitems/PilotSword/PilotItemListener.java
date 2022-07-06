@@ -49,6 +49,9 @@ public class PilotItemListener implements Listener {
         }
 
         event.setDamage(event.getDamage() * DAMAGE_AMOUNT);
+        if (!(event.getEntity() instanceof LivingEntity)) { // unable to set no damage ticks for a not living entity
+            return;
+        }
         LivingEntity victim = (LivingEntity) event.getEntity();
         new BukkitRunnable() {
             public void run() {
