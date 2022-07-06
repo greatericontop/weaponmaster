@@ -364,8 +364,10 @@ public class MidFightTasks {
             ghost.setTarget(target);
             ghost.setCustomName("§4Ghost");
             ghost.setCustomNameVisible(true);
-            final double attackModifier = 9.0; // 10 times more attack damage because phantoms are WEAK
-            ghost.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", attackModifier, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+            double health = currentlyActiveDragon.getHealth() / currentlyActiveDragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+            double multi = (1 - health) * 30; // up to 31x damage if dragon is low, or 90 damage on hard mode
+            target.sendMessage(String.format("§7[Debug] multi=%.3f health%%=%.1f%%", multi, health*100));
+            ghost.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", multi, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             PersistentDataContainer pdc = ghost.getPersistentDataContainer();
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
             lockTarget(ghost, target);
