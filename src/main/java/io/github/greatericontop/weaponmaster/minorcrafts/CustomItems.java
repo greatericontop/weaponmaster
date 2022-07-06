@@ -79,6 +79,7 @@ public class CustomItems {
         EXPERT_SEAL_LORE.add("id: EXPERT_SEAL");
         EXPERT_SEAL_LORE.add("§9Move this item over another to increase all enchantments");
         EXPERT_SEAL_LORE.add("§9in the target item by 1 level!");
+        EXPERT_SEAL_LORE.add("§7Careful! Any item can only be upgraded once!");
 
         DRAGON_WING_LORE.add("id: DRAGON_WING");
         DRAGON_WING_LORE.add("§dA magical artifact stolen from the dragon as it was dying.");
