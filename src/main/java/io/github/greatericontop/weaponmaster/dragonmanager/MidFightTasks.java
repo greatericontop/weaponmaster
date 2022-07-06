@@ -389,6 +389,9 @@ public class MidFightTasks {
             agent.setCustomName(names[i]);
             agent.setCustomNameVisible(true);
             agent.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(AGENT_HEALTH);
+            agent.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, 2, true));
+            agent.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, 4, true));
+            agent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1073741823, 1, true));
             PersistentDataContainer pdc = agent.getPersistentDataContainer();
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
             lockTarget(agent, target);
