@@ -15,6 +15,7 @@
 
 
 - [Installation](#installation)
+- [Bulid from Source](#build-from-source)
 - [Weapons](#weapons)
   - [SUPREME](#supreme)
     - [Atom Bomb](#atom-bomb)
@@ -73,6 +74,23 @@ To install the project, first download the `jar` file from the [releases](https:
 Paste the jar file into the server `./plugins` directory.
 
 For better aesthetic, you can also install the [WeaponMasterOverlay](https://github.com/Gerseneck/weaponmasterresources) pack.
+
+
+<br/>
+
+---
+
+<br/>
+
+# Build from Source
+
+```
+git clone https://github.com/greatericontop/weaponmaster
+cd weaponmaster
+mvn package
+```
+
+The jar file will be built into the `./target` directory of the folder.
 
 
 <br/>
