@@ -2,7 +2,7 @@
 
 ---
 
--[SUPREME](#supreme)
+- [SUPREME](#supreme)
   - [Atom Bomb](#atom-bomb)
   - [Napalm Missile](#napalm-missile)
   - [Rocket Stick](#rocket-stick)
