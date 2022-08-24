@@ -1,7 +1,5 @@
 # Weapons
 
----
-
 - [SUPREME](#supreme)
   - [Atom Bomb](#atom-bomb)
   - [Napalm Missile](#napalm-missile)
