@@ -26,6 +26,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -85,10 +86,11 @@ public class MinorItemListener implements Listener {
                     killer.sendMessage("§eRARE DROP! " + customItems.LEVIATHAN_HEART_NAME);
                 }
             }
-        } else if (event.getEntityType() == EntityType.WITHER_SKELETON) {
+        } else if (event.getEntityType() == EntityType.PIGLIN_BRUTE) {
             if (Math.random() < plugin.getConfig().getDouble("rng.coreStaff")) {
                 ItemStack core = customItems.generateCoreStaffItemStack();
-                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
+                Item coreEntity = event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
+                coreEntity.setInvulnerable(true);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
                     killer.sendMessage("§eRARE DROP! " + customItems.CORE_STAFF_NAME);
@@ -155,7 +157,7 @@ public class MinorItemListener implements Listener {
         }
         Map<Enchantment, Integer> enchants = targetItem.getEnchants();
         for (Enchantment enchant : enchants.keySet()) {
-            targetItem.addEnchant(enchant, enchants.get(enchant)+1, true);
+            targetItem.addEnchant(enchant, enchants.get(enchant) + 1, true);
         }
         targetItem.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
         event.getCurrentItem().setItemMeta(targetItem);

@@ -6,7 +6,7 @@ atomBomb:
   disable: true
   enforceGlobalCooldown: false
 rng:
-  coreStaff: 0.01
+  coreStaff: 0.02
   leviathanHeart: 0.12
   silkyString: 0.001
   lifeCore: 0.008
