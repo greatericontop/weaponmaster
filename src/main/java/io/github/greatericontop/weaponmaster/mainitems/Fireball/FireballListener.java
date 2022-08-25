@@ -24,6 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.DragonFireball;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -35,10 +36,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 public class FireballListener implements Listener {
 
     private final float VELOCITY = 2.5F;
     private final float POWER = 3.0F;
+    private final double SEEKING_DISTANCE = 3.0;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -83,16 +87,18 @@ public class FireballListener implements Listener {
                     }
                     Location fireballLoc = fireball.getLocation();
                     fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 10, 0.0, 0.0, 0.0, 0.001);
-                    /*List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING, SEEKING, SEEKING);
-                    nearEntities.sort(
-                            (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(fireballLoc) - b.getLocation().distanceSquared(fireballLoc)))
-                    );
-                    for (Entity target : nearEntities) {
-                        if (player.hasLineOfSight(target) && target instanceof Player && (!target.isDead()) && target.getEntityId() != player.getEntityId()) {
-                            fireball.setVelocity(target.getLocation().toVector().subtract(fireballLoc.toVector()).normalize().multiply(VELOCITY));
-                            break;
+                    if (plugin.getConfig().getBoolean("fireball.heatSeeking")) {
+                        List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING_DISTANCE, SEEKING_DISTANCE, SEEKING_DISTANCE);
+                        nearEntities.sort(
+                                (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(fireballLoc) - b.getLocation().distanceSquared(fireballLoc)))
+                        );
+                        for (Entity target : nearEntities) {
+                            if (player.hasLineOfSight(target) && target instanceof Player && (!target.isDead()) && target.getEntityId() != player.getEntityId()) {
+                                fireball.setVelocity(target.getLocation().toVector().subtract(fireballLoc.toVector()).normalize().multiply(VELOCITY));
+                                break;
+                            }
                         }
-                    }*/
+                    }
                 }
             }.runTaskTimer(plugin, 1L, 1L);
         }

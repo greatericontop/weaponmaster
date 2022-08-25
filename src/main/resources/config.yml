@@ -11,3 +11,5 @@ rng:
   silkyString: 0.001
   lifeCore: 0.008
   expertSeal: 0.025
+fireball:
+  heatSeeking: false
