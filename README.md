@@ -64,6 +64,14 @@ The jar file will be built into the `./target` directory of the folder.
 
 [Detailed documentation of the Weapons](WEAPONS.md)
 
+
+<br/>
+
+---
+
+<br/>
+
+
 # Commands
 
 ## Attribute Modifier
