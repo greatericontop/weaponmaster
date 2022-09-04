@@ -50,6 +50,7 @@ public class DescentGUIListener implements Listener {
                 break;
         }
         event.setCancelled(true);
+        //event.getInventory().clear();
         event.getView().close();
     }
 
