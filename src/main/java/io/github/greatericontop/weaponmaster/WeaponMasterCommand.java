@@ -1,22 +1,24 @@
 package io.github.greatericontop.weaponmaster;
 
 /*
-    Copyright (C) 2021 greateric.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * WeaponMaster Copyright (C) 2021-present greateric.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty  of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.dragonmanager.LootDropper;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -28,6 +30,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.UUID;
 
@@ -40,7 +45,27 @@ public class WeaponMasterCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        if (args.length >= 1 && args[0].equals("debug")) {
+            Player player = (Player) sender;
+            ItemStack itemStack = new ItemStack(Material.POTION, 1);
+            PotionMeta im = (PotionMeta) itemStack.getItemMeta();
+            im.setBasePotionData(new PotionData(PotionType.SPEED, true, false));
+            itemStack.setItemMeta(im);
+            player.getInventory().addItem(itemStack);
+            player.sendMessage("§7Given!");
+        }
+        if (args.length >= 1 && args[0].equals("debug1")) {
+            sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
+            sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
+            int wasted = new LootDropper(plugin)
+                    .doAllDrops(
+                            plugin.dragonManager.currentlyActiveDragon.getWorld(),
+                            1000, ((Player) sender)
+            );
+            sender.sendMessage("§7"+wasted+" was wasted");
+            sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
+            return true;
+        }
         if (args.length >= 1 && args[0].equals("attributemodifier")) {
             if (args.length < 5) {
                 sender.sendMessage("§cError: §4Missing arguments: /weaponmaster attributemodifier <attribute> <operation> <amount> <slot> [<optional uuid>]");
@@ -60,7 +85,7 @@ public class WeaponMasterCommand implements CommandExecutor {
             try {
                 operation = AttributeModifier.Operation.valueOf(args[2]);
             } catch (IllegalArgumentException e) {
-                sender.sendMessage("§cError: §4You gave an invalid operation. Choose from 'ADD_NUMBER', 'ADD_SCALAR', 'MULTIPLY_SCALAR'");
+                sender.sendMessage("§cError: §4You gave an invalid operation. Choose from 'ADD_NUMBER', 'ADD_SCALAR', 'MULTIPLY_SCALAR_1'");
                 return true;
             }
             try {

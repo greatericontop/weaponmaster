@@ -1,20 +1,20 @@
 package io.github.greatericontop.weaponmaster.utils;
 
 /*
-    Copyright (C) 2021 greateric.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * WeaponMaster Copyright (C) 2021-present greateric.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty  of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
@@ -41,7 +41,7 @@ public class Util {
     public final String ROCKET_STICK_NAME = "§9Rocket Stick §6⚝⚝⚝⚝⚝";
     public final String HELIOS_NAME = "§f§lHelios §6⚝⚝⚝⚝⚝";
     public final String SCYLLA_CHESTPLATE_NAME = "§7Scylla's Chestplate §6⚝⚝⚝⚝⚝";
-    public final String HERMES_BOOTS_NAME = "§eHerme's Boots §6⚝⚝⚝⚝⚝";
+    public final String HERMES_BOOTS_NAME = "§eHermes' Boots §6⚝⚝⚝⚝⚝";
     public final String LIFE_HELMET_NAME = "§9§lHelmet of Life §6⚝⚝⚝⚝⚝";
     public final String CAVEMAN_SWORD_NAME = "§8§lCaveman Sword §6⚝⚝⚝⚝⚝";
     public final String WARLOCK_PANTS_NAME = "§8Warlock Pants §6⚝⚝⚝⚝⚝";
@@ -53,30 +53,44 @@ public class Util {
     public final String PILOT_SWORD_NAME = "§3Pilot's Sword §6⚝⚝⚝⚝⚝";
     public final String SHREDDED_AXE_NAME = "§2Shredded Axe §6⚝⚝⚝⚝⚝";
     public final String NAPALM_MISSILE_NAME = "§6§l§oNapalm Missile §6⚝⚝⚝⚝⚝";
+    public final String NINJA_BOW_NAME = "§7§lNinja Bow §6⚝⚝⚝⚝⚝";
+    public final String DRAGON_ARMOR_NAME = "§aDragon Armor §6⚝⚝⚝⚝⚝";
+    public final String COPPER_SWORD_NAME = "§9Copper Sword §6⚝⚝⚝⚝⚝";
+    public final String POSEIDON_TRIDENT_NAME = "§bPoseidon's Trident §6⚝⚝⚝⚝⚝";
+    public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
+    public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
+    public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
 
-    public List<String> RPG_LAUNCHER_LORE = new ArrayList<String>();
-    public List<String> VAMP_AXE_LORE = new ArrayList<String>();
-    public List<String> DEATH_SCYTHE_LORE = new ArrayList<String>();
-    public List<String> DRAGON_SWORD_LORE = new ArrayList<String>();
-    public List<String> ARTEMIS_BOW_LORE = new ArrayList<String>();
-    public List<String> ANDURIL_LORE = new ArrayList<String>();
-    public List<String> EXCALIBUR_LORE = new ArrayList<String>();
-    public List<String> EXODUS_LORE = new ArrayList<String>();
-    public List<String> ROCKET_STICK_LORE = new ArrayList<String>();
-    public List<String> HELIOS_LORE = new ArrayList<String>();
-    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<String>();
-    public List<String> HERMES_BOOTS_LORE = new ArrayList<String>();
-    public List<String> LIFE_HELMET_LORE = new ArrayList<String>();
-    public List<String> CAVEMAN_SWORD_LORE = new ArrayList<String>();
-    public List<String> WARLOCK_PANTS_LORE = new ArrayList<String>();
-    public List<String> FIREBALL_LORE = new ArrayList<String>();
-    public List<String> ATOM_BOMB_LORE = new ArrayList<String>();
-    public List<String> NETHERITE_STAFF_LORE = new ArrayList<String>();
-    public List<String> SNIPER_RIFLE_LORE = new ArrayList<String>();
-    public List<String> MINERS_BLESSING_LORE = new ArrayList<String>();
-    public List<String> PILOT_SWORD_LORE = new ArrayList<String>();
-    public List<String> SHREDDED_AXE_LORE = new ArrayList<String>();
-    public List<String> NAPALM_MISSILE_LORE = new ArrayList<String>();
+    public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
+    public List<String> VAMP_AXE_LORE = new ArrayList<>();
+    public List<String> DEATH_SCYTHE_LORE = new ArrayList<>();
+    public List<String> DRAGON_SWORD_LORE = new ArrayList<>();
+    public List<String> ARTEMIS_BOW_LORE = new ArrayList<>();
+    public List<String> ANDURIL_LORE = new ArrayList<>();
+    public List<String> EXCALIBUR_LORE = new ArrayList<>();
+    public List<String> EXODUS_LORE = new ArrayList<>();
+    public List<String> ROCKET_STICK_LORE = new ArrayList<>();
+    public List<String> HELIOS_LORE = new ArrayList<>();
+    public List<String> SCYLLA_CHESTPLATE_LORE = new ArrayList<>();
+    public List<String> HERMES_BOOTS_LORE = new ArrayList<>();
+    public List<String> LIFE_HELMET_LORE = new ArrayList<>();
+    public List<String> CAVEMAN_SWORD_LORE = new ArrayList<>();
+    public List<String> WARLOCK_PANTS_LORE = new ArrayList<>();
+    public List<String> FIREBALL_LORE = new ArrayList<>();
+    public List<String> ATOM_BOMB_LORE = new ArrayList<>();
+    public List<String> NETHERITE_STAFF_LORE = new ArrayList<>();
+    public List<String> SNIPER_RIFLE_LORE = new ArrayList<>();
+    public List<String> MINERS_BLESSING_LORE = new ArrayList<>();
+    public List<String> PILOT_SWORD_LORE = new ArrayList<>();
+    public List<String> SHREDDED_AXE_LORE = new ArrayList<>();
+    public List<String> NAPALM_MISSILE_LORE = new ArrayList<>();
+    public List<String> NINJA_BOW_LORE = new ArrayList<>();
+    public List<String> DRAGON_ARMOR_LORE = new ArrayList<>();
+    public List<String> COPPER_SWORD_LORE = new ArrayList<>();
+    public List<String> POSEIDON_TRIDENT_LORE = new ArrayList<>();
+    public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
+    public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
+    public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -85,8 +99,9 @@ public class Util {
     public final int MINER_REQ = 4;
     public final int MINER_LVL = 5;
     public final int MINER_INSERTION = 7;
+    public final int DRAGON_UPGRADE = 8;
 
-    private final WeaponMasterMain plugin;
+    public final WeaponMasterMain plugin;
     public Util(WeaponMasterMain plugin) {
         this.plugin = plugin;
         // RPG Launcher
@@ -132,6 +147,7 @@ public class Util {
         DRAGON_SWORD_LORE.add("§eAbility: §4One With The Dragon");
         DRAGON_SWORD_LORE.add("§3Chance to deal up to §c80% §3more damage!");
         DRAGON_SWORD_LORE.add("");
+        // a blank line will be inserted here if legendary is detected; index 8 this will carry upgrades data in the future
         DRAGON_SWORD_LORE.add("§6LEGENDARY");
         DRAGON_SWORD_LORE.add("§6---------------");
         // Artemis Bow
@@ -150,11 +166,11 @@ public class Util {
         ANDURIL_LORE.add("id: ANDURIL");
         ANDURIL_LORE.add("§6---------------");
         ANDURIL_LORE.add("");
-        ANDURIL_LORE.add("§9Grants permanent effects while holding.");
+        ANDURIL_LORE.add("§3Grants permanent effects while holding.");
         ANDURIL_LORE.add("§9Speed I");
         ANDURIL_LORE.add("§9Resistance I");
         ANDURIL_LORE.add("");
-        ANDURIL_LORE.add("§6LEGENDARY");
+        ANDURIL_LORE.add("§dEPIC");
         ANDURIL_LORE.add("§6---------------");
         // Excalibur
         EXCALIBUR_LORE.add("id: EXCALIBUR");
@@ -172,7 +188,8 @@ public class Util {
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§3Regenerate a small portion");
         EXODUS_LORE.add("§3of health when you hit any");
-        EXODUS_LORE.add("§3entity! (6 second cooldown)");
+        EXODUS_LORE.add("§3entity!");
+        EXODUS_LORE.add("§74 second cooldown");
         EXODUS_LORE.add("");
         EXODUS_LORE.add("§6LEGENDARY");
         EXODUS_LORE.add("§6---------------");
@@ -194,9 +211,9 @@ public class Util {
         HELIOS_LORE.add("id: HELIOS");
         HELIOS_LORE.add("§6---------------");
         HELIOS_LORE.add("");
-        HELIOS_LORE.add("§aUp to 50 levels, this sword increases");
-        HELIOS_LORE.add("§ain power with more experience levels.");
-        HELIOS_LORE.add("§aSword damage is increased by 1% per level.");
+        HELIOS_LORE.add("§aThis sword increases in power as you");
+        HELIOS_LORE.add("§again more experience levels.");
+        HELIOS_LORE.add("§aYou can increase damage by up to §b50% §aat §b80 §alevels.");
         HELIOS_LORE.add("");
         HELIOS_LORE.add("§eAbility: §4Godly Swarm §e§lRIGHT CLICK");
         HELIOS_LORE.add("§3Summon fire and deal damage to any");
@@ -215,7 +232,7 @@ public class Util {
         SCYLLA_CHESTPLATE_LORE.add("");
         SCYLLA_CHESTPLATE_LORE.add("§6LEGENDARY");
         SCYLLA_CHESTPLATE_LORE.add("§6---------------");
-        // Herme's Boots
+        // Hermes' Boots
         HERMES_BOOTS_LORE.add("id: HERMES_BOOTS");
         HERMES_BOOTS_LORE.add("§6---------------");
         HERMES_BOOTS_LORE.add("");
@@ -225,7 +242,7 @@ public class Util {
         HERMES_BOOTS_LORE.add("");
         HERMES_BOOTS_LORE.add("§eAbility: §4Mythic Speed");
         HERMES_BOOTS_LORE.add("§3Gain a §c12% §3chance to dodge an attack.");
-        HERMES_BOOTS_LORE.add("§3(16 second cooldown)");
+        HERMES_BOOTS_LORE.add("§716 second cooldown");
         HERMES_BOOTS_LORE.add("");
         HERMES_BOOTS_LORE.add("§6LEGENDARY");
         HERMES_BOOTS_LORE.add("§6---------------");
@@ -250,7 +267,7 @@ public class Util {
         CAVEMAN_SWORD_LORE.add("");
         CAVEMAN_SWORD_LORE.add("§eAbility: §4Caveman's Strength");
         CAVEMAN_SWORD_LORE.add("§3As you use the sword more, it will gain more levels");
-        CAVEMAN_SWORD_LORE.add("§3of §bSharpness§3, up to §b20 §3levels.");
+        CAVEMAN_SWORD_LORE.add("§3of §bSharpness§3, up to §b16 §3levels.");
         CAVEMAN_SWORD_LORE.add("");
         CAVEMAN_SWORD_LORE.add("§cDo not enchant this item with Sharpness.");
         CAVEMAN_SWORD_LORE.add("");
@@ -260,8 +277,8 @@ public class Util {
         WARLOCK_PANTS_LORE.add("id: WARLOCK_PANTS");
         WARLOCK_PANTS_LORE.add("§6---------------");
         WARLOCK_PANTS_LORE.add("");
-        WARLOCK_PANTS_LORE.add("§eAbility: §4Hasty Rejuvenation");
-        WARLOCK_PANTS_LORE.add("§3Gain permanent §cRegeneration I");
+        WARLOCK_PANTS_LORE.add("§eAbility: §4Hasty Power");
+        WARLOCK_PANTS_LORE.add("§3Gain permanent §cStrength I");
         WARLOCK_PANTS_LORE.add("§3while wearing.");
         WARLOCK_PANTS_LORE.add("");
         WARLOCK_PANTS_LORE.add("§6LEGENDARY");
@@ -293,7 +310,7 @@ public class Util {
         NETHERITE_STAFF_LORE.add("");
         NETHERITE_STAFF_LORE.add("§3Shoots an arrow with random effect. §e§lRIGHT CLICK");
         NETHERITE_STAFF_LORE.add("");
-        NETHERITE_STAFF_LORE.add("§cSUPREME");
+        NETHERITE_STAFF_LORE.add("§6LEGENDARY");
         NETHERITE_STAFF_LORE.add("§6---------------");
         // Sniper Rifle
         SNIPER_RIFLE_LORE.add("id: SNIPER_RIFLE");
@@ -329,7 +346,7 @@ public class Util {
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
-        PILOT_SWORD_LORE.add("§7Deals §c5.5 §7damage, but can be increased with enchants.");
+        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c85%§7.");
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");
@@ -349,8 +366,103 @@ public class Util {
         NAPALM_MISSILE_LORE.add("");
         NAPALM_MISSILE_LORE.add("§3Creates massive fire when thrown!");
         NAPALM_MISSILE_LORE.add("");
-        NAPALM_MISSILE_LORE.add("§6LEGENDARY");
+        NAPALM_MISSILE_LORE.add("§cSUPREME");
         NAPALM_MISSILE_LORE.add("§6---------------");
+        // Ninja Bow
+        NINJA_BOW_LORE.add("id: NINJA_BOW");
+        NINJA_BOW_LORE.add("§6---------------");
+        NINJA_BOW_LORE.add("");
+        NINJA_BOW_LORE.add("§eAbility: §4Shuriken Shot §e§lLEFT CLICK");
+        NINJA_BOW_LORE.add("§3Unleash a triple shot to rain down upon your enemies.");
+        NINJA_BOW_LORE.add("§3Other arrows are slightly inaccurate and deal 60% damage.");
+        NINJA_BOW_LORE.add("§70.3 second cooldown, but the bow need not be charged");
+        NINJA_BOW_LORE.add("");
+        NINJA_BOW_LORE.add("§6LEGENDARY");
+        NINJA_BOW_LORE.add("§6---------------");
+        // Dragon Armor
+        DRAGON_ARMOR_LORE.add("id: DRAGON_ARMOR");
+        DRAGON_ARMOR_LORE.add("§6---------------");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§eAbility: §4Dragon Blood");
+        DRAGON_ARMOR_LORE.add("§3Reduces damage taken by §b5%§3. (Up to 20%)");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b2%§3. (Up to 8%)");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b15%§3.");
+        DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
+        DRAGON_ARMOR_LORE.add("§3Reduce damage further by §b0.75% §3per §aProtection §3level.");
+        DRAGON_ARMOR_LORE.add("");
+        DRAGON_ARMOR_LORE.add("§6LEGENDARY");
+        DRAGON_ARMOR_LORE.add("§6---------------");
+        // Copper Sword
+        COPPER_SWORD_LORE.add("id: COPPER_SWORD");
+        COPPER_SWORD_LORE.add("§6---------------");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy with a charged attack.");
+        COPPER_SWORD_LORE.add("§cThis sword will oxidize over time, making it weaker and weaker.");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§bNORMAL");
+        COPPER_SWORD_LORE.add("§6NOT WAXED");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§dEPIC");
+        COPPER_SWORD_LORE.add("§6---------------");
+        // Poseidon's Trident
+        POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
+        POSEIDON_TRIDENT_LORE.add("§6---------------");
+        POSEIDON_TRIDENT_LORE.add("");
+        POSEIDON_TRIDENT_LORE.add("§3A Trident with power from the sea god.");
+        POSEIDON_TRIDENT_LORE.add("§3Gives Conduit Power while holding.");
+        POSEIDON_TRIDENT_LORE.add("§3Small chance of giving Dolphin's Grace.");
+        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning.");
+        POSEIDON_TRIDENT_LORE.add("");
+        POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
+        POSEIDON_TRIDENT_LORE.add("§6---------------");
+        // Valkyrie Axe
+        VALKYRIE_AXE_LORE.add("id: VALKYRIE_AXE");
+        VALKYRIE_AXE_LORE.add("§6---------------");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§2A treasure against many enemies.");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§eAbility: §4Area Damage");
+        VALKYRIE_AXE_LORE.add("§3Nearby entities take 75% of the damage of your attack.");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§eAbility: §4Fire Storm");
+        VALKYRIE_AXE_LORE.add("§3A vortex of fire engulfs entities in your path.");
+        VALKYRIE_AXE_LORE.add("§3Attacked entities take massive knockback.");
+        VALKYRIE_AXE_LORE.add("§7Costs 20 durability and 1 true damage to use");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§6LEGENDARY");
+        VALKYRIE_AXE_LORE.add("§6---------------");
+        // Assault Rifle
+        ASSAULT_RIFLE_LORE.add("id: ASSAULT_RIFLE");
+        ASSAULT_RIFLE_LORE.add("§6---------------");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§eLEFT CLICK §3to fire.");
+        ASSAULT_RIFLE_LORE.add("§7Use §eRIGHT CLICK §7to cycle between modes: §3single shot§7, §3burst§7.");
+        ASSAULT_RIFLE_LORE.add("§eSHIFT RIGHT CLICK §7to reload.");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§eMuzzle Velocity: §33038 f/s §eor §3926 m/s");
+        ASSAULT_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
+        ASSAULT_RIFLE_LORE.add("§7Minor recoil");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§3Up to §b64 §3rounds can be loaded at once.");
+        ASSAULT_RIFLE_LORE.add("");
+        ASSAULT_RIFLE_LORE.add("§cSUPREME");
+        ASSAULT_RIFLE_LORE.add("§6---------------");
+        // Dragon Elytra
+        DRAGON_ELYTRA_LORE.add("id: DRAGON_ELYTRA");
+        DRAGON_ELYTRA_LORE.add("§6---------------");
+        DRAGON_ELYTRA_LORE.add("");
+        DRAGON_ELYTRA_LORE.add("§eAbility: §4Dragon Flight");
+        DRAGON_ELYTRA_LORE.add("§3A mysterious force propels you forward.");
+        DRAGON_ELYTRA_LORE.add("§3Gain a small permanent boost while flying!");
+        DRAGON_ELYTRA_LORE.add("");
+        DRAGON_ELYTRA_LORE.add("§eAbility: §4Ender Boost");
+        DRAGON_ELYTRA_LORE.add("§eRIGHT CLICK §3with §2Eye of Ender");
+        DRAGON_ELYTRA_LORE.add("§3to get a massive speed boost!");
+        DRAGON_ELYTRA_LORE.add("");
+        DRAGON_ELYTRA_LORE.add("§6LEGENDARY");
+        DRAGON_ELYTRA_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -362,11 +474,11 @@ public class Util {
         return items;
     }
 
-    private boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
+    public boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
         if (item == null) { return false; }
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
-        boolean nameCorrect = iMeta.getDisplayName().equals(requiredName);
+        boolean nameCorrect = requiredName == null || iMeta.getDisplayName().equals(requiredName);
         boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
         return nameCorrect && loreCorrect;
     }
@@ -376,7 +488,7 @@ public class Util {
         Block block = event.getClickedBlock();
         if (block == null) { return false; }
         Material type = block.getType();
-        return (block.getType().isInteractable());
+        return (type.isInteractable());
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {
@@ -447,5 +559,26 @@ public class Util {
     }
     public boolean checkForNapalmMissile(ItemStack item) {
         return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
+    }
+    public boolean checkForNinjaBow(ItemStack item) {
+        return this.checkFor(item, NINJA_BOW_NAME, 0, "id: NINJA_BOW");
+    }
+    public boolean checkForDragonArmor(ItemStack item) {
+        return this.checkFor(item, DRAGON_ARMOR_NAME, 0, "id: DRAGON_ARMOR");
+    }
+    public boolean checkForCopperSword(ItemStack item) {
+        return this.checkFor(item, COPPER_SWORD_NAME, 0, "id: COPPER_SWORD");
+    }
+    public boolean checkForPoseidonTrident(ItemStack item) {
+        return this.checkFor(item, POSEIDON_TRIDENT_NAME, 0, "id: POSEIDON_TRIDENT");
+    }
+    public boolean checkForValkyrieAxe(ItemStack item) {
+        return this.checkFor(item, VALKYRIE_AXE_NAME, 0, "id: VALKYRIE_AXE");
+    }
+    public boolean checkForAssaultRifle(ItemStack item) {
+        return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
+    }
+    public boolean checkForDragonElytra(ItemStack item) {
+        return this.checkFor(item, DRAGON_ELYTRA_NAME, 0, "id: DRAGON_ELYTRA");
     }
 }

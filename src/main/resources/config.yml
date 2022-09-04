@@ -1,4 +1,15 @@
-# greateric WeaponMaster
-license:
-  issued-to: "anonymous"
-  key: "AAAA-BBBB-CCCC"
+# weaponmaster config
+# most of these options should be self-explanatory
+
+warnOnNoPaper: true
+atomBomb:
+  disable: true
+  enforceGlobalCooldown: false
+rng:
+  coreStaff: 0.02
+  leviathanHeart: 0.12
+  silkyString: 0.001
+  lifeCore: 0.008
+  expertSeal: 0.025
+fireball:
+  heatSeeking: false

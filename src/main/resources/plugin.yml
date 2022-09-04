@@ -3,6 +3,7 @@ version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
 api-version: 1.17
 authors: [greateric, gerseneck, bigfatmidget]
+
 commands:
   weaponmaster:
     description: "WeaponMaster"
@@ -67,7 +68,7 @@ commands:
     permission: "weaponmaster.scylla.command"
     permission-message: "§cYou are not allowed to do this!"
   hermesboots:
-    description: "[Weapon Master] command for Herme's Boots"
+    description: "[Weapon Master] command for Hermes' Boots"
     usage: "U: /hermesboots [give]"
     permission: "weaponmaster.hermesboots.command"
     permission-message: "§cYou are not allowed to do this!"
@@ -130,11 +131,58 @@ commands:
   napalm:
     description: "[Weapon Master] command for Napalm Missile"
     usage: "U: /napalm [give]"
-    permission: "weaponmastser.napalm.command"
+    permission: "weaponmaster.napalm.command"
     permission-message: "§cYou are not allowed to do this!"
+  ninjabow:
+    description: "[Weapon Master] command for Ninja Bow"
+    usage: "U: /ninjabow [give]"
+    permission: "weaponmaster.ninjabow.command"
+    permission-message: "§cYou are not allowed to do this!"
+  minoritem:
+    description: "[Weapon Master] command for minor items"
+    usage: "U: /minoritem list"
+    permission: "weaponmaster.command.minoritem"
+    permission-message: "§cYou are not allowed to do this!"
+  dragonarmor:
+    description: "[Weapon Master] command for Dragon Armor"
+    usage: "U: /dragonarmor [give]"
+    permission: "weaponmaster.dragonarmor.command"
+    permission-message: "§cYou are not allowed to do this!"
+  coppersword:
+    description: "[Weapon Master] command for Copper Sword"
+    usage: "U: /coppersword give"
+    permission: "weaponmaster.coppersword.command"
+    permission-message: "§cYou are not allowed to do this!"
+  poseidontrident:
+    description: "[Weapon Master] command for Poseidon's Trident"
+    usage: "U: /poseidontrident give"
+    permission: "weaponmaster.poseidontrident.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["poseidon", "poseidon-trident"]
+  valkyrieaxe:
+    description: "[Weapon Master] command for Valkyrie Axe"
+    usage: "U: /valkyrieaxe give"
+    permission: "weaponmaster.valkyrieaxe.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["valkyrie"]
+  assaultrifle:
+    description: "[Weapon Master] command for Assault Rifle"
+    usage: "U: /assaultrifle give"
+    permission: "weaponmaster.assaultrifle.command"
+    permission-message: "§cYou are not allowed to do this!"
+  dragonelytra:
+    description: "[Weapon Master] command for Dragon Elytra"
+    usage: "U: /dragonelytra give"
+    permission: "weaponmaster.dragonelytra.command"
+    permission-message: "§cYou are not allowed to do this!"
+
+
 permissions:
   weaponmaster.weaponmaster:
-    default: true
+    default: op
+  #
+  weaponmaster.command.minoritem:
+    default: op
   #
   weaponmaster.rpgl.command:
     default: op
@@ -216,10 +264,11 @@ permissions:
   weaponmaster.fireball.use:
     default: true
   #
+  # This item's permissions are intentionally more restricted due to the destructive nature of it.
   weaponmaster.atombomb.command:
     default: op
   weaponmaster.atombomb.use:
-    default: true
+    default: op
   #
   weaponmaster.netheritestaff.command:
     default: op
@@ -249,4 +298,39 @@ permissions:
   weaponmaster.napalm.command:
     deafult: op
   weaponmaster.napalm.use:
+    default: true
+  #
+  weaponmaster.ninjabow.command:
+    deafult: op
+  weaponmaster.ninjabow.use:
+    default: true
+  #
+  weaponmaster.dragonarmor.command:
+    deafult: op
+  weaponmaster.dragonarmor.use:
+    default: true
+  #
+  weaponmaster.coppersword.command:
+    default: op
+  weaponmaster.coppersword.use:
+    default: true
+  #
+  weaponmaster.poseidontrident.command:
+    default: op
+  weaponmaster.poseidontrident.use:
+    default: true
+  #
+  weaponmaster.valkyrieaxe.command:
+    default: op
+  weaponmaster.valkyrieaxe.use:
+    default: true
+  #
+  weaponmaster.assaultrifle.command:
+    default: op
+  weaponmaster.assaultrifle.use:
+    default: true
+  #
+  weaponmaster.dragonelytra.command:
+    default: op
+  weaponmaster.dragonelytra.use:
     default: true
