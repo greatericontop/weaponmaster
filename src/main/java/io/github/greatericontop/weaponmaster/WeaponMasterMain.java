@@ -17,6 +17,10 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.dragonmanager.DescentCommand;
+import io.github.greatericontop.weaponmaster.dragonmanager.DescentDataManager;
+import io.github.greatericontop.weaponmaster.dragonmanager.DescentGUIListener;
+import io.github.greatericontop.weaponmaster.dragonmanager.DescentManagementCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
@@ -114,6 +118,7 @@ public class WeaponMasterMain extends JavaPlugin {
 
     public PaperUtils paperUtils = null;
     public FightManager dragonManager = null;
+    public DescentDataManager descent = null;
 
     @Override
     public void onEnable() {
@@ -274,11 +279,23 @@ public class WeaponMasterMain extends JavaPlugin {
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
         this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
+
         // Dragon Fight
         dragonManager = new FightManager(this);
         this.getServer().getPluginManager().registerEvents(dragonManager, this);
 
+        // Descent
+        descent = new DescentDataManager(this);
+        this.getCommand("descent-management").setExecutor(new DescentManagementCommand(this));
+        this.getCommand("descent").setExecutor(new DescentCommand(this));
+        this.getServer().getPluginManager().registerEvents(new DescentGUIListener(this), this);
+
         this.getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
+    }
+
+    @Override
+    public void onDisable() {
+        descent.saveDataToConfig();
     }
 
 }

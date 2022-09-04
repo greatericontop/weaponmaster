@@ -3,5 +3,6 @@
     <LanguageOptions name="JAVA">
       <option name="fileLocation" value="2" />
     </LanguageOptions>
+    <LanguageOptions name="__TEMPLATE__" />
   </settings>
 </component>
