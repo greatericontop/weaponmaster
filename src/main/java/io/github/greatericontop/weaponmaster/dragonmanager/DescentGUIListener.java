@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -48,16 +49,19 @@ public class DescentGUIListener implements Listener {
                 player.sendMessage("§cThat's not an option.");
                 break;
         }
-
         event.setCancelled(true);
+        event.getView().close();
     }
 
     public void increment(Player player, String upgradeName) {
         if (!plugin.descent.incrementDescent(player.getUniqueId(), upgradeName)) {
+            player.playSound(player, Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
             player.sendMessage("§cYou can't afford this!");
+        } else {
+            player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+            player.sendMessage(String.format("§3You successfully bought this upgrade. §7[Level §4%d§7]",
+                    plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName)));
         }
-        player.sendMessage(String.format("§3You successfully bought this upgrade. §7[Level §4%d§7]",
-                plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName)));
     }
 
 }
