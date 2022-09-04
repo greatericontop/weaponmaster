@@ -38,13 +38,11 @@ public class DescentGUIListener implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         switch (event.getSlot()) {
-            case 13:
-                plugin.descent.incrementDescent(player.getUniqueId(), "all_damage_resistance");
-                player.sendMessage("§7You clicked on ALL DAMAGE RESISTANCE.");
+            case 4:
+                increment(player, "all_damage_resistance");
                 break;
-            case 22:
-                plugin.descent.incrementDescent(player.getUniqueId(), "dragon_extra_rng");
-                player.sendMessage("§7You clicked on DRAGON EXTRA RNG.");
+            case 13:
+                increment(player, "dragon_extra_rng");
                 break;
             default:
                 player.sendMessage("§cThat's not an option.");
@@ -52,6 +50,14 @@ public class DescentGUIListener implements Listener {
         }
 
         event.setCancelled(true);
+    }
+
+    public void increment(Player player, String upgradeName) {
+        if (!plugin.descent.incrementDescent(player.getUniqueId(), upgradeName)) {
+            player.sendMessage("§cYou can't afford this!");
+        }
+        player.sendMessage(String.format("§3You successfully bought this upgrade. §7[Level §4%d§7]",
+                plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName)));
     }
 
 }

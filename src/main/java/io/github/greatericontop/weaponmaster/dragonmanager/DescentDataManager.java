@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class DescentDataManager {
-    public final String DESCENT_GUI_NAME = "§7§k~~§r§b Dragon's Descent §7§k~~";
+    public final String DESCENT_GUI_NAME = "§7§k~~~~§r§b Dragon's Descent §7§k~~~~";
 
     private final WeaponMasterMain plugin;
     private final File descentFile;
@@ -58,8 +58,40 @@ public class DescentDataManager {
         saveDataToConfig();
     }
 
-    public void incrementDescent(UUID target, String upgradeName) {
+    /*
+     * Return whether the incrementation was successful or not.
+     */
+    public boolean incrementDescent(UUID target, String upgradeName) {
+        if (getDragonPower(target) == 0) {
+            return false;
+        }
+        setDragonPower(target, getDragonPower(target) - 1);
         setDescentUpgradeLevel(target, upgradeName, getDescentUpgradeLevel(target, upgradeName) + 1);
+        return true;
+    }
+
+    /*
+     * 600 shards -> 1 dragon power
+     */
+    public void updateShards(UUID target) {
+        int powerAmount = getShards(target) / 600;
+        if (powerAmount > 0) {
+            setDragonPower(target, getDragonPower(target) + powerAmount);
+            setShards(target, getShards(target) - 600*powerAmount);
+        }
+    }
+
+    public int getShards(UUID target) {
+        return getDescentUpgradeLevel(target, "__shards__");
+    }
+    public void setShards(UUID target, int value) {
+        setDescentUpgradeLevel(target, "__shards__", value);
+    }
+    public int getDragonPower(UUID target) {
+        return getDescentUpgradeLevel(target, "__dragon_power__");
+    }
+    public void setDragonPower(UUID target, int value) {
+        setDescentUpgradeLevel(target, "__dragon_power__", value);
     }
 
 }
