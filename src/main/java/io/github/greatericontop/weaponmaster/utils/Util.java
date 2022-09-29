@@ -479,6 +479,7 @@ public class Util {
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
         boolean nameCorrect = requiredName == null || iMeta.getDisplayName().equals(requiredName);
+        if (iMeta.getLore().size() <= index) { return false; }
         boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
         return nameCorrect && loreCorrect;
     }
