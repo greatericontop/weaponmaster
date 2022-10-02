@@ -106,6 +106,7 @@ commands:
     usage: "U: /fireball [give]"
     permission: "weaponmaster.fireball.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["fb"]
   atombomb:
     description: "[Weapon Master] command for Atom Bomb"
     usage: "U: /atombomb [give]"
