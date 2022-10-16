@@ -21,6 +21,7 @@ import io.github.greatericontop.weaponmaster.dragonmanager.DescentCommand;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentDataManager;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentGUIListener;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentManagementCommand;
+import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
@@ -59,6 +60,8 @@ import io.github.greatericontop.weaponmaster.mainitems.Exodus.ExodusRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballListener;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileCommand;
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileManager;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosRecipe;
@@ -71,6 +74,8 @@ import io.github.greatericontop.weaponmaster.mainitems.LifeHelmet.LifeHelmetReci
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerCommand;
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmCommand;
+import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffRecipe;
@@ -84,8 +89,6 @@ import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentLi
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.RPGItemListener;
-import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmCommand;
-import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaCommand;
@@ -105,12 +108,11 @@ import io.github.greatericontop.weaponmaster.mainitems.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
-import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
-import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
 import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -272,6 +274,10 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
+        // Guided Missile
+        this.getCommand("guidedmissile").setExecutor(new GuidedMissileCommand());
+        new GuidedMissileManager(this).regGuidedMissileRunnable();
+
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();

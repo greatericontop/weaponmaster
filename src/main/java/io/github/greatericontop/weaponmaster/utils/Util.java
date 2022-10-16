@@ -60,6 +60,7 @@ public class Util {
     public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
+    public final String GUIDED_MISSILE_NAME = "§cHeat Seeking Guided Missile §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -91,6 +92,7 @@ public class Util {
     public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
     public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
+    public List<String> GUIDED_MISSILE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -463,6 +465,16 @@ public class Util {
         DRAGON_ELYTRA_LORE.add("");
         DRAGON_ELYTRA_LORE.add("§6LEGENDARY");
         DRAGON_ELYTRA_LORE.add("§6---------------");
+        // Guided Missile
+        GUIDED_MISSILE_LORE.add("id: GUIDED_MISSILE");
+        GUIDED_MISSILE_LORE.add("§6---------------");
+        GUIDED_MISSILE_LORE.add("");
+        GUIDED_MISSILE_LORE.add("§eAbility: §4Missile Lock");
+        GUIDED_MISSILE_LORE.add("§3Point at any target to lock on.");
+        GUIDED_MISSILE_LORE.add("§3The missile will seek to the target and");
+        GUIDED_MISSILE_LORE.add("§3explode when it gets close.");
+        GUIDED_MISSILE_LORE.add("");
+        GUIDED_MISSILE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -581,5 +593,8 @@ public class Util {
     }
     public boolean checkForDragonElytra(ItemStack item) {
         return this.checkFor(item, DRAGON_ELYTRA_NAME, 0, "id: DRAGON_ELYTRA");
+    }
+    public boolean checkForGuidedMissile(ItemStack item) {
+        return this.checkFor(item, GUIDED_MISSILE_NAME, 0, "id: GUIDED_MISSILE");
     }
 }

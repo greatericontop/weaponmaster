@@ -188,6 +188,11 @@ commands:
     usage: "U: /dragonelytra give"
     permission: "weaponmaster.dragonelytra.command"
     permission-message: "§cYou are not allowed to do this!"
+  guidedmissile:
+    description: "[Weapon Master] command for Guided Missile"
+    usage: "U: /guidedmissile give"
+    permission: "weaponmaster.guidedmissile.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -352,3 +357,9 @@ permissions:
     default: op
   weaponmaster.dragonelytra.use:
     default: true
+  #
+  weaponmaster.guidedmissile.command:
+    default: op
+  weaponmaster.guidedmissile.use:
+    default: true
+  #
