@@ -33,8 +33,8 @@ import java.util.Map;
 
 public class GuidedMissileListener extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
-    private final double FIRST_LOCK_RAY_SIZE = 0.9;
-    private final double KEEP_LOCK_RAY_SIZE = 3.5;
+    private final double FIRST_LOCK_RAY_SIZE = 1.7;
+    private final double KEEP_LOCK_RAY_SIZE = 5.5;
     private final int TICKS_TO_LOCK = 25;
 
     private enum LockState {
@@ -79,6 +79,8 @@ public class GuidedMissileListener extends BukkitRunnable {
             if (!player.hasPermission("weaponmaster.guidedmissile.use")) { continue; }
             if (!(util.checkForGuidedMissile(player.getInventory().getItemInMainHand()))) { continue; }
 
+            // TODO: increasing the ray size shouldn't make it hit a block
+            //       point-to-line distance in 3D once locked?
             Location eyeLoc = player.getEyeLocation();
             double raySize = getLockState(player) == LockState.NONE ? FIRST_LOCK_RAY_SIZE : KEEP_LOCK_RAY_SIZE;
             RayTraceResult ray = eyeLoc.getWorld().rayTrace(
@@ -107,7 +109,7 @@ public class GuidedMissileListener extends BukkitRunnable {
                 targets.put(player, target);
                 ticksOnTarget.put(player, 0);
                 plugin.paperUtils.sendActionBar(player, lockActionBarMessage(0), true);
-                target.getWorld().spawnParticle(Particle.FLAME, target.getLocation(), 10, 0.0, 0.0, 0.0, 0.1);
+                target.getWorld().spawnParticle(Particle.FLAME, target.getLocation(), 200, 0.0, 0.0, 0.0, 0.1);
             } else if (getLockState(player) == LockState.LOCKING) {
                 // update current lock
                 ticksOnTarget.put(player, ticksOnTarget.get(player) + 1);
