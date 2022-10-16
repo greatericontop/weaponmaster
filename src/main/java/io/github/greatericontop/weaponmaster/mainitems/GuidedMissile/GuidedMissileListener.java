@@ -75,15 +75,17 @@ public class GuidedMissileListener extends BukkitRunnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!player.hasPermission("weaponmaster.guidedmissile.use")) { continue; }
-            if (!(util.checkForAnduril(player.getInventory().getItemInMainHand()))) { continue; }
+            if (!(util.checkForGuidedMissile(player.getInventory().getItemInMainHand()))) { continue; }
 
             Location loc = player.getEyeLocation();
             RayTraceResult ray = loc.getWorld().rayTrace(
                     loc, loc.getDirection(), MAX_DISTANCE,
                     FluidCollisionMode.NEVER, true, RAY_SIZE, e -> e instanceof LivingEntity);
 
-            if ((ray == null || ray.getHitEntity() == null || !ray.getHitEntity().equals(targets.get(player)))) {
-                // target lost: didn't hit an entity or hit a different entity
+            // if there's no/invalid hit, then obviously no target
+            // if we're already locking/locked and the target is different, no target
+            if (ray == null || ray.getHitEntity() == null ||
+                    (!ray.getHitEntity().equals(targets.get(player)) && getLockState(player) != LockState.NONE)) {
                 if (getLockState(player) != LockState.NONE) {
                     lockStates.put(player, LockState.NONE);
                     plugin.paperUtils.sendActionBar(player, "§cTarget lost!", true);
