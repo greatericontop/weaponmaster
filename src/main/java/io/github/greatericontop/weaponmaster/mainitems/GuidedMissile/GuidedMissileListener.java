@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,8 +33,9 @@ import java.util.Map;
 
 public class GuidedMissileListener extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
-    private final double RAY_SIZE = 2.5;
-    private final int TICKS_TO_LOCK = 45;
+    private final double FIRST_LOCK_RAY_SIZE = 0.9;
+    private final double KEEP_LOCK_RAY_SIZE = 3.5;
+    private final int TICKS_TO_LOCK = 25;
 
     private enum LockState {
         NONE,
@@ -77,10 +79,12 @@ public class GuidedMissileListener extends BukkitRunnable {
             if (!player.hasPermission("weaponmaster.guidedmissile.use")) { continue; }
             if (!(util.checkForGuidedMissile(player.getInventory().getItemInMainHand()))) { continue; }
 
-            Location loc = player.getEyeLocation();
-            RayTraceResult ray = loc.getWorld().rayTrace(
-                    loc, loc.getDirection(), MAX_DISTANCE,
-                    FluidCollisionMode.NEVER, true, RAY_SIZE, e -> e instanceof LivingEntity);
+            Location eyeLoc = player.getEyeLocation();
+            double raySize = getLockState(player) == LockState.NONE ? FIRST_LOCK_RAY_SIZE : KEEP_LOCK_RAY_SIZE;
+            RayTraceResult ray = eyeLoc.getWorld().rayTrace(
+                    eyeLoc, eyeLoc.getDirection(), MAX_DISTANCE,
+                    FluidCollisionMode.NEVER, true, raySize,
+                    e -> e instanceof LivingEntity && !e.equals(player));
 
             // if there's no/invalid hit, then obviously no target
             // if we're already locking/locked and the target is different, no target
@@ -97,19 +101,20 @@ public class GuidedMissileListener extends BukkitRunnable {
 
             if (getLockState(player) == LockState.LOCKED) {
                 plugin.paperUtils.sendActionBar(player, "§c<<<<< §aLocked! §c>>>>>", true);
-                player.sendMessage(String.format("§7[Debug] Target: %s", target.getType().getName()));
             } else if (getLockState(player) == LockState.NONE) {
                 // new lock acquired
                 lockStates.put(player, LockState.LOCKING);
                 targets.put(player, target);
                 ticksOnTarget.put(player, 0);
                 plugin.paperUtils.sendActionBar(player, lockActionBarMessage(0), true);
+                target.getWorld().spawnParticle(Particle.FLAME, target.getLocation(), 10, 0.0, 0.0, 0.0, 0.1);
             } else if (getLockState(player) == LockState.LOCKING) {
                 // update current lock
                 ticksOnTarget.put(player, ticksOnTarget.get(player) + 1);
                 if (ticksOnTarget.get(player) >= TICKS_TO_LOCK) {
                     lockStates.put(player, LockState.LOCKED);
                     plugin.paperUtils.sendActionBar(player, "§c<<<<< §aLocked! §c>>>>>", true);
+                    player.sendMessage(String.format("§7[Debug] Target: %s", target.getType().getName()));
                 } else {
                     plugin.paperUtils.sendActionBar(player, lockActionBarMessage(ticksOnTarget.get(player)), true);
                 }
