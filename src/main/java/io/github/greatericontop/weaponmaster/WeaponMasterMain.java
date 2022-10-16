@@ -276,7 +276,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
         // Guided Missile
         this.getCommand("guidedmissile").setExecutor(new GuidedMissileCommand());
-        new GuidedMissileManager(this).regGuidedMissileRunnable();
+        GuidedMissileManager guidedMissileManager = new GuidedMissileManager(this);
+        guidedMissileManager.regGuidedMissileRunnable();
+        this.getServer().getPluginManager().registerEvents(guidedMissileManager, this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

@@ -23,6 +23,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -31,33 +32,37 @@ import org.bukkit.util.RayTraceResult;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GuidedMissileListener extends BukkitRunnable {
+public class GuidedMissileTargetSelector extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
-    private final double FIRST_LOCK_RAY_SIZE = 1.7;
-    private final double KEEP_LOCK_RAY_SIZE = 5.5;
-    private final int TICKS_TO_LOCK = 25;
+    private final double RAY_SIZE = 1.8;
+    private final int TICKS_TO_LOCK = 16;
 
-    private enum LockState {
+    public enum LockState {
         NONE,
         LOCKING,
         LOCKED,
     }
 
     // every tick pointing towards a target increases :ticksOnTarget: by 1
-    // TODO: find balanced value other than 25 & tolerances
     private final Map<Player, LockState> lockStates = new HashMap<>();
     private final Map<Player, LivingEntity> targets = new HashMap<>();
     private final Map<Player, Integer> ticksOnTarget = new HashMap<>();
 
     private final WeaponMasterMain plugin;
     private final Util util;
-    public GuidedMissileListener(WeaponMasterMain plugin) {
+    public GuidedMissileTargetSelector(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
     }
 
-    private LockState getLockState(Player player) {
+    public LockState getLockState(Player player) {
         return lockStates.getOrDefault(player, LockState.NONE);
+    }
+    public void clearLock(Player player) {
+        lockStates.put(player, LockState.NONE);
+    }
+    public LivingEntity getTarget(Player player) {
+        return targets.get(player);
     }
     private String lockActionBarMessage(int ticks) {
         int x = (ticks * 4) / TICKS_TO_LOCK; // 0 ~ 3 locking, 4 locked
@@ -77,23 +82,23 @@ public class GuidedMissileListener extends BukkitRunnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!player.hasPermission("weaponmaster.guidedmissile.use")) { continue; }
-            if (!(util.checkForGuidedMissile(player.getInventory().getItemInMainHand()))) { continue; }
+            if (!(util.checkForGuidedMissile(player.getInventory().getItemInMainHand()))) {
+                clearLock(player);
+                continue;
+            }
 
-            // TODO: increasing the ray size shouldn't make it hit a block
-            //       point-to-line distance in 3D once locked?
             Location eyeLoc = player.getEyeLocation();
-            double raySize = getLockState(player) == LockState.NONE ? FIRST_LOCK_RAY_SIZE : KEEP_LOCK_RAY_SIZE;
             RayTraceResult ray = eyeLoc.getWorld().rayTrace(
                     eyeLoc, eyeLoc.getDirection(), MAX_DISTANCE,
-                    FluidCollisionMode.NEVER, true, raySize,
+                    FluidCollisionMode.NEVER, true, RAY_SIZE,
                     e -> e instanceof LivingEntity && !e.equals(player));
 
             // if there's no/invalid hit, then obviously no target
             // if we're already locking/locked and the target is different, no target
             if (ray == null || ray.getHitEntity() == null ||
-                    (!ray.getHitEntity().equals(targets.get(player)) && getLockState(player) != LockState.NONE)) {
+                    (!ray.getHitEntity().equals(getTarget(player)) && getLockState(player) != LockState.NONE)) {
                 if (getLockState(player) != LockState.NONE) {
-                    lockStates.put(player, LockState.NONE);
+                    clearLock(player);
                     plugin.paperUtils.sendActionBar(player, "§cTarget lost!", true);
                 }
                 continue;
@@ -116,7 +121,7 @@ public class GuidedMissileListener extends BukkitRunnable {
                 if (ticksOnTarget.get(player) >= TICKS_TO_LOCK) {
                     lockStates.put(player, LockState.LOCKED);
                     plugin.paperUtils.sendActionBar(player, "§c<<<<< §aLocked! §c>>>>>", true);
-                    player.sendMessage(String.format("§7[Debug] Target: %s", target.getType().getName()));
+                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                 } else {
                     plugin.paperUtils.sendActionBar(player, lockActionBarMessage(ticksOnTarget.get(player)), true);
                 }
