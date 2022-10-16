@@ -35,7 +35,8 @@ import java.util.Map;
 public class GuidedMissileTargetSelector extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
     private final double RAY_SIZE = 1.8;
-    private final int TICKS_TO_LOCK = 16;
+    private final int TICKS_TO_LOCK = 14;
+    private final int RETAIN_TARGET_TICKS = 60;
 
     public enum LockState {
         NONE,
@@ -97,6 +98,17 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
             // if we're already locking/locked and the target is different, no target
             if (ray == null || ray.getHitEntity() == null ||
                     (!ray.getHitEntity().equals(getTarget(player)) && getLockState(player) != LockState.NONE)) {
+                if (getLockState(player) == LockState.LOCKED) {
+                    ticksOnTarget.put(player, ticksOnTarget.get(player) - 1);
+                    if (ticksOnTarget.get(player) <= 0) {
+                        clearLock(player);
+                        plugin.paperUtils.sendActionBar(player, "§cTarget lost!", true);
+                        continue;
+                    } else {
+                        plugin.paperUtils.sendActionBar(player, "§c< §aLocked! §c> ", true);
+                        continue;
+                    }
+                }
                 if (getLockState(player) != LockState.NONE) {
                     clearLock(player);
                     plugin.paperUtils.sendActionBar(player, "§cTarget lost!", true);
@@ -107,6 +119,7 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
             LivingEntity target = (LivingEntity) ray.getHitEntity();
 
             if (getLockState(player) == LockState.LOCKED) {
+                ticksOnTarget.put(player, RETAIN_TARGET_TICKS); // touching the target will reset this timer
                 plugin.paperUtils.sendActionBar(player, "§c<<<<< §aLocked! §c>>>>>", true);
             } else if (getLockState(player) == LockState.NONE) {
                 // new lock acquired
@@ -120,6 +133,7 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
                 ticksOnTarget.put(player, ticksOnTarget.get(player) + 1);
                 if (ticksOnTarget.get(player) >= TICKS_TO_LOCK) {
                     lockStates.put(player, LockState.LOCKED);
+                    ticksOnTarget.put(player, RETAIN_TARGET_TICKS); // retain the target even if you're not looking at it
                     plugin.paperUtils.sendActionBar(player, "§c<<<<< §aLocked! §c>>>>>", true);
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
                 } else {
