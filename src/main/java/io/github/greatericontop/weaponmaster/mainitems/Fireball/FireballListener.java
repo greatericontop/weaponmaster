@@ -56,16 +56,16 @@ public class FireballListener implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            event.setCancelled(true);
-        }
-        if (Util.checkForInteractableBlock(event)) { return; }
         Player player = event.getPlayer();
         if (!util.checkForFireball(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.fireball.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.fireball.use§3.");
             return;
         }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            event.setCancelled(true);
+        }
+        if (Util.checkForInteractableBlock(event)) { return; }
 
         Location eyeLocation = player.getEyeLocation();
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));

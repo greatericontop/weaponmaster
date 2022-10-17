@@ -56,16 +56,16 @@ public class GuidedMissileManager implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            event.setCancelled(true);
-        }
-        if (Util.checkForInteractableBlock(event)) { return; }
         Player player = event.getPlayer();
         if (!util.checkForGuidedMissile(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.guidedmissile.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.guidedmissile.use§3.");
             return;
         }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            event.setCancelled(true);
+        }
+        if (Util.checkForInteractableBlock(event)) { return; }
         if (targetSelector.getLockState(player) != GuidedMissileTargetSelector.LockState.LOCKED) {
             player.sendMessage("§3No target selected!");
             return;
