@@ -39,9 +39,9 @@ public class GuidedMissileManager implements Listener {
     private final float EXPLOSION_POWER = 11.0F;
     private final float WEAK_EXPLOSION_POWER = 3.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 3.5 * 3.5;
-    private final double INITIAL_VELOCITY = 1.5;
-    private final double ACCELERATION = 0.4; // in blocks per tick^2
-    private final double AIR_RESISTANCE = 0.93; // decrease terminal velocity
+    private final double INITIAL_VELOCITY = 0.6;
+    private final double ACCELERATION = 0.28; // in blocks per tick^2
+    private final double AIR_RESISTANCE = 0.85; // decrease terminal velocity
 
     private final WeaponMasterMain plugin;
     private final Util util;
