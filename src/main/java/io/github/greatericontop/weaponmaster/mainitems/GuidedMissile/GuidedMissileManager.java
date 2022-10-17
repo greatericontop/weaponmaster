@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.mainitems.GuidedMissile;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -40,8 +41,8 @@ public class GuidedMissileManager implements Listener {
     private final float WEAK_EXPLOSION_POWER = 3.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 3.5 * 3.5;
     private final double INITIAL_VELOCITY = 0.6;
-    private final double ACCELERATION = 0.29; // in blocks per tick^2
-    private final double AIR_RESISTANCE = 0.87; // decrease terminal velocity
+    private final double ACCELERATION = 0.33; // in blocks per tick^2
+    private final double AIR_RESISTANCE = 0.84; // decrease terminal velocity
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -105,6 +106,10 @@ public class GuidedMissileManager implements Listener {
                 fireball.setVelocity(newVelocity);
             }
         }.runTaskTimer(plugin, 1L, 1L);
+
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
+            player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
+        }
     }
 
     public void regGuidedMissileRunnable() {
