@@ -35,8 +35,8 @@ import java.util.Map;
 public class GuidedMissileTargetSelector extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
     private final double RAY_SIZE = 1.8;
-    private final int TICKS_TO_LOCK = 14;
-    private final int RETAIN_TARGET_TICKS = 60;
+    private final int TICKS_TO_LOCK = 16;
+    private final int RETAIN_TARGET_TICKS = 70;
 
     public enum LockState {
         NONE,
@@ -105,7 +105,7 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
                         plugin.paperUtils.sendActionBar(player, "§cTarget lost!", true);
                         continue;
                     } else {
-                        plugin.paperUtils.sendActionBar(player, "§c< §aLocked! §c> ", true);
+                        plugin.paperUtils.sendActionBar(player, "§c< §aTarget held! §c> ", true);
                         continue;
                     }
                 }
