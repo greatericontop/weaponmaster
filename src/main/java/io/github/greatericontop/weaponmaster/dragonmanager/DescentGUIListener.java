@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,20 +38,38 @@ public class DescentGUIListener implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
+        if (player.getInventory().equals(event.getClickedInventory())) {
+            // don't do anything when player clicks own inventory, instead of the one shown
+            return;
+        }
+
+        if (event.getCurrentItem().getType() == Material.GRAY_STAINED_GLASS_PANE
+                || event.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+            player.sendMessage("§cYou have not unlocked this yet!");
+            event.setCancelled(true);
+            return;
+        }
 
         switch (event.getSlot()) {
             case 4:
-                increment(player, "all_damage_resistance");
+                increment(player, "allDamageResistance");
                 break;
             case 13:
-                increment(player, "dragon_extra_rng");
+                increment(player, "dragonExtraRNG");
+                break;
+            case 14:
+                increment(player, "tougherArmor");
+                break;
+            case 22:
+                increment(player, "extraAttackSpeed");
+                break;
+            case 31:
+                increment(player, "strongAttacks");
                 break;
             default:
                 player.sendMessage("§cThat's not an option.");
                 break;
         }
-        event.setCancelled(true);
-        //event.getInventory().clear();
         event.getView().close();
     }
 

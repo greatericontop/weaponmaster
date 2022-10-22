@@ -37,9 +37,43 @@ public class DescentManagementCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        plugin.descent.incrementDescent(player.getUniqueId(), "dummy");
-        player.sendMessage("§7debug success, incremented your stat 'dummy' by 1");
-        return true;
+        if (args.length == 0) {
+            return false;
+        }
+
+        if (args[0].equals("give-power")) {
+            int power;
+            if (args.length < 2) {
+                player.sendMessage("§cError: §4Missing arguments: /descent-management give-power <power> [<shards>]");
+                return true;
+            }
+            try {
+                power = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                player.sendMessage("§cError: §4Invalid number!");
+                return true;
+            }
+            int shards = 0;
+            if (args.length >= 3) {
+                try {
+                    shards = Integer.parseInt(args[2]);
+                } catch (NumberFormatException e) {
+                    player.sendMessage("§cError: §4Invalid number!");
+                    return true;
+                }
+            }
+            plugin.descent.setDragonPower(player.getUniqueId(), plugin.descent.getDragonPower(player.getUniqueId()) + power);
+            plugin.descent.setShards(player.getUniqueId(), plugin.descent.getShards(player.getUniqueId()) + shards);
+            player.sendMessage(String.format("§3Gave you %d power and %d shards!", power, shards));
+            return true;
+        }
+
+        if (args[0].equals("clear")) {
+            plugin.descent.clear(player.getUniqueId());
+            player.sendMessage("§3Cleared your descent data!");
+            return true;
+        }
+        return false;
     }
 
 }

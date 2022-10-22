@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class DescentDataManager {
-    public final String DESCENT_GUI_NAME = "§7§k~~~~§r§b Dragon's Descent §7§k~~~~";
+    public final String DESCENT_GUI_NAME = "§7§k~~ ~~§r§b Dragon's Descent §7§k~~ ~~";
 
     private final WeaponMasterMain plugin;
     private final File descentFile;
@@ -43,6 +43,12 @@ public class DescentDataManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void clear(UUID target) {
+        config.set("descent."+target, null);
+        // TODO: again IO is precious
+        saveDataToConfig();
     }
 
     public int getDescentUpgradeLevel(UUID target, String upgradeName) {
@@ -88,10 +94,10 @@ public class DescentDataManager {
         setDescentUpgradeLevel(target, "__shards__", value);
     }
     public int getDragonPower(UUID target) {
-        return getDescentUpgradeLevel(target, "__dragon_power__");
+        return getDescentUpgradeLevel(target, "__power__");
     }
     public void setDragonPower(UUID target, int value) {
-        setDescentUpgradeLevel(target, "__dragon_power__", value);
+        setDescentUpgradeLevel(target, "__power__", value);
     }
 
 }

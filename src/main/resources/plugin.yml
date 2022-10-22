@@ -19,7 +19,7 @@ commands:
     aliases: ["dragon-descent"]
   descent-management:
     description: "Manage the descent"
-    usage: "U: /descent-management"
+    usage: "U: /descent-management [give-power | clear]"
     permission: "weaponmaster.descentmanagement"
     permission-message: "§cYou are not allowed to do this!"
   #
