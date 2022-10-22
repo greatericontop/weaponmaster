@@ -26,6 +26,7 @@ import java.util.UUID;
 
 public class DescentDataManager {
     public final String DESCENT_GUI_NAME = "§7§k~~ ~~§r§b Dragon's Descent §7§k~~ ~~";
+    public final int MAX_LEVEL = 5;
 
     private final WeaponMasterMain plugin;
     private final File descentFile;

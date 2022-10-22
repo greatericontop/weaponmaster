@@ -44,7 +44,7 @@ public class DescentGUIListener implements Listener {
         }
 
         if (event.getCurrentItem().getType() == Material.GRAY_STAINED_GLASS_PANE
-                || event.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+                || event.getCurrentItem().getType() == Material.BARRIER) {
             player.sendMessage("§cYou have not unlocked this yet!");
             event.setCancelled(true);
             return;
@@ -74,6 +74,10 @@ public class DescentGUIListener implements Listener {
     }
 
     public void increment(Player player, String upgradeName) {
+        if (plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName) >= plugin.descent.MAX_LEVEL) {
+            player.sendMessage("§cThis upgrade is already at its maximum level!");
+            return;
+        }
         if (!plugin.descent.incrementDescent(player.getUniqueId(), upgradeName)) {
             player.playSound(player, Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
             player.sendMessage("§cYou can't afford this!");

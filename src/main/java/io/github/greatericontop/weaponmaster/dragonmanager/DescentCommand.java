@@ -45,7 +45,7 @@ public class DescentCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-
+        plugin.descent.updateShards(player.getUniqueId());
         Inventory gui = Bukkit.createInventory(player, INVENTORY_SIZE, plugin.descent.DESCENT_GUI_NAME);
         addItems(player, gui,
                 plugin.descent.getShards(player.getUniqueId()),
@@ -56,7 +56,7 @@ public class DescentCommand implements CommandExecutor {
 
     private String renderLoreLevel(Player player, String upgradeType) {
         int level = plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeType);
-        return String.format("§fLevel: §b%d §f/ §b5", level);
+        return String.format("§fLevel: §b%d §f/ §b%d", level, plugin.descent.MAX_LEVEL);
     }
 
     private void addItems(Player player, Inventory gui, int shardCount, int dragonPowerCount) {
@@ -114,7 +114,7 @@ public class DescentCommand implements CommandExecutor {
 
     private ItemStack newItemStack(Material material, int amount, Player player, String prerequisite, String name, String... lore) {
         if (prerequisite != null && plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), prerequisite) == 0) {
-            ItemStack stack = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+            ItemStack stack = new ItemStack(Material.BARRIER, 1);
             ItemMeta im = stack.getItemMeta();
             im.setDisplayName("§cLocked!");
             stack.setItemMeta(im);
