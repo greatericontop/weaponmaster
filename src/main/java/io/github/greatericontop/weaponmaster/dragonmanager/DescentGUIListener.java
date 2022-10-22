@@ -45,7 +45,6 @@ public class DescentGUIListener implements Listener {
 
         if (event.getCurrentItem().getType() == Material.GRAY_STAINED_GLASS_PANE
                 || event.getCurrentItem().getType() == Material.BARRIER) {
-            player.sendMessage("§cYou have not unlocked this yet!");
             event.setCancelled(true);
             return;
         }
