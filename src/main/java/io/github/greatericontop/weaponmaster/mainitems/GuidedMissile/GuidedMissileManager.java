@@ -41,8 +41,11 @@ public class GuidedMissileManager implements Listener {
     private final float WEAK_EXPLOSION_POWER = 3.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 3.5 * 3.5;
     private final double INITIAL_VELOCITY = 0.6;
-    private final double ACCELERATION = 0.33; // in blocks per tick^2
-    private final double AIR_RESISTANCE = 0.84; // decrease terminal velocity
+    // higher acceleration = faster missile
+    private final double ACCELERATION = 0.37;
+    // higher air resistance = slower missile, but more maneuverable
+    private final double AIR_RESISTANCE = 0.82;
+    // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     private final WeaponMasterMain plugin;
     private final Util util;
