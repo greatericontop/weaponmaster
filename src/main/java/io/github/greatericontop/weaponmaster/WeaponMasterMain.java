@@ -28,6 +28,8 @@ import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.AssassinsBlade.AssassinCommand;
+import io.github.greatericontop.weaponmaster.mainitems.AssassinsBlade.AssassinsBladeListener;
 import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultCommand;
 import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultListener;
 import io.github.greatericontop.weaponmaster.mainitems.AtomBomb.AtomCommand;
@@ -279,6 +281,9 @@ public class WeaponMasterMain extends JavaPlugin {
         GuidedMissileManager guidedMissileManager = new GuidedMissileManager(this);
         guidedMissileManager.regGuidedMissileRunnable();
         this.getServer().getPluginManager().registerEvents(guidedMissileManager, this);
+        // Assassin's Blade
+        this.getCommand("assassinsblade").setExecutor(new AssassinCommand());
+        this.getServer().getPluginManager().registerEvents(new AssassinsBladeListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

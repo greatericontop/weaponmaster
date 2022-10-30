@@ -61,6 +61,7 @@ public class Util {
     public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
     public final String GUIDED_MISSILE_NAME = "§cHeat Seeking Guided Missile §6⚝⚝⚝⚝⚝";
+    public final String ASSASSINS_BLADE_NAME = "§eAssassin's Blade §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -93,6 +94,7 @@ public class Util {
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
     public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
     public List<String> GUIDED_MISSILE_LORE = new ArrayList<>();
+    public List<String> ASSASSINS_BLADE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -476,6 +478,16 @@ public class Util {
         GUIDED_MISSILE_LORE.add("");
         GUIDED_MISSILE_LORE.add("§6LEGENDARY");
         GUIDED_MISSILE_LORE.add("§6---------------");
+        // Assassin's Blade
+        ASSASSINS_BLADE_LORE.add("id: ASSASSINS_BLADE");
+        ASSASSINS_BLADE_LORE.add("§6---------------");
+        ASSASSINS_BLADE_LORE.add("");
+        ASSASSINS_BLADE_LORE.add("§eAbility: §4Backstab");
+        ASSASSINS_BLADE_LORE.add("§3Hits from the back are extremely");
+        ASSASSINS_BLADE_LORE.add("§3deadly and deal §b+50% §3damage.");
+        ASSASSINS_BLADE_LORE.add("");
+        ASSASSINS_BLADE_LORE.add("§dEPIC");
+        ASSASSINS_BLADE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -597,5 +609,8 @@ public class Util {
     }
     public boolean checkForGuidedMissile(ItemStack item) {
         return this.checkFor(item, GUIDED_MISSILE_NAME, 0, "id: GUIDED_MISSILE");
+    }
+    public boolean checkForAssassinsBlade(ItemStack item) {
+        return this.checkFor(item, ASSASSINS_BLADE_NAME, 0, "id: ASSASSINS_BLADE");
     }
 }
