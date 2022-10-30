@@ -54,7 +54,9 @@ public class DescentCommand implements CommandExecutor {
         Inventory gui = Bukkit.createInventory(player, INVENTORY_SIZE, plugin.descent.DESCENT_GUI_NAME);
         addItems(player, gui,
                 plugin.descent.getShards(player.getUniqueId()),
-                plugin.descent.getDragonPower(player.getUniqueId()));
+                plugin.descent.getDragonPower(player.getUniqueId()),
+                plugin.descent.getPrice(plugin.descent.getPurchases(player.getUniqueId()))
+        );
         player.openInventory(gui);
     }
 
@@ -63,7 +65,7 @@ public class DescentCommand implements CommandExecutor {
         return String.format("§fLevel: §b%d §f/ §b%d", level, plugin.descent.MAX_LEVEL);
     }
 
-    private void addItems(Player player, Inventory gui, int shardCount, int dragonPowerCount) {
+    private void addItems(Player player, Inventory gui, int shardCount, int dragonPowerCount, int price) {
         // fill everything with dummy items first
         for (int i = 0; i < INVENTORY_SIZE; i++) {
             gui.setItem(i, new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1));
@@ -78,7 +80,8 @@ public class DescentCommand implements CommandExecutor {
         ItemStack power = newItemStack(Material.DRAGON_HEAD, displayPowerAmount,
                 player, null,
                 "§5Dragon Power",
-                "§7You have §c"+dragonPowerCount+" §5Dragon Power§7.");
+                "§7You have §c"+dragonPowerCount+" §5Dragon Power§7.",
+                "§7Your next purchase will cost §b"+price+"§7.");
         gui.setItem(27, power);
 
         // MAIN TREE

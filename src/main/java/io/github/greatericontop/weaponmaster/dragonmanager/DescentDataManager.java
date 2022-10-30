@@ -69,10 +69,13 @@ public class DescentDataManager {
      * Return whether the incrementation was successful or not.
      */
     public boolean incrementDescent(UUID target, String upgradeName) {
-        if (getDragonPower(target) == 0) {
+        // purchases starts off at 0, so we want it 1 for the first purchase, and we increment it permanently later
+        int price = getPrice(getPurchases(target) + 1);
+        if (getDragonPower(target) < price) {
             return false;
         }
-        setDragonPower(target, getDragonPower(target) - 1);
+        setPurchases(target, getPurchases(target) + 1);
+        setDragonPower(target, getDragonPower(target) - price);
         setDescentUpgradeLevel(target, upgradeName, getDescentUpgradeLevel(target, upgradeName) + 1);
         return true;
     }
@@ -99,6 +102,25 @@ public class DescentDataManager {
     }
     public void setDragonPower(UUID target, int value) {
         setDescentUpgradeLevel(target, "__power__", value);
+    }
+    public int getPurchases(UUID target) {
+        return getDescentUpgradeLevel(target, "__purchases__");
+    }
+    public void setPurchases(UUID target, int value) {
+        setDescentUpgradeLevel(target, "__purchases__", value);
+    }
+
+    /*
+     * Return the price, which gets more expensive as you have more purchases.
+     * :purchase: is the CURRENT number, so if it's the first purchase it should be 1
+     */
+    public int getPrice(int purchase) {
+        if (purchase > 60)  return 6;
+        if (purchase > 50)  return 5;
+        if (purchase > 40)  return 4;
+        if (purchase > 30)  return 3;
+        if (purchase > 10)  return 2;
+        return 1;
     }
 
 }
