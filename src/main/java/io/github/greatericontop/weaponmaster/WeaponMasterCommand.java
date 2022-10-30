@@ -154,9 +154,14 @@ public class WeaponMasterCommand implements CommandExecutor {
                 return true;
             }
             Enchantment enchant;
-            int level;
             try {
                 enchant = Enchantment.getByKey(NamespacedKey.minecraft(args[1]));
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage("§cError: §4You gave an invalid enchantment. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            int level;
+            try {
                 if (args[2].equalsIgnoreCase("max")) {
                     level = 255;
                 } else {
