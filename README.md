@@ -8,18 +8,7 @@
 [![GitHub](https://img.shields.io/github/license/greatericontop/weaponmaster?style=for-the-badge)](https://github.com/greatericontop/weaponmaster/blob/main/LICENSE)
 
 
-**WeaponMaster** is a minecraft server plugin that adds weapons, tools, and armor items to the game. This plugin runs on any Spigot (or Paper and its forks, which are required for some additional features) server running Minecraft 1.18. Earlier and later versions aren't tested but will likely work.
-
-
----
-
-
-- [Installation](#installation)
-- [Bulid from Source](#build-from-source)
-- [Weapons](#weapons)
-- [Commands](#commands)
-- [License](#license)
-
+**WeaponMaster** is a minecraft server plugin that adds weapons, tools, and armor items to the game. It also adds lots of new gameplay features. This plugin runs on any Spigot (or Paper and its forks, which are required for some additional features) server running Minecraft 1.18. Earlier and later versions aren't tested but will likely work.
 
 <br/>
 
@@ -60,7 +49,7 @@ The jar file will be built into the `./target` directory of the folder.
 
 <br/>
 
-# Weapons
+# Features
 
 [Detailed documentation of the Weapons](WEAPONS.md)
 

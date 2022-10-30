@@ -99,7 +99,7 @@ public class TridentListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.poseidontrident.use§3.");
             return;
         }
-        if (Math.random() < 0.15) {
+        if (Math.random() < 0.3) {
             event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING);
         }
     }
