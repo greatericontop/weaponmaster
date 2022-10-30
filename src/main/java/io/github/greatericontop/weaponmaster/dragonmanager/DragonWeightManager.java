@@ -51,8 +51,6 @@ public class DragonWeightManager {
         this.DAMAGE_WEIGHT_MAX = damageWeightMax;
     }
 
-    // TODO: limit the total amount of damage, eg only the first 1000 damage can count towards damage weight
-    // TODO: limit the total number of crystals in case someone uses pistons, only the first 10 count towards bonus
     public double getDamage(UUID player) {
         return dragonDamage.getOrDefault(player, 0.0);
     }
