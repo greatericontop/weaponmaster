@@ -40,7 +40,7 @@ import java.util.List;
 
 public class FireballListener implements Listener {
 
-    private final float VELOCITY = 2.5F;
+    private final float VELOCITY = 1.9F;
     private final float POWER = 3.0F;
     private final double SEEKING_DISTANCE = 3.0;
 
