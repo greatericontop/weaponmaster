@@ -77,6 +77,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7You have §c"+dragonPowerCount+" §5Dragon Power§7.");
         gui.setItem(27, power);
 
+        // MAIN TREE
         ItemStack allDamageResistance = newItemStack(Material.DIAMOND_CHESTPLATE, 1,
                 player, null,
                 "§3All Damage Resistance",
@@ -87,29 +88,89 @@ public class DescentCommand implements CommandExecutor {
                 "§3Dragon Extra RNG Drops",
                 "§7Receive 1% more chance to get dragon drops every level.",
                 renderLoreLevel(player, "dragonExtraRNG"));
-
-        ItemStack tougherArmor = newItemStack(Material.NETHERITE_HELMET, 1,
-                player, "dragonExtraRNG",
-                "§3Tougher Armor",
-                "§7Increase armor toughness by 3% every level.",
-                renderLoreLevel(player, "tougherArmor"));
-
         ItemStack extraAttackSpeed = newItemStack(Material.GOLDEN_AXE, 1,
                 player, "dragonExtraRNG",
                 "§3Extra Attack Speed",
                 "§7Increase attack speed by 2% every level.",
                 renderLoreLevel(player, "extraAttackSpeed"));
-        ItemStack strongAttacks = newItemStack(Material.IRON_SWORD, 1,
+        ItemStack mightyStrength = newItemStack(Material.DIAMOND_SWORD, 1,
                 player, "extraAttackSpeed",
+                "§3Mighty Strength",
+                "§7Gain a chance to get 5s of Strength I whenever hit.",
+                "§7+0.1% every level",
+                renderLoreLevel(player, "mightyStrength"));
+        ItemStack vitality = newItemStack(Material.BLAZE_POWDER, 1,
+                player, "mightyStrength",
+                "§3Vitality",
+                "§7Gain Resistance and Fire Resistance for every kill.",
+                "§7+1s every level",
+                renderLoreLevel(player, "vitality"));
+        ItemStack strongAttacks = newItemStack(Material.IRON_SWORD, 1,
+                player, "vitality",
                 "§3Strong Attacks",
                 "§7Increase attack damage by 0.5% every level.",
                 renderLoreLevel(player, "strongAttacks"));
 
+        // LEFT TREE
+        ItemStack heartbleed = newItemStack(Material.REDSTONE, 1,
+                player, "extraAttackSpeed",
+                "§3Heartbleed",
+                "§7Gain a 20% chance every level to regenerate 1 HP on kill.",
+                renderLoreLevel(player, "heartbleed"));
+        ItemStack shardSeeker = newItemStack(Material.DIAMOND_BLOCK, 1,
+                player, "heartbleed",
+                "§3Shard Seeker",
+                "§7Gain 2% more shards every level.",
+                renderLoreLevel(player, "shardSeeker"));
+        ItemStack shieldedArmor = newItemStack(Material.SHIELD, 1,
+                player, "shardSeeker",
+                "§3Shielded Armor",
+                "Your armor will take less durability and last longer.",
+                "§7Gain a 1.5% chance to not consume armor durability every level.",
+                renderLoreLevel(player, "shieldedArmor"));
+        ItemStack silkyTouch = newItemStack(Material.COBWEB, 1,
+                player, "shieldedArmor",
+                "§3Silky Touch",
+                "§7Gain a 0.4% chance every level to inflict 5s Slowness I",
+                "§7on any damaged entities.",
+                renderLoreLevel(player, "silkyTouch"));
+
+        // RIGHT TREE
+        ItemStack tougherArmor = newItemStack(Material.NETHERITE_HELMET, 1,
+                player, "dragonExtraRNG",
+                "§3Tougher Armor",
+                "§7Increase armor toughness by 3% every level.",
+                renderLoreLevel(player, "tougherArmor"));
+        ItemStack enhancedEnergy = newItemStack(Material.CARROT, 1,
+                player, "tougherArmor",
+                "§3Enhanced Energy",
+                "§7Decrease hunger exhaustion by 2% every level.",
+                renderLoreLevel(player, "tougherArmor"));
+        ItemStack wisdom = newItemStack(Material.ENCHANTED_BOOK, 1,
+                player, "enhancedEnergy",
+                "§3Wisdom",
+                "§7Gain 4% more XP from orbs every level.",
+                renderLoreLevel(player, "wisdom"));
+        ItemStack strongLegs = newItemStack(Material.WATER_BUCKET, 1,
+                player, "wisdom",
+                "§3Strong Legs",
+                "§7Take 15% less fall damage every level.",
+                renderLoreLevel(player, "strongLegs"));
+
         gui.setItem(4, allDamageResistance);
         gui.setItem(13, dragonExtraRNG);
         gui.setItem(14, tougherArmor);
+        gui.setItem(15, enhancedEnergy);
+        gui.setItem(20, shardSeeker);
+        gui.setItem(21, heartbleed);
         gui.setItem(22, extraAttackSpeed);
-        gui.setItem(31, strongAttacks);
+        gui.setItem(24, wisdom);
+        gui.setItem(29, shieldedArmor);
+        gui.setItem(31, mightyStrength);
+        gui.setItem(33, strongLegs);
+        gui.setItem(38, silkyTouch);
+        gui.setItem(40, vitality);
+        gui.setItem(49, strongAttacks);
     }
 
     private ItemStack newItemStack(Material material, int amount, Player player, String prerequisite, String name, String... lore) {

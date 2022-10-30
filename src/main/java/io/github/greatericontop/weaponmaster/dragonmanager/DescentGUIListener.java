@@ -59,10 +59,37 @@ public class DescentGUIListener implements Listener {
             case 14:
                 increment(player, "tougherArmor");
                 break;
+            case 15:
+                increment(player, "enhancedEnergy");
+                break;
+            case 20:
+                increment(player, "shardSeeker");
+                break;
+            case 21:
+                increment(player, "heartbleed");
+                break;
             case 22:
                 increment(player, "extraAttackSpeed");
                 break;
+            case 24:
+                increment(player, "wisdom");
+                break;
+            case 29:
+                increment(player, "shieldedArmor");
+                break;
             case 31:
+                increment(player, "mightyStrength");
+                break;
+            case 33:
+                increment(player, "strongLegs");
+                break;
+            case 38:
+                increment(player, "silkyTouch");
+                break;
+            case 40:
+                increment(player, "vitality");
+                break;
+            case 49:
                 increment(player, "strongAttacks");
                 break;
             default:
