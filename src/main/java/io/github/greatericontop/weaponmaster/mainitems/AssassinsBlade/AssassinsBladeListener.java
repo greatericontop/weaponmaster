@@ -50,7 +50,7 @@ public class AssassinsBladeListener implements Listener {
         // if both directions point in the same direction (same angle), then the attacker is behind the defender
         // if they point in opposite directions (difference of 180 degrees), then they are facing each other
         float angle = player.getLocation().getDirection().angle(target.getLocation().getDirection());
-        angle /= Math.PI/2; // radians ---> degrees
+        angle *= 180 / Math.PI; // radians ---> degrees
         player.sendMessage("§7[Debug] angle="+angle);
         if (Math.abs(angle) < 50) { // player's attack must be within the 100 degree window behind the target
             event.setDamage(event.getDamage() * 1.5);
