@@ -125,7 +125,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack shieldedArmor = newItemStack(Material.SHIELD, 1,
                 player, "shardSeeker",
                 "§3Shielded Armor",
-                "Your armor will take less durability and last longer.",
+                "§7Your armor will take less durability and last longer.",
                 "§7Gain a 1.5% chance to not consume armor durability every level.",
                 renderLoreLevel(player, "shieldedArmor"));
         ItemStack silkyTouch = newItemStack(Material.COBWEB, 1,
@@ -145,7 +145,7 @@ public class DescentCommand implements CommandExecutor {
                 player, "tougherArmor",
                 "§3Enhanced Energy",
                 "§7Decrease hunger exhaustion by 2% every level.",
-                renderLoreLevel(player, "tougherArmor"));
+                renderLoreLevel(player, "enhancedEnergy"));
         ItemStack wisdom = newItemStack(Material.ENCHANTED_BOOK, 1,
                 player, "enhancedEnergy",
                 "§3Wisdom",
