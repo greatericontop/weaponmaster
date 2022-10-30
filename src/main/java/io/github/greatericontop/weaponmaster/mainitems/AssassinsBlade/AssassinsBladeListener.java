@@ -29,7 +29,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class AssassinsBladeListener implements Listener {
-    private final float REQUIRED_ANGLE = 50.0F;
+    private final float REQUIRED_ANGLE = 40.0F;
 
     private final Util util;
     public AssassinsBladeListener(WeaponMasterMain plugin) {
@@ -56,7 +56,7 @@ public class AssassinsBladeListener implements Listener {
         player.sendMessage(String.format("§7[Debug] angle=%.1f playerYaw=%.1f targetYaw=%.1f", angle, playerYaw, targetYaw));
         if (angle < REQUIRED_ANGLE || 360-REQUIRED_ANGLE < angle) {
             event.setDamage(event.getDamage() * 1.5);
-            player.getWorld().spawnParticle(Particle.SMOKE_LARGE, target.getLocation(), 20);
+            player.getWorld().spawnParticle(Particle.SMOKE_LARGE, target.getLocation(), 40);
         }
     }
 
