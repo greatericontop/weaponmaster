@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -30,8 +29,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class DescentGUIListener implements Listener {
 
     private final WeaponMasterMain plugin;
+    private final DescentCommand descentCommandManager;
     public DescentGUIListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
+        this.descentCommandManager = new DescentCommand(plugin);
     }
 
     @EventHandler
@@ -40,6 +41,7 @@ public class DescentGUIListener implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
+        player.sendMessage("§7[Debug] "+event.getClickedInventory().equals(event.getView().getTopInventory()));
         if (player.getInventory().equals(event.getClickedInventory())) {
             // don't do anything when player clicks own inventory, instead of the one shown
             return;
@@ -101,9 +103,9 @@ public class DescentGUIListener implements Listener {
         event.getView().close();
         new BukkitRunnable() {
             public void run() {
-                Bukkit.getServer().dispatchCommand(player, "weaponmaster:descent");
+                descentCommandManager.openInventory(player);
             }
-        }.runTaskLater(plugin, 1L);
+        }.runTaskLater(plugin, 5L);
     }
 
     public void increment(Player player, String upgradeName) {

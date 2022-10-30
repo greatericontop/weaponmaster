@@ -45,13 +45,17 @@ public class DescentCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
+        openInventory(player);
+        return true;
+    }
+
+    public void openInventory(Player player) {
         plugin.descent.updateShards(player.getUniqueId());
         Inventory gui = Bukkit.createInventory(player, INVENTORY_SIZE, plugin.descent.DESCENT_GUI_NAME);
         addItems(player, gui,
                 plugin.descent.getShards(player.getUniqueId()),
                 plugin.descent.getDragonPower(player.getUniqueId()));
         player.openInventory(gui);
-        return true;
     }
 
     private String renderLoreLevel(Player player, String upgradeType) {
