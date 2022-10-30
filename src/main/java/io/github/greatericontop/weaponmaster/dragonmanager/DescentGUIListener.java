@@ -41,9 +41,8 @@ public class DescentGUIListener implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
-        player.sendMessage("§7[Debug] "+event.getClickedInventory().equals(event.getView().getTopInventory()));
-        if (player.getInventory().equals(event.getClickedInventory())) {
-            // don't do anything when player clicks own inventory, instead of the one shown
+        if (!event.getView().getTopInventory().equals(event.getClickedInventory())) {
+            // skip if player is not clicking the top inventory with the items in it
             return;
         }
 
