@@ -474,6 +474,7 @@ public class Util {
         GUIDED_MISSILE_LORE.add("§3The missile will seek to the target and");
         GUIDED_MISSILE_LORE.add("§3explode when it gets close.");
         GUIDED_MISSILE_LORE.add("");
+        GUIDED_MISSILE_LORE.add("§6LEGENDARY");
         GUIDED_MISSILE_LORE.add("§6---------------");
     }
 
