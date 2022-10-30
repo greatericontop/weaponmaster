@@ -37,14 +37,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class GuidedMissileManager implements Listener {
-    private final float EXPLOSION_POWER = 11.0F;
-    private final float WEAK_EXPLOSION_POWER = 3.0F;
-    private final double PROXIMITY_DISTANCE_SQUARED = 3.5 * 3.5;
-    private final double INITIAL_VELOCITY = 0.6;
+    private final float BLOCK_EXPLOSION_POWER = 8.0F;
+    private final float ENTITY_EXPLOSION_POWER = 15.0F;
+    private final float WEAK_EXPLOSION_POWER = 4.0F;
+    private final double PROXIMITY_DISTANCE_SQUARED = 6.0 * 6.0;
+    private final double INITIAL_VELOCITY = 0.5;
     // higher acceleration = faster missile
-    private final double ACCELERATION = 0.37;
+    private final double ACCELERATION = 0.51;
     // higher air resistance = slower missile, but more maneuverable
-    private final double AIR_RESISTANCE = 0.82;
+    private final double AIR_RESISTANCE = 0.78;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     private final WeaponMasterMain plugin;
@@ -98,7 +99,8 @@ public class GuidedMissileManager implements Listener {
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {
                     fireball.remove();
-                    fireball.getWorld().createExplosion(fireballLoc, EXPLOSION_POWER, true, true, player);
+                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, player);
+                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, player);
                     player.sendMessage("§7[Debug] prox fuse detonate");
                     cancel();
                     return;
