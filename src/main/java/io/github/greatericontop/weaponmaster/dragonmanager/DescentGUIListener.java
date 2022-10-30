@@ -18,12 +18,14 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class DescentGUIListener implements Listener {
 
@@ -97,6 +99,11 @@ public class DescentGUIListener implements Listener {
                 break;
         }
         event.getView().close();
+        new BukkitRunnable() {
+            public void run() {
+                Bukkit.getServer().dispatchCommand(player, "weaponmaster:descent");
+            }
+        }.runTaskLater(plugin, 1L);
     }
 
     public void increment(Player player, String upgradeName) {
