@@ -57,7 +57,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
-    private final double GUARD_MAX_HP = 140.0; // 3.5x their default of 40
+    private final double GUARD_MAX_HP = 150.0;
     private final int STORM_SIZE = 4;
     private final double DEFENDER_MAX_HEALTH = 65.0;
     private final double AGENT_HEALTH = 90.0;
@@ -172,7 +172,7 @@ public class MidFightTasks {
     }
 
     public void spawnEndGuard(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
+        if (rejectWithChance(80.0)) { return; }
         if (tickNumber < endGuard_lastTickRan + 500) { return; }
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -188,13 +188,15 @@ public class MidFightTasks {
             public void run() {
                 amplifier++;
                 endGuard.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, amplifier, true));
-                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, Math.min(amplifier/2, 2), true));
-                if (amplifier >= 7) {
+                if (amplifier == 2) { // add resistance 1 at the same time we add strength 3
+                    endGuard.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, 0, true));
+                }
+                if (amplifier >= 6) { // maximum strength 7
                     cancel();
                     return;
                 }
             }
-        }.runTaskTimer(plugin, 100L, 200L);
+        }.runTaskTimer(plugin, 200L, 200L);
         lockTarget(endGuard, target);
         target.sendMessage("§5Ender Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
@@ -283,7 +285,7 @@ public class MidFightTasks {
     }
 
     public void spawnEndDweller(int tickNumber) {
-        if (rejectWithChance(75.0)) { return; }
+        if (rejectWithChance(70.0)) { return; }
         if (tickNumber < endDweller_lastTickRan + 200) { return; }
         endDweller_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -300,7 +302,7 @@ public class MidFightTasks {
     }
 
     public void spawnEndstoneDefender(int tickNumber) {
-        if (rejectWithChance(100.0)) { return; }
+        if (rejectWithChance(95.0)) { return; }
         if (tickNumber < endstoneDefender_lastTickRan + 300) { return; }
         endstoneDefender_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -328,7 +330,7 @@ public class MidFightTasks {
     }
 
     public void summonSniper(int tickNumber) {
-        if (rejectWithChance(90.0)) { return; }
+        if (rejectWithChance(85.0)) { return; }
         if (tickNumber < sniper_lastTickRan + 300) { return; }
         sniper_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -350,7 +352,7 @@ public class MidFightTasks {
     }
 
     public void summonGhosts(int tickNumber) {
-        if (rejectWithChance(180.0)) { return; }
+        if (rejectWithChance(165.0)) { return; }
         if (tickNumber < ghost_lastTickRan + 600) { return; }
         ghost_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
