@@ -17,8 +17,7 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.dragonmanager.LootDropper;
-import org.bukkit.Material;
+import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -30,9 +29,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionType;
 
 import java.util.UUID;
 
@@ -47,22 +43,12 @@ public class WeaponMasterCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length >= 1 && args[0].equals("debug")) {
             Player player = (Player) sender;
-            ItemStack itemStack = new ItemStack(Material.POTION, 1);
-            PotionMeta im = (PotionMeta) itemStack.getItemMeta();
-            im.setBasePotionData(new PotionData(PotionType.SPEED, true, false));
-            itemStack.setItemMeta(im);
-            player.getInventory().addItem(itemStack);
-            player.sendMessage("§7Given!");
+            TrueDamageHelper.dealTrueDamage(player, 30.0);
+            player.sendMessage("§7I just damaged you for 30 true damage!");
         }
         if (args.length >= 1 && args[0].equals("debug1")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
-            int wasted = new LootDropper(plugin)
-                    .doAllDrops(
-                            plugin.dragonManager.currentlyActiveDragon.getWorld(),
-                            1000, ((Player) sender)
-            );
-            sender.sendMessage("§7"+wasted+" was wasted");
             sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
             return true;
         }
