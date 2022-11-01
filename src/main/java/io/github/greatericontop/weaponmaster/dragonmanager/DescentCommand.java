@@ -88,7 +88,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack allDamageResistance = newItemStack(Material.DIAMOND_CHESTPLATE, 1,
                 player, null,
                 "§3All Damage Resistance",
-                "§7Reduce all damage taken by 1% every level.",
+                "§7Reduce all damage taken by 0.5% every level.",
                 renderLoreLevel(player, "allDamageResistance"));
         ItemStack dragonExtraRNG = newItemStack(Material.BLUE_ORCHID, 1,
                 player, "allDamageResistance",
@@ -100,7 +100,7 @@ public class DescentCommand implements CommandExecutor {
                 "§3Extra Attack Speed",
                 "§7Increase attack speed by 2% every level.",
                 renderLoreLevel(player, "extraAttackSpeed"));
-        ItemStack mightyStrength = newItemStack(Material.DIAMOND_SWORD, 1,
+        ItemStack mightyStrength = newItemStack(Material.STONE_HOE, 1,
                 player, "extraAttackSpeed",
                 "§3Mighty Strength",
                 "§7Gain a chance to get 5s of Strength I whenever hit.",
