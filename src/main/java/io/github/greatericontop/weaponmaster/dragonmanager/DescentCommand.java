@@ -163,11 +163,42 @@ public class DescentCommand implements CommandExecutor {
                 "§3Strong Legs",
                 "§7Take 15% less fall damage every level.",
                 renderLoreLevel(player, "strongLegs"));
+        ItemStack sicklyTouch = newItemStack(Material.SPIDER_EYE, 1,
+                player, "strongLegs",
+                "§3Sickly Touch",
+                "§7Gain a 0.4% chance every level to inflict 5s Poison I",
+                "§7on any damaged entities.",
+                renderLoreLevel(player, "sicklyTouch"));
+        ItemStack witch = newItemStack(Material.DRAGON_BREATH, 1,
+                player, "sicklyTouch",
+                "§3Witch",
+                "§7Drinkable potions last 2.5% longer every level.",
+                renderLoreLevel(player, "witch"));
+
+        // RANDOM OFF-TO-THE-SIDE UPGRADES
+        ItemStack strongArrows = newItemStack(Material.CROSSBOW, 1,
+                player, "enhancedEnergy",
+                "§3Strong Arrows",
+                "§7Increase arrow damage by 1% every level.",
+                renderLoreLevel(player, "strongArrows"));
+        ItemStack grimTouch = newItemStack(Material.BONE, 1,
+                player, "strongArrows",
+                "§3Grim Touch",
+                "§7Gain a 0.4% chance every level to inflict 5s Weakness I",
+                "§7on any damaged entities.",
+                renderLoreLevel(player, "grimTouch"));
+        ItemStack reviver = newItemStack(Material.TOTEM_OF_UNDYING, 1,
+                player, "strongLegs",
+                "§3Strong Revive",
+                "§7When reviving, regenerate for 3s longer every level.",
+                renderLoreLevel(player, "reviver"));
 
         gui.setItem(4, allDamageResistance);
         gui.setItem(13, dragonExtraRNG);
         gui.setItem(14, tougherArmor);
         gui.setItem(15, enhancedEnergy);
+        gui.setItem(16, strongArrows);
+        gui.setItem(17, grimTouch);
         gui.setItem(20, shardSeeker);
         gui.setItem(21, heartbleed);
         gui.setItem(22, extraAttackSpeed);
@@ -175,9 +206,12 @@ public class DescentCommand implements CommandExecutor {
         gui.setItem(29, shieldedArmor);
         gui.setItem(31, mightyStrength);
         gui.setItem(33, strongLegs);
+        gui.setItem(34, reviver);
         gui.setItem(38, silkyTouch);
         gui.setItem(40, vitality);
+        gui.setItem(42, sicklyTouch);
         gui.setItem(49, strongAttacks);
+        gui.setItem(51, witch);
     }
 
     private ItemStack newItemStack(Material material, int amount, Player player, String prerequisite, String name, String... lore) {

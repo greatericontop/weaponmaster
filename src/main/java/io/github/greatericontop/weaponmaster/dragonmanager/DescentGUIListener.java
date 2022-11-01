@@ -65,6 +65,12 @@ public class DescentGUIListener implements Listener {
             case 15:
                 increment(player, "enhancedEnergy");
                 break;
+            case 16:
+                increment(player, "strongArrows");
+                break;
+            case 17:
+                increment(player, "grimTouch");
+                break;
             case 20:
                 increment(player, "shardSeeker");
                 break;
@@ -86,14 +92,23 @@ public class DescentGUIListener implements Listener {
             case 33:
                 increment(player, "strongLegs");
                 break;
+            case 34:
+                increment(player, "reviver");
+                break;
             case 38:
                 increment(player, "silkyTouch");
                 break;
             case 40:
                 increment(player, "vitality");
                 break;
+            case 42:
+                increment(player, "sicklyTouch");
+                break;
             case 49:
                 increment(player, "strongAttacks");
+                break;
+            case 51:
+                increment(player, "witch");
                 break;
             default:
                 player.sendMessage("§cThat's not an option.");
