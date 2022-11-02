@@ -56,7 +56,7 @@ public class DescentCommand implements CommandExecutor {
         addItems(player, gui,
                 plugin.descent.getShards(player.getUniqueId()),
                 plugin.descent.getDragonPower(player.getUniqueId()),
-                plugin.descent.getPrice(plugin.descent.getPurchases(player.getUniqueId()))
+                plugin.descent.getPrice(plugin.descent.getPurchases(player.getUniqueId()) + 1)
         );
         player.openInventory(gui);
     }
