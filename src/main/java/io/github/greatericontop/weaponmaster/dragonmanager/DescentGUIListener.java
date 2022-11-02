@@ -46,7 +46,8 @@ public class DescentGUIListener implements Listener {
             return;
         }
 
-        if (event.getCurrentItem().getType() == Material.GRAY_STAINED_GLASS_PANE
+        if (event.getCurrentItem() == null
+                || event.getCurrentItem().getType() == Material.GRAY_STAINED_GLASS_PANE
                 || event.getCurrentItem().getType() == Material.BARRIER) {
             event.setCancelled(true);
             return;
