@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragonmanager;
+package io.github.greatericontop.weaponmaster.dragondescent;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.

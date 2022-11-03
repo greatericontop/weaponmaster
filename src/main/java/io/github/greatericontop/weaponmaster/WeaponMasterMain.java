@@ -17,11 +17,11 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.dragonmanager.DescentCommand;
-import io.github.greatericontop.weaponmaster.dragonmanager.DescentDataManager;
-import io.github.greatericontop.weaponmaster.dragonmanager.DescentEvents;
-import io.github.greatericontop.weaponmaster.dragonmanager.DescentGUIListener;
-import io.github.greatericontop.weaponmaster.dragonmanager.DescentManagementCommand;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentCommand;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentDataManager;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentEvents;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentGUIListener;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentManagementCommand;
 import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;

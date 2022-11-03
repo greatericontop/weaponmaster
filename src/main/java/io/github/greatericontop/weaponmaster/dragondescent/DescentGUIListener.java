@@ -1,4 +1,4 @@
-package io.github.greatericontop.weaponmaster.dragonmanager;
+package io.github.greatericontop.weaponmaster.dragondescent;
 
 /*
  * WeaponMaster Copyright (C) 2021-present greateric.
@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentCommand;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
