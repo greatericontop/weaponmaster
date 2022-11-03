@@ -25,6 +25,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -71,6 +72,20 @@ public class DescentEvents implements Listener {
     public void onPlayerDamageEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onEntityKilledByPlayer(EntityDeathEvent event) {
+        if (event.getEntity().getKiller() == null) { return; }
+        Player player = event.getEntity().getKiller();
+
+        // vitality
+        int vitality = descent.getUpgrade(player, "vitality");
+        if (vitality > 0) {
+            int ticks = 20 * vitality;
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, ticks, 0, true));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, ticks, 0, true));
+        }
     }
 
 }

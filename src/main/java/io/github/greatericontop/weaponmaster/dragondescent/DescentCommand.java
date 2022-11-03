@@ -85,6 +85,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Your next purchase will cost §b"+price+"§7.");
         gui.setItem(27, power);
 
+        // TODO: fix all %s after we make sure that the descent is toggleable
         // MAIN TREE
         ItemStack allDamageResistance = newItemStack("allDamageResistance", Material.DIAMOND_CHESTPLATE,
                 player, null,
@@ -105,7 +106,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7+0.1% every level");
         ItemStack vitality = newItemStack("vitality", Material.BLAZE_POWDER,
                 player, "mightyStrength",
-                "§3Vitality", "§7§k~ §f§nNot Implemented",
+                "§3Vitality", "Not Tested",
                 "§7Gain Resistance and Fire Resistance for every kill.",
                 "§7+1s every level");
         ItemStack strongAttacks = newItemStack("strongAttacks", Material.IRON_SWORD,
