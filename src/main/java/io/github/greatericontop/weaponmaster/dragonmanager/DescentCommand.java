@@ -92,7 +92,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Reduce all damage taken by 0.5% every level.");
         ItemStack dragonExtraRNG = newItemStack("dragonExtraRNG", Material.BLUE_ORCHID,
                 player, "allDamageResistance",
-                "§3Dragon Extra RNG Drops", "§7§k~ §2§nNot Tested // fix %",
+                "§3Dragon Extra RNG Drops", "Not Tested // fix %",
                 "§7Receive 1% more chance to get dragon drops every level.");
         ItemStack extraAttackSpeed = newItemStack("extraAttackSpeed", Material.GOLDEN_AXE,
                 player, "dragonExtraRNG",
@@ -100,7 +100,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Increase attack speed by 2% every level.");
         ItemStack mightyStrength = newItemStack("mightyStrength", Material.STONE_HOE,
                 player, "extraAttackSpeed",
-                "§3Mighty Strength", "§7§k~ §2§nNot Tested // fix %",
+                "§3Mighty Strength", "Not Tested // fix %",
                 "§7Gain a chance to get 5s of Strength I whenever hit.",
                 "§7+0.1% every level");
         ItemStack vitality = newItemStack("vitality", Material.BLAZE_POWDER,

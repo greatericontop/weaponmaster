@@ -23,6 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -40,22 +41,37 @@ public class DescentEvents implements Listener {
     public void onDamage(EntityDamageEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getEntity();
+
         // allDamageResistance
         int allDamageResistance = descent.getUpgrade(player, "allDamageResistance");
         if (allDamageResistance > 0) {
             double multi = 1.0 - 0.005*allDamageResistance;
             event.setDamage(event.getDamage() * multi);
         }
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityDamagePlayer(EntityDamageByEntityEvent event) {
+        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getEntity();
+
         // mightyStrength
         int mightyStrength = descent.getUpgrade(player, "mightyStrength");
         if (mightyStrength > 0) {
-            // TODO: 0.1%
-            double activationChance = 0.05 * mightyStrength;
+            // TODO: fix %
+            double activationChance = 0.04 * mightyStrength;
             if (Math.random() < activationChance) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0, true));
             }
         }
 
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPlayerDamageEntity(EntityDamageByEntityEvent event) {
+        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getDamager();
     }
 
 }
