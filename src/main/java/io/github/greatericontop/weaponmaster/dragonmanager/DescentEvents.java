@@ -50,7 +50,7 @@ public class DescentEvents implements Listener {
         int mightyStrength = descent.getUpgrade(player, "mightyStrength");
         if (mightyStrength > 0) {
             // TODO: 0.1%
-            double activationChance = 0.15 * mightyStrength;
+            double activationChance = 0.05 * mightyStrength;
             if (Math.random() < activationChance) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0, true));
             }
