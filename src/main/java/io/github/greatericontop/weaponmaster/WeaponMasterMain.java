@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.dragondescent.AttributeChanger;
 import io.github.greatericontop.weaponmaster.dragondescent.DescentCommand;
 import io.github.greatericontop.weaponmaster.dragondescent.DescentDataManager;
 import io.github.greatericontop.weaponmaster.dragondescent.DescentEvents;
@@ -304,6 +305,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("descent").setExecutor(new DescentCommand(this));
         if (descent.isEnabled) {
             this.getServer().getPluginManager().registerEvents(new DescentEvents(this), this);
+            AttributeChanger attributeChanger = new AttributeChanger(this);
+            attributeChanger.registerUpdateEveryone();
+            this.getServer().getPluginManager().registerEvents(attributeChanger, this);
         }
         this.getServer().getPluginManager().registerEvents(new DescentGUIListener(this), this);
 
