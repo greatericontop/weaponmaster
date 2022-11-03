@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.dragondescent;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.dragondescent.DescentDataManager;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -60,8 +59,7 @@ public class DescentEvents implements Listener {
         // mightyStrength
         int mightyStrength = descent.getUpgrade(player, "mightyStrength");
         if (mightyStrength > 0) {
-            // TODO: fix %
-            double activationChance = 0.04 * mightyStrength;
+            double activationChance = 0.001 * mightyStrength;
             if (Math.random() < activationChance) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0, true));
             }
