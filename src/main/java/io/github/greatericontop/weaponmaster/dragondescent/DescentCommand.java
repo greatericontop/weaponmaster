@@ -117,7 +117,7 @@ public class DescentCommand implements CommandExecutor {
         // LEFT TREE
         ItemStack heartbleed = newItemStack("heartbleed", Material.REDSTONE,
                 player, "extraAttackSpeed",
-                "§3Heartbleed", "§7§k~ §f§nNot Implemented",
+                "§3Heartbleed", "Not Tested",
                 "§7Gain a 20% chance every level to regenerate 1 HP on kill.");
         ItemStack shardSeeker = newItemStack("shardSeeker", Material.DIAMOND_BLOCK,
                 player, "heartbleed",

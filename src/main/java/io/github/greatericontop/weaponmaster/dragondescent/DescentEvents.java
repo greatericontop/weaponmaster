@@ -86,6 +86,15 @@ public class DescentEvents implements Listener {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, ticks, 0, true));
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, ticks, 0, true));
         }
+
+        // heartbleed
+        int heartbleed = descent.getUpgrade(player, "heartbleed");
+        if (heartbleed > 0) {
+            double activationChance = 0.2 * heartbleed;
+            if (Math.random() < activationChance) {
+                player.setHealth(player.getHealth() + 1);
+            }
+        }
     }
 
 }
