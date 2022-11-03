@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragondescent;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,8 +29,14 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class DescentEvents implements Listener {
+    private final Map<UUID, Boolean> heartbleedCooldown = new HashMap<>();
 
     private final WeaponMasterMain plugin;
     private final DescentDataManager descent;
@@ -91,8 +98,16 @@ public class DescentEvents implements Listener {
         int heartbleed = descent.getUpgrade(player, "heartbleed");
         if (heartbleed > 0) {
             double activationChance = 0.2 * heartbleed;
-            if (Math.random() < activationChance) {
-                player.setHealth(player.getHealth() + 1);
+            if (heartbleedCooldown.getOrDefault(player.getUniqueId(), true) && Math.random() < activationChance) {
+                double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                double newHealth = Math.min(maxHealth, player.getHealth() + 1);
+                player.setHealth(newHealth);
+                heartbleedCooldown.put(player.getUniqueId(), false);
+                new BukkitRunnable() {
+                    public void run() {
+                        heartbleedCooldown.put(player.getUniqueId(), true);
+                    }
+                }.runTaskLater(plugin, 40L);
             }
         }
     }
