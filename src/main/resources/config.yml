@@ -2,6 +2,8 @@
 # most of these options should be self-explanatory
 
 warnOnNoPaper: true
+dragonDescent:
+  enable: true
 atomBomb:
   disable: true
   enforceGlobalCooldown: false

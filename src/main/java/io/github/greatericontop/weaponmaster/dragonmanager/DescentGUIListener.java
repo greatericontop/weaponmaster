@@ -124,7 +124,7 @@ public class DescentGUIListener implements Listener {
     }
 
     public void increment(Player player, String upgradeName) {
-        if (plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName) >= plugin.descent.MAX_LEVEL) {
+        if (plugin.descent.getUpgrade(player, upgradeName) >= plugin.descent.MAX_LEVEL) {
             player.sendMessage("§cThis upgrade is already at its maximum level!");
             return;
         }
@@ -134,7 +134,7 @@ public class DescentGUIListener implements Listener {
         } else {
             player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
             player.sendMessage(String.format("§3You successfully bought this upgrade. §7[Level §4%d§7]",
-                    plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeName)));
+                    plugin.descent.getUpgrade(player, upgradeName)));
         }
     }
 

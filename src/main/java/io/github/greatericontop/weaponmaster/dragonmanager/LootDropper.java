@@ -100,6 +100,11 @@ public class LootDropper {
 
     public int doMajorDrops(World world, int weight, Player player) {
         double dropBonus = weight >= 800 ? 1.4 : 1.0;
+        if (plugin.descent.isEnabled) {
+            // TODO: change back to +1%
+            double extra = 1 + 0.35*plugin.descent.getUpgrade(player, "dragonExtraRNG");
+            dropBonus *= extra;
+        }
         double hornChance = 0.05 * dropBonus;
         double scaleChance = 0.8 * dropBonus;
         double wingChance = 0.12 * dropBonus;

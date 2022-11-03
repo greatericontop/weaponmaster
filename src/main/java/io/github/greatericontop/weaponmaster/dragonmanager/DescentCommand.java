@@ -62,7 +62,7 @@ public class DescentCommand implements CommandExecutor {
     }
 
     private String renderLoreLevel(Player player, String upgradeType) {
-        int level = plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeType);
+        int level = plugin.descent.getUpgrade(player, upgradeType);
         return String.format("§fLevel: §b%d §f/ §b%d", level, plugin.descent.MAX_LEVEL);
     }
 
@@ -88,91 +88,91 @@ public class DescentCommand implements CommandExecutor {
         // MAIN TREE
         ItemStack allDamageResistance = newItemStack("allDamageResistance", Material.DIAMOND_CHESTPLATE,
                 player, null,
-                "§3All Damage Resistance",
+                "§3All Damage Resistance", "§7§k~ §2§nNot Tested",
                 "§7Reduce all damage taken by 0.5% every level.");
         ItemStack dragonExtraRNG = newItemStack("dragonExtraRNG", Material.BLUE_ORCHID,
                 player, "allDamageResistance",
-                "§3Dragon Extra RNG Drops",
+                "§3Dragon Extra RNG Drops", "§7§k~ §f§nNot Tested // fix %",
                 "§7Receive 1% more chance to get dragon drops every level.");
         ItemStack extraAttackSpeed = newItemStack("extraAttackSpeed", Material.GOLDEN_AXE,
                 player, "dragonExtraRNG",
-                "§3Extra Attack Speed",
+                "§3Extra Attack Speed", "§7§k~ §f§nNot Implemented",
                 "§7Increase attack speed by 2% every level.");
         ItemStack mightyStrength = newItemStack("mightyStrength", Material.STONE_HOE,
                 player, "extraAttackSpeed",
-                "§3Mighty Strength",
+                "§3Mighty Strength", "§7§k~ §f§nNot Tested // fix %",
                 "§7Gain a chance to get 5s of Strength I whenever hit.",
                 "§7+0.1% every level");
         ItemStack vitality = newItemStack("vitality", Material.BLAZE_POWDER,
                 player, "mightyStrength",
-                "§3Vitality",
+                "§3Vitality", "§7§k~ §f§nNot Implemented",
                 "§7Gain Resistance and Fire Resistance for every kill.",
                 "§7+1s every level");
         ItemStack strongAttacks = newItemStack("strongAttacks", Material.IRON_SWORD,
                 player, "vitality",
-                "§3Strong Attacks",
+                "§3Strong Attacks", "§7§k~ §f§nNot Implemented",
                 "§7Increase attack damage by 0.5% every level.");
 
         // LEFT TREE
         ItemStack heartbleed = newItemStack("heartbleed", Material.REDSTONE,
                 player, "extraAttackSpeed",
-                "§3Heartbleed",
+                "§3Heartbleed", "§7§k~ §f§nNot Implemented",
                 "§7Gain a 20% chance every level to regenerate 1 HP on kill.");
         ItemStack shardSeeker = newItemStack("shardSeeker", Material.DIAMOND_BLOCK,
                 player, "heartbleed",
-                "§3Shard Seeker",
+                "§3Shard Seeker", "§7§k~ §f§nNot Implemented",
                 "§7Gain 2% more shards every level.");
         ItemStack shieldedArmor = newItemStack("shieldedArmor", Material.SHIELD,
                 player, "shardSeeker",
-                "§3Shielded Armor",
+                "§3Shielded Armor", "§7§k~ §f§nNot Implemented",
                 "§7Your armor will take less durability and last longer.",
                 "§7Gain a 1.5% chance to not consume armor durability every level.");
         ItemStack silkyTouch = newItemStack("silkyTouch", Material.COBWEB,
                 player, "shieldedArmor",
-                "§3Silky Touch",
+                "§3Silky Touch", "§7§k~ §f§nNot Implemented",
                 "§7Gain a 0.4% chance every level to inflict 5s Slowness I",
                 "§7on any damaged entities.");
 
         // RIGHT TREE
         ItemStack tougherArmor = newItemStack("tougherArmor", Material.NETHERITE_HELMET,
                 player, "dragonExtraRNG",
-                "§3Tougher Armor",
+                "§3Tougher Armor", "§7§k~ §f§nNot Implemented",
                 "§7Increase armor toughness by 3% every level.");
         ItemStack enhancedEnergy = newItemStack("enhancedEnergy", Material.CARROT,
                 player, "tougherArmor",
-                "§3Enhanced Energy",
+                "§3Enhanced Energy", "§7§k~ §f§nNot Implemented",
                 "§7Decrease hunger exhaustion by 2% every level.");
         ItemStack wisdom = newItemStack("wisdom", Material.ENCHANTED_BOOK,
                 player, "enhancedEnergy",
-                "§3Wisdom",
+                "§3Wisdom", "§7§k~ §f§nNot Implemented",
                 "§7Gain 4% more XP from orbs every level.");
         ItemStack strongLegs = newItemStack("strongLegs", Material.WATER_BUCKET,
                 player, "wisdom",
-                "§3Strong Legs",
+                "§3Strong Legs", "§7§k~ §f§nNot Implemented",
                 "§7Take 15% less fall damage every level.");
         ItemStack sicklyTouch = newItemStack("sicklyTouch", Material.SPIDER_EYE,
                 player, "strongLegs",
-                "§3Sickly Touch",
+                "§3Sickly Touch", "§7§k~ §f§nNot Implemented",
                 "§7Gain a 0.4% chance every level to inflict 5s Poison I",
                 "§7on any damaged entities.");
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
                 player, "sicklyTouch",
-                "§3Witch",
+                "§3Witch", "§7§k~ §f§nNot Implemented",
                 "§7Drinkable potions last 2.5% longer every level.");
 
         // RANDOM OFF-TO-THE-SIDE UPGRADES
         ItemStack strongArrows = newItemStack("strongArrows", Material.CROSSBOW,
                 player, "enhancedEnergy",
-                "§3Strong Arrows",
+                "§3Strong Arrows", "§7§k~ §f§nNot Implemented",
                 "§7Increase arrow damage by 1% every level.");
         ItemStack grimTouch = newItemStack("grimTouch", Material.BONE,
                 player, "strongArrows",
-                "§3Grim Touch",
+                "§3Grim Touch", "§7§k~ §f§nNot Implemented",
                 "§7Gain a 0.4% chance every level to inflict 5s Weakness I",
                 "§7on any damaged entities.");
         ItemStack reviver = newItemStack("reviver", Material.TOTEM_OF_UNDYING,
                 player, "strongLegs",
-                "§3Strong Revive",
+                "§3Strong Revive", "§7§k~ §f§nNot Implemented",
                 "§7When reviving, regenerate for 3s longer every level.");
 
         gui.setItem(4, allDamageResistance);
@@ -197,7 +197,7 @@ public class DescentCommand implements CommandExecutor {
     }
 
     private ItemStack newItemStack(String upgradeKey, Material material, Player player, String prerequisite, String name, String... lore) {
-        if (prerequisite != null && plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), prerequisite) == 0) {
+        if (prerequisite != null && plugin.descent.getUpgrade(player, prerequisite) == 0) {
             ItemStack stack = new ItemStack(Material.BARRIER, 1);
             ItemMeta im = stack.getItemMeta();
             im.setDisplayName("§cLocked!");
@@ -206,7 +206,7 @@ public class DescentCommand implements CommandExecutor {
         }
         lore = Arrays.copyOf(lore, lore.length + 1);
         lore[lore.length - 1] = renderLoreLevel(player, upgradeKey);
-        int level = plugin.descent.getDescentUpgradeLevel(player.getUniqueId(), upgradeKey);
+        int level = plugin.descent.getUpgrade(player, upgradeKey);
         boolean isEnchanted = (level > 0);
         return newItemStack(material, Math.max(level, 1), isEnchanted, name, lore);
     }

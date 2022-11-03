@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +30,13 @@ public class DescentDataManager {
     public final int MAX_LEVEL = 5;
 
     private final WeaponMasterMain plugin;
+    public final boolean isEnabled;
     private final File descentFile;
     private final YamlConfiguration config;
 
-    public DescentDataManager(WeaponMasterMain plugin) {
+    public DescentDataManager(WeaponMasterMain plugin, boolean isEnabled) {
         this.plugin = plugin;
+        this.isEnabled = isEnabled;
         this.descentFile = new File(plugin.getDataFolder(), "descent.yml");
         config = YamlConfiguration.loadConfiguration(descentFile);
     }
@@ -52,12 +55,15 @@ public class DescentDataManager {
         saveDataToConfig();
     }
 
-    public int getDescentUpgradeLevel(UUID target, String upgradeName) {
+    public int getUpgrade(UUID target, String upgradeName) {
         String path = "descent."+target+"."+upgradeName;
         return config.getInt(path, 0);
     }
+    public int getUpgrade(Player target, String upgradeName) {
+        return getUpgrade(target.getUniqueId(), upgradeName);
+    }
 
-    public void setDescentUpgradeLevel(UUID target, String upgradeName, int newValue) {
+    public void setUpgrade(UUID target, String upgradeName, int newValue) {
         String path = "descent."+target+"."+upgradeName;
         config.set(path, newValue);
         // TODO: don't save EVERY SINGLE MOMENT because io is precious
@@ -76,7 +82,7 @@ public class DescentDataManager {
         }
         setPurchases(target, getPurchases(target) + 1);
         setDragonPower(target, getDragonPower(target) - price);
-        setDescentUpgradeLevel(target, upgradeName, getDescentUpgradeLevel(target, upgradeName) + 1);
+        setUpgrade(target, upgradeName, getUpgrade(target, upgradeName) + 1);
         return true;
     }
 
@@ -92,22 +98,22 @@ public class DescentDataManager {
     }
 
     public int getShards(UUID target) {
-        return getDescentUpgradeLevel(target, "__shards__");
+        return getUpgrade(target, "__shards__");
     }
     public void setShards(UUID target, int value) {
-        setDescentUpgradeLevel(target, "__shards__", value);
+        setUpgrade(target, "__shards__", value);
     }
     public int getDragonPower(UUID target) {
-        return getDescentUpgradeLevel(target, "__power__");
+        return getUpgrade(target, "__power__");
     }
     public void setDragonPower(UUID target, int value) {
-        setDescentUpgradeLevel(target, "__power__", value);
+        setUpgrade(target, "__power__", value);
     }
     public int getPurchases(UUID target) {
-        return getDescentUpgradeLevel(target, "__purchases__");
+        return getUpgrade(target, "__purchases__");
     }
     public void setPurchases(UUID target, int value) {
-        setDescentUpgradeLevel(target, "__purchases__", value);
+        setUpgrade(target, "__purchases__", value);
     }
 
     /*

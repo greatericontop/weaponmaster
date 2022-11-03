@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster;
 
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentCommand;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentDataManager;
+import io.github.greatericontop.weaponmaster.dragonmanager.DescentEvents;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentGUIListener;
 import io.github.greatericontop.weaponmaster.dragonmanager.DescentManagementCommand;
 import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
@@ -298,9 +299,12 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(dragonManager, this);
 
         // Descent
-        descent = new DescentDataManager(this);
+        descent = new DescentDataManager(this, this.getConfig().getBoolean("dragonDescent.enable"));
         this.getCommand("descent-management").setExecutor(new DescentManagementCommand(this));
         this.getCommand("descent").setExecutor(new DescentCommand(this));
+        if (descent.isEnabled) {
+            this.getServer().getPluginManager().registerEvents(new DescentEvents(this), this);
+        }
         this.getServer().getPluginManager().registerEvents(new DescentGUIListener(this), this);
 
         this.getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
