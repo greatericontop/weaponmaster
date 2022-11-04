@@ -59,6 +59,15 @@ public class DescentEvents implements Listener {
             event.setDamage(event.getDamage() * multi);
         }
 
+        // strongLegs
+        int strongLegs = descent.getUpgrade(player, "strongLegs");
+        if (strongLegs > 0) {
+            if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+                double multi = 1.0 - 0.15*strongLegs;
+                event.setDamage(event.getDamage() * multi);
+            }
+        }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

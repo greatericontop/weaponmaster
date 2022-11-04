@@ -151,7 +151,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Gain 4% more XP from orbs every level.");
         ItemStack strongLegs = newItemStack("strongLegs", Material.WATER_BUCKET,
                 player, "wisdom",
-                "§3Strong Legs", "§7§k~ §f§nNot Implemented",
+                "§3Strong Legs",
                 "§7Take 15% less fall damage every level.");
         ItemStack sicklyTouch = newItemStack("sicklyTouch", Material.SPIDER_EYE,
                 player, "strongLegs",
