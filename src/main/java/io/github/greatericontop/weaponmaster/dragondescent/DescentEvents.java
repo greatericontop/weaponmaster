@@ -28,6 +28,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExhaustionEvent;
+import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -126,6 +127,21 @@ public class DescentEvents implements Listener {
             // TODO: fix %
             float multi = 1.0F - 0.1F*enhancedEnergy;
             event.setExhaustion(event.getExhaustion() * multi);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerExperienceGain(PlayerExpChangeEvent event) {
+        Player player = event.getPlayer();
+        // wisdom
+        int wisdom = descent.getUpgrade(player, "wisdom");
+        if (wisdom > 0) {
+            // TODO: fix %
+            double multi = 1.0 + 0.4*wisdom;
+            double amount = event.getAmount() * multi;
+            int decPart = (int) amount;
+            int fracPart = Math.random() < (amount % 1) ? 1 : 0;
+            event.setAmount(decPart + fracPart);
         }
     }
 
