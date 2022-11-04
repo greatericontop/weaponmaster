@@ -107,7 +107,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7+0.1% every level");
         ItemStack vitality = newItemStack("vitality", Material.BLAZE_POWDER,
                 player, "mightyStrength",
-                "§3Vitality", "Not Tested",
+                "§3Vitality",
                 "§7Gain Resistance and Fire Resistance for every kill.",
                 "§7+1s every level");
         ItemStack strongAttacks = newItemStack("strongAttacks", Material.IRON_SWORD,
