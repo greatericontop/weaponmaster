@@ -117,7 +117,7 @@ public class DescentCommand implements CommandExecutor {
         // LEFT TREE
         ItemStack heartbleed = newItemStack("heartbleed", Material.REDSTONE,
                 player, "extraAttackSpeed",
-                "§3Heartbleed", "Not Tested",
+                "§3Heartbleed",
                 "§7Gain a 20% chance every level to regenerate 1 HP when",
                 "§7killing any entity. (2 second cooldown)");
         ItemStack shardSeeker = newItemStack("shardSeeker", Material.DIAMOND_BLOCK,
@@ -142,7 +142,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Increase armor toughness by 3% every level.");
         ItemStack enhancedEnergy = newItemStack("enhancedEnergy", Material.CARROT,
                 player, "tougherArmor",
-                "§3Enhanced Energy", "§7§k~ §f§nNot Implemented",
+                "§3Enhanced Energy", "Not Tested // fix %",
                 "§7Decrease hunger exhaustion by 2% every level.");
         ItemStack wisdom = newItemStack("wisdom", Material.ENCHANTED_BOOK,
                 player, "enhancedEnergy",

@@ -27,6 +27,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExhaustionEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -109,6 +110,22 @@ public class DescentEvents implements Listener {
                     }
                 }.runTaskLater(plugin, 40L);
             }
+        }
+    }
+
+
+
+    // other events
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onHunger(EntityExhaustionEvent event) {
+        Player player = (Player) event.getEntity();
+        // enhancedEnergy
+        int enhancedEnergy = descent.getUpgrade(player, "enhancedEnergy");
+        if (enhancedEnergy > 0) {
+            // TODO: fix %
+            float multi = 1.0F - 0.1F*enhancedEnergy;
+            event.setExhaustion(event.getExhaustion() * multi);
         }
     }
 
