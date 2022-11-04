@@ -26,6 +26,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -215,12 +216,13 @@ public class DescentCommand implements CommandExecutor {
 
     private ItemStack newItemStack(Material material, int amount, boolean enchanted, String name, String... lore) {
         ItemStack stack = new ItemStack(material, amount);
-        if (enchanted) {
-            stack.addUnsafeEnchantment(Enchantment.LUCK, 1);
-        }
         ItemMeta im = stack.getItemMeta();
         im.setDisplayName(name);
         im.setLore(Arrays.asList(lore));
+        if (enchanted) {
+            im.addEnchant(Enchantment.LUCK, 1, true);
+            im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
         stack.setItemMeta(im);
         return stack;
     }
