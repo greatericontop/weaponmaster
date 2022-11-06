@@ -19,9 +19,11 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.NamespacedKey;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +35,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.util.BoundingBox;
+
+import java.util.Collection;
 
 public class FightManager implements Listener {
     public static final double DRAGON_MAX_HP = 1000.0;
@@ -45,10 +50,26 @@ public class FightManager implements Listener {
         this.plugin = plugin;
     }
 
+    public boolean checkSpecialDragonConditions(EntitySpawnEvent event) {
+        World world = event.getLocation().getWorld();
+        if (world == null) { return false; }
+        if (!(event.getEntity() instanceof EnderDragon)) {
+            return false;
+        }
+        if (world.getEnvironment() != World.Environment.THE_END) {
+            return false;
+        }
+        // check for an extra end crystals in the 3x3 box centered at X=0.5 Z=0.5 between Y=0 and Y=200
+        BoundingBox crystalBoundingBox = new BoundingBox(-0.501, 0, -0.501, 1.501, 200, 1.501);
+        Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> entity.getType() == EntityType.ENDER_CRYSTAL);
+        // Were at least 2 crystals found in the middle?
+        return (nearbyEntities.size() >= 2);
+    }
+
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
-        if (!(entity instanceof EnderDragon)) { return; }
+        if (!checkSpecialDragonConditions(event)) { return; }
         // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
         buffDragon(currentlyActiveDragon);
