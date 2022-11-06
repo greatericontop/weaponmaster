@@ -102,15 +102,16 @@ public class LootDropper {
         double dropBonus = weight >= 800 ? 1.4 : 1.0;
         if (plugin.descent.isEnabled) {
             // TODO: change back to +1%
-            double extra = 1 + 0.35*plugin.descent.getUpgrade(player, "dragonExtraRNG");
+            double extra = 1 + 0.2*plugin.descent.getUpgrade(player, "dragonExtraRNG");
             dropBonus *= extra;
         }
         double hornChance = 0.05 * dropBonus;
-        double scaleChance = 0.8 * dropBonus;
-        double wingChance = 0.12 * dropBonus;
-        // getting anything: 25%, 35% with weight bonus
+        double scaleChance = 0.08 * dropBonus;
+        double wingChance = 0.22 * dropBonus;
+        // getting anything: 35%, more with weight bonus / descent bonus
         double rand = Math.random();
         if (rand < hornChance) {
+            // if you don't have enough weight, you simply get nothing (and you can't get other drops)
             if (weight >= 600) {
                 createDrop(world, customItems.generateDragonHornItemStack(), player, "Dragon Horn");
                 weight -= 600;
