@@ -202,7 +202,7 @@ public class Util {
         ROCKET_STICK_LORE.add("§6---------------");
         ROCKET_STICK_LORE.add("");
         ROCKET_STICK_LORE.add("§6Launch your enemies into the air!");
-        ROCKET_STICK_LORE.add("§7Hit with stick to use. (players only)");
+        ROCKET_STICK_LORE.add("§7Hit any entity with the stick.");
         ROCKET_STICK_LORE.add("");
         ROCKET_STICK_LORE.add("§6Teleport forward! §3§lSHIFT RIGHT CLICK");
         ROCKET_STICK_LORE.add("");

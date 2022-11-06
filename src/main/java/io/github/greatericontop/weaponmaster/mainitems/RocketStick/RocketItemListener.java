@@ -50,7 +50,6 @@ public class RocketItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player)event.getDamager();
         if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
