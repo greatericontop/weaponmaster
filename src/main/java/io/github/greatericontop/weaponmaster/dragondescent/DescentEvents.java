@@ -90,6 +90,13 @@ public class DescentEvents implements Listener {
     public void onPlayerDamageEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
+
+        // strongAttacks
+        int strongAttacks = descent.getUpgrade(player, "strongAttacks");
+        if (strongAttacks > 0) {
+            double multi = 1.0 + 0.005*strongAttacks;
+            event.setDamage(event.getDamage() * multi);
+        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

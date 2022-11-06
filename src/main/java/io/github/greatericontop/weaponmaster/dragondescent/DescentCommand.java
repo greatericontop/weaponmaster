@@ -112,7 +112,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7+1s every level");
         ItemStack strongAttacks = newItemStack("strongAttacks", Material.IRON_SWORD,
                 player, "vitality",
-                "§3Strong Attacks", "§7§k~ §f§nNot Implemented",
+                "§3Strong Attacks",
                 "§7Increase attack damage by 0.5% every level.");
 
         // LEFT TREE
