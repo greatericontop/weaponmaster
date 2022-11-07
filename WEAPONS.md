@@ -1,4 +1,4 @@
-# Weapons
+# ITEMS
 
 - [SUPREME](#supreme)
   - [Atom Bomb](#atom-bomb)
@@ -10,6 +10,8 @@
   - [Artemis Bow](#artemis-bow)
   - [Caveman Sword](#caveman-sword)
   - [Death's Scythe](#deaths-scythe)
+  - [Dragon Armor](#dragon-armor)
+  - [Dragon Elytra](#dragon-elytra)
   - [Dragon Sword](#dragon-sword)
   - [Excalibur](#excalibur)
   - [Exodus](#exodus)
@@ -115,6 +117,55 @@ Crafting Recipe:
 
 
 ![](assets/scythe.png)
+
+### Dragon Armor
+
+`/dragonarmor give` - super powerful set of armor
+
+for each piece of armor you get: 
+- damage reduction by 5% (20% max)
+- increases damage dealt by 3.5% (14% max)
+
+full set bonus:
+- increases damage dealt by `Dragon Sword` by 25%
+- hunger decreases 33% slower
+- damage reduction by 0.75% per protection level
+
+#### Helmet
+
+Crafting Recipe:
+- 5x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonhelmet.png)
+
+### Chestplate
+
+Crafting Recipe:
+- 8x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonchestplate.png)
+
+### Leggings
+
+Crafting Recipe:
+- 7x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonpants.png)
+
+#### Boots
+
+Crafting Recipe:
+- 4x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonboots.png)
+
+### Dragon Elytra
+
+`/dragonelytra give` - a powerful elytra, small speed boost when in flying, use `Eye of Ender` to gain a massive speed boost.
 
 ### Dragon Sword
 

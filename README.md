@@ -51,8 +51,8 @@ The jar file will be built into the `./target` directory of the folder.
 
 # Features
 
-[Detailed documentation of the Weapons](WEAPONS.md)
-
+[Detailed Documentation of the Items](WEAPONS.md)
+[Detailed Documentation of Other Features](FEATURES.md)
 
 <br/>
 
