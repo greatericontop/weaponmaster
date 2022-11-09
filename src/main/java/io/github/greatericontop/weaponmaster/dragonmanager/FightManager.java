@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -88,6 +89,7 @@ public class FightManager implements Listener {
         this.damageDealtToDragonThroughExplosions = 0.0;
         new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
         this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon, DRAGON_MAX_HP).setEnabled(true);
+        Bukkit.broadcastMessage("§cThe WeaponMaster Dragon has spawned!");
     }
 
     public void buffDragon(EnderDragon dragon) {
