@@ -41,7 +41,6 @@ public class GuidedMissileManager implements Listener {
     private final float ENTITY_EXPLOSION_POWER = 15.0F;
     private final float WEAK_EXPLOSION_POWER = 4.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 6.0 * 6.0;
-    private final double INITIAL_VELOCITY = 0.5;
     // higher acceleration = faster missile
     private final double ACCELERATION = 0.51;
     // higher air resistance = slower missile, but more maneuverable
@@ -81,7 +80,7 @@ public class GuidedMissileManager implements Listener {
         Location spawnLoc = eyeLocation.add(eyeLocation.getDirection().multiply(0.9));
         World world = player.getWorld();
         Fireball fireball = (Fireball) world.spawnEntity(spawnLoc, EntityType.FIREBALL);
-        fireball.setVelocity(eyeLocation.getDirection().multiply(INITIAL_VELOCITY));
+        fireball.setVelocity(player.getVelocity());
         fireball.setYield(WEAK_EXPLOSION_POWER);
         fireball.setShooter(player);
 
@@ -89,7 +88,9 @@ public class GuidedMissileManager implements Listener {
 
         targetSelector.clearLock(player);
         new BukkitRunnable() {
+            int tickNumber = 0;
             public void run() {
+                tickNumber++;
                 if (fireball.isDead()) {
                     cancel();
                     return;
@@ -107,6 +108,7 @@ public class GuidedMissileManager implements Listener {
                 }
                 // update fireball's velocity
                 Vector desiredDirection = target.getLocation().subtract(fireballLoc).toVector().normalize();
+                double accelerationFactor = tickNumber >= 20 ? ACCELERATION : 0.05*tickNumber*ACCELERATION; // slower at the beginning
                 Vector newVelocity = fireball.getVelocity().multiply(AIR_RESISTANCE).add(desiredDirection.multiply(ACCELERATION));
                 fireball.setVelocity(newVelocity);
             }
