@@ -145,6 +145,8 @@ public class FightManager implements Listener {
             player.sendMessage("§7[Debug] giving you drops with weight="+weight);///
             lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
         }
+
+        dragonWeightManager.setEnabled(false);
     }
 
 }
