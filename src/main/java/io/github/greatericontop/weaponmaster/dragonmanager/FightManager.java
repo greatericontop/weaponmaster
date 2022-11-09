@@ -59,11 +59,23 @@ public class FightManager implements Listener {
         if (world.getEnvironment() != World.Environment.THE_END) {
             return false;
         }
-        // check for an extra end crystals in the 3x3 box centered at X=0.5 Z=0.5 between Y=0 and Y=200
-        BoundingBox crystalBoundingBox = new BoundingBox(-0.501, 0, -0.501, 1.501, 200, 1.501);
+        // If we want crystals in the 3x3 box centered at 00, we actually need to make the box only at 0.5, 0.5
+        // since end crystals have huge hitboxes that take up multiple blocks.
+        BoundingBox crystalBoundingBox = new BoundingBox(0.499, 0, 0.499, 0.501, 200, 0.501);
         Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> entity.getType() == EntityType.ENDER_CRYSTAL);
-        // Were at least 2 crystals found in the middle?
-        return (nearbyEntities.size() >= 2);
+        if (nearbyEntities.size() < 3) {
+            return false;
+        }
+        // check for center crystals
+        for (Entity e : nearbyEntities) {
+            double x = e.getLocation().getX();
+            double z = e.getLocation().getZ();
+            // 0.001 of (0.5, 0.5) to be counted
+            if (Math.abs(x - 0.5) < 0.001 && Math.abs(z - 0.5) < 0.001) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
