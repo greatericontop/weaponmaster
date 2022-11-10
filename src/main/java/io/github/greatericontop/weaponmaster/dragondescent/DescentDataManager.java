@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class DescentDataManager {
-    public final String DESCENT_GUI_NAME = "§7§k~~ ~~§r§5 Dragon's Descent §7§k~~ ~~";
+    public final String DESCENT_GUI_NAME = "§7§k~~§r§5 Dragon's Descent §7§k~~";
     public final int MAX_LEVEL = 5;
 
     private final WeaponMasterMain plugin;
