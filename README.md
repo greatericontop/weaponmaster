@@ -34,13 +34,15 @@ For better aesthetic, you can also install the [WeaponMasterOverlay](https://git
 
 # Build from Source
 
+We use Maven for compilation.
+
 ```
 git clone https://github.com/greatericontop/weaponmaster.git
 cd weaponmaster
 mvn package
 ```
 
-The jar file will be built into the `./target` directory of the folder.
+The jar file will be in `./target`.
 
 
 <br/>
@@ -71,7 +73,7 @@ The jar file will be built into the `./target` directory of the folder.
 Modifies the item's attributes.
 
 **Arguments**
-- **attribute** ≫ Any valid value from the [`Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names.
+- **attribute** ≫ Any valid value from the [`Attribute`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/Attribute.html) enum. These are just capitalized java style versions of the normal attribute names (like `GENERIC_ATTACK_DAMAGE` or `GENERIC_MAX_HEALTH` for example).
 - **operation** ≫ Any valid value from the [`Operation`](https://papermc.io/javadocs/paper/1.18/org/bukkit/attribute/AttributeModifier.Operation.html) enum. Vanilla equivalents are `ADD_NUMBER = 0`, `ADD_SCALAR = 1`, `MULTIPLY_SCALAR_1 = 2`
 - **amount** ≫ any valid double
 - **slot** ≫ any valid value from the [`EquipmentSlot`](https://papermc.io/javadocs/paper/1.18/org/bukkit/inventory/EquipmentSlot.html) enum
@@ -96,7 +98,7 @@ Sets the item in hand to any amount.
 **Arguments**
 - **amount** ≫ Any signed byte `-128..127`, nonpositive values will delete the item.
 
-Note: Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
+Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
 
 
 <br/>
