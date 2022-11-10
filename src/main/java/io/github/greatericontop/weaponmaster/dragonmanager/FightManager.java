@@ -54,9 +54,6 @@ public class FightManager implements Listener {
     public boolean checkSpecialDragonConditions(EntitySpawnEvent event) {
         World world = event.getLocation().getWorld();
         if (world == null) { return false; }
-        if (!(event.getEntity() instanceof EnderDragon)) {
-            return false;
-        }
         if (world.getEnvironment() != World.Environment.THE_END) {
             return false;
         }
@@ -82,7 +79,13 @@ public class FightManager implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
-        if (!checkSpecialDragonConditions(event)) { return; }
+        if (!(event.getEntity() instanceof EnderDragon)) { return; }
+        if (!checkSpecialDragonConditions(event)) {
+            // due to a vanilla issue, we have to reset the custom name
+            // since we can't use translatable components here, give it a fancy name to make it look legit
+            entity.setCustomName("§dEnder Dragon");
+            return;
+        }
         // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
         buffDragon(currentlyActiveDragon);
