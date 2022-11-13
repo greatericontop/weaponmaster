@@ -153,9 +153,8 @@ public class DescentEvents implements Listener {
         int durability = descent.getUpgrade(player, "shieldedArmor");
         if (durability > 0) {
             if (ARMOR_MATERIALS.contains(item.getType())) {
-                double multi = 1.0 - 0.1*durability;
+                double multi = 1.0 - 0.015*durability;
                 int newDamage = MathHelper.roundProbability(event.getDamage() * multi);
-                player.sendMessage(String.format("§7[Debug] %d -> %d", event.getDamage(), newDamage));
                 event.setDamage(newDamage);
             }
         }
@@ -171,8 +170,7 @@ public class DescentEvents implements Listener {
         // enhancedEnergy
         int enhancedEnergy = descent.getUpgrade(player, "enhancedEnergy");
         if (enhancedEnergy > 0) {
-            // TODO: fix %
-            float multi = 1.0F - 0.1F*enhancedEnergy;
+            float multi = 1.0F - 0.02F*enhancedEnergy;
             event.setExhaustion(event.getExhaustion() * multi);
         }
     }

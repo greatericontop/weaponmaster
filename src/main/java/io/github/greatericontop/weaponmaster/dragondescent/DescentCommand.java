@@ -127,9 +127,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7Gain 2% more shards every level.");
         ItemStack shieldedArmor = newItemStack("shieldedArmor", Material.SHIELD,
                 player, "shardSeeker",
-                "§3Shielded Armor", "Not tested // fix %",
+                "§3Shielded Armor",
                 "§7Your armor will take less durability and last longer.",
-                "§7Gain a 1.5% chance to not consume armor durability every level.");
+                "§7Your armor takes 1.5% less durability damage per level.");
         ItemStack silkyTouch = newItemStack("silkyTouch", Material.COBWEB,
                 player, "shieldedArmor",
                 "§3Silky Touch", "§7§k~ §f§nNot Implemented",
@@ -143,11 +143,11 @@ public class DescentCommand implements CommandExecutor {
                 "§7Increase armor toughness by 3% every level.");
         ItemStack enhancedEnergy = newItemStack("enhancedEnergy", Material.CARROT,
                 player, "tougherArmor",
-                "§3Enhanced Energy", "Not Tested // fix %",
+                "§3Enhanced Energy",
                 "§7Decrease hunger exhaustion by 2% every level.");
         ItemStack wisdom = newItemStack("wisdom", Material.ENCHANTED_BOOK,
                 player, "enhancedEnergy",
-                "§3Wisdom", "Not Tested // fix %",
+                "§3Wisdom",
                 "§7Gain 4% more XP from orbs every level.");
         ItemStack strongLegs = newItemStack("strongLegs", Material.WATER_BUCKET,
                 player, "wisdom",
