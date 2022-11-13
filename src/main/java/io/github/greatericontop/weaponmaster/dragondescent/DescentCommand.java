@@ -127,7 +127,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Gain 2% more shards every level.");
         ItemStack shieldedArmor = newItemStack("shieldedArmor", Material.SHIELD,
                 player, "shardSeeker",
-                "§3Shielded Armor", "§7§k~ §f§nNot Implemented",
+                "§3Shielded Armor", "Not tested // fix %",
                 "§7Your armor will take less durability and last longer.",
                 "§7Gain a 1.5% chance to not consume armor durability every level.");
         ItemStack silkyTouch = newItemStack("silkyTouch", Material.COBWEB,

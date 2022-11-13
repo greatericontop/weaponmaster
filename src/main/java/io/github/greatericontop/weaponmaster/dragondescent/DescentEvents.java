@@ -18,6 +18,8 @@ package io.github.greatericontop.weaponmaster.dragondescent;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.MathHelper;
+import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -29,11 +31,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExhaustionEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -126,6 +132,31 @@ public class DescentEvents implements Listener {
                         heartbleedCooldown.put(player.getUniqueId(), true);
                     }
                 }.runTaskLater(plugin, 40L);
+            }
+        }
+    }
+
+    private final List<Material> ARMOR_MATERIALS = Arrays.asList(
+            Material.LEATHER_HELMET, Material.LEATHER_CHESTPLATE, Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS,
+            Material.CHAINMAIL_HELMET, Material.CHAINMAIL_CHESTPLATE, Material.CHAINMAIL_LEGGINGS, Material.CHAINMAIL_BOOTS,
+            Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS,
+            Material.GOLDEN_HELMET, Material.GOLDEN_CHESTPLATE, Material.GOLDEN_LEGGINGS, Material.GOLDEN_BOOTS,
+            Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS,
+            Material.NETHERITE_HELMET, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_LEGGINGS, Material.NETHERITE_BOOTS
+    );
+
+    @EventHandler
+    public void onDurability(PlayerItemDamageEvent event) {
+        Player player = event.getPlayer();
+        ItemStack item = event.getItem();
+        // shieldedArmor
+        int durability = descent.getUpgrade(player, "durability");
+        if (durability > 0) {
+            if (ARMOR_MATERIALS.contains(item.getType())) {
+                double multi = 1.0 - 0.1*durability;
+                int newDamage = MathHelper.roundProbability(event.getDamage() * multi);
+                player.sendMessage(String.format("§7[Debug] %d -> %d", event.getDamage(), newDamage));
+                event.setDamage(newDamage);
             }
         }
     }
