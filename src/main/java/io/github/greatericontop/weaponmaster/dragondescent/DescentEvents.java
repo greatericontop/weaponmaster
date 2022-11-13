@@ -185,10 +185,8 @@ public class DescentEvents implements Listener {
         if (wisdom > 0) {
             // TODO: fix %
             double multi = 1.0 + 0.4*wisdom;
-            double amount = event.getAmount() * multi;
-            int decPart = (int) amount;
-            int fracPart = Math.random() < (amount % 1) ? 1 : 0;
-            event.setAmount(decPart + fracPart);
+            double newAmount = event.getAmount() * multi;
+            event.setAmount(MathHelper.roundProbability(newAmount));
         }
     }
 
