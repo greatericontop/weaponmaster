@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -103,6 +104,23 @@ public class DescentEvents implements Listener {
             double multi = 1.0 + 0.005*strongAttacks;
             event.setDamage(event.getDamage() * multi);
         }
+
+        // living entities only
+        if (event.getEntity() instanceof LivingEntity) {
+            LivingEntity target = (LivingEntity) event.getEntity();
+
+            // silkyTouch
+            int silkyTouch = descent.getUpgrade(player, "silkyTouch");
+            if (silkyTouch > 0) {
+                // TODO: fix %
+                double activationChance = 0.2 * silkyTouch;
+                if (Math.random() < activationChance) {
+                    target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0, true));
+                }
+            }
+
+
+        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -149,6 +167,7 @@ public class DescentEvents implements Listener {
     public void onDurability(PlayerItemDamageEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
+
         // shieldedArmor
         int durability = descent.getUpgrade(player, "shieldedArmor");
         if (durability > 0) {

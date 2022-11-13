@@ -132,7 +132,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Your armor takes 1.5% less durability damage per level.");
         ItemStack silkyTouch = newItemStack("silkyTouch", Material.COBWEB,
                 player, "shieldedArmor",
-                "§3Silky Touch", "§7§k~ §f§nNot Implemented",
+                "§3Silky Touch", "Not tested // fix %",
                 "§7Gain a 0.4% chance every level to inflict 5s Slowness I",
                 "§7on any damaged entities.");
 
