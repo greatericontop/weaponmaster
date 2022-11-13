@@ -119,7 +119,15 @@ public class DescentEvents implements Listener {
                 }
             }
 
-
+            // sicklyTouch
+            int sicklyTouch = descent.getUpgrade(player, "sicklyTouch");
+            if (sicklyTouch > 0) {
+                // TODO: fix %
+                double activationChance = 0.2 * sicklyTouch;
+                if (Math.random() < activationChance) {
+                    target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0, true));
+                }
+            }
         }
     }
 

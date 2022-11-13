@@ -155,7 +155,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Take 15% less fall damage every level.");
         ItemStack sicklyTouch = newItemStack("sicklyTouch", Material.SPIDER_EYE,
                 player, "strongLegs",
-                "§3Sickly Touch", "§7§k~ §f§nNot Implemented",
+                "§3Sickly Touch", "Not tested // fix %",
                 "§7Gain a 0.4% chance every level to inflict 5s Poison I",
                 "§7on any damaged entities.");
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
