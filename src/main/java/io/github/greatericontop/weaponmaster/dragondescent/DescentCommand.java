@@ -160,7 +160,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7on any damaged entities.");
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
                 player, "sicklyTouch",
-                "§3Witch", "§7§k~ §f§nNot Implemented",
+                "§3Witch", "Not tested",
                 "§7Drinkable potions last 2.5% longer every level.");
 
         // RANDOM OFF-TO-THE-SIDE UPGRADES

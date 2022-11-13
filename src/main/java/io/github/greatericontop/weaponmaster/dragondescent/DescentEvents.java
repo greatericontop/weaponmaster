@@ -31,6 +31,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExhaustionEvent;
+import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -212,6 +213,27 @@ public class DescentEvents implements Listener {
             double multi = 1.0 + 0.4*wisdom;
             double newAmount = event.getAmount() * multi;
             event.setAmount(MathHelper.roundProbability(newAmount));
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPotionDrink(EntityPotionEffectEvent event) {
+        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getEntity();
+        // witch
+        int witch = descent.getUpgrade(player, "witch");
+        if (witch > 0) {
+            // TODO: why doesn't it work with adding?
+            player.sendMessage(String.format("§7[Debug] the pot was: %s  |  cause=%s newEffect=%s", event.getAction(), event.getCause(), event.getNewEffect()));
+            if ((event.getAction() == EntityPotionEffectEvent.Action.ADDED || event.getAction() == EntityPotionEffectEvent.Action.CHANGED)
+                    && event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK) {
+                PotionEffect eventEffect = event.getNewEffect();
+                double multi = 1 + 0.025*witch;
+                int newDuration = MathHelper.roundProbability(eventEffect.getDuration() * multi);
+                PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
+                // since we can't change the effect used in the event, simply add it here, and it will overwrite it
+                player.addPotionEffect(extendedEffect);
+            }
         }
     }
 
