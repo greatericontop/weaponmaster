@@ -150,7 +150,7 @@ public class DescentEvents implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         // shieldedArmor
-        int durability = descent.getUpgrade(player, "durability");
+        int durability = descent.getUpgrade(player, "shieldedArmor");
         if (durability > 0) {
             if (ARMOR_MATERIALS.contains(item.getType())) {
                 double multi = 1.0 - 0.1*durability;
