@@ -171,7 +171,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
                 player, "sicklyTouch",
                 2.5, "%",
-                "§3Witch", "Not tested",
+                "§3Witch",
                 "§7Drinkable potions last 2.5% longer every level.");
 
         // RANDOM OFF-TO-THE-SIDE UPGRADES
@@ -189,7 +189,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack reviver = newItemStack("reviver", Material.TOTEM_OF_UNDYING,
                 player, "strongLegs",
                 3, "s",
-                "§3Strong Revive", "§7§k~ §f§nNot Implemented",
+                "§3Strong Revive", "Not tested",
                 "§7When reviving, regenerate for 3s longer every level.");
 
         gui.setItem(4, allDamageResistance);

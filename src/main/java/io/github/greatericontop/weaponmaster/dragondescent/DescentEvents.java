@@ -27,11 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityExhaustionEvent;
-import org.bukkit.event.entity.EntityPotionEffectEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
@@ -39,11 +35,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class DescentEvents implements Listener {
     private final Map<UUID, Boolean> heartbleedCooldown = new HashMap<>();
@@ -188,6 +180,45 @@ public class DescentEvents implements Listener {
         }
     }
 
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPotion(EntityPotionEffectEvent event) {
+        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getEntity();
+
+        // witch
+        int witch = descent.getUpgrade(player, "witch");
+        if (witch > 0) {
+            if ((event.getAction() == EntityPotionEffectEvent.Action.ADDED || event.getAction() == EntityPotionEffectEvent.Action.CHANGED)
+                    && event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK) {
+                PotionEffect eventEffect = event.getNewEffect();
+                double multi = 1 + 0.025*witch;
+                int newDuration = MathHelper.roundProbability(eventEffect.getDuration() * multi);
+                PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
+                // since we can't change the effect used in the event, simply add it here, and it will overwrite it
+                event.setCancelled(true);
+                player.addPotionEffect(extendedEffect);
+            }
+        }
+
+        // reviver
+        int reviver = descent.getUpgrade(player, "reviver");
+        if (reviver > 0) {
+            if (event.getAction() == EntityPotionEffectEvent.Action.ADDED && event.getCause() == EntityPotionEffectEvent.Cause.TOTEM) {
+                PotionEffect eventEffect = event.getNewEffect();
+                // for funny reasons .equals and == don't work here
+                if (eventEffect.getType().getId() == PotionEffectType.REGENERATION.getId()) {
+                    if (eventEffect.getDuration() != 900) {
+                        plugin.getLogger().warning("Regeneration effect from totem is not 900t/45s (likely due to an update)! Please nag us about it!");
+                    }
+                    int newDuration = 900 + 60*reviver; // 45s + 3s per level
+                    PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
+                    event.setCancelled(true);
+                    player.addPotionEffect(extendedEffect);
+                }
+            }
+        }
+    }
+
 
 
     // other events
@@ -213,26 +244,6 @@ public class DescentEvents implements Listener {
             double multi = 1.0 + 0.4*wisdom;
             double newAmount = event.getAmount() * multi;
             event.setAmount(MathHelper.roundProbability(newAmount));
-        }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onPotionDrink(EntityPotionEffectEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player) event.getEntity();
-        // witch
-        int witch = descent.getUpgrade(player, "witch");
-        if (witch > 0) {
-            if ((event.getAction() == EntityPotionEffectEvent.Action.ADDED || event.getAction() == EntityPotionEffectEvent.Action.CHANGED)
-                    && event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK) {
-                PotionEffect eventEffect = event.getNewEffect();
-                double multi = 1 + 0.025*witch;
-                int newDuration = MathHelper.roundProbability(eventEffect.getDuration() * multi);
-                PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
-                // since we can't change the effect used in the event, simply add it here, and it will overwrite it
-                event.setCancelled(true);
-                player.addPotionEffect(extendedEffect);
-            }
         }
     }
 
