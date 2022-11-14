@@ -223,8 +223,6 @@ public class DescentEvents implements Listener {
         // witch
         int witch = descent.getUpgrade(player, "witch");
         if (witch > 0) {
-            // TODO: why doesn't it work with adding?
-            player.sendMessage(String.format("§7[Debug] the pot was: %s  |  cause=%s newEffect=%s", event.getAction(), event.getCause(), event.getNewEffect()));
             if ((event.getAction() == EntityPotionEffectEvent.Action.ADDED || event.getAction() == EntityPotionEffectEvent.Action.CHANGED)
                     && event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK) {
                 PotionEffect eventEffect = event.getNewEffect();
@@ -232,6 +230,7 @@ public class DescentEvents implements Listener {
                 int newDuration = MathHelper.roundProbability(eventEffect.getDuration() * multi);
                 PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
                 // since we can't change the effect used in the event, simply add it here, and it will overwrite it
+                event.setCancelled(true);
                 player.addPotionEffect(extendedEffect);
             }
         }
