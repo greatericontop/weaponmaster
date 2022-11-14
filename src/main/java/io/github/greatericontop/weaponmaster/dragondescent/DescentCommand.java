@@ -189,7 +189,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack reviver = newItemStack("reviver", Material.TOTEM_OF_UNDYING,
                 player, "strongLegs",
                 3, "s",
-                "§3Strong Revive", "Not tested",
+                "§3Strong Revive",
                 "§7When reviving, regenerate for 3s longer every level.");
 
         gui.setItem(4, allDamageResistance);
