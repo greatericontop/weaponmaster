@@ -121,6 +121,16 @@ public class DescentEvents implements Listener {
                     target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0, true));
                 }
             }
+
+            // grimTouch
+            int grimTouch = descent.getUpgrade(player, "grimTouch");
+            if (grimTouch > 0) {
+                // TODO: fix %
+                double activationChance = 0.2 * grimTouch;
+                if (Math.random() < activationChance) {
+                    target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 0, true));
+                }
+            }
         }
     }
 

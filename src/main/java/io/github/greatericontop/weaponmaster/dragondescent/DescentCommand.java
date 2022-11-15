@@ -183,7 +183,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack grimTouch = newItemStack("grimTouch", Material.BONE,
                 player, "strongArrows",
                 0.4, "%",
-                "§3Grim Touch", "§7§k~ §f§nNot Implemented",
+                "§3Grim Touch", "Not tested // fix %",
                 "§7Gain a 0.4% chance every level to inflict 5s Weakness I",
                 "§7on any damaged entities.");
         ItemStack reviver = newItemStack("reviver", Material.TOTEM_OF_UNDYING,
