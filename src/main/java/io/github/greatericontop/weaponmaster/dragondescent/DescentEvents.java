@@ -170,10 +170,10 @@ public class DescentEvents implements Listener {
         ItemStack item = event.getItem();
 
         // shieldedArmor
-        int durability = descent.getUpgrade(player, "shieldedArmor");
-        if (durability > 0) {
+        int shieldedArmor = descent.getUpgrade(player, "shieldedArmor");
+        if (shieldedArmor > 0) {
             if (ARMOR_MATERIALS.contains(item.getType())) {
-                double multi = 1.0 - 0.015*durability;
+                double multi = 1.0 - 0.015*shieldedArmor;
                 int newDamage = MathHelper.roundProbability(event.getDamage() * multi);
                 event.setDamage(newDamage);
             }
