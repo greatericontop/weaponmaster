@@ -210,10 +210,13 @@ public class DescentEvents implements Listener {
                     if (eventEffect.getDuration() != 900) {
                         plugin.getLogger().warning("Regeneration effect from totem is not 900t/45s (likely due to an update)! Please nag us about it!");
                     }
-                    int newDuration = 900 + 60*reviver; // 45s + 3s per level
-                    PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
+                    int extendDuration = 900 + 60*reviver; // 45s + 3s per level
+                    PotionEffect extendedEffect = new PotionEffect(PotionEffectType.REGENERATION, extendDuration, 1, eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
+                    int strongDuration = 12 * reviver; // this is 1 extra/faster health point per level
+                    PotionEffect strongEffect = new PotionEffect(PotionEffectType.REGENERATION, strongDuration, 2, eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
                     event.setCancelled(true);
                     player.addPotionEffect(extendedEffect);
+                    player.addPotionEffect(strongEffect); // if the strong one is added second, both stack
                 }
             }
         }

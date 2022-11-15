@@ -190,7 +190,9 @@ public class DescentCommand implements CommandExecutor {
                 player, "strongLegs",
                 3, "s",
                 "§3Strong Revive",
-                "§7When reviving, regenerate for 3s longer every level.");
+                "§7When reviving, regenerate for 3s longer every level.",
+                "§7A small portion of the time is also converted",
+                "§7to a more potent effect.");
 
         gui.setItem(4, allDamageResistance);
         gui.setItem(13, dragonExtraRNG);
