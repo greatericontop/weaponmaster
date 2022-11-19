@@ -86,8 +86,8 @@ public class NinjaItemListener implements Listener {
         }
     }
 
-    private final double INACCURACY = 0.0165; // minecraft uses a normal distribution multiplied by 0.0075
-                                              // we are using a circle with radius 0.0165 (average radius ~0.0117)
+    private final double INACCURACY = 0.01675; // minecraft uses a normal distribution multiplied by 0.0075
+                                               // we are using a circle with average radius (r * sqrt2/2): ~0.0118
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onLeftClick(PlayerInteractEvent event) {
@@ -126,11 +126,11 @@ public class NinjaItemListener implements Listener {
         mainArrow.setCritical(true);
         Arrow sideArrow1 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow1Direction.clone().multiply(0.2)),
                 arrow1Direction, 3.0,
-                INACCURACY * 3.5, damageValue * 0.6, punchValue, isFire,
+                INACCURACY * 3.75, damageValue * 0.6, punchValue, isFire,
                 player, AbstractArrow.PickupStatus.DISALLOWED);
         Arrow sideArrow2 = spawnArrow(eyeLoc.getWorld(), eyeLoc.clone().add(arrow2Direction.clone().multiply(0.2)),
                 arrow2Direction, 3.0,
-                INACCURACY * 3.5, damageValue * 0.6, punchValue, isFire,
+                INACCURACY * 3.75, damageValue * 0.6, punchValue, isFire,
                 player, AbstractArrow.PickupStatus.DISALLOWED);
 
         cooldown.put(player.getUniqueId(), false);
@@ -138,7 +138,7 @@ public class NinjaItemListener implements Listener {
             public void run() {
                 cooldown.put(player.getUniqueId(), true);
             }
-        }.runTaskLater(plugin, 6L);
+        }.runTaskLater(plugin, 8L);
     }
 
 }
