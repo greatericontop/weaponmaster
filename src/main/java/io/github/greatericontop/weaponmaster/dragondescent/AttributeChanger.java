@@ -35,6 +35,7 @@ public class AttributeChanger implements Listener {
     // Random, but consistent, UUIDs for storing the permanent attribute modifiers in
     private final UUID extraAttackSpeedUUID = UUID.fromString("00000000-1111-0000-0000-68e91d3e87c2");
     private final UUID tougherArmorUUID = UUID.fromString("00000000-1111-0000-0000-eb63bfa7d783");
+    private final UUID runnerUUID = UUID.fromString("00000000-1111-0000-0000-f3789ac34a8a");
 
     private final WeaponMasterMain plugin;
     private final DescentDataManager descent;
@@ -73,6 +74,16 @@ public class AttributeChanger implements Listener {
         if (tougherArmor > 0) {
             double multi = 0.03*tougherArmor;
             player.getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS).addModifier(new AttributeModifier(tougherArmorUUID, "weaponmaster", multi, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+        }
+        // runner
+        int runner = descent.getUpgrade(player, "runner");
+        AttributeModifier existingMovementSpeedAM = searchExistingAM(player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED), runnerUUID);
+        if (existingMovementSpeedAM != null) {
+            player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).removeModifier(existingMovementSpeedAM);
+        }
+        if (runner > 0) {
+            double multi = 0.008*runner;
+            player.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier(runnerUUID, "weaponmaster", multi, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         }
     }
 

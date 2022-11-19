@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.dragondescent;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.dragondescent.DescentCommand;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -55,6 +54,7 @@ public class DescentGUIListener implements Listener {
         }
 
         switch (event.getSlot()) {
+            // TODO: use some kind of array for this instead of a fat switch statement
             case 4:
                 increment(player, "allDamageResistance");
                 break;
@@ -111,6 +111,9 @@ public class DescentGUIListener implements Listener {
                 break;
             case 51:
                 increment(player, "witch");
+                break;
+            case 52:
+                increment(player, "runner");
                 break;
             default:
                 player.sendMessage("§cThat's not an option.");

@@ -193,6 +193,11 @@ public class DescentCommand implements CommandExecutor {
                 "§7When reviving, regenerate for 3s longer every level.",
                 "§7A small portion of the time is also converted",
                 "§7to a more potent effect.");
+        ItemStack runner = newItemStack("runner", Material.SUGAR,
+                player, "witch",
+                0.8, "%",
+                "§3Runner",
+                "§7Increase movement speed by 0.8% every level.");
 
         gui.setItem(4, allDamageResistance);
         gui.setItem(13, dragonExtraRNG);
@@ -213,6 +218,7 @@ public class DescentCommand implements CommandExecutor {
         gui.setItem(42, sicklyTouch);
         gui.setItem(49, strongAttacks);
         gui.setItem(51, witch);
+        gui.setItem(52, runner);
     }
 
     // shows decimal point
