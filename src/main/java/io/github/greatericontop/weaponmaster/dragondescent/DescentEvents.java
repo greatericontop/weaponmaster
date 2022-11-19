@@ -24,6 +24,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -257,6 +258,22 @@ public class DescentEvents implements Listener {
             double multi = 1.0 + 0.4*wisdom;
             double newAmount = event.getAmount() * multi;
             event.setAmount(MathHelper.roundProbability(newAmount));
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onProjectileDamageEntity(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Projectile)) { return; }
+        Projectile projectile = (Projectile) event.getDamager();
+        if (!(projectile.getShooter() instanceof Player)) { return; }
+        Player player = (Player) projectile.getShooter();
+        // strongArrows
+        int strongArrows = descent.getUpgrade(player, "strongArrows");
+        if (strongArrows > 0) {
+            if (event.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
+                double multi = 1.0 + 0.01*strongArrows;
+                event.setDamage(event.getDamage() * multi);
+            }
         }
     }
 

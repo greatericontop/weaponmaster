@@ -178,7 +178,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack strongArrows = newItemStack("strongArrows", Material.CROSSBOW,
                 player, "enhancedEnergy",
                 1, "%",
-                "§3Strong Arrows", "§7§k~ §f§nNot Implemented",
+                "§3Strong Arrows",
                 "§7Increase arrow damage by 1% every level.");
         ItemStack grimTouch = newItemStack("grimTouch", Material.BONE,
                 player, "strongArrows",
