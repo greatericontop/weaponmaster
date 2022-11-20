@@ -71,7 +71,10 @@ public class DescentCommand implements CommandExecutor {
         ItemStack shards = newItemStack(Material.DIAMOND, 1,
                 false,
                 "§bShards",
-                "§7You have §c"+shardCount+"§7 shards.");
+                "§7You have §c"+shardCount+"§7 shards.",
+                String.format("§7You need §b%d §7shards to get", plugin.descent.SHARDS_TO_POWER),
+                String.format("§7a §5Dragon Power§7. (§a%.0f%%§7)", (100.0 * shardCount) / plugin.descent.SHARDS_TO_POWER)
+        );
         gui.setItem(18, shards);
         int displayPowerAmount = Math.min(Math.max(dragonPowerCount, 1), 10);
         ItemStack power = newItemStack(Material.DRAGON_HEAD, displayPowerAmount,
