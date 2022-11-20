@@ -121,6 +121,7 @@ public class DescentDataManager {
      * :purchase: is the CURRENT number, so if it's the first purchase it should be 1
      */
     public int getPrice(int purchase) {
+        if (purchase > 90)  return purchase - 86; // #91->5, #92->6, etc.
         if (purchase > 70)  return 4;
         if (purchase > 50)  return 3;
         if (purchase > 30)  return 2;
