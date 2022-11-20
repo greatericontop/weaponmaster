@@ -102,14 +102,19 @@ public class GuidedMissileManager implements Listener {
                     fireball.remove();
                     fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, player);
                     fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, player);
-                    player.sendMessage("§7[Debug] prox fuse detonate");
+                    cancel();
+                    return;
+                }
+                // if target too far away, quit
+                if (fireballLoc.distanceSquared(target.getLocation()) > 450.0 * 450.0) {
+                    fireball.remove();
                     cancel();
                     return;
                 }
                 // update fireball's velocity
                 Vector desiredDirection = target.getLocation().subtract(fireballLoc).toVector().normalize();
-                double accelerationFactor = tickNumber >= 20 ? ACCELERATION : 0.05*tickNumber*ACCELERATION; // slower at the beginning
-                Vector newVelocity = fireball.getVelocity().multiply(AIR_RESISTANCE).add(desiredDirection.multiply(ACCELERATION));
+                double realAcceleration = tickNumber >= 20 ? ACCELERATION : 0.05*tickNumber*ACCELERATION; // slower at the beginning
+                Vector newVelocity = fireball.getVelocity().multiply(AIR_RESISTANCE).add(desiredDirection.multiply(realAcceleration));
                 fireball.setVelocity(newVelocity);
             }
         }.runTaskTimer(plugin, 1L, 1L);
