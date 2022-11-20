@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -165,7 +166,9 @@ public class LootDropper {
     }
 
     public int doAllDrops(World world, int totalWeight, Player player) {
-        player.sendMessage("§7Debug: sending drops for "+player);
+        int shards = MathHelper.roundProbability(totalWeight / 40.0);
+        plugin.descent.addShards(player, shards);
+        player.sendMessage(String.format("§3You had §a%d §3weight and earned §b%d§3 shards.", totalWeight, shards));
         return doMinorDrops(world, doMajorDrops(world, totalWeight, player), player);
     }
 

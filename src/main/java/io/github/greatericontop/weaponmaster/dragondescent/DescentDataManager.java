@@ -28,6 +28,7 @@ import java.util.UUID;
 public class DescentDataManager {
     public final String DESCENT_GUI_NAME = "§7§k~~§r§5 Dragon's Descent §7§k~~";
     public final int MAX_LEVEL = 5;
+    private final int SHARDS_TO_POWER = 300;
 
     private final WeaponMasterMain plugin;
     public final boolean isEnabled;
@@ -86,14 +87,11 @@ public class DescentDataManager {
         return true;
     }
 
-    /*
-     * 600 shards -> 1 dragon power
-     */
     public void updateShards(UUID target) {
-        int powerAmount = getShards(target) / 600;
+        int powerAmount = getShards(target) / SHARDS_TO_POWER;
         if (powerAmount > 0) {
             setDragonPower(target, getDragonPower(target) + powerAmount);
-            setShards(target, getShards(target) - 600*powerAmount);
+            setShards(target, getShards(target) - SHARDS_TO_POWER*powerAmount);
         }
     }
 
@@ -102,6 +100,9 @@ public class DescentDataManager {
     }
     public void setShards(UUID target, int value) {
         setUpgrade(target, "__shards__", value);
+    }
+    public void addShards(Player target, int value) {
+        setShards(target.getUniqueId(), getShards(target.getUniqueId()) + value);
     }
     public int getDragonPower(UUID target) {
         return getUpgrade(target, "__power__");
