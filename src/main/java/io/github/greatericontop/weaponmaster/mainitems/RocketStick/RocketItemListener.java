@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.mainitems.RocketStick;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.FluidCollisionMode;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -79,8 +78,6 @@ public class RocketItemListener implements Listener {
                         player.getEyeLocation(), player.getEyeLocation().getDirection(),
                         TELEPORT_DISTANCE + 0.1, FluidCollisionMode.NEVER, true);
                 if (rtxResult != null && rtxResult.getHitBlock() != null) {
-                    Location loc = rtxResult.getHitBlock().getLocation();
-                    player.sendMessage(String.format("§7Canceled due to: %s %s %s", loc.getX(), loc.getY(), loc.getZ()));
                     player.sendMessage("§7You can't teleport through blocks!");
                     return;
                 }
