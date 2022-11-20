@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class GuidedMissileTargetSelector extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
-    private final double RAY_SIZE = 1.8;
+    private final double RAY_SIZE = 2.15;
     private final int TICKS_TO_LOCK = 16;
     private final int RETAIN_TARGET_TICKS = 70;
 
@@ -127,7 +127,7 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
                 targets.put(player, target);
                 ticksOnTarget.put(player, 0);
                 plugin.paperUtils.sendActionBar(player, lockActionBarMessage(0), true);
-                target.getWorld().spawnParticle(Particle.FLAME, target.getLocation(), 200, 0.0, 0.0, 0.0, 0.1);
+                target.getWorld().spawnParticle(Particle.FLAME, target.getEyeLocation(), 500, 0.0, 0.0, 0.0, 0.3);
             } else if (getLockState(player) == LockState.LOCKING) {
                 // update current lock
                 ticksOnTarget.put(player, ticksOnTarget.get(player) + 1);
