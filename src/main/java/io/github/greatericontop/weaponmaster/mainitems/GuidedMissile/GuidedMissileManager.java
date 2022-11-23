@@ -43,8 +43,8 @@ public class GuidedMissileManager implements Listener {
     private final double PROXIMITY_DISTANCE_SQUARED = 6.0 * 6.0;
     // higher acceleration = faster missile
     private final double ACCELERATION = 0.51;
-    // higher air resistance = slower missile, but more maneuverable
-    private final double AIR_RESISTANCE = 0.78;
+    // higher air resistance (lower number) = slower missile, but more maneuverable
+    private final double AIR_RESISTANCE = 0.77;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     private final WeaponMasterMain plugin;
@@ -84,8 +84,6 @@ public class GuidedMissileManager implements Listener {
         fireball.setYield(WEAK_EXPLOSION_POWER);
         fireball.setShooter(player);
 
-        player.sendMessage(String.format("§7Debug: target = %s", target));
-
         targetSelector.clearLock(player);
         new BukkitRunnable() {
             int tickNumber = 0;
@@ -96,7 +94,7 @@ public class GuidedMissileManager implements Listener {
                     return;
                 }
                 Location fireballLoc = fireball.getLocation();
-                fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 20, 0.0, 0.0, 0.0, 0.001);
+                fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 1, 0.0, 0.0, 0.0, 0.001);
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {
                     fireball.remove();
@@ -108,6 +106,8 @@ public class GuidedMissileManager implements Listener {
                 // if target too far away, quit
                 if (fireballLoc.distanceSquared(target.getLocation()) > 450.0 * 450.0) {
                     fireball.remove();
+                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, player);
+                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, player);
                     cancel();
                     return;
                 }
