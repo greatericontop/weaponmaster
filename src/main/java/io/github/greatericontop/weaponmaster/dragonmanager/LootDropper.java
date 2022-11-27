@@ -166,9 +166,14 @@ public class LootDropper {
     }
 
     public int doAllDrops(World world, int totalWeight, Player player) {
+        // 1 shard per 40 weight, plus 1~5 shard participation bonus if at least 50 weight
         int shards = MathHelper.roundProbability(totalWeight / 40.0);
+        if (totalWeight >= 50) {
+            shards += ThreadLocalRandom.current().nextInt(1, 6);
+        }
         plugin.descent.addShards(player, shards);
         player.sendMessage(String.format("§3You had §a%d §3weight and earned §b%d§3 shards.", totalWeight, shards));
+        // drops
         return doMinorDrops(world, doMajorDrops(world, totalWeight, player), player);
     }
 
