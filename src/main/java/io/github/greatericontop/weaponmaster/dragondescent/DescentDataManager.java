@@ -18,6 +18,7 @@ package io.github.greatericontop.weaponmaster.dragondescent;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -102,7 +103,11 @@ public class DescentDataManager {
         setUpgrade(target, "__shards__", value);
     }
     public void addShards(Player target, int value) {
-        setShards(target.getUniqueId(), getShards(target.getUniqueId()) + value);
+        // TODO: fix %
+        double multi = 1 + 0.1*getUpgrade(target, "shardSeeker");
+        int newValue = MathHelper.roundProbability(value * multi);
+        target.sendMessage(String.format("§7[D] value=%d, mutli=%.3f, newValue=%d", value, multi, newValue));
+        setShards(target.getUniqueId(), getShards(target.getUniqueId()) + newValue);
     }
     public int getDragonPower(UUID target) {
         return getUpgrade(target, "__power__");

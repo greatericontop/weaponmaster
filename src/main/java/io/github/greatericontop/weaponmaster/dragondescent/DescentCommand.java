@@ -129,7 +129,7 @@ public class DescentCommand implements CommandExecutor {
         ItemStack shardSeeker = newItemStack("shardSeeker", Material.DIAMOND_BLOCK,
                 player, "heartbleed",
                 2, "%",
-                "§3Shard Seeker", "§7§k~ §f§nNot Implemented",
+                "§3Shard Seeker", "Not tested // fix %",
                 "§7Gain 2% more shards every level.");
         ItemStack shieldedArmor = newItemStack("shieldedArmor", Material.SHIELD,
                 player, "shardSeeker",
