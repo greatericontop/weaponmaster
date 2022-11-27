@@ -103,10 +103,8 @@ public class DescentDataManager {
         setUpgrade(target, "__shards__", value);
     }
     public void addShards(Player target, int value) {
-        // TODO: fix %
-        double multi = 1 + 0.1*getUpgrade(target, "shardSeeker");
+        double multi = 1 + 0.02*getUpgrade(target, "shardSeeker");
         int newValue = MathHelper.roundProbability(value * multi);
-        target.sendMessage(String.format("§7[D] value=%d, mutli=%.3f, newValue=%d", value, multi, newValue));
         setShards(target.getUniqueId(), getShards(target.getUniqueId()) + newValue);
     }
     public int getDragonPower(UUID target) {
