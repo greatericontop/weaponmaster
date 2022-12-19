@@ -38,8 +38,8 @@ import org.bukkit.util.Vector;
 
 public class GuidedMissileManager implements Listener {
     private final float BLOCK_EXPLOSION_POWER = 8.0F;
-    private final float ENTITY_EXPLOSION_POWER = 15.0F;
-    private final float WEAK_EXPLOSION_POWER = 4.0F;
+    private final float ENTITY_EXPLOSION_POWER = 18.0F;
+    private final float WEAK_EXPLOSION_POWER = 6.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 6.0 * 6.0;
     // higher acceleration = faster missile
     private final double ACCELERATION = 0.51;
@@ -98,16 +98,16 @@ public class GuidedMissileManager implements Listener {
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {
                     fireball.remove();
-                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, player);
-                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, player);
+                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, fireball);
+                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, fireball);
                     cancel();
                     return;
                 }
                 // if target too far away, quit
-                if (fireballLoc.distanceSquared(target.getLocation()) > 450.0 * 450.0) {
+                if (fireballLoc.distanceSquared(target.getLocation()) > 300.0 * 300.0) {
                     fireball.remove();
-                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, player);
-                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, player);
+                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, fireball);
+                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, fireball);
                     cancel();
                     return;
                 }
