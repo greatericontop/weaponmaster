@@ -38,7 +38,7 @@ import org.bukkit.util.Vector;
 
 public class GuidedMissileManager implements Listener {
     private final float BLOCK_EXPLOSION_POWER = 8.0F;
-    private final float ENTITY_EXPLOSION_POWER = 33.0F;
+    private final float ENTITY_EXPLOSION_POWER = 28.0F;
     private final float WEAK_EXPLOSION_POWER = 6.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 5.75 * 5.75;
     // higher acceleration = faster missile
