@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class GuidedMissileTargetSelector extends BukkitRunnable {
     private final double MAX_DISTANCE = 96.0;
-    private final double RAY_SIZE = 2.15;
+    private final double RAY_SIZE = 2.9; // only affects entities, so this won't "crash" into blocks
     private final int TICKS_TO_LOCK = 16;
     private final int RETAIN_TARGET_TICKS = 70;
 
