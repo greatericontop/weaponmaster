@@ -42,9 +42,9 @@ public class GuidedMissileManager implements Listener {
     private final float WEAK_EXPLOSION_POWER = 5.0F;
     private final double PROXIMITY_DISTANCE_SQUARED = 5.75 * 5.75;
     // higher acceleration = faster missile
-    private final double ACCELERATION = 0.51;
+    private final double ACCELERATION = 0.53;
     // higher air resistance (lower number) = slower missile, but more maneuverable
-    private final double AIR_RESISTANCE = 0.77;
+    private final double AIR_RESISTANCE = 0.76;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     private final WeaponMasterMain plugin;
@@ -95,13 +95,13 @@ public class GuidedMissileManager implements Listener {
                 }
                 Location fireballLoc = fireball.getLocation();
                 // smoke trail: we can't do this perfectly but let's try our best
-                final int NUMBER_PARTICLES = 15;
+                final int NUMBER_PARTICLES = 10;
                 Vector displacement = fireball.getVelocity(); // the velocity was the displacement this tick
                 for (int i = 0; i < NUMBER_PARTICLES; i++) {
                     // TODO: is the BukkitRunnable called BEFORE or AFTER the fireball is moved?
                     Location loc = fireballLoc.subtract(displacement.clone().multiply(i / (double) NUMBER_PARTICLES));
-                    fireball.getWorld().spawnParticle(Particle.FLAME, loc, 10, 0.0, 0.0, 0.0, 0.05);
-                    fireball.getWorld().spawnParticle(Particle.SMOKE_LARGE, loc, 3, 0.0, 0.0, 0.0, 0.025);
+                    fireball.getWorld().spawnParticle(Particle.FLAME, loc, 5, 0.0, 0.0, 0.0, 0.05);
+                    fireball.getWorld().spawnParticle(Particle.SMOKE_LARGE, loc, 2, 0.0, 0.0, 0.0, 0.025);
                 }
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {
