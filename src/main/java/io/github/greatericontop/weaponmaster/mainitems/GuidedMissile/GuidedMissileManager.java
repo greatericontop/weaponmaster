@@ -94,7 +94,15 @@ public class GuidedMissileManager implements Listener {
                     return;
                 }
                 Location fireballLoc = fireball.getLocation();
-                fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 1, 0.0, 0.0, 0.0, 0.001);
+                // smoke trail: we can't do this perfectly but let's try our best
+                final int NUMBER_PARTICLES = 15;
+                Vector displacement = fireball.getVelocity(); // the velocity was the displacement this tick
+                for (int i = 0; i < NUMBER_PARTICLES; i++) {
+                    // TODO: is the BukkitRunnable called BEFORE or AFTER the fireball is moved?
+                    Location loc = fireballLoc.subtract(displacement.clone().multiply(i / (double) NUMBER_PARTICLES));
+                    fireball.getWorld().spawnParticle(Particle.FLAME, loc, 10, 0.0, 0.0, 0.0, 0.05);
+                    fireball.getWorld().spawnParticle(Particle.SMOKE_LARGE, loc, 3, 0.0, 0.0, 0.0, 0.025);
+                }
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {
                     fireball.remove();
