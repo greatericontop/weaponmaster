@@ -37,10 +37,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class GuidedMissileManager implements Listener {
-    private final float BLOCK_EXPLOSION_POWER = 7.0F;
-    private final float ENTITY_EXPLOSION_POWER = 26.0F;
-    private final float WEAK_EXPLOSION_POWER = 5.0F;
-    private final double PROXIMITY_DISTANCE_SQUARED = 6.75 * 6.75;
+    private final float BLOCK_EXPLOSION_POWER = 6.0F;
+    private final float ENTITY_EXPLOSION_POWER = 21.0F;
+    private final float WEAK_EXPLOSION_POWER = 4.0F;
+    private final double PROXIMITY_DISTANCE_SQUARED = 5.75 * 5.75;
     // higher acceleration = faster missile
     private final double ACCELERATION = 0.57;
     // higher air resistance (lower number) = slower missile, but more maneuverable
@@ -108,6 +108,7 @@ public class GuidedMissileManager implements Listener {
                     fireball.remove();
                     fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, fireball);
                     fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, fireball);
+                    target.damage(1_000_000.0, fireball);
                     cancel();
                     return;
                 }
