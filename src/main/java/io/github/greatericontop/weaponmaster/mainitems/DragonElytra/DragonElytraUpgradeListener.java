@@ -62,7 +62,7 @@ public class DragonElytraUpgradeListener implements Listener {
     }
 
     public int getLevelsForItem(ItemMeta im) {
-        return 50 * getUpgradeCount(im);
+        return 40 * getUpgradeCount(im);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
