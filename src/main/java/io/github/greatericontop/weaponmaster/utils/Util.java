@@ -18,8 +18,8 @@ package io.github.greatericontop.weaponmaster.utils;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.block.Block;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -62,6 +62,7 @@ public class Util {
     public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
     public final String GUIDED_MISSILE_NAME = "§cHeat Seeking Guided Missile §6⚝⚝⚝⚝⚝";
     public final String ASSASSINS_BLADE_NAME = "§eAssassin's Blade §6⚝⚝⚝⚝⚝";
+    public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -95,6 +96,7 @@ public class Util {
     public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
     public List<String> GUIDED_MISSILE_LORE = new ArrayList<>();
     public List<String> ASSASSINS_BLADE_LORE = new ArrayList<>();
+    public List<String> WITHER_STAFF_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -488,6 +490,17 @@ public class Util {
         ASSASSINS_BLADE_LORE.add("");
         ASSASSINS_BLADE_LORE.add("§dEPIC");
         ASSASSINS_BLADE_LORE.add("§6---------------");
+        // Wither Staff
+        WITHER_STAFF_LORE.add("id: WITHER_STAFF");
+        WITHER_STAFF_LORE.add("§6---------------");
+        WITHER_STAFF_LORE.add("");
+        WITHER_STAFF_LORE.add("§eAbility: §4Skeleton's Call §e§lRIGHT CLICK");
+        WITHER_STAFF_LORE.add("§3Shoots wither skeleton skulls.");
+        WITHER_STAFF_LORE.add("§3The skulls explode on impact.");
+        WITHER_STAFF_LORE.add("§71 second cooldown");
+        WITHER_STAFF_LORE.add("");
+        WITHER_STAFF_LORE.add("§dEPIC");
+        WITHER_STAFF_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -612,5 +625,8 @@ public class Util {
     }
     public boolean checkForAssassinsBlade(ItemStack item) {
         return this.checkFor(item, ASSASSINS_BLADE_NAME, 0, "id: ASSASSINS_BLADE");
+    }
+    public boolean checkForWitherStaff(ItemStack item) {
+        return this.checkFor(item, WITHER_STAFF_NAME, 0, "id: WITHER_STAFF");
     }
 }

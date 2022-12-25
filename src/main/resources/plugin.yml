@@ -117,7 +117,7 @@ commands:
     usage: "U: /netheritestaff [give]"
     permission: "weaponmaster.netheritestaff.command"
     permission-message: "§cYou are not allowed to do this!"
-    aliases: ["netherite-st", "staff"]
+    aliases: ["netherite-st"]
   sniperrifle:
     description: "[Weapon Master] command for Sniper Rifle"
     usage: "U: /sniperrifle [give]"
@@ -200,6 +200,11 @@ commands:
     permission: "weaponmaster.assassinsblade.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["assassins-blade", "assassin"]
+  witherstaff:
+    description: "[Weapon Master] command for Wither Staff"
+    usage: "U: /witherstaff give"
+    permission: "weaponmaster.witherstaff.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -374,4 +379,9 @@ permissions:
     default: op
   weaponmaster.assassinsblade.use:
     default: true
+  #
+  weaponmaster.witherstaff.command:
+    defualt: op
+  weaponmaster.witherstaff.use:
+    defualt: true
   #
