@@ -106,8 +106,7 @@ public class DescentEvents implements Listener {
             // silkyTouch
             int silkyTouch = descent.getUpgrade(player, "silkyTouch");
             if (silkyTouch > 0) {
-                // TODO: fix %
-                double activationChance = 0.2 * silkyTouch;
+                double activationChance = 0.003 * silkyTouch;
                 if (Math.random() < activationChance) {
                     target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0, true));
                 }
@@ -116,8 +115,7 @@ public class DescentEvents implements Listener {
             // sicklyTouch
             int sicklyTouch = descent.getUpgrade(player, "sicklyTouch");
             if (sicklyTouch > 0) {
-                // TODO: fix %
-                double activationChance = 0.2 * sicklyTouch;
+                double activationChance = 0.003 * sicklyTouch;
                 if (Math.random() < activationChance) {
                     target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0, true));
                 }
@@ -126,8 +124,7 @@ public class DescentEvents implements Listener {
             // grimTouch
             int grimTouch = descent.getUpgrade(player, "grimTouch");
             if (grimTouch > 0) {
-                // TODO: fix %
-                double activationChance = 0.2 * grimTouch;
+                double activationChance = 0.003 * grimTouch;
                 if (Math.random() < activationChance) {
                     target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 0, true));
                 }
@@ -254,8 +251,7 @@ public class DescentEvents implements Listener {
         // wisdom
         int wisdom = descent.getUpgrade(player, "wisdom");
         if (wisdom > 0) {
-            // TODO: fix %
-            double multi = 1.0 + 0.4*wisdom;
+            double multi = 1.0 + 0.04*wisdom;
             double newAmount = event.getAmount() * multi;
             event.setAmount(MathHelper.roundProbability(newAmount));
         }

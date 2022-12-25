@@ -139,9 +139,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7Your armor takes 1.5% less durability damage per level.");
         ItemStack silkyTouch = newItemStack("silkyTouch", Material.COBWEB,
                 player, "shieldedArmor",
-                0.4, "%",
-                "§3Silky Touch", "Not tested // fix %",
-                "§7Gain a 0.4% chance every level to inflict 5s Slowness I",
+                0.3, "%",
+                "§3Silky Touch",
+                "§7Gain a 0.3% chance every level to inflict 5s Slowness I",
                 "§7on any damaged entities.");
 
         // RIGHT TREE
@@ -167,9 +167,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7Take 15% less fall damage every level.");
         ItemStack sicklyTouch = newItemStack("sicklyTouch", Material.SPIDER_EYE,
                 player, "strongLegs",
-                0.4, "%",
-                "§3Sickly Touch", "Not tested // fix %",
-                "§7Gain a 0.4% chance every level to inflict 5s Poison I",
+                0.3, "%",
+                "§3Sickly Touch",
+                "§7Gain a 0.3% chance every level to inflict 5s Poison I",
                 "§7on any damaged entities.");
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
                 player, "sicklyTouch",
@@ -185,9 +185,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7Increase arrow damage by 1% every level.");
         ItemStack grimTouch = newItemStack("grimTouch", Material.BONE,
                 player, "strongArrows",
-                0.4, "%",
-                "§3Grim Touch", "Not tested // fix %",
-                "§7Gain a 0.4% chance every level to inflict 5s Weakness I",
+                0.3, "%",
+                "§3Grim Touch",
+                "§7Gain a 0.3% chance every level to inflict 5s Weakness I",
                 "§7on any damaged entities.");
         ItemStack reviver = newItemStack("reviver", Material.TOTEM_OF_UNDYING,
                 player, "strongLegs",
