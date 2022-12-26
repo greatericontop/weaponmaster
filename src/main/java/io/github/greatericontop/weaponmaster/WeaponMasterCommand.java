@@ -106,6 +106,10 @@ public class WeaponMasterCommand implements CommandExecutor {
             Player player = (Player) sender;
             ItemStack itemStack = player.getInventory().getItemInMainHand();
             ItemMeta im = itemStack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
             im.addAttributeModifier(attribute, new AttributeModifier(uuid, "weaponmaster", amount, operation, slot));
             itemStack.setItemMeta(im);
             player.sendMessage(String.format("§3Successfully added attribute modifier §4%s§3.", uuid));
@@ -172,7 +176,14 @@ public class WeaponMasterCommand implements CommandExecutor {
                 sender.sendMessage("§cError: §4Must be a player.");
                 return true;
             }
-            ((Player) sender).getInventory().getItemInMainHand().addUnsafeEnchantment(enchant, level);
+            ItemStack stack = ((Player) sender).getInventory().getItemInMainHand();
+            ItemMeta im = stack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
+            im.addEnchant(enchant, level, true);
+            stack.setItemMeta(im);
             sender.sendMessage(String.format("§3Added §4%s §3level §4%d§3!", enchant.getKey(), level));
             return true;
         }

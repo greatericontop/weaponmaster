@@ -61,7 +61,7 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
             if (args.length == 2) {
                 List<String> commands = Arrays.asList("0", "1", "16", "64", "99", "max");
                 ArrayList<String> result = StringUtil.copyPartialMatches(args[1], commands, new ArrayList<String>(commands.size()));
-                result.add(0, " <number>");
+                result.add(0, "<number>");
                 return result;
             }
         }
@@ -73,7 +73,7 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
             if (args.length == 3) {
                 List<String> commands = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "max");
                 ArrayList<String> result = StringUtil.copyPartialMatches(args[2], commands, new ArrayList<String>(commands.size()));
-                result.add(0, " <level>");
+                result.add(0, "<level>");
                 return result;
             }
         }
@@ -85,13 +85,13 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
             if (args.length == 3) {
                 List<String> commands = Arrays.asList("0.05", "30", "180", "480", "max");
                 ArrayList<String> result = StringUtil.copyPartialMatches(args[2], commands, new ArrayList<String>(commands.size()));
-                result.add(0, " <duration (seconds)>");
+                result.add(0, "<duration (seconds)>");
                 return result;
             }
             if (args.length == 4) {
                 List<String> commands = Arrays.asList("0", "1", "2", "3", "4", "max");
                 ArrayList<String> result = StringUtil.copyPartialMatches(args[3], commands, new ArrayList<String>(commands.size()));
-                result.add(0, " <amplifier>");
+                result.add(0, "<amplifier>");
                 return result;
             }
         }
