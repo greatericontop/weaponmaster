@@ -29,6 +29,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.UUID;
 
@@ -174,14 +177,72 @@ public class WeaponMasterCommand implements CommandExecutor {
             return true;
         }
 
+        if (args.length >= 1 && args[0].equals("addpotioneffect")) {
+            if (args.length < 4) {
+                sender.sendMessage("§cError: §4Missing arguments: /weaponmaster forceenchant <effect type> <duration (seconds)> <amplifier>");
+                return true;
+            }
+            PotionEffectType potionEffectType;
+            try {
+                potionEffectType = PotionEffectType.getByKey(NamespacedKey.minecraft(args[1]));
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage("§cError: §4You gave an invalid potion effect type. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            if (potionEffectType == null) {
+                sender.sendMessage("§cError: §4That potion effect type does not exist. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            int lengthTicks;
+            if (args[2].equalsIgnoreCase("max")) {
+                lengthTicks = 2147483647;
+            } else {
+                double lengthSeconds;
+                try {
+                    lengthSeconds = Double.parseDouble(args[2]);
+                } catch (NumberFormatException e) {
+                    sender.sendMessage("§cError: §4You gave an invalid number. Please give a decimal value, or use 'max'.");
+                    return true;
+                }
+                lengthTicks = Math.min(Math.max((int) (lengthSeconds * 20), 1), 2147483647);
+            }
+            int amplifier;
+            try {
+                amplifier = Integer.parseInt(args[3]);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cError: §4You gave an invalid number. Please give an int.");
+                return true;
+            }
+            if (amplifier < 0 || amplifier > 127) {
+                sender.sendMessage("§cError: §4Amplifier must be between 0 and 127.");
+                return true;
+            }
+            ItemStack stack = ((Player) sender).getInventory().getItemInMainHand();
+            ItemMeta im = stack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
+            if (!(im instanceof PotionMeta)) {
+                sender.sendMessage("§cError: §4This item does not support potion effects.");
+                return true;
+            }
+            PotionMeta pm = (PotionMeta) im;
+            pm.addCustomEffect(new PotionEffect(potionEffectType, lengthTicks, amplifier), true);
+            stack.setItemMeta(pm);
+            sender.sendMessage("§3Added potion effect!");
+            return true;
+        }
+
         sender.sendMessage("----------------------------------------");
         sender.sendMessage("");
         sender.sendMessage("§4§lWeaponMaster");
         sender.sendMessage("§7§oby greateric");
         sender.sendMessage("");
-        sender.sendMessage("§e/weaponmaster forceenchant");
-        sender.sendMessage("§e/weaponmaster illegalstack");
         sender.sendMessage("§e/weaponmaster attributemodifier");
+        sender.sendMessage("§e/weaponmaster illegalstack");
+        sender.sendMessage("§e/weaponmaster forceenchant");
+        sender.sendMessage("§e/weaponmaster addpotioneffect");
         sender.sendMessage("");
         sender.sendMessage("----------------------------------------");
         return true;
