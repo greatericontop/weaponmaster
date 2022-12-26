@@ -182,9 +182,15 @@ public class WeaponMasterCommand implements CommandExecutor {
                 sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
                 return true;
             }
-            im.addEnchant(enchant, level, true);
-            stack.setItemMeta(im);
-            sender.sendMessage(String.format("§3Added §4%s §3level §4%d§3!", enchant.getKey(), level));
+            if (level <= 0) {
+                im.removeEnchant(enchant);
+                stack.setItemMeta(im);
+                sender.sendMessage(String.format("§3Removed enchant §4%s§3!", enchant.getKey()));
+            } else {
+                im.addEnchant(enchant, level, true);
+                stack.setItemMeta(im);
+                sender.sendMessage(String.format("§3Added §4%s §3level §4%d§3!", enchant.getKey(), level));
+            }
             return true;
         }
 
