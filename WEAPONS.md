@@ -32,6 +32,7 @@
   - [Anduril](#anduril)
   - [Copper Sword](#copper-sword)
   - [Fireball](#fireball)
+  - [Wither Staff](#wither-staff)
 - [Others](#others)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
@@ -401,6 +402,14 @@ Crafting Recipe:
 - 1x Arrow
 
 ![](assets/fireball.png)
+
+### Wither Staff
+
+`/witherstaff give` - shoots wither skeleton skulls.
+
+Crafting Recipe:
+- 
+
 
 <br/>
 

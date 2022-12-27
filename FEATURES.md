@@ -20,7 +20,6 @@ It has 1,000 health. It will regenerate with end crystals and also naturally (as
 
 In addition to the four crystals, you must place 2 additional crystals within the 3x3 box around the fountain.
 
-![](assets/dragon/dragon_summon.png)
 
 ## Weight
 
@@ -58,7 +57,17 @@ The Dragon shoots tons of dragon fireballs at the ground around.
 
 Effects all the players around with `Weakness I`, `Posion I`, `Hunger I`, and `Mining Fatigue I` for 10 seconds.
 
-### ....
+### Summon Ghosts
+
+Summons Ghostly Phantoms to ruin your day.
+
+### Summon Sniper
+
+Summons a skilled skeleton sniper to assassin you. 
+
+### Call Agents
+
+Summons highly skilled and trained agents to go after you.
 
 ## Loot
 
@@ -98,6 +107,4 @@ Dragon's Descent is a late game upgrade system that upgrades your stats.
 `/dragon-descent` - opens the `Dragon's Descent` gui menu.
 
 ![A fully maxed out Dragon's Descent](assets/descent/max.png)
-
-
 
