@@ -137,6 +137,7 @@ public class Util {
         DEATH_SCYTHE_LORE.add("id: DEATH_SCYTHE");
         DEATH_SCYTHE_LORE.add("§6---------------");
         DEATH_SCYTHE_LORE.add("");
+        DEATH_SCYTHE_LORE.add("§eAbility: §4Death's Power §eRIGHT CLICK");
         DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l30% §3of your target's");
         DEATH_SCYTHE_LORE.add("§3health as true damage and gain increasing");
         DEATH_SCYTHE_LORE.add("§3levels of §cStrength §3depending on the");
@@ -224,7 +225,7 @@ public class Util {
         HELIOS_LORE.add("§eAbility: §4Godly Swarm §e§lRIGHT CLICK");
         HELIOS_LORE.add("§3Summon fire and deal damage to any");
         HELIOS_LORE.add("§3targets within 5 blocks!");
-        HELIOS_LORE.add("§3Costs hunger to use.");
+        HELIOS_LORE.add("§7This costs some hunger to use.");
         HELIOS_LORE.add("");
         HELIOS_LORE.add("§6LEGENDARY");
         HELIOS_LORE.add("§6---------------");
@@ -405,7 +406,8 @@ public class Util {
         COPPER_SWORD_LORE.add("§6---------------");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy with a charged attack.");
-        COPPER_SWORD_LORE.add("§cThis sword will oxidize over time, making it weaker and weaker.");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§7This sword will oxidize over time, making it weaker and weaker.");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§bNORMAL");
         COPPER_SWORD_LORE.add("§6NOT WAXED");
