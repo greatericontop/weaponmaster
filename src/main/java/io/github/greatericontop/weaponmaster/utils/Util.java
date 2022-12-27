@@ -513,7 +513,7 @@ public class Util {
         BOMB_CANNON_LORE.add("§3Fully charged arrows fired from this bow");
         BOMB_CANNON_LORE.add("§3explode upon impact.");
         BOMB_CANNON_LORE.add("");
-        BOMB_CANNON_LORE.add("§6LEGENDARY");
+        BOMB_CANNON_LORE.add("§dEPIC");
         BOMB_CANNON_LORE.add("§6---------------");
     }
 
