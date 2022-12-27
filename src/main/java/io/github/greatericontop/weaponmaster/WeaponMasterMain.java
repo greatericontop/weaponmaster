@@ -36,6 +36,8 @@ import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultComma
 import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultListener;
 import io.github.greatericontop.weaponmaster.mainitems.AtomBomb.AtomCommand;
 import io.github.greatericontop.weaponmaster.mainitems.AtomBomb.AtomItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.BombCannon.BombCannonCommand;
+import io.github.greatericontop.weaponmaster.mainitems.BombCannon.BombCannonListener;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanRecipe;
@@ -291,6 +293,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Wither Staff
         this.getCommand("witherstaff").setExecutor(new WitherStaffCommand());
         this.getServer().getPluginManager().registerEvents(new WitherItemListener(this), this);
+        // Bomb Cannon
+        this.getCommand("bombcannon").setExecutor(new BombCannonCommand());
+        this.getServer().getPluginManager().registerEvents(new BombCannonListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

@@ -63,6 +63,7 @@ public class Util {
     public final String GUIDED_MISSILE_NAME = "§cHeat Seeking Guided Missile §6⚝⚝⚝⚝⚝";
     public final String ASSASSINS_BLADE_NAME = "§eAssassin's Blade §6⚝⚝⚝⚝⚝";
     public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
+    public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -97,6 +98,7 @@ public class Util {
     public List<String> GUIDED_MISSILE_LORE = new ArrayList<>();
     public List<String> ASSASSINS_BLADE_LORE = new ArrayList<>();
     public List<String> WITHER_STAFF_LORE = new ArrayList<>();
+    public List<String> BOMB_CANNON_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -503,6 +505,16 @@ public class Util {
         WITHER_STAFF_LORE.add("");
         WITHER_STAFF_LORE.add("§dEPIC");
         WITHER_STAFF_LORE.add("§6---------------");
+        // Bomb Cannon
+        BOMB_CANNON_LORE.add("id: BOMB_CANNON");
+        BOMB_CANNON_LORE.add("§6---------------");
+        BOMB_CANNON_LORE.add("");
+        BOMB_CANNON_LORE.add("§eAbility: §4Explosive Arrows");
+        BOMB_CANNON_LORE.add("§3Fully charged arrows fired from this bow");
+        BOMB_CANNON_LORE.add("§3explode upon impact.");
+        BOMB_CANNON_LORE.add("");
+        BOMB_CANNON_LORE.add("§6LEGENDARY");
+        BOMB_CANNON_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -630,5 +642,8 @@ public class Util {
     }
     public boolean checkForWitherStaff(ItemStack item) {
         return this.checkFor(item, WITHER_STAFF_NAME, 0, "id: WITHER_STAFF");
+    }
+    public boolean checkForBombCannon(ItemStack item) {
+        return this.checkFor(item, BOMB_CANNON_NAME, 0, "id: BOMB_CANNON");
     }
 }

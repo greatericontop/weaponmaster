@@ -205,6 +205,12 @@ commands:
     usage: "U: /witherstaff give"
     permission: "weaponmaster.witherstaff.command"
     permission-message: "§cYou are not allowed to do this!"
+  bombcannon:
+    description: "[Weapon Master] command for Bomb Cannon"
+    usage: "U: /bombcannon give"
+    permission: "weaponmaster.bombcannon.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["explosive-bow"]
 
 
 permissions:
@@ -384,4 +390,9 @@ permissions:
     defualt: op
   weaponmaster.witherstaff.use:
     defualt: true
+  #
+  weaponmaster.bombcannon.command:
+    default: op
+  weaponmaster.bombcannon.use:
+    default: true
   #
