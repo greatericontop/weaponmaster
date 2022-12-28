@@ -18,20 +18,35 @@ It has 1,000 health. It will regenerate with end crystals and also naturally (as
 
 ## Summoning
 
-In addition to the four crystals, you must place 2 additional crystals within the 3x3 box around the fountain.
+In addition to the four crystals, you must place 3 additional crystals within the 3x3 box around the fountain.
 
+For example, you could do this:
+
+![Example](assets/dragon/summon_example1.png)
+
+Or this:
+
+![Example](assets/dragon/summon_example2_side1.png)
+
+![Example](assets/dragon/summon_example2_side2.png)
+
+![Example](assets/dragon/summon_example2_side3.png)
+
+All you need are 3 crystals that are in the 3x3 box, as shown here.
+
+![Box](assets/dragon/summon_example2_top.png)
 
 ## Weight
 
 Weight represents how much work you've done during the fight. Up to 1,375 weight can be dropped per fight, and it is used to determine loot.
 
-| **Action**        | Weight | Maximum |
-| --- | --- | --- |
-| End Crystal       | 30     | 300 |
-| Damage Dragon     | 1\*    | 1000 |
-| Damager Bonus     | 75\*\* | 75 |
+| **Action**    | Weight | Maximum |
+|---------------|--------|---------|
+| End Crystal   | 30     | 300     |
+| Damage Dragon | 1\*    | 1000    |
+| Damager Bonus | 75\*\* | 75      |
 
-\* You get 1 weight for every 1 HP damage of the dragon, but your weight can decrease if the total damage is more (since only 1,000 weight can be given). For example, if you dealt 700 damage, but there was a total damage of 1400, you would only receive 500 weight, instead of 700.
+\* You get 1 weight for every 1 HP damage to the dragon, but your weight can decrease if the total damage is more (since only 1,000 weight can be given). For example, if you dealt 700 damage, but there was a total damage of 1400, you would only receive 500 weight, instead of 700.
 
 \*\* Only one player can get the damager bonus if they have dealt at least 200 damage and are at least 30 damage above 2nd place.
 
@@ -39,7 +54,7 @@ Weight represents how much work you've done during the fight. Up to 1,375 weight
 
 ### Hive Anger
 
-The Dragon angers enderman to attack you.
+The Dragon angers endermen to attack you.
 
 ### Call Help
 
@@ -49,11 +64,11 @@ Summons an End Guard that gets stronger over time. Kill it before it's too late.
 
 Summons lightning on all the players around that does true damage (unavoidable damage). If you're unlucky, it can deal up to 9 hearts of damage.
 
-### Fireball Strom
+### Fireball Storm
 
 The Dragon shoots tons of dragon fireballs at the ground around.
 
-### Toxic Strom
+### Toxic Storm
 
 Effects all the players around with `Weakness I`, `Posion I`, `Hunger I`, and `Mining Fatigue I` for 10 seconds.
 
@@ -63,7 +78,7 @@ Summons Ghostly Phantoms to ruin your day.
 
 ### Summon Sniper
 
-Summons a skilled skeleton sniper to assassin you. 
+Summons a skilled skeleton sniper to assassinate you. 
 
 ### Call Agents
 
@@ -85,7 +100,9 @@ You need `550` weight to drop this item.
 
 ### Dragon Wing
 
-This rare item is used to craft many dragon items. You need wings to craft items like `Dragon Armor` and `Dragon Elytra`. <550 weight>
+This rare item is used to craft many dragon items. You need wings to craft items like `Dragon Armor` and `Dragon Elytra`.
+
+You need `400` weight to drop this item.
 
 
 ### Minor Loot
@@ -104,7 +121,7 @@ You can drop less important items as well, including shulker shells, ender pearl
 
 Dragon's Descent is a late game upgrade system that upgrades your stats.
 
-`/dragon-descent` - opens the `Dragon's Descent` gui menu.
+`/dragon-descent` - opens the `Dragon's Descent` GUI menu.
 
 ![A fully maxed out Dragon's Descent](assets/descent/max.png)
 
