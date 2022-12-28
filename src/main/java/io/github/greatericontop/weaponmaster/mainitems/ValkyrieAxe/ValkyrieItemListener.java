@@ -121,7 +121,7 @@ public class ValkyrieItemListener implements Listener {
                     return;
                 }
                 for (int i = 0; i < 3; i++) {
-                    player.getWorld().spawnParticle(Particle.FLAME, currentLoc, 4);
+                    player.getWorld().spawnParticle(Particle.FLAME, currentLoc, 3, 0.0, 0.0, 0.0, 0.15);
                     currentLoc.add(lookingAt);
                 }
                 runsLeft--;
