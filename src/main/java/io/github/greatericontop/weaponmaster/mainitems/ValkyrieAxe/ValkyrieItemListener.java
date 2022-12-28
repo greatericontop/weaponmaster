@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -40,13 +39,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class ValkyrieItemListener implements Listener {
-
+    private final float FOOD_COST = 8.0F / 3.0F; // 3 uses = 2 hunger points or 1 hunger bar
     private final double DAMAGE_FACTOR = 0.75;
     private final double FIRESTORM_RADIUS = 25.0;
     private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
     private final double MAX_ANGLE_DEG = 32.0;
     private final double FIRESTORM_KNOCKBACK = 14.0;
     private final int DURABILITY_THRESHOLD = 249;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public ValkyrieItemListener(WeaponMasterMain plugin) {
@@ -65,7 +65,8 @@ public class ValkyrieItemListener implements Listener {
         }
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
-            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR);
+            if (entity.getUniqueId().equals(event.getEntity().getUniqueId())) { continue; } // don't double-attack
+            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR, player);
             player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, entity.getLocation(), 3);
             player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         }
@@ -88,8 +89,12 @@ public class ValkyrieItemListener implements Listener {
                 player.sendMessage("§cNot enough durability!");
                 return;
             }
+            if (player.getFoodLevel() < 12) { // minimum 6 bars of hunger
+                player.sendMessage("§cNot enough hunger!");
+                return;
+            }
+            player.setExhaustion(player.getExhaustion() + FOOD_COST);
             im.setDamage(Math.min(im.getDamage() + 20, DURABILITY_THRESHOLD));
-            TrueDamageHelper.dealTrueDamage(player, 1.0);
         }
         player.getInventory().getItemInMainHand().setItemMeta(im);
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);
