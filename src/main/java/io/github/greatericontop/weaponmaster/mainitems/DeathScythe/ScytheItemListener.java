@@ -17,9 +17,10 @@ package io.github.greatericontop.weaponmaster.mainitems.DeathScythe;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -27,11 +28,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.Arrays;
 
 public class ScytheItemListener implements Listener {
 
@@ -51,14 +56,6 @@ public class ScytheItemListener implements Listener {
             return 1;
         }
         return 0;
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onMending(PlayerItemMendEvent event) {
-        if (util.checkForDeathScythe(event.getItem())) {
-            event.getPlayer().sendMessage("§6Nice try! You cannot mend §f["+util.DEATH_SCYTHE_NAME+"§f]§6.");
-            event.setCancelled(true);
-        }
     }
 
     private final int DURABILITY_THRESHOLD = 249;
@@ -92,6 +89,31 @@ public class ScytheItemListener implements Listener {
             iMeta.setDamage(DURABILITY_THRESHOLD);
         }
         scythe.setItemMeta(iMeta);
+    }
+
+    /*
+     * Prevent repairs
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onMending(PlayerItemMendEvent event) {
+        if (util.checkForDeathScythe(event.getItem())) {
+            event.getPlayer().sendMessage("§6You can't mend this item.");
+            event.setCancelled(true);
+        }
+    }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onAnvil(PrepareAnvilEvent event) {
+        ItemStack scythe = event.getInventory().getItem(0);
+        ItemStack sacrificeItem = event.getInventory().getItem(1);
+        if (!util.checkForDeathScythe(scythe)) { return; }
+        if (sacrificeItem == null) { return; } // if there's no second item, don't overwrite the result
+                                               // and if you do, the player will be able to take it for some reason
+        ItemStack error = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+        ItemMeta errorIM = error.getItemMeta();
+        errorIM.setDisplayName("§cError");
+        errorIM.setLore(Arrays.asList("§7You can't repair this item in an anvil."));
+        event.setResult(error);
+        event.getResult().setItemMeta(errorIM);
     }
 
 }

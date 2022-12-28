@@ -139,7 +139,7 @@ public class Util {
         DEATH_SCYTHE_LORE.add("id: DEATH_SCYTHE");
         DEATH_SCYTHE_LORE.add("§6---------------");
         DEATH_SCYTHE_LORE.add("");
-        DEATH_SCYTHE_LORE.add("§eAbility: §4Death's Power §eRIGHT CLICK");
+        DEATH_SCYTHE_LORE.add("§eAbility: §4Death's Power §e§lRIGHT CLICK");
         DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l30% §3of your target's");
         DEATH_SCYTHE_LORE.add("§3health as true damage and gain increasing");
         DEATH_SCYTHE_LORE.add("§3levels of §cStrength §3depending on the");
