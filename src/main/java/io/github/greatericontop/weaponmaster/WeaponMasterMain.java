@@ -116,6 +116,7 @@ import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemL
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
+import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
@@ -293,6 +294,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Wither Staff
         this.getCommand("witherstaff").setExecutor(new WitherStaffCommand());
         this.getServer().getPluginManager().registerEvents(new WitherItemListener(this), this);
+        new WitherStaffRecipe().regRecipe();
         // Bomb Cannon
         this.getCommand("bombcannon").setExecutor(new BombCannonCommand());
         this.getServer().getPluginManager().registerEvents(new BombCannonListener(this), this);
