@@ -45,7 +45,7 @@ public class ValkyrieItemListener implements Listener {
     private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
     private final double MAX_ANGLE_DEG = 32.0;
     private final double FIRESTORM_KNOCKBACK = 14.0;
-    private final int DURABILITY_THRESHOLD = 249;
+    private final int ITEM_TOTAL_DURABILITY = 250;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -85,7 +85,7 @@ public class ValkyrieItemListener implements Listener {
         }
         Damageable im = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (player.getGameMode() != GameMode.CREATIVE) {
-            if (im.getDamage() >= DURABILITY_THRESHOLD - 50) { // 51 durability
+            if (im.getDamage() > ITEM_TOTAL_DURABILITY - 50) { // minimum 50 durability
                 player.sendMessage("§cNot enough durability!");
                 return;
             }
@@ -94,7 +94,7 @@ public class ValkyrieItemListener implements Listener {
                 return;
             }
             player.setExhaustion(player.getExhaustion() + FOOD_COST);
-            im.setDamage(Math.min(im.getDamage() + 20, DURABILITY_THRESHOLD));
+            im.setDamage(im.getDamage() + 15);
         }
         player.getInventory().getItemInMainHand().setItemMeta(im);
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);

@@ -439,7 +439,7 @@ public class Util {
         VALKYRIE_AXE_LORE.add("§eAbility: §4Fire Storm");
         VALKYRIE_AXE_LORE.add("§3A vortex of fire engulfs entities in your path.");
         VALKYRIE_AXE_LORE.add("§3Attacked entities take massive knockback.");
-        VALKYRIE_AXE_LORE.add("§7Costs 20 durability and some hunger to use");
+        VALKYRIE_AXE_LORE.add("§7Costs 15 durability and some hunger to use");
         VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§214 Attack Damage");
         VALKYRIE_AXE_LORE.add("§20.6 Attack Speed");
