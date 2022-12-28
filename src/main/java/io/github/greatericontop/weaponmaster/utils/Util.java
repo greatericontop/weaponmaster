@@ -493,7 +493,7 @@ public class Util {
         ASSASSINS_BLADE_LORE.add("");
         ASSASSINS_BLADE_LORE.add("§eAbility: §4Backstab");
         ASSASSINS_BLADE_LORE.add("§3Hits from the back are extremely");
-        ASSASSINS_BLADE_LORE.add("§3deadly and deal §b+50% §3damage.");
+        ASSASSINS_BLADE_LORE.add("§3deadly and deal §b+40% §3damage.");
         ASSASSINS_BLADE_LORE.add("");
         ASSASSINS_BLADE_LORE.add("§dEPIC");
         ASSASSINS_BLADE_LORE.add("§6---------------");
