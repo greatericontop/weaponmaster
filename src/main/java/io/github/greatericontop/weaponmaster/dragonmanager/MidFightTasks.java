@@ -168,7 +168,7 @@ public class MidFightTasks {
                 angeredCount++;
             }
         }
-        target.sendMessage(String.format("§5Ender Dragon §7used §3Hive Anger §7on you and angered §b%d §7endermen.", angeredCount));
+        target.sendMessage(String.format("§5WeaponMaster Dragon §7used §3Hive Anger §7on you and angered §b%d §7endermen.", angeredCount));
     }
 
     public void spawnEndGuard(int tickNumber) {
@@ -198,7 +198,7 @@ public class MidFightTasks {
             }
         }.runTaskTimer(plugin, 200L, 200L);
         lockTarget(endGuard, target);
-        target.sendMessage("§5Ender Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
 
     public void doLightningAttack(int tickNumber) {
@@ -212,7 +212,7 @@ public class MidFightTasks {
             if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 18.5 uniform
             TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
-            target.sendMessage(String.format("§5Ender Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
+            target.sendMessage(String.format("§5WeaponMaster Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
         }
     }
 
@@ -253,7 +253,7 @@ public class MidFightTasks {
         // Message everyone in the end
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getWorld().equals(loc.getWorld())) {
-                player.sendMessage("§5Ender Dragon §7used §3Fireball Storm§7.");
+                player.sendMessage("§5WeaponMaster Dragon §7used §3Fireball Storm§7.");
             }
         }
     }
@@ -270,7 +270,7 @@ public class MidFightTasks {
             target.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
             target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
-            target.sendMessage("§5Ender Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
+            target.sendMessage("§5WeaponMaster Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
         }
     }
 
@@ -298,7 +298,7 @@ public class MidFightTasks {
         PersistentDataContainer pdc = endDweller.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         lockTarget(endDweller, target);
-        target.sendMessage("§5Ender Dragon §7used §3Summon End Dweller §7on you.");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Summon End Dweller §7on you.");
     }
 
     public void spawnEndstoneDefender(int tickNumber) {
@@ -321,7 +321,7 @@ public class MidFightTasks {
         defender.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
         PersistentDataContainer pdc = defender.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
-        target.sendMessage("§5Ender Dragon §7used §3Endstone Defense §7on you.");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Endstone Defense §7on you.");
         new BukkitRunnable() {
             public void run() {
                 defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(100.0);
@@ -347,7 +347,7 @@ public class MidFightTasks {
         sniper.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(40.0);
         PersistentDataContainer pdc = sniper.getPersistentDataContainer(); // no overpowered bows!
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
-        target.sendMessage("§5Ender Dragon §7used §3Summon Sniper §7on you.");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Summon Sniper §7on you.");
         lockTarget(sniper, target);
     }
 
@@ -374,7 +374,7 @@ public class MidFightTasks {
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
             lockTarget(ghost, target);
         }
-        target.sendMessage("§5Ender Dragon §7used §3Summon Ghosts §7on you.");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Summon Ghosts §7on you.");
     }
 
     public void callAgents(int tickNumber) {
@@ -397,7 +397,7 @@ public class MidFightTasks {
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
             lockTarget(agent, target);
         }
-        target.sendMessage("§5Ender Dragon §7used §3Call Agents §7on you.");
+        target.sendMessage("§5WeaponMaster Dragon §7used §3Call Agents §7on you.");
     }
 
 }
