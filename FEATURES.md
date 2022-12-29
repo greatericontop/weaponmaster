@@ -14,7 +14,7 @@ WeaponMaster Dragon is a dragon that has special abilities.
 
 Difficulty Level: 6/5. Don't expect to beat this without custom gear.
 
-It has 1,000 health. It will regenerate with end crystals and also naturally (as high as 1 health per 3 seconds when the dragon is low).
+It has 1,000 health. It regenerates health with end crystals and naturally (as high as 1 health per 3 seconds when the dragon is low).
 
 ## Summoning
 
@@ -38,7 +38,7 @@ All you need are 3 crystals that are in the 3x3 box, as shown here.
 
 ## Weight
 
-Weight represents how much work you've done during the fight. Up to 1,375 weight can be dropped per fight, and it is used to determine loot.
+Weight represents how much work you've done during the fight. Up to 1,375 weight can be obtained per fight, which is used to determine loot.
 
 | **Action**    | Weight | Maximum |
 |---------------|--------|---------|
@@ -54,7 +54,7 @@ Weight represents how much work you've done during the fight. Up to 1,375 weight
 
 ### Hive Anger
 
-The Dragon angers endermen to attack you.
+The Dragon angers endermen to attack nearby players.
 
 ### Call Help
 
@@ -62,7 +62,7 @@ Summons an End Guard that gets stronger over time. Kill it before it's too late.
 
 ### Lightning Attack
 
-Summons lightning on all the players around that does true damage (unavoidable damage). If you're unlucky, it can deal up to 9 hearts of damage.
+Summons lightning on nearby players that does true damage (unavoidable damage). If you're unlucky, it can deal up to 9 hearts of damage.
 
 ### Fireball Storm
 
@@ -78,37 +78,38 @@ Summons Ghostly Phantoms to ruin your day.
 
 ### Summon Sniper
 
-Summons a skilled skeleton sniper to assassinate you. 
+Summons a skilled skeleton sniper to assassinate players. 
 
 ### Call Agents
 
-Summons highly skilled and trained agents to go after you.
+Summons highly skilled and trained agents to go after nearby players.
 
 ## Loot
 
+The loot that the dragon drops are player specific. It cannot be picked up by another player. These items do not despawn and cannot be blown up or burned.
+
 ### Dragon Horn
 
-This is the strongest and rarest item. You need one of these to make powerful dragon items, like `Dragon Armor` and `Dragon Elytra`.
+This is the strongest and rarest item. These are used make powerful dragon items, like `Dragon Armor` and `Dragon Elytra`.
 
-You need `600` weight to drop this item.
+At least `600` weight is required for this item to drop.
 
 ### Dragon Scale
 
 This rare item is used to upgrade dragon items to improve their stats permanently, like `Dragon Sword` and `Dragon Elytra`.
 
-You need `550` weight to drop this item.
+At least `550` weight is required for this item to drop.
 
 ### Dragon Wing
 
 This rare item is used to craft many dragon items. You need wings to craft items like `Dragon Armor` and `Dragon Elytra`.
 
-You need `400` weight to drop this item.
+At least `400` weight is required for this item to drop.
 
 
 ### Minor Loot
 
-You can drop less important items as well, including shulker shells, ender pearls, and obsidian blocks.
-
+Some less important loot like shulker shells, ender pearls, and obsidian blocks are also drops.
 
 
 <br/>
