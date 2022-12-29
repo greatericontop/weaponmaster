@@ -71,7 +71,7 @@ public class DragonSwordUpgradeListener implements Listener {
         ItemStack scale = event.getInventory().getItem(1);
         Player player = (Player) event.getViewers().get(0);
         if (!util.checkForDragonSword(dragon)) { return; }
-        if (!util.checkFor(scale, null, 0, "id: DRAGON_SCALE")) { return; }
+        if (!util.checkFor(scale, 0, "id: DRAGON_SCALE")) { return; }
 
         ItemMeta dragonIM = dragon.getItemMeta();
         List<String> dragonLore = dragonIM.getLore();

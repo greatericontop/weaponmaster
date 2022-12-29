@@ -133,7 +133,7 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEat(PlayerItemConsumeEvent event) {
-        if (!util.checkFor(event.getItem(), null, 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
         Player player = event.getPlayer();
         modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
@@ -144,7 +144,7 @@ public class MinorItemListener implements Listener {
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
         if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
         Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), null, 0, "id: EXPERT_SEAL")) { return; }
+        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL")) { return; }
         ItemMeta targetItem = event.getCurrentItem().getItemMeta();
         if (targetItem == null || !targetItem.hasEnchants()) {
             player.sendMessage("§cYou can't use Expert Seal on this item!");

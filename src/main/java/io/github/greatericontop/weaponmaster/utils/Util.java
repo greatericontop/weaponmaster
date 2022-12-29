@@ -529,14 +529,12 @@ public class Util {
         return items;
     }
 
-    public boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
+    public boolean checkFor(ItemStack item, int index, String requiredLoreSection) {
         if (item == null) { return false; }
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
-        boolean nameCorrect = requiredName == null || iMeta.getDisplayName().equals(requiredName);
         if (iMeta.getLore().size() <= index) { return false; }
-        boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
-        return nameCorrect && loreCorrect;
+        return iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
     }
     
     public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
@@ -548,105 +546,105 @@ public class Util {
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {
-        return this.checkFor(item, RPG_LAUNCHER_NAME, 0, "id: RPG_LAUNCHER");
+        return this.checkFor(item, 0, "id: RPG_LAUNCHER");
     }
     public boolean checkForVampAxe(ItemStack item) {
-        return this.checkFor(item, VAMP_AXE_NAME, 0, "id: VAMP_AXE");
+        return this.checkFor(item, 0, "id: VAMP_AXE");
     }
     public boolean checkForDeathScythe(ItemStack item) {
-        return this.checkFor(item, DEATH_SCYTHE_NAME, 0, "id: DEATH_SCYTHE");
+        return this.checkFor(item, 0, "id: DEATH_SCYTHE");
     }
     public boolean checkForDragonSword(ItemStack item) {
-        return this.checkFor(item, DRAGON_SWORD_NAME, 0, "id: DRAGON_SWORD");
+        return this.checkFor(item, 0, "id: DRAGON_SWORD");
     }
     public boolean checkForArtemisBow(ItemStack item) {
-        return this.checkFor(item, ARTEMIS_BOW_NAME, 0, "id: ARTEMIS_BOW");
+        return this.checkFor(item, 0, "id: ARTEMIS_BOW");
     }
     public boolean checkForAnduril(ItemStack item) {
-        return this.checkFor(item, ANDURIL_NAME, 0, "id: ANDURIL");
+        return this.checkFor(item, 0, "id: ANDURIL");
     }
     public boolean checkForExcalibur(ItemStack item) {
-        return this.checkFor(item, EXCALIBUR_NAME, 0, "id: EXCALIBUR");
+        return this.checkFor(item, 0, "id: EXCALIBUR");
     }
     public boolean checkForExodus(ItemStack item) {
-        return this.checkFor(item, EXODUS_NAME, 0, "id: EXODUS");
+        return this.checkFor(item, 0, "id: EXODUS");
     }
     public boolean checkForRocketStick(ItemStack item) {
-        return this.checkFor(item, ROCKET_STICK_NAME, 0, "id: ROCKET_STICK");
+        return this.checkFor(item, 0, "id: ROCKET_STICK");
     }
     public boolean checkForHelios(ItemStack item) {
-        return this.checkFor(item, HELIOS_NAME, 0, "id: HELIOS");
+        return this.checkFor(item, 0, "id: HELIOS");
     }
     public boolean checkForScylla(ItemStack item) {
-        return this.checkFor(item, SCYLLA_CHESTPLATE_NAME, 0, "id: SCYLLA_CHESTPLATE");
+        return this.checkFor(item, 0, "id: SCYLLA_CHESTPLATE");
     }
     public boolean checkForHermesBoots(ItemStack item) {
-        return this.checkFor(item, HERMES_BOOTS_NAME, 0, "id: HERMES_BOOTS");
+        return this.checkFor(item, 0, "id: HERMES_BOOTS");
     }
     public boolean checkForLifeHelmet(ItemStack item) {
-        return this.checkFor(item, LIFE_HELMET_NAME, 0, "id: LIFE_HELMET");
+        return this.checkFor(item, 0, "id: LIFE_HELMET");
     }
     public boolean checkForCavemanSword(ItemStack item) {
-        return this.checkFor(item, CAVEMAN_SWORD_NAME, 0, "id: CAVEMAN_SWORD");
+        return this.checkFor(item, 0, "id: CAVEMAN_SWORD");
     }
     public boolean checkForWarlockPants(ItemStack item) {
-        return this.checkFor(item, WARLOCK_PANTS_NAME, 0, "id: WARLOCK_PANTS");
+        return this.checkFor(item, 0, "id: WARLOCK_PANTS");
     }
     public boolean checkForFireball(ItemStack item) {
-        return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+        return this.checkFor(item, 0, "id: FIREBALL");
     }
     public boolean checkForAtomBomb(ItemStack item) {
-        return this.checkFor(item, ATOM_BOMB_NAME, 0, "id: ATOM_BOMB");
+        return this.checkFor(item, 0, "id: ATOM_BOMB");
     }
     public boolean checkForNetheriteStaff(ItemStack item) {
-        return this.checkFor(item, NETHERITE_STAFF_NAME, 0, "id: NETHERITE_STAFF");
+        return this.checkFor(item, 0, "id: NETHERITE_STAFF");
     }
     public boolean checkForSniperRifle(ItemStack item) {
-        return this.checkFor(item, SNIPER_RIFLE_NAME, 0, "id: SNIPER_RIFLE");
+        return this.checkFor(item, 0, "id: SNIPER_RIFLE");
     }
     public boolean checkForMinersBlessing(ItemStack item) {
-        return this.checkFor(item, MINERS_BLESSING_NAME, 0, "id: MINERS_BLESSING");
+        return this.checkFor(item, 0, "id: MINERS_BLESSING");
     }
     public boolean checkForPilotSword(ItemStack item) {
-        return this.checkFor(item, PILOT_SWORD_NAME, 0, "id: PILOT_SWORD");
+        return this.checkFor(item, 0, "id: PILOT_SWORD");
     }
     public boolean checkForShreddedAxe(ItemStack item) {
-        return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
+        return this.checkFor(item, 0, "id: SHREDDED_AXE");
     }
     public boolean checkForNapalmMissile(ItemStack item) {
-        return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
+        return this.checkFor(item, 0, "id: NAPALM_MISSILE");
     }
     public boolean checkForNinjaBow(ItemStack item) {
-        return this.checkFor(item, NINJA_BOW_NAME, 0, "id: NINJA_BOW");
+        return this.checkFor(item, 0, "id: NINJA_BOW");
     }
     public boolean checkForDragonArmor(ItemStack item) {
-        return this.checkFor(item, DRAGON_ARMOR_NAME, 0, "id: DRAGON_ARMOR");
+        return this.checkFor(item, 0, "id: DRAGON_ARMOR");
     }
     public boolean checkForCopperSword(ItemStack item) {
-        return this.checkFor(item, COPPER_SWORD_NAME, 0, "id: COPPER_SWORD");
+        return this.checkFor(item, 0, "id: COPPER_SWORD");
     }
     public boolean checkForPoseidonTrident(ItemStack item) {
-        return this.checkFor(item, POSEIDON_TRIDENT_NAME, 0, "id: POSEIDON_TRIDENT");
+        return this.checkFor(item, 0, "id: POSEIDON_TRIDENT");
     }
     public boolean checkForValkyrieAxe(ItemStack item) {
-        return this.checkFor(item, VALKYRIE_AXE_NAME, 0, "id: VALKYRIE_AXE");
+        return this.checkFor(item, 0, "id: VALKYRIE_AXE");
     }
     public boolean checkForAssaultRifle(ItemStack item) {
-        return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
+        return this.checkFor(item, 0, "id: ASSAULT_RIFLE");
     }
     public boolean checkForDragonElytra(ItemStack item) {
-        return this.checkFor(item, DRAGON_ELYTRA_NAME, 0, "id: DRAGON_ELYTRA");
+        return this.checkFor(item, 0, "id: DRAGON_ELYTRA");
     }
     public boolean checkForGuidedMissile(ItemStack item) {
-        return this.checkFor(item, GUIDED_MISSILE_NAME, 0, "id: GUIDED_MISSILE");
+        return this.checkFor(item, 0, "id: GUIDED_MISSILE");
     }
     public boolean checkForAssassinsBlade(ItemStack item) {
-        return this.checkFor(item, ASSASSINS_BLADE_NAME, 0, "id: ASSASSINS_BLADE");
+        return this.checkFor(item, 0, "id: ASSASSINS_BLADE");
     }
     public boolean checkForWitherStaff(ItemStack item) {
-        return this.checkFor(item, WITHER_STAFF_NAME, 0, "id: WITHER_STAFF");
+        return this.checkFor(item, 0, "id: WITHER_STAFF");
     }
     public boolean checkForBombCannon(ItemStack item) {
-        return this.checkFor(item, BOMB_CANNON_NAME, 0, "id: BOMB_CANNON");
+        return this.checkFor(item, 0, "id: BOMB_CANNON");
     }
 }
