@@ -115,8 +115,6 @@ public class GuidedMissileManager implements Listener {
                 // if target too far away, quit
                 if (fireballLoc.distanceSquared(target.getLocation()) > 300.0 * 300.0) {
                     fireball.remove();
-                    fireball.getWorld().createExplosion(fireballLoc, BLOCK_EXPLOSION_POWER, true, true, fireball);
-                    fireball.getWorld().createExplosion(fireballLoc, ENTITY_EXPLOSION_POWER, false, false, fireball);
                     cancel();
                     return;
                 }
