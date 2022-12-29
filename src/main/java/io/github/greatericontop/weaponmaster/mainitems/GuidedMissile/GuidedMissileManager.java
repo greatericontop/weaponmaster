@@ -40,17 +40,25 @@ public class GuidedMissileManager implements Listener {
     private final float BLOCK_EXPLOSION_POWER = 6.0F;
     private final float ENTITY_EXPLOSION_POWER = 19.0F;
     private final float WEAK_EXPLOSION_POWER = 5.0F;
-    private final double PROXIMITY_DISTANCE_SQUARED = 5.75 * 5.75;
+    private final double PROXIMITY_DISTANCE_SQUARED = 6.25 * 6.25;
     // higher acceleration = faster missile
     private final double ACCELERATION = 0.63;
     // higher air resistance (lower number) = slower missile, but more maneuverable
-    private final double AIR_RESISTANCE = 0.74;
+    private final double AIR_RESISTANCE = 0.73;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
-    // there are cases where missiles can orbit the target
+    // There are cases where missiles can orbit the target
     // (if the missile gets the right amount of centripetal acceleration)
-    // with a radius larger than the proximity distance
-    // this unfortunately isn't really avoidable, but it doesn't happen very often at the current settings
+    // with a radius larger than the proximity distance.
+    // This unfortunately isn't really avoidable, but it doesn't happen very often at the current settings.
+    // A lower acceleration would decrease the turn radius making it more likely to go inside proximity distance and
+    // explode (since r = v^2/a = a / (1-d)^2), and the same is true for more air resistance (lower d).
+    // (That formula isn't perfect since some acceleration is wasted on centripetal force instead of all being used
+    //  for keeping the missile at top speed, but it's close. Also, it can also do that in 3D, such as when
+    //  a player is moving and the missile is moves in a corkscrew shape. Here the cross-sectional acceleration
+    //  would be even lower.)
+    // We can prevent this, in theory, by having r be less than the proximity distance, but that would be extremely
+    // excessive.
 
     private final WeaponMasterMain plugin;
     private final Util util;
