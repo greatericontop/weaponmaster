@@ -408,7 +408,12 @@ Crafting Recipe:
 `/witherstaff give` - shoots wither skeleton skulls.
 
 Crafting Recipe:
-- 
+- 2x Blaze Rod
+- 1x Wither Skeleton Skull
+- 1x Fire Charge
+- 1x TNT
+
+![](assets/witherstaff.png)
 
 
 <br/>
