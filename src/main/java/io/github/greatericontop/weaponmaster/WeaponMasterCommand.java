@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileManager;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -54,6 +55,14 @@ public class WeaponMasterCommand implements CommandExecutor {
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
             sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
             return true;
+        }
+        if (args.length >= 1 && args[0].equals("debug2")) {
+            double proximityDistance = Double.parseDouble(args[1]);
+            double acceleration = Double.parseDouble(args[2]);
+            double airResistanceCoef = Double.parseDouble(args[3]);
+            GuidedMissileManager.PROXIMITY_DISTANCE_SQUARED = proximityDistance * proximityDistance;
+            GuidedMissileManager.ACCELERATION = acceleration;
+            GuidedMissileManager.AIR_RESISTANCE = airResistanceCoef;
         }
         if (args.length >= 1 && args[0].equals("attributemodifier")) {
             if (args.length < 5) {

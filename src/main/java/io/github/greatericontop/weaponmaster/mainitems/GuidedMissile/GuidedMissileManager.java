@@ -40,11 +40,11 @@ public class GuidedMissileManager implements Listener {
     private final float BLOCK_EXPLOSION_POWER = 6.0F;
     private final float ENTITY_EXPLOSION_POWER = 19.0F;
     private final float WEAK_EXPLOSION_POWER = 5.0F;
-    private final double PROXIMITY_DISTANCE_SQUARED = 6.25 * 6.25;
+    public static double PROXIMITY_DISTANCE_SQUARED = 6.5 * 6.5;
     // higher acceleration = faster missile
-    private final double ACCELERATION = 0.63;
+    public static double ACCELERATION = 0.63;
     // higher air resistance (lower number) = slower missile, but more maneuverable
-    private final double AIR_RESISTANCE = 0.73;
+    public static double AIR_RESISTANCE = 0.73;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     // There are cases where missiles can orbit the target
