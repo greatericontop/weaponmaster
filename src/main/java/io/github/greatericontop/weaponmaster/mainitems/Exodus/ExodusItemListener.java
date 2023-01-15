@@ -48,7 +48,7 @@ public class ExodusItemListener implements Listener {
     public void doExodusHeal(Player player) {
         if (cooldown.getOrDefault(player.getUniqueId(), true)) {
             // health is regenerated at 25 and 50
-            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 60, 0, true);
+            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 60, 1, true);
             player.addPotionEffect(effect);
             cooldown.put(player.getUniqueId(), false);
             new BukkitRunnable() {
