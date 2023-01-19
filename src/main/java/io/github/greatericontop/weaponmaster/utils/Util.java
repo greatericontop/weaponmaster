@@ -407,6 +407,7 @@ public class Util {
         COPPER_SWORD_LORE.add("id: COPPER_SWORD");
         COPPER_SWORD_LORE.add("§6---------------");
         COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§eAbility: §4Heavy Blow");
         COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy with a charged attack.");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§7This sword will oxidize over time, making it weaker and weaker.");
@@ -420,10 +421,10 @@ public class Util {
         POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
         POSEIDON_TRIDENT_LORE.add("");
-        POSEIDON_TRIDENT_LORE.add("§3A Trident with power from the sea god.");
+        POSEIDON_TRIDENT_LORE.add("§eAbility: §4Sea God");
         POSEIDON_TRIDENT_LORE.add("§3Gives Conduit Power while holding.");
         POSEIDON_TRIDENT_LORE.add("§3Small chance of giving Dolphin's Grace.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning.");
+        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning on hit.");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
         POSEIDON_TRIDENT_LORE.add("§6---------------");

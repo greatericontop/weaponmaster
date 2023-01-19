@@ -58,7 +58,6 @@ public class TridentListener implements Listener {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 39, 0));
                     ItemStack it = player.getInventory().getItemInMainHand();
                     ItemMeta im = it.getItemMeta();
-                    im.removeEnchant(Enchantment.RIPTIDE);
                     it.setItemMeta(im);
                     if (player.isInWater() && Math.random() < 0.015) {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 39, 0));
@@ -79,20 +78,12 @@ public class TridentListener implements Listener {
         }
         player.removePotionEffect(PotionEffectType.CONDUIT_POWER);
         player.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, player.getEyeLocation().add(player.getEyeLocation().getDirection().multiply(0.9)), 15);
-        if (Math.random() < 0.15) {
-            for (int amount = 0; amount < 10; amount++) {
-                Trident trident = (Trident) player.getWorld().spawnEntity(player.getEyeLocation(), EntityType.TRIDENT);
-                trident.setVelocity(player.getEyeLocation().getDirection().multiply(0.9));
-                trident.setDamage(2.0F);
-                trident.setShooter(player);
-                trident.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-            }
-        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onProjHit(ProjectileHitEvent event) {
         if (!(event.getEntity().getShooter() instanceof Player)) { return; }
+        if (event.getHitEntity() == null) { return; }
         Player player = (Player) event.getEntity().getShooter();
         if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.poseidontrident.use")) {
@@ -101,19 +92,6 @@ public class TridentListener implements Listener {
         }
         if (Math.random() < 0.3) {
             event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onHit(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player)) { return; }
-        if (!(event.getEntity() instanceof LivingEntity)) { return; }
-        Player player = (Player) event.getDamager();
-        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { return; }
-
-        LivingEntity attacked = (LivingEntity) event.getEntity();
-        if (Math.random() < 0.1) {
-            attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 1));
         }
     }
 }
