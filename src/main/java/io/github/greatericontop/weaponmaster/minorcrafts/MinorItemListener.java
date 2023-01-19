@@ -163,7 +163,13 @@ public class MinorItemListener implements Listener {
         event.getCurrentItem().setItemMeta(targetItem);
         event.setCancelled(true);
         player.updateInventory();
-        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+        if (event.getCursor().getAmount() > 1) {
+            ItemStack newExpertSeals = event.getCursor();
+            newExpertSeals.setAmount(newExpertSeals.getAmount() - 1);
+            event.setCursor(newExpertSeals);
+        } else {
+            event.setCursor(new ItemStack(Material.AIR));
+        }
         player.sendMessage("§3Success!");
     }
 
