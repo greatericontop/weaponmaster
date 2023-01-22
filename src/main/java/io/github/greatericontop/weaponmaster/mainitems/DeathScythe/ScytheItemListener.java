@@ -48,13 +48,13 @@ public class ScytheItemListener implements Listener {
     }
 
     private int getStrengthLevel(double damageAmount) {
-        if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength5Threshold")) {
+        if (damageAmount >= plugin.getConfig().getDouble("deathScythe.strength5Threshold")) {
             return 4; // Strength V
-        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength4Threshold")) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathScythe.strength4Threshold")) {
             return 3;
-        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength3Threshold")) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathScythe.strength3Threshold")) {
             return 2;
-        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength2Threshold")) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathScythe.strength2Threshold")) {
             return 1;
         }
         return 0;

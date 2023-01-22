@@ -158,6 +158,7 @@ public class WeaponMasterMain extends JavaPlugin {
 
         this.saveDefaultConfig();
         this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
 
         paperUtils = new PaperUtils(this);
 
