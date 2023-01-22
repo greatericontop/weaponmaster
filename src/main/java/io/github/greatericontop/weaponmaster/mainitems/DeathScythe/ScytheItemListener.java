@@ -41,18 +41,20 @@ import java.util.Arrays;
 public class ScytheItemListener implements Listener {
 
     private final Util util;
+    private final WeaponMasterMain plugin;
     public ScytheItemListener(WeaponMasterMain plugin) {
+        this.plugin = plugin;
         util = new Util(plugin);
     }
 
     private int getStrengthLevel(double damageAmount) {
-        if (damageAmount >= 18.0) {
+        if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength5Threshold")) {
             return 4; // Strength V
-        } else if (damageAmount >= 12.0) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength4Threshold")) {
             return 3;
-        } else if (damageAmount >= 7.0) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength3Threshold")) {
             return 2;
-        } else if (damageAmount >= 3.0) {
+        } else if (damageAmount >= plugin.getConfig().getDouble("deathscythe.strength2Threshold")) {
             return 1;
         }
         return 0;
