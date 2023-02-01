@@ -105,6 +105,7 @@ public class ScytheItemListener implements Listener {
         ItemStack sacrificeItem = event.getInventory().getItem(1);
         if (!util.checkForDeathScythe(scythe)) { return; }
         if (sacrificeItem != null) {
+            event.setResult(null);
             event.getViewers().get(0).sendMessage("§cYou can't use this in an anvil!");
         }
     }
