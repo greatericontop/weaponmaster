@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.mainitems.DeathScythe;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -32,11 +31,8 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.Arrays;
 
 public class ScytheItemListener implements Listener {
 
@@ -108,14 +104,9 @@ public class ScytheItemListener implements Listener {
         ItemStack scythe = event.getInventory().getItem(0);
         ItemStack sacrificeItem = event.getInventory().getItem(1);
         if (!util.checkForDeathScythe(scythe)) { return; }
-        if (sacrificeItem == null) { return; } // if there's no second item, don't overwrite the result
-                                               // and if you do, the player will be able to take it for some reason
-        ItemStack error = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
-        ItemMeta errorIM = error.getItemMeta();
-        errorIM.setDisplayName("§cError");
-        errorIM.setLore(Arrays.asList("§7You can't repair this item in an anvil."));
-        event.setResult(error);
-        event.getResult().setItemMeta(errorIM);
+        if (sacrificeItem != null) {
+            event.getViewers().get(0).sendMessage("§cYou can't use this in an anvil!");
+        }
     }
 
 }
