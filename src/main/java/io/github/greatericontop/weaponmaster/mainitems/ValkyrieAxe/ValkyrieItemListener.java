@@ -69,7 +69,7 @@ public class ValkyrieItemListener implements Listener {
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
             if (entity.getUniqueId().equals(event.getEntity().getUniqueId())) { continue; } // don't double-attack
-            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR, player);
+            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR);
             player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, entity.getLocation(), 3);
             player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         }
