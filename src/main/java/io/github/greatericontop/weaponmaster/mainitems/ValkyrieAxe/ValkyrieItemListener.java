@@ -32,6 +32,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.Damageable;
@@ -56,6 +57,8 @@ public class ValkyrieItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onHitEntity(EntityDamageByEntityEvent event) {
+        if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) { return; } // prevents massive recursive call chains
+        // in 1.19.3, .damage() with the source as the player will call the event again - and lag will happen
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
         if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
