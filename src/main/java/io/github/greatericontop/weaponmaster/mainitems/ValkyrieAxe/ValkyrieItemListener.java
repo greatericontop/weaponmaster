@@ -32,12 +32,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class ValkyrieItemListener implements Listener {
     private final float FOOD_COST = 8.0F / 3.0F; // 3 uses = 2 hunger points or 1 hunger bar
@@ -48,17 +51,22 @@ public class ValkyrieItemListener implements Listener {
     private final double FIRESTORM_KNOCKBACK = 14.0;
     private final int ITEM_TOTAL_DURABILITY = 250;
 
+    Set<UUID> affectedEntities = new HashSet<>(); // cleared every tick; used to prevent a recursive call chain in 1.19.3
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public ValkyrieItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        new BukkitRunnable() {
+            public void run() {
+                affectedEntities.clear();
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onHitEntity(EntityDamageByEntityEvent event) {
-        if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) { return; } // prevents massive recursive call chains
-        // in 1.19.3, .damage() with the source as the player will call the event again - and lag will happen
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
         if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
@@ -69,9 +77,11 @@ public class ValkyrieItemListener implements Listener {
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
             if (entity.getUniqueId().equals(event.getEntity().getUniqueId())) { continue; } // don't double-attack
-            ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR);
-            player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, entity.getLocation(), 3);
-            player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
+            if (affectedEntities.add(entity.getUniqueId())) { // prevent recursive call chain in 1.19.3: every entity can only be spread to once a tick
+                ((LivingEntity) entity).damage(event.getDamage() * DAMAGE_FACTOR, player);
+                player.getWorld().spawnParticle(Particle.SWEEP_ATTACK, entity.getLocation(), 3);
+                player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
+            }
         }
     }
 
