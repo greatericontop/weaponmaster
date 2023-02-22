@@ -152,7 +152,7 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getLogger().info("");
         this.getLogger().info("WeaponMaster");
         this.getLogger().info("");
-        this.getLogger().info("Copyright (C) greateric 2021-2022. Licensed under GPL v3.");
+        this.getLogger().info("Copyright (C) greateric 2021-present. Licensed under GPL v3.");
         this.getLogger().info("Initializing WeaponMaster by greateric");
         this.getLogger().info("--------------------");
 
