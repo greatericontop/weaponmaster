@@ -75,6 +75,7 @@ public class ValkyrieItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrie.use§3.");
             return;
         }
+        if (affectedEntities.contains(event.getEntity().getUniqueId())) { return; } // prevent double attack from right-click
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
             if (entity.getUniqueId().equals(event.getEntity().getUniqueId())) { continue; } // don't double-attack
@@ -122,7 +123,6 @@ public class ValkyrieItemListener implements Listener {
             if (angleDegrees < MAX_ANGLE_DEG) {
                 Vector knockbackVector = playerToEntity.normalize().multiply(FIRESTORM_KNOCKBACK);
                 affectedEntities.add(entity.getUniqueId());
-                for (Entity entities : player.getNearbyEntities(3.0, 3.0, 3.0)) { affectedEntities.add(entities.getUniqueId()); } // prevent swing attack from happening
                 ((LivingEntity) entity).damage(12.0, player);
                 entity.setVelocity(knockbackVector);
             }
