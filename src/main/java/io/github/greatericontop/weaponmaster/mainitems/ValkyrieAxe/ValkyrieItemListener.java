@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -120,6 +121,8 @@ public class ValkyrieItemListener implements Listener {
             double angleDegrees = playerLooking.angle(playerToEntity) * 180.0 / Math.PI;
             if (angleDegrees < MAX_ANGLE_DEG) {
                 Vector knockbackVector = playerToEntity.normalize().multiply(FIRESTORM_KNOCKBACK);
+                affectedEntities.add(entity.getUniqueId());
+                for (Entity entities : player.getNearbyEntities(3.0, 3.0, 3.0)) { affectedEntities.add(entities.getUniqueId()); } // prevent swing attack from happening
                 ((LivingEntity) entity).damage(12.0, player);
                 entity.setVelocity(knockbackVector);
             }
