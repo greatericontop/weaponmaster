@@ -111,7 +111,10 @@ public class DragonSwordUpgradeListener implements Listener {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }
         Player player = (Player) event.getWhoClicked();
-        if (event.getRawSlot() == 2 && util.checkForDragonSword(event.getCurrentItem())) {
+        if (event.getRawSlot() == 2
+                && util.checkForDragonSword(event.getInventory().getItem(0))
+                && util.checkFor(event.getInventory().getItem(1), 0, "id: DRAGON_SCALE")
+        ) {
             ItemMeta im = event.getCurrentItem().getItemMeta();
             int levelsRequired = getLevelsForItem(im.getLore());
             if (player.getLevel() < levelsRequired) {
