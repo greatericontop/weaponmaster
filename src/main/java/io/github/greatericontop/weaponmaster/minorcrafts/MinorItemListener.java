@@ -31,8 +31,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -171,6 +174,17 @@ public class MinorItemListener implements Listener {
             event.setCursor(new ItemStack(Material.AIR));
         }
         player.sendMessage("§3Success!");
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onRightClick(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        if (!util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") &&
+                !util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") &&
+                !util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: DRAGON_HORN")) { return; }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            event.setCancelled(true);
+        }
     }
 
 }
