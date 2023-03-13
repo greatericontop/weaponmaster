@@ -177,14 +177,13 @@ public class MinorItemListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onRightClick(PlayerInteractEvent event) {
+    public void rightClickBlock(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
         Player player = event.getPlayer();
         if (util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: DRAGON_HORN")) {
-            if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                event.setCancelled(true);
-            }
+            event.setCancelled(true);
         }
     }
 
