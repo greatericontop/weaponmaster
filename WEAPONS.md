@@ -34,9 +34,14 @@
   - [Fireball](#fireball)
   - [Wither Staff](#wither-staff)
 - [Others](#others)
+  - [Dragon's Horn](#dragons-horn)
+  - [Dragon's Scale](#dragons-scale)
+  - [Dragon's Wing](#dragons-wing)
+  - [Expert Seal](#expert-seal)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Hide of Leviathan](#hide-of-leviathan)
+  - [Magic Energy Bar](#magic-energy-bar)
   - [Nether Reactor Core](#nether-reactor-core)
   - [Silky String](#silky-string)
 
@@ -427,6 +432,10 @@ Crafting Recipe:
 
 `/minoritem list` - a list of commands for minor items.
 
+### Expert Seal
+
+2.5% chance of dropping for a `Wither`. Increases all the enchantments on an item by 1 level. Can only be used once per item. 
+
 ### Flask of Ichor
 
 Potion of `Instant Damage IV`
@@ -455,6 +464,14 @@ Crafting Recipe:
 - 1x Heart of Leviathan
 
 ![](assets/hide.png)
+
+### Life Core
+
+0.8% chance of dropping from an `Evoker`. Used to craft `Helmet of Life`.
+
+### Magic Energy Bar
+
+A bar of magical energy. Increase an additional heart when consumed. Able to accumulate up to 6 hearts, 2 are lost when you die. 
 
 ### Nether Reactor Core
 
