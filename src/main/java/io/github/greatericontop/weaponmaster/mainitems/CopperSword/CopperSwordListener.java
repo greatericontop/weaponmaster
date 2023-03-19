@@ -69,8 +69,10 @@ public class CopperSwordListener implements Listener {
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         PersistentDataContainer pdc = im.getPersistentDataContainer();
-        if (!pdc.has(pdcWaxKey, PersistentDataType.INTEGER) || !pdc.has(pdcOxidizeKey, PersistentDataType.STRING)) {
+        if (!pdc.has(pdcWaxKey, PersistentDataType.INTEGER)) {
             pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 0);
+        }
+        if (!pdc.has(pdcOxidizeKey, PersistentDataType.STRING)) {
             pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal");
         }
 
