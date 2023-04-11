@@ -92,17 +92,27 @@ public class FightManager implements Listener {
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onDragonExplosionDamage(EntityDamageEvent event) {
+    public void onDragonDamage(EntityDamageEvent event) {
         if (currentlyActiveDragon == null) { return; }
         if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
-        if (!(event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) { return; }
-        if (damageDealtToDragonThroughExplosions >= 80.0) {
-            event.setDamage(event.getDamage() * 0.1);
-        } else if (damageDealtToDragonThroughExplosions + event.getDamage() >= 80.0) {
-            double fullDamage = 80.0 - damageDealtToDragonThroughExplosions;
-            event.setDamage(fullDamage + 0.1 * (event.getDamage()-fullDamage));
+
+        // reduce high amounts of [raw] damage (e.g. bullet arrows, high explosives)
+        if (event.getDamage() >= 30.0) {
+            // damage over 30 points is reduced to (1 + extra)**exponent - 1
+            double adjustedExtra = Math.pow(event.getDamage() - 29.0, 0.6) - 1;
+            event.setDamage(30.0 + adjustedExtra);
         }
-        damageDealtToDragonThroughExplosions += event.getFinalDamage();
+
+        // explosive damage nerf (applied AFTER high damage is reduced)
+        if (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+            if (damageDealtToDragonThroughExplosions >= 80.0) {
+                event.setDamage(event.getDamage() * 0.1);
+            } else if (damageDealtToDragonThroughExplosions + event.getDamage() >= 80.0) {
+                double fullDamage = 80.0 - damageDealtToDragonThroughExplosions;
+                event.setDamage(fullDamage + 0.1 * (event.getDamage() - fullDamage));
+            }
+            damageDealtToDragonThroughExplosions += event.getFinalDamage();
+        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
