@@ -82,6 +82,7 @@ public class EffectPicker {
         Object[] data = getRandomEffect();
         int minDuration = (int) data[2];
         int maxDuration = isShortened ? ((int) data[3]) / 2 : (int) data[3];
+        maxDuration = Math.max(maxDuration, 1);
         int minAmplifier = (int) data[4];
         int maxAmplifier = isShortened ? (int) data[6] : (int) data[5];
         if (maxDuration - minDuration + 1 <= 0 || maxAmplifier - minAmplifier + 1 <= 0) {

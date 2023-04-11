@@ -142,7 +142,7 @@ Crafting Recipe:
 
 ![](assets/dragonhelmet.png)
 
-### Chestplate
+#### Chestplate
 
 Crafting Recipe:
 - 8x Dragon Wing
@@ -150,7 +150,7 @@ Crafting Recipe:
 
 ![](assets/dragonchestplate.png)
 
-### Leggings
+#### Leggings
 
 Crafting Recipe:
 - 7x Dragon Wing
