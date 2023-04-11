@@ -211,6 +211,12 @@ commands:
     permission: "weaponmaster.bombcannon.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["explosive-bow"]
+  throwingknife:
+    description: "[Weapon Master] command for Throwing Knife"
+    usage: "U: /throwingknife give"
+    permission: "weaponmaster.throwingknife.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["throwing-knife"]
 
 
 permissions:
@@ -394,5 +400,10 @@ permissions:
   weaponmaster.bombcannon.command:
     default: op
   weaponmaster.bombcannon.use:
+    default: true
+  #
+  weaponmaster.throwingknife.command:
+    default: op
+  weaponmaster.throwingknife.use:
     default: true
   #

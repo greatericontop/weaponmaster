@@ -105,6 +105,8 @@ import io.github.greatericontop.weaponmaster.mainitems.ShreddedAxe.ShreddedListe
 import io.github.greatericontop.weaponmaster.mainitems.ShreddedAxe.ShreddedRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperCommand;
 import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeCommand;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeListener;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieRecipe;
@@ -299,6 +301,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Bomb Cannon
         this.getCommand("bombcannon").setExecutor(new BombCannonCommand());
         this.getServer().getPluginManager().registerEvents(new BombCannonListener(this), this);
+        // Throwing Knife
+        this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
+        this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
