@@ -107,6 +107,7 @@ import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperCommand
 import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeListener;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieRecipe;
@@ -304,6 +305,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Throwing Knife
         this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
         this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
+        new ThrowingKnifeRecipe().regRecipe();
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
