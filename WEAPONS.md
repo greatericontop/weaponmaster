@@ -32,6 +32,7 @@
   - [Anduril](#anduril)
   - [Copper Sword](#copper-sword)
   - [Fireball](#fireball)
+  - [Throwing Knife](#throwing-knife)
   - [Wither Staff](#wither-staff)
 - [Others](#others)
   - [Expert Seal](#expert-seal)
@@ -404,6 +405,19 @@ Crafting Recipe:
 - 1x Arrow
 
 ![](assets/fireball.png)
+
+
+### Throwing Knife
+
+`/throwingknife give` - A throwable knife that deals 2 hearts of damage.
+
+Crafting Recipe:
+- 1x Iron Block
+- 1x Iron Sword
+- 1x Piston
+
+![](assets/throwingknife.png)
+
 
 ### Wither Staff
 
