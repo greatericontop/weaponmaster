@@ -69,30 +69,28 @@ public class CopperSwordListener implements Listener {
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         PersistentDataContainer pdc = im.getPersistentDataContainer();
-        if (!pdc.has(pdcWaxKey, PersistentDataType.INTEGER)) {
-            pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 0);
-        }
-        if (!pdc.has(pdcOxidizeKey, PersistentDataType.STRING)) {
-            pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal");
-        }
+        if (!pdc.has(pdcOxidizeKey, PersistentDataType.STRING)) { pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal"); }
+        if (!pdc.has(pdcWaxKey, PersistentDataType.INTEGER)) { pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 0); }
 
-        List<String> lore = im.getLore();
-        if (Math.random() < 0.05 &&
-                pdc.get(pdcWaxKey, PersistentDataType.INTEGER) == 0 &&
-                !pdc.get(pdcOxidizeKey, PersistentDataType.STRING).equals("oxidized")) {
-            int sharpLvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
-            int unbreakingLvl = im.getEnchantLevel(Enchantment.DURABILITY);
-            im.removeEnchant(Enchantment.DAMAGE_ALL);
-            im.addEnchant(Enchantment.DAMAGE_ALL, sharpLvl - 1, false);
-            im.removeEnchant(Enchantment.DURABILITY);
-            im.addEnchant(Enchantment.DURABILITY, unbreakingLvl - 1, true);
-            player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
-            if (pdc.get(pdcOxidizeKey, PersistentDataType.STRING).equals("exposed")) {
-                lore.set(8, "§bOXIDIZED");
-                pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "oxidized");
-            } else {
+        if (Math.random() < 0.05 && pdc.get(pdcWaxKey, PersistentDataType.INTEGER) != 1) {
+            List<String> lore = im.getLore();
+            String oxidizeLevel = pdc.get(pdcOxidizeKey, PersistentDataType.STRING);
+            if (oxidizeLevel.equals("normal")) {
                 lore.set(8, "§bEXPOSED");
                 pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "exposed");
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 2, false);
+                im.addEnchant(Enchantment.DURABILITY, 8, true);
+                player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
+            } else if (oxidizeLevel.equals("exposed")) {
+                lore.set(8, "§bOXIDIZED");
+                pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "oxidized");
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                im.addEnchant(Enchantment.DURABILITY, 7, true);
+                player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
             }
             im.setLore(lore);
             player.getInventory().getItemInMainHand().setItemMeta(im);
@@ -107,7 +105,7 @@ public class CopperSwordListener implements Listener {
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 9));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
         // player.playSound(player, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
-        plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
+        plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration / 20), true);
         if (attacked.getType() == EntityType.PLAYER) {
             Player attackedPlayer = (Player) event.getEntity();
             attackedPlayer.playSound(attackedPlayer, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
@@ -125,33 +123,32 @@ public class CopperSwordListener implements Listener {
             event.getInventory().setRepairCost(0);
         }
         if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB) {
-            ItemStack itemStack = event.getInventory().getItem(0);
-            ItemMeta im = itemStack.getItemMeta();
+            ItemStack outputItem = new ItemStack(Material.GOLDEN_SWORD, 1);
+            ItemMeta im = event.getInventory().getItem(0).getItemMeta();
             List<String> lore = im.getLore();
             PersistentDataContainer pdc = im.getPersistentDataContainer();
             pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 1);
             lore.set(9, "§6WAXED");
             im.setLore(lore);
-            itemStack.setItemMeta(im);
-            event.setResult(itemStack);
+            outputItem.setItemMeta(im);
+            event.setResult(outputItem);
         }
         if (event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
             if (event.getInventory().getItem(1).getAmount() != 4) {
                 player.sendMessage("§cYou must have exactly §b4 §cof §6Copper Block §cto execute this operation.");
             } else {
-                ItemStack itemStack = event.getInventory().getItem(0);
-                ItemMeta im = itemStack.getItemMeta();
+                ItemStack outputItem = new ItemStack(Material.GOLDEN_SWORD, 1);
+                ItemMeta im = event.getInventory().getItem(0).getItemMeta();
                 List<String> lore = im.getLore();
                 PersistentDataContainer pdc = im.getPersistentDataContainer();
                 pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal");
                 lore.set(8, "§bNORMAL");
                 im.setLore(lore);
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
                 im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
                 im.removeEnchant(Enchantment.DURABILITY);
                 im.addEnchant(Enchantment.DURABILITY, 9, true);
-                itemStack.setItemMeta(im);
-                event.setResult(itemStack);
+                outputItem.setItemMeta(im);
+                event.setResult(outputItem);
             }
         }
     }
