@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.mainitems.RocketStick;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.FluidCollisionMode;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -36,7 +35,7 @@ import org.bukkit.util.Vector;
 
 public class RocketItemListener implements Listener {
 
-    private final double KNOCKBACK_OTHER = 5.7;
+    private final double KNOCKBACK_OTHER = 8.3;
     private final double KNOCKBACK_SELF = 8.8;
     private final double TELEPORT_DISTANCE = 6.5;
 
@@ -50,7 +49,6 @@ public class RocketItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player)event.getDamager();
         if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
@@ -73,20 +71,19 @@ public class RocketItemListener implements Listener {
         }
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (util.checkForInteractableBlock(event)) { return; }
+            if (Util.checkForInteractableBlock(event)) { return; }
             if (player.isSneaking()) {
-                Vector tp = player.getEyeLocation().getDirection().multiply(TELEPORT_DISTANCE);
                 // check raytrace
-                RayTraceResult rtxResult = player.getWorld()
-                        .rayTrace(player.getEyeLocation(), tp, TELEPORT_DISTANCE + 1.5, FluidCollisionMode.NEVER, true, 0.4, null);
+                RayTraceResult rtxResult = player.getWorld().rayTraceBlocks(
+                        player.getEyeLocation(), player.getEyeLocation().getDirection(),
+                        TELEPORT_DISTANCE + 0.1, FluidCollisionMode.NEVER, true);
                 if (rtxResult != null && rtxResult.getHitBlock() != null) {
-                    Location loc = rtxResult.getHitBlock().getLocation();
-                    player.sendMessage(String.format("§7Canceled due to: %s %s %s", loc.getX(), loc.getY(), loc.getZ()));
                     player.sendMessage("§7You can't teleport through blocks!");
                     return;
                 }
+                Vector tp = player.getEyeLocation().getDirection().multiply(TELEPORT_DISTANCE);
                 player.playSound(player, Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
-                player.teleport(player.getLocation().add(tp));
+                player.teleport(player.getEyeLocation().add(tp));
             } else {
                 Vector knockback = player.getEyeLocation().getDirection().multiply(KNOCKBACK_SELF);
                 player.setVelocity(player.getVelocity().add(knockback));

@@ -52,7 +52,7 @@ public class DragonArmorListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOW) // runs near the beginning
-    public void onDamageByEntity(EntityDamageEvent event) {
+    public void onDamage(EntityDamageEvent event) {
         if (event.getCause() == EntityDamageEvent.DamageCause.VOID) { return; }
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getEntity();

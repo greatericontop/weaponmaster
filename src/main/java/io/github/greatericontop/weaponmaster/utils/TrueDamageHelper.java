@@ -17,7 +17,6 @@ package io.github.greatericontop.weaponmaster.utils;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -36,10 +35,10 @@ public class TrueDamageHelper {
             // damage left over for health
             double newHealth = target.getHealth() - leftAmount;
             if (newHealth <= 0.000_001) {
-                target.setHealth(0.0);
+                target.setHealth(0.000_001);
+                target.damage(200_000_000.0); // funny bug makes the damage infinity if you deal too much
                 return;
             }
-            Bukkit.getServer().getLogger().warning("unhandled damage may occur; setting health right now");
             target.setHealth(newHealth);
         }
         target.playEffect(EntityEffect.HURT);

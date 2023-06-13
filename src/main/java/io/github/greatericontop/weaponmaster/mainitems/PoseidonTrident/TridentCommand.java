@@ -52,6 +52,7 @@ public class TridentCommand implements CommandExecutor {
             }
             ItemStack trident = util.generateMeta(util.POSEIDON_TRIDENT_LORE, util.POSEIDON_TRIDENT_NAME, Material.TRIDENT);
             trident.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
+            trident.addUnsafeEnchantment(Enchantment.CHANNELING, 1);
             ((Player) sender).getInventory().addItem(trident);
             sender.sendMessage("§7Gave you §f[" + util.POSEIDON_TRIDENT_NAME + "§f]§7.");
             return true;

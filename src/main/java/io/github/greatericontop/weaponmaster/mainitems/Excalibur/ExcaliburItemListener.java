@@ -54,18 +54,20 @@ public class ExcaliburItemListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.excalibur.use§3.");
             return;
         }
+        if (!(event.getEntity() instanceof LivingEntity)) {
+            return;
+        }
+        LivingEntity victim = (LivingEntity) event.getEntity();
         if (cooldowns.getOrDefault(player.getUniqueId(), true)) {
-            LivingEntity victim = (LivingEntity) event.getEntity();
             new BukkitRunnable() {
                 public void run() {
                     if (victim.isDead()) {
                         cancel();
                         return;
                     }
-                    victim.setNoDamageTicks(0);
                     victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
                     victim.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, victim.getLocation(), 4);
-                    TrueDamageHelper.dealTrueDamage(victim, 3.0);
+                    TrueDamageHelper.dealTrueDamage(victim, 3.0); // dealing true damage does NOT require no damage ticks
                 }
             }.runTaskLater(plugin, 1L);
             cooldowns.put(player.getUniqueId(), false);

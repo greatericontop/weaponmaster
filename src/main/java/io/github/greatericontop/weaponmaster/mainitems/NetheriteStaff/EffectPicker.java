@@ -17,6 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.bukkit.Bukkit;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
@@ -81,8 +82,12 @@ public class EffectPicker {
         Object[] data = getRandomEffect();
         int minDuration = (int) data[2];
         int maxDuration = isShortened ? ((int) data[3]) / 2 : (int) data[3];
+        maxDuration = Math.max(maxDuration, 1);
         int minAmplifier = (int) data[4];
         int maxAmplifier = isShortened ? (int) data[6] : (int) data[5];
+        if (maxDuration - minDuration + 1 <= 0 || maxAmplifier - minAmplifier + 1 <= 0) {
+            Bukkit.getLogger().warning(String.format("maxDur %d minDur %d maxAmp %d minAmp %d | effect: %s", maxDuration, minDuration, maxAmplifier, minAmplifier, data[1]));
+        }
         int duration = rnd.nextInt(maxDuration - minDuration + 1) + minDuration;
         int amplifier = rnd.nextInt(maxAmplifier - minAmplifier + 1) + minAmplifier;
         return new Object[]{data[1], duration, amplifier};

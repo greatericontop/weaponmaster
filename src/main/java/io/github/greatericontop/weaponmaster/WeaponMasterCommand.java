@@ -17,8 +17,8 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.dragonmanager.LootDropper;
-import org.bukkit.Material;
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileManager;
+import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -31,8 +31,8 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionType;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.UUID;
 
@@ -47,24 +47,22 @@ public class WeaponMasterCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length >= 1 && args[0].equals("debug")) {
             Player player = (Player) sender;
-            ItemStack itemStack = new ItemStack(Material.POTION, 1);
-            PotionMeta im = (PotionMeta) itemStack.getItemMeta();
-            im.setBasePotionData(new PotionData(PotionType.SPEED, true, false));
-            itemStack.setItemMeta(im);
-            player.getInventory().addItem(itemStack);
-            player.sendMessage("§7Given!");
+            TrueDamageHelper.dealTrueDamage(player, 30.0);
+            player.sendMessage("§7I just damaged you for 30 true damage!");
         }
         if (args.length >= 1 && args[0].equals("debug1")) {
             sender.sendMessage("§7dragon: " + plugin.dragonManager.currentlyActiveDragon);
             sender.sendMessage("§7explosive damage dealt: " + plugin.dragonManager.damageDealtToDragonThroughExplosions);
-            int wasted = new LootDropper(plugin)
-                    .doAllDrops(
-                            plugin.dragonManager.currentlyActiveDragon.getWorld(),
-                            1000, ((Player) sender)
-            );
-            sender.sendMessage("§7"+wasted+" was wasted");
             sender.sendMessage("§7current hp: §c" + plugin.dragonManager.currentlyActiveDragon.getHealth());
             return true;
+        }
+        if (args.length >= 1 && args[0].equals("debug2")) {
+            double proximityDistance = Double.parseDouble(args[1]);
+            double acceleration = Double.parseDouble(args[2]);
+            double airResistanceCoef = Double.parseDouble(args[3]);
+            GuidedMissileManager.PROXIMITY_DISTANCE_SQUARED = proximityDistance * proximityDistance;
+            GuidedMissileManager.ACCELERATION = acceleration;
+            GuidedMissileManager.AIR_RESISTANCE = airResistanceCoef;
         }
         if (args.length >= 1 && args[0].equals("attributemodifier")) {
             if (args.length < 5) {
@@ -117,6 +115,10 @@ public class WeaponMasterCommand implements CommandExecutor {
             Player player = (Player) sender;
             ItemStack itemStack = player.getInventory().getItemInMainHand();
             ItemMeta im = itemStack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
             im.addAttributeModifier(attribute, new AttributeModifier(uuid, "weaponmaster", amount, operation, slot));
             itemStack.setItemMeta(im);
             player.sendMessage(String.format("§3Successfully added attribute modifier §4%s§3.", uuid));
@@ -154,9 +156,14 @@ public class WeaponMasterCommand implements CommandExecutor {
                 return true;
             }
             Enchantment enchant;
-            int level;
             try {
                 enchant = Enchantment.getByKey(NamespacedKey.minecraft(args[1]));
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage("§cError: §4You gave an invalid enchantment. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            int level;
+            try {
                 if (args[2].equalsIgnoreCase("max")) {
                     level = 255;
                 } else {
@@ -178,8 +185,78 @@ public class WeaponMasterCommand implements CommandExecutor {
                 sender.sendMessage("§cError: §4Must be a player.");
                 return true;
             }
-            ((Player) sender).getInventory().getItemInMainHand().addUnsafeEnchantment(enchant, level);
-            sender.sendMessage(String.format("§3Added §4%s §3level §4%d§3!", enchant.getKey(), level));
+            ItemStack stack = ((Player) sender).getInventory().getItemInMainHand();
+            ItemMeta im = stack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
+            if (level <= 0) {
+                im.removeEnchant(enchant);
+                stack.setItemMeta(im);
+                sender.sendMessage(String.format("§3Removed enchant §4%s§3!", enchant.getKey()));
+            } else {
+                im.addEnchant(enchant, level, true);
+                stack.setItemMeta(im);
+                sender.sendMessage(String.format("§3Added §4%s §3level §4%d§3!", enchant.getKey(), level));
+            }
+            return true;
+        }
+
+        if (args.length >= 1 && args[0].equals("addpotioneffect")) {
+            if (args.length < 4) {
+                sender.sendMessage("§cError: §4Missing arguments: /weaponmaster forceenchant <effect type> <duration (seconds)> <amplifier>");
+                return true;
+            }
+            PotionEffectType potionEffectType;
+            try {
+                potionEffectType = PotionEffectType.getByKey(NamespacedKey.minecraft(args[1]));
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage("§cError: §4You gave an invalid potion effect type. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            if (potionEffectType == null) {
+                sender.sendMessage("§cError: §4That potion effect type does not exist. Try using Minecraft namespaced IDs.");
+                return true;
+            }
+            int lengthTicks;
+            if (args[2].equalsIgnoreCase("max")) {
+                lengthTicks = 2147483647;
+            } else {
+                double lengthSeconds;
+                try {
+                    lengthSeconds = Double.parseDouble(args[2]);
+                } catch (NumberFormatException e) {
+                    sender.sendMessage("§cError: §4You gave an invalid number. Please give a decimal value, or use 'max'.");
+                    return true;
+                }
+                lengthTicks = Math.min(Math.max((int) (lengthSeconds * 20), 1), 2147483647);
+            }
+            int amplifier;
+            try {
+                amplifier = Integer.parseInt(args[3]);
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cError: §4You gave an invalid number. Please give an int.");
+                return true;
+            }
+            if (amplifier < 0 || amplifier > 127) {
+                sender.sendMessage("§cError: §4Amplifier must be between 0 and 127.");
+                return true;
+            }
+            ItemStack stack = ((Player) sender).getInventory().getItemInMainHand();
+            ItemMeta im = stack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§cError: §4This item does not have any ItemMeta.");
+                return true;
+            }
+            if (!(im instanceof PotionMeta)) {
+                sender.sendMessage("§cError: §4This item does not support potion effects.");
+                return true;
+            }
+            PotionMeta pm = (PotionMeta) im;
+            pm.addCustomEffect(new PotionEffect(potionEffectType, lengthTicks, amplifier), true);
+            stack.setItemMeta(pm);
+            sender.sendMessage("§3Added potion effect!");
             return true;
         }
 
@@ -188,9 +265,10 @@ public class WeaponMasterCommand implements CommandExecutor {
         sender.sendMessage("§4§lWeaponMaster");
         sender.sendMessage("§7§oby greateric");
         sender.sendMessage("");
-        sender.sendMessage("§e/weaponmaster forceenchant");
-        sender.sendMessage("§e/weaponmaster illegalstack");
         sender.sendMessage("§e/weaponmaster attributemodifier");
+        sender.sendMessage("§e/weaponmaster illegalstack");
+        sender.sendMessage("§e/weaponmaster forceenchant");
+        sender.sendMessage("§e/weaponmaster addpotioneffect");
         sender.sendMessage("");
         sender.sendMessage("----------------------------------------");
         return true;

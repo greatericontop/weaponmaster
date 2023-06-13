@@ -21,6 +21,7 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -44,18 +45,10 @@ public class ExodusItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player) event.getDamager();
-        if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
-        if (!player.hasPermission("weaponmaster.exodus.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
-            return;
-        }
+    public void doExodusHeal(Player player) {
         if (cooldown.getOrDefault(player.getUniqueId(), true)) {
             // health is regenerated at 25 and 50
-            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 60, 0, true);
+            PotionEffect effect = new PotionEffect(PotionEffectType.REGENERATION, 60, 1, true);
             player.addPotionEffect(effect);
             cooldown.put(player.getUniqueId(), false);
             new BukkitRunnable() {
@@ -64,6 +57,32 @@ public class ExodusItemListener implements Listener {
                 }
             }.runTaskLater(plugin, 80L);
         }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDamageByEntityPlayer(EntityDamageByEntityEvent event) {
+        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        Player player = (Player) event.getDamager();
+        if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
+        if (!player.hasPermission("weaponmaster.exodus.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
+            return;
+        }
+        doExodusHeal(player);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDamageByEntityProjectile(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Projectile)) { return; }
+        Projectile projectile = (Projectile) event.getDamager();
+        if (!(projectile.getShooter() instanceof Player)) { return; }
+        Player player = (Player) projectile.getShooter();
+        if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
+        if (!player.hasPermission("weaponmaster.exodus.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
+            return;
+        }
+        doExodusHeal(player);
     }
 
 }

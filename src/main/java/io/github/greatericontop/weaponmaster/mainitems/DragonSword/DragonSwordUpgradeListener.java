@@ -55,27 +55,14 @@ public class DragonSwordUpgradeListener implements Listener {
     }
 
     public double abilityTriggerProbability(int upgradeLevel) {
-        switch (upgradeLevel) {
-            case 1:
-                return 0.6;
-            case 2:
-                return 0.7;
-            case 3:
-                return 0.8;
-            case 4:
-                return 0.9;
-            case 5:
-                return 1.0;
-            default:
-                return 0.5;
-        }
+        return 0.5 + 0.05*upgradeLevel;
     }
     public double abilityTriggerProbability(List<String> lore) {
         return abilityTriggerProbability(getUpgradeCount(lore));
     }
 
     public int getLevelsForItem(List<String> lore) {
-        return 10 * ((getUpgradeCount(lore) + 1) * (getUpgradeCount(lore) + 2));
+        return 40 * getUpgradeCount(lore);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -84,12 +71,12 @@ public class DragonSwordUpgradeListener implements Listener {
         ItemStack scale = event.getInventory().getItem(1);
         Player player = (Player) event.getViewers().get(0);
         if (!util.checkForDragonSword(dragon)) { return; }
-        if (!util.checkFor(scale, null, 0, "id: DRAGON_SCALE")) { return; }
+        if (!util.checkFor(scale, 0, "id: DRAGON_SCALE")) { return; }
 
         ItemMeta dragonIM = dragon.getItemMeta();
         List<String> dragonLore = dragonIM.getLore();
         int currentUpgradeLevel = getUpgradeCount(dragonLore);
-        if (currentUpgradeLevel >= 5) { return; }
+        if (currentUpgradeLevel >= 10) { return; }
         currentUpgradeLevel++;
 
         ItemMeta newIM = dragonIM.clone();
@@ -98,7 +85,7 @@ public class DragonSwordUpgradeListener implements Listener {
             newLore.add(util.DRAGON_UPGRADE, "");
             newLore.add(util.DRAGON_UPGRADE+1, "§7§oUpgrades increase the chance to deal even higher damage.");
         }
-        newLore.set(util.DRAGON_UPGRADE, String.format("§6Upgrade Level: §b%d%s", currentUpgradeLevel, currentUpgradeLevel >= 5 ? " §a(MAXED!)" : ""));
+        newLore.set(util.DRAGON_UPGRADE, String.format("§6Upgrade Level: §b%d%s", currentUpgradeLevel, currentUpgradeLevel >= 10 ? " §a(MAXED!)" : ""));
         newLore.add(String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(newLore)));
         newIM.setLore(newLore);
         for (Enchantment enchant : newIM.getEnchants().keySet()) {
@@ -124,7 +111,10 @@ public class DragonSwordUpgradeListener implements Listener {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }
         Player player = (Player) event.getWhoClicked();
-        if (event.getRawSlot() == 2 && util.checkForDragonSword(event.getCurrentItem())) {
+        if (event.getRawSlot() == 2
+                && util.checkForDragonSword(event.getInventory().getItem(0))
+                && util.checkFor(event.getInventory().getItem(1), 0, "id: DRAGON_SCALE")
+        ) {
             ItemMeta im = event.getCurrentItem().getItemMeta();
             int levelsRequired = getLevelsForItem(im.getLore());
             if (player.getLevel() < levelsRequired) {

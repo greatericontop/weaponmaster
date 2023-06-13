@@ -62,7 +62,7 @@ public class DragonElytraUpgradeListener implements Listener {
     }
 
     public int getLevelsForItem(ItemMeta im) {
-        return 50 * getUpgradeCount(im);
+        return 40 * getUpgradeCount(im);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -71,7 +71,7 @@ public class DragonElytraUpgradeListener implements Listener {
         ItemStack scale = event.getInventory().getItem(1);
         Player player = (Player) event.getViewers().get(0);
         if (!util.checkForDragonElytra(elytra)) { return; }
-        if (!util.checkFor(scale, null, 0, "id: DRAGON_SCALE")) { return; }
+        if (!util.checkFor(scale, 0, "id: DRAGON_SCALE")) { return; }
 
         ItemMeta elytraIM = elytra.getItemMeta();
         int currentUpgradeLevel = getUpgradeCount(elytraIM);
@@ -115,7 +115,10 @@ public class DragonElytraUpgradeListener implements Listener {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }
         Player player = (Player) event.getWhoClicked();
-        if (event.getRawSlot() == 2 && util.checkForDragonElytra(event.getCurrentItem())) {
+        if (event.getRawSlot() == 2
+                && util.checkForDragonElytra(event.getInventory().getItem(0))
+                && util.checkFor(event.getInventory().getItem(1), 0, "id: DRAGON_SCALE")
+        ) {
             ItemMeta im = event.getCurrentItem().getItemMeta();
             int levelsRequired = getLevelsForItem(im);
             if (player.getLevel() < levelsRequired) {

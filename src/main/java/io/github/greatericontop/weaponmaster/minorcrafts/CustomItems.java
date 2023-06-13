@@ -63,7 +63,7 @@ public class CustomItems {
         LEVIATHAN_HEART_LORE.add("§712% chance to drop on elder guardian kills");
 
         CORE_STAFF_LORE.add("id: CORE_STAFF");
-        CORE_STAFF_LORE.add("§9The powerful core From the depths of the Nether.");
+        CORE_STAFF_LORE.add("§9The powerful core from the depths of the Nether.");
         CORE_STAFF_LORE.add("§7Crafted using the finest magic.");
 
         DRAGON_SCALE_LORE.add("id: DRAGON_SCALE");

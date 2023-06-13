@@ -31,8 +31,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -133,7 +136,7 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEat(PlayerItemConsumeEvent event) {
-        if (!util.checkFor(event.getItem(), null, 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
         Player player = event.getPlayer();
         modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
@@ -144,7 +147,7 @@ public class MinorItemListener implements Listener {
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
         if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
         Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), null, 0, "id: EXPERT_SEAL")) { return; }
+        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL")) { return; }
         ItemMeta targetItem = event.getCurrentItem().getItemMeta();
         if (targetItem == null || !targetItem.hasEnchants()) {
             player.sendMessage("§cYou can't use Expert Seal on this item!");
@@ -163,8 +166,25 @@ public class MinorItemListener implements Listener {
         event.getCurrentItem().setItemMeta(targetItem);
         event.setCancelled(true);
         player.updateInventory();
-        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+        if (event.getCursor().getAmount() > 1) {
+            ItemStack newExpertSeals = event.getCursor();
+            newExpertSeals.setAmount(newExpertSeals.getAmount() - 1);
+            event.setCursor(newExpertSeals);
+        } else {
+            event.setCursor(new ItemStack(Material.AIR));
+        }
         player.sendMessage("§3Success!");
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void rightClickBlock(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        Player player = event.getPlayer();
+        if (util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") ||
+                util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
+                util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: DRAGON_HORN")) {
+            event.setCancelled(true);
+        }
     }
 
 }
