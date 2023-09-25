@@ -69,7 +69,17 @@ public class ElytraItemListener implements Listener {
                     if (!player.hasPermission("weaponmaster.dragonelytra.use")) { continue; }
                     if (!(util.checkForDragonElytra(player.getInventory().getChestplate()))) { continue; }
                     if (!player.isGliding()) { continue; }
-                    Vector bonus = player.getEyeLocation().getDirection().multiply(0.018);
+                    double playerVelocity = player.getVelocity().length();
+                    double bonusMagnitude;
+                    if (playerVelocity <= 1.25) { // 25 m/s
+                        bonusMagnitude = 0.018;
+                    } else if (playerVelocity <= 1.75) { // 35 m/s
+                        // linear decrease from 0.018 to 0.005
+                        bonusMagnitude = 0.005 + 0.013 * (1 - 2.0*(playerVelocity-1.25));
+                    } else {
+                        bonusMagnitude = 0.005;
+                    }
+                    Vector bonus = player.getEyeLocation().getDirection().multiply(bonusMagnitude);
                     player.setVelocity(player.getVelocity().add(bonus));
                     player.spawnParticle(Particle.SMALL_FLAME, player.getLocation(), 3, 0.0, 0.0, 0.0, 0.001);
                 }

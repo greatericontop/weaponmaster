@@ -63,6 +63,7 @@ public class NapalmItemListener implements Listener {
     @EventHandler
     public void onProjectileLaunch(ProjectileLaunchEvent event) {
         if (event.getEntity().getType() != EntityType.SNOWBALL) { return; }
+        if (!(event.getEntity().getShooter() instanceof Player)) { return; }
         Player player = (Player) event.getEntity().getShooter();
         if (player == null) { return; }
         if (!util.checkForNapalmMissile(player.getInventory().getItemInMainHand())) { return; }

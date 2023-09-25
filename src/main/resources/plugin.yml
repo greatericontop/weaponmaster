@@ -10,6 +10,19 @@ commands:
     usage: "U: /weaponmaster"
     permission: "weaponmaster.weaponmaster"
     permission-message: "§cYou are not allowed to do this!"
+  #
+  descent:
+    description: "Use the descent"
+    usage: "U: /descent"
+    permission: "weaponmaster.descent"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["dragon-descent"]
+  descent-management:
+    description: "Manage the descent"
+    usage: "U: /descent-management [give-power | clear]"
+    permission: "weaponmaster.descentmanagement"
+    permission-message: "§cYou are not allowed to do this!"
+  #
   rpgl:
     description: "[Weapon Master] command for RPG Launcher"
     usage: "U: /rpgl [give]"
@@ -93,6 +106,7 @@ commands:
     usage: "U: /fireball [give]"
     permission: "weaponmaster.fireball.command"
     permission-message: "§cYou are not allowed to do this!"
+    aliases: ["fb"]
   atombomb:
     description: "[Weapon Master] command for Atom Bomb"
     usage: "U: /atombomb [give]"
@@ -103,7 +117,7 @@ commands:
     usage: "U: /netheritestaff [give]"
     permission: "weaponmaster.netheritestaff.command"
     permission-message: "§cYou are not allowed to do this!"
-    aliases: ["netherite-st", "staff"]
+    aliases: ["netherite-st"]
   sniperrifle:
     description: "[Weapon Master] command for Sniper Rifle"
     usage: "U: /sniperrifle [give]"
@@ -175,15 +189,43 @@ commands:
     usage: "U: /dragonelytra give"
     permission: "weaponmaster.dragonelytra.command"
     permission-message: "§cYou are not allowed to do this!"
-  witchsword:
-    description: "[Weapon Master] command for Witch Sword"
-    usage: "U: /witchsword give"
-    permission: "weaponmaster.witchsword.command"
+  guidedmissile:
+    description: "[Weapon Master] command for Guided Missile"
+    usage: "U: /guidedmissile give"
+    permission: "weaponmaster.guidedmissile.command"
     permission-message: "§cYou are not allowed to do this!"
+  assassinsblade:
+    description: "[Weapon Master] command for Assassin's Blade"
+    usage: "U: /assassinsblade give"
+    permission: "weaponmaster.assassinsblade.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["assassins-blade", "assassin"]
+  witherstaff:
+    description: "[Weapon Master] command for Wither Staff"
+    usage: "U: /witherstaff give"
+    permission: "weaponmaster.witherstaff.command"
+    permission-message: "§cYou are not allowed to do this!"
+  bombcannon:
+    description: "[Weapon Master] command for Bomb Cannon"
+    usage: "U: /bombcannon give"
+    permission: "weaponmaster.bombcannon.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["explosive-bow"]
+  throwingknife:
+    description: "[Weapon Master] command for Throwing Knife"
+    usage: "U: /throwingknife give"
+    permission: "weaponmaster.throwingknife.command"
+    permission-message: "§cYou are not allowed to do this!"
+    aliases: ["throwing-knife"]
 
 
 permissions:
   weaponmaster.weaponmaster:
+    default: op
+  #
+  weaponmaster.descent:
+    default: true
+  weaponmaster.descentmanagement:
     default: op
   #
   weaponmaster.command.minoritem:
@@ -340,7 +382,28 @@ permissions:
   weaponmaster.dragonelytra.use:
     default: true
   #
-  weaponmaster.witchsword.command:
+  weaponmaster.guidedmissile.command:
     default: op
-  weaponmaster.witchsword.use:
+  weaponmaster.guidedmissile.use:
     default: true
+  #
+  weaponmaster.assassinsblade.command:
+    default: op
+  weaponmaster.assassinsblade.use:
+    default: true
+  #
+  weaponmaster.witherstaff.command:
+    defualt: op
+  weaponmaster.witherstaff.use:
+    defualt: true
+  #
+  weaponmaster.bombcannon.command:
+    default: op
+  weaponmaster.bombcannon.use:
+    default: true
+  #
+  weaponmaster.throwingknife.command:
+    default: op
+  weaponmaster.throwingknife.use:
+    default: true
+  #

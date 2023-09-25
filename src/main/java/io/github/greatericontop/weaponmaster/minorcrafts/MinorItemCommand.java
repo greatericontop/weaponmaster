@@ -42,6 +42,10 @@ public class MinorItemCommand implements CommandExecutor {
             sendInfo(sender);
             return true;
         }
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("§3Sorry, players only.");
+            return true;
+        }
         if (args[0].equalsIgnoreCase("list")) {
             sender.sendMessage("§7Heart of Leviathan - /minoritem leviathanHeart");
             sender.sendMessage("§7Netherite Staff Core - /minoritem coreStaff");
@@ -112,12 +116,6 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateLifeCoreItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.LIFE_CORE_NAME + "§f]§7.");
-        }
-
-
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("§3Sorry, players only.");
-            return true;
         }
         return false;
     }

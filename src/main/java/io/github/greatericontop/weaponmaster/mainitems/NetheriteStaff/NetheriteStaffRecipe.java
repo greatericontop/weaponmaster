@@ -36,7 +36,7 @@ import java.util.UUID;
 public class NetheriteStaffRecipe {
 
     private final Util util;
-    private CustomItems customItems;
+    private final CustomItems customItems;
     public NetheriteStaffRecipe() {
         util = new Util(null);
         customItems = new CustomItems();

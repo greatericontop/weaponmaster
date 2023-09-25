@@ -20,6 +20,7 @@ package io.github.greatericontop.weaponmaster.mainitems.CopperSword;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -34,6 +35,8 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -45,9 +48,13 @@ public class CopperSwordListener implements Listener {
     Random rnd = new Random();
     private final WeaponMasterMain plugin;
     private final Util util;
+    private final NamespacedKey pdcWaxKey;
+    private final NamespacedKey pdcOxidizeKey;
     public CopperSwordListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        pdcWaxKey = new NamespacedKey(plugin, "WM_COPPER_SWORD_WAX");
+        pdcOxidizeKey = new NamespacedKey(plugin, "WM_COPPER_SWORD_OXIDIZE");
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -61,21 +68,29 @@ public class CopperSwordListener implements Listener {
         }
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
-        List<String> lore = im.getLore();
-        if (Math.random() < 0.05 &&
-                lore.get(7).equals("§6NOT WAXED") &&
-                !lore.get(6).equals("§bOXIDIZED")) {
-            int sharpLvl = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
-            int unbreakingLvl = im.getEnchantLevel(Enchantment.DURABILITY);
-            im.removeEnchant(Enchantment.DAMAGE_ALL);
-            im.addEnchant(Enchantment.DAMAGE_ALL, sharpLvl - 1, false);
-            im.removeEnchant(Enchantment.DURABILITY);
-            im.addEnchant(Enchantment.DURABILITY, unbreakingLvl - 1, false);
-            player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
-            if (lore.get(6).equals("§bEXPOSED")) {
-                lore.set(6, "§bOXIDIZED");
-            } else {
-                lore.set(6, "§bEXPOSED");
+        PersistentDataContainer pdc = im.getPersistentDataContainer();
+        if (!pdc.has(pdcOxidizeKey, PersistentDataType.STRING)) { pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal"); }
+        if (!pdc.has(pdcWaxKey, PersistentDataType.INTEGER)) { pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 0); }
+
+        if (Math.random() < 0.05 && pdc.get(pdcWaxKey, PersistentDataType.INTEGER) != 1) {
+            List<String> lore = im.getLore();
+            String oxidizeLevel = pdc.get(pdcOxidizeKey, PersistentDataType.STRING);
+            if (oxidizeLevel.equals("normal")) {
+                lore.set(8, "§bEXPOSED");
+                pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "exposed");
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 2, false);
+                im.addEnchant(Enchantment.DURABILITY, 8, true);
+                player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
+            } else if (oxidizeLevel.equals("exposed")) {
+                lore.set(8, "§bOXIDIZED");
+                pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "oxidized");
+                im.removeEnchant(Enchantment.DAMAGE_ALL);
+                im.removeEnchant(Enchantment.DURABILITY);
+                im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                im.addEnchant(Enchantment.DURABILITY, 7, true);
+                player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
             }
             im.setLore(lore);
             player.getInventory().getItemInMainHand().setItemMeta(im);
@@ -90,7 +105,7 @@ public class CopperSwordListener implements Listener {
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 9));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
         // player.playSound(player, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
-        plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration/20), true);
+        plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration / 20), true);
         if (attacked.getType() == EntityType.PLAYER) {
             Player attackedPlayer = (Player) event.getEntity();
             attackedPlayer.playSound(attackedPlayer, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
@@ -101,35 +116,39 @@ public class CopperSwordListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void OnRepair(PrepareAnvilEvent event) {
         if (!util.checkForCopperSword(event.getInventory().getItem(0))) { return; }
+        if (event.getInventory().getItem(1) == null) { return; }
         Player player = (Player) event.getView().getPlayer();
         if (event.getInventory().getItem(1).getType() == Material.GOLD_INGOT) {
             event.setResult(new ItemStack(Material.AIR, 1));
             event.getInventory().setRepairCost(0);
         }
         if (event.getInventory().getItem(1).getType() == Material.HONEYCOMB) {
-            ItemStack itemStack = event.getInventory().getItem(0);
-            ItemMeta im = itemStack.getItemMeta();
+            ItemStack outputItem = new ItemStack(Material.GOLDEN_SWORD, 1);
+            ItemMeta im = event.getInventory().getItem(0).getItemMeta();
             List<String> lore = im.getLore();
-            lore.set(7, "§6WAXED");
+            PersistentDataContainer pdc = im.getPersistentDataContainer();
+            pdc.set(pdcWaxKey, PersistentDataType.INTEGER, 1);
+            lore.set(9, "§6WAXED");
             im.setLore(lore);
-            itemStack.setItemMeta(im);
-            event.setResult(itemStack);
+            outputItem.setItemMeta(im);
+            event.setResult(outputItem);
         }
         if (event.getInventory().getItem(1).getType() == Material.COPPER_BLOCK) {
             if (event.getInventory().getItem(1).getAmount() != 4) {
                 player.sendMessage("§cYou must have exactly §b4 §cof §6Copper Block §cto execute this operation.");
             } else {
-                ItemStack itemStack = event.getInventory().getItem(0);
-                ItemMeta im = itemStack.getItemMeta();
+                ItemStack outputItem = new ItemStack(Material.GOLDEN_SWORD, 1);
+                ItemMeta im = event.getInventory().getItem(0).getItemMeta();
                 List<String> lore = im.getLore();
-                lore.set(6, "§bNORMAL");
+                PersistentDataContainer pdc = im.getPersistentDataContainer();
+                pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal");
+                lore.set(8, "§bNORMAL");
                 im.setLore(lore);
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
                 im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
                 im.removeEnchant(Enchantment.DURABILITY);
-                im.addEnchant(Enchantment.DURABILITY, 9, false);
-                itemStack.setItemMeta(im);
-                event.setResult(itemStack);
+                im.addEnchant(Enchantment.DURABILITY, 9, true);
+                outputItem.setItemMeta(im);
+                event.setResult(outputItem);
             }
         }
     }

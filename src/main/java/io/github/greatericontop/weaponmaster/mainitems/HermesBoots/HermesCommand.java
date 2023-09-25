@@ -33,6 +33,7 @@ import java.util.UUID;
 
 public class HermesCommand implements CommandExecutor {
 
+    // MD5 "hermes" :) ... ... ... but don't worry this is the only time I'll use stupid UUIDs
     private static final UUID modifierToughness = UUID.fromString("00000000-1111-0000-0000-bd1d2340551d");
     private static final UUID modifierSpeed = UUID.fromString("00000000-1111-0000-0000-510c1e6d1ca7");
     private static final UUID modifierArmor = UUID.fromString("00000000-1111-0000-0000-000000000001");

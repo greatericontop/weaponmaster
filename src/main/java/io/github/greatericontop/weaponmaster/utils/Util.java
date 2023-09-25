@@ -18,8 +18,8 @@ package io.github.greatericontop.weaponmaster.utils;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import org.bukkit.block.Block;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -60,7 +60,11 @@ public class Util {
     public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
-    public final String WITCH_SWORD_NAME = "§5Witch Sword §6⚝⚝⚝⚝⚝";
+    public final String GUIDED_MISSILE_NAME = "§cHeat Seeking Guided Missile §6⚝⚝⚝⚝⚝";
+    public final String ASSASSINS_BLADE_NAME = "§eAssassin's Blade §6⚝⚝⚝⚝⚝";
+    public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
+    public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
+    public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -92,7 +96,11 @@ public class Util {
     public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
     public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
-    public List<String> WITCH_SWORD_LORE = new ArrayList<>();
+    public List<String> GUIDED_MISSILE_LORE = new ArrayList<>();
+    public List<String> ASSASSINS_BLADE_LORE = new ArrayList<>();
+    public List<String> WITHER_STAFF_LORE = new ArrayList<>();
+    public List<String> BOMB_CANNON_LORE = new ArrayList<>();
+    public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -133,6 +141,7 @@ public class Util {
         DEATH_SCYTHE_LORE.add("id: DEATH_SCYTHE");
         DEATH_SCYTHE_LORE.add("§6---------------");
         DEATH_SCYTHE_LORE.add("");
+        DEATH_SCYTHE_LORE.add("§eAbility: §4Death's Power");
         DEATH_SCYTHE_LORE.add("§3Each hit deals §b§l30% §3of your target's");
         DEATH_SCYTHE_LORE.add("§3health as true damage and gain increasing");
         DEATH_SCYTHE_LORE.add("§3levels of §cStrength §3depending on the");
@@ -200,7 +209,7 @@ public class Util {
         ROCKET_STICK_LORE.add("§6---------------");
         ROCKET_STICK_LORE.add("");
         ROCKET_STICK_LORE.add("§6Launch your enemies into the air!");
-        ROCKET_STICK_LORE.add("§7Hit with stick to use. (players only)");
+        ROCKET_STICK_LORE.add("§7Hit any entity with the stick.");
         ROCKET_STICK_LORE.add("");
         ROCKET_STICK_LORE.add("§6Teleport forward! §3§lSHIFT RIGHT CLICK");
         ROCKET_STICK_LORE.add("");
@@ -220,7 +229,7 @@ public class Util {
         HELIOS_LORE.add("§eAbility: §4Godly Swarm §e§lRIGHT CLICK");
         HELIOS_LORE.add("§3Summon fire and deal damage to any");
         HELIOS_LORE.add("§3targets within 5 blocks!");
-        HELIOS_LORE.add("§3Costs hunger to use.");
+        HELIOS_LORE.add("§7This costs some hunger to use.");
         HELIOS_LORE.add("");
         HELIOS_LORE.add("§6LEGENDARY");
         HELIOS_LORE.add("§6---------------");
@@ -377,7 +386,7 @@ public class Util {
         NINJA_BOW_LORE.add("§eAbility: §4Shuriken Shot §e§lLEFT CLICK");
         NINJA_BOW_LORE.add("§3Unleash a triple shot to rain down upon your enemies.");
         NINJA_BOW_LORE.add("§3Other arrows are slightly inaccurate and deal 60% damage.");
-        NINJA_BOW_LORE.add("§70.3 second cooldown, but the bow need not be charged");
+        NINJA_BOW_LORE.add("§70.4 second cooldown");
         NINJA_BOW_LORE.add("");
         NINJA_BOW_LORE.add("§6LEGENDARY");
         NINJA_BOW_LORE.add("§6---------------");
@@ -400,8 +409,10 @@ public class Util {
         COPPER_SWORD_LORE.add("id: COPPER_SWORD");
         COPPER_SWORD_LORE.add("§6---------------");
         COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§eAbility: §4Heavy Blow");
         COPPER_SWORD_LORE.add("§3Small chance of stunning the enemy with a charged attack.");
-        COPPER_SWORD_LORE.add("§cThis sword will oxidize over time, making it weaker and weaker.");
+        COPPER_SWORD_LORE.add("");
+        COPPER_SWORD_LORE.add("§7This sword will oxidize over time, making it weaker and weaker.");
         COPPER_SWORD_LORE.add("");
         COPPER_SWORD_LORE.add("§bNORMAL");
         COPPER_SWORD_LORE.add("§6NOT WAXED");
@@ -412,10 +423,10 @@ public class Util {
         POSEIDON_TRIDENT_LORE.add("id: POSEIDON_TRIDENT");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
         POSEIDON_TRIDENT_LORE.add("");
-        POSEIDON_TRIDENT_LORE.add("§3A Trident with power from the sea god.");
+        POSEIDON_TRIDENT_LORE.add("§eAbility: §4Sea God");
         POSEIDON_TRIDENT_LORE.add("§3Gives Conduit Power while holding.");
         POSEIDON_TRIDENT_LORE.add("§3Small chance of giving Dolphin's Grace.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning.");
+        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning on hit.");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
@@ -431,7 +442,10 @@ public class Util {
         VALKYRIE_AXE_LORE.add("§eAbility: §4Fire Storm");
         VALKYRIE_AXE_LORE.add("§3A vortex of fire engulfs entities in your path.");
         VALKYRIE_AXE_LORE.add("§3Attacked entities take massive knockback.");
-        VALKYRIE_AXE_LORE.add("§7Costs 20 durability and 1 true damage to use");
+        VALKYRIE_AXE_LORE.add("§7Costs 15 durability and some hunger to use");
+        VALKYRIE_AXE_LORE.add("");
+        VALKYRIE_AXE_LORE.add("§214 Attack Damage");
+        VALKYRIE_AXE_LORE.add("§20.6 Attack Speed");
         VALKYRIE_AXE_LORE.add("");
         VALKYRIE_AXE_LORE.add("§6LEGENDARY");
         VALKYRIE_AXE_LORE.add("§6---------------");
@@ -465,18 +479,58 @@ public class Util {
         DRAGON_ELYTRA_LORE.add("");
         DRAGON_ELYTRA_LORE.add("§6LEGENDARY");
         DRAGON_ELYTRA_LORE.add("§6---------------");
-        // Witch Sword
-        WITCH_SWORD_LORE.add("id: WITCH_SWORD");
-        WITCH_SWORD_LORE.add("§6---------------");
-        WITCH_SWORD_LORE.add("");
-        WITCH_SWORD_LORE.add("§eAbility: §4Black Magic");
-        WITCH_SWORD_LORE.add("§3Consumes §c30% §3of the damage dealt.");
-        WITCH_SWORD_LORE.add("§3Attacked targets are cursed for §b10 §3seconds.");
-        WITCH_SWORD_LORE.add("§3If they are attacked, their attackers are");
-        WITCH_SWORD_LORE.add("§3healed for §a20% §3of their maximum health.");
-        WITCH_SWORD_LORE.add("");
-        WITCH_SWORD_LORE.add("§6LEGENDARY");
-        WITCH_SWORD_LORE.add("§6---------------");
+        // Guided Missile
+        GUIDED_MISSILE_LORE.add("id: GUIDED_MISSILE");
+        GUIDED_MISSILE_LORE.add("§6---------------");
+        GUIDED_MISSILE_LORE.add("");
+        GUIDED_MISSILE_LORE.add("§eAbility: §4Missile Lock");
+        GUIDED_MISSILE_LORE.add("§3Point at any target to lock on.");
+        GUIDED_MISSILE_LORE.add("§3The missile will seek to the target and");
+        GUIDED_MISSILE_LORE.add("§3explode when it gets close.");
+        GUIDED_MISSILE_LORE.add("");
+        GUIDED_MISSILE_LORE.add("§6LEGENDARY");
+        GUIDED_MISSILE_LORE.add("§6---------------");
+        // Assassin's Blade
+        ASSASSINS_BLADE_LORE.add("id: ASSASSINS_BLADE");
+        ASSASSINS_BLADE_LORE.add("§6---------------");
+        ASSASSINS_BLADE_LORE.add("");
+        ASSASSINS_BLADE_LORE.add("§eAbility: §4Backstab");
+        ASSASSINS_BLADE_LORE.add("§3Hits from the back are extremely");
+        ASSASSINS_BLADE_LORE.add("§3deadly and deal §b+40% §3damage.");
+        ASSASSINS_BLADE_LORE.add("");
+        ASSASSINS_BLADE_LORE.add("§dEPIC");
+        ASSASSINS_BLADE_LORE.add("§6---------------");
+        // Wither Staff
+        WITHER_STAFF_LORE.add("id: WITHER_STAFF");
+        WITHER_STAFF_LORE.add("§6---------------");
+        WITHER_STAFF_LORE.add("");
+        WITHER_STAFF_LORE.add("§eAbility: §4Skeleton's Call §e§lRIGHT CLICK");
+        WITHER_STAFF_LORE.add("§3Shoots wither skeleton skulls.");
+        WITHER_STAFF_LORE.add("§3The skulls explode on impact.");
+        WITHER_STAFF_LORE.add("§71 second cooldown");
+        WITHER_STAFF_LORE.add("");
+        WITHER_STAFF_LORE.add("§dEPIC");
+        WITHER_STAFF_LORE.add("§6---------------");
+        // Bomb Cannon
+        BOMB_CANNON_LORE.add("id: BOMB_CANNON");
+        BOMB_CANNON_LORE.add("§6---------------");
+        BOMB_CANNON_LORE.add("");
+        BOMB_CANNON_LORE.add("§eAbility: §4Explosive Arrows");
+        BOMB_CANNON_LORE.add("§3Fully charged arrows fired from this bow");
+        BOMB_CANNON_LORE.add("§3explode upon impact.");
+        BOMB_CANNON_LORE.add("");
+        BOMB_CANNON_LORE.add("§dEPIC");
+        BOMB_CANNON_LORE.add("§6---------------");
+        // Throwing Knife
+        THROWING_KNIFE_LORE.add("id: THROWING_KNIFE");
+        THROWING_KNIFE_LORE.add("§6---------------");
+        THROWING_KNIFE_LORE.add("");
+        THROWING_KNIFE_LORE.add("§eAbility: §4Throw §e§lRIGHT CLICK");
+        THROWING_KNIFE_LORE.add("§3Throw a knife at your target. The knife");
+        THROWING_KNIFE_LORE.add("§3will damage anyone caught in its path.");
+        THROWING_KNIFE_LORE.add("");
+        THROWING_KNIFE_LORE.add("§dEPIC");
+        THROWING_KNIFE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -488,13 +542,12 @@ public class Util {
         return items;
     }
 
-    public boolean checkFor(ItemStack item, String requiredName, int index, String requiredLoreSection) {
+    public boolean checkFor(ItemStack item, int index, String requiredLoreSection) {
         if (item == null) { return false; }
         ItemMeta iMeta = item.getItemMeta();
         if (iMeta == null || iMeta.getLore() == null) { return false; }
-        boolean nameCorrect = requiredName == null || iMeta.getDisplayName().equals(requiredName);
-        boolean loreCorrect = iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
-        return nameCorrect && loreCorrect;
+        if (iMeta.getLore().size() <= index) { return false; }
+        return iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
     }
     
     public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
@@ -506,96 +559,108 @@ public class Util {
     }
 
     public boolean checkForRPGLauncher(ItemStack item) {
-        return this.checkFor(item, RPG_LAUNCHER_NAME, 0, "id: RPG_LAUNCHER");
+        return this.checkFor(item, 0, "id: RPG_LAUNCHER");
     }
     public boolean checkForVampAxe(ItemStack item) {
-        return this.checkFor(item, VAMP_AXE_NAME, 0, "id: VAMP_AXE");
+        return this.checkFor(item, 0, "id: VAMP_AXE");
     }
     public boolean checkForDeathScythe(ItemStack item) {
-        return this.checkFor(item, DEATH_SCYTHE_NAME, 0, "id: DEATH_SCYTHE");
+        return this.checkFor(item, 0, "id: DEATH_SCYTHE");
     }
     public boolean checkForDragonSword(ItemStack item) {
-        return this.checkFor(item, DRAGON_SWORD_NAME, 0, "id: DRAGON_SWORD");
+        return this.checkFor(item, 0, "id: DRAGON_SWORD");
     }
     public boolean checkForArtemisBow(ItemStack item) {
-        return this.checkFor(item, ARTEMIS_BOW_NAME, 0, "id: ARTEMIS_BOW");
+        return this.checkFor(item, 0, "id: ARTEMIS_BOW");
     }
     public boolean checkForAnduril(ItemStack item) {
-        return this.checkFor(item, ANDURIL_NAME, 0, "id: ANDURIL");
+        return this.checkFor(item, 0, "id: ANDURIL");
     }
     public boolean checkForExcalibur(ItemStack item) {
-        return this.checkFor(item, EXCALIBUR_NAME, 0, "id: EXCALIBUR");
+        return this.checkFor(item, 0, "id: EXCALIBUR");
     }
     public boolean checkForExodus(ItemStack item) {
-        return this.checkFor(item, EXODUS_NAME, 0, "id: EXODUS");
+        return this.checkFor(item, 0, "id: EXODUS");
     }
     public boolean checkForRocketStick(ItemStack item) {
-        return this.checkFor(item, ROCKET_STICK_NAME, 0, "id: ROCKET_STICK");
+        return this.checkFor(item, 0, "id: ROCKET_STICK");
     }
     public boolean checkForHelios(ItemStack item) {
-        return this.checkFor(item, HELIOS_NAME, 0, "id: HELIOS");
+        return this.checkFor(item, 0, "id: HELIOS");
     }
     public boolean checkForScylla(ItemStack item) {
-        return this.checkFor(item, SCYLLA_CHESTPLATE_NAME, 0, "id: SCYLLA_CHESTPLATE");
+        return this.checkFor(item, 0, "id: SCYLLA_CHESTPLATE");
     }
     public boolean checkForHermesBoots(ItemStack item) {
-        return this.checkFor(item, HERMES_BOOTS_NAME, 0, "id: HERMES_BOOTS");
+        return this.checkFor(item, 0, "id: HERMES_BOOTS");
     }
     public boolean checkForLifeHelmet(ItemStack item) {
-        return this.checkFor(item, LIFE_HELMET_NAME, 0, "id: LIFE_HELMET");
+        return this.checkFor(item, 0, "id: LIFE_HELMET");
     }
     public boolean checkForCavemanSword(ItemStack item) {
-        return this.checkFor(item, CAVEMAN_SWORD_NAME, 0, "id: CAVEMAN_SWORD");
+        return this.checkFor(item, 0, "id: CAVEMAN_SWORD");
     }
     public boolean checkForWarlockPants(ItemStack item) {
-        return this.checkFor(item, WARLOCK_PANTS_NAME, 0, "id: WARLOCK_PANTS");
+        return this.checkFor(item, 0, "id: WARLOCK_PANTS");
     }
     public boolean checkForFireball(ItemStack item) {
-        return this.checkFor(item, FIREBALL_NAME, 0, "id: FIREBALL");
+        return this.checkFor(item, 0, "id: FIREBALL");
     }
     public boolean checkForAtomBomb(ItemStack item) {
-        return this.checkFor(item, ATOM_BOMB_NAME, 0, "id: ATOM_BOMB");
+        return this.checkFor(item, 0, "id: ATOM_BOMB");
     }
     public boolean checkForNetheriteStaff(ItemStack item) {
-        return this.checkFor(item, NETHERITE_STAFF_NAME, 0, "id: NETHERITE_STAFF");
+        return this.checkFor(item, 0, "id: NETHERITE_STAFF");
     }
     public boolean checkForSniperRifle(ItemStack item) {
-        return this.checkFor(item, SNIPER_RIFLE_NAME, 0, "id: SNIPER_RIFLE");
+        return this.checkFor(item, 0, "id: SNIPER_RIFLE");
     }
     public boolean checkForMinersBlessing(ItemStack item) {
-        return this.checkFor(item, MINERS_BLESSING_NAME, 0, "id: MINERS_BLESSING");
+        return this.checkFor(item, 0, "id: MINERS_BLESSING");
     }
     public boolean checkForPilotSword(ItemStack item) {
-        return this.checkFor(item, PILOT_SWORD_NAME, 0, "id: PILOT_SWORD");
+        return this.checkFor(item, 0, "id: PILOT_SWORD");
     }
     public boolean checkForShreddedAxe(ItemStack item) {
-        return this.checkFor(item, SHREDDED_AXE_NAME, 0, "id: SHREDDED_AXE");
+        return this.checkFor(item, 0, "id: SHREDDED_AXE");
     }
     public boolean checkForNapalmMissile(ItemStack item) {
-        return this.checkFor(item, NAPALM_MISSILE_NAME, 0, "id: NAPALM_MISSILE");
+        return this.checkFor(item, 0, "id: NAPALM_MISSILE");
     }
     public boolean checkForNinjaBow(ItemStack item) {
-        return this.checkFor(item, NINJA_BOW_NAME, 0, "id: NINJA_BOW");
+        return this.checkFor(item, 0, "id: NINJA_BOW");
     }
     public boolean checkForDragonArmor(ItemStack item) {
-        return this.checkFor(item, DRAGON_ARMOR_NAME, 0, "id: DRAGON_ARMOR");
+        return this.checkFor(item, 0, "id: DRAGON_ARMOR");
     }
     public boolean checkForCopperSword(ItemStack item) {
-        return this.checkFor(item, COPPER_SWORD_NAME, 0, "id: COPPER_SWORD");
+        return this.checkFor(item, 0, "id: COPPER_SWORD");
     }
     public boolean checkForPoseidonTrident(ItemStack item) {
-        return this.checkFor(item, POSEIDON_TRIDENT_NAME, 0, "id: POSEIDON_TRIDENT");
+        return this.checkFor(item, 0, "id: POSEIDON_TRIDENT");
     }
     public boolean checkForValkyrieAxe(ItemStack item) {
-        return this.checkFor(item, VALKYRIE_AXE_NAME, 0, "id: VALKYRIE_AXE");
+        return this.checkFor(item, 0, "id: VALKYRIE_AXE");
     }
     public boolean checkForAssaultRifle(ItemStack item) {
-        return this.checkFor(item, ASSAULT_RIFLE_NAME, 0, "id: ASSAULT_RIFLE");
+        return this.checkFor(item, 0, "id: ASSAULT_RIFLE");
     }
     public boolean checkForDragonElytra(ItemStack item) {
-        return this.checkFor(item, DRAGON_ELYTRA_NAME, 0, "id: DRAGON_ELYTRA");
+        return this.checkFor(item, 0, "id: DRAGON_ELYTRA");
     }
-    public boolean checkForWitchSword(ItemStack item) {
-        return this.checkFor(item, WITCH_SWORD_NAME, 0, "id: WITCH_SWORD");
+    public boolean checkForGuidedMissile(ItemStack item) {
+        return this.checkFor(item, 0, "id: GUIDED_MISSILE");
+    }
+    public boolean checkForAssassinsBlade(ItemStack item) {
+        return this.checkFor(item, 0, "id: ASSASSINS_BLADE");
+    }
+    public boolean checkForWitherStaff(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITHER_STAFF");
+    }
+    public boolean checkForBombCannon(ItemStack item) {
+        return this.checkFor(item, 0, "id: BOMB_CANNON");
+    }
+    public boolean checkForThrowingKnife(ItemStack item) {
+        return this.checkFor(item, 0, "id: THROWING_KNIFE");
     }
 }

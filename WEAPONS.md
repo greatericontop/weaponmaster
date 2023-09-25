@@ -1,4 +1,4 @@
-# Weapons
+# ITEMS
 
 - [SUPREME](#supreme)
   - [Atom Bomb](#atom-bomb)
@@ -10,6 +10,8 @@
   - [Artemis Bow](#artemis-bow)
   - [Caveman Sword](#caveman-sword)
   - [Death's Scythe](#deaths-scythe)
+  - [Dragon Armor](#dragon-armor)
+  - [Dragon Elytra](#dragon-elytra)
   - [Dragon Sword](#dragon-sword)
   - [Excalibur](#excalibur)
   - [Exodus](#exodus)
@@ -30,10 +32,14 @@
   - [Anduril](#anduril)
   - [Copper Sword](#copper-sword)
   - [Fireball](#fireball)
+  - [Throwing Knife](#throwing-knife)
+  - [Wither Staff](#wither-staff)
 - [Others](#others)
+  - [Expert Seal](#expert-seal)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Hide of Leviathan](#hide-of-leviathan)
+  - [Magic Energy Bar](#magic-energy-bar)
   - [Nether Reactor Core](#nether-reactor-core)
   - [Silky String](#silky-string)
 
@@ -115,6 +121,55 @@ Crafting Recipe:
 
 
 ![](assets/scythe.png)
+
+### Dragon Armor
+
+`/dragonarmor give` - super powerful set of armor
+
+for each piece of armor you get: 
+- damage reduction by 5% (20% max)
+- increases damage dealt by 3.5% (14% max)
+
+full set bonus:
+- increases damage dealt by `Dragon Sword` by 25%
+- hunger decreases 33% slower
+- damage reduction by 0.75% per protection level
+
+#### Helmet
+
+Crafting Recipe:
+- 5x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonhelmet.png)
+
+#### Chestplate
+
+Crafting Recipe:
+- 8x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonchestplate.png)
+
+#### Leggings
+
+Crafting Recipe:
+- 7x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonpants.png)
+
+#### Boots
+
+Crafting Recipe:
+- 4x Dragon Wing
+- 1x Dragon Horn
+
+![](assets/dragonboots.png)
+
+### Dragon Elytra
+
+`/dragonelytra give` - a powerful elytra, small speed boost when in flying, use `Eye of Ender` to gain a massive speed boost.
 
 ### Dragon Sword
 
@@ -351,6 +406,32 @@ Crafting Recipe:
 
 ![](assets/fireball.png)
 
+
+### Throwing Knife
+
+`/throwingknife give` - A throwable knife that deals 2 hearts of damage.
+
+Crafting Recipe:
+- 1x Iron Block
+- 1x Iron Sword
+- 1x Piston
+
+![](assets/throwingknife.png)
+
+
+### Wither Staff
+
+`/witherstaff give` - shoots wither skeleton skulls.
+
+Crafting Recipe:
+- 2x Blaze Rod
+- 1x Wither Skeleton Skull
+- 1x Fire Charge
+- 1x TNT
+
+![](assets/witherstaff.png)
+
+
 <br/>
 
 ---
@@ -361,6 +442,10 @@ Crafting Recipe:
 # Others
 
 `/minoritem list` - a list of commands for minor items.
+
+### Expert Seal
+
+2.5% chance of dropping for a `Wither`. Increases all the enchantments on an item by 1 level. Can only be used once per item. 
 
 ### Flask of Ichor
 
@@ -390,6 +475,14 @@ Crafting Recipe:
 - 1x Heart of Leviathan
 
 ![](assets/hide.png)
+
+### Life Core
+
+0.8% chance of dropping from an `Evoker`. Used to craft `Helmet of Life`.
+
+### Magic Energy Bar
+
+A bar of magical energy. Increase an additional heart when consumed. Able to accumulate up to 6 hearts, 2 are lost when you die. 
 
 ### Nether Reactor Core
 

@@ -17,16 +17,27 @@ package io.github.greatericontop.weaponmaster;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.dragondescent.AttributeChanger;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentCommand;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentDataManager;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentEvents;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentGUIListener;
+import io.github.greatericontop.weaponmaster.dragondescent.DescentManagementCommand;
+import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.AssassinsBlade.AssassinCommand;
+import io.github.greatericontop.weaponmaster.mainitems.AssassinsBlade.AssassinsBladeListener;
 import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultCommand;
 import io.github.greatericontop.weaponmaster.mainitems.AssaultRifle.AssaultListener;
 import io.github.greatericontop.weaponmaster.mainitems.AtomBomb.AtomCommand;
 import io.github.greatericontop.weaponmaster.mainitems.AtomBomb.AtomItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.BombCannon.BombCannonCommand;
+import io.github.greatericontop.weaponmaster.mainitems.BombCannon.BombCannonListener;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanCommand;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanRecipe;
@@ -55,6 +66,8 @@ import io.github.greatericontop.weaponmaster.mainitems.Exodus.ExodusRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballListener;
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileCommand;
+import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileManager;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosRecipe;
@@ -67,6 +80,8 @@ import io.github.greatericontop.weaponmaster.mainitems.LifeHelmet.LifeHelmetReci
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerCommand;
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.MinerBlessing.MinerRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmCommand;
+import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffListener;
 import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteStaffRecipe;
@@ -80,8 +95,6 @@ import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentLi
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.LauncherCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.RPGItemListener;
-import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmCommand;
-import io.github.greatericontop.weaponmaster.mainitems.NapalmMissile.NapalmItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaCommand;
@@ -92,6 +105,9 @@ import io.github.greatericontop.weaponmaster.mainitems.ShreddedAxe.ShreddedListe
 import io.github.greatericontop.weaponmaster.mainitems.ShreddedAxe.ShreddedRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperCommand;
 import io.github.greatericontop.weaponmaster.mainitems.SniperRifle.SniperItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeCommand;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeListener;
+import io.github.greatericontop.weaponmaster.mainitems.ThrowingKnife.ThrowingKnifeRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe.ValkyrieRecipe;
@@ -101,14 +117,14 @@ import io.github.greatericontop.weaponmaster.mainitems.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
-import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
-import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordCommand;
-import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordListener;
+import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
+import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
-import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
 import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -116,6 +132,7 @@ public class WeaponMasterMain extends JavaPlugin {
 
     public PaperUtils paperUtils = null;
     public FightManager dragonManager = null;
+    public DescentDataManager descent = null;
 
     @Override
     public void onEnable() {
@@ -138,12 +155,13 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getLogger().info("");
         this.getLogger().info("WeaponMaster");
         this.getLogger().info("");
-        this.getLogger().info("Copyright (C) greateric 2021-2022. Licensed under GPL v3.");
+        this.getLogger().info("Copyright (C) greateric 2021-present. Licensed under GPL v3.");
         this.getLogger().info("Initializing WeaponMaster by greateric");
         this.getLogger().info("--------------------");
 
         this.saveDefaultConfig();
         this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
 
         paperUtils = new PaperUtils(this);
 
@@ -269,9 +287,26 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
-        // Witch Sword
-        this.getCommand("witchsword").setExecutor(new WitchSwordCommand());
-        this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
+        // Guided Missile
+        this.getCommand("guidedmissile").setExecutor(new GuidedMissileCommand());
+        GuidedMissileManager guidedMissileManager = new GuidedMissileManager(this);
+        guidedMissileManager.regGuidedMissileRunnable();
+        this.getServer().getPluginManager().registerEvents(guidedMissileManager, this);
+        // Assassin's Blade
+        this.getCommand("assassinsblade").setExecutor(new AssassinCommand());
+        this.getServer().getPluginManager().registerEvents(new AssassinsBladeListener(this), this);
+        // Wither Staff
+        this.getCommand("witherstaff").setExecutor(new WitherStaffCommand());
+        this.getServer().getPluginManager().registerEvents(new WitherItemListener(this), this);
+        new WitherStaffRecipe().regRecipe();
+        // Bomb Cannon
+        this.getCommand("bombcannon").setExecutor(new BombCannonCommand());
+        this.getServer().getPluginManager().registerEvents(new BombCannonListener(this), this);
+        // Throwing Knife
+        this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
+        this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
+        new ThrowingKnifeRecipe().regRecipe();
+
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
@@ -279,11 +314,29 @@ public class WeaponMasterMain extends JavaPlugin {
         new CoreStaffRecipe().regRecipe();
         // Custom Item Listener
         this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
+
         // Dragon Fight
         dragonManager = new FightManager(this);
         this.getServer().getPluginManager().registerEvents(dragonManager, this);
 
+        // Descent
+        descent = new DescentDataManager(this, this.getConfig().getBoolean("dragonDescent.enable"));
+        this.getCommand("descent-management").setExecutor(new DescentManagementCommand(this));
+        this.getCommand("descent").setExecutor(new DescentCommand(this));
+        if (descent.isEnabled) {
+            this.getServer().getPluginManager().registerEvents(new DescentEvents(this), this);
+            AttributeChanger attributeChanger = new AttributeChanger(this);
+            attributeChanger.registerUpdateEveryone();
+            this.getServer().getPluginManager().registerEvents(attributeChanger, this);
+        }
+        this.getServer().getPluginManager().registerEvents(new DescentGUIListener(this), this);
+
         this.getLogger().info(String.format("Finished setting up! [%d ms]", System.currentTimeMillis()-t));
+    }
+
+    @Override
+    public void onDisable() {
+        descent.saveDataToConfig();
     }
 
 }
