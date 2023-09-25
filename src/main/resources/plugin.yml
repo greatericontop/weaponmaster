@@ -175,6 +175,11 @@ commands:
     usage: "U: /dragonelytra give"
     permission: "weaponmaster.dragonelytra.command"
     permission-message: "§cYou are not allowed to do this!"
+  witchsword:
+    description: "[Weapon Master] command for Witch Sword"
+    usage: "U: /witchsword give"
+    permission: "weaponmaster.witchsword.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -333,4 +338,9 @@ permissions:
   weaponmaster.dragonelytra.command:
     default: op
   weaponmaster.dragonelytra.use:
+    default: true
+  #
+  weaponmaster.witchsword.command:
+    default: op
+  weaponmaster.witchsword.use:
     default: true

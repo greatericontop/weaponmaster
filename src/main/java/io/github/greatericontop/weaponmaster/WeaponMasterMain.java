@@ -102,6 +102,8 @@ import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockComma
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
 import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordCommand;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordListener;
 import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
 import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
@@ -267,6 +269,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
+        // Witch Sword
+        this.getCommand("witchsword").setExecutor(new WitchSwordCommand());
+        this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();

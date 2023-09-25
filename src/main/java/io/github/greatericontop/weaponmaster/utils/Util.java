@@ -60,6 +60,7 @@ public class Util {
     public final String VALKYRIE_AXE_NAME = "§2Valkyrie Axe §6⚝⚝⚝⚝⚝";
     public final String ASSAULT_RIFLE_NAME = "§cAssault Rifle §6⚝⚝⚝⚝⚝";
     public final String DRAGON_ELYTRA_NAME = "§dDragon Elytra §6⚝⚝⚝⚝⚝";
+    public final String WITCH_SWORD_NAME = "§5Witch Sword §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -91,6 +92,7 @@ public class Util {
     public List<String> VALKYRIE_AXE_LORE = new ArrayList<>();
     public List<String> ASSAULT_RIFLE_LORE = new ArrayList<>();
     public List<String> DRAGON_ELYTRA_LORE = new ArrayList<>();
+    public List<String> WITCH_SWORD_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -463,6 +465,18 @@ public class Util {
         DRAGON_ELYTRA_LORE.add("");
         DRAGON_ELYTRA_LORE.add("§6LEGENDARY");
         DRAGON_ELYTRA_LORE.add("§6---------------");
+        // Witch Sword
+        WITCH_SWORD_LORE.add("id: WITCH_SWORD");
+        WITCH_SWORD_LORE.add("§6---------------");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§eAbility: §4Black Magic");
+        WITCH_SWORD_LORE.add("§3Consumes §c30% §3of the damage dealt.");
+        WITCH_SWORD_LORE.add("§3Attacked targets are cursed for §b10 §3seconds.");
+        WITCH_SWORD_LORE.add("§3If they are attacked, their attackers are");
+        WITCH_SWORD_LORE.add("§3healed for §a20% §3of their maximum health.");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§6LEGENDARY");
+        WITCH_SWORD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -580,5 +594,8 @@ public class Util {
     }
     public boolean checkForDragonElytra(ItemStack item) {
         return this.checkFor(item, DRAGON_ELYTRA_NAME, 0, "id: DRAGON_ELYTRA");
+    }
+    public boolean checkForWitchSword(ItemStack item) {
+        return this.checkFor(item, WITCH_SWORD_NAME, 0, "id: WITCH_SWORD");
     }
 }
