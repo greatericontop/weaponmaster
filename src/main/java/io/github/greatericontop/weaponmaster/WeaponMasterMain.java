@@ -117,6 +117,8 @@ import io.github.greatericontop.weaponmaster.mainitems.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordCommand;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
@@ -306,6 +308,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
         this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
         new ThrowingKnifeRecipe().regRecipe();
+        // Witch Sword
+        this.getCommand("witchsword").setExecutor(new WitchSwordCommand());
+        this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

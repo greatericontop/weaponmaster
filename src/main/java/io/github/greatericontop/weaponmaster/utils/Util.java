@@ -65,6 +65,7 @@ public class Util {
     public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
     public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
     public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
+    public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -101,6 +102,7 @@ public class Util {
     public List<String> WITHER_STAFF_LORE = new ArrayList<>();
     public List<String> BOMB_CANNON_LORE = new ArrayList<>();
     public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
+    public List<String> WITCH_SWORD_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -531,6 +533,18 @@ public class Util {
         THROWING_KNIFE_LORE.add("");
         THROWING_KNIFE_LORE.add("§dEPIC");
         THROWING_KNIFE_LORE.add("§6---------------");
+        // Witch Sword
+        WITCH_SWORD_LORE.add("id: WITCH_SWORD");
+        WITCH_SWORD_LORE.add("§6---------------");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§eAbility: §4Black Magic");
+        WITCH_SWORD_LORE.add("§3Consumes §c30% §3of the damage dealt.");
+        WITCH_SWORD_LORE.add("§3Attacked targets are cursed for §b10 §3seconds.");
+        WITCH_SWORD_LORE.add("§3If they are attacked, their attackers are");
+        WITCH_SWORD_LORE.add("§3healed for §a15% §3of their maximum health.");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§6LEGENDARY");
+        WITCH_SWORD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -662,5 +676,8 @@ public class Util {
     }
     public boolean checkForThrowingKnife(ItemStack item) {
         return this.checkFor(item, 0, "id: THROWING_KNIFE");
+    }
+    public boolean checkForWitchSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITCH_SWORD");
     }
 }

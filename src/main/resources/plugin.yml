@@ -217,6 +217,11 @@ commands:
     permission: "weaponmaster.throwingknife.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["throwing-knife"]
+  witchsword:
+    description: "[Weapon Master] command for Witch Sword"
+    usage: "U: /witchsword give"
+    permission: "weaponmaster.witchsword.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -405,5 +410,10 @@ permissions:
   weaponmaster.throwingknife.command:
     default: op
   weaponmaster.throwingknife.use:
+    default: true
+  #
+  weaponmaster.witchsword.command:
+    default: op
+  weaponmaster.witchsword.use:
     default: true
   #
