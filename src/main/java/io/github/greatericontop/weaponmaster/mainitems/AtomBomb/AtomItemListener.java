@@ -21,7 +21,6 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -97,74 +96,158 @@ public class AtomItemListener implements Listener {
         }
         globalCooldownLocked = true;
 
-        int STEPS = 256;
-        double STEPGAP = 1.0 / STEPS;
-        // An attempt to copy the minecraft explosion algorithm
-        // This is O(scary); but it seems to work decently in practice.
-        // I have tried 384 steps and 53 power, but this was too much.
         Location at = event.getBlock().getLocation();
-        World world = at.getWorld();
-        new BukkitRunnable() {
-            int y = STEPS;
-            public void run() {
-                if (y < -STEPS) {
-                    player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
-                    new BukkitRunnable() {
-                        public void run() {
-                            globalCooldownLocked = false;
-                        }
-                    }.runTaskLater(plugin, 400L);
-                    cancel();
-                    return;
-                }
-                for (int i = 0; i < 2; i++) {
-                    for (int x = -STEPS; x <= STEPS; x++) {
-                        for (int z = -STEPS; z <= STEPS; z++) {
-                            //player.sendMessage(String.format("§7coords: %d %d %d", x, y, z));
-                            if (!(x == -STEPS || x == STEPS || y == -STEPS || y == STEPS || z == -STEPS || z == STEPS)) {
-                                continue;
-                            }
-                            double deltaX = x * STEPGAP;
-                            double deltaY = y * STEPGAP;
-                            double deltaZ = z * STEPGAP;
+        // 1,572,866 rays previously
+        int NUMBER_RAYS = 1_100_000;
+        int RAYS_PER_TICK = 2200; //16_000;
+        float EXPLOSION_POWER = 44.0F;
+        double GOLDEN_ANGLE = 3.88322207745093; // pi * (root5 - 1)
 
-                            Location loc = at.clone();
-                            Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
-                            float rayPower = 41.0F * (0.8F + 0.4F * rnd.nextFloat());
-                            while (true) {
-                                rayPower -= 0.45F;
-                                if (loc.getBlock().getType() != Material.AIR) {
-                                    rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
-                                }
-                                if (rayPower <= 0) {
-                                    if (loc.getBlock().getType() != Material.AIR) {
-                                        float f = rnd.nextFloat();
-                                        if (f < 0.00_1F) {
-                                            loc.getBlock().setType(Material.COBBLESTONE);
-                                        } else if (f < 0.00_22F) {
-                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
-                                        } else if (f < 0.00_32F) {
-                                            loc.getBlock().setType(Material.COBWEB);
-                                        } else if (f < 0.00_36F) {
-                                            spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
-                                        } else if (f < 0.00_65F) {
-                                            loc.getBlock().setType(Material.FIRE);
-                                        }
-                                        if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
-                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
-                                        }
-                                    }
-                                    break;
-                                }
-                                loc.getBlock().setType(Material.AIR, false);
-                                loc = loc.add(ray);
+        player.sendMessage("§c[D] §7Precomputing XYZ tables!");
+        double[] xTable = new double[NUMBER_RAYS];
+        double[] yTable = new double[NUMBER_RAYS];
+        double[] zTable = new double[NUMBER_RAYS];
+        for (int i = 0; i < NUMBER_RAYS; i++) {
+            double y_hat = 1.0 - 2.0 * ((double) i / (double) (NUMBER_RAYS-1));
+            double radius = Math.sqrt(1.0 - y_hat*y_hat);
+            double theta = GOLDEN_ANGLE * i;
+            double x_hat = Math.cos(theta) * radius;
+            double z_hat = Math.sin(theta) * radius;
+            double magnitudeSquared = x_hat*x_hat + y_hat*y_hat + z_hat*z_hat;
+            if (magnitudeSquared > 1.001 || magnitudeSquared < 0.999) {
+                player.sendMessage(String.format("§7Invalid ray! number %d: had x=%.6f y=%.6f z=%.6f (mag %.5f)", i, x_hat, y_hat, z_hat, magnitudeSquared));
+            }
+            xTable[i] = x_hat;
+            yTable[i] = y_hat;
+            zTable[i] = z_hat;
+        }
+        player.sendMessage("§c[D] §7Done with XYZ tables!");
+
+        // Distribute rays using fibonacci sphere
+        new BukkitRunnable() {
+            int rayNumber = 0;
+            public void run() {
+                for (int i = 0; i < RAYS_PER_TICK; i++) {
+                    if (rayNumber == NUMBER_RAYS) {
+                        player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
+                        new BukkitRunnable() {
+                            public void run() {
+                                globalCooldownLocked = false;
                             }
-                        }
+                        }.runTaskLater(plugin, 400L);
+                        this.cancel();
+                        return;
                     }
-                    y--;
+
+                    Vector rayStep = new Vector(xTable[rayNumber]*0.6, yTable[rayNumber]*0.6, zTable[rayNumber]*0.6);
+                    Location loc = at.clone();
+                    float rayPower = EXPLOSION_POWER * (0.8F + 0.4F * rnd.nextFloat());
+                    while (true) {
+                        rayPower -= 0.45F;
+                        if (loc.getBlock().getType() != Material.AIR) {
+                            rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
+                        }
+                        if (rayPower <= 0) {
+                            if (rayPower >= -10) { // lower limit only allows replacing "weak" blocks and prevents us from
+                                                   // accidentally replacing blocks like bedrock with a weaker material
+                                if (loc.getBlock().getType() != Material.AIR) {
+                                    float f = rnd.nextFloat();
+                                    if (f < 0.00_1F) {
+                                        loc.getBlock().setType(Material.COBBLESTONE);
+                                    } else if (f < 0.00_22F) {
+                                        spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
+                                    } else if (f < 0.00_32F) {
+                                        loc.getBlock().setType(Material.COBWEB);
+                                    } else if (f < 0.00_36F) {
+                                        spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
+                                    } else if (f < 0.00_65F) {
+                                        loc.getBlock().setType(Material.FIRE);
+                                    }
+                                    if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
+                                        spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                        loc.getBlock().setType(Material.AIR, false);
+                        loc = loc.add(rayStep);
+                    }
+
+                    rayNumber++;
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
+
+
+
+//        int STEPS = 256;
+//        double STEPGAP = 1.0 / STEPS;
+//        // An attempt to copy the minecraft explosion algorithm
+//        // This is O(scary); but it seems to work decently in practice.
+//        // I have tried 384 steps and 53 power, but this was too much.
+//        new BukkitRunnable() {
+//            int y = STEPS;
+//            public void run() {
+//                if (y < -STEPS) {
+//                    player.sendMessage("§6[!] §3You have successfully levelled the landscape.");
+//                    new BukkitRunnable() {
+//                        public void run() {
+//                            globalCooldownLocked = false;
+//                        }
+//                    }.runTaskLater(plugin, 400L);
+//                    cancel();
+//                    return;
+//                }
+//                for (int i = 0; i < 2; i++) {
+//                    for (int x = -STEPS; x <= STEPS; x++) {
+//                        for (int z = -STEPS; z <= STEPS; z++) {
+//                            //player.sendMessage(String.format("§7coords: %d %d %d", x, y, z));
+//                            if (!(x == -STEPS || x == STEPS || y == -STEPS || y == STEPS || z == -STEPS || z == STEPS)) {
+//                                continue;
+//                            }
+//                            double deltaX = x * STEPGAP;
+//                            double deltaY = y * STEPGAP;
+//                            double deltaZ = z * STEPGAP;
+//
+//                            Location loc = at.clone();
+//                            Vector ray = new Vector(deltaX, deltaY, deltaZ).normalize().multiply(0.6);
+//                            float rayPower = 41.0F * (0.8F + 0.4F * rnd.nextFloat());
+//                            while (true) {
+//                                rayPower -= 0.45F;
+//                                if (loc.getBlock().getType() != Material.AIR) {
+//                                    rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
+//                                }
+//                                if (rayPower <= 0) {
+//                                    if (loc.getBlock().getType() != Material.AIR) {
+//                                        float f = rnd.nextFloat();
+//                                        if (f < 0.00_1F) {
+//                                            loc.getBlock().setType(Material.COBBLESTONE);
+//                                        } else if (f < 0.00_22F) {
+//                                            spawnVein(loc, Material.COBBLED_DEEPSLATE, 0.2F, 2, rnd);
+//                                        } else if (f < 0.00_32F) {
+//                                            loc.getBlock().setType(Material.COBWEB);
+//                                        } else if (f < 0.00_36F) {
+//                                            spawnVein(loc, Material.OBSIDIAN, 0.1F, 2, rnd);
+//                                        } else if (f < 0.00_65F) {
+//                                            loc.getBlock().setType(Material.FIRE);
+//                                        }
+//                                        if (f > 0.99_7 && loc.getBlock().getType() == Material.COAL_ORE) {
+//                                            spawnVein(loc, Material.DEEPSLATE_DIAMOND_ORE, 0.45F, 4, rnd);
+//                                        }
+//                                    }
+//                                    break;
+//                                }
+//                                loc.getBlock().setType(Material.AIR, false);
+//                                loc = loc.add(ray);
+//                            }
+//                        }
+//                    }
+//                    y--;
+//                }
+//            }
+//        }.runTaskTimer(plugin, 1L, 1L);
     }
 
 }
