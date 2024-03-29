@@ -142,7 +142,12 @@ public class AtomItemListener implements Listener {
                     Vector rayStep = new Vector(xTable[rayNumber]*0.6, yTable[rayNumber]*0.6, zTable[rayNumber]*0.6);
                     Location loc = at.clone();
                     float rayPower = EXPLOSION_POWER * (0.8F + 0.4F * rnd.nextFloat());
+                    int worldHeightTop = loc.getWorld().getMaxHeight() + 2;
+                    int worldHeightBottom = loc.getWorld().getMinHeight() - 2;
                     while (true) {
+                        if (loc.getBlockY() > worldHeightTop || loc.getBlockY() < worldHeightBottom) {
+                            break;
+                        }
                         rayPower -= 0.45F;
                         if (loc.getBlock().getType() != Material.AIR) {
                             rayPower -= (getCustomBlastResistance(loc.getBlock().getType()) + 0.6F) * 0.6F;
