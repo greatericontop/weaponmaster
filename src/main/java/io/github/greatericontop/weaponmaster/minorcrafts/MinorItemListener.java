@@ -32,7 +32,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -61,6 +60,7 @@ public class MinorItemListener implements Listener {
         AttributeModifier savedAM = null;
         double amount = 0;
         for (AttributeModifier am : instance.getModifiers()) {
+            System.out.println(am);
             if (am.getUniqueId().equals(withUUID)) {
                 double oldAmount = am.getAmount();
                 amount = Math.min(Math.max(oldAmount + amountDelta, min), max);
