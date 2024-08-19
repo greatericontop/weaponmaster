@@ -118,7 +118,7 @@ public class NetheriteStaffListener implements Listener {
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
             if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4
-                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.15) < 0.95) {
+                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.25) < 0.95) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);

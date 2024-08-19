@@ -199,6 +199,9 @@ public class MinerItemListener extends MinerUtil implements Listener {
             event.setDropItems(false);
             world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.NETHERITE_SCRAP, 1));
             event.setExpToDrop(14);
+        } else if (mat == Material.STONE) {
+            event.setDropItems(false);
+            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SMOOTH_STONE, 1));
         }
     }
 

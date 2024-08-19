@@ -19,7 +19,6 @@ package io.github.greatericontop.weaponmaster.minorcrafts;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
