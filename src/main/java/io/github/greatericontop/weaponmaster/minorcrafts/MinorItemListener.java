@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.minorcrafts;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -55,27 +56,6 @@ public class MinorItemListener implements Listener {
         this.customItems = new CustomItems();
         this.plugin = plugin;
         this.util = new Util(plugin);
-    }
-
-    public void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
-        AttributeModifier savedAM = null;
-        double amount = 0;
-        for (AttributeModifier am : instance.getModifiers()) {
-            if (am.getUniqueId().equals(withUUID)) {
-                double oldAmount = am.getAmount();
-                amount = Math.min(Math.max(oldAmount + amountDelta, min), max);
-                savedAM = am;
-                break;
-            }
-        }
-        AttributeModifier newAM;
-        if (savedAM == null) {
-            newAM = new AttributeModifier(withUUID, "weaponmaster", Math.min(Math.max(amountDelta, min), max), AttributeModifier.Operation.ADD_NUMBER);
-        } else {
-            instance.removeModifier(savedAM);
-            newAM = new AttributeModifier(withUUID, "weaponmaster", amount, AttributeModifier.Operation.ADD_NUMBER);
-        }
-        instance.addModifier(newAM);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
@@ -130,7 +110,7 @@ public class MinorItemListener implements Listener {
 
         if (event.getEntityType() == EntityType.PLAYER) {
             Player player = (Player) event.getEntity();
-            modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
+            VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
         }
     }
 
@@ -138,7 +118,7 @@ public class MinorItemListener implements Listener {
     public void onEat(PlayerItemConsumeEvent event) {
         if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
         Player player = event.getPlayer();
-        modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
+        VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
     }
 
