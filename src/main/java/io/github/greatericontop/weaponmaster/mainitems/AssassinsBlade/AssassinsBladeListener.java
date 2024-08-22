@@ -55,7 +55,7 @@ public class AssassinsBladeListener implements Listener {
         float angle = Math.abs(playerYaw - targetYaw); // 0 ~ 360
         if (angle < REQUIRED_ANGLE || 360-REQUIRED_ANGLE < angle) {
             event.setDamage(event.getDamage() * 1.4);
-            player.getWorld().spawnParticle(Particle.SMOKE_LARGE, target.getLocation(), 40);
+            player.getWorld().spawnParticle(Particle.LARGE_SMOKE, target.getLocation(), 40);
         }
     }
 

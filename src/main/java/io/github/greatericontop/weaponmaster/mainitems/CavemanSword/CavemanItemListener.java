@@ -105,8 +105,8 @@ public class CavemanItemListener implements Listener {
             if (exp >= getRequirementToLevelUp(level)) {
                 exp = 0;
                 level++;
-                iMeta.removeEnchant(Enchantment.DAMAGE_ALL);
-                iMeta.addEnchant(Enchantment.DAMAGE_ALL, level, true);
+                iMeta.removeEnchant(Enchantment.SHARPNESS);
+                iMeta.addEnchant(Enchantment.SHARPNESS, level, true);
                 player.sendMessage(String.format("§9Your %s §9is now level §6%d.", util.CAVEMAN_SWORD_NAME, level));
                 lore.set(util.CAVEMAN_LVL, String.format("§6Sharpness Level: §b%d", level));
             }

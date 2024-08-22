@@ -259,7 +259,7 @@ public class DescentCommand implements CommandExecutor {
         im.setLore(Arrays.asList(lore));
         im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES); // remove fluff on items (e.g. swords) that have those
         if (enchanted) {
-            im.addEnchant(Enchantment.LUCK, 1, true);
+            im.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
             im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
         stack.setItemMeta(im);

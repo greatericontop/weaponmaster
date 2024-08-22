@@ -129,37 +129,37 @@ public class MinerUtil   {
      */
     public void fixEnchants(int tier, ItemMeta im, Player player) {
         if (tier >= 7) { return; }
-        im.removeEnchant(Enchantment.DIG_SPEED);
-        im.removeEnchant(Enchantment.DURABILITY);
-        im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+        im.removeEnchant(Enchantment.EFFICIENCY);
+        im.removeEnchant(Enchantment.UNBREAKING);
+        im.removeEnchant(Enchantment.FORTUNE);
         im.removeEnchant(Enchantment.SILK_TOUCH);
         switch (tier) {
             case 0:
                 break;
             case 1:
-                im.addEnchant(Enchantment.DIG_SPEED, 1, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 1, false);
                 break;
             case 2:
-                im.addEnchant(Enchantment.DIG_SPEED, 2, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 2, false);
                 break;
             case 3:
-                im.addEnchant(Enchantment.DIG_SPEED, 3, false);
-                im.addEnchant(Enchantment.DURABILITY, 1, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 3, false);
+                im.addEnchant(Enchantment.UNBREAKING, 1, false);
                 break;
             case 4:
-                im.addEnchant(Enchantment.DIG_SPEED, 4, false);
-                im.addEnchant(Enchantment.DURABILITY, 1, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 4, false);
+                im.addEnchant(Enchantment.UNBREAKING, 1, false);
+                im.addEnchant(Enchantment.SHARPNESS, 1, false);
                 break;
             case 5:
-                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
-                im.addEnchant(Enchantment.DURABILITY, 2, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 2, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 5, false);
+                im.addEnchant(Enchantment.UNBREAKING, 2, false);
+                im.addEnchant(Enchantment.SHARPNESS, 2, false);
                 break;
             case 6:
-                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
-                im.addEnchant(Enchantment.DURABILITY, 3, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 5, false);
+                im.addEnchant(Enchantment.UNBREAKING, 3, false);
+                im.addEnchant(Enchantment.SHARPNESS, 3, false);
                 break;
         }
     }

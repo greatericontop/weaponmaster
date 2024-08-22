@@ -95,7 +95,7 @@ public class NetheriteStaffListener implements Listener {
             return;
         }
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL
-                && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4) {
+                && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) < 4) {
             if (!event.getPlayer().getInventory().contains(Material.ARROW)) {
                 plugin.paperUtils.sendActionBar(player, "§3You must have arrows in your inventory to shoot!", true);
                 return;
@@ -117,8 +117,8 @@ public class NetheriteStaffListener implements Listener {
         arrow.setDamage(1.5F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
-            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4
-                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.25) < 0.95) {
+            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) < 4
+                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) * 0.25) < 0.95) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);

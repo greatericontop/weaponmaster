@@ -97,10 +97,10 @@ public class NinjaItemListener implements Listener {
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         // 2 + (0.5 if we have power) + (0.5 per level), so it goes 2, 3, 3.5, 4, 4.5, 5
-        double damageValue = 2.0 + (im.hasEnchant(Enchantment.ARROW_DAMAGE) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.ARROW_DAMAGE) * 0.5);
-        boolean isFire = im.hasEnchant(Enchantment.ARROW_FIRE);
-        boolean hasInfinity = im.hasEnchant(Enchantment.ARROW_INFINITE);
-        int punchValue = im.getEnchantLevel(Enchantment.ARROW_KNOCKBACK);
+        double damageValue = 2.0 + (im.hasEnchant(Enchantment.POWER) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.POWER) * 0.5);
+        boolean isFire = im.hasEnchant(Enchantment.FLAME);
+        boolean hasInfinity = im.hasEnchant(Enchantment.INFINITY);
+        int punchValue = im.getEnchantLevel(Enchantment.PUNCH);
 
         // check/remove arrows
         if (player.getGameMode() != GameMode.CREATIVE) {

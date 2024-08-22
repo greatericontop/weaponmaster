@@ -81,7 +81,7 @@ public class DescentEvents implements Listener {
         if (mightyStrength > 0) {
             double activationChance = 0.001 * mightyStrength;
             if (Math.random() < activationChance) {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0, true));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 100, 0, true));
             }
         }
 
@@ -108,7 +108,7 @@ public class DescentEvents implements Listener {
             if (silkyTouch > 0) {
                 double activationChance = 0.003 * silkyTouch;
                 if (Math.random() < activationChance) {
-                    target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 0, true));
+                    target.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 0, true));
                 }
             }
 
@@ -141,7 +141,7 @@ public class DescentEvents implements Listener {
         int vitality = descent.getUpgrade(player, "vitality");
         if (vitality > 0) {
             int ticks = 20 * vitality;
-            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, ticks, 0, true));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, ticks, 0, true));
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, ticks, 0, true));
         }
 

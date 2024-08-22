@@ -187,9 +187,9 @@ public class MidFightTasks {
             int amplifier = 0;
             public void run() {
                 amplifier++;
-                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, amplifier, true));
+                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, amplifier, true));
                 if (amplifier == 2) { // add resistance 1 at the same time we add strength 3
-                    endGuard.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, 0, true));
+                    endGuard.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 1073741823, 0, true));
                 }
                 if (amplifier >= 6) { // maximum strength 7
                     cancel();
@@ -268,7 +268,7 @@ public class MidFightTasks {
             target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, true));
-            target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
+            target.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 200, 0, true));
             target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
             target.sendMessage("§5WeaponMaster Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
         }
@@ -314,7 +314,7 @@ public class MidFightTasks {
         defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
         defender.setHealth(DEFENDER_MAX_HEALTH);
         ItemStack endStone = new ItemStack(Material.END_STONE, 1);
-        endStone.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        endStone.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
         defender.getEquipment().setHelmet(endStone);
         defender.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE, 1));
         defender.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
@@ -340,9 +340,9 @@ public class MidFightTasks {
         sniper.setTarget(target);
         sniper.setCustomName("§bEnder Sniper");
         ItemStack sniperItem = sniper.getEquipment().getItemInMainHand();
-        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 10);
-        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 3);
-        sniperItem.addEnchantment(Enchantment.ARROW_FIRE, 1);
+        sniperItem.addUnsafeEnchantment(Enchantment.POWER, 10);
+        sniperItem.addUnsafeEnchantment(Enchantment.PUNCH, 3);
+        sniperItem.addEnchantment(Enchantment.FLAME, 1);
         sniper.getEquipment().setItemInMainHand(sniperItem);
         sniper.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(40.0);
         PersistentDataContainer pdc = sniper.getPersistentDataContainer(); // no overpowered bows!
@@ -391,7 +391,7 @@ public class MidFightTasks {
             agent.setCustomName(names[i]);
             agent.setCustomNameVisible(true);
             agent.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(AGENT_HEALTH);
-            agent.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, 2, true));
+            agent.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, 2, true));
             agent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1073741823, 0, true));
             PersistentDataContainer pdc = agent.getPersistentDataContainer();
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);

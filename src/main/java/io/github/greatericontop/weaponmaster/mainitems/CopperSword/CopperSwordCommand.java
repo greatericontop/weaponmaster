@@ -51,8 +51,8 @@ public class CopperSwordCommand implements CommandExecutor {
                 return true;
             }
             ItemStack copperSword = util.generateMeta(util.COPPER_SWORD_LORE, util.COPPER_SWORD_NAME, Material.GOLDEN_SWORD);
-            copperSword.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
-            copperSword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+            copperSword.addUnsafeEnchantment(Enchantment.UNBREAKING, 9);
+            copperSword.addUnsafeEnchantment(Enchantment.SHARPNESS, 3);
             ((Player) sender).getInventory().addItem(copperSword);
             sender.sendMessage("§7Gave you §f[" + util.COPPER_SWORD_NAME + "§f]§7.");
             return true;

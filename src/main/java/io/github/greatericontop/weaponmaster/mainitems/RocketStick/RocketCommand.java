@@ -52,7 +52,7 @@ public class RocketCommand implements CommandExecutor {
                 return true;
             }
             ItemStack rocket = util.generateMeta(util.ROCKET_STICK_LORE, util.ROCKET_STICK_NAME, Material.STICK);
-            rocket.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 8);
+            rocket.addUnsafeEnchantment(Enchantment.SHARPNESS, 8);
             ((Player) sender).getInventory().addItem(rocket);
             sender.sendMessage("§7Gave you §f[" + util.ROCKET_STICK_NAME + "§f]§7.");
             return true;

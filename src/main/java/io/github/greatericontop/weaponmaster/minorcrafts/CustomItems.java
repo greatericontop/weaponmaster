@@ -120,7 +120,7 @@ public class CustomItems {
     public ItemStack generateFlaskIchorItemStack() {
         ItemStack stack = new ItemStack(Material.SPLASH_POTION, 1);
         PotionMeta iMeta = (PotionMeta) stack.getItemMeta();
-        iMeta.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 3), true);
+        iMeta.addCustomEffect(new PotionEffect(PotionEffectType.INSTANT_DAMAGE, 1, 3), true);
         iMeta.setColor(Color.MAROON);
         iMeta.setDisplayName(FLASK_ICHOR_NAME);
         stack.setItemMeta(iMeta);
@@ -192,7 +192,7 @@ public class CustomItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(LIFE_CORE_NAME);
         iMeta.setLore(LIFE_CORE_LORE);
-        iMeta.addEnchant(Enchantment.LUCK, 1, true);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         stack.setItemMeta(iMeta);
         return stack;
     }

@@ -105,7 +105,7 @@ public class HeliosItemListener implements Listener {
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
-            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL) * 0.25;
+            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.25;
             target.damage(damageMultiply(player, damage));
             target.setFireTicks(target.getFireTicks() + 200);
             target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));

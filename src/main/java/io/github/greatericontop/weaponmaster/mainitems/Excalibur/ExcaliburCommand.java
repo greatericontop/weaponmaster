@@ -52,7 +52,7 @@ public class ExcaliburCommand implements CommandExecutor {
                 return true;
             }
             ItemStack excalibur = util.generateMeta(util.EXCALIBUR_LORE, util.EXCALIBUR_NAME, Material.DIAMOND_SWORD);
-            excalibur.addEnchantment(Enchantment.DURABILITY, 2);
+            excalibur.addEnchantment(Enchantment.UNBREAKING, 2);
             ((Player) sender).getInventory().addItem(excalibur);
             sender.sendMessage("§7Gave you §f[" + util.EXCALIBUR_NAME + "§f]§7.");
             return true;

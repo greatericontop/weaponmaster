@@ -44,7 +44,7 @@ public class NetheriteStaffRecipe {
 
     public void regRecipe() {
         ItemStack staff = util.generateMeta(util.NETHERITE_STAFF_LORE, util.NETHERITE_STAFF_NAME, Material.NETHERITE_SHOVEL);
-        staff.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        staff.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
         ItemMeta im = staff.getItemMeta();
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));

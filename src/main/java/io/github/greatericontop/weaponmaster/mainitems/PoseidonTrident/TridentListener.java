@@ -80,7 +80,7 @@ public class TridentListener implements Listener {
             return;
         }
         if (Math.random() < 0.05) {
-            event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING);
+            event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING_BOLT);
         }
     }
 }

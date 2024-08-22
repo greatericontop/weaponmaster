@@ -58,7 +58,7 @@ public class NetheriteStaffCommand implements CommandExecutor {
                 return true;
             }
             ItemStack netheriteStaff = util.generateMeta(util.NETHERITE_STAFF_LORE, util.NETHERITE_STAFF_NAME, Material.NETHERITE_SHOVEL);
-            netheriteStaff.addUnsafeEnchantment(Enchantment.LUCK, 1);
+            netheriteStaff.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
             netheriteStaff.addUnsafeEnchantment(Enchantment.MENDING, 1);
             ItemMeta im = netheriteStaff.getItemMeta();
             im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));

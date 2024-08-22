@@ -42,7 +42,7 @@ public class PilotRecipe {
         recipe.setIngredient('T', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHERITE_SWORD, 1)));
         ItemStack book = new ItemStack(Material.ENCHANTED_BOOK, 1);
         ItemMeta im = book.getItemMeta();
-        im.addEnchant(Enchantment.DIG_SPEED, 5, true);
+        im.addEnchant(Enchantment.EFFICIENCY, 5, true);
         book.setItemMeta(im);
         recipe.setIngredient('X', new RecipeChoice.ExactChoice(book));
         recipe.setIngredient('Y', Material.NETHER_STAR);

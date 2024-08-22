@@ -54,40 +54,40 @@ public class MinerItemListener extends MinerUtil implements Listener {
     public void runLevelUp(int newTier, ItemMeta im, List<String> lore) {
         switch (newTier) {
             case 1:
-                im.addEnchant(Enchantment.DIG_SPEED, 1, false);
+                im.addEnchant(Enchantment.EFFICIENCY, 1, false);
                 lore.add(util.MINER_INSERTION, "§eEfficiency I");
                 break;
             case 2:
-                im.removeEnchant(Enchantment.DIG_SPEED);
-                im.addEnchant(Enchantment.DIG_SPEED, 2, false);
+                im.removeEnchant(Enchantment.EFFICIENCY);
+                im.addEnchant(Enchantment.EFFICIENCY, 2, false);
                 lore.set(util.MINER_INSERTION, "§eEfficiency II");
                 break;
             case 3:
-                im.removeEnchant(Enchantment.DIG_SPEED);
-                im.addEnchant(Enchantment.DIG_SPEED, 3, false);
-                im.addEnchant(Enchantment.DURABILITY, 1, false);
+                im.removeEnchant(Enchantment.EFFICIENCY);
+                im.addEnchant(Enchantment.EFFICIENCY, 3, false);
+                im.addEnchant(Enchantment.UNBREAKING, 1, false);
                 lore.set(util.MINER_INSERTION, "§eEfficiency III, Unbreaking I");
                 break;
             case 4:
-                im.removeEnchant(Enchantment.DIG_SPEED);
-                im.addEnchant(Enchantment.DIG_SPEED, 4, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                im.removeEnchant(Enchantment.EFFICIENCY);
+                im.addEnchant(Enchantment.EFFICIENCY, 4, false);
+                im.addEnchant(Enchantment.SHARPNESS, 1, true);
                 lore.set(util.MINER_INSERTION, "§eEfficiency IV, Unbreaking I, Sharpness I");
                 break;
             case 5:
-                im.removeEnchant(Enchantment.DIG_SPEED);
-                im.removeEnchant(Enchantment.DURABILITY);
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
-                im.addEnchant(Enchantment.DIG_SPEED, 5, false);
-                im.addEnchant(Enchantment.DURABILITY, 2, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+                im.removeEnchant(Enchantment.EFFICIENCY);
+                im.removeEnchant(Enchantment.UNBREAKING);
+                im.removeEnchant(Enchantment.SHARPNESS);
+                im.addEnchant(Enchantment.EFFICIENCY, 5, false);
+                im.addEnchant(Enchantment.UNBREAKING, 2, false);
+                im.addEnchant(Enchantment.SHARPNESS, 2, true);
                 lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking II, Sharpness II");
                 break;
             case 6:
-                im.removeEnchant(Enchantment.DURABILITY);
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
-                im.addEnchant(Enchantment.DURABILITY, 3, false);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+                im.removeEnchant(Enchantment.UNBREAKING);
+                im.removeEnchant(Enchantment.SHARPNESS);
+                im.addEnchant(Enchantment.UNBREAKING, 3, false);
+                im.addEnchant(Enchantment.SHARPNESS, 3, true);
                 lore.set(util.MINER_INSERTION, "§eEfficiency V, Unbreaking III, Sharpness III");
                 break;
             case 7:
@@ -296,24 +296,24 @@ public class MinerItemListener extends MinerUtil implements Listener {
         String text = getMode(lore);
         if (text.equals("§a>§b>§c> §6Currently set to §9Silk Touch")) {
             im.removeEnchant(Enchantment.SILK_TOUCH);
-            im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
+            im.addEnchant(Enchantment.FORTUNE, 3, false);
             lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune III");
             player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
         } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
-            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            im.removeEnchant(Enchantment.FORTUNE);
             lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
             if (tier >= 10) {
-                im.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, false);
+                im.addEnchant(Enchantment.FORTUNE, 3, false);
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune III");
             } else {
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
             }
         } else if (tier >= 14 && text.equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
-            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            im.removeEnchant(Enchantment.FORTUNE);
             lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Area Mine");
             player.sendMessage("§a>§b>§c> §6Pickaxe set to §9§nArea Mine");
         } else {
-            im.removeEnchant(Enchantment.LOOT_BONUS_BLOCKS);
+            im.removeEnchant(Enchantment.FORTUNE);
             im.addEnchant(Enchantment.SILK_TOUCH, 1, false);
             lore.set(util.MINER_INSERTION+3, "§a>§b>§c> §6Currently set to §9Silk Touch");
             player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Silk Touch");
@@ -347,7 +347,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
                     if (!(util.checkForMinersBlessing(player.getInventory().getItemInMainHand()))) { continue; }
                     List<String> lore = player.getInventory().getItemInMainHand().getItemMeta().getLore();
                     if (parseLevelInt(lore.get(util.MINER_LVL)) >= 13) {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 200, 0, true));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 200, 0, true));
                     }
                 }
             }

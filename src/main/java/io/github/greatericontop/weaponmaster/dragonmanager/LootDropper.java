@@ -47,7 +47,7 @@ public class LootDropper {
 
     public void dropItemAt(World world, Location loc, ItemStack toDrop, UUID owner, String displayName, int pickupDelay) {
         //Item item = world.dropItem(loc, toDrop);
-        Item item = (Item) world.spawnEntity(loc, EntityType.DROPPED_ITEM);
+        Item item = (Item) world.spawnEntity(loc, EntityType.ITEM);
         item.setItemStack(toDrop);
         item.setOwner(owner);
         item.setPickupDelay(pickupDelay);

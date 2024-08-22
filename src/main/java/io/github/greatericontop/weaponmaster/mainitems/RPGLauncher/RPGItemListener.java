@@ -80,7 +80,7 @@ public class RPGItemListener implements Listener {
                 if (arrow.isDead()) {
                     cancel();
                 } else {
-                    player.getWorld().spawnParticle(Particle.SMOKE_LARGE, arrow.getLocation(), 190);
+                    player.getWorld().spawnParticle(Particle.LARGE_SMOKE, arrow.getLocation(), 190);
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);

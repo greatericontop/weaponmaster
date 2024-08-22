@@ -50,13 +50,13 @@ public class LifeHelmetRecipe {
 
         ItemStack healPotion = new ItemStack(Material.LINGERING_POTION, 1);
         PotionMeta im1 = (PotionMeta) healPotion.getItemMeta();
-        im1.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL, false, true));
+        im1.setBasePotionData(new PotionData(PotionType.HEALING, false, true));
         healPotion.setItemMeta(im1);
         recipe.setIngredient('h', new RecipeChoice.ExactChoice(healPotion));
 
         ItemStack regenPotion = new ItemStack(Material.LINGERING_POTION, 1);
         PotionMeta im2 = (PotionMeta) regenPotion.getItemMeta();
-        im2.setBasePotionData(new PotionData(PotionType.REGEN, true, false));
+        im2.setBasePotionData(new PotionData(PotionType.REGENERATION, true, false));
         regenPotion.setItemMeta(im2);
         recipe.setIngredient('r', new RecipeChoice.ExactChoice(regenPotion));
 
