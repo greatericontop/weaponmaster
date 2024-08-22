@@ -31,10 +31,8 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
-import java.util.UUID;
-
 public class EndSwordListener implements Listener {
-    private static final double TELEPORT_DISTANCE = 5.0;
+    private static final double TELEPORT_DISTANCE = 7.0;
 
     private final WeaponMasterMain plugin;
     private final EndPowerManager powerManager;

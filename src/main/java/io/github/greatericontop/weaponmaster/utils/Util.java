@@ -551,10 +551,8 @@ public class Util {
         END_SWORD_LORE.add("id: END_SWORD");
         END_SWORD_LORE.add("§6---------------");
         END_SWORD_LORE.add("");
-        END_SWORD_LORE.add("§b+150 §dEnd Power"); // TODO: some way to level it up?
-        END_SWORD_LORE.add("");
-        END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CqLICK");
-        END_SWORD_LORE.add("§3Teleport 5 blocks in front of you.");
+        END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CLICK");
+        END_SWORD_LORE.add("§3Teleport 7 blocks in front of you.");
         END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
         END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§6LEGENDARY");
