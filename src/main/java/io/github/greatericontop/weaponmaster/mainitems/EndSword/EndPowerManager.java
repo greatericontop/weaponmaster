@@ -49,8 +49,12 @@ public class EndPowerManager {
             int tickCounter = 0;
             public void run() {
                 tickCounter += ticksPer;
-                for (Player player : powerMap.keySet()) {
-                    incrementPower(player, 1);
+
+                // Regen (10% every 5 seconds, or 2% per second)
+                if (tickCounter % 100 == 0) {
+                    for (Player player : powerMap.keySet()) {
+                        incrementPower(player, getMaxPower(player)/10);
+                    }
                 }
 
             }
