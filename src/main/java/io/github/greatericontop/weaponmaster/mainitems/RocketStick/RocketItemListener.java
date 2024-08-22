@@ -35,8 +35,8 @@ import org.bukkit.util.Vector;
 
 public class RocketItemListener implements Listener {
 
-    private final double KNOCKBACK_OTHER = 8.3;
-    private final double KNOCKBACK_SELF = 8.8;
+    private final double KNOCKBACK_OTHER = 10.0;
+    private final double KNOCKBACK_SELF = 8.3;
     private final double TELEPORT_DISTANCE = 6.5;
 
     private final WeaponMasterMain plugin;
