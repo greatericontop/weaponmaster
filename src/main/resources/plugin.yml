@@ -398,9 +398,9 @@ permissions:
     default: true
   #
   weaponmaster.witherstaff.command:
-    defualt: op
+    default: op
   weaponmaster.witherstaff.use:
-    defualt: true
+    default: true
   #
   weaponmaster.bombcannon.command:
     default: op
