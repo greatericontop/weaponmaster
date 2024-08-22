@@ -46,6 +46,7 @@ public class CustomItems {
     public final String DRAGON_HORN_NAME = "§dDragon Horn";
     public final String SILKY_STRING_NAME = "§5Silky String";
     public final String LIFE_CORE_NAME = "§bLife Core";
+    public final String END_ARTIFACT_NAME = "§5End Artifact";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -56,6 +57,7 @@ public class CustomItems {
     public List<String> DRAGON_HORN_LORE = new ArrayList<>();
     public List<String> SILKY_STRING_LORE = new ArrayList<>();
     public List<String> LIFE_CORE_LORE = new ArrayList<>();
+    public List<String> END_ARTIFACT_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -96,6 +98,10 @@ public class CustomItems {
         LIFE_CORE_LORE.add("id: LIFE_CORE");
         LIFE_CORE_LORE.add("§9The secrets of life are stored in this core.");
         LIFE_CORE_LORE.add("§9It was created with the power of the Evoker.");
+
+        END_ARTIFACT_LORE.add("id: END_ARTIFACT");
+        END_ARTIFACT_LORE.add("§5A mysterious artifact from the End. It is said to have");
+        END_ARTIFACT_LORE.add("§5the power to harness the energy of the dimension.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -196,4 +202,14 @@ public class CustomItems {
         stack.setItemMeta(iMeta);
         return stack;
     }
+
+    public ItemStack generateEndArtifactItemStack() {
+        ItemStack stack = new ItemStack(Material.ENDER_EYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(END_ARTIFACT_NAME);
+        iMeta.setLore(END_ARTIFACT_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
 }

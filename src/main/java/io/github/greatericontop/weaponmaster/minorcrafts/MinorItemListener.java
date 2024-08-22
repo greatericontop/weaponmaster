@@ -23,8 +23,6 @@ import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -33,7 +31,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -44,7 +41,6 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
 public class MinorItemListener implements Listener {
 
@@ -104,6 +100,15 @@ public class MinorItemListener implements Listener {
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
                     killer.sendMessage("§eRARE DROP! " + customItems.EXPERT_SEAL_NAME);
+                }
+            }
+        } else if (event.getEntityType() == EntityType.ENDERMITE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.endArtifact")) {
+                ItemStack endArtifact = customItems.generateEndArtifactItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), endArtifact);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + customItems.END_ARTIFACT_NAME);
                 }
             }
         }

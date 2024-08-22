@@ -57,6 +57,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Dragon Horn - /minoritem dragonHorn");
             sender.sendMessage("§7Silky String - /minoritem silkyString");
             sender.sendMessage("§7Life Core - /minoritem lifeCore");
+            sender.sendMessage("§7End Artifact - /minoritem endArtifact");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -116,6 +117,11 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = customItems.generateLifeCoreItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + customItems.LIFE_CORE_NAME + "§f]§7.");
+        }
+        if (args[0].equalsIgnoreCase("endArtifact")) {
+            ItemStack item = customItems.generateEndArtifactItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + customItems.END_ARTIFACT_NAME + "§f]§7.");
         }
         return false;
     }
