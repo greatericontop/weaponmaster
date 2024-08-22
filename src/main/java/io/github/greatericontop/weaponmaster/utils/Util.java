@@ -552,7 +552,6 @@ public class Util {
         END_SWORD_LORE.add("§6---------------");
         END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§b+150 §dEnd Power"); // TODO: some way to level it up?
-        END_SWORD_LORE.add("§3Regenerate §b10 §dEnd Power §3every §b5 §3seconds."); // TODO: ways to quickly regen end power?
         END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CqLICK");
         END_SWORD_LORE.add("§3Teleport 5 blocks in front of you.");
@@ -694,5 +693,8 @@ public class Util {
     }
     public boolean checkForWitchSword(ItemStack item) {
         return this.checkFor(item, 0, "id: WITCH_SWORD");
+    }
+    public boolean checkForEndSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_SWORD");
     }
 }

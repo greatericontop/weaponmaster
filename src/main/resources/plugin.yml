@@ -222,6 +222,11 @@ commands:
     usage: "U: /witchsword give"
     permission: "weaponmaster.witchsword.command"
     permission-message: "§cYou are not allowed to do this!"
+  endsword:
+    description: "[Weapon Master] command for End Sword"
+    usage: "U: /endsword give"
+    permission: "weaponmaster.endsword.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -415,5 +420,10 @@ permissions:
   weaponmaster.witchsword.command:
     default: op
   weaponmaster.witchsword.use:
+    default: true
+  #
+  weaponmaster.endsword.command:
+    default: op
+  weaponmaster.endsword.use:
     default: true
   #
