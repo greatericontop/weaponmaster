@@ -48,7 +48,7 @@ public class EndPowerManager {
     }
 
     public void registerEndPowerManagerTask(WeaponMasterMain plugin) {
-        int ticksPer = 10;
+        int ticksPer = 5;
         new BukkitRunnable() {
             int tickCounter = 0;
             public void run() {

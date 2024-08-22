@@ -57,7 +57,9 @@ import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordCo
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordUpgradeListener;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndPowerManager;
 import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndSwordCommand;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburRecipe;
@@ -314,6 +316,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
         // End Sword
         this.getCommand("endsword").setExecutor(new EndSwordCommand());
+        EndPowerManager endPowerManager = new EndPowerManager();
+        endPowerManager.registerEndPowerManagerTask(this);
+        this.getServer().getPluginManager().registerEvents(new EndSwordListener(this, endPowerManager), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
