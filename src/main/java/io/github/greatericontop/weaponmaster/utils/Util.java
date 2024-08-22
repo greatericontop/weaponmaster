@@ -551,9 +551,14 @@ public class Util {
         END_SWORD_LORE.add("id: END_SWORD");
         END_SWORD_LORE.add("§6---------------");
         END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Stores §b150 §dEnd Power");
+        END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CLICK");
         END_SWORD_LORE.add("§3Teleport 7 blocks in front of you.");
         END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Every 100 ender pearls thrown increases your maximum ");
+        END_SWORD_LORE.add("§dEnd Power §3by §b1§3, up to a maximum of §b+30§3.");
         END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§6LEGENDARY");
         END_SWORD_LORE.add("§6---------------");

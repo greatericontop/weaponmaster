@@ -20,6 +20,7 @@ package io.github.greatericontop.weaponmaster.mainitems.EndSword;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -44,7 +45,8 @@ public class EndPowerManager {
     }
 
     public int getMaxPower(Player player) {
-        return 150; // TODO: will be dynamic later on
+        int pearlsThrown = player.getStatistic(Statistic.USE_ITEM, org.bukkit.Material.ENDER_PEARL);
+        return 150 + Math.min(pearlsThrown / 100, 30);
     }
 
     public void registerEndPowerManagerTask(WeaponMasterMain plugin) {
