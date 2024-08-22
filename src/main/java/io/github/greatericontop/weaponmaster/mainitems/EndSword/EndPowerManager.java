@@ -17,27 +17,43 @@ package io.github.greatericontop.weaponmaster.mainitems.EndSword;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class EndPowerManager {
-    private final Map<UUID, Integer> powerMap;
+    private final Map<Player, Integer> powerMap;
     public EndPowerManager() {
         this.powerMap = new HashMap<>();
     }
 
     public int getPower(Player player) {
-        return powerMap.getOrDefault(player.getUniqueId(), getMaxPower(player));
+        return powerMap.getOrDefault(player, getMaxPower(player));
+    }
+
+    public void incrementPower(Player player, int by) {
+        powerMap.put(player, Math.min(Math.max(getPower(player) + by, 0), getMaxPower(player)));
     }
 
     public int getMaxPower(Player player) {
         return 150; // TODO: will be dynamic later on
     }
 
-    // TODO: regRegeneratePowerTask
-    //       is it replenished over time? replenished faster by other activities?
+    public void registerEndPowerManagerTask(WeaponMasterMain plugin) {
+        int ticksPer = 10;
+        new BukkitRunnable() {
+            int tickCounter = 0;
+            public void run() {
+                tickCounter += ticksPer;
+                for (Player player : powerMap.keySet()) {
+                    incrementPower(player, 1);
+                }
 
+            }
+        }.runTaskTimer(plugin, ticksPer, ticksPer);
+    }
 }
