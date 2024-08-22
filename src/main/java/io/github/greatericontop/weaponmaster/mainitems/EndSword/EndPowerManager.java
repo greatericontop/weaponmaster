@@ -18,17 +18,24 @@ package io.github.greatericontop.weaponmaster.mainitems.EndSword;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
+import io.github.greatericontop.weaponmaster.utils.PaperUtils;
+import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.awt.print.Paper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class EndPowerManager {
     private final Map<Player, Integer> powerMap;
+
+    private final Util util;
     public EndPowerManager() {
         this.powerMap = new HashMap<>();
+        util = new Util(null);
     }
 
     public int getPower(Player player) {
@@ -49,6 +56,15 @@ public class EndPowerManager {
             int tickCounter = 0;
             public void run() {
                 tickCounter += ticksPer;
+
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (util.checkForEndSword(player.getInventory().getItemInMainHand())) {
+                        int power = getPower(player);
+                        int maxPower = getMaxPower(player);
+                        boolean sendAnyway = tickCounter % 100 == 0; // text update every 5 seconds
+                        plugin.paperUtils.sendActionBar(player, String.format("§f%d §7/ §f%d §dEnd Power", power, maxPower), sendAnyway);
+                    }
+                }
 
                 // Regen (10% every 5 seconds, or 2% per second)
                 if (tickCounter % 100 == 0) {
