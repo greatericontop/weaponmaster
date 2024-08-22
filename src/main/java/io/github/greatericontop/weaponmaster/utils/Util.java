@@ -66,6 +66,7 @@ public class Util {
     public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
     public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
     public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
+    public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -103,6 +104,7 @@ public class Util {
     public List<String> BOMB_CANNON_LORE = new ArrayList<>();
     public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
     public List<String> WITCH_SWORD_LORE = new ArrayList<>();
+    public List<String> END_SWORD_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -545,6 +547,19 @@ public class Util {
         WITCH_SWORD_LORE.add("");
         WITCH_SWORD_LORE.add("§6LEGENDARY");
         WITCH_SWORD_LORE.add("§6---------------");
+        // End Sword
+        END_SWORD_LORE.add("id: END_SWORD");
+        END_SWORD_LORE.add("§6---------------");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§b+150 §dEnd Power"); // TODO: some way to level it up?
+        END_SWORD_LORE.add("§3Regenerate §b10 §dEnd Power §3every §b5 §3seconds."); // TODO: ways to quickly regen end power?
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CqLICK");
+        END_SWORD_LORE.add("§3Teleport 5 blocks in front of you.");
+        END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§6LEGENDARY");
+        END_SWORD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
