@@ -67,6 +67,7 @@ public class Util {
     public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
     public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
     public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
+    public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -105,6 +106,7 @@ public class Util {
     public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
     public List<String> WITCH_SWORD_LORE = new ArrayList<>();
     public List<String> END_SWORD_LORE = new ArrayList<>();
+    public List<String> END_ARMOR_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -557,11 +559,23 @@ public class Util {
         END_SWORD_LORE.add("§3Teleport 7 blocks in front of you.");
         END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
         END_SWORD_LORE.add("");
-        END_SWORD_LORE.add("§3Every 100 ender pearls thrown increases your maximum ");
+        END_SWORD_LORE.add("§3Every 100 ender pearls thrown increases your maximum");
         END_SWORD_LORE.add("§dEnd Power §3by §b1§3, up to a maximum of §b+30§3.");
         END_SWORD_LORE.add("");
         END_SWORD_LORE.add("§6LEGENDARY");
         END_SWORD_LORE.add("§6---------------");
+        // End Armor
+        END_ARMOR_LORE.add("id: END_ARMOR");
+        END_ARMOR_LORE.add("§6---------------");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eAbility: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Increases your maximum §dEnd Power §3by §b+35§3. (Up to 140)");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eFull Set Bonus: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Gain a §b30% §3chance to not consume an ender pearl when thrown.");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§6LEGENDARY");
+        END_ARMOR_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -699,5 +713,8 @@ public class Util {
     }
     public boolean checkForEndSword(ItemStack item) {
         return this.checkFor(item, 0, "id: END_SWORD");
+    }
+    public boolean checkForEndArmor(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_ARMOR");
     }
 }

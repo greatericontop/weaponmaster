@@ -227,6 +227,11 @@ commands:
     usage: "U: /endsword give"
     permission: "weaponmaster.endsword.command"
     permission-message: "§cYou are not allowed to do this!"
+  endarmor:
+    description: "[Weapon Master] command for End Armor"
+    usage: "U: /endarmor [give]"
+    permission: "weaponmaster.endarmor.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -425,5 +430,10 @@ permissions:
   weaponmaster.endsword.command:
     default: op
   weaponmaster.endsword.use:
+    default: true
+  #
+  weaponmaster.endarmor.command:
+    default: op
+  weaponmaster.endarmor.use:
     default: true
   #
