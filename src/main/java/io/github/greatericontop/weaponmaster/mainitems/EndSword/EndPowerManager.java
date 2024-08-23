@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -46,7 +47,13 @@ public class EndPowerManager {
 
     public int getMaxPower(Player player) {
         int pearlsThrown = player.getStatistic(Statistic.USE_ITEM, org.bukkit.Material.ENDER_PEARL);
-        return 150 + Math.min(pearlsThrown / 100, 30);
+        int armorBonus = 0;
+        for (ItemStack armorPiece : player.getInventory().getArmorContents()) {
+            if (util.checkForEndArmor(armorPiece)) {
+                armorBonus += 35;
+            }
+        }
+        return 150 + Math.min(pearlsThrown / 100, 30) + armorBonus;
     }
 
     public void registerEndPowerManagerTask(WeaponMasterMain plugin) {
