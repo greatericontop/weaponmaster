@@ -363,7 +363,7 @@ public class Util {
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
-        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c85%§7.");
+        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c80%§7.");
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");

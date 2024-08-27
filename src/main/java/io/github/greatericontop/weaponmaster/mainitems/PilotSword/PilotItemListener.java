@@ -29,7 +29,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PilotItemListener implements Listener {
-    private final double DAMAGE_AMOUNT = 0.15;
+    private final double DAMAGE_AMOUNT = 0.2;
 
     private final WeaponMasterMain plugin;
     private final Util util;
