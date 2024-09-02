@@ -208,8 +208,8 @@ public class MidFightTasks {
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
-            double damage = 7.0 + rnd.nextInt(12); // 7 ~ 18 in true damage
-            if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 18.5 uniform
+            double damage = 7.0 + rnd.nextInt(11); // 7 ~ 17 in true damage
+            if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 17.5 uniform
             TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
             target.sendMessage(String.format("§5WeaponMaster Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
