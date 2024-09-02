@@ -100,34 +100,47 @@ public class LootDropper {
     }
 
     public int doMajorDrops(World world, int weight, Player player) {
-        double dropBonus = 1.0 + 0.0015*Math.min(Math.max(weight, 700), 1100); // accumulate bonuses above 700 weight
+        boolean hasSoloerBonus = weight >= 1350;
+        double doubleDropsChance = hasSoloerBonus ? 0.5 : 0.0;
         if (plugin.descent.isEnabled) {
-            double extra = 1 + 0.015*plugin.descent.getUpgrade(player, "dragonExtraRNG");
-            dropBonus *= extra;
+            doubleDropsChance += 0.015 * plugin.descent.getUpgrade(player, "dragonExtraRNG");
         }
-        double hornChance = 0.06 * dropBonus;
-        double scaleChance = 0.11 * dropBonus;
-        double wingChance = 0.39 * dropBonus;
-        // getting anything: 56%, more with weight bonus (max +60%) / descent bonus (max +7.5%)
+        double hornChance = hasSoloerBonus ? 0.1 : 0.06;
+        double scaleChance = hasSoloerBonus ? 0.2 : 0.12;
+        double wingChance = hasSoloerBonus ? 0.7 : 0.42;
+        // getting anything: 60%
+        // solo bonus makes it 100% (1.67x boost) AND 50% double drops chance for a total boost of 2.5x
         double rand = Math.random();
         if (rand < hornChance) {
             // if you don't have enough weight, you simply get nothing (and you can't get other drops)
             if (weight >= 600) {
-                createDrop(world, customItems.generateDragonHornItemStack(), player, "Dragon Horn");
+                ItemStack stack = customItems.generateDragonHornItemStack();
+                if (Math.random() < doubleDropsChance) {
+                    stack.setAmount(2);
+                }
+                createDrop(world, stack, player, "Dragon Horn");
                 weight -= 600;
                 return weight;
             }
         }
         if (rand < hornChance + scaleChance) {
             if (weight >= 550) {
-                createDrop(world, customItems.generateDragonScaleItemStack(), player, "Dragon Scale");
+                ItemStack stack = customItems.generateDragonScaleItemStack();
+                if (Math.random() < doubleDropsChance) {
+                    stack.setAmount(2);
+                }
+                createDrop(world, stack, player, "Dragon Scale");
                 weight -= 550;
                 return weight;
             }
         }
         if (rand < hornChance + scaleChance + wingChance) {
             if (weight >= 400) {
-                createDrop(world, customItems.generateDragonWingItemStack(), player, "Dragon Wing");
+                ItemStack stack = customItems.generateDragonWingItemStack();
+                if (Math.random() < doubleDropsChance) {
+                    stack.setAmount(2);
+                }
+                createDrop(world, stack, player, "Dragon Wing");
                 weight -= 400;
                 return weight;
             }
@@ -140,7 +153,7 @@ public class LootDropper {
         int i = 0;
         while (weight > 0 && i < 32) {
             double rand = Math.random();
-            if (weight >= 130 && rand < 0.04) { // 4%
+            if (weight >= 130 && rand < 0.08) { // 8%
                 shulkerShellAmount++;
                 weight -= 130;
             } else if (weight >= 25 && 0.04 <= rand && rand < 0.34) { // 30%
