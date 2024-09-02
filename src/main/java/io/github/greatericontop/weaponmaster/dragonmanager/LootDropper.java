@@ -23,6 +23,7 @@ import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -182,6 +183,13 @@ public class LootDropper {
         int shards = MathHelper.roundProbability(totalWeight / 40.0);
         if (totalWeight >= 50) {
             shards += ThreadLocalRandom.current().nextInt(1, 6);
+        }
+        if (totalWeight >= 1350) {
+            // solos are worth an additional 30 shards
+            shards += 30;
+            // send toast
+            player.sendTitle("§6Solo!", "", 20, 120, 20);
+            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.0F);
         }
         plugin.descent.addShards(player, shards);
         player.sendMessage(String.format("§3You had §a%d §3weight and earned §b%d§3 shards.", totalWeight, shards));
