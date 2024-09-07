@@ -53,10 +53,11 @@ public class DragonElytraUpgradeListener implements Listener {
         if (modifiers == null) {
             return 0;
         }
+        if (modifiers.size() > 1) {
+            throw new RuntimeException("should only be 1 AM");
+        }
         for (AttributeModifier aMod : modifiers) {
-            if (aMod.getUniqueId().equals(modifierUUID)) {
-                return (int) (aMod.getAmount() / 0.5); // +0.5 armor per upgrade level
-            }
+            return (int) (aMod.getAmount() / 0.5); // +0.5 armor per upgrade level
         }
         return 0;
     }

@@ -26,8 +26,10 @@ import java.util.UUID;
 public class VersionSpecificUtil {
 
     public static void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
-        String[] ver = Bukkit.getVersion().split("\\."); // 1.X[.Y]
-        int major = Integer.parseInt(ver[1]);
+        // Paper & Spigot: getBukkitVersion() -> "1.21-R0.1-SNAPSHOT"
+        String rawVersion = Bukkit.getServer().getBukkitVersion();
+        String minecraftVersion = rawVersion.split("-")[0];
+        int major = Integer.parseInt(minecraftVersion.split("\\.")[1]);
         if (major >= 21) {
             modifyAttributeModifierNew(instance, withUUID, amountDelta, min, max);
         } else {
