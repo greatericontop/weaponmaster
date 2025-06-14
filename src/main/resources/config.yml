@@ -21,3 +21,6 @@ rng:
   endArtifact: 0.09
 fireball:
   heatSeeking: false
+witherStaff:
+  yield: 1.0
+  chargedChance: 0.04

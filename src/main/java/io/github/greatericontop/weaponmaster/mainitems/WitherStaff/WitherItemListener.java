@@ -67,7 +67,8 @@ public class WitherItemListener implements Listener {
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setCharged(Math.random() < 0.04);
+        witherSkull.setYield((float) plugin.getConfig().getDouble("witherStaff.yield", 1.0));
+        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.04));
 
         new BukkitRunnable() {
             public void run() {
