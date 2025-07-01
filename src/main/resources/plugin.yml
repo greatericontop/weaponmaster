@@ -237,6 +237,11 @@ commands:
     usage: "U: /scorpionbow [give]"
     permission: "weaponmaster.scorpionbow.command"
     permission-message: "§cYou are not allowed to do this!"
+  ares:
+    description: "[Weapon Master] command for Ares"
+    usage: "U: /ares [give]"
+    permission: "weaponmaster.ares.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -447,3 +452,7 @@ permissions:
   weaponmaster.scorpionbow.use:
     default: true
   #
+  weaponmaster.ares.command:
+    default: op
+  weaponmaster.ares.use:
+    default: true

@@ -69,6 +69,7 @@ public class Util {
     public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
     public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
     public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
+    public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -109,6 +110,7 @@ public class Util {
     public List<String> END_SWORD_LORE = new ArrayList<>();
     public List<String> END_ARMOR_LORE = new ArrayList<>();
     public List<String> SCORPION_BOW_LORE = new ArrayList<>();
+    public List<String> ARES_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -588,6 +590,15 @@ public class Util {
         SCORPION_BOW_LORE.add("");
         SCORPION_BOW_LORE.add("§dEPIC");
         SCORPION_BOW_LORE.add("§6---------------");
+        // Ares
+        ARES_LORE.add("id: ARES");
+        ARES_LORE.add("§6---------------");
+        ARES_LORE.add("");
+        ARES_LORE.add("§eAbility: §4Sky Strike");
+        ARES_LORE.add("§3A powerful lightning strike deals 1 heart of §6True Damage§3.");
+        ARES_LORE.add("");
+        ARES_LORE.add("§6LEGENDARY");
+        ARES_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -606,7 +617,7 @@ public class Util {
         if (iMeta.getLore().size() <= index) { return false; }
         return iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
     }
-    
+
     public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  { return false; }
         Block block = event.getClickedBlock();
@@ -731,5 +742,8 @@ public class Util {
     }
     public boolean checkForScorpionBow(ItemStack item) {
         return this.checkFor(item, 0, "id: SCORPION_BOW");
+    }
+    public boolean checkForAres(ItemStack item) {
+        return this.checkFor(item, 0, "id: ARES");
     }
 }

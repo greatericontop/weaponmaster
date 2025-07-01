@@ -27,6 +27,8 @@ import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.Ares.AresCommand;
+import io.github.greatericontop.weaponmaster.mainitems.Ares.AresItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisRecipe;
@@ -333,6 +335,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Scorpion Bow
         this.getCommand("scorpionbow").setExecutor(new ScorpionCommand());
         this.getServer().getPluginManager().registerEvents(new ScorpionItemListener(this), this);
+        // Ares
+        this.getCommand("ares").setExecutor(new AresCommand());
+        this.getServer().getPluginManager().registerEvents(new AresItemListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
