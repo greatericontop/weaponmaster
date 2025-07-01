@@ -232,6 +232,11 @@ commands:
     usage: "U: /endarmor [give]"
     permission: "weaponmaster.endarmor.command"
     permission-message: "§cYou are not allowed to do this!"
+  scorpionbow:
+    description: "[Weapon Master] command for Scorpion Bow"
+    usage: "U: /scorpionbow [give]"
+    permission: "weaponmaster.scorpionbow.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -435,5 +440,10 @@ permissions:
   weaponmaster.endarmor.command:
     default: op
   weaponmaster.endarmor.use:
+    default: true
+  #
+  weaponmaster.scorpionbow.command:
+    default: op
+  weaponmaster.scorpionbow.use:
     default: true
   #

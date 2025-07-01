@@ -68,6 +68,7 @@ public class Util {
     public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
     public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
     public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
+    public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -107,6 +108,7 @@ public class Util {
     public List<String> WITCH_SWORD_LORE = new ArrayList<>();
     public List<String> END_SWORD_LORE = new ArrayList<>();
     public List<String> END_ARMOR_LORE = new ArrayList<>();
+    public List<String> SCORPION_BOW_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -576,6 +578,16 @@ public class Util {
         END_ARMOR_LORE.add("");
         END_ARMOR_LORE.add("§6LEGENDARY");
         END_ARMOR_LORE.add("§6---------------");
+        // Scorpion Bow
+        SCORPION_BOW_LORE.add("id: SCORPION_BOW");
+        SCORPION_BOW_LORE.add("§6---------------");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§eAbility: §4Venom");
+        SCORPION_BOW_LORE.add("§3Targets shot are poisoned for");
+        SCORPION_BOW_LORE.add("§b6 §3seconds.");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§dEPIC");
+        SCORPION_BOW_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -716,5 +728,8 @@ public class Util {
     }
     public boolean checkForEndArmor(ItemStack item) {
         return this.checkFor(item, 0, "id: END_ARMOR");
+    }
+    public boolean checkForScorpionBow(ItemStack item) {
+        return this.checkFor(item, 0, "id: SCORPION_BOW");
     }
 }

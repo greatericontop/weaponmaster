@@ -104,6 +104,8 @@ import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.LauncherComma
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.ScorpionBow.ScorpionCommand;
+import io.github.greatericontop.weaponmaster.mainitems.ScorpionBow.ScorpionItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaRecipe;
@@ -328,6 +330,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("endarmor").setExecutor(new EndArmorCommand());
         this.getServer().getPluginManager().registerEvents(new EndArmorListener(), this);
         new EndArmorRecipe().registerAll();
+        // Scorpion Bow
+        this.getCommand("scorpionbow").setExecutor(new ScorpionCommand());
+        this.getServer().getPluginManager().registerEvents(new ScorpionItemListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
