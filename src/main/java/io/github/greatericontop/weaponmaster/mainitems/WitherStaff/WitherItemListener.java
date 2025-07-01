@@ -74,7 +74,8 @@ public class WitherItemListener implements Listener {
             public void run() {
                 cooldowns.put(player.getUniqueId(), true);
             }
-        }.runTaskLater(plugin, 20L);
+        }//.runTaskLater(plugin, 20L);
+                .runTaskLater(plugin, 2L); // TODO: DEBUG
     }
 
 }
