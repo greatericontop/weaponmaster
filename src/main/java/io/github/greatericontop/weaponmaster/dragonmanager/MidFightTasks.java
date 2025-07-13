@@ -152,8 +152,8 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(110.0)) { return; }
-        if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
+        if (rejectWithChance(95.0)) { return; }
+        if (tickNumber < hiveAnger_lastTickRan + 300) { return; }
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -172,8 +172,8 @@ public class MidFightTasks {
     }
 
     public void spawnEndGuard(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
-        if (tickNumber < endGuard_lastTickRan + 500) { return; }
+        if (rejectWithChance(55.0)) { return; }
+        if (tickNumber < endGuard_lastTickRan + 300) { return; }
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -202,7 +202,7 @@ public class MidFightTasks {
     }
 
     public void doLightningAttack(int tickNumber) {
-        if (rejectWithChance(45.0)) { return; }
+        if (rejectWithChance(25.0)) { return; }
         if (tickNumber < lightningAttack_lastTickRan + 300) { return; }
         lightningAttack_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
@@ -217,8 +217,8 @@ public class MidFightTasks {
     }
 
     public void doFireballStorm(int tickNumber) {
-        if (rejectWithChance(60.0)) { return; }
-        if (tickNumber < fireballStorm_lastTickRan + 400) { return; }
+        if (rejectWithChance(65.0)) { return; }
+        if (tickNumber < fireballStorm_lastTickRan + 300) { return; }
         fireballStorm_lastTickRan = tickNumber;
         Location loc = currentlyActiveDragon.getLocation();
         // Spawn fireballs below the dragon as some kind of protection
@@ -259,7 +259,7 @@ public class MidFightTasks {
     }
 
     public void doToxicStorm(int tickNumber) {
-        if (rejectWithChance(120.0)) { return; }
+        if (rejectWithChance(90.0)) { return; }
         if (tickNumber < toxicStorm_lastTickRan + 300) { return; }
         toxicStorm_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
@@ -285,8 +285,8 @@ public class MidFightTasks {
     }
 
     public void spawnEndDweller(int tickNumber) {
-        if (rejectWithChance(70.0)) { return; }
-        if (tickNumber < endDweller_lastTickRan + 200) { return; }
+        if (rejectWithChance(45.0)) { return; }
+        if (tickNumber < endDweller_lastTickRan + 300) { return; }
         endDweller_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -302,7 +302,7 @@ public class MidFightTasks {
     }
 
     public void spawnEndstoneDefender(int tickNumber) {
-        if (rejectWithChance(100.0)) { return; }
+        if (rejectWithChance(70.0)) { return; }
         if (tickNumber < endstoneDefender_lastTickRan + 300) { return; }
         endstoneDefender_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -330,7 +330,7 @@ public class MidFightTasks {
     }
 
     public void summonSniper(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
+        if (rejectWithChance(70.0)) { return; }
         if (tickNumber < sniper_lastTickRan + 300) { return; }
         sniper_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -352,8 +352,8 @@ public class MidFightTasks {
     }
 
     public void summonGhosts(int tickNumber) {
-        if (rejectWithChance(165.0)) { return; }
-        if (tickNumber < ghost_lastTickRan + 600) { return; }
+        if (rejectWithChance(105.0)) { return; }
+        if (tickNumber < ghost_lastTickRan + 300) { return; }
         ghost_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -378,8 +378,8 @@ public class MidFightTasks {
     }
 
     public void callAgents(int tickNumber) {
-        if (rejectWithChance(125.0)) { return; }
-        if (tickNumber < agents_lastTickRan + 500) { return; }
+        if (rejectWithChance(70.0)) { return; }
+        if (tickNumber < agents_lastTickRan + 300) { return; }
         agents_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
