@@ -60,7 +60,7 @@ public class MidFightTasks {
     private final double GUARD_MAX_HP = 150.0;
     private final int STORM_SIZE = 4;
     private final double DEFENDER_MAX_HEALTH = 65.0;
-    private final double AGENT_HEALTH = 90.0;
+    private final double AGENT_HEALTH = 100.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
