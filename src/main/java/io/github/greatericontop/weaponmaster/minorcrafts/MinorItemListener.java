@@ -25,13 +25,16 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
@@ -39,10 +42,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 
 public class MinorItemListener implements Listener {
+
+    private final Set<UUID> thrownXPBottles = new HashSet<>();
 
     private final Random rnd = new Random();
     private final CustomItems customItems;
@@ -169,6 +177,28 @@ public class MinorItemListener implements Listener {
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: DRAGON_HORN")) {
             event.setCancelled(true);
+        }
+    }
+
+//    @EventHandler(priority = EventPriority.NORMAL)
+//    public void onXPBottleThrow(ProjectileLaunchEvent event) {
+//        if (!(event.getEntity() instanceof ThrownExpBottle)) { return; }
+//        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+//        ItemStack item = bottle.getItem();
+//        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+//            thrownXPBottles.add(bottle.getUniqueId());
+//        }
+//    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onXPBottleSmash(ProjectileHitEvent event) {
+        if (!(event.getEntity() instanceof ThrownExpBottle)) { return; }
+        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+        ItemStack item = bottle.getItem();
+        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+            ExperienceOrb orb = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), ExperienceOrb.class);
+            orb.setExperience(1000 + rnd.nextInt(241));
+            // 160 bottles worth of xp (161 total since bottle itself is not canceled)
         }
     }
 
