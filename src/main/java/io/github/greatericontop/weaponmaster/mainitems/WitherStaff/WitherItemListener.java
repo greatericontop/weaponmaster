@@ -68,11 +68,14 @@ public class WitherItemListener implements Listener {
         witherSkull.setShooter(player);
         witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.04));
 
-        new BukkitRunnable() {
-            public void run() {
-                cooldowns.put(player.getUniqueId(), true);
-            }
-        }.runTaskLater(plugin, plugin.getConfig().getLong("witherStaff.cooldownTicks", 20L));
+        long cooldown = plugin.getConfig().getLong("witherStaff.cooldownTicks", 20L);
+        if (cooldown > 0) {
+            new BukkitRunnable() {
+                public void run() {
+                    cooldowns.put(player.getUniqueId(), true);
+                }
+            }.runTaskLater(plugin, cooldown);
+        }
     }
 
 }
