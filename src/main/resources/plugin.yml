@@ -1,7 +1,7 @@
 name: 'WeaponMaster'
 version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
-api-version: 1.17
+api-version: 1.21
 authors: [greateric, gerseneck, bigfatmidget]
 
 commands:
