@@ -57,7 +57,7 @@ public class ScytheItemListener implements Listener {
     }
 
     private final int DURABILITY_THRESHOLD = 249;
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player)event.getDamager();
@@ -92,14 +92,14 @@ public class ScytheItemListener implements Listener {
     /*
      * Prevent repairs
      */
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onMending(PlayerItemMendEvent event) {
         if (util.checkForDeathScythe(event.getItem())) {
             event.getPlayer().sendMessage("§6You can't mend this item.");
             event.setCancelled(true);
         }
     }
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvil(PrepareAnvilEvent event) {
         ItemStack scythe = event.getInventory().getItem(0);
         ItemStack sacrificeItem = event.getInventory().getItem(1);

@@ -132,7 +132,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         if (!util.checkForMinersBlessing(player.getInventory().getItemInMainHand()))  return;
@@ -277,7 +277,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();

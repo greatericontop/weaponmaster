@@ -59,7 +59,7 @@ public class SniperItemListener implements Listener {
         player.getWorld().spawnParticle(Particle.SMALL_FLAME, eyeLoc, 20);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         if (!(event.getEntity() instanceof Player)) {
             return;

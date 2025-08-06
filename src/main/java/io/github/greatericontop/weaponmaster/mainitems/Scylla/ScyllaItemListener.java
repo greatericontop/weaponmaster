@@ -46,7 +46,7 @@ public class ScyllaItemListener implements Listener {
         return reduction * MAX_REDUCTION;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamage(EntityDamageEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER)  return;
         if (event.getCause() == EntityDamageEvent.DamageCause.VOID)  return;

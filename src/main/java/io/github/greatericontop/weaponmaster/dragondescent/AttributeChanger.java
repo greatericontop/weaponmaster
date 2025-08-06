@@ -99,7 +99,7 @@ public class AttributeChanger implements Listener {
         }.runTaskTimer(plugin, period, period);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPlayerJoin(PlayerJoinEvent event) {
         // update when you join
         updateAttributes(event.getPlayer());

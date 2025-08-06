@@ -67,7 +67,7 @@ public class HeliosItemListener implements Listener {
         return deltaX*deltaX + deltaZ*deltaZ;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
@@ -80,7 +80,7 @@ public class HeliosItemListener implements Listener {
         event.setDamage(damageMultiply(player, event.getDamage()));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();

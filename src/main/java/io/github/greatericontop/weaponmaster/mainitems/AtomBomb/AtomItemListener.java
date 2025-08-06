@@ -72,7 +72,7 @@ public class AtomItemListener implements Listener {
         return blastRes;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         if (!util.checkForAtomBomb(event.getItemInHand()))  return;

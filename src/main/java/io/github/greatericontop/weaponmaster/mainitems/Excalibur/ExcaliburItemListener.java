@@ -45,7 +45,7 @@ public class ExcaliburItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();

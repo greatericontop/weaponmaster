@@ -58,7 +58,7 @@ public class NetheriteStaffListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAttack(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
@@ -74,7 +74,7 @@ public class NetheriteStaffListener implements Listener {
         attacked.addPotionEffect(effect);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;

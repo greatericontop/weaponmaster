@@ -43,7 +43,7 @@ public class EndSwordListener implements Listener {
         this.util = new Util(null);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();

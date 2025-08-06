@@ -44,7 +44,7 @@ public class EndArmorListener implements Listener {
                 && util.checkForEndArmor(inventory.getBoots());
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPearlThrow(ProjectileLaunchEvent event) {
         if (!(event.getEntity().getType() == EntityType.ENDER_PEARL))  return;
         if (!(event.getEntity().getShooter() instanceof Player))  return;

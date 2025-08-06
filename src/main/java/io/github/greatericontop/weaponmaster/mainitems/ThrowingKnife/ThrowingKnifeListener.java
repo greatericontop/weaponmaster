@@ -59,7 +59,7 @@ public class ThrowingKnifeListener implements Listener {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
@@ -77,7 +77,7 @@ public class ThrowingKnifeListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();

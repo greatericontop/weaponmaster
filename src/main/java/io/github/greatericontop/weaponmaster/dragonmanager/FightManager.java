@@ -66,7 +66,7 @@ public class FightManager implements Listener {
         return nearbyEntities.size() >= 3;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
         if (!(event.getEntity() instanceof EnderDragon))  return;
@@ -92,7 +92,7 @@ public class FightManager implements Listener {
         dragon.setCustomNameVisible(true);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDamage(EntityDamageEvent event) {
         if (currentlyActiveDragon == null)  return;
         if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
@@ -116,7 +116,7 @@ public class FightManager implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDeath(EntityDeathEvent event) {
         LivingEntity entity = event.getEntity();
         PersistentDataContainer pdc = entity.getPersistentDataContainer();
@@ -137,7 +137,7 @@ public class FightManager implements Listener {
         dragonWeightManager.onDamage(event);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDeath(EntityDeathEvent event) {
         if (currentlyActiveDragon == null)  return;
         if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;

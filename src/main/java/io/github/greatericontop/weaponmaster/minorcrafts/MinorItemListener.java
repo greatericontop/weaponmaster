@@ -62,7 +62,7 @@ public class MinorItemListener implements Listener {
         this.util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
             if (Math.random() < plugin.getConfig().getDouble("rng.leviathanHeart")) {
@@ -127,7 +127,7 @@ public class MinorItemListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEat(PlayerItemConsumeEvent event) {
         if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR"))  return;
         Player player = event.getPlayer();
@@ -135,7 +135,7 @@ public class MinorItemListener implements Listener {
         player.sendMessage("§3Successfully gained a heart!");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onExpertSeal(InventoryClickEvent event) {
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)  return;
         if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
@@ -169,7 +169,7 @@ public class MinorItemListener implements Listener {
         player.sendMessage("§3Success!");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void rightClickBlock(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
@@ -180,7 +180,7 @@ public class MinorItemListener implements Listener {
         }
     }
 
-//    @EventHandler(priority = EventPriority.NORMAL)
+//    @EventHandler()
 //    public void onXPBottleThrow(ProjectileLaunchEvent event) {
 //        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
 //        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
@@ -190,7 +190,7 @@ public class MinorItemListener implements Listener {
 //        }
 //    }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onXPBottleSmash(ProjectileHitEvent event) {
         if (!(event.getEntity() instanceof ThrownExpBottle))  return;
         ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();

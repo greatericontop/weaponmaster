@@ -47,7 +47,7 @@ public class WitherItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();

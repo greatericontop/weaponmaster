@@ -43,7 +43,7 @@ public class WitchSwordListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPlayerAttackEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) {
             return;

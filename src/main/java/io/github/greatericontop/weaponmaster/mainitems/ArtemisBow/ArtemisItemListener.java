@@ -74,7 +74,7 @@ public class ArtemisItemListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         Entity arrow = event.getProjectile();
         if (!(event.getEntity() instanceof Player))  return;
@@ -141,7 +141,7 @@ public class ArtemisItemListener implements Listener {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }

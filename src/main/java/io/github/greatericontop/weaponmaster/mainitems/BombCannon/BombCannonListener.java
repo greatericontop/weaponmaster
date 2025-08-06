@@ -41,7 +41,7 @@ public class BombCannonListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         Entity arrow = event.getProjectile();
         if (!(event.getEntity() instanceof Player))  return;
@@ -59,7 +59,7 @@ public class BombCannonListener implements Listener {
         explosiveArrows.add(arrow.getUniqueId());
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile arrow = event.getEntity();
         if (explosiveArrows.contains(arrow.getUniqueId())) {

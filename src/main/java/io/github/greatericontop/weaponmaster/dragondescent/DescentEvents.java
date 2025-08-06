@@ -132,7 +132,7 @@ public class DescentEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEntityKilledByPlayer(EntityDeathEvent event) {
         if (event.getEntity().getKiller() == null)  return;
         Player player = event.getEntity().getKiller();
@@ -188,7 +188,7 @@ public class DescentEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPotion(EntityPotionEffectEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
@@ -234,7 +234,7 @@ public class DescentEvents implements Listener {
 
     // other events
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onHunger(EntityExhaustionEvent event) {
         Player player = (Player) event.getEntity();
         // enhancedEnergy
@@ -245,7 +245,7 @@ public class DescentEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPlayerExperienceGain(PlayerExpChangeEvent event) {
         Player player = event.getPlayer();
         // wisdom

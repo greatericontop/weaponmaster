@@ -57,7 +57,7 @@ public class CopperSwordListener implements Listener {
         pdcOxidizeKey = new NamespacedKey(plugin, "WM_COPPER_SWORD_OXIDIZE");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void OnHit(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
@@ -113,7 +113,7 @@ public class CopperSwordListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void OnRepair(PrepareAnvilEvent event) {
         if (!util.checkForCopperSword(event.getInventory().getItem(0))) { return; }
         if (event.getInventory().getItem(1) == null) { return; }
@@ -153,7 +153,7 @@ public class CopperSwordListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvilClick(InventoryClickEvent event) {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }

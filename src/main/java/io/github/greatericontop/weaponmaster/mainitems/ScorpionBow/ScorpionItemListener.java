@@ -43,7 +43,7 @@ public class ScorpionItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         if (!(event.getEntity() instanceof Player)) { return; }
         Player player = (Player) event.getEntity();
@@ -59,7 +59,7 @@ public class ScorpionItemListener implements Listener {
         arrows.add(event.getProjectile().getUniqueId());
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onArrowHit(EntityDamageByEntityEvent event) {
         if (!arrows.contains(event.getDamager().getUniqueId())) { return; }
         if (event.getEntity() instanceof LivingEntity) {

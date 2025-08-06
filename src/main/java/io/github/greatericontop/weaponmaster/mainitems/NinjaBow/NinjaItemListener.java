@@ -74,7 +74,7 @@ public class NinjaItemListener implements Listener {
         return arrow;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         if (!(event.getEntity() instanceof Player))  return;
         Player player = (Player) event.getEntity();
@@ -87,7 +87,7 @@ public class NinjaItemListener implements Listener {
     private final double INACCURACY = 0.01675; // minecraft uses a normal distribution multiplied by 0.0075
                                                // we are using a circle with average radius (r * sqrt2/2): ~0.0118
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }

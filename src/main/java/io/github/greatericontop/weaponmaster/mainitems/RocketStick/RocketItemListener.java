@@ -46,7 +46,7 @@ public class RocketItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
@@ -60,7 +60,7 @@ public class RocketItemListener implements Listener {
         event.getEntity().setVelocity(event.getEntity().getVelocity().add(knockback));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
