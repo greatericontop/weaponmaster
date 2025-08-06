@@ -19,9 +19,9 @@ It runs on any Spigot (or Paper and its forks, which are required for some addit
 - The **WeaponMaster Dragon**, an upgraded dragon fight with special loot and rewards.
 - And some overpowered admin commands for fun.
 
-[Click here for more information about the items.](WEAPONS.md)
+[Click here for more information about the items.](https://github.com/greatericontop/weaponmaster/WEAPONS.md)
 
-[Click here for more information about the other features, including the WeaponMaster Dragon, Dragon's Descent rewards tree, and admin commands.](FEATURES.md)
+[Click here for more information about the other features, including the WeaponMaster Dragon, Dragon's Descent rewards tree, and admin commands.](https://github.com/greatericontop/weaponmaster/FEATURES.md)
 
 
 ## Installation
