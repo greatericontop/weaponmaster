@@ -60,15 +60,16 @@ public class FightManager implements Listener {
         // If we want crystals in the 3x3 box centered at 00, we actually need to make the box only at 0.5, 0.5
         // since end crystals have huge hitboxes that take up multiple blocks.
         BoundingBox crystalBoundingBox = new BoundingBox(0.499, 0, 0.499, 0.501, 200, 0.501);
-        Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> entity.getType() == EntityType.ENDER_CRYSTAL);
+        // For version compatibility, the EntityType could be either END_CRYSTAL or ENDER_CRYSTAL
+        Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> (entity.getType().toString().equals("END_CRYSTAL") || entity.getType().toString().equals("ENDER_CRYSTAL")));
         // Dragon spawns if and only if there are at least 3 crystals in the middle box.
         return nearbyEntities.size() >= 3;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
-        if (!(event.getEntity() instanceof EnderDragon)) { return; }
+        if (!(event.getEntity() instanceof EnderDragon))  return;
         if (!checkSpecialDragonConditions(event)) {
             // due to a vanilla issue, we have to reset the custom name
             // since we can't use translatable components here, give it a fancy name to make it look legit
@@ -91,10 +92,10 @@ public class FightManager implements Listener {
         dragon.setCustomNameVisible(true);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDamage(EntityDamageEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         // reduce high amounts of [raw] damage (e.g. bullet arrows, high explosives)
         if (event.getDamage() >= 30.0) {
@@ -115,7 +116,7 @@ public class FightManager implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDeath(EntityDeathEvent event) {
         LivingEntity entity = event.getEntity();
         PersistentDataContainer pdc = entity.getPersistentDataContainer();
@@ -136,10 +137,10 @@ public class FightManager implements Listener {
         dragonWeightManager.onDamage(event);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDeath(EntityDeathEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         LootDropper lootDropper = new LootDropper(plugin);
         for (Player player : dragonWeightManager.players) {

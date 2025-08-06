@@ -7,12 +7,15 @@
   - [RPG Launcher](#rpg-launcher)
   - [Sniper Rifle](#sniper-rifle)
 - [LEGENDARY](#legendary)
+  - [Ares](#ares)
   - [Artemis Bow](#artemis-bow)
   - [Caveman Sword](#caveman-sword)
   - [Death's Scythe](#deaths-scythe)
   - [Dragon Armor](#dragon-armor)
   - [Dragon Elytra](#dragon-elytra)
   - [Dragon Sword](#dragon-sword)
+  - [End Armor](#end-armor)
+  - [End Sword](#end-sword)
   - [Excalibur](#excalibur)
   - [Exodus](#exodus)
   - [Helios](#helios)
@@ -28,10 +31,12 @@
   - [Valkyrie Axe](#valkyrie-axe)
   - [Vampire's Axe](#vampires-axe)
   - [Warlock Pants](#warlock-pants)
+  - [Witch Sword](#witch-sword)
 - [EPIC](#epic)
   - [Anduril](#anduril)
   - [Copper Sword](#copper-sword)
   - [Fireball](#fireball)
+  - [Scorpion Bow](#scorpion-bow)
   - [Throwing Knife](#throwing-knife)
   - [Wither Staff](#wither-staff)
 - [Others](#others)
@@ -42,6 +47,7 @@
   - [Magic Energy Bar](#magic-energy-bar)
   - [Nether Reactor Core](#nether-reactor-core)
   - [Silky String](#silky-string)
+  - [Super XP Bottle](#super-xp-bottle)
 
 <br/>
 
@@ -78,6 +84,12 @@ Admin, command-only weapons of extreme power and mass destruction.
 ## LEGENDARY
 
 Craftable weapons for late and end game players. These are very powerful.
+
+### Ares
+
+`/ares give` - lightning strikes for 1 heart of true damage
+
+Crafting Recipe: NOT REALLY COMING SOON
 
 ### Artemis Bow
 
@@ -181,6 +193,28 @@ Crafting Recipe:
 - 1x Netherite Sword
 
 ![](assets/dragsword.png)
+
+### End Armor
+
+`/endarmor give` - increases the power of the End Sword
+
+Crafting Recipe:
+- 6x Ender Pearl
+- 2x End Artifact
+- 1x any netherite armor
+
+![](assets/endarmor.png)
+
+### End Sword
+
+`/endsword give` - right click to teleport forward
+
+Crafting Recipe:
+- 4x Ender Pearl
+- 4x End Artifact
+- 1x Iron Sword
+
+![](assets/endsword.png)
 
 ### Excalibur
 
@@ -365,6 +399,12 @@ Crafting Recipe:
 
 ![](assets/warlock.png)
 
+### Witch Sword
+
+`/witchsword give` - targets hit are cursed and heal their attackers
+
+Crafting Recipe: NOT REALLY COMING SOON
+
 <br/>
 
 ## EPIC
@@ -406,6 +446,11 @@ Crafting Recipe:
 
 ![](assets/fireball.png)
 
+### Scorpion Bow
+
+`/scorpionbow give` - shoots arrows that poison targets
+
+Crafting Recipe: NOT REALLY COMING SOON
 
 ### Throwing Knife
 
@@ -417,7 +462,6 @@ Crafting Recipe:
 - 1x Piston
 
 ![](assets/throwingknife.png)
-
 
 ### Wither Staff
 
@@ -501,3 +545,9 @@ Crafting Recipe:
 
 A magical string used to craft `Artemis Bow` and `Ninja Bow`.
 0.1% chance of dropping from a `Cave Spider`.
+
+### Super XP Bottle
+
+A supercharged bottle of experience, granting over 25 levels when used.
+
+There is currently no crafting recipe.

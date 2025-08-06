@@ -60,7 +60,7 @@ public class RPGItemListener implements Listener {
         return arrow;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
@@ -80,13 +80,13 @@ public class RPGItemListener implements Listener {
                 if (arrow.isDead()) {
                     cancel();
                 } else {
-                    player.getWorld().spawnParticle(Particle.SMOKE_LARGE, arrow.getLocation(), 190);
+                    player.getWorld().spawnParticle(Particle.LARGE_SMOKE, arrow.getLocation(), 190);
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile entity = event.getEntity();
         if (!projectilesInFlightUUIDs.contains(entity.getUniqueId().toString())) { return; } // we added the UUID earlier, so there shouldn't be a player NPE

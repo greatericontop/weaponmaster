@@ -36,7 +36,7 @@ public class AssassinsBladeListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
@@ -55,7 +55,7 @@ public class AssassinsBladeListener implements Listener {
         float angle = Math.abs(playerYaw - targetYaw); // 0 ~ 360
         if (angle < REQUIRED_ANGLE || 360-REQUIRED_ANGLE < angle) {
             event.setDamage(event.getDamage() * 1.4);
-            player.getWorld().spawnParticle(Particle.SMOKE_LARGE, target.getLocation(), 40);
+            player.getWorld().spawnParticle(Particle.LARGE_SMOKE, target.getLocation(), 40);
         }
     }
 

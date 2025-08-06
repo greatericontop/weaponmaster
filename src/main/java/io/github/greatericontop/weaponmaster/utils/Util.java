@@ -65,6 +65,11 @@ public class Util {
     public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
     public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
     public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
+    public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
+    public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
+    public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
+    public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
+    public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -101,6 +106,11 @@ public class Util {
     public List<String> WITHER_STAFF_LORE = new ArrayList<>();
     public List<String> BOMB_CANNON_LORE = new ArrayList<>();
     public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
+    public List<String> WITCH_SWORD_LORE = new ArrayList<>();
+    public List<String> END_SWORD_LORE = new ArrayList<>();
+    public List<String> END_ARMOR_LORE = new ArrayList<>();
+    public List<String> SCORPION_BOW_LORE = new ArrayList<>();
+    public List<String> ARES_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -357,7 +367,7 @@ public class Util {
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
-        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c85%§7.");
+        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c80%§7.");
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");
@@ -531,6 +541,64 @@ public class Util {
         THROWING_KNIFE_LORE.add("");
         THROWING_KNIFE_LORE.add("§dEPIC");
         THROWING_KNIFE_LORE.add("§6---------------");
+        // Witch Sword
+        WITCH_SWORD_LORE.add("id: WITCH_SWORD");
+        WITCH_SWORD_LORE.add("§6---------------");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§eAbility: §4Black Magic");
+        WITCH_SWORD_LORE.add("§3Consumes §c30% §3of the damage dealt.");
+        WITCH_SWORD_LORE.add("§3Attacked targets are cursed for §b10 §3seconds.");
+        WITCH_SWORD_LORE.add("§3If they are attacked, their attackers are");
+        WITCH_SWORD_LORE.add("§3healed for §a15% §3of their maximum health.");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§6LEGENDARY");
+        WITCH_SWORD_LORE.add("§6---------------");
+        // End Sword
+        END_SWORD_LORE.add("id: END_SWORD");
+        END_SWORD_LORE.add("§6---------------");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Stores §b150 §dEnd Power");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CLICK");
+        END_SWORD_LORE.add("§3Teleport 7 blocks in front of you.");
+        END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Every 100 ender pearls thrown increases your maximum");
+        END_SWORD_LORE.add("§dEnd Power §3by §b1§3, up to a maximum of §b+30§3.");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§6LEGENDARY");
+        END_SWORD_LORE.add("§6---------------");
+        // End Armor
+        END_ARMOR_LORE.add("id: END_ARMOR");
+        END_ARMOR_LORE.add("§6---------------");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eAbility: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Increases your maximum §dEnd Power §3by §b+35§3. (Up to 140)");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eFull Set Bonus: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Gain a §b30% §3chance to not consume an ender pearl when thrown.");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§6LEGENDARY");
+        END_ARMOR_LORE.add("§6---------------");
+        // Scorpion Bow
+        SCORPION_BOW_LORE.add("id: SCORPION_BOW");
+        SCORPION_BOW_LORE.add("§6---------------");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§eAbility: §4Venom");
+        SCORPION_BOW_LORE.add("§3Targets shot are poisoned for");
+        SCORPION_BOW_LORE.add("§b6 §3seconds.");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§dEPIC");
+        SCORPION_BOW_LORE.add("§6---------------");
+        // Ares
+        ARES_LORE.add("id: ARES");
+        ARES_LORE.add("§6---------------");
+        ARES_LORE.add("");
+        ARES_LORE.add("§eAbility: §4Sky Strike");
+        ARES_LORE.add("§3A powerful lightning strike deals 1 heart of §6True Damage§3.");
+        ARES_LORE.add("");
+        ARES_LORE.add("§6LEGENDARY");
+        ARES_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -549,7 +617,7 @@ public class Util {
         if (iMeta.getLore().size() <= index) { return false; }
         return iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
     }
-    
+
     public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  { return false; }
         Block block = event.getClickedBlock();
@@ -662,5 +730,20 @@ public class Util {
     }
     public boolean checkForThrowingKnife(ItemStack item) {
         return this.checkFor(item, 0, "id: THROWING_KNIFE");
+    }
+    public boolean checkForWitchSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITCH_SWORD");
+    }
+    public boolean checkForEndSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_SWORD");
+    }
+    public boolean checkForEndArmor(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_ARMOR");
+    }
+    public boolean checkForScorpionBow(ItemStack item) {
+        return this.checkFor(item, 0, "id: SCORPION_BOW");
+    }
+    public boolean checkForAres(ItemStack item) {
+        return this.checkFor(item, 0, "id: ARES");
     }
 }

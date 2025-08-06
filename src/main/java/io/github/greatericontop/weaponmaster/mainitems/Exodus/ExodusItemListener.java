@@ -59,11 +59,11 @@ public class ExodusItemListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntityPlayer(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
+        if (!util.checkForExodus(player.getInventory().getHelmet()))  return;
         if (!player.hasPermission("weaponmaster.exodus.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
             return;
@@ -71,13 +71,13 @@ public class ExodusItemListener implements Listener {
         doExodusHeal(player);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntityProjectile(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Projectile)) { return; }
+        if (!(event.getDamager() instanceof Projectile))  return;
         Projectile projectile = (Projectile) event.getDamager();
-        if (!(projectile.getShooter() instanceof Player)) { return; }
+        if (!(projectile.getShooter() instanceof Player))  return;
         Player player = (Player) projectile.getShooter();
-        if (!util.checkForExodus(player.getInventory().getHelmet())) { return; }
+        if (!util.checkForExodus(player.getInventory().getHelmet()))  return;
         if (!player.hasPermission("weaponmaster.exodus.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.exodus.use§3.");
             return;

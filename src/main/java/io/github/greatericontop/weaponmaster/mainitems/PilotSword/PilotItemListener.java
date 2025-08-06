@@ -29,7 +29,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PilotItemListener implements Listener {
-    private final double DAMAGE_AMOUNT = 0.15;
+    private final double DAMAGE_AMOUNT = 0.2;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -38,11 +38,11 @@ public class PilotItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForPilotSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForPilotSword(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.pilotsword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.pilotsword.use§3.");
             return;

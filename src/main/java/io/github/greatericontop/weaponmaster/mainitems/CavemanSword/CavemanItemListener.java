@@ -82,11 +82,11 @@ public class CavemanItemListener implements Listener {
         }[level] * 1000;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForCavemanSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForCavemanSword(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.cavemansword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.cavemansword.use§3.");
             return;
@@ -105,8 +105,8 @@ public class CavemanItemListener implements Listener {
             if (exp >= getRequirementToLevelUp(level)) {
                 exp = 0;
                 level++;
-                iMeta.removeEnchant(Enchantment.DAMAGE_ALL);
-                iMeta.addEnchant(Enchantment.DAMAGE_ALL, level, true);
+                iMeta.removeEnchant(Enchantment.SHARPNESS);
+                iMeta.addEnchant(Enchantment.SHARPNESS, level, true);
                 player.sendMessage(String.format("§9Your %s §9is now level §6%d.", util.CAVEMAN_SWORD_NAME, level));
                 lore.set(util.CAVEMAN_LVL, String.format("§6Sharpness Level: §b%d", level));
             }

@@ -45,9 +45,9 @@ public class ExcaliburItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
         if (!util.checkForExcalibur(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.excalibur.use")) {
@@ -66,7 +66,7 @@ public class ExcaliburItemListener implements Listener {
                         return;
                     }
                     victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
-                    victim.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, victim.getLocation(), 4);
+                    victim.getWorld().spawnParticle(Particle.EXPLOSION, victim.getLocation(), 4);
                     TrueDamageHelper.dealTrueDamage(victim, 3.0); // dealing true damage does NOT require no damage ticks
                 }
             }.runTaskLater(plugin, 1L);

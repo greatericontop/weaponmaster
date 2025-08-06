@@ -27,6 +27,8 @@ import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.Ares.AresCommand;
+import io.github.greatericontop.weaponmaster.mainitems.Ares.AresItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisCommand;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.ArtemisBow.ArtemisRecipe;
@@ -57,6 +59,13 @@ import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordCo
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordUpgradeListener;
+import io.github.greatericontop.weaponmaster.mainitems.EndArmor.EndArmorCommand;
+import io.github.greatericontop.weaponmaster.mainitems.EndArmor.EndArmorListener;
+import io.github.greatericontop.weaponmaster.mainitems.EndArmor.EndArmorRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndPowerManager;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndSwordCommand;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndSwordListener;
+import io.github.greatericontop.weaponmaster.mainitems.EndSword.EndSwordRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Excalibur.ExcaliburRecipe;
@@ -97,6 +106,8 @@ import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.LauncherComma
 import io.github.greatericontop.weaponmaster.mainitems.RPGLauncher.RPGItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketCommand;
 import io.github.greatericontop.weaponmaster.mainitems.RocketStick.RocketItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.ScorpionBow.ScorpionCommand;
+import io.github.greatericontop.weaponmaster.mainitems.ScorpionBow.ScorpionItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Scylla.ScyllaRecipe;
@@ -117,6 +128,8 @@ import io.github.greatericontop.weaponmaster.mainitems.VampAxe.VampRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WarlockPants.WarlockRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordCommand;
+import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
@@ -306,6 +319,25 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
         this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
         new ThrowingKnifeRecipe().regRecipe();
+        // Witch Sword
+        this.getCommand("witchsword").setExecutor(new WitchSwordCommand());
+        this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
+        // End Sword
+        this.getCommand("endsword").setExecutor(new EndSwordCommand());
+        EndPowerManager endPowerManager = new EndPowerManager();
+        endPowerManager.registerEndPowerManagerTask(this);
+        this.getServer().getPluginManager().registerEvents(new EndSwordListener(this, endPowerManager), this);
+        new EndSwordRecipe().regRecipe();
+        // End Armor
+        this.getCommand("endarmor").setExecutor(new EndArmorCommand());
+        this.getServer().getPluginManager().registerEvents(new EndArmorListener(), this);
+        new EndArmorRecipe().registerAll();
+        // Scorpion Bow
+        this.getCommand("scorpionbow").setExecutor(new ScorpionCommand());
+        this.getServer().getPluginManager().registerEvents(new ScorpionItemListener(this), this);
+        // Ares
+        this.getCommand("ares").setExecutor(new AresCommand());
+        this.getServer().getPluginManager().registerEvents(new AresItemListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

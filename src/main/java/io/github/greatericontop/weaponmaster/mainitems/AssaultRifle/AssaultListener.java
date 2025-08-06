@@ -73,7 +73,7 @@ public class AssaultListener implements Listener {
         setBulletsRemaining(rifle, getBulletsRemaining(rifle) - 1);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         if (!(event.getEntity() instanceof Player)) { return; }
         if (util.checkForAssaultRifle(event.getBow())) {

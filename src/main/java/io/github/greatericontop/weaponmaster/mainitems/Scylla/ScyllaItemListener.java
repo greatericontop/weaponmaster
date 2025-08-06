@@ -46,12 +46,12 @@ public class ScyllaItemListener implements Listener {
         return reduction * MAX_REDUCTION;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamage(EntityDamageEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
-        if (event.getCause() == EntityDamageEvent.DamageCause.VOID) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
+        if (event.getCause() == EntityDamageEvent.DamageCause.VOID)  return;
         Player player = (Player) event.getEntity();
-        if (!util.checkForScylla(player.getInventory().getChestplate())) { return; }
+        if (!util.checkForScylla(player.getInventory().getChestplate()))  return;
         if (!player.hasPermission("weaponmaster.scylla.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.scylla.use§3.");
             return;

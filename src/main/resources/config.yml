@@ -8,6 +8,7 @@ atomBomb:
   disable: true
   enforceGlobalCooldown: false
 deathScythe:
+  cooldownTicks: 10
   strength5Threshold: 16.0
   strength4Threshold: 11.0
   strength3Threshold: 7.0
@@ -18,5 +19,9 @@ rng:
   silkyString: 0.001
   lifeCore: 0.008
   expertSeal: 0.025
+  endArtifact: 0.09
 fireball:
   heatSeeking: false
+witherStaff:
+  chargedChance: 0.04
+  cooldownTicks: 20

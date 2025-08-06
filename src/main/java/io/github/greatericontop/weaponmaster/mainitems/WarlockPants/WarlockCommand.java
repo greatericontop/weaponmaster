@@ -52,7 +52,7 @@ public class WarlockCommand implements CommandExecutor {
                 return true;
             }
             ItemStack warlock = util.generateMeta(util.WARLOCK_PANTS_LORE, util.WARLOCK_PANTS_NAME, Material.NETHERITE_LEGGINGS);
-            warlock.addUnsafeEnchantment(Enchantment.DURABILITY, 4);
+            warlock.addUnsafeEnchantment(Enchantment.UNBREAKING, 4);
             ((Player) sender).getInventory().addItem(warlock);
             sender.sendMessage("§7Gave you §f[" + util.WARLOCK_PANTS_NAME + "§f]§7.");
             return true;

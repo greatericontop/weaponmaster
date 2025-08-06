@@ -68,7 +68,7 @@ public class ShreddedListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getDamager();
@@ -95,7 +95,7 @@ public class ShreddedListener implements Listener {
 
         Zombie zombie = (Zombie) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE, true);
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, SURVIVAL_DURATION*5, 0, true));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, SURVIVAL_DURATION*5, 0, true));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, SURVIVAL_DURATION*5, 0, true));
         zombie.setTarget(victim);
         zombie.setCanPickupItems(false);
         zombie.setCustomName(String.format("%s§7's §2Zombie", player.getDisplayName()));

@@ -67,11 +67,11 @@ public class HeliosItemListener implements Listener {
         return deltaX*deltaX + deltaZ*deltaZ;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForHelios(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.helios.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.helios.use§3.");
             return;
@@ -80,9 +80,9 @@ public class HeliosItemListener implements Listener {
         event.setDamage(damageMultiply(player, event.getDamage()));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
         ItemStack helios = player.getInventory().getItemInMainHand();
         if (!util.checkForHelios(helios)) { return; }
@@ -105,7 +105,7 @@ public class HeliosItemListener implements Listener {
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
-            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL) * 0.25;
+            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.25;
             target.damage(damageMultiply(player, damage));
             target.setFireTicks(target.getFireTicks() + 200);
             target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));

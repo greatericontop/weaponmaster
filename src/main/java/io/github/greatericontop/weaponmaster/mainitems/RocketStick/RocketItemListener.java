@@ -35,8 +35,8 @@ import org.bukkit.util.Vector;
 
 public class RocketItemListener implements Listener {
 
-    private final double KNOCKBACK_OTHER = 8.3;
-    private final double KNOCKBACK_SELF = 8.8;
+    private final double KNOCKBACK_OTHER = 10.0;
+    private final double KNOCKBACK_SELF = 8.3;
     private final double TELEPORT_DISTANCE = 6.5;
 
     private final WeaponMasterMain plugin;
@@ -46,11 +46,11 @@ public class RocketItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
-        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rocketstick.use§3.");
             return;
@@ -60,18 +60,18 @@ public class RocketItemListener implements Listener {
         event.getEntity().setVelocity(event.getEntity().getVelocity().add(knockback));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
-        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rocketstick.use§3.");
             return;
         }
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (Util.checkForInteractableBlock(event)) { return; }
+            if (Util.checkForInteractableBlock(event))  return;
             if (player.isSneaking()) {
                 // check raytrace
                 RayTraceResult rtxResult = player.getWorld().rayTraceBlocks(

@@ -40,11 +40,11 @@ public class VampItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
-        if (!util.checkForVampAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForVampAxe(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.vampaxe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.vampaxe.use§3.");
             return;

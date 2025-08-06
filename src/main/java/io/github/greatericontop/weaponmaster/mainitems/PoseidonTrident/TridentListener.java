@@ -57,11 +57,11 @@ public class TridentListener implements Listener {
         }.runTaskTimer(plugin, 200L, 5L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void tridentThrow(ProjectileLaunchEvent event) {
-        if (!(event.getEntity().getShooter() instanceof Player)) { return; }
+        if (!(event.getEntity().getShooter() instanceof Player))  return;
         Player player = (Player) event.getEntity().getShooter();
-        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.poseidontrident.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.poseidontrident.use§3.");
             return;
@@ -69,18 +69,18 @@ public class TridentListener implements Listener {
         player.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, player.getEyeLocation().add(player.getEyeLocation().getDirection().multiply(0.9)), 15);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onProjHit(ProjectileHitEvent event) {
-        if (!(event.getEntity().getShooter() instanceof Player)) { return; }
-        if (event.getHitEntity() == null) { return; }
+        if (!(event.getEntity().getShooter() instanceof Player))  return;
+        if (event.getHitEntity() == null)  return;
         Player player = (Player) event.getEntity().getShooter();
-        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.poseidontrident.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.poseidontrident.use§3.");
             return;
         }
         if (Math.random() < 0.05) {
-            event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING);
+            event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING_BOLT);
         }
     }
 }

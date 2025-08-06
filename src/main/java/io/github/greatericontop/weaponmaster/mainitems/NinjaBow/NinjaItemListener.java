@@ -74,9 +74,9 @@ public class NinjaItemListener implements Listener {
         return arrow;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
-        if (!(event.getEntity() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof Player))  return;
         Player player = (Player) event.getEntity();
         if (util.checkForNinjaBow(event.getBow())) {
             player.sendMessage("§cYou need to use LEFT CLICK to shoot this.");
@@ -87,7 +87,7 @@ public class NinjaItemListener implements Listener {
     private final double INACCURACY = 0.01675; // minecraft uses a normal distribution multiplied by 0.0075
                                                // we are using a circle with average radius (r * sqrt2/2): ~0.0118
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
@@ -97,10 +97,10 @@ public class NinjaItemListener implements Listener {
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         // 2 + (0.5 if we have power) + (0.5 per level), so it goes 2, 3, 3.5, 4, 4.5, 5
-        double damageValue = 2.0 + (im.hasEnchant(Enchantment.ARROW_DAMAGE) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.ARROW_DAMAGE) * 0.5);
-        boolean isFire = im.hasEnchant(Enchantment.ARROW_FIRE);
-        boolean hasInfinity = im.hasEnchant(Enchantment.ARROW_INFINITE);
-        int punchValue = im.getEnchantLevel(Enchantment.ARROW_KNOCKBACK);
+        double damageValue = 2.0 + (im.hasEnchant(Enchantment.POWER) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.POWER) * 0.5);
+        boolean isFire = im.hasEnchant(Enchantment.FLAME);
+        boolean hasInfinity = im.hasEnchant(Enchantment.INFINITY);
+        int punchValue = im.getEnchantLevel(Enchantment.PUNCH);
 
         // check/remove arrows
         if (player.getGameMode() != GameMode.CREATIVE) {

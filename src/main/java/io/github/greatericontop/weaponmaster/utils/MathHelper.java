@@ -45,7 +45,7 @@ public class MathHelper {
     }
 
     public static int getDamageWithUnbreaking(int rawDamage, ItemMeta im) {
-        int unbreakingLevel = im.getEnchantLevel(Enchantment.DURABILITY);
+        int unbreakingLevel = im.getEnchantLevel(Enchantment.UNBREAKING);
         return getDamageWithUnbreaking(rawDamage, unbreakingLevel);
     }
 

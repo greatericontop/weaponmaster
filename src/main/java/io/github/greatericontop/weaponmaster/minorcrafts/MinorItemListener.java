@@ -19,21 +19,22 @@ package io.github.greatericontop.weaponmaster.minorcrafts;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
@@ -41,11 +42,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class MinorItemListener implements Listener {
+
+    private final Set<UUID> thrownXPBottles = new HashSet<>();
 
     private final Random rnd = new Random();
     private final CustomItems customItems;
@@ -57,28 +62,7 @@ public class MinorItemListener implements Listener {
         this.util = new Util(plugin);
     }
 
-    public void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
-        AttributeModifier savedAM = null;
-        double amount = 0;
-        for (AttributeModifier am : instance.getModifiers()) {
-            if (am.getUniqueId().equals(withUUID)) {
-                double oldAmount = am.getAmount();
-                amount = Math.min(Math.max(oldAmount + amountDelta, min), max);
-                savedAM = am;
-                break;
-            }
-        }
-        AttributeModifier newAM;
-        if (savedAM == null) {
-            newAM = new AttributeModifier(withUUID, "weaponmaster", Math.min(Math.max(amountDelta, min), max), AttributeModifier.Operation.ADD_NUMBER);
-        } else {
-            instance.removeModifier(savedAM);
-            newAM = new AttributeModifier(withUUID, "weaponmaster", amount, AttributeModifier.Operation.ADD_NUMBER);
-        }
-        instance.addModifier(newAM);
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
             if (Math.random() < plugin.getConfig().getDouble("rng.leviathanHeart")) {
@@ -126,28 +110,37 @@ public class MinorItemListener implements Listener {
                     killer.sendMessage("§eRARE DROP! " + customItems.EXPERT_SEAL_NAME);
                 }
             }
+        } else if (event.getEntityType() == EntityType.ENDERMITE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.endArtifact")) {
+                ItemStack endArtifact = customItems.generateEndArtifactItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), endArtifact);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + customItems.END_ARTIFACT_NAME);
+                }
+            }
         }
 
         if (event.getEntityType() == EntityType.PLAYER) {
             Player player = (Player) event.getEntity();
-            modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
+            VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEat(PlayerItemConsumeEvent event) {
-        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR"))  return;
         Player player = event.getPlayer();
-        modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
+        VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onExpertSeal(InventoryClickEvent event) {
-        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
-        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
+        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)  return;
+        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
         Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL")) { return; }
+        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL"))  return;
         ItemMeta targetItem = event.getCurrentItem().getItemMeta();
         if (targetItem == null || !targetItem.hasEnchants()) {
             player.sendMessage("§cYou can't use Expert Seal on this item!");
@@ -176,14 +169,36 @@ public class MinorItemListener implements Listener {
         player.sendMessage("§3Success!");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void rightClickBlock(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: DRAGON_HORN")) {
             event.setCancelled(true);
+        }
+    }
+
+//    @EventHandler()
+//    public void onXPBottleThrow(ProjectileLaunchEvent event) {
+//        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
+//        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+//        ItemStack item = bottle.getItem();
+//        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+//            thrownXPBottles.add(bottle.getUniqueId());
+//        }
+//    }
+
+    @EventHandler()
+    public void onXPBottleSmash(ProjectileHitEvent event) {
+        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
+        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+        ItemStack item = bottle.getItem();
+        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+            ExperienceOrb orb = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), ExperienceOrb.class);
+            orb.setExperience(1000 + rnd.nextInt(241));
+            // 160 bottles worth of xp (161 total since bottle itself is not canceled)
         }
     }
 

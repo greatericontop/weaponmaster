@@ -47,7 +47,7 @@ public class LifeHelmetListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST) // run last to query the correct final damage
     public void onDamage(EntityDamageEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
         if (!util.checkForLifeHelmet(player.getInventory().getHelmet())) { return; }
         if (!player.hasPermission("weaponmaster.lifehelmet.use")) {
@@ -62,7 +62,7 @@ public class LifeHelmetListener implements Listener {
                 player.setAbsorptionAmount(0.0);
                 event.setDamage(0.000_001);
                 player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1, true));
-                player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 4, true));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 300, 4, true));
                 player.sendTitle("§cYou were saved from death!", "", 0, 100, 100);
                 player.sendMessage("§9------------------------------");
                 player.sendMessage("§eYou were saved from death!");

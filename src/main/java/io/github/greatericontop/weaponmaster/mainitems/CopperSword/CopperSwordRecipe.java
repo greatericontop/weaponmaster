@@ -35,8 +35,8 @@ public class CopperSwordRecipe {
 
     public void regRecipe() {
         ItemStack copperSword = util.generateMeta(util.COPPER_SWORD_LORE, util.COPPER_SWORD_NAME, Material.GOLDEN_SWORD);
-        copperSword.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
-        copperSword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+        copperSword.addUnsafeEnchantment(Enchantment.UNBREAKING, 9);
+        copperSword.addUnsafeEnchantment(Enchantment.SHARPNESS, 3);
         ShapedRecipe copperRec = new ShapedRecipe(NamespacedKey.minecraft("copper_sword"), copperSword);
         copperRec.shape("ccc",
                         "cic",

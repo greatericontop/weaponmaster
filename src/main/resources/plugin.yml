@@ -1,7 +1,7 @@
 name: 'WeaponMaster'
 version: '${project.version}'
 main: io.github.greatericontop.weaponmaster.WeaponMasterMain
-api-version: 1.17
+api-version: 1.21
 authors: [greateric, gerseneck, bigfatmidget]
 
 commands:
@@ -217,6 +217,31 @@ commands:
     permission: "weaponmaster.throwingknife.command"
     permission-message: "§cYou are not allowed to do this!"
     aliases: ["throwing-knife"]
+  witchsword:
+    description: "[Weapon Master] command for Witch Sword"
+    usage: "U: /witchsword give"
+    permission: "weaponmaster.witchsword.command"
+    permission-message: "§cYou are not allowed to do this!"
+  endsword:
+    description: "[Weapon Master] command for End Sword"
+    usage: "U: /endsword give"
+    permission: "weaponmaster.endsword.command"
+    permission-message: "§cYou are not allowed to do this!"
+  endarmor:
+    description: "[Weapon Master] command for End Armor"
+    usage: "U: /endarmor [give]"
+    permission: "weaponmaster.endarmor.command"
+    permission-message: "§cYou are not allowed to do this!"
+  scorpionbow:
+    description: "[Weapon Master] command for Scorpion Bow"
+    usage: "U: /scorpionbow [give]"
+    permission: "weaponmaster.scorpionbow.command"
+    permission-message: "§cYou are not allowed to do this!"
+  ares:
+    description: "[Weapon Master] command for Ares"
+    usage: "U: /ares [give]"
+    permission: "weaponmaster.ares.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -393,9 +418,9 @@ permissions:
     default: true
   #
   weaponmaster.witherstaff.command:
-    defualt: op
+    default: op
   weaponmaster.witherstaff.use:
-    defualt: true
+    default: true
   #
   weaponmaster.bombcannon.command:
     default: op
@@ -407,3 +432,27 @@ permissions:
   weaponmaster.throwingknife.use:
     default: true
   #
+  weaponmaster.witchsword.command:
+    default: op
+  weaponmaster.witchsword.use:
+    default: true
+  #
+  weaponmaster.endsword.command:
+    default: op
+  weaponmaster.endsword.use:
+    default: true
+  #
+  weaponmaster.endarmor.command:
+    default: op
+  weaponmaster.endarmor.use:
+    default: true
+  #
+  weaponmaster.scorpionbow.command:
+    default: op
+  weaponmaster.scorpionbow.use:
+    default: true
+  #
+  weaponmaster.ares.command:
+    default: op
+  weaponmaster.ares.use:
+    default: true

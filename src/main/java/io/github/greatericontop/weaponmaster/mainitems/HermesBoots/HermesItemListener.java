@@ -44,7 +44,7 @@ public class HermesItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER) { return; }
         Player player = (Player) event.getEntity();

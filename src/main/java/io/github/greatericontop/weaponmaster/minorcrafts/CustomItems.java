@@ -46,6 +46,8 @@ public class CustomItems {
     public final String DRAGON_HORN_NAME = "§dDragon Horn";
     public final String SILKY_STRING_NAME = "§5Silky String";
     public final String LIFE_CORE_NAME = "§bLife Core";
+    public final String END_ARTIFACT_NAME = "§5End Artifact";
+    public final String SUPER_XP_BOTTLE_NAME = "§eSuper XP Bottle";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -56,6 +58,8 @@ public class CustomItems {
     public List<String> DRAGON_HORN_LORE = new ArrayList<>();
     public List<String> SILKY_STRING_LORE = new ArrayList<>();
     public List<String> LIFE_CORE_LORE = new ArrayList<>();
+    public List<String> END_ARTIFACT_LORE = new ArrayList<>();
+    public List<String> SUPER_XP_BOTTLE_LORE = new ArrayList<>();
 
     public CustomItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -96,6 +100,13 @@ public class CustomItems {
         LIFE_CORE_LORE.add("id: LIFE_CORE");
         LIFE_CORE_LORE.add("§9The secrets of life are stored in this core.");
         LIFE_CORE_LORE.add("§9It was created with the power of the Evoker.");
+
+        END_ARTIFACT_LORE.add("id: END_ARTIFACT");
+        END_ARTIFACT_LORE.add("§5A mysterious artifact from the End. It is said to have");
+        END_ARTIFACT_LORE.add("§5the power to harness the energy of the dimension.");
+
+        SUPER_XP_BOTTLE_LORE.add("id: SUPER_XP_BOTTLE");
+        SUPER_XP_BOTTLE_LORE.add("§3A bottle filled with a §elot §3of experience.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -120,7 +131,7 @@ public class CustomItems {
     public ItemStack generateFlaskIchorItemStack() {
         ItemStack stack = new ItemStack(Material.SPLASH_POTION, 1);
         PotionMeta iMeta = (PotionMeta) stack.getItemMeta();
-        iMeta.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 3), true);
+        iMeta.addCustomEffect(new PotionEffect(PotionEffectType.INSTANT_DAMAGE, 1, 3), true);
         iMeta.setColor(Color.MAROON);
         iMeta.setDisplayName(FLASK_ICHOR_NAME);
         stack.setItemMeta(iMeta);
@@ -192,8 +203,27 @@ public class CustomItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(LIFE_CORE_NAME);
         iMeta.setLore(LIFE_CORE_LORE);
-        iMeta.addEnchant(Enchantment.LUCK, 1, true);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         stack.setItemMeta(iMeta);
         return stack;
     }
+
+    public ItemStack generateEndArtifactItemStack() {
+        ItemStack stack = new ItemStack(Material.ENDER_EYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(END_ARTIFACT_NAME);
+        iMeta.setLore(END_ARTIFACT_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateSuperXPBottleItemStack() {
+        ItemStack stack = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(SUPER_XP_BOTTLE_NAME);
+        iMeta.setLore(SUPER_XP_BOTTLE_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
 }

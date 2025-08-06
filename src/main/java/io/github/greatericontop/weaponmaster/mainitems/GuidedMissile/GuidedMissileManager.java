@@ -69,7 +69,7 @@ public class GuidedMissileManager implements Listener {
         this.targetSelector = new GuidedMissileTargetSelector(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
@@ -114,7 +114,7 @@ public class GuidedMissileManager implements Listener {
                     // TODO: is the BukkitRunnable called BEFORE or AFTER the fireball is moved?
                     Location loc = fireballLoc.subtract(displacement.clone().multiply(i / (double) NUMBER_PARTICLES));
                     fireball.getWorld().spawnParticle(Particle.FLAME, loc, 5, 0.0, 0.0, 0.0, 0.05);
-                    fireball.getWorld().spawnParticle(Particle.SMOKE_LARGE, loc, 2, 0.0, 0.0, 0.0, 0.025);
+                    fireball.getWorld().spawnParticle(Particle.LARGE_SMOKE, loc, 2, 0.0, 0.0, 0.0, 0.025);
                 }
                 // proximity fuse
                 if (fireballLoc.distanceSquared(target.getLocation()) < PROXIMITY_DISTANCE_SQUARED) {

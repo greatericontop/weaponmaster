@@ -53,10 +53,11 @@ public class DragonElytraUpgradeListener implements Listener {
         if (modifiers == null) {
             return 0;
         }
+        if (modifiers.size() > 1) {
+            throw new RuntimeException("should only be 1 AM");
+        }
         for (AttributeModifier aMod : modifiers) {
-            if (aMod.getUniqueId().equals(modifierUUID)) {
-                return (int) (aMod.getAmount() / 0.5); // +0.5 armor per upgrade level
-            }
+            return (int) (aMod.getAmount() / 0.5); // +0.5 armor per upgrade level
         }
         return 0;
     }
@@ -65,13 +66,13 @@ public class DragonElytraUpgradeListener implements Listener {
         return 40 * getUpgradeCount(im);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvil(PrepareAnvilEvent event) {
         ItemStack elytra = event.getInventory().getItem(0);
         ItemStack scale = event.getInventory().getItem(1);
         Player player = (Player) event.getViewers().get(0);
-        if (!util.checkForDragonElytra(elytra)) { return; }
-        if (!util.checkFor(scale, 0, "id: DRAGON_SCALE")) { return; }
+        if (!util.checkForDragonElytra(elytra))  return;
+        if (!util.checkFor(scale, 0, "id: DRAGON_SCALE"))  return;
 
         ItemMeta elytraIM = elytra.getItemMeta();
         int currentUpgradeLevel = getUpgradeCount(elytraIM);
@@ -110,10 +111,10 @@ public class DragonElytraUpgradeListener implements Listener {
         itemStack.setItemMeta(im);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     private void onPickingResultingItem(InventoryClickEvent event) {
-        if (event.getCurrentItem() == null) { return; }
-        if (event.getView().getType() != InventoryType.ANVIL) { return; }
+        if (event.getCurrentItem() == null)  return;
+        if (event.getView().getType() != InventoryType.ANVIL)  return;
         Player player = (Player) event.getWhoClicked();
         if (event.getRawSlot() == 2
                 && util.checkForDragonElytra(event.getInventory().getItem(0))

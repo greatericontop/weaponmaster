@@ -62,10 +62,10 @@ public class DragonArmorListener implements Listener {
         if (util.checkForDragonArmor(player.getInventory().getLeggings())) { damageProtection -= PROTECTION_EACH; }
         if (util.checkForDragonArmor(player.getInventory().getBoots())) { damageProtection -= PROTECTION_EACH; }
         if (hasFullSet(player.getInventory())) {
-            int a = player.getInventory().getHelmet().getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
-            int b = player.getInventory().getChestplate().getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
-            int c = player.getInventory().getLeggings().getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
-            int d = player.getInventory().getBoots().getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
+            int a = player.getInventory().getHelmet().getEnchantmentLevel(Enchantment.PROTECTION);
+            int b = player.getInventory().getChestplate().getEnchantmentLevel(Enchantment.PROTECTION);
+            int c = player.getInventory().getLeggings().getEnchantmentLevel(Enchantment.PROTECTION);
+            int d = player.getInventory().getBoots().getEnchantmentLevel(Enchantment.PROTECTION);
             damageProtection -= (a + b + c + d) * PROTECTION_ENCHANT;
         }
         if (damageProtection >= 0.999) { return; }

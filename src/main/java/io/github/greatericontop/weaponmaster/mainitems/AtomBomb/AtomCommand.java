@@ -52,7 +52,7 @@ public class AtomCommand implements CommandExecutor {
                 return true;
             }
             ItemStack atomBomb = util.generateMeta(util.ATOM_BOMB_LORE, util.ATOM_BOMB_NAME, Material.TNT);
-            atomBomb.addUnsafeEnchantment(Enchantment.LUCK, 1);
+            atomBomb.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
             ((Player) sender).getInventory().addItem(atomBomb);
             sender.sendMessage("§7Gave you §f[" + util.ATOM_BOMB_NAME + "§f]§7.");
             return true;
