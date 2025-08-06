@@ -22,5 +22,4 @@ rng:
 fireball:
   heatSeeking: false
 witherStaff:
-  yield: 1.0
   chargedChance: 0.04

@@ -24,7 +24,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -67,15 +66,13 @@ public class WitherItemListener implements Listener {
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setYield((float) plugin.getConfig().getDouble("witherStaff.yield", 1.0));
         witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.04));
 
         new BukkitRunnable() {
             public void run() {
                 cooldowns.put(player.getUniqueId(), true);
             }
-        }//.runTaskLater(plugin, 20L);
-                .runTaskLater(plugin, 2L); // TODO: DEBUG
+        }.runTaskLater(plugin, 20L);
     }
 
 }
