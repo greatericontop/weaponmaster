@@ -40,9 +40,9 @@ public class PilotItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForPilotSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForPilotSword(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.pilotsword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.pilotsword.use§3.");
             return;

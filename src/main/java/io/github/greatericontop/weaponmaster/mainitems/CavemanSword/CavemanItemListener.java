@@ -84,9 +84,9 @@ public class CavemanItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForCavemanSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForCavemanSword(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.cavemansword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.cavemansword.use§3.");
             return;

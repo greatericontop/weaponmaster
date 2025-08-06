@@ -48,9 +48,9 @@ public class RocketItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
-        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rocketstick.use§3.");
             return;
@@ -62,16 +62,16 @@ public class RocketItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
-        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForRocketStick(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.rocketstick.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.rocketstick.use§3.");
             return;
         }
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (Util.checkForInteractableBlock(event)) { return; }
+            if (Util.checkForInteractableBlock(event))  return;
             if (player.isSneaking()) {
                 // check raytrace
                 RayTraceResult rtxResult = player.getWorld().rayTraceBlocks(

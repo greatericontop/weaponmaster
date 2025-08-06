@@ -72,8 +72,8 @@ public class SniperItemListener implements Listener {
 
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (!util.checkForSniperRifle(player.getInventory().getItemInMainHand())) {
             return;

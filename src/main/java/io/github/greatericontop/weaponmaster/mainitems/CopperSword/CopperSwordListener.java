@@ -59,7 +59,7 @@ public class CopperSwordListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void OnHit(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
         if (!util.checkForCopperSword(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.coppersword.use")) {

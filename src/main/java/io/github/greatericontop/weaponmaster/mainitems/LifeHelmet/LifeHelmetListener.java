@@ -47,7 +47,7 @@ public class LifeHelmetListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST) // run last to query the correct final damage
     public void onDamage(EntityDamageEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
         if (!util.checkForLifeHelmet(player.getInventory().getHelmet())) { return; }
         if (!player.hasPermission("weaponmaster.lifehelmet.use")) {

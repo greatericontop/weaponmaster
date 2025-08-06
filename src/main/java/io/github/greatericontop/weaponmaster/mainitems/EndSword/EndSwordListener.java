@@ -45,15 +45,15 @@ public class EndSwordListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
-        if (!util.checkForEndSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForEndSword(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.endsword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.endsword.use§3.");
             return;
         }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (Util.checkForInteractableBlock(event)) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
+        if (Util.checkForInteractableBlock(event))  return;
         if (powerManager.getPower(player) < 10) {
             player.sendMessage("§7You don't have enough power to teleport!");
             return;

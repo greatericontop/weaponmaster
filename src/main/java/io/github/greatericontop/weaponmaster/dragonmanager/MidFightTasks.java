@@ -86,7 +86,7 @@ public class MidFightTasks {
 
     /*
      * Helper function to randomly execute mid-fight tasks.
-     * Use it like this: if (rejectWithChance(30.0)) { return; }
+     * Use it like this: if (rejectWithChance(30.0))  return;
      */
     public static boolean rejectWithChance(double averageSeconds) {
         return Math.random() >= 0.05 / averageSeconds;
@@ -152,11 +152,11 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(95.0)) { return; }
-        if (tickNumber < hiveAnger_lastTickRan + 300) { return; }
+        if (rejectWithChance(95.0))  return;
+        if (tickNumber < hiveAnger_lastTickRan + 300)  return;
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
-        if (target == null) { return; }
+        if (target == null)  return;
         int angeredCount = 0;
         for (Entity entity : target.getNearbyEntities(ANGER_DIST, ANGER_DIST, ANGER_DIST)) {
             if (!(entity instanceof Enderman)) { continue; }
@@ -172,8 +172,8 @@ public class MidFightTasks {
     }
 
     public void spawnEndGuard(int tickNumber) {
-        if (rejectWithChance(55.0)) { return; }
-        if (tickNumber < endGuard_lastTickRan + 300) { return; }
+        if (rejectWithChance(55.0))  return;
+        if (tickNumber < endGuard_lastTickRan + 300)  return;
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }

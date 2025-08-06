@@ -50,7 +50,7 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
 
         // allDamageResistance
@@ -73,7 +73,7 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamagePlayer(EntityDamageByEntityEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
 
         // mightyStrength
@@ -89,7 +89,7 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDamageEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
 
         // strongAttacks
@@ -134,7 +134,7 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityKilledByPlayer(EntityDeathEvent event) {
-        if (event.getEntity().getKiller() == null) { return; }
+        if (event.getEntity().getKiller() == null)  return;
         Player player = event.getEntity().getKiller();
 
         // vitality
@@ -190,7 +190,7 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPotion(EntityPotionEffectEvent event) {
-        if (event.getEntity().getType() != EntityType.PLAYER) { return; }
+        if (event.getEntity().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getEntity();
 
         // witch
@@ -259,9 +259,9 @@ public class DescentEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onProjectileDamageEntity(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Projectile)) { return; }
+        if (!(event.getDamager() instanceof Projectile))  return;
         Projectile projectile = (Projectile) event.getDamager();
-        if (!(projectile.getShooter() instanceof Player)) { return; }
+        if (!(projectile.getShooter() instanceof Player))  return;
         Player player = (Player) projectile.getShooter();
         // strongArrows
         int strongArrows = descent.getUpgrade(player, "strongArrows");

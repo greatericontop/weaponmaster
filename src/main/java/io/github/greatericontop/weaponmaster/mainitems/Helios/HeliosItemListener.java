@@ -69,9 +69,9 @@ public class HeliosItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForHelios(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.helios.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.helios.use§3.");
             return;
@@ -82,7 +82,7 @@ public class HeliosItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
         ItemStack helios = player.getInventory().getItemInMainHand();
         if (!util.checkForHelios(helios)) { return; }

@@ -129,7 +129,7 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEat(PlayerItemConsumeEvent event) {
-        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR"))  return;
         Player player = event.getPlayer();
         VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
@@ -137,10 +137,10 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onExpertSeal(InventoryClickEvent event) {
-        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
-        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
+        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)  return;
+        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
         Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL")) { return; }
+        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL"))  return;
         ItemMeta targetItem = event.getCurrentItem().getItemMeta();
         if (targetItem == null || !targetItem.hasEnchants()) {
             player.sendMessage("§cYou can't use Expert Seal on this item!");
@@ -171,7 +171,7 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void rightClickBlock(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
@@ -182,7 +182,7 @@ public class MinorItemListener implements Listener {
 
 //    @EventHandler(priority = EventPriority.NORMAL)
 //    public void onXPBottleThrow(ProjectileLaunchEvent event) {
-//        if (!(event.getEntity() instanceof ThrownExpBottle)) { return; }
+//        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
 //        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
 //        ItemStack item = bottle.getItem();
 //        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
@@ -192,7 +192,7 @@ public class MinorItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onXPBottleSmash(ProjectileHitEvent event) {
-        if (!(event.getEntity() instanceof ThrownExpBottle)) { return; }
+        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
         ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
         ItemStack item = bottle.getItem();
         if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {

@@ -135,7 +135,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
-        if (!util.checkForMinersBlessing(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForMinersBlessing(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.minersblessing.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.minersblessing.use§3.");
             return;
@@ -206,8 +206,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
     }
 
     public void doDeepslateBlockMultiply(BlockBreakEvent event, Player player, List<String> lore, int tier) {
-        if (rnd.nextFloat() >= (tier >= 15 ? (tier >= 16 ? 0.045F : 0.035F) : 0.01F)) { return; }
-        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch")) { return; } // prevent abuse
+        if (rnd.nextFloat() >= (tier >= 15 ? (tier >= 16 ? 0.045F : 0.035F) : 0.01F))  return;
+        if (getMode(lore).equals("§a>§b>§c> §6Currently set to §9Silk Touch"))  return; // prevent abuse
         World world = event.getBlock().getLocation().getWorld();
         event.setExpToDrop(event.getExpToDrop() * 9);
         // drops an extra item (does not invalidate the current one)
@@ -260,7 +260,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         Block blockAt = loc.getBlock();
         // around 4 attempts (max 6) are called for each break
         if (blockAt.getType() == Material.STONE && (blockType == Material.STONE || blockType == Material.ANDESITE || blockType == Material.DIORITE || blockType == Material.GRANITE)) {
-            if (rnd.nextFloat() >= 0.00_15F) { return; }
+            if (rnd.nextFloat() >= 0.00_15F)  return;
             Material replacement = stoneMats[rnd.nextInt(stoneMats.length)];
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");

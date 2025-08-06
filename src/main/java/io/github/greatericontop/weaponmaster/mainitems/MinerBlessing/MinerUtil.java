@@ -128,7 +128,7 @@ public class MinerUtil   {
      * Don't touch SHARPNESS because it can't be messed with
      */
     public void fixEnchants(int tier, ItemMeta im, Player player) {
-        if (tier >= 7) { return; }
+        if (tier >= 7)  return;
         im.removeEnchant(Enchantment.EFFICIENCY);
         im.removeEnchant(Enchantment.UNBREAKING);
         im.removeEnchant(Enchantment.FORTUNE);

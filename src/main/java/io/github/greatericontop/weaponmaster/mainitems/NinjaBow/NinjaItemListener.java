@@ -76,7 +76,7 @@ public class NinjaItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBowShoot(EntityShootBowEvent event) {
-        if (!(event.getEntity() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof Player))  return;
         Player player = (Player) event.getEntity();
         if (util.checkForNinjaBow(event.getBow())) {
             player.sendMessage("§cYou need to use LEFT CLICK to shoot this.");

@@ -69,7 +69,7 @@ public class FightManager implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
-        if (!(event.getEntity() instanceof EnderDragon)) { return; }
+        if (!(event.getEntity() instanceof EnderDragon))  return;
         if (!checkSpecialDragonConditions(event)) {
             // due to a vanilla issue, we have to reset the custom name
             // since we can't use translatable components here, give it a fancy name to make it look legit
@@ -94,8 +94,8 @@ public class FightManager implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonDamage(EntityDamageEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         // reduce high amounts of [raw] damage (e.g. bullet arrows, high explosives)
         if (event.getDamage() >= 30.0) {
@@ -139,8 +139,8 @@ public class FightManager implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDragonDeath(EntityDeathEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         LootDropper lootDropper = new LootDropper(plugin);
         for (Player player : dragonWeightManager.players) {

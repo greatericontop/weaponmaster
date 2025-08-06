@@ -47,7 +47,7 @@ public class ExcaliburItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player)event.getDamager();
         if (!util.checkForExcalibur(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.excalibur.use")) {

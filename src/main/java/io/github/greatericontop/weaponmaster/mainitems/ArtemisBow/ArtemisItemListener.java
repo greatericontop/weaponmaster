@@ -77,7 +77,7 @@ public class ArtemisItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBowShoot(EntityShootBowEvent event) {
         Entity arrow = event.getProjectile();
-        if (!(event.getEntity() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof Player))  return;
         Player player = (Player) event.getEntity();
         if (!util.checkForArtemisBow(event.getBow())) { return; }
         if (!player.hasPermission("weaponmaster.artemisbow.use")) {

@@ -44,8 +44,8 @@ public class AtomItemListener implements Listener {
     }
 
     public void spawnVein(Location loc, Material type, float size, int limitDepth, Random rnd) {
-        if (loc.getBlock().getType().getBlastResistance() >= 20) { return; }
-        if (loc.getBlock().getType() == Material.AIR) { return; }
+        if (loc.getBlock().getType().getBlastResistance() >= 20)  return;
+        if (loc.getBlock().getType() == Material.AIR)  return;
         loc.getBlock().setType(type);
         limitDepth--;
         if (limitDepth == 0) {
@@ -75,7 +75,7 @@ public class AtomItemListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        if (!util.checkForAtomBomb(event.getItemInHand())) { return; }
+        if (!util.checkForAtomBomb(event.getItemInHand()))  return;
         if (!player.hasPermission("weaponmaster.atombomb.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.atombomb.use§3.");
             return;

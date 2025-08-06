@@ -60,14 +60,14 @@ public class NetheriteStaffListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onAttack(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
-        if (!(event.getEntity() instanceof LivingEntity)) { return; }
+        if (!(event.getEntity() instanceof LivingEntity))  return;
         LivingEntity attacked = (LivingEntity) event.getEntity();
         Object[] effectData = EffectPicker.getRandomEffect(false);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
@@ -76,10 +76,10 @@ public class NetheriteStaffListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
-        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
@@ -88,7 +88,7 @@ public class NetheriteStaffListener implements Listener {
                 && (event.getClickedBlock().getType() == Material.DIRT || event.getClickedBlock().getType() == Material.GRASS_BLOCK)) {
             event.setCancelled(true);
         }
-        if (Util.checkForInteractableBlock(event)) { return; }
+        if (Util.checkForInteractableBlock(event))  return;
         Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (iMeta.getDamage() > (2031-101)) {
             plugin.paperUtils.sendActionBar(player, "§3Not enough durability to shoot an arrow!", true);

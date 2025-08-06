@@ -54,8 +54,8 @@ public class FireballListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (!util.checkForFireball(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.fireball.use")) {

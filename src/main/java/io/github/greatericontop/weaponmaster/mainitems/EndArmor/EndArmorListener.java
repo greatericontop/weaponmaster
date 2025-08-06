@@ -46,10 +46,10 @@ public class EndArmorListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPearlThrow(ProjectileLaunchEvent event) {
-        if (!(event.getEntity().getType() == EntityType.ENDER_PEARL)) { return; }
-        if (!(event.getEntity().getShooter() instanceof Player)) { return; }
+        if (!(event.getEntity().getType() == EntityType.ENDER_PEARL))  return;
+        if (!(event.getEntity().getShooter() instanceof Player))  return;
         Player player = (Player) event.getEntity().getShooter();
-        if (!hasFullSet(player.getInventory())) { return; }
+        if (!hasFullSet(player.getInventory()))  return;
         if (!player.hasPermission("weaponmaster.endarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.endarmor.use§3.");
             return;
