@@ -242,6 +242,11 @@ commands:
     usage: "U: /ares [give]"
     permission: "weaponmaster.ares.command"
     permission-message: "§cYou are not allowed to do this!"
+  ninjamastersbow:
+    description: "[Weapon Master] command for Ninja Master's Bow"
+    usage: "U: /ninjamastersbow [give]"
+    permission: "weaponmaster.ninjamastersbow.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -455,4 +460,9 @@ permissions:
   weaponmaster.ares.command:
     default: op
   weaponmaster.ares.use:
+    default: true
+  #
+  weaponmaster.ninjamastersbow.command:
+    default: op
+  weaponmaster.ninjamastersbow.use:
     default: true

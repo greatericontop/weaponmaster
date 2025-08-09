@@ -70,6 +70,7 @@ public class Util {
     public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
     public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
     public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
+    public final String NINJA_MASTERS_BOW_NAME = "§7§lNinja Master's Bow §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -111,6 +112,7 @@ public class Util {
     public List<String> END_ARMOR_LORE = new ArrayList<>();
     public List<String> SCORPION_BOW_LORE = new ArrayList<>();
     public List<String> ARES_LORE = new ArrayList<>();
+    public List<String> NINJA_MASTERS_BOW_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -600,6 +602,16 @@ public class Util {
         ARES_LORE.add("");
         ARES_LORE.add("§6LEGENDARY");
         ARES_LORE.add("§6---------------");
+        // Ninja Master's Bow
+        NINJA_MASTERS_BOW_LORE.add("id: NINJA_MASTERS_BOW");
+        NINJA_MASTERS_BOW_LORE.add("§6---------------");
+        NINJA_MASTERS_BOW_LORE.add("");
+        NINJA_MASTERS_BOW_LORE.add("§eAbility: §6Master §4Shuriken Shot §e§lLEFT CLICK");
+        NINJA_MASTERS_BOW_LORE.add("§3Shoots §b25 §3arrows at a time!");
+        NINJA_MASTERS_BOW_LORE.add("§7No cooldown!");
+        NINJA_MASTERS_BOW_LORE.add("");
+        NINJA_MASTERS_BOW_LORE.add("§cSUPREME");
+        NINJA_MASTERS_BOW_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -746,5 +758,8 @@ public class Util {
     }
     public boolean checkForAres(ItemStack item) {
         return this.checkFor(item, 0, "id: ARES");
+    }
+    public boolean checkForNinjaMastersBow(ItemStack item) {
+        return this.checkFor(item, 0, "id: NINJA_MASTERS_BOW");
     }
 }

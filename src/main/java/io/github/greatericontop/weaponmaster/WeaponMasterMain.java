@@ -98,6 +98,8 @@ import io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff.NetheriteS
 import io.github.greatericontop.weaponmaster.mainitems.NinjaBow.NinjaCommand;
 import io.github.greatericontop.weaponmaster.mainitems.NinjaBow.NinjaItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.NinjaBow.NinjaRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMastersCommand;
+import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMastersItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentCommand;
@@ -340,6 +342,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Ares
         this.getCommand("ares").setExecutor(new AresCommand());
         this.getServer().getPluginManager().registerEvents(new AresItemListener(this), this);
+        // Ninja Master's Bow
+        this.getCommand("ninjamastersbow").setExecutor(new NinjaMastersCommand());
+        this.getServer().getPluginManager().registerEvents(new NinjaMastersItemListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
