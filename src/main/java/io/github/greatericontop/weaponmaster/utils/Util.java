@@ -412,6 +412,7 @@ public class Util {
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b15%§3.");
         DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
         DRAGON_ARMOR_LORE.add("§3Reduce damage further by §b0.75% §3per §aProtection §3level.");
+        // Lines 1(blank)/2/3/4 at 11/12/13/14
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§6LEGENDARY");
         DRAGON_ARMOR_LORE.add("§6---------------");
