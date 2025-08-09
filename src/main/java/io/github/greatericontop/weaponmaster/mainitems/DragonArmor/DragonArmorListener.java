@@ -76,7 +76,7 @@ public class DragonArmorListener implements Listener {
             int d = player.getInventory().getBoots().getEnchantmentLevel(Enchantment.PROTECTION);
             damageProtection -= (a + b + c + d) * PROTECTION_ENCHANT;
         }
-        if (damageProtection >= 0.999) { return; }
+        //if (damageProtection >= 0.999) { return; }
         damageProtection = Math.max(damageProtection, 0.02);
         if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
@@ -84,6 +84,14 @@ public class DragonArmorListener implements Listener {
         }
 
         event.setDamage(event.getDamage() * damageProtection);
+        player.sendMessage(String.format("ndt%d  |  damage %.3f  |  no damage tick amount %.3f", player.getNoDamageTicks(), event.getDamage(), player.getLastDamage()));
+        // Prevents hurt cam stuttering from e.g. standing in fire or lava where there is incoming damage every tick.
+        // getLastDamage() is the getDamage() amount, not the getFinalDamage() amount.
+        if (player.getNoDamageTicks() > 0 && event.getDamage() < player.getLastDamage() + 0.001) {
+            player.sendMessage("  ^want to cancelled");
+            //event.setCancelled(true);
+            return;
+        }
         plugin.paperUtils.sendActionBar(player, String.format("§eDamage was reduced by %.0f%% to %.1f.", 100*(1-damageProtection), event.getDamage()), false);
 
     }
