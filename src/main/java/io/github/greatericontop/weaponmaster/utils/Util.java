@@ -71,6 +71,7 @@ public class Util {
     public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
     public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
     public final String NINJA_MASTERS_BOW_NAME = "§7§lNinja Master's Bow §6⚝⚝⚝⚝⚝";
+    public final String DEATH_ROD_NAME = "§cDeath Rod §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -113,6 +114,7 @@ public class Util {
     public List<String> SCORPION_BOW_LORE = new ArrayList<>();
     public List<String> ARES_LORE = new ArrayList<>();
     public List<String> NINJA_MASTERS_BOW_LORE = new ArrayList<>();
+    public List<String> DEATH_ROD_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -612,6 +614,15 @@ public class Util {
         NINJA_MASTERS_BOW_LORE.add("");
         NINJA_MASTERS_BOW_LORE.add("§cSUPREME");
         NINJA_MASTERS_BOW_LORE.add("§6---------------");
+        // Death Rod
+        DEATH_ROD_LORE.add("id: DEATH_ROD");
+        DEATH_ROD_LORE.add("§6---------------");
+        DEATH_ROD_LORE.add("");
+        DEATH_ROD_LORE.add("§4Legend says the rod drops when Death itself is killed. It is believed");
+        DEATH_ROD_LORE.add("§4that those who touch the rod instantly die.");
+        DEATH_ROD_LORE.add("");
+        DEATH_ROD_LORE.add("§cSUPREME");
+        DEATH_ROD_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -761,5 +772,8 @@ public class Util {
     }
     public boolean checkForNinjaMastersBow(ItemStack item) {
         return this.checkFor(item, 0, "id: NINJA_MASTERS_BOW");
+    }
+    public boolean checkForDeathRod(ItemStack item) {
+        return this.checkFor(item, 0, "id: DEATH_ROD");
     }
 }

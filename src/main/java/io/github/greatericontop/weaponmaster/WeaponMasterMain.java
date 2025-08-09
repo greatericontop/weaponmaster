@@ -46,6 +46,8 @@ import io.github.greatericontop.weaponmaster.mainitems.CavemanSword.CavemanRecip
 import io.github.greatericontop.weaponmaster.mainitems.CopperSword.CopperSwordCommand;
 import io.github.greatericontop.weaponmaster.mainitems.CopperSword.CopperSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.CopperSword.CopperSwordRecipe;
+import io.github.greatericontop.weaponmaster.mainitems.DeathRod.DeathRodCommand;
+import io.github.greatericontop.weaponmaster.mainitems.DeathRod.DeathRodListener;
 import io.github.greatericontop.weaponmaster.mainitems.DeathScythe.ScytheCommand;
 import io.github.greatericontop.weaponmaster.mainitems.DeathScythe.ScytheItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.DeathScythe.ScytheRecipe;
@@ -345,6 +347,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Ninja Master's Bow
         this.getCommand("ninjamastersbow").setExecutor(new NinjaMastersCommand());
         this.getServer().getPluginManager().registerEvents(new NinjaMastersItemListener(this), this);
+        // Death Rod
+        this.getCommand("deathrod").setExecutor(new DeathRodCommand());
+        this.getServer().getPluginManager().registerEvents(new DeathRodListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

@@ -247,6 +247,11 @@ commands:
     usage: "U: /ninjamastersbow [give]"
     permission: "weaponmaster.ninjamastersbow.command"
     permission-message: "§cYou are not allowed to do this!"
+  deathrod:
+    description: "[Weapon Master] command for Death Rod"
+    usage: "U: /deathrod [give]"
+    permission: "weaponmaster.deathrod.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -465,4 +470,9 @@ permissions:
   weaponmaster.ninjamastersbow.command:
     default: op
   weaponmaster.ninjamastersbow.use:
+    default: true
+  #
+  weaponmaster.deathrod.command:
+    default: op
+  weaponmaster.deathrod.use:
     default: true
