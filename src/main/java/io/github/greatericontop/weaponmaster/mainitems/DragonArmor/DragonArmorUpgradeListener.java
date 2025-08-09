@@ -52,8 +52,8 @@ public class DragonArmorUpgradeListener implements Listener {
         return im.getPersistentDataContainer().getOrDefault(DRAGON_ARMOR_UPGRADE_KEY, PersistentDataType.INTEGER, 0);
     }
 
-    public int getLevelsForItem(ItemMeta im) {
-        return 70 * getUpgradeCount(im);
+    public int getLevelsForItem(int lvl) {
+        return 70 * lvl;
     }
 
     @EventHandler()
@@ -78,7 +78,7 @@ public class DragonArmorUpgradeListener implements Listener {
 
         ItemMeta newIM = armorIM.clone();
         List<String> newLore = newIM.getLore();
-        String lvls = String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(newIM));
+        String lvls = String.format("§4§l[!] §eWeaponMaster: §a§oThis operation will cost §b%d §a§olevels.", getLevelsForItem(currentUpgradeLevel));
         String upgradingTo = String.format("§4§l[!] §eWeaponMaster: §3Upgrading to level §b%d%s§3!", currentUpgradeLevel, currentUpgradeLevel == 5 ? " §2(MAXED)" : "");
         if (currentUpgradeLevel == 1) {
             newLore.add(LORE_LINE_1, "");
@@ -91,6 +91,7 @@ public class DragonArmorUpgradeListener implements Listener {
             newLore.set(LORE_LINE_3, upgradingTo);
             newLore.set(LORE_LINE_4, "");
         }
+        newIM.getPersistentDataContainer().set(DRAGON_ARMOR_UPGRADE_KEY, PersistentDataType.INTEGER, currentUpgradeLevel);
         newIM.setLore(newLore);
         ItemStack newItemStack = new ItemStack(dragonArmor.getType(), 1);
         event.setResult(newItemStack);
@@ -108,7 +109,7 @@ public class DragonArmorUpgradeListener implements Listener {
         ) {
             ItemMeta im = event.getCurrentItem().getItemMeta();
             int lvl = getUpgradeCount(im);
-            int levelsRequired = getLevelsForItem(im);
+            int levelsRequired = getLevelsForItem(lvl);
             if (player.getLevel() < levelsRequired) {
                 player.sendMessage(String.format("§cYou must have §b%d §clevels to perform this action.", levelsRequired));
                 event.setCancelled(true);
