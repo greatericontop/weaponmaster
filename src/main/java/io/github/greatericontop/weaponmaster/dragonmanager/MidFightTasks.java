@@ -59,8 +59,8 @@ public class MidFightTasks {
     private final double ANGER_DIST = 100.0;
     private final double GUARD_MAX_HP = 150.0;
     private final int STORM_SIZE = 4;
-    private final double DEFENDER_MAX_HEALTH = 65.0;
-    private final double AGENT_HEALTH = 100.0;
+    private final double DEFENDER_MAX_HEALTH = 70.0;
+    private final double AGENT_HEALTH = 105.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -182,6 +182,8 @@ public class MidFightTasks {
         endGuard.setCustomName("§dEnd Guard");
         endGuard.setCustomNameVisible(true);
         endGuard.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(GUARD_MAX_HP);
+        // This attribute modifier 2x's the normal damage
+        endGuard.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", 1.0, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         endGuard.setHealth(GUARD_MAX_HP);
         new BukkitRunnable() {
             int amplifier = 0;
@@ -316,7 +318,9 @@ public class MidFightTasks {
         ItemStack endStone = new ItemStack(Material.END_STONE, 1);
         endStone.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
         defender.getEquipment().setHelmet(endStone);
-        defender.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE, 1));
+        ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
+        chestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+        defender.getEquipment().setChestplate(chestplate);
         defender.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
         defender.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
         PersistentDataContainer pdc = defender.getPersistentDataContainer();
@@ -324,7 +328,7 @@ public class MidFightTasks {
         target.sendMessage("§5WeaponMaster Dragon §7used §3Endstone Defense §7on you.");
             new BukkitRunnable() {
             public void run() {
-                defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(100.0);
+                defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(250.0);
             }
         }.runTaskLater(plugin, 80L); // spawned on top of the player, so don't immediately kill them
     }
@@ -340,7 +344,7 @@ public class MidFightTasks {
         sniper.setTarget(target);
         sniper.setCustomName("§bEnder Sniper");
         ItemStack sniperItem = sniper.getEquipment().getItemInMainHand();
-        sniperItem.addUnsafeEnchantment(Enchantment.POWER, 10);
+        sniperItem.addUnsafeEnchantment(Enchantment.POWER, 20);
         sniperItem.addUnsafeEnchantment(Enchantment.PUNCH, 3);
         sniperItem.addEnchantment(Enchantment.FLAME, 1);
         sniper.getEquipment().setItemInMainHand(sniperItem);
