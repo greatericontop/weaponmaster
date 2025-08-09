@@ -87,7 +87,7 @@ public class DragonArmorListener implements Listener {
         player.sendMessage(String.format("ndt%d  |  damage %.3f  |  no damage tick amount %.3f", player.getNoDamageTicks(), event.getDamage(), player.getLastDamage()));
         // Prevents hurt cam stuttering from e.g. standing in fire or lava where there is incoming damage every tick.
         // getLastDamage() is the getDamage() amount, not the getFinalDamage() amount.
-        if (player.getNoDamageTicks() > 0 && event.getDamage() < player.getLastDamage() + 0.001) {
+        if (player.getNoDamageTicks() > 0 && player.getNoDamageTicks() != 10 && event.getDamage() < player.getLastDamage() + 0.001) {
             player.sendMessage("  ^want to cancelled");
             //event.setCancelled(true);
             return;
