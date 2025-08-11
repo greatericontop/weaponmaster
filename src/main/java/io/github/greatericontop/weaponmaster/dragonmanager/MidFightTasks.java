@@ -185,23 +185,20 @@ public class MidFightTasks {
         endGuard.setCustomName("§dEnd Guard");
         endGuard.setCustomNameVisible(true);
         endGuard.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(GUARD_MAX_HP);
-        // This attribute modifier 2x's the normal damage
-        endGuard.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", 1.0, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+        // Attack of (7 + 3 per strength) * 2.1 (from attribute modifier) * 1.5 (if on hard)
+        endGuard.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", 1.1, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         endGuard.setHealth(GUARD_MAX_HP);
         new BukkitRunnable() {
-            int amplifier = 0;
+            int amplifier = -1; // will be increased to 0 on first run so first run gives Strength I
             public void run() {
                 amplifier++;
                 endGuard.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, amplifier, true));
-                if (amplifier == 2) { // add resistance 1 at the same time we add strength 3
-                    endGuard.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 1073741823, 0, true));
-                }
-                if (amplifier >= 6) { // maximum strength 7
+                if (amplifier >= 3) { // maximum strength 4
                     cancel();
                     return;
                 }
             }
-        }.runTaskTimer(plugin, 200L, 200L);
+        }.runTaskTimer(plugin, 300L, 300L);
         lockTarget(endGuard, target);
         target.sendMessage("§5WeaponMaster Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
