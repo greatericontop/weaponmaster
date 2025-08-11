@@ -24,7 +24,6 @@ import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -76,7 +75,6 @@ public class FightManager implements Listener {
             entity.setCustomName("§dEnder Dragon");
             return;
         }
-        // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
         buffDragon(currentlyActiveDragon);
         this.damageDealtToDragonThroughExplosions = 0.0;
