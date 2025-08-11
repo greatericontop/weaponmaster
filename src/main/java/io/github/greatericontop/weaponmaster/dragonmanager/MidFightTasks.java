@@ -188,6 +188,8 @@ public class MidFightTasks {
         // Attack of (7 + 3 per strength) * 2.1 (from attribute modifier) * 1.5 (if on hard)
         endGuard.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", 1.1, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         endGuard.setHealth(GUARD_MAX_HP);
+        PersistentDataContainer pdc = endGuard.getPersistentDataContainer();
+        pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         new BukkitRunnable() {
             int amplifier = -1; // will be increased to 0 on first run so first run gives Strength I
             public void run() {
