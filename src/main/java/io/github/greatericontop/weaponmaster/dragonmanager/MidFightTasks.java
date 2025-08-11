@@ -57,10 +57,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
-    private final double GUARD_MAX_HP = 150.0;
+    private final double GUARD_MAX_HP = 135.0;
     private final int STORM_SIZE = 4;
     private final double DEFENDER_MAX_HEALTH = 70.0;
-    private final double AGENT_HEALTH = 105.0;
+    private final double AGENT_HEALTH = 100.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
@@ -178,6 +178,9 @@ public class MidFightTasks {
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         Enderman endGuard = (Enderman) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.ENDERMAN);
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+        helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+        endGuard.getEquipment().setHelmet(helmet);
         endGuard.setTarget(target);
         endGuard.setCustomName("§dEnd Guard");
         endGuard.setCustomNameVisible(true);
@@ -316,11 +319,9 @@ public class MidFightTasks {
         defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
         defender.setHealth(DEFENDER_MAX_HEALTH);
         ItemStack endStone = new ItemStack(Material.END_STONE, 1);
-        endStone.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
+        endStone.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
         defender.getEquipment().setHelmet(endStone);
-        ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
-        chestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
-        defender.getEquipment().setChestplate(chestplate);
+        defender.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE, 1));
         defender.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
         defender.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS, 1));
         PersistentDataContainer pdc = defender.getPersistentDataContainer();
@@ -339,10 +340,12 @@ public class MidFightTasks {
         sniper_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
-        // TODO: don't spawn it on top of the player, spawn it at a random end stone block somewhere on the island
         Skeleton sniper = (Skeleton) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.SKELETON);
         sniper.setTarget(target);
         sniper.setCustomName("§bEnder Sniper");
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+        helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+        sniper.getEquipment().setHelmet(helmet);
         ItemStack sniperItem = sniper.getEquipment().getItemInMainHand();
         sniperItem.addUnsafeEnchantment(Enchantment.POWER, 20);
         sniperItem.addUnsafeEnchantment(Enchantment.PUNCH, 3);
@@ -394,6 +397,9 @@ public class MidFightTasks {
             agent.setTarget(target);
             agent.setCustomName(names[i]);
             agent.setCustomNameVisible(true);
+            ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+            helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+            agent.getEquipment().setHelmet(helmet);
             agent.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(AGENT_HEALTH);
             agent.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, 3, true));
             agent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1073741823, 0, true));
