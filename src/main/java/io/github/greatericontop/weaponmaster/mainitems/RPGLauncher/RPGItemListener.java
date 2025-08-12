@@ -27,7 +27,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -98,7 +97,6 @@ public class RPGItemListener implements Listener {
         entity.getLocation().getWorld().createExplosion(explosionLocation, 5.0F, true, true, player);
         entity.remove(); // stop spawning smoke above
         player.sendMessage("§3FWOOM!");
-        player.sendMessage(String.format("§7[Debug] pulled back by %.3f", magnitude));
 }
 
 }

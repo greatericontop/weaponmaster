@@ -28,7 +28,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -56,8 +55,6 @@ public class HeliosItemListener implements Listener {
 
     private double damageMultiply(Player player, double damage) {
         double multiplier = DAMAGE_INCREASE_PER_LEVEL * Math.min(player.getLevel(), MAX_DAMAGE_LEVEL);
-        player.sendMessage(String.format("§7[Debug] Hit increased by %.1f%%, damage %.1f -> %.1f.",
-                multiplier*100, damage, damage*(1+multiplier)));
         return damage * (1 + multiplier);
     }
 

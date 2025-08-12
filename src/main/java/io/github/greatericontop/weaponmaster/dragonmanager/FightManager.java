@@ -172,7 +172,6 @@ public class FightManager implements Listener {
         LootDropper lootDropper = new LootDropper(plugin);
         for (Player player : dragonWeightManager.players) {
             int weight = dragonWeightManager.getDragonWeight(player.getUniqueId());
-            player.sendMessage("§7[Debug] giving you drops with weight="+weight);///
             lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
         }
 
