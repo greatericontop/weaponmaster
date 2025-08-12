@@ -42,11 +42,11 @@ public class DragonWeightManager {
     private int crystalsDestroyed = 0;
 
     private final WeaponMasterMain plugin;
-    private final EnderDragon currentlyActiveDragon;
+    private final UUID currentlyActiveDragonID;
     private boolean enabled;
     public DragonWeightManager(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon, double damageWeightMax) {
         this.plugin = plugin;
-        this.currentlyActiveDragon = currentlyActiveDragon;
+        this.currentlyActiveDragonID = currentlyActiveDragon.getUniqueId();
         this.enabled = true;
         this.DAMAGE_WEIGHT_MAX = damageWeightMax;
     }
@@ -111,7 +111,7 @@ public class DragonWeightManager {
         }
         Entity victim = event.getEntity();
 
-        if (victim instanceof EnderDragon && victim.getUniqueId().equals(currentlyActiveDragon.getUniqueId())) {
+        if (victim instanceof EnderDragon && victim.getUniqueId().equals(currentlyActiveDragonID)) {
             if (!players.contains(player)) {
                 players.add(player);
             }

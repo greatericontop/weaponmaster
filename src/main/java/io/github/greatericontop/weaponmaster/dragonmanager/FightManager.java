@@ -22,6 +22,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.boss.DragonBattle;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -35,19 +36,46 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.BoundingBox;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public class FightManager implements Listener {
     public static final double DRAGON_MAX_HP = 1000.0;
 
     public EnderDragon currentlyActiveDragon = null;
+    public UUID currentlyActiveDragonID = null;
     public DragonWeightManager dragonWeightManager = null;
+    private final MidFightTasks midFightTasks;
     public double damageDealtToDragonThroughExplosions = 0.0;
     private final WeaponMasterMain plugin;
     public FightManager(WeaponMasterMain plugin) {
         this.plugin = plugin;
+        this.midFightTasks = new MidFightTasks(plugin);
+        midFightTasks.startFightTasks();
+        registerDragonUnloadCheckRunnable();
+    }
+
+    private void registerDragonUnloadCheckRunnable() {
+        new BukkitRunnable() {
+            public void run() {
+                if (currentlyActiveDragonID == null || !currentlyActiveDragon.isDead())  return;
+                for (World world : Bukkit.getWorlds()) {
+                    DragonBattle battle = world.getEnderDragonBattle();
+                    if (battle != null && battle.getEnderDragon() != null && (!battle.getEnderDragon().isDead()) && battle.getEnderDragon().getUniqueId().equals(currentlyActiveDragonID)) {
+                        Bukkit.broadcastMessage("§cWhile you all were regearing, the WeaponMaster Dragon was regearing too! It has healed 250 health!");
+                        currentlyActiveDragon = battle.getEnderDragon();
+                        currentlyActiveDragon.setHealth(Math.min(DRAGON_MAX_HP, currentlyActiveDragon.getHealth() + 250.0));
+                        midFightTasks.updateDragon(currentlyActiveDragon);
+                        // Dragon weight manager still has the same UUID
+                        return;
+                    }
+                }
+
+            }
+        }.runTaskTimer(plugin, 40L, 40L); // doesn't have to be every tick
     }
 
     public boolean checkSpecialDragonConditions(EntitySpawnEvent event) {
@@ -77,8 +105,9 @@ public class FightManager implements Listener {
         }
         this.currentlyActiveDragon = (EnderDragon) entity;
         buffDragon(currentlyActiveDragon);
+        this.currentlyActiveDragonID = currentlyActiveDragon.getUniqueId();
         this.damageDealtToDragonThroughExplosions = 0.0;
-        new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
+        midFightTasks.updateDragon(currentlyActiveDragon);
         this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon, DRAGON_MAX_HP).setEnabled(true);
         Bukkit.broadcastMessage("§cThe WeaponMaster Dragon has spawned!");
     }
@@ -147,6 +176,7 @@ public class FightManager implements Listener {
             lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
         }
 
+        midFightTasks.updateDragon(null);
         dragonWeightManager.setEnabled(false);
     }
 

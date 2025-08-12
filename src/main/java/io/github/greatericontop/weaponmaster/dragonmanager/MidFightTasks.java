@@ -75,13 +75,11 @@ public class MidFightTasks {
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
-    private final EnderDragon currentlyActiveDragon;
-    private final UUID cachedDragonId;
-    
-    public MidFightTasks(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
+    private EnderDragon currentlyActiveDragon;
+
+    public MidFightTasks(WeaponMasterMain plugin) {
         this.plugin = plugin;
-        this.currentlyActiveDragon = currentlyActiveDragon;
-        this.cachedDragonId = currentlyActiveDragon.getUniqueId();
+        this.currentlyActiveDragon = null;
     }
 
     /*
@@ -127,15 +125,16 @@ public class MidFightTasks {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
+    public void updateDragon(EnderDragon dragon) {
+        this.currentlyActiveDragon = dragon;
+    }
+
     public void startFightTasks() {
         new BukkitRunnable() {
             int tickNumber = 0;
             public void run() {
                 tickNumber++;
-                if ((!currentlyActiveDragon.getUniqueId().equals(cachedDragonId)) || currentlyActiveDragon.isDead()) {
-                    cancel();
-                    return;
-                }
+                if (currentlyActiveDragon == null || currentlyActiveDragon.isDead())  return;
                 doHiveAnger(tickNumber);
                 spawnEndGuard(tickNumber);
                 doLightningAttack(tickNumber);
