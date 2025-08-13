@@ -15,7 +15,7 @@ It runs on any Spigot (or Paper and its forks, which are required for some addit
 
 ## Features
 
-- As of v1.6.0, **52** unique weapons, armor, and tools.
+- As of v1.7.0, **54** unique weapons, armor, and tools.
 - The **WeaponMaster Dragon**, an upgraded dragon fight with special loot and rewards.
 - And some overpowered admin commands for fun.
 
