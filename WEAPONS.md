@@ -2,7 +2,9 @@
 
 - [SUPREME](#supreme)
   - [Atom Bomb](#atom-bomb)
+  - [Death Rod](#death-rod)
   - [Napalm Missile](#napalm-missile)
+  - [Ninja Master's Bow](#ninja-masters-bow)
   - [Rocket Stick](#rocket-stick)
   - [RPG Launcher](#rpg-launcher)
   - [Sniper Rifle](#sniper-rifle)
@@ -63,9 +65,17 @@ Admin, command-only weapons of extreme power and mass destruction.
 
 `/atombomb give` - absolutely mauls terrain
 
+### Death Rod
+
+`/deathrod give` - instantly kills whatever it hits, even through totems
+
 ### Napalm Missile
 
 `/napalm give` - firey explosive device, use with caution
+
+### Ninja Master's Bow
+
+`/ninjamastersbow give` - shoots 25 arrows at a time with no cooldown
 
 ### Rocket Stick
 
