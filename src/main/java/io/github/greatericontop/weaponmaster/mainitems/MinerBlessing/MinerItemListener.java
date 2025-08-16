@@ -118,15 +118,15 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.add(util.MINER_INSERTION+11, "§ePermanent §e§lHaste I §ewhile holding. §7§oTIER 13");
                 break;
             case 14:
-                lore.add(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (30s cooldown) §7§oTIER 14");
+                lore.add(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER 14");
                 break;
             case 15:
                 lore.set(util.MINER_INSERTION+8, "§dmode, gain a §43.5% §dchance to drop a block instead. §7§oTIER §m9§r§7§o 15");
-                lore.set(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (25s cooldown) §7§oTIER §m14§r§7§o 15");
+                lore.set(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (20s cooldown) §7§oTIER §m14§r§7§o 15");
                 break;
             case 16:
                 lore.set(util.MINER_INSERTION+8, "§dmode, gain a §44.5% §dchance to drop a block instead. §7§oTIER §m9 15§r§7§o 16");
-                lore.set(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (20s cooldown) §7§oTIER §m14 15§r§7§o 16");
+                lore.set(util.MINER_INSERTION+12, "§cArea Mine: Destroy blocks nearby (15s cooldown) §7§oTIER §m14 15§r§7§o 16");
                 lore.set(util.MINER_INSERTION+13, "§f----- §2This tier §416 §2pickaxe is fully upgraded! §f-----");
                 break;
         }
@@ -357,7 +357,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
     }
 
     private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
-    private final int RANGE = 5;
+    private final int RANGE = 3;
     public void areaBlockBreak(Location loc, Player player, ItemStack tool, Damageable im, int tier) {
         if (!cooldown.getOrDefault(player.getUniqueId(), true)) { return; }
         for (int dx = -RANGE; dx <= RANGE; dx++) {
@@ -365,8 +365,8 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 for (int dz = -RANGE; dz <= RANGE; dz++) {
                     Location newLoc = loc.clone().add(dx, dy, dz);
                     Block block = newLoc.getBlock();
-                    player.sendMessage(String.format("block type %s, hardness %.1f", block.getType(), block.getType().getHardness()));
-                    if (0.0F <= block.getType().getHardness() && block.getType().getHardness() <= 15.0F) {
+                    // 3: breaks normal ores & deepslate, but not deepslate ores
+                    if (0.0F <= block.getType().getHardness() && block.getType().getHardness() <= 3.0F) {
                         if (block.getType() != Material.AIR && Math.random() < 0.025) { // unbreaking 3: 0.25
                             im.setDamage(im.getDamage() + 1);
                         }
@@ -380,7 +380,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
             public void run() {
                 cooldown.put(player.getUniqueId(), true);
             }
-        }.runTaskLater(plugin, tier >= 15 ? (tier >= 16 ? 400L : 500L) : 600L);
+        }.runTaskLater(plugin, tier >= 15 ? (tier >= 16 ? 300L : 400L) : 500L);
     }
 
 }
