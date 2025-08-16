@@ -180,28 +180,29 @@ public class MinerItemListener extends MinerUtil implements Listener {
     public void doSmeltingOres(BlockBreakEvent event, Player player, boolean hasFortune) {
         Material mat = event.getBlock().getType();
         World world = event.getBlock().getLocation().getWorld();
+        Location dropLocation = event.getBlock().getLocation().add(0.5, 0.5, 0.5);
         if (mat == Material.COPPER_ORE || mat == Material.DEEPSLATE_COPPER_ORE) {
             event.setDropItems(false);
             int amount = doFortuneOre(rnd.nextInt(3) + 2, hasFortune);
-            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COPPER_INGOT, amount));
+            world.dropItemNaturally(dropLocation, new ItemStack(Material.COPPER_INGOT, amount));
             event.setExpToDrop(3*amount);
         } else if (mat == Material.IRON_ORE || mat == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
             int amount = doFortuneOre(1, hasFortune);
-            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, amount));
+            world.dropItemNaturally(dropLocation, new ItemStack(Material.IRON_INGOT, amount));
             event.setExpToDrop(3*amount);
         } else if (mat == Material.GOLD_ORE || mat == Material.DEEPSLATE_GOLD_ORE) {
             event.setDropItems(false);
             int amount = doFortuneOre(1, hasFortune);
-            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, amount));
+            world.dropItemNaturally(dropLocation, new ItemStack(Material.GOLD_INGOT, amount));
             event.setExpToDrop(5*amount);
         } else if (mat == Material.ANCIENT_DEBRIS) {
             event.setDropItems(false);
-            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.NETHERITE_SCRAP, 1));
+            world.dropItemNaturally(dropLocation, new ItemStack(Material.NETHERITE_SCRAP, 1));
             event.setExpToDrop(14);
         } else if (mat == Material.STONE) {
             event.setDropItems(false);
-            world.dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SMOOTH_STONE, 1));
+            world.dropItemNaturally(dropLocation, new ItemStack(Material.SMOOTH_STONE, 1));
         }
     }
 
