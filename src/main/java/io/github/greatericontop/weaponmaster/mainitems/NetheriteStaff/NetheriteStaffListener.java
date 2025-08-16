@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -33,7 +32,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -114,7 +112,7 @@ public class NetheriteStaffListener implements Listener {
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
         arrow.setColor(Color.BLACK);
-        arrow.setDamage(1.5F);
+        arrow.setDamage(0.75F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
             if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) < 4
