@@ -72,6 +72,7 @@ public class Util {
     public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
     public final String NINJA_MASTERS_BOW_NAME = "§7§lNinja Master's Bow §6⚝⚝⚝⚝⚝";
     public final String DEATH_ROD_NAME = "§cDeath Rod §6⚝⚝⚝⚝⚝";
+    public final String PLUTONIUM_BLADE_NAME = "§8§lPlutonium Blade §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -115,6 +116,7 @@ public class Util {
     public List<String> ARES_LORE = new ArrayList<>();
     public List<String> NINJA_MASTERS_BOW_LORE = new ArrayList<>();
     public List<String> DEATH_ROD_LORE = new ArrayList<>();
+    public List<String> PLUTONIUM_BLADE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -623,6 +625,18 @@ public class Util {
         DEATH_ROD_LORE.add("");
         DEATH_ROD_LORE.add("§cSUPREME");
         DEATH_ROD_LORE.add("§6---------------");
+        // Plutonium Blade
+        PLUTONIUM_BLADE_LORE.add("id: PLUTONIUM_BLADE");
+        PLUTONIUM_BLADE_LORE.add("§6---------------");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§3The dense material of the blade crits for §6+20% §3damage.");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§eAbility: §4Implosion §e§oLOOK STRAIGHT DOWN & SHIFT RIGHT CLICK");
+        PLUTONIUM_BLADE_LORE.add("§3Creates a nuclear shockwave traveling outwards up to §b20 §3blocks.");
+        PLUTONIUM_BLADE_LORE.add("§3Those caught in the blast take §6massive §3knockback and damage.");
+        PLUTONIUM_BLADE_LORE.add("§7The shockwave travels through blocks!");
+        PLUTONIUM_BLADE_LORE.add("§720 second cooldown");
+        PLUTONIUM_BLADE_LORE.add("§7100 durability per use");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -775,5 +789,8 @@ public class Util {
     }
     public boolean checkForDeathRod(ItemStack item) {
         return this.checkFor(item, 0, "id: DEATH_ROD");
+    }
+    public boolean checkForPlutoniumBlade(ItemStack item) {
+        return this.checkFor(item, 0, "id: PLUTONIUM_BLADE");
     }
 }

@@ -252,6 +252,11 @@ commands:
     usage: "U: /deathrod [give]"
     permission: "weaponmaster.deathrod.command"
     permission-message: "§cYou are not allowed to do this!"
+  plutoniumblade:
+    description: "[Weapon Master] command for Plutonium Blade"
+    usage: "U: /plutoniumblade [give]"
+    permission: "weaponmaster.plutoniumblade.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -475,4 +480,9 @@ permissions:
   weaponmaster.deathrod.command:
     default: op
   weaponmaster.deathrod.use:
+    default: true
+  #
+  weaponmaster.plutoniumblade.command:
+    default: op
+  weaponmaster.plutoniumblade.use:
     default: true

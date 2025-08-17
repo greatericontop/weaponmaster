@@ -104,6 +104,8 @@ import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMast
 import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMastersItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeCommand;
+import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeListener;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentListener;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentRecipe;
@@ -350,6 +352,9 @@ public class WeaponMasterMain extends JavaPlugin {
         // Death Rod
         this.getCommand("deathrod").setExecutor(new DeathRodCommand());
         this.getServer().getPluginManager().registerEvents(new DeathRodListener(this), this);
+        // Plutonium Blade
+        this.getCommand("plutoniumblade").setExecutor(new PlutoniumBladeCommand());
+        this.getServer().getPluginManager().registerEvents(new PlutoniumBladeListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
