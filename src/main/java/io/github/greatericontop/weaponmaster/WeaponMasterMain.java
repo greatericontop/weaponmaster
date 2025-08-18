@@ -106,6 +106,7 @@ import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeListener;
+import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentListener;
 import io.github.greatericontop.weaponmaster.mainitems.PoseidonTrident.TridentRecipe;
@@ -145,6 +146,7 @@ import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
+import io.github.greatericontop.weaponmaster.minorcrafts.WeaponsPlutoniumRecipe;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -355,12 +357,14 @@ public class WeaponMasterMain extends JavaPlugin {
         // Plutonium Blade
         this.getCommand("plutoniumblade").setExecutor(new PlutoniumBladeCommand());
         this.getServer().getPluginManager().registerEvents(new PlutoniumBladeListener(this), this);
+        new PlutoniumBladeRecipe().regRecipe();
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
         new HideLeviathanRecipe().regRecipe();
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
+        new WeaponsPlutoniumRecipe().regRecipe();
         // Custom Item Listener
         this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
 
