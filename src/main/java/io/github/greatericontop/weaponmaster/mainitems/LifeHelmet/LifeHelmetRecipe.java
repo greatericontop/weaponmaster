@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.LifeHelmet;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -32,10 +32,10 @@ import org.bukkit.potion.PotionType;
 public class LifeHelmetRecipe {
 
     private final Util util;
-    private final CustomItems customItems;
+    private final MinorItems customItems;
     public LifeHelmetRecipe() {
         this.util = new Util(null);
-        this.customItems = new CustomItems();
+        this.customItems = new MinorItems();
     }
     
     public void regRecipe() {

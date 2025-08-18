@@ -30,7 +30,6 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -53,11 +52,11 @@ public class MinorItemListener implements Listener {
     private final Set<UUID> thrownXPBottles = new HashSet<>();
 
     private final Random rnd = new Random();
-    private final CustomItems customItems;
+    private final MinorItems minorItems;
     private final Util util;
     private final WeaponMasterMain plugin;
     public MinorItemListener(WeaponMasterMain plugin) {
-        this.customItems = new CustomItems();
+        this.minorItems = new MinorItems();
         this.plugin = plugin;
         this.util = new Util(plugin);
     }
@@ -66,64 +65,64 @@ public class MinorItemListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
             if (Math.random() < plugin.getConfig().getDouble("rng.leviathanHeart")) {
-                ItemStack leviathan = customItems.generateLeviathanHeartItemStack();
+                ItemStack leviathan = minorItems.generateLeviathanHeartItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), leviathan);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.LEVIATHAN_HEART_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.LEVIATHAN_HEART_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.PIGLIN_BRUTE) {
             if (Math.random() < plugin.getConfig().getDouble("rng.coreStaff")) {
-                ItemStack core = customItems.generateCoreStaffItemStack();
+                ItemStack core = minorItems.generateCoreStaffItemStack();
                 Item coreEntity = event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
                 coreEntity.setInvulnerable(true);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.CORE_STAFF_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.CORE_STAFF_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.CAVE_SPIDER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.silkyString")) {
-                ItemStack silky = customItems.generateSilkyStringItemStack();
+                ItemStack silky = minorItems.generateSilkyStringItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), silky);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.SILKY_STRING_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.SILKY_STRING_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.EVOKER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.lifeCore")) {
-                ItemStack life = customItems.generateLifeCoreItemStack();
+                ItemStack life = minorItems.generateLifeCoreItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), life);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.LIFE_CORE_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.LIFE_CORE_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.WITHER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.expertSeal")) {
-                ItemStack seal = customItems.generateExpertSealItemStack();
+                ItemStack seal = minorItems.generateExpertSealItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), seal);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.EXPERT_SEAL_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.EXPERT_SEAL_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.ENDERMITE) {
             if (Math.random() < plugin.getConfig().getDouble("rng.endArtifact")) {
-                ItemStack endArtifact = customItems.generateEndArtifactItemStack();
+                ItemStack endArtifact = minorItems.generateEndArtifactItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), endArtifact);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.END_ARTIFACT_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.END_ARTIFACT_NAME);
                 }
             }
         }
 
         if (event.getEntityType() == EntityType.PLAYER) {
             Player player = (Player) event.getEntity();
-            VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
+            VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), minorItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
         }
     }
 
@@ -131,7 +130,7 @@ public class MinorItemListener implements Listener {
     public void onEat(PlayerItemConsumeEvent event) {
         if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR"))  return;
         Player player = event.getPlayer();
-        VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
+        VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), minorItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
     }
 

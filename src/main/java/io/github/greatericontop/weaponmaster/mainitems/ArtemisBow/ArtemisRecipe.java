@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.ArtemisBow;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,10 +29,10 @@ import org.bukkit.inventory.ShapedRecipe;
 public class ArtemisRecipe {
 
     private final Util util;
-    private final CustomItems customitems;
+    private final MinorItems customitems;
     public ArtemisRecipe() {
         util = new Util(null);
-        customitems = new CustomItems();
+        customitems = new MinorItems();
     }
 
     public void regRecipe() {

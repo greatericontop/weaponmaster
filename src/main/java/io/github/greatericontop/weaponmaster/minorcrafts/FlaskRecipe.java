@@ -25,14 +25,14 @@ import org.bukkit.inventory.ShapedRecipe;
 
 public class FlaskRecipe {
 
-    private CustomItems customItems;
+    private MinorItems minorItems;
 
     public FlaskRecipe() {
-        customItems = new CustomItems();
+        minorItems = new MinorItems();
     }
 
     public void regRecipe() {
-        ItemStack flask = customItems.generateFlaskIchorItemStack();
+        ItemStack flask = minorItems.generateFlaskIchorItemStack();
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("flask_ichor"), flask);
         recipe.shape(" S ",
                      " g ",

@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.WitherStaff;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -28,10 +28,10 @@ import org.bukkit.inventory.ShapedRecipe;
 public class WitherStaffRecipe {
 
     private final Util util;
-    private final CustomItems customItems;
+    private final MinorItems minorItems;
     public WitherStaffRecipe() {
         util = new Util(null);
-        customItems = new CustomItems();
+        minorItems = new MinorItems();
     }
 
     public void regRecipe() {

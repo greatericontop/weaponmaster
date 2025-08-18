@@ -18,7 +18,7 @@ package io.github.greatericontop.weaponmaster.dragonmanager;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -40,10 +40,10 @@ public class LootDropper {
     private final int[] dz = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
 
     private final WeaponMasterMain plugin;
-    private final CustomItems customItems;
+    private final MinorItems customItems;
     public LootDropper(WeaponMasterMain plugin) {
         this.plugin = plugin;
-        this.customItems = new CustomItems();
+        this.customItems = new MinorItems();
     }
 
     public void dropItemAt(World world, Location loc, ItemStack toDrop, UUID owner, String displayName, int pickupDelay) {

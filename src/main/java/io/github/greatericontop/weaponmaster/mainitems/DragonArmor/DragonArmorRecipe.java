@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.DragonArmor;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,10 +29,10 @@ import org.bukkit.inventory.ShapedRecipe;
 public class DragonArmorRecipe {
 
     private final Util util;
-    private final CustomItems customItems;
+    private final MinorItems customItems;
     public DragonArmorRecipe() {
         util = new Util(null);
-        customItems = new CustomItems();
+        customItems = new MinorItems();
     }
 
     public void regHelmet() {

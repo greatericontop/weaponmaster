@@ -25,9 +25,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class MinorItemCommand implements CommandExecutor {
 
-    private final CustomItems customItems;
+    private final MinorItems minorItems;
     public MinorItemCommand() {
-        this.customItems = new CustomItems();
+        this.minorItems = new MinorItems();
     }
 
     private void sendInfo(CommandSender to) {
@@ -62,72 +62,72 @@ public class MinorItemCommand implements CommandExecutor {
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
-            ItemStack item = customItems.generateLeviathanHeartItemStack();
+            ItemStack item = minorItems.generateLeviathanHeartItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.LEVIATHAN_HEART_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.LEVIATHAN_HEART_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("coreStaff")) {
-            ItemStack item = customItems.generateCoreStaffItemStack();
+            ItemStack item = minorItems.generateCoreStaffItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.CORE_STAFF_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.CORE_STAFF_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("flaskIchor")) {
-            ItemStack item = customItems.generateFlaskIchorItemStack();
+            ItemStack item = minorItems.generateFlaskIchorItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.FLASK_ICHOR_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.FLASK_ICHOR_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("dragonScale")) {
-            ItemStack item = customItems.generateDragonScaleItemStack();
+            ItemStack item = minorItems.generateDragonScaleItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_SCALE_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.DRAGON_SCALE_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("magicEnergyBar")) {
-            ItemStack item = customItems.generateMagicEnergyBarItemStack();
+            ItemStack item = minorItems.generateMagicEnergyBarItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.MAGIC_ENERGY_BAR_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.MAGIC_ENERGY_BAR_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("expertSeal")) {
-            ItemStack item = customItems.generateExpertSealItemStack();
+            ItemStack item = minorItems.generateExpertSealItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.EXPERT_SEAL_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.EXPERT_SEAL_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("dragonWing")) {
-            ItemStack item = customItems.generateDragonWingItemStack();
+            ItemStack item = minorItems.generateDragonWingItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_WING_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.DRAGON_WING_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("dragonHorn")) {
-            ItemStack item = customItems.generateDragonHornItemStack();
+            ItemStack item = minorItems.generateDragonHornItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.DRAGON_HORN_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.DRAGON_HORN_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("silkyString")) {
-            ItemStack item = customItems.generateSilkyStringItemStack();
+            ItemStack item = minorItems.generateSilkyStringItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.SILKY_STRING_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.SILKY_STRING_NAME + "§f]§7.");
         }
         if (args[0].equalsIgnoreCase("lifeCore")) {
-            ItemStack item = customItems.generateLifeCoreItemStack();
+            ItemStack item = minorItems.generateLifeCoreItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.LIFE_CORE_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.LIFE_CORE_NAME + "§f]§7.");
         }
         if (args[0].equalsIgnoreCase("endArtifact")) {
-            ItemStack item = customItems.generateEndArtifactItemStack();
+            ItemStack item = minorItems.generateEndArtifactItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.END_ARTIFACT_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.END_ARTIFACT_NAME + "§f]§7.");
         }
         if (args[0].equalsIgnoreCase("superXPBottle")) {
-            ItemStack item = customItems.generateSuperXPBottleItemStack();
+            ItemStack item = minorItems.generateSuperXPBottleItemStack();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + customItems.SUPER_XP_BOTTLE_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.SUPER_XP_BOTTLE_NAME + "§f]§7.");
             return true;
         }
         return false;

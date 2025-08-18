@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CustomItems {
+public class MinorItems {
 
     public final UUID ENERGY_MODIFIER_UUID = UUID.fromString("00000000-1111-0000-0000-c61288850beb");
 
@@ -61,7 +61,7 @@ public class CustomItems {
     public List<String> END_ARTIFACT_LORE = new ArrayList<>();
     public List<String> SUPER_XP_BOTTLE_LORE = new ArrayList<>();
 
-    public CustomItems() {
+    public MinorItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
         LEVIATHAN_HEART_LORE.add("§9The heart of a sea monster.");
         LEVIATHAN_HEART_LORE.add("§712% chance to drop on elder guardian kills");
