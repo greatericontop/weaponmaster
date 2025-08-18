@@ -113,16 +113,19 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = minorItems.generateSilkyStringItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.SILKY_STRING_NAME + "§f]§7.");
+            return true;
         }
         if (args[0].equalsIgnoreCase("lifeCore")) {
             ItemStack item = minorItems.generateLifeCoreItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.LIFE_CORE_NAME + "§f]§7.");
+            return true;
         }
         if (args[0].equalsIgnoreCase("endArtifact")) {
             ItemStack item = minorItems.generateEndArtifactItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.END_ARTIFACT_NAME + "§f]§7.");
+            return true;
         }
         if (args[0].equalsIgnoreCase("superXPBottle")) {
             ItemStack item = minorItems.generateSuperXPBottleItemStack();
