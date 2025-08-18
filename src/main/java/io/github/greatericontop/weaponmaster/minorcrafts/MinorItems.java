@@ -48,6 +48,8 @@ public class MinorItems {
     public final String LIFE_CORE_NAME = "§bLife Core";
     public final String END_ARTIFACT_NAME = "§5End Artifact";
     public final String SUPER_XP_BOTTLE_NAME = "§eSuper XP Bottle";
+    public final String CRUDE_PLUTONIUM_NAME = "§8Crude Plutonium";
+    public final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -60,6 +62,8 @@ public class MinorItems {
     public List<String> LIFE_CORE_LORE = new ArrayList<>();
     public List<String> END_ARTIFACT_LORE = new ArrayList<>();
     public List<String> SUPER_XP_BOTTLE_LORE = new ArrayList<>();
+    public List<String> CRUDE_PLUTONIUM_LORE = new ArrayList<>();
+    public List<String> WEAPONS_GRADE_PLUTONIUM_LORE = new ArrayList<>();
 
     public MinorItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -107,6 +111,13 @@ public class MinorItems {
 
         SUPER_XP_BOTTLE_LORE.add("id: SUPER_XP_BOTTLE");
         SUPER_XP_BOTTLE_LORE.add("§3A bottle filled with a §elot §3of experience.");
+
+        CRUDE_PLUTONIUM_LORE.add("id: CRUDE_PLUTONIUM");
+        CRUDE_PLUTONIUM_LORE.add("§7It seems pretty radioactive, but I'm not sure if it");
+        CRUDE_PLUTONIUM_LORE.add("§7is pure enough to sustain a nuclear reaction.");
+
+        WEAPONS_GRADE_PLUTONIUM_LORE.add("id: WEAPONS_GRADE_PLUTONIUM");
+        WEAPONS_GRADE_PLUTONIUM_LORE.add("§7This plutonium is weapons-grade purity.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -222,6 +233,25 @@ public class MinorItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(SUPER_XP_BOTTLE_NAME);
         iMeta.setLore(SUPER_XP_BOTTLE_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateCrudePlutoniumItemStack() {
+        ItemStack stack = new ItemStack(Material.GUNPOWDER, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(CRUDE_PLUTONIUM_NAME);
+        iMeta.setLore(CRUDE_PLUTONIUM_LORE);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateWeaponsGradePlutoniumItemStack() {
+        ItemStack stack = new ItemStack(Material.GUNPOWDER, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        iMeta.setDisplayName(WEAPONS_GRADE_PLUTONIUM_NAME);
+        iMeta.setLore(WEAPONS_GRADE_PLUTONIUM_LORE);
         stack.setItemMeta(iMeta);
         return stack;
     }

@@ -59,6 +59,8 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Life Core - /minoritem lifeCore");
             sender.sendMessage("§7End Artifact - /minoritem endArtifact");
             sender.sendMessage("§7Super XP Bottle - /minoritem superXPBottle");
+            sender.sendMessage("§7Crude Plutonium - /minoritem crudePlutonium");
+            sender.sendMessage("§7Weapons Grade Plutonium - /minoritem weaponsGradePlutonium");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -131,6 +133,18 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = minorItems.generateSuperXPBottleItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.SUPER_XP_BOTTLE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("crudePlutonium")) {
+            ItemStack item = minorItems.generateCrudePlutoniumItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.CRUDE_PLUTONIUM_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("weaponsGradePlutonium")) {
+            ItemStack item = minorItems.generateWeaponsGradePlutoniumItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.WEAPONS_GRADE_PLUTONIUM_NAME + "§f]§7.");
             return true;
         }
         return false;
