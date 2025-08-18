@@ -52,8 +52,8 @@ public class PlutoniumBladeListener implements Listener {
     private static final int RAYS = 10000; // on my pc these only take like 1-4 ms per iteration
     private static final double STEP = 0.4;
     private static final double GOLDEN_ANGLE = 3.88322207745093; // pi * (root5 - 1)
-    private static final double DAMAGE = 700.0;
-    private static final double KNOCKBACK_STRENGTH = 1.75; // length of velocity vector added to things attacked
+    private static final double DAMAGE = 70.0;
+    private static final double KNOCKBACK_STRENGTH = 9.0; // length of velocity vector added to things attacked
 
     private Map<UUID, Boolean> cooldown = new HashMap<>();
 
@@ -146,7 +146,7 @@ public class PlutoniumBladeListener implements Listener {
                     for (Entity e : player.getWorld().getNearbyEntities(loc, 0.5, 0.5, 0.5, e -> e instanceof LivingEntity)) {
                         LivingEntity le = (LivingEntity) e;
                         if (alreadyHit.contains(le.getUniqueId()))  continue;
-                        le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH));
+                        le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
                         le.damage(DAMAGE);
                         alreadyHit.add(le.getUniqueId());
                     }
