@@ -147,7 +147,8 @@ public class PlutoniumBladeListener implements Listener {
                         LivingEntity le = (LivingEntity) e;
                         if (alreadyHit.contains(le.getUniqueId()))  continue;
                         le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
-                        le.damage(DAMAGE);
+                        le.setFireTicks(200);
+                        le.damage(DAMAGE, player);
                         alreadyHit.add(le.getUniqueId());
                     }
                     loc.getWorld().spawnParticle(Particle.SMALL_FLAME, loc, 1, 0.0, 0.0, 0.0, 0.0);
