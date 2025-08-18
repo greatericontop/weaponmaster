@@ -20,6 +20,7 @@ rng:
   lifeCore: 0.008
   expertSeal: 0.025
   endArtifact: 0.09
+  plutonium: 0.09
 fireball:
   heatSeeking: false
 witherStaff:

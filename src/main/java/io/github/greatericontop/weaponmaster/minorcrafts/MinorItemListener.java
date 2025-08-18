@@ -32,6 +32,7 @@ import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -198,6 +199,17 @@ public class MinorItemListener implements Listener {
             ExperienceOrb orb = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), ExperienceOrb.class);
             orb.setExperience(1000 + rnd.nextInt(241));
             // 160 bottles worth of xp (161 total since bottle itself is not canceled)
+        }
+    }
+
+    @EventHandler()
+    public void onDeepslateCoalBreak(BlockBreakEvent event) {
+        if (event.getBlock().getType() != Material.DEEPSLATE_COAL_ORE)  return;
+        if (event.getExpToDrop() == 0)  return; // if broken with silk touch or the incorrect tool
+        if (Math.random() < plugin.getConfig().getDouble("rng.plutonium")) {
+            ItemStack item = minorItems.generateCrudePlutoniumItemStack();
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+            event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.CRUDE_PLUTONIUM_NAME);
         }
     }
 
