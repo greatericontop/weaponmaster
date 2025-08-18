@@ -24,6 +24,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -106,7 +107,8 @@ public class PlutoniumBladeListener implements Listener {
             return;
         }
         if (player.getGameMode() != GameMode.CREATIVE) {
-            im.setDamage(im.getDamage() + 200);
+            int durability = 1 + 99/(1+im.getEnchantLevel(Enchantment.UNBREAKING)); // rounds up essentially
+            im.setDamage(im.getDamage() + durability);
             stack.setItemMeta(im);
         }
 
