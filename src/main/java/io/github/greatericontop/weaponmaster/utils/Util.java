@@ -631,12 +631,16 @@ public class Util {
         PLUTONIUM_BLADE_LORE.add("");
         PLUTONIUM_BLADE_LORE.add("§3The dense material of the blade crits for §6+20% §3damage.");
         PLUTONIUM_BLADE_LORE.add("");
-        PLUTONIUM_BLADE_LORE.add("§eAbility: §4Implosion §e§oLOOK STRAIGHT DOWN & SHIFT RIGHT CLICK");
+        PLUTONIUM_BLADE_LORE.add("§eAbility: §4Implosion");
+        PLUTONIUM_BLADE_LORE.add("  §7LOOK STRAIGHT DOWN & §eSHIFT RIGHT CLICK");
         PLUTONIUM_BLADE_LORE.add("§3Creates a nuclear shockwave traveling outwards up to §b20 §3blocks.");
         PLUTONIUM_BLADE_LORE.add("§3Those caught in the blast take §6massive §3knockback and damage.");
-        PLUTONIUM_BLADE_LORE.add("§7The shockwave travels through blocks!");
+        PLUTONIUM_BLADE_LORE.add("§3The shockwave travels through blocks!");
         PLUTONIUM_BLADE_LORE.add("§720 second cooldown");
         PLUTONIUM_BLADE_LORE.add("§7100 durability per use");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§6LEGENDARY");
+        PLUTONIUM_BLADE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
