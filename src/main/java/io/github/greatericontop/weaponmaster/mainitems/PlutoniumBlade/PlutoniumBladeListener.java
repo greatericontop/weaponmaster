@@ -34,6 +34,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -75,6 +76,7 @@ public class PlutoniumBladeListener implements Listener {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.plutoniumblade.use§3.");
             return;
         }
+        if (event.getCause() == EntityDamageEvent.DamageCause.CUSTOM)  return; // so it doesn't apply to the ability
         // You just have to be falling actually
         if (player.getFallDistance() > 0.01F && (!player.isOnGround()) && (!player.isClimbing())) {
             event.setDamage(event.getDamage() * 1.2);
