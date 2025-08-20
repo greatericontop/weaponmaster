@@ -230,7 +230,9 @@ public class MinorItemListener implements Listener {
                 if (wither.isDead()) {
                     // if the wither died and this is still running, profit!
                     wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateExpertSealItemStack());
-                    wither.getKiller().sendMessage("§eW§co§ew§c! §bYou are truly an expert! You have been given "+minorItems.EXPERT_SEAL_NAME);
+                    if (wither.getKiller() != null) {
+                        wither.getKiller().sendMessage("§eW§co§ew§c! §bYou are truly an expert! You have been given " + minorItems.EXPERT_SEAL_NAME);
+                    }
                     withers.remove(wither.getUniqueId());
                     this.cancel();
                     return;
