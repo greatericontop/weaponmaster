@@ -24,16 +24,19 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownExpBottle;
+import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -41,7 +44,9 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
@@ -211,6 +216,57 @@ public class MinorItemListener implements Listener {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
             event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.CRUDE_PLUTONIUM_NAME);
         }
+    }
+
+    private static final double RANGE = 80.0;
+    @EventHandler()
+    public void onWitherSpawn(EntitySpawnEvent event) {
+        if (event.getEntityType() != EntityType.WITHER)  return;
+        Wither wither = (Wither) event.getEntity();
+        new BukkitRunnable() {
+            public void run() {
+                if (wither.isDead()) {
+                    // if the wither died and this is still running, profit!
+                    wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateExpertSealItemStack());
+                    wither.getKiller().sendMessage("§6Wow! §bYou are truly an expert! You have been given "+minorItems.EXPERT_SEAL_NAME);
+                    this.cancel();
+                    return;
+                }
+                Collection<Entity> nearbyPlayers = wither.getWorld().getNearbyEntities(wither.getLocation(), RANGE, RANGE, RANGE, e -> e instanceof Player);
+                if (nearbyPlayers.isEmpty()) {
+                    // prevents issues if the wither unloads
+                    // also causes a death to cancel the reward
+                    this.cancel();
+                    return;
+                }
+                if (nearbyPlayers.size() > 1) {
+                    // must be solo
+                    this.cancel();
+                    return;
+                }
+                Player player = (Player) nearbyPlayers.stream().iterator().next();
+                ItemStack[] armor = player.getInventory().getArmorContents();
+                if ((armor[0] != null && armor[0].getType() != Material.AIR)
+                        || (armor[1] != null && armor[1].getType() != Material.AIR)
+                        || (armor[2] != null && armor[2].getType() != Material.AIR)
+                        || (armor[3] != null && armor[3].getType() != Material.AIR)
+                ) {
+                    // if any player is wearing armor, cancel
+                    this.cancel();
+                    return;
+                }
+                // if the wither is stuck in bedrock, teleport it to the player
+                for (int dx = -2; dx <= 2; dx++) {
+                    for (int dy = -3; dy <= 3; dy++) {
+                        for (int dz = -2; dz <= 2; dz++) {
+                            if (wither.getLocation().add(dx, dy, dz).getBlock().getType() == Material.BEDROCK) {
+                                wither.teleport(player);
+                            }
+                        }
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
     }
 
 }
