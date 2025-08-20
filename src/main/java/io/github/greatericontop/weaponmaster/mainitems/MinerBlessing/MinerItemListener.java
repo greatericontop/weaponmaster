@@ -99,7 +99,6 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.add(util.MINER_INSERTION+4, "");
                 lore.add(util.MINER_INSERTION+5, "§aAutomatically smelts some ores and drops additional experience. §7§oTIER 8");
                 lore.add(util.MINER_INSERTION+6, "§7Fortune cannot be used in this mode.");
-                // TODO: Add individual xp table to silk touch so it does not penalize everything
                 break;
             case 9:
                 lore.add(util.MINER_INSERTION+7, "§dWhen breaking some deepslate ores while not in Silk Touch");
@@ -160,7 +159,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         plugin.paperUtils.sendActionBar(player, String.format("§2§o+%d  §r§7|  §6Experience: §b%d§6/§b%d §6(§b%.1f§6%%)", amount, exp, getRequirementToLevelUp(tier), xpPercent), false);
 
         if (tier >= 8 && getMode(lore).equals("§a>§b>§c> §6Currently set to §9Smelting Touch")) {
-            doSmeltingOres(event, player, tier>=10);
+            doSmeltingOres(event, player, im.getEnchantLevel(Enchantment.FORTUNE));
         }
         if (tier >= 9) {
             doDeepslateBlockMultiply(event, player, lore, tier);
@@ -177,7 +176,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
         player.getInventory().getItemInMainHand().setItemMeta(im);
     }
 
-    public void doSmeltingOres(BlockBreakEvent event, Player player, boolean hasFortune) {
+    public void doSmeltingOres(BlockBreakEvent event, Player player, int hasFortune) {
         Material mat = event.getBlock().getType();
         World world = event.getBlock().getLocation().getWorld();
         Location dropLocation = event.getBlock().getLocation().add(0.5, 0.5, 0.5);
@@ -297,15 +296,26 @@ public class MinerItemListener extends MinerUtil implements Listener {
         String text = getMode(lore);
         if (text.equals("§a>§b>§c> §6Currently set to §9Silk Touch")) {
             im.removeEnchant(Enchantment.SILK_TOUCH);
-            im.addEnchant(Enchantment.FORTUNE, 3, false);
-            lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune III");
-            player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
+            if (im.getEnchantLevel(Enchantment.EFFICIENCY) == 6) {
+                im.addEnchant(Enchantment.FORTUNE, 4, true);
+                lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune IV");
+                player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune IV");
+            } else {
+                im.addEnchant(Enchantment.FORTUNE, 3, false);
+                lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune III");
+                player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
+            }
         } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
             im.removeEnchant(Enchantment.FORTUNE);
             lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
             if (tier >= 10) {
-                im.addEnchant(Enchantment.FORTUNE, 3, false);
-                player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune III");
+                if (im.getEnchantLevel(Enchantment.EFFICIENCY) == 6) {
+                    im.addEnchant(Enchantment.FORTUNE, 4, true);
+                    player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune IV");
+                } else {
+                    im.addEnchant(Enchantment.FORTUNE, 3, false);
+                    player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch + Fortune III");
+                }
             } else {
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Smelting Touch");
             }

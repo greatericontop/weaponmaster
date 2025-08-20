@@ -77,12 +77,19 @@ public class MinerUtil   {
      * Applies to coal, diamond, emerald, iron, copper, gold
      * NOT redstone
      */
-    protected int doFortuneOre(int amount, boolean hasFortune) {
-        if (!hasFortune) {
+    protected int doFortuneOre(int amount, int hasFortune) {
+        if (hasFortune == 0) {
             return amount;
         }
         float f = rnd.nextFloat();
-        int multiplier = Math.max((int) (f * 5), 1);
+        int multiplier;
+        if (hasFortune == 4) {
+            multiplier = Math.max((int) (f * 6), 1);
+        } else if (hasFortune == 3) {
+            multiplier = Math.max((int) (f * 5), 1);
+        } else {
+            throw new IllegalStateException("fortune has to be 3 or 4");
+        }
         return amount * multiplier;
     }
 
