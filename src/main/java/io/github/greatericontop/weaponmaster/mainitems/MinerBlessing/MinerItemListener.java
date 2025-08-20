@@ -305,7 +305,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
                 lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Fortune III");
                 player.sendMessage("§a>§b>§c> §6Pickaxe set to §9Fortune III");
             }
-        } else if (tier >= 8 && text.equals("§a>§b>§c> §6Currently set to §9Fortune III")) {
+        } else if (tier >= 8 && text.startsWith("§a>§b>§c> §6Currently set to §9Fortune ")) {
             im.removeEnchant(Enchantment.FORTUNE);
             lore.set(util.MINER_INSERTION + 3, "§a>§b>§c> §6Currently set to §9Smelting Touch");
             if (tier >= 10) {
