@@ -35,6 +35,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -55,7 +56,7 @@ import java.util.UUID;
 
 public class MinorItemListener implements Listener {
 
-    private final Set<UUID> thrownXPBottles = new HashSet<>();
+    private final Set<UUID> withers = new HashSet<>();
 
     private final Random rnd = new Random();
     private final MinorItems minorItems;
@@ -223,12 +224,14 @@ public class MinorItemListener implements Listener {
     public void onWitherSpawn(EntitySpawnEvent event) {
         if (event.getEntityType() != EntityType.WITHER)  return;
         Wither wither = (Wither) event.getEntity();
+        withers.add(wither.getUniqueId());
         new BukkitRunnable() {
             public void run() {
                 if (wither.isDead()) {
                     // if the wither died and this is still running, profit!
                     wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateExpertSealItemStack());
-                    wither.getKiller().sendMessage("§6Wow! §bYou are truly an expert! You have been given "+minorItems.EXPERT_SEAL_NAME);
+                    wither.getKiller().sendMessage("§eW§co§ew§c! §bYou are truly an expert! You have been given "+minorItems.EXPERT_SEAL_NAME);
+                    withers.remove(wither.getUniqueId());
                     this.cancel();
                     return;
                 }
@@ -236,11 +239,13 @@ public class MinorItemListener implements Listener {
                 if (nearbyPlayers.isEmpty()) {
                     // prevents issues if the wither unloads
                     // also causes a death to cancel the reward
+                    withers.remove(wither.getUniqueId());
                     this.cancel();
                     return;
                 }
                 if (nearbyPlayers.size() > 1) {
                     // must be solo
+                    withers.remove(wither.getUniqueId());
                     this.cancel();
                     return;
                 }
@@ -267,6 +272,14 @@ public class MinorItemListener implements Listener {
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
+    }
+
+    @EventHandler()
+    public void onWitherExplosionDamage(EntityDamageEvent event) {
+        if (event.getEntityType() != EntityType.WITHER)  return;
+        if (!withers.contains(event.getEntity().getUniqueId()))  return;
+        if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_EXPLOSION && event.getCause() != EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)  return;
+        event.setDamage(event.getDamage() * 0.25); // explosives damage is nerfed by 1/4
     }
 
 }
