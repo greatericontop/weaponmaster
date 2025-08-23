@@ -511,9 +511,15 @@ Crafting Recipe:
 
 `/minoritem list` - a list of commands for minor items.
 
+### Crude Plutonium
+
+Deepslate coal ore can sometimes contain radioactive materials. It has a 9% chance to drop from breaking deepslate coal ore.
+
 ### Expert Seal
 
-2.5% chance of dropping for a `Wither`. Increases all the enchantments on an item by 1 level. Can only be used once per item. 
+2.5% chance of dropping for a `Wither`, or complete the **Wither Challenge** (see [`FEATURES.md`](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)).
+
+Increases all the enchantments on an item by 1 level. Can only be used once per item.
 
 ### Flask of Ichor
 
@@ -527,10 +533,6 @@ Crafting Recipe:
 - 1x Wither Skeleton Skull
 
 ![](assets/flask.png)
-
-### Crude Plutonium
-
-Deepslate coal ore can sometimes contain radioactive materials. It has a 9% chance to drop from breaking deepslate coal ore.
 
 ### Heart of Leviathan
 
