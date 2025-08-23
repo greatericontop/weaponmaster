@@ -351,7 +351,7 @@ public class Util {
         SNIPER_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
         SNIPER_RIFLE_LORE.add("§7Minor recoil");
         SNIPER_RIFLE_LORE.add("");
-        SNIPER_RIFLE_LORE.add("§6LEGENDARY");
+        SNIPER_RIFLE_LORE.add("§cSUPREME");
         SNIPER_RIFLE_LORE.add("§6---------------");
         // Miner's Blessing
         MINERS_BLESSING_LORE.add("id: MINERS_BLESSING");
