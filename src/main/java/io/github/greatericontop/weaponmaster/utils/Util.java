@@ -441,9 +441,9 @@ public class Util {
         POSEIDON_TRIDENT_LORE.add("§6---------------");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§eAbility: §4Sea God");
-        POSEIDON_TRIDENT_LORE.add("§3Gives Conduit Power while holding.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of giving Dolphin's Grace.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning on hit.");
+        POSEIDON_TRIDENT_LORE.add("§3Gives permanent §9Conduit Power §3while holding.");
+        POSEIDON_TRIDENT_LORE.add("§3Gives permanent §9Dolphin's Grace §3while holding.");
+        POSEIDON_TRIDENT_LORE.add("§3Chance of summoning lightning on hit!");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
         POSEIDON_TRIDENT_LORE.add("§6---------------");

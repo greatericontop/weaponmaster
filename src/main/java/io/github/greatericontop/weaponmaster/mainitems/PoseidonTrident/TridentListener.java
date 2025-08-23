@@ -24,7 +24,6 @@ import org.bukkit.Particle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
@@ -32,7 +31,12 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 public class TridentListener implements Listener {
+    private final Set<UUID> activeTridents = new HashSet<>();
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -49,9 +53,7 @@ public class TridentListener implements Listener {
                     if (!player.hasPermission("weaponmaster.poseidontrident.use")) { continue; }
                     if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand())) { continue; }
                     player.addPotionEffect(new PotionEffect(PotionEffectType.CONDUIT_POWER, 39, 0));
-                    if (player.isInWater() && Math.random() < 0.015) {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 39, 0));
-                    }
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 39, 0));
                 }
             }
         }.runTaskTimer(plugin, 200L, 5L);
@@ -67,19 +69,16 @@ public class TridentListener implements Listener {
             return;
         }
         player.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, player.getEyeLocation().add(player.getEyeLocation().getDirection().multiply(0.9)), 15);
+        activeTridents.add(event.getEntity().getUniqueId());
     }
 
     @EventHandler()
     public void onProjHit(ProjectileHitEvent event) {
+        if (!activeTridents.contains(event.getEntity().getUniqueId()))  return;
         if (!(event.getEntity().getShooter() instanceof Player))  return;
         if (event.getHitEntity() == null)  return;
-        Player player = (Player) event.getEntity().getShooter();
-        if (!util.checkForPoseidonTrident(player.getInventory().getItemInMainHand()))  return;
-        if (!player.hasPermission("weaponmaster.poseidontrident.use")) {
-            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.poseidontrident.use§3.");
-            return;
-        }
-        if (Math.random() < 0.05) {
+        activeTridents.remove(event.getEntity().getUniqueId());
+        if (Math.random() < 0.1) {
             event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING_BOLT);
         }
     }
