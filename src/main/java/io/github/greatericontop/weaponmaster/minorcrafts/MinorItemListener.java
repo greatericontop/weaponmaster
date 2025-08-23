@@ -22,6 +22,7 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -270,6 +271,14 @@ public class MinorItemListener implements Listener {
                                 wither.teleport(player);
                             }
                         }
+                    }
+                }
+                // 0.8% chance per tick (on average every 6.25 sec) to check if player & wither have line of sight and teleport if not
+                if (Math.random() < 0.008) {
+                    if (!wither.hasLineOfSight(player)) {
+                        player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
+                        player.sendMessage("§cYou can't hide from me...");
+                        wither.teleport(player);
                     }
                 }
             }
