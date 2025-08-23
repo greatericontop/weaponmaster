@@ -27,6 +27,7 @@
   - [Netherite Staff](#netherite-staff)
   - [Ninja Bow](#ninja-bow)
   - [Pilot Sword](#pilot-sword)
+  - [Plutonium Blade](#plutonium-blade)
   - [Poseidon's Trident](#poseidons-trident)
   - [Scylla's Chestplate](#scyllas-chestplate)
   - [Shredded Axe](#shredded-axe)
@@ -42,6 +43,7 @@
   - [Throwing Knife](#throwing-knife)
   - [Wither Staff](#wither-staff)
 - [Others](#others)
+  - [Crude Plutonium](#crude-plutonium)
   - [Expert Seal](#expert-seal)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
@@ -50,6 +52,7 @@
   - [Nether Reactor Core](#nether-reactor-core)
   - [Silky String](#silky-string)
   - [Super XP Bottle](#super-xp-bottle)
+  - [Weapons Grade Plutonium](#weapons-grade-plutonium)
 
 <br/>
 
@@ -338,6 +341,17 @@ Crafting Recipe:
 
 Crafting Recipe: NOT REALLY COMING SOON
 
+### Plutonium Blade
+
+`/plutoniumblade give` - crits deal extra damage, and implosion ability to deal massive damage to nearby targets
+
+Crafting Recipe:
+- 1x Netherite Sword
+- 2x Nether Star
+- 6x Weapons Grade Plutonium
+
+![](assets/plutonium.png)
+
 ### Poseidon's Trident
 
 `/poseidontrident give` - a very powerful Trident
@@ -514,6 +528,10 @@ Crafting Recipe:
 
 ![](assets/flask.png)
 
+### Crude Plutonium
+
+Deepslate coal ore can sometimes contain radioactive materials. It has a 9% chance to drop from breaking deepslate coal ore.
+
 ### Heart of Leviathan
 
 A piece of blue ice with 12% chance of dropping from an `Elder Guardian`. Used to craft `Hide of Leviathan`.
@@ -561,3 +579,13 @@ A magical string used to craft `Artemis Bow` and `Ninja Bow`.
 A supercharged bottle of experience, granting over 25 levels when used.
 
 There is currently no crafting recipe.
+
+### Weapons Grade Plutonium
+
+Used to craft a plutonium blade. Can be crafted from crude plutonium.
+
+Crafting Recipe:
+- 8x Piston
+- 1x Crude Plutonium
+
+![](assets/weaponsGradePlutonium.png)
