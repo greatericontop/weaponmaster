@@ -260,6 +260,7 @@ public class MinorItemListener implements Listener {
                         || (armor[3] != null && armor[3].getType() != Material.AIR)
                 ) {
                     // if any player is wearing armor, cancel
+                    withers.remove(wither.getUniqueId());
                     this.cancel();
                     return;
                 }
@@ -286,11 +287,15 @@ public class MinorItemListener implements Listener {
     }
 
     @EventHandler()
-    public void onWitherExplosionDamage(EntityDamageEvent event) {
+    public void witherDamageTypeResistance(EntityDamageEvent event) {
         if (event.getEntityType() != EntityType.WITHER)  return;
         if (!withers.contains(event.getEntity().getUniqueId()))  return;
-        if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_EXPLOSION && event.getCause() != EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)  return;
-        event.setDamage(event.getDamage() * 0.25); // explosives damage is nerfed by 1/4
+        if (event.getCause() == EntityDamageEvent.DamageCause.CUSTOM) {
+            event.setDamage(event.getDamage() * 0.4); // -60% damage from abilities e.g. plutonium or helios
+        }
+        if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+            event.setDamage(event.getDamage() * 0.25); // explosives damage is nerfed to 1/4
+        }
     }
 
 }
