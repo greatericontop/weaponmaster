@@ -284,6 +284,11 @@ public class MinorItems {
 
     public ItemStack generateExpertDye() {
         ItemStack stack = new ItemStack(Material.YELLOW_DYE, 1);
+        generateExpertDye(stack);
+        return stack;
+    }
+    public void generateExpertDye(ItemStack stack) {
+        stack.setType(Material.YELLOW_DYE);
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         iMeta.setDisplayName(EXPERT_DYE_NAME);
@@ -292,7 +297,6 @@ public class MinorItems {
         lore.add(String.format("§7#%s", UUID.randomUUID()));
         iMeta.setLore(lore);
         stack.setItemMeta(iMeta);
-        return stack;
     }
 
 }
