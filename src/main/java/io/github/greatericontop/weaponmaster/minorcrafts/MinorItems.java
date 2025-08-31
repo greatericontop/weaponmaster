@@ -162,7 +162,7 @@ public class MinorItems {
 
         WITHER_DYE_LORE.add("id: DYE");
         WITHER_DYE_LORE.add(WITHER_DYE_KEY);
-        DIAMOND_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        WITHER_DYE_LORE.add("§7Move this dye onto another item to color it!");
         WITHER_DYE_LORE.add("§eA dark dye infused with the essence of the Wither.");
         WITHER_DYE_LORE.add("§eThis is the base dye. It can be crafted into other colors!");
         DIAMOND_DYE_LORE.add("id: DYE");
