@@ -142,6 +142,7 @@ import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemLis
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.CoreStaffRecipe;
+import io.github.greatericontop.weaponmaster.minorcrafts.DyeRecipes;
 import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
@@ -362,9 +363,10 @@ public class WeaponMasterMain extends JavaPlugin {
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
-        new HideLeviathanRecipe().regRecipe();
-        new FlaskRecipe().regRecipe();
+        new DyeRecipes().regRecipes();
         new CoreStaffRecipe().regRecipe();
+        new FlaskRecipe().regRecipe();
+        new HideLeviathanRecipe().regRecipe();
         new WeaponsPlutoniumRecipe().regRecipe();
         // Custom Item Listeners
         this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
