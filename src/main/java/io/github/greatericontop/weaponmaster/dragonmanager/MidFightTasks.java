@@ -33,6 +33,7 @@ import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Illager;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
@@ -66,6 +67,7 @@ public class MidFightTasks {
     private int endGuard_lastTickRan = -1000;
     private int lightningAttack_lastTickRan = -1000;
     private int fireballStorm_lastTickRan = -1000;
+    private int perchedFireballStorm_lastTickRan = -1000;
     private int toxicStorm_lastTickRan = -1000;
     private int endDweller_lastTickRan = -1000;
     private int endstoneDefender_lastTickRan = -1000;
@@ -139,6 +141,7 @@ public class MidFightTasks {
                 spawnEndGuard(tickNumber);
                 doLightningAttack(tickNumber);
                 doFireballStorm(tickNumber);
+                doPerchedFireballStorm(tickNumber);
                 doToxicStorm(tickNumber);
                 regenerateOnLowHealth(tickNumber);
                 spawnEndDweller(tickNumber);
@@ -222,6 +225,7 @@ public class MidFightTasks {
     public void doFireballStorm(int tickNumber) {
         if (rejectWithChance(65.0)) { return; }
         if (tickNumber < fireballStorm_lastTickRan + 300) { return; }
+        if (tickNumber < perchedFireballStorm_lastTickRan + 200) { return; } // also doesn't run if perched storms are currently running
         fireballStorm_lastTickRan = tickNumber;
         Location loc = currentlyActiveDragon.getLocation();
         // Spawn fireballs below the dragon as some kind of protection
@@ -257,6 +261,28 @@ public class MidFightTasks {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getWorld().equals(loc.getWorld())) {
                 player.sendMessage("§5WeaponMaster Dragon §7used §3Fireball Storm§7.");
+            }
+        }
+    }
+
+    public void doPerchedFireballStorm(int tickNumber) {
+        if (currentlyActiveDragon.getPhase() != EnderDragon.Phase.SEARCH_FOR_BREATH_ATTACK_TARGET && currentlyActiveDragon.getPhase() != EnderDragon.Phase.BREATH_ATTACK) { return; } // only runs when perched
+        if (tickNumber < perchedFireballStorm_lastTickRan + 200) { return; } // when perched, just always runs on 10 seconds cooldown
+        perchedFireballStorm_lastTickRan = tickNumber;
+        Location loc = currentlyActiveDragon.getLocation();
+        for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
+            for (int z = -STORM_SIZE; z <= STORM_SIZE; z++) {
+                Vector ray = new Vector(x, -STORM_SIZE*0.35, z).normalize().multiply(1.9);
+                Location spawnLoc = loc.clone().add(ray.multiply(0.75)); // Don't spawn it too far below
+                if (Math.random() < 0.5) {
+                    DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+                    fireball.setVelocity(ray);
+                } else {
+                    Fireball fireball = (Fireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.FIREBALL);
+                    fireball.setVelocity(ray);
+                    fireball.setYield(2.0F);
+                    fireball.setIsIncendiary(true);
+                }
             }
         }
     }
