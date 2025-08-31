@@ -146,6 +146,7 @@ import io.github.greatericontop.weaponmaster.minorcrafts.FlaskRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.HideLeviathanRecipe;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemCommand;
 import io.github.greatericontop.weaponmaster.minorcrafts.MinorItemListener;
+import io.github.greatericontop.weaponmaster.minorcrafts.MoveOversListener;
 import io.github.greatericontop.weaponmaster.minorcrafts.WeaponsPlutoniumRecipe;
 import io.github.greatericontop.weaponmaster.utils.PaperUtils;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -365,8 +366,9 @@ public class WeaponMasterMain extends JavaPlugin {
         new FlaskRecipe().regRecipe();
         new CoreStaffRecipe().regRecipe();
         new WeaponsPlutoniumRecipe().regRecipe();
-        // Custom Item Listener
+        // Custom Item Listeners
         this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new MoveOversListener(this), this);
 
         // Dragon Fight
         dragonManager = new FightManager(this);

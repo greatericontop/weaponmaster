@@ -21,10 +21,8 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
@@ -40,17 +38,13 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
@@ -140,43 +134,6 @@ public class MinorItemListener implements Listener {
         Player player = event.getPlayer();
         VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), minorItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
-    }
-
-    @EventHandler()
-    public void onExpertSeal(InventoryClickEvent event) {
-        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)  return;
-        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
-        Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL"))  return;
-        if (util.checkFor(event.getCurrentItem(), 0, "id: WITHER_DYE")) {
-            // wither dyes and expert seals are unstackable
-            minorItems.generateExpertDye(event.getCurrentItem());
-            event.setCancelled(true);
-            player.updateInventory();
-            event.setCursor(new ItemStack(Material.AIR));
-            player.sendMessage("§3Success!");
-            return;
-        }
-        ItemMeta targetItem = event.getCurrentItem().getItemMeta();
-        if (targetItem == null || !targetItem.hasEnchants()) {
-            player.sendMessage("§cYou can't use Expert Seal on this item!");
-            return;
-        }
-        final NamespacedKey key = new NamespacedKey(plugin, "expert_seal");
-        if (targetItem.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) {
-            player.sendMessage("§cYou can only upgrade once!");
-            return;
-        }
-        Map<Enchantment, Integer> enchants = targetItem.getEnchants();
-        for (Enchantment enchant : enchants.keySet()) {
-            targetItem.addEnchant(enchant, enchants.get(enchant) + 1, true);
-        }
-        targetItem.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
-        event.getCurrentItem().setItemMeta(targetItem);
-        event.setCancelled(true);
-        player.updateInventory();
-        event.setCursor(new ItemStack(Material.AIR)); // expert seals are unstackable
-        player.sendMessage("§3Success!");
     }
 
     @EventHandler()
