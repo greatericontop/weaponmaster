@@ -53,15 +53,15 @@ public class MoveOversListener implements Listener {
         if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
         Player player = (Player) event.getWhoClicked();
         if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL"))  return;
-        if (util.checkFor(event.getCurrentItem(), 0, "id: WITHER_DYE")) {
-            // wither dyes and expert seals are unstackable
-            minorItems.generateExpertDye(event.getCurrentItem());
-            event.setCancelled(true);
-            player.updateInventory();
-            event.setCursor(new ItemStack(Material.AIR));
-            player.sendMessage("§3Success!");
-            return;
-        }
+//        if (util.checkFor(event.getCurrentItem(), 0, "id: WITHER_DYE")) {
+//            // wither dyes and expert seals are unstackable
+//            minorItems.generateExpertDye(event.getCurrentItem());
+//            event.setCancelled(true);
+//            player.updateInventory();
+//            event.setCursor(new ItemStack(Material.AIR));
+//            player.sendMessage("§3Success!");
+//            return;
+//        }
         ItemMeta targetItem = event.getCurrentItem().getItemMeta();
         if (targetItem == null || !targetItem.hasEnchants()) {
             player.sendMessage("§cYou can't use Expert Seal on this item!");
