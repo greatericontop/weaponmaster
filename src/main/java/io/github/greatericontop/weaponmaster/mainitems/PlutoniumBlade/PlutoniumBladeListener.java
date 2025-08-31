@@ -150,7 +150,11 @@ public class PlutoniumBladeListener implements Listener {
                         if (alreadyHit.contains(le.getUniqueId()))  continue;
                         le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
                         le.setFireTicks(200);
-                        le.damage(DAMAGE, player);
+                        if (plugin.minorItemListener.withers.contains(le.getUniqueId())) {
+                            le.damage(DAMAGE*0.6, player); // less ability damage to wither challenge
+                        } else {
+                            le.damage(DAMAGE, player);
+                        }
                         alreadyHit.add(le.getUniqueId());
                     }
                     loc.getWorld().spawnParticle(Particle.SMALL_FLAME, loc, 1, 0.0, 0.0, 0.0, 0.0);

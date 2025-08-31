@@ -158,6 +158,8 @@ public class WeaponMasterMain extends JavaPlugin {
     public FightManager dragonManager = null;
     public DescentDataManager descent = null;
 
+    public MinorItemListener minorItemListener = null;
+
     @Override
     public void onEnable() {
         long t = System.currentTimeMillis();
@@ -369,7 +371,8 @@ public class WeaponMasterMain extends JavaPlugin {
         new HideLeviathanRecipe().regRecipe();
         new WeaponsPlutoniumRecipe().regRecipe();
         // Custom Item Listeners
-        this.getServer().getPluginManager().registerEvents(new MinorItemListener(this), this);
+        minorItemListener = new MinorItemListener(this);
+        this.getServer().getPluginManager().registerEvents(minorItemListener, this);
         this.getServer().getPluginManager().registerEvents(new MoveOversListener(this), this);
 
         // Dragon Fight

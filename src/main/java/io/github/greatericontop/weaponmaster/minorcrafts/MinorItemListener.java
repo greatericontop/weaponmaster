@@ -51,7 +51,7 @@ import java.util.UUID;
 
 public class MinorItemListener implements Listener {
 
-    private final Set<UUID> withers = new HashSet<>();
+    public final Set<UUID> withers = new HashSet<>();
 
     private final Random rnd = new Random();
     private final MinorItems minorItems;
@@ -283,12 +283,11 @@ public class MinorItemListener implements Listener {
     public void witherDamageTypeResistance(EntityDamageEvent event) {
         if (event.getEntityType() != EntityType.WITHER)  return;
         if (!withers.contains(event.getEntity().getUniqueId()))  return;
-        if (event.getCause() == EntityDamageEvent.DamageCause.CUSTOM) {
-            event.setDamage(event.getDamage() * 0.4); // -60% damage from abilities e.g. plutonium or helios
-        }
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
             event.setDamage(event.getDamage() * 0.25); // explosives damage is nerfed to 1/4
         }
     }
+
+    // Damage resistance to Helios & Plutonium are in those listeners
 
 }
