@@ -105,14 +105,14 @@ public class DyeRecipes {
         leviathanRec.setIngredient('x', Material.WET_SPONGE);
         Bukkit.getServer().addRecipe(leviathanRec);
 
-//        ItemStack expert = minorItems.generateExpertDye();
-//        ShapedRecipe expertRec = new ShapedRecipe(NamespacedKey.minecraft("dye_expert"), expert);
-//        expertRec.shape(" E ",
-//                        "EWE",
-//                        " E ");
-//        expertRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
-//        expertRec.setIngredient('E', new RecipeChoice.ExactChoice(minorItems.generateExpertSeal()));
-//        Bukkit.getServer().addRecipe(expertRec);
+        ItemStack expert = minorItems.generateExpertDye();
+        ShapedRecipe expertRec = new ShapedRecipe(NamespacedKey.minecraft("dye_expert"), expert);
+        expertRec.shape(" E ",
+                        "EWE",
+                        " E ");
+        expertRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
+        expertRec.setIngredient('E', new RecipeChoice.ExactChoice(minorItems.generateExpertSealItemStack()));
+        Bukkit.getServer().addRecipe(expertRec);
 
         ItemStack dragon = minorItems.generateDragonDye();
         ShapedRecipe dragonRec = new ShapedRecipe(NamespacedKey.minecraft("dye_dragon"), dragon);
