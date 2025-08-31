@@ -58,7 +58,8 @@ public class MinorItems {
     public final String LAPIS_DYE_NAME = "§9Lapis Dye";
     public final String DARK_DIAMOND_DYE_NAME = "§2Dark Diamond Dye";
     public final String GOLD_DYE_NAME = "§6Gold Dye";
-    public final String BLOOD_DYE_NAME = "§cBlood Dye";
+    public final String REDSTONE_DYE_NAME = "§cRedstone Dye";
+    public final String BLOOD_DYE_NAME = "§4Blood Dye";
     public final String LEVIATHAN_DYE_NAME = "§3Leviathan Dye";
     public final String EXPERT_DYE_NAME = "§6Expert Dye";
     public final String DRAGON_DYE_NAME = "§5Dragon Dye";
@@ -87,6 +88,7 @@ public class MinorItems {
     public List<String> LAPIS_DYE_LORE = new ArrayList<>();
     public List<String> DARK_DIAMOND_DYE_LORE = new ArrayList<>();
     public List<String> GOLD_DYE_LORE = new ArrayList<>();
+    public List<String> REDSTONE_DYE_LORE = new ArrayList<>();
     public List<String> BLOOD_DYE_LORE = new ArrayList<>();
     public List<String> LEVIATHAN_DYE_LORE = new ArrayList<>();
     public List<String> EXPERT_DYE_LORE = new ArrayList<>();
@@ -102,7 +104,8 @@ public class MinorItems {
     public static final String LAPIS_DYE_KEY = "§9Blue Color";
     public static final String DARK_DIAMOND_DYE_KEY = "§3Dark Aqua Color";
     public static final String GOLD_DYE_KEY = "§6Gold Color";
-    public static final String BLOOD_DYE_KEY = "§cRed Color";
+    public static final String REDSTONE_DYE_KEY = "§cRed Color";
+    public static final String BLOOD_DYE_KEY = "§4Dark Red Color";
     public static final String LEVIATHAN_DYE_KEY = "§9L§3e§9v§3i§9a§3t§9h§3a§9n §3C§9o§3l§9o§3r";
     public static final String EXPERT_DYE_KEY = "§6E§ex§6p§ee§6r§et §6C§eo§6l§eo§6r";
     public static final String DRAGON_DYE_KEY = "§5D§dr§5a§dg§5o§dn §5C§do§5l§do§5r";
@@ -189,6 +192,9 @@ public class MinorItems {
         GOLD_DYE_LORE.add("id: DYE");
         GOLD_DYE_LORE.add(GOLD_DYE_KEY);
         GOLD_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        REDSTONE_DYE_LORE.add("id: DYE");
+        REDSTONE_DYE_LORE.add(REDSTONE_DYE_KEY);
+        REDSTONE_DYE_LORE.add("§7Move this dye onto another item to color it!");
         BLOOD_DYE_LORE.add("id: DYE");
         BLOOD_DYE_LORE.add(BLOOD_DYE_KEY);
         BLOOD_DYE_LORE.add("§7Move this dye onto another item to color it!");
@@ -440,6 +446,17 @@ public class MinorItems {
         iMeta.setDisplayName(GOLD_DYE_NAME);
         List<String> lore = new ArrayList<>();
         lore.addAll(GOLD_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateRedstoneDye() {
+        ItemStack stack = new ItemStack(Material.RED_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(REDSTONE_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(REDSTONE_DYE_LORE);
         iMeta.setLore(lore);
         iMeta.setMaxStackSize(1);
         stack.setItemMeta(iMeta);

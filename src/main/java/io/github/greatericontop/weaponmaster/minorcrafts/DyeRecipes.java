@@ -88,13 +88,24 @@ public class DyeRecipes {
         goldRec.setIngredient('x', Material.ENCHANTED_GOLDEN_APPLE);
         Bukkit.getServer().addRecipe(goldRec);
 
+        ItemStack redstone = minorItems.generateRedstoneDye();
+        ShapedRecipe redstoneRec = new ShapedRecipe(NamespacedKey.minecraft("dye_redstone"), redstone);
+        redstoneRec.shape("xRx",
+                          "xWx",
+                          "xxx");
+        redstoneRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
+        redstoneRec.setIngredient('x', Material.REDSTONE_BLOCK);
+        redstoneRec.setIngredient('R', new RecipeChoice.ExactChoice(minorItems.generateRedstoneApexItemStack()));
+        Bukkit.getServer().addRecipe(redstoneRec);
+
         ItemStack blood = minorItems.generateBloodDye();
         ShapedRecipe bloodRec = new ShapedRecipe(NamespacedKey.minecraft("dye_blood"), blood);
-        bloodRec.shape(" x ",
-                       "xWx",
-                       " x ");
-        bloodRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
-        bloodRec.setIngredient('x', Material.ZOMBIE_HEAD);
+        bloodRec.shape("RHR",
+                       "HwH",
+                       "RHR");
+        bloodRec.setIngredient('w', new RecipeChoice.ExactChoice(minorItems.generateRedstoneDye()));
+        bloodRec.setIngredient('H', Material.ZOMBIE_HEAD);
+        bloodRec.setIngredient('R', new RecipeChoice.ExactChoice(minorItems.generateRedstoneApexItemStack()));
         Bukkit.getServer().addRecipe(bloodRec);
 
         ItemStack leviathan = minorItems.generateLeviathanDye();

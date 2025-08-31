@@ -62,7 +62,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Crude Plutonium - /minoritem crudePlutonium");
             sender.sendMessage("§7Weapons Grade Plutonium - /minoritem weaponsGradePlutonium");
             sender.sendMessage("§7Master Dye - /minoritem masterDye");
-            sender.sendMessage("§7Dyes: /minoritem witherDye/diamondDye/emeraldDye/crystalDye/lapisDye/darkDiamondDye/goldDye/bloodDye/leviathanDye/expertDye/dragonDye");
+            sender.sendMessage("§7Dyes: /minoritem witherDye/diamondDye/emeraldDye/crystalDye/lapisDye/darkDiamondDye/goldDye/redstoneDye/bloodDye/leviathanDye/expertDye/dragonDye");
             sender.sendMessage("§7Diamond Apex: /minoritem diamondApex");
             sender.sendMessage("§7Emerald Apex: /minoritem emeraldApex");
             sender.sendMessage("§7Redstone Apex: /minoritem redstoneApex");
@@ -198,6 +198,12 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = minorItems.generateGoldDye();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.GOLD_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("redstoneDye")) {
+            ItemStack item = minorItems.generateRedstoneDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.REDSTONE_DYE_NAME + "§f]§7.");
             return true;
         }
         if (args[0].equalsIgnoreCase("bloodDye")) {
