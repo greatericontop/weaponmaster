@@ -61,8 +61,8 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Super XP Bottle - /minoritem superXPBottle");
             sender.sendMessage("§7Crude Plutonium - /minoritem crudePlutonium");
             sender.sendMessage("§7Weapons Grade Plutonium - /minoritem weaponsGradePlutonium");
+            sender.sendMessage("§7Master Dye - /minoritem masterDye");
             sender.sendMessage("§7Wither Dye - /minoritem witherDye");
-            sender.sendMessage("§7Expert Dye - /minoritem expertDye");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -149,18 +149,19 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Gave you §f[" + minorItems.WEAPONS_GRADE_PLUTONIUM_NAME + "§f]§7.");
             return true;
         }
+        if (args[0].equalsIgnoreCase("masterDye")) {
+            ItemStack item = minorItems.generateMasterDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.MASTER_DYE_NAME + "§f]§7.");
+            return true;
+        }
         if (args[0].equalsIgnoreCase("witherDye")) {
             ItemStack item = minorItems.generateWitherDye();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.WITHER_DYE_NAME + "§f]§7.");
             return true;
         }
-        if (args[0].equalsIgnoreCase("expertDye")) {
-            ItemStack item = minorItems.generateExpertDye();
-            ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + minorItems.MASTER_DYE_NAME + "§f]§7.");
-            return true;
-        }
+
         return false;
     }
 }

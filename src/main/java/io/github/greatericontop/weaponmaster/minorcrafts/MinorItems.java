@@ -50,8 +50,8 @@ public class MinorItems {
     public final String SUPER_XP_BOTTLE_NAME = "§eSuper XP Bottle";
     public final String CRUDE_PLUTONIUM_NAME = "§8Crude Plutonium";
     public final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
-    public final String WITHER_DYE_NAME = "§8Wither Dye";
     public final String MASTER_DYE_NAME = "§6Master Dye";
+    public final String WITHER_DYE_NAME = "§8Wither Dye";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -66,8 +66,10 @@ public class MinorItems {
     public List<String> SUPER_XP_BOTTLE_LORE = new ArrayList<>();
     public List<String> CRUDE_PLUTONIUM_LORE = new ArrayList<>();
     public List<String> WEAPONS_GRADE_PLUTONIUM_LORE = new ArrayList<>();
-    public List<String> WITHER_DYE_LORE = new ArrayList<>();
     public List<String> MASTER_DYE_LORE = new ArrayList<>();
+    public List<String> WITHER_DYE_LORE = new ArrayList<>();
+
+    public final String WITHER_DYE_KEY = "§8Dark Gray Color";
 
     public MinorItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -123,15 +125,16 @@ public class MinorItems {
         WEAPONS_GRADE_PLUTONIUM_LORE.add("id: WEAPONS_GRADE_PLUTONIUM");
         WEAPONS_GRADE_PLUTONIUM_LORE.add("§7This plutonium is weapons-grade purity.");
 
-        WITHER_DYE_LORE.add("id: WITHER_DYE");
-        WITHER_DYE_LORE.add("§eA dark dye infused with the essence of the Wither.");
-        WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
-        WITHER_DYE_LORE.add("§6This dye can be upgraded with Expert Seal...");
-
         MASTER_DYE_LORE.add("id: MASTER_DYE");
         MASTER_DYE_LORE.add("§eThis dye can change the color of your item to anything!");
         MASTER_DYE_LORE.add("§eUse the §f& §esymbol for color codes.");
         MASTER_DYE_LORE.add("§eUse it wisely, as there is no way to undo this action!");
+
+        WITHER_DYE_LORE.add("id: DYE");
+        WITHER_DYE_LORE.add(WITHER_DYE_KEY);
+        WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
+        WITHER_DYE_LORE.add("§eA dark dye infused with the essence of the Wither.");
+        WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -270,18 +273,6 @@ public class MinorItems {
         return stack;
     }
 
-    public ItemStack generateWitherDye() {
-        ItemStack stack = new ItemStack(Material.GRAY_DYE, 1);
-        ItemMeta iMeta = stack.getItemMeta();
-        iMeta.setDisplayName(WITHER_DYE_NAME);
-        List<String> lore = new ArrayList<>();
-        lore.addAll(WITHER_DYE_LORE);
-        lore.add(String.format("§7#%s", UUID.randomUUID()));
-        iMeta.setLore(lore);
-        stack.setItemMeta(iMeta);
-        return stack;
-    }
-
     public ItemStack generateMasterDye() {
         ItemStack stack = new ItemStack(Material.YELLOW_DYE, 1);
         generateMasterDye(stack);
@@ -294,9 +285,21 @@ public class MinorItems {
         iMeta.setDisplayName(MASTER_DYE_NAME);
         List<String> lore = new ArrayList<>();
         lore.addAll(MASTER_DYE_LORE);
-        lore.add(String.format("§7#%s", UUID.randomUUID()));
         iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
         stack.setItemMeta(iMeta);
+    }
+
+    public ItemStack generateWitherDye() {
+        ItemStack stack = new ItemStack(Material.GRAY_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(WITHER_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(WITHER_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
     }
 
 }
