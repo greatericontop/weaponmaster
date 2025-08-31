@@ -66,6 +66,7 @@ public class MinorItems {
     public final String DIAMOND_APEX_NAME = "§bDiamond Apex";
     public final String EMERALD_APEX_NAME = "§aEmerald Apex";
     public final String REDSTONE_APEX_NAME = "§cRedstone Apex";
+    public final String WITHER_HEAD_NAME = "§8§lWither Head";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -96,6 +97,7 @@ public class MinorItems {
     public List<String> DIAMOND_APEX_LORE = new ArrayList<>();
     public List<String> EMERALD_APEX_LORE = new ArrayList<>();
     public List<String> REDSTONE_APEX_LORE = new ArrayList<>();
+    public List<String> WITHER_HEAD_LORE = new ArrayList<>();
 
     public static final String WITHER_DYE_KEY = "§8Dark Gray Color";
     public static final String DIAMOND_DYE_KEY = "§bAqua Color";
@@ -219,6 +221,10 @@ public class MinorItems {
         REDSTONE_APEX_LORE.add("id: REDSTONE_APEX");
         REDSTONE_APEX_LORE.add("§7It can only be extracted from some of the best ores.");
         REDSTONE_APEX_LORE.add("§7This is one of the purest redstones you've ever seen...");
+
+        WITHER_HEAD_LORE.add("id: WITHER_HEAD");
+        WITHER_HEAD_LORE.add("§8Only the best of the best can extract the head from a Wither.");
+        WITHER_HEAD_LORE.add("§7Can upgrade Wither Staff!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -530,6 +536,16 @@ public class MinorItems {
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.setDisplayName(REDSTONE_APEX_NAME);
         iMeta.setLore(REDSTONE_APEX_LORE);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateWitherHeadItemStack() {
+        ItemStack stack = new ItemStack(Material.WITHER_SKELETON_SKULL, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(WITHER_HEAD_NAME);
+        iMeta.setLore(WITHER_HEAD_LORE);
         iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         stack.setItemMeta(iMeta);
         return stack;

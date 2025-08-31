@@ -66,6 +66,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Diamond Apex: /minoritem diamondApex");
             sender.sendMessage("§7Emerald Apex: /minoritem emeraldApex");
             sender.sendMessage("§7Redstone Apex: /minoritem redstoneApex");
+            sender.sendMessage("§7Wither Head: /minoritem witherHead");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -246,6 +247,12 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = minorItems.generateRedstoneApexItemStack();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.REDSTONE_APEX_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("witherHead")) {
+            ItemStack item = minorItems.generateWitherHeadItemStack();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.WITHER_HEAD_NAME + "§f]§7.");
             return true;
         }
 
