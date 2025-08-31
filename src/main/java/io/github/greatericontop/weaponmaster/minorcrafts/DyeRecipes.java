@@ -34,20 +34,22 @@ public class DyeRecipes {
     public void regRecipes() {
         ItemStack diamond = minorItems.generateDiamondDye();
         ShapedRecipe diamondRec = new ShapedRecipe(NamespacedKey.minecraft("dye_diamond"), diamond);
-        diamondRec.shape("xxx",
+        diamondRec.shape("xDx",
                          "xWx",
                          "xxx");
         diamondRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
         diamondRec.setIngredient('x', Material.DIAMOND_BLOCK);
+        diamondRec.setIngredient('D', new RecipeChoice.ExactChoice(minorItems.generateDiamondApexItemStack()));
         Bukkit.getServer().addRecipe(diamondRec);
 
         ItemStack emerald = minorItems.generateEmeraldDye();
         ShapedRecipe emeraldRec = new ShapedRecipe(NamespacedKey.minecraft("dye_emerald"), emerald);
-        emeraldRec.shape("xxx",
+        emeraldRec.shape("xEx",
                          "xWx",
                          "xxx");
         emeraldRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
         emeraldRec.setIngredient('x', Material.EMERALD_BLOCK);
+        emeraldRec.setIngredient('E', new RecipeChoice.ExactChoice(minorItems.generateEmeraldApexItemStack()));
         Bukkit.getServer().addRecipe(emeraldRec);
 
         ItemStack crystal = minorItems.generateCrystalDye();
@@ -70,11 +72,11 @@ public class DyeRecipes {
 
         ItemStack darkDiamond = minorItems.generateDarkDiamondDye();
         ShapedRecipe darkDiamondRec = new ShapedRecipe(NamespacedKey.minecraft("dye_dark_diamond"), darkDiamond);
-        darkDiamondRec.shape(" x ",
-                             "xWx",
-                             " x ");
-        darkDiamondRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
-        darkDiamondRec.setIngredient('x', new RecipeChoice.ExactChoice(minorItems.generateDiamondDye()));
+        darkDiamondRec.shape(" DD",
+                             "DwD",
+                             "DD ");
+        darkDiamondRec.setIngredient('w', new RecipeChoice.ExactChoice(minorItems.generateDiamondDye()));
+        darkDiamondRec.setIngredient('D', new RecipeChoice.ExactChoice(minorItems.generateDiamondApexItemStack()));
         Bukkit.getServer().addRecipe(darkDiamondRec);
 
         ItemStack gold = minorItems.generateGoldDye();
