@@ -62,6 +62,9 @@ public class MinorItems {
     public final String LEVIATHAN_DYE_NAME = "§3Leviathan Dye";
     public final String EXPERT_DYE_NAME = "§6Expert Dye";
     public final String DRAGON_DYE_NAME = "§5Dragon Dye";
+    public final String DIAMOND_APEX_NAME = "§bDiamond Apex";
+    public final String EMERALD_APEX_NAME = "§aEmerald Apex";
+    public final String REDSTONE_APEX_NAME = "§cRedstone Apex";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -88,6 +91,9 @@ public class MinorItems {
     public List<String> LEVIATHAN_DYE_LORE = new ArrayList<>();
     public List<String> EXPERT_DYE_LORE = new ArrayList<>();
     public List<String> DRAGON_DYE_LORE = new ArrayList<>();
+    public List<String> DIAMOND_APEX_LORE = new ArrayList<>();
+    public List<String> EMERALD_APEX_LORE = new ArrayList<>();
+    public List<String> REDSTONE_APEX_LORE = new ArrayList<>();
 
     public static final String WITHER_DYE_KEY = "§8Dark Gray Color";
     public static final String DIAMOND_DYE_KEY = "§bAqua Color";
@@ -195,6 +201,18 @@ public class MinorItems {
         DRAGON_DYE_LORE.add("id: DYE");
         DRAGON_DYE_LORE.add(DRAGON_DYE_KEY);
         DRAGON_DYE_LORE.add("§7Move this dye onto another item to color it!");
+
+        DIAMOND_APEX_LORE.add("id: DIAMOND_APEX");
+        DIAMOND_APEX_LORE.add("§7It can only be extracted from some of the best ores.");
+        DIAMOND_APEX_LORE.add("§7This is one of the purest diamonds you've ever seen...");
+
+        EMERALD_APEX_LORE.add("id: EMERALD_APEX");
+        EMERALD_APEX_LORE.add("§7It can only be extracted from some of the best ores.");
+        EMERALD_APEX_LORE.add("§7This is one of the purest emeralds you've ever seen...");
+
+        REDSTONE_APEX_LORE.add("id: REDSTONE_APEX");
+        REDSTONE_APEX_LORE.add("§7It can only be extracted from some of the best ores.");
+        REDSTONE_APEX_LORE.add("§7This is one of the purest redstones you've ever seen...");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -468,6 +486,34 @@ public class MinorItems {
         lore.addAll(DRAGON_DYE_LORE);
         iMeta.setLore(lore);
         iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateDiamondApexItemStack() {
+        ItemStack stack = new ItemStack(Material.DIAMOND, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DIAMOND_APEX_NAME);
+        iMeta.setLore(DIAMOND_APEX_LORE);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateEmeraldApexItemStack() {
+        ItemStack stack = new ItemStack(Material.EMERALD, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(EMERALD_APEX_NAME);
+        iMeta.setLore(EMERALD_APEX_LORE);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateRedstoneApexItemStack() {
+        ItemStack stack = new ItemStack(Material.REDSTONE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(REDSTONE_APEX_NAME);
+        iMeta.setLore(REDSTONE_APEX_LORE);
+        iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
         stack.setItemMeta(iMeta);
         return stack;
     }

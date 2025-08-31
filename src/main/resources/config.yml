@@ -20,7 +20,11 @@ rng:
   lifeCore: 0.008
   expertSeal: 0.025
   endArtifact: 0.09
-  plutonium: 0.09
+  # Deepslate coal doesn't drop XP 1/3 of the time, so this is actually 8%, not 12%
+  plutonium: 0.12
+  diamondApex: 0.0375
+  emeraldApex: 0.12
+  redstoneApex: 0.0075
 fireball:
   heatSeeking: false
 witherStaff:

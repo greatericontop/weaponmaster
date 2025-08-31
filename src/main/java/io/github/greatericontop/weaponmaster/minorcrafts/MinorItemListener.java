@@ -170,14 +170,35 @@ public class MinorItemListener implements Listener {
     }
 
     @EventHandler()
-    public void onDeepslateCoalBreak(BlockBreakEvent event) {
-        if (event.getBlock().getType() != Material.DEEPSLATE_COAL_ORE)  return;
+    public void onOre(BlockBreakEvent event) {
         if (event.getExpToDrop() == 0)  return; // if broken with silk touch or the incorrect tool
-        if (Math.random() < plugin.getConfig().getDouble("rng.plutonium")) {
-            ItemStack item = minorItems.generateCrudePlutoniumItemStack();
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
-            event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.CRUDE_PLUTONIUM_NAME);
+        Material type = event.getBlock().getType();
+        if (type == Material.DEEPSLATE_COAL_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.plutonium")) {
+                ItemStack item = minorItems.generateCrudePlutoniumItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.CRUDE_PLUTONIUM_NAME);
+            }
+        } else if (type == Material.DIAMOND_ORE || type == Material.DEEPSLATE_DIAMOND_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.diamondApex")) {
+                ItemStack item = minorItems.generateDiamondApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.DIAMOND_APEX_NAME);
+            }
+        } else if (type == Material.EMERALD_ORE || type == Material.DEEPSLATE_EMERALD_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.emeraldApex")) {
+                ItemStack item = minorItems.generateEmeraldApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.EMERALD_APEX_NAME);
+            }
+        } else if (type == Material.REDSTONE_ORE || type == Material.DEEPSLATE_REDSTONE_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.redstoneApex")) {
+                ItemStack item = minorItems.generateRedstoneApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.REDSTONE_APEX_NAME);
+            }
         }
+
     }
 
     private static final double RANGE = 80.0;
