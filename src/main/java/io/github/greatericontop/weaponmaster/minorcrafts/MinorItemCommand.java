@@ -62,7 +62,7 @@ public class MinorItemCommand implements CommandExecutor {
             sender.sendMessage("§7Crude Plutonium - /minoritem crudePlutonium");
             sender.sendMessage("§7Weapons Grade Plutonium - /minoritem weaponsGradePlutonium");
             sender.sendMessage("§7Master Dye - /minoritem masterDye");
-            sender.sendMessage("§7Wither Dye - /minoritem witherDye");
+            sender.sendMessage("§7Dyes: /minoritem witherDye/diamondDye/emeraldDye/crystalDye/lapisDye/darkDiamondDye/goldDye/bloodDye/leviathanDye/expertDye/dragonDye");
             return true;
         }
         if (args[0].equalsIgnoreCase("leviathanHeart")) {
@@ -159,6 +159,66 @@ public class MinorItemCommand implements CommandExecutor {
             ItemStack item = minorItems.generateWitherDye();
             ((Player) sender).getInventory().addItem(item);
             sender.sendMessage("§7Gave you §f[" + minorItems.WITHER_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("diamondDye")) {
+            ItemStack item = minorItems.generateDiamondDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.DIAMOND_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("emeraldDye")) {
+            ItemStack item = minorItems.generateEmeraldDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.EMERALD_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("crystalDye")) {
+            ItemStack item = minorItems.generateCrystalDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.CRYSTAL_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("lapisDye")) {
+            ItemStack item = minorItems.generateLapisDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.LAPIS_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("darkDiamondDye")) {
+            ItemStack item = minorItems.generateDarkDiamondDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.DARK_DIAMOND_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("goldDye")) {
+            ItemStack item = minorItems.generateGoldDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.GOLD_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("bloodDye")) {
+            ItemStack item = minorItems.generateBloodDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.BLOOD_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("leviathanDye")) {
+            ItemStack item = minorItems.generateLeviathanDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.LEVIATHAN_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("expertDye")) {
+            ItemStack item = minorItems.generateExpertDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.EXPERT_DYE_NAME + "§f]§7.");
+            return true;
+        }
+        if (args[0].equalsIgnoreCase("dragonDye")) {
+            ItemStack item = minorItems.generateDragonDye();
+            ((Player) sender).getInventory().addItem(item);
+            sender.sendMessage("§7Gave you §f[" + minorItems.DRAGON_DYE_NAME + "§f]§7.");
             return true;
         }
 

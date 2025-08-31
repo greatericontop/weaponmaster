@@ -100,7 +100,50 @@ public class MoveOversListener implements Listener {
             player.sendMessage("§cThis item already has a color! If you really want to dye it again, remove the color first.");
             return;
         }
-        targetIM.setDisplayName("§8" + name);
+        switch (event.getCursor().getItemMeta().getLore().get(1)) {
+            case MinorItems.WITHER_DYE_KEY -> targetIM.setDisplayName("§8" + name);
+            case MinorItems.DIAMOND_DYE_KEY -> targetIM.setDisplayName("§b" + name);
+            case MinorItems.EMERALD_DYE_KEY -> targetIM.setDisplayName("§a" + name);
+            case MinorItems.CRYSTAL_DYE_KEY -> targetIM.setDisplayName("§d" + name);
+            case MinorItems.LAPIS_DYE_KEY -> targetIM.setDisplayName("§9" + name);
+            case MinorItems.DARK_DIAMOND_DYE_KEY -> targetIM.setDisplayName("§3" + name);
+            case MinorItems.GOLD_DYE_KEY -> targetIM.setDisplayName("§6" + name);
+            case MinorItems.BLOOD_DYE_KEY -> targetIM.setDisplayName("§c" + name);
+            case MinorItems.LEVIATHAN_DYE_KEY -> {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < name.length(); i++) {
+                    if (i % 2 == 0) {
+                        sb.append("§9").append(name.charAt(i));
+                    } else {
+                        sb.append("§3").append(name.charAt(i));
+                    }
+                }
+                targetIM.setDisplayName(sb.toString());
+            }
+            case MinorItems.EXPERT_DYE_KEY -> {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < name.length(); i++) {
+                    if (i % 2 == 0) {
+                        sb.append("§6").append(name.charAt(i));
+                    } else {
+                        sb.append("§e").append(name.charAt(i));
+                    }
+                }
+                targetIM.setDisplayName(sb.toString());
+            }
+            case MinorItems.DRAGON_DYE_KEY -> {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < name.length(); i++) {
+                    if (i % 2 == 0) {
+                        sb.append("§5").append(name.charAt(i));
+                    } else {
+                        sb.append("§d").append(name.charAt(i));
+                    }
+                }
+                targetIM.setDisplayName(sb.toString());
+            }
+            default ->  throw new RuntimeException("unknown dye");
+        }
         event.getCurrentItem().setItemMeta(targetIM);
         event.setCancelled(true);
         player.updateInventory();

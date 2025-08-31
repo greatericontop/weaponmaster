@@ -52,6 +52,16 @@ public class MinorItems {
     public final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
     public final String MASTER_DYE_NAME = "§6Master Dye";
     public final String WITHER_DYE_NAME = "§8Wither Dye";
+    public final String DIAMOND_DYE_NAME = "§bDiamond Dye";
+    public final String EMERALD_DYE_NAME = "§aEmerald Dye";
+    public final String CRYSTAL_DYE_NAME = "§dCrystal Dye";
+    public final String LAPIS_DYE_NAME = "§9Lapis Dye";
+    public final String DARK_DIAMOND_DYE_NAME = "§2Dark Diamond Dye";
+    public final String GOLD_DYE_NAME = "§6Gold Dye";
+    public final String BLOOD_DYE_NAME = "§cBlood Dye";
+    public final String LEVIATHAN_DYE_NAME = "§3Leviathan Dye";
+    public final String EXPERT_DYE_NAME = "§6Expert Dye";
+    public final String DRAGON_DYE_NAME = "§5Dragon Dye";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -68,8 +78,28 @@ public class MinorItems {
     public List<String> WEAPONS_GRADE_PLUTONIUM_LORE = new ArrayList<>();
     public List<String> MASTER_DYE_LORE = new ArrayList<>();
     public List<String> WITHER_DYE_LORE = new ArrayList<>();
+    public List<String> DIAMOND_DYE_LORE = new ArrayList<>();
+    public List<String> EMERALD_DYE_LORE = new ArrayList<>();
+    public List<String> CRYSTAL_DYE_LORE = new ArrayList<>();
+    public List<String> LAPIS_DYE_LORE = new ArrayList<>();
+    public List<String> DARK_DIAMOND_DYE_LORE = new ArrayList<>();
+    public List<String> GOLD_DYE_LORE = new ArrayList<>();
+    public List<String> BLOOD_DYE_LORE = new ArrayList<>();
+    public List<String> LEVIATHAN_DYE_LORE = new ArrayList<>();
+    public List<String> EXPERT_DYE_LORE = new ArrayList<>();
+    public List<String> DRAGON_DYE_LORE = new ArrayList<>();
 
-    public final String WITHER_DYE_KEY = "§8Dark Gray Color";
+    public static final String WITHER_DYE_KEY = "§8Dark Gray Color";
+    public static final String DIAMOND_DYE_KEY = "§bAqua Color";
+    public static final String EMERALD_DYE_KEY = "§aGreen Color";
+    public static final String CRYSTAL_DYE_KEY = "§dLight Purple Color";
+    public static final String LAPIS_DYE_KEY = "§9Blue Color";
+    public static final String DARK_DIAMOND_DYE_KEY = "§3Dark Aqua Color";
+    public static final String GOLD_DYE_KEY = "§6Gold Color";
+    public static final String BLOOD_DYE_KEY = "§cRed Color";
+    public static final String LEVIATHAN_DYE_KEY = "§9L§3e§9v§3i§9a§3t§9h§3a§9n §3C§9o§3l§9o§3r";
+    public static final String EXPERT_DYE_KEY = "§6E§ex§6p§ee§6r§et §6C§eo§6l§eo§6r";
+    public static final String DRAGON_DYE_KEY = "§5D§dr§5a§dg§5o§dn §5C§do§5l§do§5r";
 
     public MinorItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -132,9 +162,39 @@ public class MinorItems {
 
         WITHER_DYE_LORE.add("id: DYE");
         WITHER_DYE_LORE.add(WITHER_DYE_KEY);
-        WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
+        DIAMOND_DYE_LORE.add("§7Move this dye onto another item to color it!");
         WITHER_DYE_LORE.add("§eA dark dye infused with the essence of the Wither.");
-        WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
+        WITHER_DYE_LORE.add("§eThis is the base dye. It can be crafted into other colors!");
+        DIAMOND_DYE_LORE.add("id: DYE");
+        DIAMOND_DYE_LORE.add(DIAMOND_DYE_KEY);
+        DIAMOND_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        EMERALD_DYE_LORE.add("id: DYE");
+        EMERALD_DYE_LORE.add(EMERALD_DYE_KEY);
+        EMERALD_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        CRYSTAL_DYE_LORE.add("id: DYE");
+        CRYSTAL_DYE_LORE.add(CRYSTAL_DYE_KEY);
+        CRYSTAL_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        LAPIS_DYE_LORE.add("id: DYE");
+        LAPIS_DYE_LORE.add(LAPIS_DYE_KEY);
+        LAPIS_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        DARK_DIAMOND_DYE_LORE.add("id: DYE");
+        DARK_DIAMOND_DYE_LORE.add(DARK_DIAMOND_DYE_KEY);
+        DARK_DIAMOND_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        GOLD_DYE_LORE.add("id: DYE");
+        GOLD_DYE_LORE.add(GOLD_DYE_KEY);
+        GOLD_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        BLOOD_DYE_LORE.add("id: DYE");
+        BLOOD_DYE_LORE.add(BLOOD_DYE_KEY);
+        BLOOD_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        LEVIATHAN_DYE_LORE.add("id: DYE");
+        LEVIATHAN_DYE_LORE.add(LEVIATHAN_DYE_KEY);
+        LEVIATHAN_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        EXPERT_DYE_LORE.add("id: DYE");
+        EXPERT_DYE_LORE.add(EXPERT_DYE_KEY);
+        EXPERT_DYE_LORE.add("§7Move this dye onto another item to color it!");
+        DRAGON_DYE_LORE.add("id: DYE");
+        DRAGON_DYE_LORE.add(DRAGON_DYE_KEY);
+        DRAGON_DYE_LORE.add("§7Move this dye onto another item to color it!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -296,6 +356,116 @@ public class MinorItems {
         iMeta.setDisplayName(WITHER_DYE_NAME);
         List<String> lore = new ArrayList<>();
         lore.addAll(WITHER_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateDiamondDye() {
+        ItemStack stack = new ItemStack(Material.LIGHT_BLUE_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DIAMOND_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(DIAMOND_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateEmeraldDye() {
+        ItemStack stack = new ItemStack(Material.LIME_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(EMERALD_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(EMERALD_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateCrystalDye() {
+        ItemStack stack = new ItemStack(Material.MAGENTA_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(CRYSTAL_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(CRYSTAL_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateLapisDye() {
+        ItemStack stack = new ItemStack(Material.BLUE_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(LAPIS_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(LAPIS_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateDarkDiamondDye() {
+        ItemStack stack = new ItemStack(Material.CYAN_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DARK_DIAMOND_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(DARK_DIAMOND_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateGoldDye() {
+        ItemStack stack = new ItemStack(Material.ORANGE_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(GOLD_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(GOLD_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateBloodDye() {
+        ItemStack stack = new ItemStack(Material.RED_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(BLOOD_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(BLOOD_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateLeviathanDye() {
+        ItemStack stack = new ItemStack(Material.CYAN_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(LEVIATHAN_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(LEVIATHAN_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateExpertDye() {
+        ItemStack stack = new ItemStack(Material.YELLOW_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(EXPERT_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(EXPERT_DYE_LORE);
+        iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+    public ItemStack generateDragonDye() {
+        ItemStack stack = new ItemStack(Material.PURPLE_DYE, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(DRAGON_DYE_NAME);
+        List<String> lore = new ArrayList<>();
+        lore.addAll(DRAGON_DYE_LORE);
         iMeta.setLore(lore);
         iMeta.setMaxStackSize(1);
         stack.setItemMeta(iMeta);
