@@ -109,11 +109,11 @@ public class MoveOversListener implements Listener {
     }
 
     @EventHandler()
-    public void onExpertDye(InventoryClickEvent event) {
+    public void onMasterDye(InventoryClickEvent event) {
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)  return;
         if (event.getCursor() == null || event.getCursor().getType() == Material.AIR)  return;
         Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_DYE"))  return;
+        if (!util.checkFor(event.getCursor(), 0, "id: MASTER_DYE"))  return;
         ItemMeta targetIM = event.getCurrentItem().getItemMeta();
         if (targetIM == null || !targetIM.hasDisplayName()) {
             player.sendMessage("§cGive it a name first!");

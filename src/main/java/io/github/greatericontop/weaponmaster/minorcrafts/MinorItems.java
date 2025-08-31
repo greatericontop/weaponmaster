@@ -51,7 +51,7 @@ public class MinorItems {
     public final String CRUDE_PLUTONIUM_NAME = "§8Crude Plutonium";
     public final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
     public final String WITHER_DYE_NAME = "§8Wither Dye";
-    public final String EXPERT_DYE_NAME = "§6Expert Dye";
+    public final String MASTER_DYE_NAME = "§6Master Dye";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -67,7 +67,7 @@ public class MinorItems {
     public List<String> CRUDE_PLUTONIUM_LORE = new ArrayList<>();
     public List<String> WEAPONS_GRADE_PLUTONIUM_LORE = new ArrayList<>();
     public List<String> WITHER_DYE_LORE = new ArrayList<>();
-    public List<String> EXPERT_DYE_LORE = new ArrayList<>();
+    public List<String> MASTER_DYE_LORE = new ArrayList<>();
 
     public MinorItems() {
         LEVIATHAN_HEART_LORE.add("id: LEVIATHAN_HEART");
@@ -128,10 +128,10 @@ public class MinorItems {
         WITHER_DYE_LORE.add("§eChanges the color of your item name to §8Dark Gray§e.");
         WITHER_DYE_LORE.add("§6This dye can be upgraded with Expert Seal...");
 
-        EXPERT_DYE_LORE.add("id: EXPERT_DYE");
-        EXPERT_DYE_LORE.add("§eThis dye can change the color of your item to anything!");
-        EXPERT_DYE_LORE.add("§eUse the §f& §esymbol for color codes.");
-        EXPERT_DYE_LORE.add("§eUse it wisely, as there is no way to undo this action!");
+        MASTER_DYE_LORE.add("id: MASTER_DYE");
+        MASTER_DYE_LORE.add("§eThis dye can change the color of your item to anything!");
+        MASTER_DYE_LORE.add("§eUse the §f& §esymbol for color codes.");
+        MASTER_DYE_LORE.add("§eUse it wisely, as there is no way to undo this action!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -282,18 +282,18 @@ public class MinorItems {
         return stack;
     }
 
-    public ItemStack generateExpertDye() {
+    public ItemStack generateMasterDye() {
         ItemStack stack = new ItemStack(Material.YELLOW_DYE, 1);
-        generateExpertDye(stack);
+        generateMasterDye(stack);
         return stack;
     }
-    public void generateExpertDye(ItemStack stack) {
+    public void generateMasterDye(ItemStack stack) {
         stack.setType(Material.YELLOW_DYE);
         ItemMeta iMeta = stack.getItemMeta();
         iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
-        iMeta.setDisplayName(EXPERT_DYE_NAME);
+        iMeta.setDisplayName(MASTER_DYE_NAME);
         List<String> lore = new ArrayList<>();
-        lore.addAll(EXPERT_DYE_LORE);
+        lore.addAll(MASTER_DYE_LORE);
         lore.add(String.format("§7#%s", UUID.randomUUID()));
         iMeta.setLore(lore);
         stack.setItemMeta(iMeta);

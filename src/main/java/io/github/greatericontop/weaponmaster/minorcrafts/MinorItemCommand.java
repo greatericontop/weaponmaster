@@ -158,7 +158,7 @@ public class MinorItemCommand implements CommandExecutor {
         if (args[0].equalsIgnoreCase("expertDye")) {
             ItemStack item = minorItems.generateExpertDye();
             ((Player) sender).getInventory().addItem(item);
-            sender.sendMessage("§7Gave you §f[" + minorItems.EXPERT_DYE_NAME + "§f]§7.");
+            sender.sendMessage("§7Gave you §f[" + minorItems.MASTER_DYE_NAME + "§f]§7.");
             return true;
         }
         return false;
