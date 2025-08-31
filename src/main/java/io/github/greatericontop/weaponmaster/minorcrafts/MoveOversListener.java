@@ -108,7 +108,8 @@ public class MoveOversListener implements Listener {
             case MinorItems.LAPIS_DYE_KEY -> targetIM.setDisplayName("§9" + name);
             case MinorItems.DARK_DIAMOND_DYE_KEY -> targetIM.setDisplayName("§3" + name);
             case MinorItems.GOLD_DYE_KEY -> targetIM.setDisplayName("§6" + name);
-            case MinorItems.BLOOD_DYE_KEY -> targetIM.setDisplayName("§c" + name);
+            case MinorItems.REDSTONE_DYE_KEY -> targetIM.setDisplayName("§c" + name);
+            case MinorItems.BLOOD_DYE_KEY -> targetIM.setDisplayName("§4" + name);
             case MinorItems.LEVIATHAN_DYE_KEY -> {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < name.length(); i++) {
