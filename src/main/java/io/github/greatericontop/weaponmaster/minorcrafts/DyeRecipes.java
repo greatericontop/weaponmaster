@@ -103,6 +103,7 @@ public class DyeRecipes {
         leviathanRec.setIngredient('W', new RecipeChoice.ExactChoice(minorItems.generateWitherDye()));
         leviathanRec.setIngredient('L', new RecipeChoice.ExactChoice(minorItems.generateLeviathanHeartItemStack()));
         leviathanRec.setIngredient('x', Material.WET_SPONGE);
+        Bukkit.getServer().addRecipe(leviathanRec);
 
 //        ItemStack expert = minorItems.generateExpertDye();
 //        ShapedRecipe expertRec = new ShapedRecipe(NamespacedKey.minecraft("dye_expert"), expert);
