@@ -151,7 +151,7 @@ public class PlutoniumBladeListener implements Listener {
                         le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
                         le.setFireTicks(200);
                         if (plugin.minorItemListener.withers.contains(le.getUniqueId())) {
-                            le.damage(DAMAGE*0.6, player); // less ability damage to wither challenge
+                            le.damage(DAMAGE*0.4, player); // less ability damage to wither challenge
                         } else {
                             le.damage(DAMAGE, player);
                         }

@@ -105,7 +105,7 @@ public class HeliosItemListener implements Listener {
             double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.25;
             double dmg;
             if (plugin.minorItemListener.withers.contains(target.getUniqueId())) {
-                dmg = damageMultiply(player, damage) * 0.6; // less ability damage to wither challenge
+                dmg = damageMultiply(player, damage) * 0.4; // less ability damage to wither challenge
             } else {
                 dmg = damageMultiply(player, damage);
             }
