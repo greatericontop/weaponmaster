@@ -253,8 +253,8 @@ public class MinorItems {
         iMeta.setDisplayName(EXPERT_SEAL_NAME);
         List<String> lore = new ArrayList<String>();
         lore.addAll(EXPERT_SEAL_LORE);
-        lore.add(String.format("§7#%s", UUID.randomUUID()));
         iMeta.setLore(lore);
+        iMeta.setMaxStackSize(1);
         stack.setItemMeta(iMeta);
         return stack;
     }
