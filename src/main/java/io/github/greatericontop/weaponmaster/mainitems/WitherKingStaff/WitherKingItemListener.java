@@ -65,11 +65,12 @@ public class WitherKingItemListener implements Listener {
         if (!cooldowns.getOrDefault(player.getUniqueId(), true))  return;
         cooldowns.put(player.getUniqueId(), false);
 
-        Vector velocity = player.getLocation().getDirection().normalize().multiply(0.35).add(InaccuracyAdder.generateInaccuracy(0.02));
+        // 0.35/0.02 + 30% -> 0.455/0.026
+        Vector velocity = player.getLocation().getDirection().normalize().multiply(0.455).add(InaccuracyAdder.generateInaccuracy(0.026));
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChanceUpgraded", 0.2));
+        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.06));
 
         long cooldown = plugin.getConfig().getLong("witherStaff.cooldownTicksUpgraded", 4L);
         if (cooldown > 0) {
@@ -109,7 +110,7 @@ public class WitherKingItemListener implements Listener {
             }
         }.runTaskLater(plugin, 200L);
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> cooldowns.put(player.getUniqueId(), true), 300L);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> healCooldowns.put(player.getUniqueId(), true), 300L);
     }
 
 }

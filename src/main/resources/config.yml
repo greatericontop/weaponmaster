@@ -28,9 +28,8 @@ rng:
 fireball:
   heatSeeking: false
 witherStaff:
-  chargedChance: 0.04
+  chargedChance: 0.06
   cooldownTicks: 20
-  chargedChanceUpgraded: 0.2
   cooldownTicksUpgraded: 4
 dragonArmor:
   # Fixes hurt cam stuttering in lava or fire

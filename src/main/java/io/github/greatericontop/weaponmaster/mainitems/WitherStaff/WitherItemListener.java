@@ -66,7 +66,7 @@ public class WitherItemListener implements Listener {
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.04));
+        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.06));
 
         long cooldown = plugin.getConfig().getLong("witherStaff.cooldownTicks", 20L);
         if (cooldown > 0) {

@@ -651,7 +651,7 @@ public class Util {
         WITHER_KING_STAFF_LORE.add("§3Shoots wither skeleton skulls.");
         WITHER_KING_STAFF_LORE.add("§3The skulls explode on impact.");
         WITHER_KING_STAFF_LORE.add("§bCooldown reduced to 0.2 seconds!");
-        WITHER_KING_STAFF_LORE.add("§bSignificantly more charged skulls!");
+        WITHER_KING_STAFF_LORE.add("§bSkulls fly much faster!");
         WITHER_KING_STAFF_LORE.add("");
         WITHER_KING_STAFF_LORE.add("§eAbility: §4Wither Shield §e§lRIGHT CLICK");
         WITHER_KING_STAFF_LORE.add("§3Gain §e5 hearts §3of §eAbsorption §3for §b10 §3seconds, and");
