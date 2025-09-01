@@ -98,20 +98,22 @@ public class WitherKingItemListener implements Listener {
         healCooldowns.put(player.getUniqueId(), false);
 
         player.removePotionEffect(PotionEffectType.ABSORPTION);
-        player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).addModifier(new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
+        AttributeModifier am = new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
+        if (!player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).getModifiers().contains(am)) {
+            player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).addModifier(am);
+        }
         player.setAbsorptionAmount(SHIELD_AMOUNT);
         player.playSound(player.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1.0F, 1.0F);
 
         new BukkitRunnable() {
             public void run() {
-                if (player.getPotionEffect(PotionEffectType.ABSORPTION) != null) {
-                    // if you got the absorption effect and gave yourself more hearts
-                    return;
-                }
                 double absorptionAmount = player.getAbsorptionAmount();
                 player.setAbsorptionAmount(0.0);
                 player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).removeModifier(new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
-                player.setHealth(Math.min(player.getHealth() + absorptionAmount*0.5, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+                if (player.getPotionEffect(PotionEffectType.ABSORPTION) != null) {
+                    // prevent giving yourself more hearts
+                    player.setHealth(Math.min(player.getHealth() + absorptionAmount*0.5, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+                }
             }
         }.runTaskLater(plugin, 200L);
 
