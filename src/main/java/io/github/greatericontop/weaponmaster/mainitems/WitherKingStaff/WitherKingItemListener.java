@@ -31,6 +31,7 @@ import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.EquipmentSlotGroup;
@@ -52,6 +53,10 @@ public class WitherKingItemListener implements Listener {
     public WitherKingItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+    }
+
+    private static AttributeModifier getAM() {
+        return new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
     }
 
     // same code as before but for right click
@@ -98,26 +103,39 @@ public class WitherKingItemListener implements Listener {
         healCooldowns.put(player.getUniqueId(), false);
 
         player.removePotionEffect(PotionEffectType.ABSORPTION);
-        AttributeModifier am = new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
-        if (!player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).getModifiers().contains(am)) {
-            player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).addModifier(am);
+        if (!player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).getModifiers().contains(getAM())) {
+            player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).addModifier(getAM());
         }
         player.setAbsorptionAmount(SHIELD_AMOUNT);
         player.playSound(player.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1.0F, 1.0F);
 
         new BukkitRunnable() {
             public void run() {
-                double absorptionAmount = player.getAbsorptionAmount();
-                player.setAbsorptionAmount(0.0);
-                player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).removeModifier(new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
+                player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).removeModifier(getAM());
                 if (player.getPotionEffect(PotionEffectType.ABSORPTION) != null) {
                     // prevent giving yourself more hearts
+                    double absorptionAmount = player.getAbsorptionAmount();
+                    player.setAbsorptionAmount(0.0);
                     player.setHealth(Math.min(player.getHealth() + absorptionAmount*0.5, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
                 }
             }
         }.runTaskLater(plugin, 200L);
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> healCooldowns.put(player.getUniqueId(), true), 300L);
+    }
+
+    @EventHandler()
+    public void onAbsorption(EntityPotionEffectEvent event) {
+        if (!(event.getEntity() instanceof Player player))  return;
+        // attribute modifier active AND cooldown active (in case the attribute modifier wasn't properly removed)
+        if ((!player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).getModifiers().contains(getAM())) || healCooldowns.getOrDefault(player.getUniqueId(), true))  return;
+        if (event.getAction() != EntityPotionEffectEvent.Action.ADDED || event.getNewEffect().getType() != PotionEffectType.ABSORPTION)  return;
+        double heartsToAdd = 4.0 * (event.getNewEffect().getAmplifier() + 1);
+        double currentAbsorption = player.getAbsorptionAmount();
+        if (heartsToAdd <= currentAbsorption) {
+            player.sendMessage("§7Prevented your weaker absorption effect from overwriting your Wither King Staff!");
+            event.setCancelled(true);
+        }
     }
 
 }
