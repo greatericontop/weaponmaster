@@ -140,6 +140,7 @@ import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordComm
 import io.github.greatericontop.weaponmaster.mainitems.WitchSword.WitchSwordListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherKingStaff.WitherKingCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WitherKingStaff.WitherKingItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.WitherKingStaff.WitherKingStaffRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffCommand;
 import io.github.greatericontop.weaponmaster.mainitems.WitherStaff.WitherStaffRecipe;
@@ -367,6 +368,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Wither King Staff
         this.getCommand("witherkingstaff").setExecutor(new WitherKingCommand());
         this.getServer().getPluginManager().registerEvents(new WitherKingItemListener(this), this);
+        new WitherKingStaffRecipe().regRecipe();
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
