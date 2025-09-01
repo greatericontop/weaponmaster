@@ -25,6 +25,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -147,8 +148,10 @@ public class PlutoniumBladeListener implements Listener {
                     // 10k rays seems to be 1 block apart at 20 blocks, so 0.5 radius cuboids should catch basically everything
                     for (Entity e : player.getWorld().getNearbyEntities(loc, 0.5, 0.5, 0.5, e -> e instanceof LivingEntity)) {
                         LivingEntity le = (LivingEntity) e;
-                        if (alreadyHit.contains(le.getUniqueId()))  continue;
-                        le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
+                        if (alreadyHit.contains(le.getUniqueId())) continue;
+                        if (!(le instanceof EnderDragon)) { // having the KB apply to dragons causes issues
+                            le.setVelocity(le.getVelocity().add(offset.normalize().multiply(KNOCKBACK_STRENGTH)));
+                        }
                         le.setFireTicks(200);
                         if (plugin.minorItemListener.withers.contains(le.getUniqueId())) {
                             le.damage(DAMAGE*0.4, player); // less ability damage to wither challenge
