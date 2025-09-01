@@ -21,8 +21,10 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.InaccuracyAdder;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.WitherSkull;
@@ -31,6 +33,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -95,6 +98,7 @@ public class WitherKingItemListener implements Listener {
         healCooldowns.put(player.getUniqueId(), false);
 
         player.removePotionEffect(PotionEffectType.ABSORPTION);
+        player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).addModifier(new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
         player.setAbsorptionAmount(SHIELD_AMOUNT);
         player.playSound(player.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1.0F, 1.0F);
 
@@ -106,7 +110,8 @@ public class WitherKingItemListener implements Listener {
                 }
                 double absorptionAmount = player.getAbsorptionAmount();
                 player.setAbsorptionAmount(0.0);
-                player.setHealth(Math.min(player.getHealth() + absorptionAmount, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+                player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).removeModifier(new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
+                player.setHealth(Math.min(player.getHealth() + absorptionAmount*0.5, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
             }
         }.runTaskLater(plugin, 200L);
 
