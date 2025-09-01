@@ -257,6 +257,11 @@ commands:
     usage: "U: /plutoniumblade [give]"
     permission: "weaponmaster.plutoniumblade.command"
     permission-message: "§cYou are not allowed to do this!"
+  witherkingstaff:
+    description: "[Weapon Master] command for Wither King Staff"
+    usage: "U: /witherkingstaff [give]"
+    permission: "weaponmaster.witherkingstaff.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -485,4 +490,9 @@ permissions:
   weaponmaster.plutoniumblade.command:
     default: op
   weaponmaster.plutoniumblade.use:
+    default: true
+  #
+  weaponmaster.witherkingstaff.command:
+    default: op
+  weaponmaster.witherkingstaff.use:
     default: true

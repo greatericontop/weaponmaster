@@ -30,6 +30,8 @@ fireball:
 witherStaff:
   chargedChance: 0.04
   cooldownTicks: 20
+  chargedChanceUpgraded: 0.2
+  cooldownTicksUpgraded: 4
 dragonArmor:
   # Fixes hurt cam stuttering in lava or fire
   # This should be patched in later versions (should be fixed in 1.21.4 Paper) but if you're on an earlier version

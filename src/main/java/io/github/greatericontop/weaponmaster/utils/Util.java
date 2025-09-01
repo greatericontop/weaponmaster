@@ -73,6 +73,7 @@ public class Util {
     public final String NINJA_MASTERS_BOW_NAME = "§7§lNinja Master's Bow §6⚝⚝⚝⚝⚝";
     public final String DEATH_ROD_NAME = "§cDeath Rod §6⚝⚝⚝⚝⚝";
     public final String PLUTONIUM_BLADE_NAME = "§8§lPlutonium Blade §6⚝⚝⚝⚝⚝";
+    public final String WITHER_KING_STAFF_NAME = "§0Wither King Staff §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -117,6 +118,7 @@ public class Util {
     public List<String> NINJA_MASTERS_BOW_LORE = new ArrayList<>();
     public List<String> DEATH_ROD_LORE = new ArrayList<>();
     public List<String> PLUTONIUM_BLADE_LORE = new ArrayList<>();
+    public List<String> WITHER_KING_STAFF_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -641,6 +643,24 @@ public class Util {
         PLUTONIUM_BLADE_LORE.add("");
         PLUTONIUM_BLADE_LORE.add("§6LEGENDARY");
         PLUTONIUM_BLADE_LORE.add("§6---------------");
+        // Wither King Staff
+        WITHER_KING_STAFF_LORE.add("id: WITHER_KING_STAFF");
+        WITHER_KING_STAFF_LORE.add("§6---------------");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§eAbility: §4Skeleton's Call §e§lLEFT CLICK");
+        WITHER_KING_STAFF_LORE.add("§3Shoots wither skeleton skulls.");
+        WITHER_KING_STAFF_LORE.add("§3The skulls explode on impact.");
+        WITHER_KING_STAFF_LORE.add("§bCooldown reduced to 0.2 seconds!");
+        WITHER_KING_STAFF_LORE.add("§bSignificantly more charged skulls!");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§eAbility: §4Wither Shield §e§lRIGHT CLICK");
+        WITHER_KING_STAFF_LORE.add("§3Gain §e5 hearts §3of §eAbsorption §3for §b10 §3seconds, and");
+        WITHER_KING_STAFF_LORE.add("§3convert half of it to healing afterwards.");
+        WITHER_KING_STAFF_LORE.add("§715 second cooldown");
+        WITHER_KING_STAFF_LORE.add("§7This overwrites your current absorption effect.");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§6LEGENDARY");
+        WITHER_KING_STAFF_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -796,5 +816,8 @@ public class Util {
     }
     public boolean checkForPlutoniumBlade(ItemStack item) {
         return this.checkFor(item, 0, "id: PLUTONIUM_BLADE");
+    }
+    public boolean checkForWitherKingStaff(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITHER_KING_STAFF");
     }
 }
