@@ -112,7 +112,7 @@ public class WitherKingItemListener implements Listener {
         new BukkitRunnable() {
             public void run() {
                 player.getAttribute(Attribute.GENERIC_MAX_ABSORPTION).removeModifier(getAM());
-                if (player.getPotionEffect(PotionEffectType.ABSORPTION) != null) {
+                if (player.getPotionEffect(PotionEffectType.ABSORPTION) == null) {
                     // prevent giving yourself more hearts
                     double absorptionAmount = player.getAbsorptionAmount();
                     player.setAbsorptionAmount(0.0);
