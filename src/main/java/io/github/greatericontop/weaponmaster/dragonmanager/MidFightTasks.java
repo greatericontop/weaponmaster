@@ -144,6 +144,7 @@ public class MidFightTasks {
                 doPerchedFireballStorm(tickNumber);
                 doToxicStorm(tickNumber);
                 regenerateOnLowHealth(tickNumber);
+                teleportDownIfHigh();
                 spawnEndDweller(tickNumber);
                 spawnEndstoneDefender(tickNumber);
                 summonSniper(tickNumber);
@@ -310,6 +311,13 @@ public class MidFightTasks {
             currentlyActiveDragon.setHealth(currentlyActiveDragon.getHealth() + 1.0);
         } else if (tickNumber % 180 == 0) {
             currentlyActiveDragon.setHealth(Math.min(currentlyActiveDragon.getHealth() + 1.0, currentlyActiveDragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+        }
+    }
+
+    public void teleportDownIfHigh() {
+        // high up and high above players
+        if (currentlyActiveDragon.getLocation().getY() > 256.0 && getRandomNearbyPlayer() == null) {
+            currentlyActiveDragon.teleport(currentlyActiveDragon.getLocation().add(0.0, -20.0, 0.0));
         }
     }
 
