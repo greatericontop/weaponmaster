@@ -102,7 +102,7 @@ public class LootDropper {
 
     public int doMajorDrops(World world, int weight, Player player) {
         boolean hasSoloerBonus = weight >= 1350;
-        double doubleDropsChance = hasSoloerBonus ? 0.8 : 0.0;
+        double doubleDropsChance = hasSoloerBonus ? 0.5 : 0.0;
         if (plugin.descent.isEnabled) {
             doubleDropsChance += 0.015 * plugin.descent.getUpgrade(player, "dragonExtraRNG");
         }
@@ -110,7 +110,7 @@ public class LootDropper {
         double scaleChance = hasSoloerBonus ? 0.2 : 0.12;
         double wingChance = hasSoloerBonus ? 0.7 : 0.42;
         // getting anything: 60%
-        // solo bonus makes it 100% (1.67x boost) AND 80% double drops chance for a total boost of 3.0x
+        // solo bonus makes it 100% (1.67x boost) AND 50% double drops chance for a total boost of 2.5x
         double rand = Math.random();
         if (rand < hornChance) {
             // if you don't have enough weight, you simply get nothing (and you can't get other drops)
@@ -184,7 +184,7 @@ public class LootDropper {
         if (totalWeight >= 50) {
             shards += ThreadLocalRandom.current().nextInt(1, 6);
         }
-        if (totalWeight >= 1350) {
+        if (totalWeight >= 1275) {
             // solos are worth an additional 30 shards
             shards += 30;
             // send toast
