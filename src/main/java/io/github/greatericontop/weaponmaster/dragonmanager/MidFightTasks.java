@@ -269,7 +269,7 @@ public class MidFightTasks {
         if (currentlyActiveDragon.getPhase() != EnderDragon.Phase.SEARCH_FOR_BREATH_ATTACK_TARGET && currentlyActiveDragon.getPhase() != EnderDragon.Phase.BREATH_ATTACK) { return; } // only runs when perched
         // every tick, check if the Y velocity has accumulated too much, and reset it if it has
         // if we don't do this it accumulates a lot of upward velocity from the fireballs
-        if (currentlyActiveDragon.getVelocity().lengthSquared() >= 8.0 * 8.0) { // 8 b/t is 160 m/s
+        if (currentlyActiveDragon.getVelocity().lengthSquared() >= 4.0 * 4.0) { // 4 b/t is 80 m/s
             currentlyActiveDragon.setVelocity(new Vector(0.0, 0.0, 0.0));
         }
         if (tickNumber < perchedFireballStorm_lastTickRan + 200) { return; } // when perched, just always runs on 10 seconds cooldown
