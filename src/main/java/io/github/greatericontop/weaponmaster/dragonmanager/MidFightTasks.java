@@ -277,8 +277,8 @@ public class MidFightTasks {
         Location loc = currentlyActiveDragon.getLocation();
         for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
             for (int z = -STORM_SIZE; z <= STORM_SIZE; z++) {
-                Vector ray = new Vector(x, -STORM_SIZE*0.35, z).normalize().multiply(1.9);
-                Location spawnLoc = loc.clone().add(ray.multiply(1.25)); // Don't spawn it too far below
+                Vector ray = new Vector(x, -STORM_SIZE*0.35, z).normalize().multiply(0.6);
+                Location spawnLoc = loc.clone().add(ray.multiply(2.5)); // Don't spawn it too far below
                 if (Math.random() < 0.5) {
                     DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
                     fireball.setVelocity(ray);
