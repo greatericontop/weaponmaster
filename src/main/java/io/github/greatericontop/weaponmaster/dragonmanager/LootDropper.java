@@ -101,7 +101,7 @@ public class LootDropper {
     }
 
     public int doMajorDrops(World world, int weight, Player player) {
-        boolean hasSoloerBonus = weight >= 1350;
+        boolean hasSoloerBonus = weight >= 1275;
         double doubleDropsChance = hasSoloerBonus ? 0.5 : 0.0;
         if (plugin.descent.isEnabled) {
             doubleDropsChance += 0.015 * plugin.descent.getUpgrade(player, "dragonExtraRNG");
