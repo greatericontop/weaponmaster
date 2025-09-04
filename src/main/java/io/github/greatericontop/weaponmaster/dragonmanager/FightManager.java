@@ -171,6 +171,10 @@ public class FightManager implements Listener {
 
         LootDropper lootDropper = new LootDropper(plugin);
         for (Player player : dragonWeightManager.players) {
+            if (player.isDead()) {
+                player = Bukkit.getPlayer(player.getUniqueId());
+                plugin.getLogger().info("[Debug] player was dead so re-getting player object");
+            }
             int weight = dragonWeightManager.getDragonWeight(player.getUniqueId());
             lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
         }
