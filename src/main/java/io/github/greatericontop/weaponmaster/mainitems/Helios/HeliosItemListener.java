@@ -102,14 +102,12 @@ public class HeliosItemListener implements Listener {
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
-            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.25;
-            double dmg;
+            double damage = 6.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.5;
             if (plugin.minorItemListener.withers.contains(target.getUniqueId())) {
-                dmg = damageMultiply(player, damage) * 0.4; // less ability damage to wither challenge
-            } else {
-                dmg = damageMultiply(player, damage);
+                damage = damage * 0.4; // less ability damage to wither challenge
             }
-            target.damage(dmg, player);
+            // damage will be multiplied by the event
+            target.damage(damage, player);
             target.setFireTicks(target.getFireTicks() + 200);
             target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));
         }
