@@ -135,7 +135,11 @@ Dragon's Descent is a late game upgrade system that upgrades your stats.
 # Wither Challenge
 
 The Wither Challenge is automatically activated every time a wither is spawned.
-If you complete it, the wither is guaranteed to drop an **Expert Seal**, which upgrades all enchantments on an item by 1 level.
+
+If you complete it, you will get one of the following drops:
+- Expert Seal (50%) (increases item enchantments by 1 level)
+- Wither Head (25%) (used to upgrade Wither Staff)
+- Wither Dye (25%) (used to create dyes)
 
 Challenge rules:
 - Kill the wither without any armor. Armor cannot be worn at all starting from the moment the third skull is placed.
@@ -144,6 +148,7 @@ Challenge rules:
 - Dying fails the challenge.
 - If bedrock is detected near the wither, it will be teleported to you.
 - If the wither breaks line of sight with you for too long, it will be teleported to you.
+- Explosion damage (e.g., crystals) and ability damage (e.g., Helios) are both nerfed.
 
 <br/>
 
