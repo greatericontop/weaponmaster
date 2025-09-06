@@ -24,7 +24,6 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -72,10 +71,10 @@ public class ElytraItemListener implements Listener {
                     double playerVelocity = player.getVelocity().length();
                     double bonusMagnitude;
                     if (playerVelocity <= 1.25) { // 25 m/s
-                        bonusMagnitude = 0.018;
+                        bonusMagnitude = 0.01;
                     } else if (playerVelocity <= 1.75) { // 35 m/s
-                        // linear decrease from 0.018 to 0.005
-                        bonusMagnitude = 0.005 + 0.013 * (1 - 2.0*(playerVelocity-1.25));
+                        // linear decrease from 0.01 to 0.005
+                        bonusMagnitude = 0.005 + 0.005 * (1 - 2.0*(playerVelocity-1.25));
                     } else {
                         bonusMagnitude = 0.005;
                     }
