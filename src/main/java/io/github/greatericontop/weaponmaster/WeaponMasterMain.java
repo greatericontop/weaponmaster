@@ -55,6 +55,7 @@ import io.github.greatericontop.weaponmaster.mainitems.DragonArmor.DragonArmorCo
 import io.github.greatericontop.weaponmaster.mainitems.DragonArmor.DragonArmorListener;
 import io.github.greatericontop.weaponmaster.mainitems.DragonArmor.DragonArmorRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.DragonArmor.DragonArmorUpgradeListener;
+import io.github.greatericontop.weaponmaster.mainitems.DragonElytra.DragonElytraRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.DragonElytra.DragonElytraUpgradeListener;
 import io.github.greatericontop.weaponmaster.mainitems.DragonElytra.ElytraCommand;
 import io.github.greatericontop.weaponmaster.mainitems.DragonElytra.ElytraItemListener;
@@ -317,6 +318,7 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
+        new DragonElytraRecipe().regRecipe();
         // Guided Missile
         this.getCommand("guidedmissile").setExecutor(new GuidedMissileCommand());
         GuidedMissileManager guidedMissileManager = new GuidedMissileManager(this);
