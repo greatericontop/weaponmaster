@@ -35,6 +35,7 @@
   - [Vampire's Axe](#vampires-axe)
   - [Warlock Pants](#warlock-pants)
   - [Witch Sword](#witch-sword)
+  - [Wither King Staff](#wither-king-staff)
 - [EPIC](#epic)
   - [Anduril](#anduril)
   - [Copper Sword](#copper-sword)
@@ -44,15 +45,19 @@
   - [Wither Staff](#wither-staff)
 - [Others](#others)
   - [Crude Plutonium](#crude-plutonium)
+  - [Diamond Apex](#diamond-apex)
+  - [Emerald Apex](#emerald-apex)
   - [Expert Seal](#expert-seal)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Hide of Leviathan](#hide-of-leviathan)
   - [Magic Energy Bar](#magic-energy-bar)
   - [Nether Reactor Core](#nether-reactor-core)
+  - [Redstone Apex](#redstone-apex)
   - [Silky String](#silky-string)
   - [Super XP Bottle](#super-xp-bottle)
   - [Weapons Grade Plutonium](#weapons-grade-plutonium)
+  - [Wither Head](#wither-head)
 
 <br/>
 
@@ -429,6 +434,19 @@ Crafting Recipe:
 
 Crafting Recipe: NOT REALLY COMING SOON
 
+### Wither King Staff
+
+`/witherkingstaff give` - upgraded Wither Staff
+
+Skulls shoot faster and travel faster, and adds `Wither Shield` ability for healing.
+
+Crafting Recipe:
+- 1x Blaze Rod
+- 1x Wither Staff
+- 3x Wither Head
+
+![](assets/witherKingStaff.png)
+
 <br/>
 
 ## EPIC
@@ -515,6 +533,14 @@ Crafting Recipe:
 
 Deepslate coal ore can sometimes contain radioactive materials. It has a 9% chance to drop from breaking deepslate coal ore.
 
+### Diamond Apex
+
+The best diamond ever. Drops `3.5%` of the time from diamond ores and is used to craft dyes.
+
+### Emerald Apex
+
+The best emerald ever. Drops `12%` of the time from emerald ores and is used to craft dyes.
+
 ### Expert Seal
 
 2.5% chance of dropping for a `Wither`, or complete the **Wither Challenge** (see [`FEATURES.md`](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)).
@@ -571,6 +597,10 @@ Crafting Recipe:
 
 ![](assets/corestaff.png)
 
+### Redstone Apex
+
+The best redstone ever. Drops `0.75%` of the time from redstone ores and is used to craft dyes.
+
 ### Silky String
 
 A magical string used to craft `Artemis Bow` and `Ninja Bow`.
@@ -591,3 +621,8 @@ Crafting Recipe:
 - 1x Crude Plutonium
 
 ![](assets/weaponsGradePlutonium.png)
+
+### Wither Head
+
+Drops from killing withers without armor. Used to upgrade a `Wither Staff` into a `Wither King Staff`.
+
