@@ -17,11 +17,13 @@ It runs on any Spigot (or Paper and its forks, which are required for some addit
 
 - As of v1.9.0, **75** unique weapons, armor, and tools.
 - The **WeaponMaster Dragon**, an upgraded dragon fight with special loot and rewards.
+- The **Wither Challenge**, where you have to kill the wither without armor to get special loot.
 - And some overpowered admin commands for fun.
+- Performant, taking less than 0.2% of your tick (that's 0.1 ms) in most cases.
 
 [Click here for more information about the items.](https://github.com/greatericontop/weaponmaster/blob/main/WEAPONS.md)
 
-[Click here for more information about the other features, including the WeaponMaster Dragon, Dragon's Descent rewards tree, and admin commands.](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)
+[Click here for more information about the other features, including the WeaponMaster Dragon, Dragon's Descent rewards tree, Wither Challenge, and admin commands.](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)
 
 
 ## Installation
