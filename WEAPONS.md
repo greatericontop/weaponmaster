@@ -58,6 +58,9 @@
   - [Super XP Bottle](#super-xp-bottle)
   - [Weapons Grade Plutonium](#weapons-grade-plutonium)
   - [Wither Head](#wither-head)
+- [Dyes](#dyes)
+  - [Basic Dyes](#basic-dyes)
+  - [Special Dyes](#special-dyes)
 
 <br/>
 
@@ -625,4 +628,44 @@ Crafting Recipe:
 ### Wither Head
 
 Drops from killing withers without armor. Used to upgrade a `Wither Staff` into a `Wither King Staff`.
+
+
+<br/>
+
+---
+
+<br/>
+
+
+# Dyes
+
+You can obtain a `Wither Dye` from killing a wither without armor.
+This dye applies a dark gray color to the name of an item when you move it on top of that item.
+
+The `Wither Dye` can also be crafted into other dyes.
+
+## Basic Dyes
+
+(You can also get the dyes with `/minoritem`)
+
+| Dye Name         | Color     | Crafting Recipe                              |
+|------------------|-----------|----------------------------------------------|
+| Wither Dye       | Dark Gray | Dropped from withers                         |
+| Diamond Dye      | Aqua      | Wither Dye, Diamond Apex, 7 Diamond Block    |
+| Emerald Dye      | Green     | Wither Dye, Emerald Apex, 7 Emerald Block    |
+| Crystal Dye      | Pink      | Wither Dye, 8 Amethyst Cluster               |
+| Lapis Dye        | Blue      | Wither Dye, 8 Lapis Block                    |
+| Dark Diamond Dye | Dark Aqua | Diamond Dye, 6 Diamond Apex                  |
+| Gold Dye         | Gold      | Wither Dye, 4 Enchanted Golden Apple         |
+| Redstone Dye     | Red       | Wither Dye, Redstone Apex, 7 Redstone Block  |
+| Blood Dye        | Dark Red  | Redstone Dye, 4 Redstone Apex, 4 Zombie Head |
+
+## Special Dyes
+
+| Dye Name      | Color            | Crafting Recipe                              |
+|---------------|------------------|----------------------------------------------|
+| Leviathan Dye | Blue & Dark Aqua | Wither Dye, Heart of Leviathan, 7 Wet Sponge |
+| Expert Dye    | Orange & Yellow  | Wither Dye, 4 Expert Seal                    |
+| Dragon Dye    | Purple & Pink    | Wither Dye, 3 Dragon Wing, 3 Dragon Head     |
+| Master Dye    | *Any color!*     | *Admin only* `/minoritem masterDye`          |
 
