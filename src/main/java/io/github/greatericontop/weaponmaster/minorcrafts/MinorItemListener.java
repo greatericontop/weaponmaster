@@ -263,7 +263,7 @@ public class MinorItemListener implements Listener {
                         for (int dz = -2; dz <= 2; dz++) {
                             if (wither.getLocation().add(dx, dy, dz).getBlock().getType() == Material.BEDROCK) {
                                 wither.teleport(player);
-                                wither.setHealth(Math.min(wither.getHealth() + 1.0, wither.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+                                wither.setHealth(Math.min(wither.getHealth() + 3.0, wither.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
                             }
                         }
                     }
