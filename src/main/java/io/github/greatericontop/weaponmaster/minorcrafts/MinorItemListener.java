@@ -257,12 +257,13 @@ public class MinorItemListener implements Listener {
                     this.cancel();
                     return;
                 }
-                // if the wither is stuck in bedrock, teleport it to the player
+                // if the wither is stuck in bedrock, teleport it to the player & heal 1 HP per tick
                 for (int dx = -2; dx <= 2; dx++) {
                     for (int dy = -3; dy <= 3; dy++) {
                         for (int dz = -2; dz <= 2; dz++) {
                             if (wither.getLocation().add(dx, dy, dz).getBlock().getType() == Material.BEDROCK) {
                                 wither.teleport(player);
+                                wither.setHealth(Math.min(wither.getHealth() + 1.0, wither.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
                             }
                         }
                     }
