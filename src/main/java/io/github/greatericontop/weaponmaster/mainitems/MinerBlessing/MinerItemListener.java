@@ -255,7 +255,7 @@ public class MinerItemListener extends MinerUtil implements Listener {
     }
     final Material[] stoneMats = {Material.COAL_ORE, Material.IRON_ORE, Material.GOLD_ORE, Material.REDSTONE_ORE, Material.LAPIS_ORE};
     final Material[] deepMats = {Material.DEEPSLATE_COAL_ORE, Material.DEEPSLATE_IRON_ORE, Material.DEEPSLATE_GOLD_ORE, Material.DEEPSLATE_REDSTONE_ORE, Material.DEEPSLATE_LAPIS_ORE};
-    final Material[] netherMats = {Material.NETHER_QUARTZ_ORE, Material.NETHER_GOLD_ORE};
+    final Material[] netherMats = {Material.NETHER_QUARTZ_ORE, Material.NETHER_GOLD_ORE, Material.ANCIENT_DEBRIS};
     private void attemptSpawnBlockSingle(Location loc, Player player, Material blockType) {
         Block blockAt = loc.getBlock();
         // around 4 attempts (max 6) are called for each break
@@ -265,13 +265,14 @@ public class MinerItemListener extends MinerUtil implements Listener {
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
         } else if (blockAt.getType() == Material.DEEPSLATE && blockType == Material.DEEPSLATE) {
-            if (rnd.nextFloat() >= 0.00_23F) { return; }
+            if (rnd.nextFloat() >= 0.00_23F)  return;
             Material replacement = deepMats[rnd.nextInt(deepMats.length)];
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
         } else if (blockAt.getType() == Material.NETHERRACK && blockType == Material.NETHERRACK) {
-            if (rnd.nextFloat() >= 0.00_09F) { return; }
+            if (rnd.nextFloat() >= 0.00_08F)  return;
             Material replacement = netherMats[rnd.nextInt(netherMats.length)];
+            if (replacement == Material.ANCIENT_DEBRIS && rnd.nextFloat() >= 0.5F)  return; // only 50% when it is rolled
             blockAt.setType(replacement);
             player.sendMessage("§7A new ore just spawned!");
         }
