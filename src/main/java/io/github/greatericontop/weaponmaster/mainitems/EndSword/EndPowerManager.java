@@ -50,7 +50,7 @@ public class EndPowerManager {
         int armorBonus = 0;
         for (ItemStack armorPiece : player.getInventory().getArmorContents()) {
             if (util.checkForEndArmor(armorPiece)) {
-                armorBonus += 35;
+                armorBonus += 50;
             }
         }
         return 150 + Math.min(pearlsThrown / 100, 30) + armorBonus;

@@ -582,7 +582,7 @@ public class Util {
         END_ARMOR_LORE.add("§6---------------");
         END_ARMOR_LORE.add("");
         END_ARMOR_LORE.add("§eAbility: §4Soul of the End");
-        END_ARMOR_LORE.add("§3Increases your maximum §dEnd Power §3by §b+35§3. (Up to 140)");
+        END_ARMOR_LORE.add("§3Increases your maximum §dEnd Power §3by §b+50§3. (Up to 200)");
         END_ARMOR_LORE.add("");
         END_ARMOR_LORE.add("§eFull Set Bonus: §4Soul of the End");
         END_ARMOR_LORE.add("§3Gain a §b30% §3chance to not consume an ender pearl when thrown.");
