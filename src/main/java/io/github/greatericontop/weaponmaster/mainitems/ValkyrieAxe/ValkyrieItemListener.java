@@ -66,16 +66,16 @@ public class ValkyrieItemListener implements Listener {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onHitEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.valkryieaxe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrie.use§3.");
             return;
         }
-        if (affectedEntities.contains(event.getEntity().getUniqueId())) { return; } // prevent double attack from right-click
+        if (affectedEntities.contains(event.getEntity().getUniqueId()))  return; // prevent double attack from right-click
         for (Entity entity : player.getNearbyEntities(3.0, 3.0, 3.0)) {
             if (!(entity instanceof LivingEntity)) { continue; }
             if (entity.getUniqueId().equals(event.getEntity().getUniqueId())) { continue; } // don't double-attack
@@ -87,13 +87,13 @@ public class ValkyrieItemListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-        if (Util.checkForInteractableBlock(event)) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
+        if (Util.checkForInteractableBlock(event))  return;
         Player player = event.getPlayer();
-        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.valkyrieaxe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrieaxe.use§3.");
             return;

@@ -65,7 +65,7 @@ public class DragonSwordUpgradeListener implements Listener {
         return 40 * getUpgradeCount(lore);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvil(PrepareAnvilEvent event) {
         ItemStack dragon = event.getInventory().getItem(0);
         ItemStack scale = event.getInventory().getItem(1);
@@ -106,7 +106,7 @@ public class DragonSwordUpgradeListener implements Listener {
         itemStack.setItemMeta(im);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     private void onPickingResultingItem(InventoryClickEvent event) {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }

@@ -59,11 +59,11 @@ public class ThrowingKnifeListener implements Listener {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForThrowingKnife(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForThrowingKnife(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.throwingknife.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.throwingknife.use§3.");
             return;
@@ -77,16 +77,16 @@ public class ThrowingKnifeListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
-        if (!util.checkForThrowingKnife(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForThrowingKnife(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.throwingknife.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.throwingknife.use§3.");
             return;
         }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         if (isThrowing.getOrDefault(player.getUniqueId(), false)) {
             player.sendMessage("§7The knife is still in the air! You can't throw another one, obviously...");
             event.setCancelled(true);

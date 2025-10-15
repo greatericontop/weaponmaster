@@ -17,7 +17,7 @@ package io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.weaponmaster.minorcrafts.CustomItems;
+import io.github.greatericontop.weaponmaster.minorcrafts.MinorItems;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -36,15 +36,15 @@ import java.util.UUID;
 public class NetheriteStaffRecipe {
 
     private final Util util;
-    private final CustomItems customItems;
+    private final MinorItems customItems;
     public NetheriteStaffRecipe() {
         util = new Util(null);
-        customItems = new CustomItems();
+        customItems = new MinorItems();
     }
 
     public void regRecipe() {
         ItemStack staff = util.generateMeta(util.NETHERITE_STAFF_LORE, util.NETHERITE_STAFF_NAME, Material.NETHERITE_SHOVEL);
-        staff.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        staff.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
         ItemMeta im = staff.getItemMeta();
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));

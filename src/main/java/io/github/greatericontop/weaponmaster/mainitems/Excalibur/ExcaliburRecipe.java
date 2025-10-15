@@ -34,7 +34,7 @@ public class ExcaliburRecipe {
 
     public void regRecipe() {
         ItemStack excalibur = util.generateMeta(util.EXCALIBUR_LORE, util.EXCALIBUR_NAME, Material.DIAMOND_SWORD);
-        excalibur.addEnchantment(Enchantment.DURABILITY, 2);
+        excalibur.addEnchantment(Enchantment.UNBREAKING, 2);
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("excalibur"), excalibur);
         recipe.shape("dNt",
                      "zNs",

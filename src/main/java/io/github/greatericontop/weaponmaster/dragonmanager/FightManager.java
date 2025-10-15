@@ -22,9 +22,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.boss.DragonBattle;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,19 +36,46 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.BoundingBox;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public class FightManager implements Listener {
     public static final double DRAGON_MAX_HP = 1000.0;
 
     public EnderDragon currentlyActiveDragon = null;
+    public UUID currentlyActiveDragonID = null;
     public DragonWeightManager dragonWeightManager = null;
+    private final MidFightTasks midFightTasks;
     public double damageDealtToDragonThroughExplosions = 0.0;
     private final WeaponMasterMain plugin;
     public FightManager(WeaponMasterMain plugin) {
         this.plugin = plugin;
+        this.midFightTasks = new MidFightTasks(plugin);
+        midFightTasks.startFightTasks();
+        registerDragonUnloadCheckRunnable();
+    }
+
+    private void registerDragonUnloadCheckRunnable() {
+        new BukkitRunnable() {
+            public void run() {
+                if (currentlyActiveDragonID == null || !currentlyActiveDragon.isDead())  return;
+                for (World world : Bukkit.getWorlds()) {
+                    DragonBattle battle = world.getEnderDragonBattle();
+                    if (battle != null && battle.getEnderDragon() != null && (!battle.getEnderDragon().isDead()) && battle.getEnderDragon().getUniqueId().equals(currentlyActiveDragonID)) {
+                        Bukkit.broadcastMessage("§cWhile you all were regearing, the WeaponMaster Dragon was regearing too! It has healed 250 health!");
+                        currentlyActiveDragon = battle.getEnderDragon();
+                        currentlyActiveDragon.setHealth(Math.min(DRAGON_MAX_HP, currentlyActiveDragon.getHealth() + 250.0));
+                        midFightTasks.updateDragon(currentlyActiveDragon);
+                        // Dragon weight manager still has the same UUID
+                        return;
+                    }
+                }
+
+            }
+        }.runTaskTimer(plugin, 40L, 40L); // doesn't have to be every tick
     }
 
     public boolean checkSpecialDragonConditions(EntitySpawnEvent event) {
@@ -60,26 +87,27 @@ public class FightManager implements Listener {
         // If we want crystals in the 3x3 box centered at 00, we actually need to make the box only at 0.5, 0.5
         // since end crystals have huge hitboxes that take up multiple blocks.
         BoundingBox crystalBoundingBox = new BoundingBox(0.499, 0, 0.499, 0.501, 200, 0.501);
-        Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> entity.getType() == EntityType.ENDER_CRYSTAL);
+        // For version compatibility, the EntityType could be either END_CRYSTAL or ENDER_CRYSTAL
+        Collection<Entity> nearbyEntities = world.getNearbyEntities(crystalBoundingBox, entity -> (entity.getType().toString().equals("END_CRYSTAL") || entity.getType().toString().equals("ENDER_CRYSTAL")));
         // Dragon spawns if and only if there are at least 3 crystals in the middle box.
         return nearbyEntities.size() >= 3;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonSpawn(EntitySpawnEvent event) {
         Entity entity = event.getEntity();
-        if (!(event.getEntity() instanceof EnderDragon)) { return; }
+        if (!(event.getEntity() instanceof EnderDragon))  return;
         if (!checkSpecialDragonConditions(event)) {
             // due to a vanilla issue, we have to reset the custom name
             // since we can't use translatable components here, give it a fancy name to make it look legit
             entity.setCustomName("§dEnder Dragon");
             return;
         }
-        // TODO: only trigger sometimes, maybe 20%
         this.currentlyActiveDragon = (EnderDragon) entity;
         buffDragon(currentlyActiveDragon);
+        this.currentlyActiveDragonID = currentlyActiveDragon.getUniqueId();
         this.damageDealtToDragonThroughExplosions = 0.0;
-        new MidFightTasks(plugin, currentlyActiveDragon).startFightTasks();
+        midFightTasks.updateDragon(currentlyActiveDragon);
         this.dragonWeightManager = new DragonWeightManager(plugin, currentlyActiveDragon, DRAGON_MAX_HP).setEnabled(true);
         Bukkit.broadcastMessage("§cThe WeaponMaster Dragon has spawned!");
     }
@@ -91,10 +119,10 @@ public class FightManager implements Listener {
         dragon.setCustomNameVisible(true);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDamage(EntityDamageEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         // reduce high amounts of [raw] damage (e.g. bullet arrows, high explosives)
         if (event.getDamage() >= 30.0) {
@@ -115,7 +143,7 @@ public class FightManager implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDeath(EntityDeathEvent event) {
         LivingEntity entity = event.getEntity();
         PersistentDataContainer pdc = entity.getPersistentDataContainer();
@@ -136,18 +164,22 @@ public class FightManager implements Listener {
         dragonWeightManager.onDamage(event);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDragonDeath(EntityDeathEvent event) {
-        if (currentlyActiveDragon == null) { return; }
-        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId())) { return; }
+        if (currentlyActiveDragon == null)  return;
+        if (!event.getEntity().getUniqueId().equals(currentlyActiveDragon.getUniqueId()))  return;
 
         LootDropper lootDropper = new LootDropper(plugin);
         for (Player player : dragonWeightManager.players) {
+            if (player.isDead()) {
+                player = Bukkit.getPlayer(player.getUniqueId());
+                plugin.getLogger().info("[Debug] player was dead so re-getting player object");
+            }
             int weight = dragonWeightManager.getDragonWeight(player.getUniqueId());
-            player.sendMessage("§7[Debug] giving you drops with weight="+weight);///
             lootDropper.doAllDrops(currentlyActiveDragon.getWorld(), weight, player);
         }
 
+        midFightTasks.updateDragon(null);
         dragonWeightManager.setEnabled(false);
     }
 

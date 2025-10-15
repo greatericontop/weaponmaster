@@ -20,7 +20,6 @@ package io.github.greatericontop.weaponmaster.mainitems.NetheriteStaff;
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -33,7 +32,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -58,28 +56,28 @@ public class NetheriteStaffListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAttack(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
         }
-        if (!(event.getEntity() instanceof LivingEntity)) { return; }
+        if (!(event.getEntity() instanceof LivingEntity))  return;
         LivingEntity attacked = (LivingEntity) event.getEntity();
         Object[] effectData = EffectPicker.getRandomEffect(false);
         PotionEffect effect = new PotionEffect((PotionEffectType) effectData[0], (int) effectData[1], (int) effectData[2]);
         attacked.addPotionEffect(effect);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
-        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForNetheriteStaff(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.netheritestaff.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.netheritestaff.use§3.");
             return;
@@ -88,14 +86,14 @@ public class NetheriteStaffListener implements Listener {
                 && (event.getClickedBlock().getType() == Material.DIRT || event.getClickedBlock().getType() == Material.GRASS_BLOCK)) {
             event.setCancelled(true);
         }
-        if (Util.checkForInteractableBlock(event)) { return; }
+        if (Util.checkForInteractableBlock(event))  return;
         Damageable iMeta = (Damageable) player.getInventory().getItemInMainHand().getItemMeta();
         if (iMeta.getDamage() > (2031-101)) {
             plugin.paperUtils.sendActionBar(player, "§3Not enough durability to shoot an arrow!", true);
             return;
         }
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL
-                && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4) {
+                && player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) < 4) {
             if (!event.getPlayer().getInventory().contains(Material.ARROW)) {
                 plugin.paperUtils.sendActionBar(player, "§3You must have arrows in your inventory to shoot!", true);
                 return;
@@ -114,11 +112,11 @@ public class NetheriteStaffListener implements Listener {
         arrow.addCustomEffect(effect, true);
         arrow.setVelocity(eyeLocation.getDirection().multiply(VELOCITY));
         arrow.setColor(Color.BLACK);
-        arrow.setDamage(1.5F);
+        arrow.setDamage(0.75F);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             iMeta.setDamage(iMeta.getDamage() + MathHelper.getDamageWithUnbreaking(5, iMeta));
-            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) < 4
-                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY) * 0.15) < 0.95) {
+            if (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) < 4
+                    && Math.random() + (player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.UNBREAKING) * 0.25) < 0.95) {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
             player.getInventory().getItemInMainHand().setItemMeta(iMeta);

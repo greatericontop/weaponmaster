@@ -24,14 +24,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CoreStaffRecipe {
-    private CustomItems customItems;
+    private MinorItems minorItems;
 
     public CoreStaffRecipe() {
-        customItems = new CustomItems();
+        minorItems = new MinorItems();
     }
 
     public void regRecipe() {
-        ItemStack core = customItems.generateCoreStaffItemStack();
+        ItemStack core = minorItems.generateCoreStaffItemStack();
         ShapedRecipe coreRec = new ShapedRecipe(NamespacedKey.minecraft("core_staff"), core);
         coreRec.shape("non",
                       "SdS",

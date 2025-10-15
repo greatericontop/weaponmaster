@@ -57,9 +57,9 @@ public class CopperSwordListener implements Listener {
         pdcOxidizeKey = new NamespacedKey(plugin, "WM_COPPER_SWORD_OXIDIZE");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void OnHit(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
         if (!util.checkForCopperSword(player.getInventory().getItemInMainHand())) { return; }
         if (!player.hasPermission("weaponmaster.coppersword.use")) {
@@ -78,18 +78,18 @@ public class CopperSwordListener implements Listener {
             if (oxidizeLevel.equals("normal")) {
                 lore.set(8, "§bEXPOSED");
                 pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "exposed");
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
-                im.removeEnchant(Enchantment.DURABILITY);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 2, false);
-                im.addEnchant(Enchantment.DURABILITY, 8, true);
+                im.removeEnchant(Enchantment.SHARPNESS);
+                im.removeEnchant(Enchantment.UNBREAKING);
+                im.addEnchant(Enchantment.SHARPNESS, 2, false);
+                im.addEnchant(Enchantment.UNBREAKING, 8, true);
                 player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
             } else if (oxidizeLevel.equals("exposed")) {
                 lore.set(8, "§bOXIDIZED");
                 pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "oxidized");
-                im.removeEnchant(Enchantment.DAMAGE_ALL);
-                im.removeEnchant(Enchantment.DURABILITY);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
-                im.addEnchant(Enchantment.DURABILITY, 7, true);
+                im.removeEnchant(Enchantment.SHARPNESS);
+                im.removeEnchant(Enchantment.UNBREAKING);
+                im.addEnchant(Enchantment.SHARPNESS, 1, false);
+                im.addEnchant(Enchantment.UNBREAKING, 7, true);
                 player.sendMessage( "§cOh no, your Copper Sword Oxidized.");
             }
             im.setLore(lore);
@@ -101,8 +101,8 @@ public class CopperSwordListener implements Listener {
         if (!(event.getEntity() instanceof LivingEntity)) { return; }
         LivingEntity attacked = (LivingEntity) event.getEntity();
         int duration = rnd.nextInt(41) + 40;
-        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 127));
-        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, duration, 9));
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, duration, 127));
+        attacked.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, duration, 9));
         attacked.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 0));
         // player.playSound(player, Sound.BLOCK_ANVIL_LAND, 1.0F, 1.0F);
         plugin.paperUtils.sendActionBar(player, String.format("§3You stunned your enemy for %d seconds.", duration / 20), true);
@@ -113,7 +113,7 @@ public class CopperSwordListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void OnRepair(PrepareAnvilEvent event) {
         if (!util.checkForCopperSword(event.getInventory().getItem(0))) { return; }
         if (event.getInventory().getItem(1) == null) { return; }
@@ -144,16 +144,16 @@ public class CopperSwordListener implements Listener {
                 pdc.set(pdcOxidizeKey, PersistentDataType.STRING, "normal");
                 lore.set(8, "§bNORMAL");
                 im.setLore(lore);
-                im.addEnchant(Enchantment.DAMAGE_ALL, 3, false);
-                im.removeEnchant(Enchantment.DURABILITY);
-                im.addEnchant(Enchantment.DURABILITY, 9, true);
+                im.addEnchant(Enchantment.SHARPNESS, 3, false);
+                im.removeEnchant(Enchantment.UNBREAKING);
+                im.addEnchant(Enchantment.UNBREAKING, 9, true);
                 outputItem.setItemMeta(im);
                 event.setResult(outputItem);
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvilClick(InventoryClickEvent event) {
         if (event.getCurrentItem() == null) { return; }
         if (event.getView().getType() != InventoryType.ANVIL) { return; }

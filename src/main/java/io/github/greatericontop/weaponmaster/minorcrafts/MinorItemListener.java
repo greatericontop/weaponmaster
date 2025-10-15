@@ -19,166 +19,126 @@ package io.github.greatericontop.weaponmaster.minorcrafts;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import io.github.greatericontop.weaponmaster.utils.VersionSpecificUtil;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
+import org.bukkit.entity.Wither;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Map;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class MinorItemListener implements Listener {
 
+    public final Set<UUID> withers = new HashSet<>();
+
     private final Random rnd = new Random();
-    private final CustomItems customItems;
+    private final MinorItems minorItems;
     private final Util util;
     private final WeaponMasterMain plugin;
     public MinorItemListener(WeaponMasterMain plugin) {
-        this.customItems = new CustomItems();
+        this.minorItems = new MinorItems();
         this.plugin = plugin;
         this.util = new Util(plugin);
     }
 
-    public void modifyAttributeModifier(AttributeInstance instance, UUID withUUID, double amountDelta, double min, double max) {
-        AttributeModifier savedAM = null;
-        double amount = 0;
-        for (AttributeModifier am : instance.getModifiers()) {
-            if (am.getUniqueId().equals(withUUID)) {
-                double oldAmount = am.getAmount();
-                amount = Math.min(Math.max(oldAmount + amountDelta, min), max);
-                savedAM = am;
-                break;
-            }
-        }
-        AttributeModifier newAM;
-        if (savedAM == null) {
-            newAM = new AttributeModifier(withUUID, "weaponmaster", Math.min(Math.max(amountDelta, min), max), AttributeModifier.Operation.ADD_NUMBER);
-        } else {
-            instance.removeModifier(savedAM);
-            newAM = new AttributeModifier(withUUID, "weaponmaster", amount, AttributeModifier.Operation.ADD_NUMBER);
-        }
-        instance.addModifier(newAM);
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntityType() == EntityType.ELDER_GUARDIAN) {
             if (Math.random() < plugin.getConfig().getDouble("rng.leviathanHeart")) {
-                ItemStack leviathan = customItems.generateLeviathanHeartItemStack();
+                ItemStack leviathan = minorItems.generateLeviathanHeartItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), leviathan);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.LEVIATHAN_HEART_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.LEVIATHAN_HEART_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.PIGLIN_BRUTE) {
             if (Math.random() < plugin.getConfig().getDouble("rng.coreStaff")) {
-                ItemStack core = customItems.generateCoreStaffItemStack();
+                ItemStack core = minorItems.generateCoreStaffItemStack();
                 Item coreEntity = event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), core);
                 coreEntity.setInvulnerable(true);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.CORE_STAFF_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.CORE_STAFF_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.CAVE_SPIDER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.silkyString")) {
-                ItemStack silky = customItems.generateSilkyStringItemStack();
+                ItemStack silky = minorItems.generateSilkyStringItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), silky);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.SILKY_STRING_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.SILKY_STRING_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.EVOKER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.lifeCore")) {
-                ItemStack life = customItems.generateLifeCoreItemStack();
+                ItemStack life = minorItems.generateLifeCoreItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), life);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.LIFE_CORE_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.LIFE_CORE_NAME);
                 }
             }
         } else if (event.getEntityType() == EntityType.WITHER) {
             if (Math.random() < plugin.getConfig().getDouble("rng.expertSeal")) {
-                ItemStack seal = customItems.generateExpertSealItemStack();
+                ItemStack seal = minorItems.generateExpertSealItemStack();
                 event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), seal);
                 Player killer = event.getEntity().getKiller();
                 if (killer != null) {
-                    killer.sendMessage("§eRARE DROP! " + customItems.EXPERT_SEAL_NAME);
+                    killer.sendMessage("§eRARE DROP! " + minorItems.EXPERT_SEAL_NAME);
+                }
+            }
+        } else if (event.getEntityType() == EntityType.ENDERMITE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.endArtifact")) {
+                ItemStack endArtifact = minorItems.generateEndArtifactItemStack();
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), endArtifact);
+                Player killer = event.getEntity().getKiller();
+                if (killer != null) {
+                    killer.sendMessage("§eRARE DROP! " + minorItems.END_ARTIFACT_NAME);
                 }
             }
         }
 
         if (event.getEntityType() == EntityType.PLAYER) {
             Player player = (Player) event.getEntity();
-            modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
+            VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), minorItems.ENERGY_MODIFIER_UUID, -4.0, 0.0, 12.0);
         }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onEat(PlayerItemConsumeEvent event) {
-        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR")) { return; }
+        if (!util.checkFor(event.getItem(), 0, "id: MAGIC_ENERGY_BAR"))  return;
         Player player = event.getPlayer();
-        modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), customItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
+        VersionSpecificUtil.modifyAttributeModifier(player.getAttribute(Attribute.GENERIC_MAX_HEALTH), minorItems.ENERGY_MODIFIER_UUID, 2.0, 0.0, 12.0);
         player.sendMessage("§3Successfully gained a heart!");
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onExpertSeal(InventoryClickEvent event) {
-        if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) { return; }
-        if (event.getCursor() == null || event.getCursor().getType() == Material.AIR) { return; }
-        Player player = (Player) event.getWhoClicked();
-        if (!util.checkFor(event.getCursor(), 0, "id: EXPERT_SEAL")) { return; }
-        ItemMeta targetItem = event.getCurrentItem().getItemMeta();
-        if (targetItem == null || !targetItem.hasEnchants()) {
-            player.sendMessage("§cYou can't use Expert Seal on this item!");
-            return;
-        }
-        final NamespacedKey key = new NamespacedKey(plugin, "expert_seal");
-        if (targetItem.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) {
-            player.sendMessage("§cYou can only upgrade once!");
-            return;
-        }
-        Map<Enchantment, Integer> enchants = targetItem.getEnchants();
-        for (Enchantment enchant : enchants.keySet()) {
-            targetItem.addEnchant(enchant, enchants.get(enchant) + 1, true);
-        }
-        targetItem.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
-        event.getCurrentItem().setItemMeta(targetItem);
-        event.setCancelled(true);
-        player.updateInventory();
-        if (event.getCursor().getAmount() > 1) {
-            ItemStack newExpertSeals = event.getCursor();
-            newExpertSeals.setAmount(newExpertSeals.getAmount() - 1);
-            event.setCursor(newExpertSeals);
-        } else {
-            event.setCursor(new ItemStack(Material.AIR));
-        }
-        player.sendMessage("§3Success!");
-    }
-
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void rightClickBlock(PlayerInteractEvent event) {
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: SILKY_STRING") ||
                 util.checkFor(player.getInventory().getItemInMainHand(), 0, "id: LEVIATHAN_HEART") ||
@@ -186,5 +146,149 @@ public class MinorItemListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+//    @EventHandler()
+//    public void onXPBottleThrow(ProjectileLaunchEvent event) {
+//        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
+//        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+//        ItemStack item = bottle.getItem();
+//        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+//            thrownXPBottles.add(bottle.getUniqueId());
+//        }
+//    }
+
+    @EventHandler()
+    public void onXPBottleSmash(ProjectileHitEvent event) {
+        if (!(event.getEntity() instanceof ThrownExpBottle))  return;
+        ThrownExpBottle bottle = (ThrownExpBottle) event.getEntity();
+        ItemStack item = bottle.getItem();
+        if (util.checkFor(item, 0, "id: SUPER_XP_BOTTLE")) {
+            ExperienceOrb orb = event.getEntity().getWorld().spawn(event.getEntity().getLocation(), ExperienceOrb.class);
+            orb.setExperience(1000 + rnd.nextInt(241));
+            // 160 bottles worth of xp (161 total since bottle itself is not canceled)
+        }
+    }
+
+    @EventHandler()
+    public void onOre(BlockBreakEvent event) {
+        if (event.getExpToDrop() == 0)  return; // if broken with silk touch or the incorrect tool
+        Material type = event.getBlock().getType();
+        if (type == Material.DEEPSLATE_COAL_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.plutonium")) {
+                ItemStack item = minorItems.generateCrudePlutoniumItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.CRUDE_PLUTONIUM_NAME);
+            }
+        } else if (type == Material.DIAMOND_ORE || type == Material.DEEPSLATE_DIAMOND_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.diamondApex")) {
+                ItemStack item = minorItems.generateDiamondApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.DIAMOND_APEX_NAME);
+            }
+        } else if (type == Material.EMERALD_ORE || type == Material.DEEPSLATE_EMERALD_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.emeraldApex")) {
+                ItemStack item = minorItems.generateEmeraldApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.EMERALD_APEX_NAME);
+            }
+        } else if (type == Material.REDSTONE_ORE || type == Material.DEEPSLATE_REDSTONE_ORE) {
+            if (Math.random() < plugin.getConfig().getDouble("rng.redstoneApex")) {
+                ItemStack item = minorItems.generateRedstoneApexItemStack();
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), item);
+                event.getPlayer().sendMessage("§eRARE DROP! " + minorItems.REDSTONE_APEX_NAME);
+            }
+        }
+
+    }
+
+    private static final double RANGE = 80.0;
+    @EventHandler()
+    public void onWitherSpawn(EntitySpawnEvent event) {
+        if (event.getEntityType() != EntityType.WITHER)  return;
+        Wither wither = (Wither) event.getEntity();
+        withers.add(wither.getUniqueId());
+        new BukkitRunnable() {
+            public void run() {
+                if (wither.isDead()) {
+                    // if the wither died and this is still running, profit!
+                    String name;
+                    if (Math.random() < 0.5) {
+                        wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateExpertSealItemStack());
+                        name = minorItems.EXPERT_SEAL_NAME;
+                    } else {
+                        if (Math.random() < 0.5) { // 25% each
+                            wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateWitherDye());
+                            name = minorItems.WITHER_DYE_NAME;
+                        } else {
+                            wither.getWorld().dropItemNaturally(wither.getLocation(), minorItems.generateWitherHeadItemStack());
+                            name = minorItems.WITHER_HEAD_NAME;
+                        }
+                    }
+                    if (wither.getKiller() != null) {
+                        wither.getKiller().sendMessage("§eW§co§ew§c! §bYou are truly an expert! You have been given " + name);
+                    }
+                    withers.remove(wither.getUniqueId());
+                    this.cancel();
+                    return;
+                }
+                Collection<Entity> nearbyPlayers = wither.getWorld().getNearbyEntities(wither.getLocation(), RANGE, RANGE, RANGE, e -> e instanceof Player);
+                if (nearbyPlayers.isEmpty()) {
+                    // prevents issues if the wither unloads
+                    // also causes a death to cancel the reward
+                    withers.remove(wither.getUniqueId());
+                    this.cancel();
+                    return;
+                }
+                if (nearbyPlayers.size() > 1) {
+                    // must be solo
+                    withers.remove(wither.getUniqueId());
+                    this.cancel();
+                    return;
+                }
+                Player player = (Player) nearbyPlayers.stream().iterator().next();
+                ItemStack[] armor = player.getInventory().getArmorContents();
+                if ((armor[0] != null && armor[0].getType() != Material.AIR)
+                        || (armor[1] != null && armor[1].getType() != Material.AIR)
+                        || (armor[2] != null && armor[2].getType() != Material.AIR)
+                        || (armor[3] != null && armor[3].getType() != Material.AIR)
+                ) {
+                    // if any player is wearing armor, cancel
+                    withers.remove(wither.getUniqueId());
+                    this.cancel();
+                    return;
+                }
+                // if the wither is stuck in bedrock, teleport it to the player & heal 1 HP per tick
+                for (int dx = -2; dx <= 2; dx++) {
+                    for (int dy = -3; dy <= 3; dy++) {
+                        for (int dz = -2; dz <= 2; dz++) {
+                            if (wither.getLocation().add(dx, dy, dz).getBlock().getType() == Material.BEDROCK) {
+                                wither.teleport(player);
+                                wither.setHealth(Math.min(wither.getHealth() + 3.0, wither.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
+                            }
+                        }
+                    }
+                }
+                // 0.8% chance per tick (on average every 6.25 sec) to check if player & wither have line of sight and teleport if not
+                if (Math.random() < 0.008) {
+                    if (!wither.hasLineOfSight(player)) {
+                        player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
+                        player.sendMessage("§cYou can't hide from me...");
+                        wither.teleport(player);
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 1L, 1L);
+    }
+
+    @EventHandler()
+    public void witherDamageTypeResistance(EntityDamageEvent event) {
+        if (event.getEntityType() != EntityType.WITHER)  return;
+        if (!withers.contains(event.getEntity().getUniqueId()))  return;
+        if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) {
+            event.setDamage(event.getDamage() * 0.25); // explosives damage is nerfed to 1/4
+        }
+    }
+
+    // Damage resistance to Helios & Plutonium are in those listeners
 
 }

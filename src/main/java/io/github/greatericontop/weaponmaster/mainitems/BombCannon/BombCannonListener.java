@@ -41,10 +41,10 @@ public class BombCannonListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onBowShoot(EntityShootBowEvent event) {
         Entity arrow = event.getProjectile();
-        if (!(event.getEntity() instanceof Player)) { return; }
+        if (!(event.getEntity() instanceof Player))  return;
         Player player = (Player) event.getEntity();
         if (!util.checkForBombCannon(event.getBow())) { return; }
         if (!player.hasPermission("weaponmaster.bombcannon.use")) {
@@ -59,7 +59,7 @@ public class BombCannonListener implements Listener {
         explosiveArrows.add(arrow.getUniqueId());
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile arrow = event.getEntity();
         if (explosiveArrows.contains(arrow.getUniqueId())) {

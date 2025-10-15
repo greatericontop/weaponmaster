@@ -32,14 +32,14 @@ import java.util.Map;
 public class HideLeviathanRecipe {
 
     private final Map<Enchantment, Integer> hideEnchants = new HashMap<Enchantment, Integer>();
-    private CustomItems customItems;
+    private MinorItems minorItems;
 
     public HideLeviathanRecipe() {
-        hideEnchants.put(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-        hideEnchants.put(Enchantment.PROTECTION_EXPLOSIONS, 4);
-        hideEnchants.put(Enchantment.PROTECTION_FIRE, 4);
-        hideEnchants.put(Enchantment.PROTECTION_PROJECTILE, 4);
-        customItems = new CustomItems();
+        hideEnchants.put(Enchantment.PROTECTION, 4);
+        hideEnchants.put(Enchantment.BLAST_PROTECTION, 4);
+        hideEnchants.put(Enchantment.FIRE_PROTECTION, 4);
+        hideEnchants.put(Enchantment.PROJECTILE_PROTECTION, 4);
+        minorItems = new MinorItems();
     }
 
     public void regRecipe() {
@@ -55,7 +55,7 @@ public class HideLeviathanRecipe {
         recipe.setIngredient('L', Material.NETHERITE_LEGGINGS);
         recipe.setIngredient('n', Material.NETHERITE_BLOCK);
         recipe.setIngredient('d', Material.DIAMOND_BLOCK);
-        recipe.setIngredient('i', new RecipeChoice.ExactChoice(customItems.generateLeviathanHeartItemStack()));
+        recipe.setIngredient('i', new RecipeChoice.ExactChoice(minorItems.generateLeviathanHeartItemStack()));
         Bukkit.getServer().addRecipe(recipe);
     }
 

@@ -27,7 +27,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -60,7 +59,7 @@ public class RPGItemListener implements Listener {
         return arrow;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
@@ -80,13 +79,13 @@ public class RPGItemListener implements Listener {
                 if (arrow.isDead()) {
                     cancel();
                 } else {
-                    player.getWorld().spawnParticle(Particle.SMOKE_LARGE, arrow.getLocation(), 190);
+                    player.getWorld().spawnParticle(Particle.LARGE_SMOKE, arrow.getLocation(), 190);
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile entity = event.getEntity();
         if (!projectilesInFlightUUIDs.contains(entity.getUniqueId().toString())) { return; } // we added the UUID earlier, so there shouldn't be a player NPE
@@ -98,7 +97,6 @@ public class RPGItemListener implements Listener {
         entity.getLocation().getWorld().createExplosion(explosionLocation, 5.0F, true, true, player);
         entity.remove(); // stop spawning smoke above
         player.sendMessage("§3FWOOM!");
-        player.sendMessage(String.format("§7[Debug] pulled back by %.3f", magnitude));
 }
 
 }

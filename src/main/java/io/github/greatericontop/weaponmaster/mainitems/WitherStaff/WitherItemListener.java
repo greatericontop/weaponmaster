@@ -24,7 +24,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -47,7 +46,7 @@ public class WitherItemListener implements Listener {
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) { return; }
         Player player = event.getPlayer();
@@ -67,13 +66,18 @@ public class WitherItemListener implements Listener {
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setCharged(Math.random() < 0.04);
+        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.06));
 
-        new BukkitRunnable() {
-            public void run() {
-                cooldowns.put(player.getUniqueId(), true);
-            }
-        }.runTaskLater(plugin, 20L);
+        long cooldown = plugin.getConfig().getLong("witherStaff.cooldownTicks", 20L);
+        if (cooldown > 0) {
+            new BukkitRunnable() {
+                public void run() {
+                    cooldowns.put(player.getUniqueId(), true);
+                }
+            }.runTaskLater(plugin, cooldown);
+        } else {
+            cooldowns.put(player.getUniqueId(), true);
+        }
     }
 
 }

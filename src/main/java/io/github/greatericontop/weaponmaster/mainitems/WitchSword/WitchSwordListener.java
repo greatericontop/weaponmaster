@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.mainitems.WitchSword;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -31,21 +32,26 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class WitchSwordListener implements Listener {
-    private static final double HEAL_FACTOR = 0.2;
-    private static final PotionEffect WITCH_EFFECT = new PotionEffect(PotionEffectType.UNLUCK, 200, 0, false, false, true);
+    private static final double HEAL_FACTOR = 0.15;
+    private static final PotionEffect WITCH_EFFECT = new PotionEffect(PotionEffectType.UNLUCK, 200, 100, true, true, true);
 
     private final WeaponMasterMain plugin;
     private final Util util;
+
     public WitchSwordListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onPlayerAttackEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER) {
+            return;
+        }
         Player player = (Player) event.getDamager();
-        if (!util.checkForWitchSword(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForWitchSword(player.getInventory().getItemInMainHand())) {
+            return;
+        }
         if (!player.hasPermission("weaponmaster.witchsword.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.witchsword.use§3.");
             return;
@@ -56,10 +62,12 @@ public class WitchSwordListener implements Listener {
         LivingEntity victim = (LivingEntity) event.getEntity();
         victim.addPotionEffect(WITCH_EFFECT);
         event.setDamage(event.getDamage() * 0.7);
-
+        if (victim instanceof Player) {
+            ((Player) victim).playSound(victim.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1.0F, 1.0F);
+        }
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.LOW) // runs before the other one
     public void onCursedEntityAttacked(EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof LivingEntity)) {
             return;
@@ -69,11 +77,15 @@ public class WitchSwordListener implements Listener {
         }
         LivingEntity victim = (LivingEntity) event.getEntity();
         LivingEntity attacker = (LivingEntity) event.getDamager();
-        if (victim.getPotionEffect(PotionEffectType.UNLUCK) != null) {
+        PotionEffect effect = victim.getPotionEffect(PotionEffectType.UNLUCK);
+        if (effect != null && effect.getAmplifier() == WITCH_EFFECT.getAmplifier() && effect.isAmbient()) {
             // Heal the attacker
             double maxHealth = attacker.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
             double newHealth = attacker.getHealth() + (maxHealth * HEAL_FACTOR);
             attacker.setHealth(Math.min(newHealth, maxHealth));
+            if (attacker instanceof Player) {
+                ((Player) attacker).playSound(attacker.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+            }
         }
     }
 

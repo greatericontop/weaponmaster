@@ -65,6 +65,15 @@ public class Util {
     public final String WITHER_STAFF_NAME = "§bWither Staff §6⚝⚝⚝⚝⚝";
     public final String BOMB_CANNON_NAME = "§5Bomb Cannon §6⚝⚝⚝⚝⚝";
     public final String THROWING_KNIFE_NAME = "§cThrowing Knife §6⚝⚝⚝⚝⚝";
+    public final String WITCH_SWORD_NAME = "§dWitch Sword §6⚝⚝⚝⚝⚝";
+    public final String END_SWORD_NAME = "§5End Sword §6⚝⚝⚝⚝⚝";
+    public final String END_ARMOR_NAME = "§5End Armor §6⚝⚝⚝⚝⚝";
+    public final String SCORPION_BOW_NAME = "§2Scorpion Bow §6⚝⚝⚝⚝⚝";
+    public final String ARES_NAME = "§eAres §6⚝⚝⚝⚝⚝";
+    public final String NINJA_MASTERS_BOW_NAME = "§7§lNinja Master's Bow §6⚝⚝⚝⚝⚝";
+    public final String DEATH_ROD_NAME = "§cDeath Rod §6⚝⚝⚝⚝⚝";
+    public final String PLUTONIUM_BLADE_NAME = "§8§lPlutonium Blade §6⚝⚝⚝⚝⚝";
+    public final String WITHER_KING_STAFF_NAME = "§0Wither King Staff §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -101,6 +110,15 @@ public class Util {
     public List<String> WITHER_STAFF_LORE = new ArrayList<>();
     public List<String> BOMB_CANNON_LORE = new ArrayList<>();
     public List<String> THROWING_KNIFE_LORE = new ArrayList<>();
+    public List<String> WITCH_SWORD_LORE = new ArrayList<>();
+    public List<String> END_SWORD_LORE = new ArrayList<>();
+    public List<String> END_ARMOR_LORE = new ArrayList<>();
+    public List<String> SCORPION_BOW_LORE = new ArrayList<>();
+    public List<String> ARES_LORE = new ArrayList<>();
+    public List<String> NINJA_MASTERS_BOW_LORE = new ArrayList<>();
+    public List<String> DEATH_ROD_LORE = new ArrayList<>();
+    public List<String> PLUTONIUM_BLADE_LORE = new ArrayList<>();
+    public List<String> WITHER_KING_STAFF_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -335,7 +353,7 @@ public class Util {
         SNIPER_RIFLE_LORE.add("§7Enchantments do not affect this weapon.");
         SNIPER_RIFLE_LORE.add("§7Minor recoil");
         SNIPER_RIFLE_LORE.add("");
-        SNIPER_RIFLE_LORE.add("§6LEGENDARY");
+        SNIPER_RIFLE_LORE.add("§cSUPREME");
         SNIPER_RIFLE_LORE.add("§6---------------");
         // Miner's Blessing
         MINERS_BLESSING_LORE.add("id: MINERS_BLESSING");
@@ -357,7 +375,7 @@ public class Util {
         PILOT_SWORD_LORE.add("§3Attack people super fast!");
         PILOT_SWORD_LORE.add("§3Give everyone a free flight back to spawn!");
         PILOT_SWORD_LORE.add("");
-        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c85%§7.");
+        PILOT_SWORD_LORE.add("§7All damage will be reduced by §c80%§7.");
         PILOT_SWORD_LORE.add("");
         PILOT_SWORD_LORE.add("§6LEGENDARY");
         PILOT_SWORD_LORE.add("§6---------------");
@@ -399,9 +417,10 @@ public class Util {
         DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §b2%§3. (Up to 8%)");
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§eFull Set Bonus: §4Superior Power");
-        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b15%§3.");
+        DRAGON_ARMOR_LORE.add("§3Increases damage dealt by §aDragon Sword §3by §b25%§3.");
         DRAGON_ARMOR_LORE.add("§3Hunger decreases §b33% §3slower.");
         DRAGON_ARMOR_LORE.add("§3Reduce damage further by §b0.75% §3per §aProtection §3level.");
+        // Lines 1(blank)/2/3/4 at 11/12/13/14
         DRAGON_ARMOR_LORE.add("");
         DRAGON_ARMOR_LORE.add("§6LEGENDARY");
         DRAGON_ARMOR_LORE.add("§6---------------");
@@ -424,9 +443,9 @@ public class Util {
         POSEIDON_TRIDENT_LORE.add("§6---------------");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§eAbility: §4Sea God");
-        POSEIDON_TRIDENT_LORE.add("§3Gives Conduit Power while holding.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of giving Dolphin's Grace.");
-        POSEIDON_TRIDENT_LORE.add("§3Small chance of summoning lightning on hit.");
+        POSEIDON_TRIDENT_LORE.add("§3Gives permanent §9Conduit Power §3while holding.");
+        POSEIDON_TRIDENT_LORE.add("§3Gives permanent §9Dolphin's Grace §3while holding.");
+        POSEIDON_TRIDENT_LORE.add("§3Chance of summoning lightning on hit!");
         POSEIDON_TRIDENT_LORE.add("");
         POSEIDON_TRIDENT_LORE.add("§6LEGENDARY");
         POSEIDON_TRIDENT_LORE.add("§6---------------");
@@ -531,6 +550,117 @@ public class Util {
         THROWING_KNIFE_LORE.add("");
         THROWING_KNIFE_LORE.add("§dEPIC");
         THROWING_KNIFE_LORE.add("§6---------------");
+        // Witch Sword
+        WITCH_SWORD_LORE.add("id: WITCH_SWORD");
+        WITCH_SWORD_LORE.add("§6---------------");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§eAbility: §4Black Magic");
+        WITCH_SWORD_LORE.add("§3Consumes §c30% §3of the damage dealt.");
+        WITCH_SWORD_LORE.add("§3Attacked targets are cursed for §b10 §3seconds.");
+        WITCH_SWORD_LORE.add("§3If they are attacked, their attackers are");
+        WITCH_SWORD_LORE.add("§3healed for §a15% §3of their maximum health.");
+        WITCH_SWORD_LORE.add("");
+        WITCH_SWORD_LORE.add("§6LEGENDARY");
+        WITCH_SWORD_LORE.add("§6---------------");
+        // End Sword
+        END_SWORD_LORE.add("id: END_SWORD");
+        END_SWORD_LORE.add("§6---------------");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Stores §b150 §dEnd Power");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§eAbility: §4Ender Transmission §e§lRIGHT CLICK");
+        END_SWORD_LORE.add("§3Teleport 7 blocks in front of you.");
+        END_SWORD_LORE.add("§7Costs §b10 §dEnd Power §7per use");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§3Every 100 ender pearls thrown increases your maximum");
+        END_SWORD_LORE.add("§dEnd Power §3by §b1§3, up to a maximum of §b+30§3.");
+        END_SWORD_LORE.add("");
+        END_SWORD_LORE.add("§6LEGENDARY");
+        END_SWORD_LORE.add("§6---------------");
+        // End Armor
+        END_ARMOR_LORE.add("id: END_ARMOR");
+        END_ARMOR_LORE.add("§6---------------");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eAbility: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Increases your maximum §dEnd Power §3by §b+35§3. (Up to 140)");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§eFull Set Bonus: §4Soul of the End");
+        END_ARMOR_LORE.add("§3Gain a §b30% §3chance to not consume an ender pearl when thrown.");
+        END_ARMOR_LORE.add("");
+        END_ARMOR_LORE.add("§6LEGENDARY");
+        END_ARMOR_LORE.add("§6---------------");
+        // Scorpion Bow
+        SCORPION_BOW_LORE.add("id: SCORPION_BOW");
+        SCORPION_BOW_LORE.add("§6---------------");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§eAbility: §4Venom");
+        SCORPION_BOW_LORE.add("§3Targets shot are poisoned for");
+        SCORPION_BOW_LORE.add("§b6 §3seconds.");
+        SCORPION_BOW_LORE.add("");
+        SCORPION_BOW_LORE.add("§dEPIC");
+        SCORPION_BOW_LORE.add("§6---------------");
+        // Ares
+        ARES_LORE.add("id: ARES");
+        ARES_LORE.add("§6---------------");
+        ARES_LORE.add("");
+        ARES_LORE.add("§eAbility: §4Sky Strike");
+        ARES_LORE.add("§3A powerful lightning strike deals 1 heart of §6True Damage§3.");
+        ARES_LORE.add("");
+        ARES_LORE.add("§6LEGENDARY");
+        ARES_LORE.add("§6---------------");
+        // Ninja Master's Bow
+        NINJA_MASTERS_BOW_LORE.add("id: NINJA_MASTERS_BOW");
+        NINJA_MASTERS_BOW_LORE.add("§6---------------");
+        NINJA_MASTERS_BOW_LORE.add("");
+        NINJA_MASTERS_BOW_LORE.add("§eAbility: §6Master §4Shuriken Shot §e§lLEFT CLICK");
+        NINJA_MASTERS_BOW_LORE.add("§3Shoots §b25 §3arrows at a time!");
+        NINJA_MASTERS_BOW_LORE.add("§7No cooldown!");
+        NINJA_MASTERS_BOW_LORE.add("");
+        NINJA_MASTERS_BOW_LORE.add("§cSUPREME");
+        NINJA_MASTERS_BOW_LORE.add("§6---------------");
+        // Death Rod
+        DEATH_ROD_LORE.add("id: DEATH_ROD");
+        DEATH_ROD_LORE.add("§6---------------");
+        DEATH_ROD_LORE.add("");
+        DEATH_ROD_LORE.add("§4Legend says the rod drops when Death itself is killed. It is believed");
+        DEATH_ROD_LORE.add("§4that those who touch the rod instantly die.");
+        DEATH_ROD_LORE.add("");
+        DEATH_ROD_LORE.add("§cSUPREME");
+        DEATH_ROD_LORE.add("§6---------------");
+        // Plutonium Blade
+        PLUTONIUM_BLADE_LORE.add("id: PLUTONIUM_BLADE");
+        PLUTONIUM_BLADE_LORE.add("§6---------------");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§3The dense material of the blade crits for §6+20% §3damage.");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§eAbility: §4Implosion");
+        PLUTONIUM_BLADE_LORE.add("  §7LOOK STRAIGHT DOWN & §eSHIFT RIGHT CLICK");
+        PLUTONIUM_BLADE_LORE.add("§3Creates a nuclear shockwave traveling outwards up to §b20 §3blocks.");
+        PLUTONIUM_BLADE_LORE.add("§3Those caught in the blast take §6massive §3knockback and damage.");
+        PLUTONIUM_BLADE_LORE.add("§3The shockwave travels through blocks!");
+        PLUTONIUM_BLADE_LORE.add("§720 second cooldown");
+        PLUTONIUM_BLADE_LORE.add("§7100 durability per use");
+        PLUTONIUM_BLADE_LORE.add("");
+        PLUTONIUM_BLADE_LORE.add("§6LEGENDARY");
+        PLUTONIUM_BLADE_LORE.add("§6---------------");
+        // Wither King Staff
+        WITHER_KING_STAFF_LORE.add("id: WITHER_KING_STAFF");
+        WITHER_KING_STAFF_LORE.add("§6---------------");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§eAbility: §4Skeleton's Call §e§lLEFT CLICK");
+        WITHER_KING_STAFF_LORE.add("§3Shoots wither skeleton skulls.");
+        WITHER_KING_STAFF_LORE.add("§3The skulls explode on impact.");
+        WITHER_KING_STAFF_LORE.add("§bCooldown reduced to 0.2 seconds!");
+        WITHER_KING_STAFF_LORE.add("§bSkulls fly much faster!");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§eAbility: §4Wither Shield §e§lRIGHT CLICK");
+        WITHER_KING_STAFF_LORE.add("§3Gain §e5 hearts §3of §eAbsorption §3for §b10 §3seconds, and");
+        WITHER_KING_STAFF_LORE.add("§3convert half of it to healing afterwards.");
+        WITHER_KING_STAFF_LORE.add("§715 second cooldown");
+        WITHER_KING_STAFF_LORE.add("§7This overwrites your current absorption effect.");
+        WITHER_KING_STAFF_LORE.add("");
+        WITHER_KING_STAFF_LORE.add("§6LEGENDARY");
+        WITHER_KING_STAFF_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -549,7 +679,7 @@ public class Util {
         if (iMeta.getLore().size() <= index) { return false; }
         return iMeta.getLore().get(index).equalsIgnoreCase(requiredLoreSection);
     }
-    
+
     public static boolean checkForInteractableBlock(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)  { return false; }
         Block block = event.getClickedBlock();
@@ -662,5 +792,32 @@ public class Util {
     }
     public boolean checkForThrowingKnife(ItemStack item) {
         return this.checkFor(item, 0, "id: THROWING_KNIFE");
+    }
+    public boolean checkForWitchSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITCH_SWORD");
+    }
+    public boolean checkForEndSword(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_SWORD");
+    }
+    public boolean checkForEndArmor(ItemStack item) {
+        return this.checkFor(item, 0, "id: END_ARMOR");
+    }
+    public boolean checkForScorpionBow(ItemStack item) {
+        return this.checkFor(item, 0, "id: SCORPION_BOW");
+    }
+    public boolean checkForAres(ItemStack item) {
+        return this.checkFor(item, 0, "id: ARES");
+    }
+    public boolean checkForNinjaMastersBow(ItemStack item) {
+        return this.checkFor(item, 0, "id: NINJA_MASTERS_BOW");
+    }
+    public boolean checkForDeathRod(ItemStack item) {
+        return this.checkFor(item, 0, "id: DEATH_ROD");
+    }
+    public boolean checkForPlutoniumBlade(ItemStack item) {
+        return this.checkFor(item, 0, "id: PLUTONIUM_BLADE");
+    }
+    public boolean checkForWitherKingStaff(ItemStack item) {
+        return this.checkFor(item, 0, "id: WITHER_KING_STAFF");
     }
 }

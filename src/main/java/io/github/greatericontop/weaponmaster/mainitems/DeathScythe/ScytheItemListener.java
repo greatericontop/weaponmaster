@@ -24,7 +24,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
@@ -33,8 +32,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class ScytheItemListener implements Listener {
+
+    private final Map<UUID, Boolean> cooldowns = new HashMap<>();
 
     private final Util util;
     private final WeaponMasterMain plugin;
@@ -57,15 +63,19 @@ public class ScytheItemListener implements Listener {
     }
 
     private final int DURABILITY_THRESHOLD = 249;
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
-        Player player = (Player)event.getDamager();
-        if (!util.checkForDeathScythe(player.getInventory().getItemInMainHand())) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
+        Player player = (Player) event.getDamager();
+        if (!util.checkForDeathScythe(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.deathscythe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.deathscythe.use§3.");
             return;
         }
+        if (!cooldowns.getOrDefault(player.getUniqueId(), true)) {
+            return;
+        }
+        cooldowns.put(player.getUniqueId(), false);
 
         ItemStack scythe = player.getInventory().getItemInMainHand();
         Damageable iMeta = (Damageable) scythe.getItemMeta();
@@ -73,33 +83,42 @@ public class ScytheItemListener implements Listener {
             player.sendMessage("§3Not enough durability!");
             return;
         }
-
-        LivingEntity target = (LivingEntity) event.getEntity();
-        double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * 0.3;
-        TrueDamageHelper.dealTrueDamage(target, damageAmount);
-        int strengthLevel = getStrengthLevel(damageAmount);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 300, strengthLevel, true));
-        player.sendMessage(String.format("§3Dealt §4%.1f §3damage. You gained §bStrength §c%d§3 for §b15 §3seconds.", damageAmount, strengthLevel+1));
-
-
         iMeta.setDamage(iMeta.getDamage() + 26);
         if (iMeta.getDamage() > DURABILITY_THRESHOLD) {
             iMeta.setDamage(DURABILITY_THRESHOLD);
         }
         scythe.setItemMeta(iMeta);
+
+        LivingEntity target = (LivingEntity) event.getEntity();
+        double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * 0.3;
+        TrueDamageHelper.dealTrueDamage(target, damageAmount);
+        int strengthLevel = getStrengthLevel(damageAmount);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 300, strengthLevel, true));
+        player.sendMessage(String.format("§3Dealt §4%.1f §3damage. You gained §bStrength §c%d§3 for §b15 §3seconds.", damageAmount, strengthLevel+1));
+
+        long cooldown = plugin.getConfig().getLong("deathScythe.cooldownTicks", 10L);
+        if (cooldown > 0) {
+            new BukkitRunnable() {
+                public void run() {
+                    cooldowns.put(player.getUniqueId(), true);
+                }
+            }.runTaskLater(plugin, cooldown);
+        } else {
+            cooldowns.put(player.getUniqueId(), true);
+        }
     }
 
     /*
      * Prevent repairs
      */
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onMending(PlayerItemMendEvent event) {
         if (util.checkForDeathScythe(event.getItem())) {
             event.getPlayer().sendMessage("§6You can't mend this item.");
             event.setCancelled(true);
         }
     }
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onAnvil(PrepareAnvilEvent event) {
         ItemStack scythe = event.getInventory().getItem(0);
         ItemStack sacrificeItem = event.getInventory().getItem(1);

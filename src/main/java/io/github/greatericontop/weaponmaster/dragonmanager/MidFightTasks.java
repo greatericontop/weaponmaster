@@ -33,6 +33,7 @@ import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Illager;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
@@ -57,15 +58,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MidFightTasks {
     private final double SEARCH_DIST = 160.0;
     private final double ANGER_DIST = 100.0;
-    private final double GUARD_MAX_HP = 150.0;
+    private final double GUARD_MAX_HP = 135.0;
     private final int STORM_SIZE = 4;
-    private final double DEFENDER_MAX_HEALTH = 65.0;
-    private final double AGENT_HEALTH = 90.0;
+    private final double DEFENDER_MAX_HEALTH = 70.0;
+    private final double AGENT_HEALTH = 100.0;
 
     private int hiveAnger_lastTickRan = -1000;
     private int endGuard_lastTickRan = -1000;
     private int lightningAttack_lastTickRan = -1000;
     private int fireballStorm_lastTickRan = -1000;
+    private int perchedFireballStorm_lastTickRan = -1000;
     private int toxicStorm_lastTickRan = -1000;
     private int endDweller_lastTickRan = -1000;
     private int endstoneDefender_lastTickRan = -1000;
@@ -75,18 +77,16 @@ public class MidFightTasks {
 
     private final Random rnd = new Random();
     private final WeaponMasterMain plugin;
-    private final EnderDragon currentlyActiveDragon;
-    private final UUID cachedDragonId;
-    
-    public MidFightTasks(WeaponMasterMain plugin, EnderDragon currentlyActiveDragon) {
+    private EnderDragon currentlyActiveDragon;
+
+    public MidFightTasks(WeaponMasterMain plugin) {
         this.plugin = plugin;
-        this.currentlyActiveDragon = currentlyActiveDragon;
-        this.cachedDragonId = currentlyActiveDragon.getUniqueId();
+        this.currentlyActiveDragon = null;
     }
 
     /*
      * Helper function to randomly execute mid-fight tasks.
-     * Use it like this: if (rejectWithChance(30.0)) { return; }
+     * Use it like this: if (rejectWithChance(30.0))  return;
      */
     public static boolean rejectWithChance(double averageSeconds) {
         return Math.random() >= 0.05 / averageSeconds;
@@ -127,19 +127,21 @@ public class MidFightTasks {
         }.runTaskTimer(plugin, 1L, 1L);
     }
 
+    public void updateDragon(EnderDragon dragon) {
+        this.currentlyActiveDragon = dragon;
+    }
+
     public void startFightTasks() {
         new BukkitRunnable() {
             int tickNumber = 0;
             public void run() {
                 tickNumber++;
-                if ((!currentlyActiveDragon.getUniqueId().equals(cachedDragonId)) || currentlyActiveDragon.isDead()) {
-                    cancel();
-                    return;
-                }
+                if (currentlyActiveDragon == null || currentlyActiveDragon.isDead())  return;
                 doHiveAnger(tickNumber);
                 spawnEndGuard(tickNumber);
                 doLightningAttack(tickNumber);
                 doFireballStorm(tickNumber);
+                doPerchedFireballStorm(tickNumber);
                 doToxicStorm(tickNumber);
                 regenerateOnLowHealth(tickNumber);
                 spawnEndDweller(tickNumber);
@@ -152,11 +154,11 @@ public class MidFightTasks {
     }
 
     public void doHiveAnger(int tickNumber) {
-        if (rejectWithChance(105.0)) { return; }
-        if (tickNumber < hiveAnger_lastTickRan + 700) { return; }
+        if (rejectWithChance(95.0))  return;
+        if (tickNumber < hiveAnger_lastTickRan + 300)  return;
         hiveAnger_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
-        if (target == null) { return; }
+        if (target == null)  return;
         int angeredCount = 0;
         for (Entity entity : target.getNearbyEntities(ANGER_DIST, ANGER_DIST, ANGER_DIST)) {
             if (!(entity instanceof Enderman)) { continue; }
@@ -172,44 +174,48 @@ public class MidFightTasks {
     }
 
     public void spawnEndGuard(int tickNumber) {
-        if (rejectWithChance(80.0)) { return; }
-        if (tickNumber < endGuard_lastTickRan + 500) { return; }
+        if (rejectWithChance(55.0))  return;
+        if (tickNumber < endGuard_lastTickRan + 300)  return;
         endGuard_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
         Enderman endGuard = (Enderman) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.ENDERMAN);
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+        helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+        endGuard.getEquipment().setHelmet(helmet);
         endGuard.setTarget(target);
         endGuard.setCustomName("§dEnd Guard");
         endGuard.setCustomNameVisible(true);
         endGuard.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(GUARD_MAX_HP);
+        // Attack of (7 + 3 per strength) * 2.1 (from attribute modifier) * 1.5 (if on hard)
+        endGuard.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", 1.1, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         endGuard.setHealth(GUARD_MAX_HP);
+        PersistentDataContainer pdc = endGuard.getPersistentDataContainer();
+        pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         new BukkitRunnable() {
-            int amplifier = 0;
+            int amplifier = -1; // will be increased to 0 on first run so first run gives Strength I
             public void run() {
                 amplifier++;
-                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, amplifier, true));
-                if (amplifier == 2) { // add resistance 1 at the same time we add strength 3
-                    endGuard.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 1073741823, 0, true));
-                }
-                if (amplifier >= 6) { // maximum strength 7
+                endGuard.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, amplifier, true));
+                if (amplifier >= 3) { // maximum strength 4
                     cancel();
                     return;
                 }
             }
-        }.runTaskTimer(plugin, 200L, 200L);
+        }.runTaskTimer(plugin, 300L, 300L);
         lockTarget(endGuard, target);
         target.sendMessage("§5WeaponMaster Dragon §7used §3Call Help §7on you. Kill the guards before they get too powerful!");
     }
 
     public void doLightningAttack(int tickNumber) {
-        if (rejectWithChance(45.0)) { return; }
-        if (tickNumber < lightningAttack_lastTickRan + 160) { return; }
+        if (rejectWithChance(25.0)) { return; }
+        if (tickNumber < lightningAttack_lastTickRan + 300) { return; }
         lightningAttack_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
             if (!(entity instanceof Player)) { continue; }
             Player target = (Player) entity;
-            double damage = 7.0 + rnd.nextInt(12); // 7 ~ 18 in true damage
-            if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 18.5 uniform
+            double damage = 7.0 + rnd.nextInt(11); // 7 ~ 17 in true damage
+            if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 17.5 uniform
             TrueDamageHelper.dealTrueDamage(target, damage);
             target.getWorld().strikeLightningEffect(target.getLocation());
             target.sendMessage(String.format("§5WeaponMaster Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
@@ -217,8 +223,9 @@ public class MidFightTasks {
     }
 
     public void doFireballStorm(int tickNumber) {
-        if (rejectWithChance(60.0)) { return; }
-        if (tickNumber < fireballStorm_lastTickRan + 400) { return; }
+        if (rejectWithChance(65.0)) { return; }
+        if (tickNumber < fireballStorm_lastTickRan + 300) { return; }
+        if (tickNumber < perchedFireballStorm_lastTickRan + 200) { return; } // also doesn't run if perched storms are currently running
         fireballStorm_lastTickRan = tickNumber;
         Location loc = currentlyActiveDragon.getLocation();
         // Spawn fireballs below the dragon as some kind of protection
@@ -258,8 +265,35 @@ public class MidFightTasks {
         }
     }
 
+    public void doPerchedFireballStorm(int tickNumber) {
+        if (currentlyActiveDragon.getPhase() != EnderDragon.Phase.SEARCH_FOR_BREATH_ATTACK_TARGET && currentlyActiveDragon.getPhase() != EnderDragon.Phase.BREATH_ATTACK) { return; } // only runs when perched
+        // every tick, check if the Y velocity has accumulated too much, and reset it if it has
+        // if we don't do this it accumulates a lot of upward velocity from the fireballs
+        if (currentlyActiveDragon.getVelocity().lengthSquared() >= 4.0 * 4.0) { // 4 b/t is 80 m/s
+            currentlyActiveDragon.setVelocity(new Vector(0.0, 0.0, 0.0));
+        }
+        if (tickNumber < perchedFireballStorm_lastTickRan + 200) { return; } // when perched, just always runs on 10 seconds cooldown
+        perchedFireballStorm_lastTickRan = tickNumber;
+        Location loc = currentlyActiveDragon.getLocation();
+        for (int x = -STORM_SIZE; x <= STORM_SIZE; x++) {
+            for (int z = -STORM_SIZE; z <= STORM_SIZE; z++) {
+                Vector ray = new Vector(x, -STORM_SIZE*0.35, z).normalize().multiply(0.6);
+                Location spawnLoc = loc.clone().add(ray.multiply(2.5)); // Don't spawn it too far below
+                if (Math.random() < 0.5) {
+                    DragonFireball fireball = (DragonFireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.DRAGON_FIREBALL);
+                    fireball.setVelocity(ray);
+                } else {
+                    Fireball fireball = (Fireball) loc.getWorld().spawnEntity(spawnLoc, EntityType.FIREBALL);
+                    fireball.setVelocity(ray);
+                    fireball.setYield(2.0F);
+                    fireball.setIsIncendiary(true);
+                }
+            }
+        }
+    }
+
     public void doToxicStorm(int tickNumber) {
-        if (rejectWithChance(120.0)) { return; }
+        if (rejectWithChance(90.0)) { return; }
         if (tickNumber < toxicStorm_lastTickRan + 300) { return; }
         toxicStorm_lastTickRan = tickNumber;
         for (Entity entity : currentlyActiveDragon.getNearbyEntities(SEARCH_DIST, SEARCH_DIST, SEARCH_DIST)) {
@@ -268,7 +302,7 @@ public class MidFightTasks {
             target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0, true));
             target.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 0, true));
-            target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 0, true));
+            target.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 200, 0, true));
             target.playSound(target.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
             target.sendMessage("§5WeaponMaster Dragon §7used §3Toxic Storm §7and gave you §cWeakness§7, §cPoison§7, §cHunger§7, and §cMining Fatigue §7for §c10 §7seconds.");
         }
@@ -285,8 +319,8 @@ public class MidFightTasks {
     }
 
     public void spawnEndDweller(int tickNumber) {
-        if (rejectWithChance(70.0)) { return; }
-        if (tickNumber < endDweller_lastTickRan + 200) { return; }
+        if (rejectWithChance(45.0)) { return; }
+        if (tickNumber < endDweller_lastTickRan + 300) { return; }
         endDweller_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -302,7 +336,7 @@ public class MidFightTasks {
     }
 
     public void spawnEndstoneDefender(int tickNumber) {
-        if (rejectWithChance(95.0)) { return; }
+        if (rejectWithChance(70.0)) { return; }
         if (tickNumber < endstoneDefender_lastTickRan + 300) { return; }
         endstoneDefender_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
@@ -314,7 +348,7 @@ public class MidFightTasks {
         defender.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(DEFENDER_MAX_HEALTH); // up from 20
         defender.setHealth(DEFENDER_MAX_HEALTH);
         ItemStack endStone = new ItemStack(Material.END_STONE, 1);
-        endStone.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        endStone.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
         defender.getEquipment().setHelmet(endStone);
         defender.getEquipment().setChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE, 1));
         defender.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
@@ -322,27 +356,29 @@ public class MidFightTasks {
         PersistentDataContainer pdc = defender.getPersistentDataContainer();
         pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
         target.sendMessage("§5WeaponMaster Dragon §7used §3Endstone Defense §7on you.");
-        new BukkitRunnable() {
+            new BukkitRunnable() {
             public void run() {
-                defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(100.0);
+                defender.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(250.0);
             }
         }.runTaskLater(plugin, 80L); // spawned on top of the player, so don't immediately kill them
     }
 
     public void summonSniper(int tickNumber) {
-        if (rejectWithChance(85.0)) { return; }
+        if (rejectWithChance(70.0)) { return; }
         if (tickNumber < sniper_lastTickRan + 300) { return; }
         sniper_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
-        // TODO: don't spawn it on top of the player, spawn it at a random end stone block somewhere on the island
         Skeleton sniper = (Skeleton) currentlyActiveDragon.getWorld().spawnEntity(target.getLocation(), EntityType.SKELETON);
         sniper.setTarget(target);
         sniper.setCustomName("§bEnder Sniper");
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+        helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+        sniper.getEquipment().setHelmet(helmet);
         ItemStack sniperItem = sniper.getEquipment().getItemInMainHand();
-        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 10);
-        sniperItem.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 3);
-        sniperItem.addEnchantment(Enchantment.ARROW_FIRE, 1);
+        sniperItem.addUnsafeEnchantment(Enchantment.POWER, 20);
+        sniperItem.addUnsafeEnchantment(Enchantment.PUNCH, 3);
+        sniperItem.addEnchantment(Enchantment.FLAME, 1);
         sniper.getEquipment().setItemInMainHand(sniperItem);
         sniper.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(40.0);
         PersistentDataContainer pdc = sniper.getPersistentDataContainer(); // no overpowered bows!
@@ -352,8 +388,8 @@ public class MidFightTasks {
     }
 
     public void summonGhosts(int tickNumber) {
-        if (rejectWithChance(165.0)) { return; }
-        if (tickNumber < ghost_lastTickRan + 600) { return; }
+        if (rejectWithChance(105.0)) { return; }
+        if (tickNumber < ghost_lastTickRan + 300) { return; }
         ghost_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -368,7 +404,7 @@ public class MidFightTasks {
             ghost.setCustomName("§4Ghost");
             ghost.setCustomNameVisible(true);
             double health = currentlyActiveDragon.getHealth() / currentlyActiveDragon.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
-            double multi = (1 - health) * 10; // up to 11x damage if dragon is low, or 33 damage on hard mode
+            double multi = (1 - health) * 8; // up to 9x damage if dragon is low, or 27 damage on hard mode
             ghost.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).addModifier(new AttributeModifier(UUID.randomUUID(), "weaponmaster", multi, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             PersistentDataContainer pdc = ghost.getPersistentDataContainer();
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);
@@ -378,8 +414,8 @@ public class MidFightTasks {
     }
 
     public void callAgents(int tickNumber) {
-        if (rejectWithChance(125.0)) { return; }
-        if (tickNumber < agents_lastTickRan + 500) { return; }
+        if (rejectWithChance(70.0)) { return; }
+        if (tickNumber < agents_lastTickRan + 300) { return; }
         agents_lastTickRan = tickNumber;
         Player target = getRandomNearbyPlayer();
         if (target == null) { return; }
@@ -390,8 +426,11 @@ public class MidFightTasks {
             agent.setTarget(target);
             agent.setCustomName(names[i]);
             agent.setCustomNameVisible(true);
+            ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+            helmet.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 10);
+            agent.getEquipment().setHelmet(helmet);
             agent.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(AGENT_HEALTH);
-            agent.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1073741823, 2, true));
+            agent.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1073741823, 3, true));
             agent.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1073741823, 0, true));
             PersistentDataContainer pdc = agent.getPersistentDataContainer();
             pdc.set(new NamespacedKey(plugin, "WM_DRAGON_NODROPS"), PersistentDataType.INTEGER, 1);

@@ -28,7 +28,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -56,8 +55,6 @@ public class HeliosItemListener implements Listener {
 
     private double damageMultiply(Player player, double damage) {
         double multiplier = DAMAGE_INCREASE_PER_LEVEL * Math.min(player.getLevel(), MAX_DAMAGE_LEVEL);
-        player.sendMessage(String.format("§7[Debug] Hit increased by %.1f%%, damage %.1f -> %.1f.",
-                multiplier*100, damage, damage*(1+multiplier)));
         return damage * (1 + multiplier);
     }
 
@@ -67,11 +64,11 @@ public class HeliosItemListener implements Listener {
         return deltaX*deltaX + deltaZ*deltaZ;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.PLAYER) { return; }
+        if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
-        if (!util.checkForHelios(player.getInventory().getItemInMainHand())) { return; }
+        if (!util.checkForHelios(player.getInventory().getItemInMainHand()))  return;
         if (!player.hasPermission("weaponmaster.helios.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.helios.use§3.");
             return;
@@ -80,9 +77,9 @@ public class HeliosItemListener implements Listener {
         event.setDamage(damageMultiply(player, event.getDamage()));
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler()
     public void onRightClick(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) { return; }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         Player player = event.getPlayer();
         ItemStack helios = player.getInventory().getItemInMainHand();
         if (!util.checkForHelios(helios)) { return; }
@@ -105,8 +102,12 @@ public class HeliosItemListener implements Listener {
                 continue;
             }
             LivingEntity target = (LivingEntity) e;
-            double damage = 5.0 + helios.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL) * 0.25;
-            target.damage(damageMultiply(player, damage));
+            double damage = 6.0 + helios.getItemMeta().getEnchantLevel(Enchantment.SHARPNESS) * 0.5;
+            if (plugin.minorItemListener.withers.contains(target.getUniqueId())) {
+                damage = damage * 0.4; // less ability damage to wither challenge
+            }
+            // damage will be multiplied by the event
+            target.damage(damage, player);
             target.setFireTicks(target.getFireTicks() + 200);
             target.setVelocity(target.getVelocity().add(new Vector(0.0, 0.4, 0.0)));
         }
