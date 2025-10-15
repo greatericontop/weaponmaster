@@ -93,6 +93,10 @@ public class NinjaItemListener implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) { return; }
         Player player = event.getPlayer();
         if (!util.checkForNinjaBow(player.getInventory().getItemInMainHand())) { return; }
+        if (!player.hasPermission("weaponmaster.ninjabow.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.ninjabow.use§3.");
+            return;
+        }
         if (!cooldown.getOrDefault(player.getUniqueId(), true)) { return; }
 
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();

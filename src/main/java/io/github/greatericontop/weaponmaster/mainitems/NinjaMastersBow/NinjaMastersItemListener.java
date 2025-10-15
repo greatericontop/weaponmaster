@@ -85,6 +85,10 @@ public class NinjaMastersItemListener implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         if (!util.checkForNinjaMastersBow(player.getInventory().getItemInMainHand()))  return;
+        if (!player.hasPermission("weaponmaster.ninjamastersbow.use")) {
+            player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.ninjamastersbow.use§3.");
+            return;
+        }
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         // 2 + (0.5 if we have power) + (0.5 per level), so it goes 2, 3, 3.5, 4, 4.5, 5
         double damageValue = 2.0 + (im.hasEnchant(Enchantment.POWER) ? 0.5 : 0.0) + (im.getEnchantLevel(Enchantment.POWER) * 0.5);
