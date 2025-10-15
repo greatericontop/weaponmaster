@@ -97,7 +97,7 @@ public class ThrowingKnifeListener implements Listener {
             public void run() {
                 isThrowing.put(player.getUniqueId(), false);
             }
-        }.runTaskLater(plugin, 120L);
+        }.runTaskLater(plugin, 60L);
 
         Location origin = player.getEyeLocation().add(player.getLocation().getDirection().multiply(0.5));
         Vector vector = new Vector(0.0, 0.0, 0.0);
@@ -105,9 +105,9 @@ public class ThrowingKnifeListener implements Listener {
         new BukkitRunnable() {
             int i = 0;
             public void run() {
-                if (i < 120) {
+                if (i < 60) {
                     Location originalLoc = origin.clone().add(vector);
-                    if (i < 60) {
+                    if (i < 30) {
                         vector.add(toAdd);
                     } else {
                         vector.subtract(toAdd);
