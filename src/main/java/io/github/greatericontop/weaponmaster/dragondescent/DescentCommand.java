@@ -157,7 +157,7 @@ public class DescentCommand implements CommandExecutor {
                 "§7Decrease hunger exhaustion by 2% every level.");
         ItemStack wisdom = newItemStack("wisdom", Material.ENCHANTED_BOOK,
                 player, "enhancedEnergy",
-                4, "%",
+                5, "%",
                 "§3Wisdom",
                 "§7Gain 5% more XP from orbs every level.");
         ItemStack strongLegs = newItemStack("strongLegs", Material.WATER_BUCKET,
