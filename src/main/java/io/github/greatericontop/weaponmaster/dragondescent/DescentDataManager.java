@@ -103,7 +103,7 @@ public class DescentDataManager {
         setUpgrade(target, "__shards__", value);
     }
     public void addShards(Player target, int value) {
-        double multi = 1 + 0.02*getUpgrade(target, "shardSeeker");
+        double multi = 1 + 0.025*getUpgrade(target, "shardSeeker");
         int newValue = MathHelper.roundProbability(value * multi);
         setShards(target.getUniqueId(), getShards(target.getUniqueId()) + newValue);
     }

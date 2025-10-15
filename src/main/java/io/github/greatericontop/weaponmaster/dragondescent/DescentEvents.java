@@ -56,7 +56,7 @@ public class DescentEvents implements Listener {
         // allDamageResistance
         int allDamageResistance = descent.getUpgrade(player, "allDamageResistance");
         if (allDamageResistance > 0) {
-            double multi = 1.0 - 0.005*allDamageResistance;
+            double multi = 1.0 - 0.01*allDamageResistance;
             event.setDamage(event.getDamage() * multi);
         }
 
@@ -95,7 +95,7 @@ public class DescentEvents implements Listener {
         // strongAttacks
         int strongAttacks = descent.getUpgrade(player, "strongAttacks");
         if (strongAttacks > 0) {
-            double multi = 1.0 + 0.005*strongAttacks;
+            double multi = 1.0 + 0.01*strongAttacks;
             event.setDamage(event.getDamage() * multi);
         }
 
@@ -199,7 +199,7 @@ public class DescentEvents implements Listener {
             if ((event.getAction() == EntityPotionEffectEvent.Action.ADDED || event.getAction() == EntityPotionEffectEvent.Action.CHANGED)
                     && event.getCause() == EntityPotionEffectEvent.Cause.POTION_DRINK) {
                 PotionEffect eventEffect = event.getNewEffect();
-                double multi = 1 + 0.025*witch;
+                double multi = 1 + 0.03*witch;
                 int newDuration = MathHelper.roundProbability(eventEffect.getDuration() * multi);
                 PotionEffect extendedEffect = new PotionEffect(eventEffect.getType(), newDuration, eventEffect.getAmplifier(), eventEffect.isAmbient(), eventEffect.hasParticles(), eventEffect.hasIcon());
                 // since we can't change the effect used in the event, simply add it here, and it will overwrite it
@@ -251,7 +251,7 @@ public class DescentEvents implements Listener {
         // wisdom
         int wisdom = descent.getUpgrade(player, "wisdom");
         if (wisdom > 0) {
-            double multi = 1.0 + 0.04*wisdom;
+            double multi = 1.0 + 0.05*wisdom;
             double newAmount = event.getAmount() * multi;
             event.setAmount(MathHelper.roundProbability(newAmount));
         }

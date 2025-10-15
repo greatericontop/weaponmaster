@@ -88,9 +88,9 @@ public class DescentCommand implements CommandExecutor {
         // MAIN TREE
         ItemStack allDamageResistance = newItemStack("allDamageResistance", Material.DIAMOND_CHESTPLATE,
                 player, null,
-                0.5, "%",
+                1, "%",
                 "§3All Damage Resistance",
-                "§7Reduce all damage taken by 0.5% every level.");
+                "§7Reduce all damage taken by 1% every level.");
         ItemStack dragonExtraRNG = newItemStack("dragonExtraRNG", Material.BLUE_ORCHID,
                 player, "allDamageResistance",
                 1.5, "%",
@@ -115,9 +115,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7+1s every level");
         ItemStack strongAttacks = newItemStack("strongAttacks", Material.IRON_SWORD,
                 player, "vitality",
-                0.5, "%",
+                1, "%",
                 "§3Strong Attacks",
-                "§7Increase attack damage by 0.5% every level.");
+                "§7Increase attack damage by 1% every level.");
 
         // LEFT TREE
         ItemStack heartbleed = newItemStack("heartbleed", Material.REDSTONE,
@@ -128,9 +128,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7killing any entity. (2 second cooldown)");
         ItemStack shardSeeker = newItemStack("shardSeeker", Material.DIAMOND_BLOCK,
                 player, "heartbleed",
-                2, "%",
+                2.5, "%",
                 "§3Shard Seeker",
-                "§7Gain 2% more shards every level.");
+                "§7Gain 2.5% more shards every level.");
         ItemStack shieldedArmor = newItemStack("shieldedArmor", Material.SHIELD,
                 player, "shardSeeker",
                 1.5, "%",
@@ -159,7 +159,7 @@ public class DescentCommand implements CommandExecutor {
                 player, "enhancedEnergy",
                 4, "%",
                 "§3Wisdom",
-                "§7Gain 4% more XP from orbs every level.");
+                "§7Gain 5% more XP from orbs every level.");
         ItemStack strongLegs = newItemStack("strongLegs", Material.WATER_BUCKET,
                 player, "wisdom",
                 15, "%",
@@ -173,9 +173,9 @@ public class DescentCommand implements CommandExecutor {
                 "§7on any damaged entities.");
         ItemStack witch = newItemStack("witch", Material.DRAGON_BREATH,
                 player, "sicklyTouch",
-                2.5, "%",
+                3, "%",
                 "§3Witch",
-                "§7Drinkable potions last 2.5% longer every level.");
+                "§7Drinkable potions last 3% longer every level.");
 
         // RANDOM OFF-TO-THE-SIDE UPGRADES
         ItemStack strongArrows = newItemStack("strongArrows", Material.CROSSBOW,
