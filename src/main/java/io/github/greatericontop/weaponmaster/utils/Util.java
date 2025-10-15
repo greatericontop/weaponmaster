@@ -206,7 +206,7 @@ public class Util {
         EXCALIBUR_LORE.add("§6---------------");
         EXCALIBUR_LORE.add("");
         EXCALIBUR_LORE.add("§eAbility: §4Fury");
-        EXCALIBUR_LORE.add("§3Violently explode dealing §b3");
+        EXCALIBUR_LORE.add("§3Violently explode dealing §b5");
         EXCALIBUR_LORE.add("§3damage. (6 second cooldown)");
         EXCALIBUR_LORE.add("");
         EXCALIBUR_LORE.add("§6LEGENDARY");
