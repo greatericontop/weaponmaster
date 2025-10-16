@@ -25,6 +25,8 @@ It runs on any Spigot (or Paper and its forks, which are required for some addit
 
 [Click here for more information about the other features, including the WeaponMaster Dragon, Dragon's Descent rewards tree, Wither Challenge, and admin commands.](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)
 
+[Want to see an overview of the game progression? Check out the player's guide!](https://github.com/greatericontop/weaponmaster/blob/main/PLAYERSGUIDE.md)
+
 
 ## Installation
 
