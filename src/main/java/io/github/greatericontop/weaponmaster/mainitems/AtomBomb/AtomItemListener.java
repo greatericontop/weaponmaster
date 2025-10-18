@@ -23,7 +23,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -98,12 +97,9 @@ public class AtomItemListener implements Listener {
 
         Location at = event.getBlock().getLocation();
         // 1,572,866 rays previously
-        int NUMBER_RAYS = 4_500_000;
-        int RAYS_PER_TICK = 1800;
-        float EXPLOSION_POWER = 400.0F;
-        //int NUMBER_RAYS = 1_100_000;
-        //int RAYS_PER_TICK = 2200; //16_000;
-        //float EXPLOSION_POWER = 44.0F;
+        int NUMBER_RAYS = 1_100_000;
+        int RAYS_PER_TICK = 2400;
+        float EXPLOSION_POWER = 44.0F;
         double GOLDEN_ANGLE = 3.88322207745093; // pi * (root5 - 1)
 
         player.sendMessage("§c[D] §7Precomputing XYZ tables!");
