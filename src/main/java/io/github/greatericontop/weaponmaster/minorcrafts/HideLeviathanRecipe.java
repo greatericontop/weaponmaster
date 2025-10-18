@@ -48,7 +48,7 @@ public class HideLeviathanRecipe {
         itemMeta.setDisplayName("§9§lHide Of Leviathan");
         hide.setItemMeta(itemMeta);
         hide.addUnsafeEnchantments(hideEnchants);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("hide_of_leviathan"), hide);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "hide_of_leviathan"), hide);
         recipe.shape("dnd",
                      "nLn",
                      "did");

@@ -37,7 +37,7 @@ public class EndSwordRecipe {
 
     public void regRecipe() {
         ItemStack endSword = util.generateMeta(util.END_SWORD_LORE, util.END_SWORD_NAME, Material.IRON_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("end_sword"), endSword);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "end_sword"), endSword);
         recipe.shape("PxP",
                      "xSx",
                      "PxP");

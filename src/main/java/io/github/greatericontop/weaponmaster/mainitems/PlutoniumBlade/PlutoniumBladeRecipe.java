@@ -37,7 +37,7 @@ public class PlutoniumBladeRecipe {
 
     public void regRecipe() {
         ItemStack plutoniumBlade = util.generateMeta(util.PLUTONIUM_BLADE_LORE, util.PLUTONIUM_BLADE_NAME, Material.NETHERITE_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("plutonium_blade"), plutoniumBlade);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "plutonium_blade"), plutoniumBlade);
         recipe.shape("xxN",
                      "xSx",
                      "Nxx");

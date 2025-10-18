@@ -32,7 +32,7 @@ public class CoreStaffRecipe {
 
     public void regRecipe() {
         ItemStack core = minorItems.generateCoreStaffItemStack();
-        ShapedRecipe coreRec = new ShapedRecipe(NamespacedKey.minecraft("core_staff"), core);
+        ShapedRecipe coreRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "core_staff"), core);
         coreRec.shape("non",
                       "SdS",
                       "non");

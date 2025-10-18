@@ -33,7 +33,7 @@ public class DragonSwordRecipe {
 
     public void regRecipe() {
         ItemStack drag = util.generateMeta(util.DRAGON_SWORD_LORE, util.DRAGON_SWORD_NAME, Material.NETHERITE_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_sword"), drag);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_sword"), drag);
         recipe.shape("bDb",
                      "bDb",
                      "bSb");

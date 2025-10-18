@@ -33,7 +33,7 @@ public class MinerRecipe {
 
     public void regRecipe() {
         ItemStack miner = util.generateMeta(util.MINERS_BLESSING_LORE, util.MINERS_BLESSING_NAME, Material.NETHERITE_PICKAXE);
-        ShapedRecipe minerRec = new ShapedRecipe(NamespacedKey.minecraft("miner"), miner);
+        ShapedRecipe minerRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "miner"), miner);
         minerRec.shape("BNB",
                        "iDi",
                        "HrH");

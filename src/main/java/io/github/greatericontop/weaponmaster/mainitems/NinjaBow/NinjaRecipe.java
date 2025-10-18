@@ -38,7 +38,7 @@ public class NinjaRecipe {
 
     public void regRecipe() {
         ItemStack ninjabow = util.generateMeta(util.NINJA_BOW_LORE, util.NINJA_BOW_NAME, Material.BOW);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("ninja_bow"), ninjabow);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "ninja_bow"), ninjabow);
         recipe.shape("AbS",
                      "brS",
                      "AbS");

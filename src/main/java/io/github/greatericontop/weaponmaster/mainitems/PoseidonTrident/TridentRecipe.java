@@ -35,7 +35,7 @@ public class TridentRecipe {
         ItemStack trident = util.generateMeta(util.POSEIDON_TRIDENT_LORE, util.POSEIDON_TRIDENT_NAME, Material.TRIDENT);
         trident.addUnsafeEnchantment(Enchantment.SHARPNESS, 2);
         trident.addUnsafeEnchantment(Enchantment.CHANNELING, 1);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("poseidon_trident"), trident);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "poseidon_trident"), trident);
         recipe.shape(" HT",
                      "bTH",
                      "Tb ");

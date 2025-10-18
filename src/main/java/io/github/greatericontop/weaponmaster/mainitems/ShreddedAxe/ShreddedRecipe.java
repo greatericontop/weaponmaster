@@ -33,7 +33,7 @@ public class ShreddedRecipe {
 
     public void regRecipe() {
         ItemStack shredded = util.generateMeta(util.SHREDDED_AXE_LORE, util.SHREDDED_AXE_NAME, Material.DIAMOND_AXE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("shredded_axe"), shredded);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "shredded_axe"), shredded);
         recipe.shape(" ZZ",
                      "dbZ",
                      " b ");

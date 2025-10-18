@@ -33,7 +33,7 @@ public class ScytheRecipe {
     
     public void regRecipe() {
         ItemStack scythe = util.generateMeta(util.DEATH_SCYTHE_LORE, util.DEATH_SCYTHE_NAME, Material.IRON_HOE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("death_scythe"), scythe);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "death_scythe"), scythe);
         recipe.shape("NNC",
                      "WbS",
                      "rbr");

@@ -33,7 +33,7 @@ public class HeliosRecipe {
 
     public void regRecipe() {
         ItemStack helios = util.generateMeta(util.HELIOS_LORE, util.HELIOS_NAME, Material.IRON_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("helios"), helios);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "helios"), helios);
         recipe.shape("tNt",
                      "tnt",
                      "tIt");

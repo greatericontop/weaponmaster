@@ -37,7 +37,7 @@ public class DragonElytraRecipe {
 
     public void regRecipe() {
         ItemStack elytra = util.generateMeta(util.DRAGON_ELYTRA_LORE, util.DRAGON_ELYTRA_NAME, Material.ELYTRA);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_elytra"), elytra);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_elytra"), elytra);
         recipe.shape(" x ",
                      "xEx",
                      " x ");

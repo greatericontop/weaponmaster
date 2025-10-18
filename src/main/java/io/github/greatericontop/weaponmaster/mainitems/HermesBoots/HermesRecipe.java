@@ -33,7 +33,7 @@ public class HermesRecipe {
     
     public void regRecipe() {
         ItemStack hermes = HermesCommand.giveHermes(util);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("hermes_boots"), hermes);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "hermes_boots"), hermes);
         recipe.shape("fBf",
                      "nXn",
                      "btb");

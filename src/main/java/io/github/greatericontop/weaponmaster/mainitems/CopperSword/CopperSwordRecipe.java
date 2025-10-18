@@ -24,7 +24,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
 
 public class CopperSwordRecipe {
 
@@ -37,7 +36,7 @@ public class CopperSwordRecipe {
         ItemStack copperSword = util.generateMeta(util.COPPER_SWORD_LORE, util.COPPER_SWORD_NAME, Material.GOLDEN_SWORD);
         copperSword.addUnsafeEnchantment(Enchantment.UNBREAKING, 9);
         copperSword.addUnsafeEnchantment(Enchantment.SHARPNESS, 3);
-        ShapedRecipe copperRec = new ShapedRecipe(NamespacedKey.minecraft("copper_sword"), copperSword);
+        ShapedRecipe copperRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "copper_sword"), copperSword);
         copperRec.shape("ccc",
                         "cic",
                         "ccc");

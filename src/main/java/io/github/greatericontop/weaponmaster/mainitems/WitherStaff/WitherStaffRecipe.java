@@ -36,7 +36,7 @@ public class WitherStaffRecipe {
 
     public void regRecipe() {
         ItemStack staff = util.generateMeta(util.WITHER_STAFF_LORE, util.WITHER_STAFF_NAME, Material.BLAZE_ROD);
-        ShapedRecipe staffRec = new ShapedRecipe(NamespacedKey.minecraft("wither_staff"), staff);
+        ShapedRecipe staffRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "wither_staff"), staff);
         staffRec.shape(" FW",
                        " rT",
                        "r  ");

@@ -37,7 +37,7 @@ public class DragonArmorRecipe {
 
     public void regHelmet() {
         ItemStack dragonArmor = util.generateMeta(util.DRAGON_ARMOR_LORE, util.DRAGON_ARMOR_NAME, Material.NETHERITE_HELMET);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_helmet"), dragonArmor);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_helmet"), dragonArmor);
         recipe.shape("www",
                      "wHw");
         recipe.setIngredient('w', new RecipeChoice.ExactChoice(customItems.generateDragonWingItemStack()));
@@ -47,7 +47,7 @@ public class DragonArmorRecipe {
 
     public void regChestplate() {
         ItemStack dragonArmor = util.generateMeta(util.DRAGON_ARMOR_LORE, util.DRAGON_ARMOR_NAME, Material.NETHERITE_CHESTPLATE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_chestplate"), dragonArmor);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_chestplate"), dragonArmor);
         recipe.shape("wHw",
                      "www",
                      "www");
@@ -58,7 +58,7 @@ public class DragonArmorRecipe {
 
     public void regLeggings() {
         ItemStack dragonArmor = util.generateMeta(util.DRAGON_ARMOR_LORE, util.DRAGON_ARMOR_NAME, Material.NETHERITE_LEGGINGS);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_leggings"), dragonArmor);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_leggings"), dragonArmor);
         recipe.shape("www",
                      "wHw",
                      "w w");
@@ -69,7 +69,7 @@ public class DragonArmorRecipe {
 
     public void regBoots() {
         ItemStack dragonArmor = util.generateMeta(util.DRAGON_ARMOR_LORE, util.DRAGON_ARMOR_NAME, Material.NETHERITE_BOOTS);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("dragon_boots"), dragonArmor);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "dragon_boots"), dragonArmor);
         recipe.shape("w w",
                      "wHw");
         recipe.setIngredient('w', new RecipeChoice.ExactChoice(customItems.generateDragonWingItemStack()));

@@ -37,7 +37,7 @@ public class EndArmorRecipe {
 
     public void reg(Material mat, String key) {
         ItemStack endArmor = util.generateMeta(util.END_ARMOR_LORE, util.END_ARMOR_NAME, mat);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft(key), endArmor);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", key), endArmor);
         recipe.shape("eXe",
                      "eAe",
                      "eXe");

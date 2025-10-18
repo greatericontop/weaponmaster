@@ -33,7 +33,7 @@ public class DyeRecipes {
 
     public void regRecipes() {
         ItemStack diamond = minorItems.generateDiamondDye();
-        ShapedRecipe diamondRec = new ShapedRecipe(NamespacedKey.minecraft("dye_diamond"), diamond);
+        ShapedRecipe diamondRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_diamond"), diamond);
         diamondRec.shape("xDx",
                          "xWx",
                          "xxx");
@@ -43,7 +43,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(diamondRec);
 
         ItemStack emerald = minorItems.generateEmeraldDye();
-        ShapedRecipe emeraldRec = new ShapedRecipe(NamespacedKey.minecraft("dye_emerald"), emerald);
+        ShapedRecipe emeraldRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_emerald"), emerald);
         emeraldRec.shape("xEx",
                          "xWx",
                          "xxx");
@@ -53,7 +53,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(emeraldRec);
 
         ItemStack crystal = minorItems.generateCrystalDye();
-        ShapedRecipe crystalRec = new ShapedRecipe(NamespacedKey.minecraft("dye_crystal"), crystal);
+        ShapedRecipe crystalRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_crystal"), crystal);
         crystalRec.shape("xxx",
                          "xWx",
                          "xxx");
@@ -62,7 +62,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(crystalRec);
 
         ItemStack lapis = minorItems.generateLapisDye();
-        ShapedRecipe lapisRec = new ShapedRecipe(NamespacedKey.minecraft("dye_lapis"), lapis);
+        ShapedRecipe lapisRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_lapis"), lapis);
         lapisRec.shape("xxx",
                        "xWx",
                        "xxx");
@@ -71,7 +71,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(lapisRec);
 
         ItemStack darkDiamond = minorItems.generateDarkDiamondDye();
-        ShapedRecipe darkDiamondRec = new ShapedRecipe(NamespacedKey.minecraft("dye_dark_diamond"), darkDiamond);
+        ShapedRecipe darkDiamondRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_dark_diamond"), darkDiamond);
         darkDiamondRec.shape(" DD",
                              "DwD",
                              "DD ");
@@ -80,7 +80,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(darkDiamondRec);
 
         ItemStack gold = minorItems.generateGoldDye();
-        ShapedRecipe goldRec = new ShapedRecipe(NamespacedKey.minecraft("dye_gold"), gold);
+        ShapedRecipe goldRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_gold"), gold);
         goldRec.shape(" x ",
                       "xWx",
                       " x ");
@@ -89,7 +89,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(goldRec);
 
         ItemStack redstone = minorItems.generateRedstoneDye();
-        ShapedRecipe redstoneRec = new ShapedRecipe(NamespacedKey.minecraft("dye_redstone"), redstone);
+        ShapedRecipe redstoneRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_redstone"), redstone);
         redstoneRec.shape("xRx",
                           "xWx",
                           "xxx");
@@ -99,7 +99,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(redstoneRec);
 
         ItemStack blood = minorItems.generateBloodDye();
-        ShapedRecipe bloodRec = new ShapedRecipe(NamespacedKey.minecraft("dye_blood"), blood);
+        ShapedRecipe bloodRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_blood"), blood);
         bloodRec.shape("RHR",
                        "HwH",
                        "RHR");
@@ -109,7 +109,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(bloodRec);
 
         ItemStack leviathan = minorItems.generateLeviathanDye();
-        ShapedRecipe leviathanRec = new ShapedRecipe(NamespacedKey.minecraft("dye_leviathan"), leviathan);
+        ShapedRecipe leviathanRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_leviathan"), leviathan);
         leviathanRec.shape("xLx",
                            "xWx",
                            "xxx");
@@ -119,7 +119,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(leviathanRec);
 
         ItemStack expert = minorItems.generateExpertDye();
-        ShapedRecipe expertRec = new ShapedRecipe(NamespacedKey.minecraft("dye_expert"), expert);
+        ShapedRecipe expertRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_expert"), expert);
         expertRec.shape(" E ",
                         "EWE",
                         " E ");
@@ -128,7 +128,7 @@ public class DyeRecipes {
         Bukkit.getServer().addRecipe(expertRec);
 
         ItemStack dragon = minorItems.generateDragonDye();
-        ShapedRecipe dragonRec = new ShapedRecipe(NamespacedKey.minecraft("dye_dragon"), dragon);
+        ShapedRecipe dragonRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "dye_dragon"), dragon);
         dragonRec.shape(" hh",
                         "xWh",
                         "xx ");

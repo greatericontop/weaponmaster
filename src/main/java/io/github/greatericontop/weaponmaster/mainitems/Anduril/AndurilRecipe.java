@@ -33,7 +33,7 @@ public class AndurilRecipe {
 
     public void regRecipe() {
         ItemStack anduril = util.generateMeta(util.ANDURIL_LORE, util.ANDURIL_NAME, Material.IRON_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("anduril"), anduril);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "anduril"), anduril);
         recipe.shape("fAf",
                      "fIf",
                      "fSf");

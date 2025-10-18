@@ -37,7 +37,7 @@ public class ArtemisRecipe {
 
     public void regRecipe() {
         ItemStack artemis = util.generateMeta(util.ARTEMIS_BOW_LORE, util.ARTEMIS_BOW_NAME, Material.BOW);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("artemis"), artemis);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "artemis"), artemis);
         recipe.shape("snB",
                      "NeB",
                      "dnB");

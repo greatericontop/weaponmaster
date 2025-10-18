@@ -33,7 +33,7 @@ public class ExodusRecipe {
 
     public void regRecipe() {
         ItemStack exodus = util.generateMeta(util.EXODUS_LORE, util.EXODUS_NAME, Material.DIAMOND_HELMET);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("exodus"), exodus);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "exodus"), exodus);
         recipe.shape("ddd",
                      "dGd",
                      "cEc");

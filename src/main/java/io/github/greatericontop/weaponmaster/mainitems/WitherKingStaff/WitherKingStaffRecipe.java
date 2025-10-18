@@ -39,7 +39,7 @@ public class WitherKingStaffRecipe {
     public void regRecipe() {
         ItemStack staff = util.generateMeta(util.WITHER_KING_STAFF_LORE, util.WITHER_KING_STAFF_NAME, Material.BLAZE_ROD);
         staff.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
-        ShapedRecipe staffRec = new ShapedRecipe(NamespacedKey.minecraft("wither_king_staff"), staff);
+        ShapedRecipe staffRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "wither_king_staff"), staff);
         staffRec.shape(" hh",
                        " Rh",
                        "r  ");

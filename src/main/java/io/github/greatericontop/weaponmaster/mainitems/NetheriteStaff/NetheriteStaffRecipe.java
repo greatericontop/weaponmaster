@@ -49,7 +49,7 @@ public class NetheriteStaffRecipe {
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 0.5, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         staff.setItemMeta(im);
-        ShapedRecipe staffRec = new ShapedRecipe(NamespacedKey.minecraft("netherite_staff"), staff);
+        ShapedRecipe staffRec = new ShapedRecipe(new NamespacedKey("weaponmaster", "netherite_staff"), staff);
         staffRec.shape(" sB",
                        " Ns",
                        "i  ");

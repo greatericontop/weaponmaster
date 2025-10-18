@@ -33,7 +33,7 @@ public class VampRecipe {
 
     public void regRecipe() {
         ItemStack vampaxe = util.generateMeta(util.VAMP_AXE_LORE, util.VAMP_AXE_NAME, Material.NETHERITE_AXE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("vamp_axe"), vampaxe);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "vamp_axe"), vampaxe);
         recipe.shape(" Wx",
                      " Rx",
                      "R x");

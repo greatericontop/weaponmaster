@@ -32,7 +32,7 @@ public class ValkyrieRecipe {
 
     public void regRecipe() {
         ItemStack valkyrie = ValkyrieCommand.giveValkyrie(util);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("valkyrie_axe"), valkyrie);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "valkyrie_axe"), valkyrie);
         recipe.shape("WnW",
                      "WxW",
                      " x ");

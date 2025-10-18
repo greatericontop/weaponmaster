@@ -33,7 +33,7 @@ public class FlaskRecipe {
 
     public void regRecipe() {
         ItemStack flask = minorItems.generateFlaskIchorItemStack();
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("flask_ichor"), flask);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "flask_ichor"), flask);
         recipe.shape(" S ",
                      " g ",
                      "IbW");

@@ -37,7 +37,7 @@ public class LifeHelmetRecipe {
     
     public void regRecipe() {
         ItemStack lifeHelmet = util.generateMeta(util.LIFE_HELMET_LORE, util.LIFE_HELMET_NAME, Material.DIAMOND_HELMET);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("life_helmet"), lifeHelmet);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "life_helmet"), lifeHelmet);
         recipe.shape("ddd",
                      "dCd",
                      "TTT");

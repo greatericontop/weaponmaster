@@ -34,7 +34,7 @@ public class CavemanRecipe {
     
     public void regRecipe() {
         ItemStack caveman = util.generateMeta(util.CAVEMAN_SWORD_LORE, util.CAVEMAN_SWORD_NAME, Material.STONE_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("caveman_sword"), caveman);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "caveman_sword"), caveman);
         recipe.shape(" n ",
                      "SSS",
                      "drd");

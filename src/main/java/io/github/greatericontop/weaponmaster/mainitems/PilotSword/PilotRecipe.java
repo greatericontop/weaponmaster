@@ -35,7 +35,7 @@ public class PilotRecipe {
 
     public void regRecipe() {
         ItemStack pilotsword = util.generateMeta(util.PILOT_SWORD_LORE, util.PILOT_SWORD_NAME, Material.NETHERITE_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("pilot_sword"), pilotsword);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "pilot_sword"), pilotsword);
         recipe.shape("WXW",
                      "YTY",
                      "WXW");

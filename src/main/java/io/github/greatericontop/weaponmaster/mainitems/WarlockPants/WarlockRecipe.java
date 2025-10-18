@@ -36,7 +36,7 @@ public class WarlockRecipe {
     public void regRecipe() {
         ItemStack warlock = util.generateMeta(util.WARLOCK_PANTS_LORE, util.WARLOCK_PANTS_NAME, Material.NETHERITE_LEGGINGS);
         warlock.addUnsafeEnchantment(Enchantment.UNBREAKING, 4);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("warlock"), warlock);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "warlock"), warlock);
         recipe.shape("nWn",
                      "bLb",
                      "mSE");

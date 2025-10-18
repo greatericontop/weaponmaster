@@ -34,7 +34,7 @@ public class ThrowingKnifeRecipe {
 
     public void regRecipe() {
         ItemStack ThrowingKnife = util.generateMeta(util.THROWING_KNIFE_LORE, util.THROWING_KNIFE_NAME, Material.IRON_SWORD);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("throwing_knife"), ThrowingKnife);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "throwing_knife"), ThrowingKnife);
         recipe.shape("  I",
                      " S ",
                      "P  ");

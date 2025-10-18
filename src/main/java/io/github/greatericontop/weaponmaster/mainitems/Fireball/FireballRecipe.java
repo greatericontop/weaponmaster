@@ -34,7 +34,7 @@ public class FireballRecipe {
     public void regRecipe() {
         ItemStack fireball = util.generateMeta(util.FIREBALL_LORE, util.FIREBALL_NAME, Material.FIRE_CHARGE);
         fireball.setAmount(4);
-        ShapelessRecipe fireballRec = new ShapelessRecipe(NamespacedKey.minecraft("fireball"), fireball);
+        ShapelessRecipe fireballRec = new ShapelessRecipe(new NamespacedKey("weaponmaster", "fireball"), fireball);
         fireballRec.addIngredient(Material.FIRE_CHARGE);
         fireballRec.addIngredient(Material.TNT);
         fireballRec.addIngredient(Material.ARROW);

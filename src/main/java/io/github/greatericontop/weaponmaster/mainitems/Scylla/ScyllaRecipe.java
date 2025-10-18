@@ -37,7 +37,7 @@ public class ScyllaRecipe {
 
     public void regRecipe() {
         ItemStack scylla = util.generateMeta(util.SCYLLA_CHESTPLATE_LORE, util.SCYLLA_CHESTPLATE_NAME, Material.DIAMOND_CHESTPLATE);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("scylla_chestplate"), scylla);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "scylla_chestplate"), scylla);
         recipe.shape("sNs",
                      "PCP",
                      "sNs");
