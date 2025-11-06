@@ -203,71 +203,56 @@ public class WeaponMasterMain extends JavaPlugin {
         // Vamp Axe
         this.getServer().getPluginManager().registerEvents(new VampItemListener(this), this);
         this.getCommand("vampaxe").setExecutor(new VampCommand());
-        new VampRecipe().regRecipe();
         // Scythe
         this.getServer().getPluginManager().registerEvents(new ScytheItemListener(this), this);
         this.getCommand("scythe").setExecutor(new ScytheCommand());
-        new ScytheRecipe().regRecipe();
         // Dragon Sword
         this.getServer().getPluginManager().registerEvents(new DragonSwordListener(this), this);
         this.getCommand("dragonsword").setExecutor(new DragonSwordCommand());
-        new DragonSwordRecipe().regRecipe();
         this.getServer().getPluginManager().registerEvents(new DragonSwordUpgradeListener(this), this);
         // Artemis Bow
         this.getServer().getPluginManager().registerEvents(new ArtemisItemListener(this), this);
         this.getCommand("artemis").setExecutor(new ArtemisCommand());
-        new ArtemisRecipe().regRecipe();
         // Anduril
         this.getCommand("anduril").setExecutor(new AndurilCommand());
         new AndurilItemListener(this).regAndurilRunnable();
-        new AndurilRecipe().regRecipe();
         // Excalibur
         this.getCommand("excalibur").setExecutor(new ExcaliburCommand());
         this.getServer().getPluginManager().registerEvents(new ExcaliburItemListener(this), this);
-        new ExcaliburRecipe().regRecipe();
         // Exodus
         this.getCommand("exodus").setExecutor(new ExodusCommand());
         this.getServer().getPluginManager().registerEvents(new ExodusItemListener(this), this);
-        new ExodusRecipe().regRecipe();
         // Rocket Stick
         this.getCommand("rocketstick").setExecutor(new RocketCommand());
         this.getServer().getPluginManager().registerEvents(new RocketItemListener(this), this);
         // Helios
         this.getCommand("helios").setExecutor(new HeliosCommand());
         this.getServer().getPluginManager().registerEvents(new HeliosItemListener(this), this);
-        new HeliosRecipe().regRecipe();
         // Scylla's Chestplate
         this.getCommand("scylla").setExecutor(new ScyllaCommand());
         this.getServer().getPluginManager().registerEvents(new ScyllaItemListener(this), this);
-        new ScyllaRecipe().regRecipe();
         // Hermes' Boots
         this.getCommand("hermesboots").setExecutor(new HermesCommand());
         this.getServer().getPluginManager().registerEvents(new HermesItemListener(this), this);
-        new HermesRecipe().regRecipe();
         // Helmet of Life
         LifeHelmetListener lifeHelmetListener = new LifeHelmetListener(this);
         this.getCommand("lifehelmet").setExecutor(new LifeHelmetCommand(lifeHelmetListener));
         this.getServer().getPluginManager().registerEvents(lifeHelmetListener, this);
-        new LifeHelmetRecipe().regRecipe();
         // Caveman Sword
         this.getCommand("cavemansword").setExecutor(new CavemanCommand());
         this.getServer().getPluginManager().registerEvents(new CavemanItemListener(this), this);
-        new CavemanRecipe().regRecipe();
         // Warlock Pants
         this.getCommand("warlockpants").setExecutor(new WarlockCommand());
         new WarlockItemListener(this).regWarlockRunnable();
-        new WarlockRecipe().regRecipe();
         // Fireball
         this.getCommand("fireball").setExecutor(new FireballCommand());
         this.getServer().getPluginManager().registerEvents(new FireballListener(this), this);
-        new FireballRecipe().regRecipe();
         // Atom Bomb
         this.getCommand("atombomb").setExecutor(new AtomCommand());
         this.getServer().getPluginManager().registerEvents(new AtomItemListener(this), this);
         // Netherite Staff
         this.getCommand("netheritestaff").setExecutor(new NetheriteStaffCommand());
         this.getServer().getPluginManager().registerEvents(new NetheriteStaffListener(this), this);
-        new NetheriteStaffRecipe().regRecipe();
         // Sniper Rifle
         this.getCommand("sniperrifle").setExecutor(new SniperCommand());
         this.getServer().getPluginManager().registerEvents(new SniperItemListener(this), this);
@@ -276,22 +261,18 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("minersblessing").setExecutor(new MinerCommand());
         this.getServer().getPluginManager().registerEvents(minerListener, this);
         minerListener.regHasteRunnable();
-        new MinerRecipe().regRecipe();
         // Pilot's Sword
         this.getCommand("pilotsword").setExecutor(new PilotCommand());
         this.getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
-        //new PilotRecipe().regRecipe();
         // Shredded Axe
         this.getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         this.getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);
-        new ShreddedRecipe().regRecipe();
         // Napalm Missile
         this.getCommand("napalm").setExecutor(new NapalmCommand());
         this.getServer().getPluginManager().registerEvents(new NapalmItemListener(this), this);
         // Ninja Bow
         this.getCommand("ninjabow").setExecutor(new NinjaCommand());
         this.getServer().getPluginManager().registerEvents(new NinjaItemListener(this), this);
-        new NinjaRecipe().regRecipe();
         // Dragon Armor
         this.getCommand("dragonarmor").setExecutor(new DragonArmorCommand());
         this.getServer().getPluginManager().registerEvents(new DragonArmorListener(this), this);
@@ -300,17 +281,14 @@ public class WeaponMasterMain extends JavaPlugin {
         // Copper Sword
         this.getCommand("coppersword").setExecutor(new CopperSwordCommand());
         this.getServer().getPluginManager().registerEvents(new CopperSwordListener(this), this);
-        new CopperSwordRecipe().regRecipe();
         // Poseidon's Trident
         TridentListener tridentListener = new TridentListener(this);
         this.getCommand("poseidontrident").setExecutor(new TridentCommand());
         this.getServer().getPluginManager().registerEvents(tridentListener, this);
         tridentListener.regTridentRunnable();
-        new TridentRecipe().regRecipe();
         // Valkyrie Axe
         this.getCommand("valkyrieaxe").setExecutor(new ValkyrieCommand());
         this.getServer().getPluginManager().registerEvents(new ValkyrieItemListener(this), this);
-        new ValkyrieRecipe().regRecipe();
         // Assault Rifle
         this.getCommand("assaultrifle").setExecutor(new AssaultCommand());
         this.getServer().getPluginManager().registerEvents(new AssaultListener(this), this);
@@ -318,7 +296,6 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("dragonelytra").setExecutor(new ElytraCommand());
         this.getServer().getPluginManager().registerEvents(new ElytraItemListener(this).regDragonElytraRunnable(), this);
         this.getServer().getPluginManager().registerEvents(new DragonElytraUpgradeListener(this), this);
-        new DragonElytraRecipe().regRecipe();
         // Guided Missile
         this.getCommand("guidedmissile").setExecutor(new GuidedMissileCommand());
         GuidedMissileManager guidedMissileManager = new GuidedMissileManager(this);
@@ -330,14 +307,12 @@ public class WeaponMasterMain extends JavaPlugin {
         // Wither Staff
         this.getCommand("witherstaff").setExecutor(new WitherStaffCommand());
         this.getServer().getPluginManager().registerEvents(new WitherItemListener(this), this);
-        new WitherStaffRecipe().regRecipe();
         // Bomb Cannon
         this.getCommand("bombcannon").setExecutor(new BombCannonCommand());
         this.getServer().getPluginManager().registerEvents(new BombCannonListener(this), this);
         // Throwing Knife
         this.getCommand("throwingknife").setExecutor(new ThrowingKnifeCommand());
         this.getServer().getPluginManager().registerEvents(new ThrowingKnifeListener(this), this);
-        new ThrowingKnifeRecipe().regRecipe();
         // Witch Sword
         this.getCommand("witchsword").setExecutor(new WitchSwordCommand());
         this.getServer().getPluginManager().registerEvents(new WitchSwordListener(this), this);
@@ -346,7 +321,6 @@ public class WeaponMasterMain extends JavaPlugin {
         EndPowerManager endPowerManager = new EndPowerManager();
         endPowerManager.registerEndPowerManagerTask(this);
         this.getServer().getPluginManager().registerEvents(new EndSwordListener(this, endPowerManager), this);
-        new EndSwordRecipe().regRecipe();
         // End Armor
         this.getCommand("endarmor").setExecutor(new EndArmorCommand());
         this.getServer().getPluginManager().registerEvents(new EndArmorListener(), this);
@@ -366,19 +340,12 @@ public class WeaponMasterMain extends JavaPlugin {
         // Plutonium Blade
         this.getCommand("plutoniumblade").setExecutor(new PlutoniumBladeCommand());
         this.getServer().getPluginManager().registerEvents(new PlutoniumBladeListener(this), this);
-        new PlutoniumBladeRecipe().regRecipe();
         // Wither King Staff
         this.getCommand("witherkingstaff").setExecutor(new WitherKingCommand());
         this.getServer().getPluginManager().registerEvents(new WitherKingItemListener(this), this);
-        new WitherKingStaffRecipe().regRecipe();
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());
-        new DyeRecipes().regRecipes();
-        new CoreStaffRecipe().regRecipe();
-        new FlaskRecipe().regRecipe();
-        new HideLeviathanRecipe().regRecipe();
-        new WeaponsPlutoniumRecipe().regRecipe();
         // Custom Item Listeners
         minorItemListener = new MinorItemListener(this);
         this.getServer().getPluginManager().registerEvents(minorItemListener, this);
