@@ -24,6 +24,8 @@ import io.github.greatericontop.weaponmaster.dragondescent.DescentEvents;
 import io.github.greatericontop.weaponmaster.dragondescent.DescentGUIListener;
 import io.github.greatericontop.weaponmaster.dragondescent.DescentManagementCommand;
 import io.github.greatericontop.weaponmaster.dragonmanager.FightManager;
+import io.github.greatericontop.weaponmaster.mainitems.AgriculturalAbomination.AgriculturalAbominationCommand;
+import io.github.greatericontop.weaponmaster.mainitems.AgriculturalAbomination.AgriculturalAbominationListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Anduril.AndurilRecipe;
@@ -371,6 +373,9 @@ public class WeaponMasterMain extends JavaPlugin {
         this.getCommand("witherkingstaff").setExecutor(new WitherKingCommand());
         this.getServer().getPluginManager().registerEvents(new WitherKingItemListener(this), this);
         new WitherKingStaffRecipe().regRecipe();
+        // Agricultural Abomination
+        this.getCommand("agriculturalabomination").setExecutor(new AgriculturalAbominationCommand());
+        this.getServer().getPluginManager().registerEvents(new AgriculturalAbominationListener(this), this);
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

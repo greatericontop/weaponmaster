@@ -262,6 +262,11 @@ commands:
     usage: "U: /witherkingstaff [give]"
     permission: "weaponmaster.witherkingstaff.command"
     permission-message: "§cYou are not allowed to do this!"
+  agriculturalabomination:
+    description: "[Weapon Master] command for Agricultural Abomination"
+    usage: "U: /agriculturalabomination [give]"
+    permission: "weaponmaster.agriculturalabomination.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -495,4 +500,9 @@ permissions:
   weaponmaster.witherkingstaff.command:
     default: op
   weaponmaster.witherkingstaff.use:
+    default: true
+  #
+  weaponmaster.agriculturalabomination.command:
+    default: op
+  weaponmaster.agriculturalabomination.use:
     default: true
