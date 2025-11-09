@@ -23,7 +23,6 @@ import org.bukkit.FluidCollisionMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -33,6 +32,8 @@ import org.bukkit.util.Vector;
 
 public class EndSwordListener implements Listener {
     private static final double TELEPORT_DISTANCE = 7.0;
+    private static final double RAYTRACE_EXTRA_PADDING = 0.4;
+    private static final double RAYTRACE_TOLERANCE = 0.05;
 
     private final WeaponMasterMain plugin;
     private final EndPowerManager powerManager;
@@ -41,6 +42,22 @@ public class EndSwordListener implements Listener {
         this.plugin = plugin;
         this.powerManager = powerManager;
         this.util = new Util(null);
+    }
+
+    private static double findMaxRaytraceDistance(Player player, double min, double max, boolean isFirstRun) {
+        // Binary search
+        if (max - min < RAYTRACE_TOLERANCE) {
+            return (min + max) / 2.0;
+        }
+        double test = isFirstRun ? max : (min + max) / 2.0;
+        RayTraceResult rtxResult = player.getWorld().rayTraceBlocks(
+                player.getEyeLocation(), player.getEyeLocation().getDirection(),
+                test, FluidCollisionMode.NEVER, true);
+        if (rtxResult != null && rtxResult.getHitBlock() != null) {
+            return findMaxRaytraceDistance(player, min, test, false);
+        } else {
+            return findMaxRaytraceDistance(player, test, max, false);
+        }
     }
 
     @EventHandler()
@@ -59,15 +76,13 @@ public class EndSwordListener implements Listener {
             return;
         }
 
-        // check raytrace
-        RayTraceResult rtxResult = player.getWorld().rayTraceBlocks(
-                player.getEyeLocation(), player.getEyeLocation().getDirection(),
-                TELEPORT_DISTANCE + 0.1, FluidCollisionMode.NEVER, true);
-        if (rtxResult != null && rtxResult.getHitBlock() != null) {
+        double teleportDistance = findMaxRaytraceDistance(player, 0.0, TELEPORT_DISTANCE+RAYTRACE_EXTRA_PADDING, true) - RAYTRACE_EXTRA_PADDING;
+        if (teleportDistance < 3.0) {
             player.sendMessage("§7You can't teleport through blocks!");
             return;
         }
-        Vector tp = player.getEyeLocation().getDirection().multiply(TELEPORT_DISTANCE);
+        player.sendMessage(""+teleportDistance);
+        Vector tp = player.getEyeLocation().getDirection().multiply(teleportDistance);
         player.playSound(player, Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
         player.teleport(player.getEyeLocation().add(tp));
         powerManager.incrementPower(player, -10);
