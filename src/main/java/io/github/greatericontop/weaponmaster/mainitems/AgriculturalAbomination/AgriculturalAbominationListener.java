@@ -19,6 +19,7 @@ package io.github.greatericontop.weaponmaster.mainitems.AgriculturalAbomination;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -56,7 +57,6 @@ public class AgriculturalAbominationListener implements Listener {
             return;
         }
         Material mat = event.getBlockState().getType(); // before it was broken
-        player.sendMessage("block is " + mat);
         switch (mat) {
             case WHEAT -> {
                 if (containsAndDecrement(event.getItems(), Material.WHEAT_SEEDS)) {
@@ -86,11 +86,14 @@ public class AgriculturalAbominationListener implements Listener {
             case SUGAR_CANE -> {
                 Material matOfBlockBelow = event.getBlock().getLocation().add(0, -1, 0).getBlock().getType();
                 if (matOfBlockBelow != Material.SUGAR_CANE && containsAndDecrement(event.getItems(), Material.SUGAR_CANE)) {
-                    event.getBlock().setType(Material.SUGAR_CANE);
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                        if (event.getBlock().getType() == Material.AIR) {
+                            event.getBlock().setType(Material.SUGAR_CANE);
+                        }
+                    }, 2L); // must be 2 ticks because the next cane breaks on tick 1
                 }
             }
         }
-
     }
 
 }
