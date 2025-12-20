@@ -153,6 +153,40 @@ public class WeaponMasterCommand implements CommandExecutor {
             return true;
         }
 
+        if (args.length >= 1 && args[0].equals("vanillastack")) {
+            if (args.length < 2) {
+                sender.sendMessage("§cError: §4Missing arguments: /weaponmaster vanillastack <number>");
+                return true;
+            }
+            int amount;
+            try {
+                if (args[1].equalsIgnoreCase("max")) {
+                    amount = 99;
+                } else {
+                    amount = Integer.parseInt(args[1]);
+                }
+            } catch (NumberFormatException e) {
+                sender.sendMessage("§cError: §4You gave an invalid number.");
+                return true;
+            }
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("§cError: §4Must be a player.");
+                return true;
+            }
+            amount = Math.min(Math.max(amount, 1), 99);
+            ItemStack stack = ((Player) sender).getInventory().getItemInMainHand();
+            ItemMeta im = stack.getItemMeta();
+            if (im == null) {
+                sender.sendMessage("§3The stack size of this item can't be changed!");
+                return true;
+            }
+            im.setMaxStackSize(amount);
+            stack.setItemMeta(im);
+            stack.setAmount(amount);
+            sender.sendMessage(String.format("§3Set stack size to §4%d§3.", amount));
+            return true;
+        }
+
         if (args.length >= 1 && args[0].equals("forceenchant")) {
             if (args.length < 3) {
                 sender.sendMessage("§cError: §4Missing arguments: /weaponmaster forceenchant <enchant> <level>");
