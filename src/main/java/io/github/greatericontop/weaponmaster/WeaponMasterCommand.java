@@ -130,20 +130,23 @@ public class WeaponMasterCommand implements CommandExecutor {
                 sender.sendMessage("§cError: §4Missing arguments: /weaponmaster illegalstack <number>");
                 return true;
             }
-            byte amount;
+            int amount;
             try {
                 if (args[1].equalsIgnoreCase("max")) {
-                    amount = 127;
+                    amount = 99;
                 } else {
-                    amount = Byte.parseByte(args[1]);
+                    amount = Integer.parseInt(args[1]);
                 }
             } catch (NumberFormatException e) {
-                sender.sendMessage("§cError: §4You gave an invalid number. Please give a byte from -128 to 127, or use 'max'.");
+                sender.sendMessage("§cError: §4You gave an invalid number.");
                 return true;
             }
             if (!(sender instanceof Player)) {
                 sender.sendMessage("§cError: §4Must be a player.");
                 return true;
+            }
+            if (amount > 99) {
+                sender.sendMessage("§6Warning: Stack sizes above 99 will not save and can cause data loss or duplication exploits!");
             }
             ((Player) sender).getInventory().getItemInMainHand().setAmount(amount);
             sender.sendMessage(String.format("§3Set stack size to §4%d§3.", amount));
