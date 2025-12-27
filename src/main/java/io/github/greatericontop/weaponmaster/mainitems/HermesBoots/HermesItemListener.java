@@ -22,7 +22,6 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -33,7 +32,8 @@ import java.util.UUID;
 
 public class HermesItemListener implements Listener {
 
-    private final double ACTIVATE_CHANCE = 0.12;
+    private final double ACTIVATE_CHANCE;
+    private final long COOLDOWN_TICKS;
 
     private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
     private final WeaponMasterMain plugin;
@@ -42,6 +42,8 @@ public class HermesItemListener implements Listener {
     public HermesItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        ACTIVATE_CHANCE = plugin.getConfig().getDouble("hermes.activate_chance", 0.12);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("hermes.cooldown_ticks", 320L);
     }
 
     @EventHandler()
@@ -66,7 +68,7 @@ public class HermesItemListener implements Listener {
                     public void run() {
                         cooldown.put(player.getUniqueId(), true);
                     }
-                }.runTaskLater(plugin, 320L); // after 16 seconds
+                }.runTaskLater(plugin, COOLDOWN_TICKS);
             }
         }
     }

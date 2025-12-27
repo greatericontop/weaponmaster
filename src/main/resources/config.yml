@@ -102,6 +102,9 @@ helios:
   food_cost: 2.666666
   max_damage_level: 80
   max_damage_amount: 0.5
+hermes:
+  activate_chance: 0.12
+  cooldown_ticks: 320
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
