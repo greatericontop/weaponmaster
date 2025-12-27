@@ -28,6 +28,10 @@ rng:
 
 ares:
   damage: 2.0
+artemis:
+  seeking_distance: 3.8
+assassinsblade:
+  damage_multiplier: 1.4
 atomBomb:
   disable: true
   enforceGlobalCooldown: false

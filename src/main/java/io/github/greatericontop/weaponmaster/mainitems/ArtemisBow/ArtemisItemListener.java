@@ -27,7 +27,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -46,7 +45,7 @@ enum ArtemisMode {
 
 public class ArtemisItemListener implements Listener {
 
-    private final double SEEKING_DISTANCE = 3.8;
+    private final double SEEKING_DISTANCE;
 
     private Map<String, ArtemisMode> artemisModes = new HashMap<String, ArtemisMode>();
 
@@ -55,6 +54,7 @@ public class ArtemisItemListener implements Listener {
     public ArtemisItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        SEEKING_DISTANCE = plugin.getConfig().getDouble("artemis.seeking_distance", 3.8);
     }
 
     private double doCompensation(int runNumber, ArtemisMode mode) {

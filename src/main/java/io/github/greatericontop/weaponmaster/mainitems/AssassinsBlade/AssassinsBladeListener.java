@@ -24,16 +24,18 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class AssassinsBladeListener implements Listener {
     private final float REQUIRED_ANGLE = 40.0F;
 
+    private final double DAMAGE_MULTIPLIER;
+
     private final Util util;
     public AssassinsBladeListener(WeaponMasterMain plugin) {
         util = new Util(plugin);
+        DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("assassinsblade.damage_multiplier", 1.4);
     }
 
     @EventHandler()
@@ -54,7 +56,7 @@ public class AssassinsBladeListener implements Listener {
         float targetYaw = (target.getLocation().getYaw() + 360) % 360;
         float angle = Math.abs(playerYaw - targetYaw); // 0 ~ 360
         if (angle < REQUIRED_ANGLE || 360-REQUIRED_ANGLE < angle) {
-            event.setDamage(event.getDamage() * 1.4);
+            event.setDamage(event.getDamage() * DAMAGE_MULTIPLIER);
             player.getWorld().spawnParticle(Particle.LARGE_SMOKE, target.getLocation(), 40);
         }
     }
