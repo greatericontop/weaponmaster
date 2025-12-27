@@ -47,14 +47,20 @@ deathScythe:
   strength4Threshold: 11.0
   strength3Threshold: 7.0
   strength2Threshold: 3.0
+dragonArmor:
+  protection_each: 0.05
+  protection_enchant: 0.0075
+  attack_bonus_each: 0.02
+  # When enchanted with huge protection levels, still take 2% damage by default
+  min_damage_multiplier: 0.02
+  reduction_hunger: 0.6666666666666666
+  # Fixes hurt cam stuttering in lava or fire
+  # This should be patched in later versions (should be fixed in 1.21.4 Paper) but if you're on an earlier version
+  # or Spigot and experience stuttering, try setting this to true
+  fixStuttering: false
 fireball:
   heatSeeking: false
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
   cooldownTicksUpgraded: 4
-dragonArmor:
-  # Fixes hurt cam stuttering in lava or fire
-  # This should be patched in later versions (should be fixed in 1.21.4 Paper) but if you're on an earlier version
-  # or Spigot and experience stuttering, try setting this to true
-  fixStuttering: false

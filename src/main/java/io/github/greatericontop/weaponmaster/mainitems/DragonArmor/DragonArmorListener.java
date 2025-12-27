@@ -35,18 +35,24 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class DragonArmorListener implements Listener {
 
-    private final double PROTECTION_EACH = 0.05;
-    private final double PROTECTION_ENCHANT = 0.00_75;
-    private final double BONUS_EACH = 0.02;
-    private final float REDUCTION_HUNGER = 0.6666666666666666F;
+    private final double PROTECTION_EACH;
+    private final double PROTECTION_ENCHANT;
+    private final double ATTACK_BONUS_EACH;
+    private final float REDUCTION_HUNGER;
+    private final double MIN_DAMAGE_MULTIPLIER;
+    private final boolean fixStuttering;
 
     private final WeaponMasterMain plugin;
     private final Util util;
-    private final boolean fixStuttering;
     public DragonArmorListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.util = new Util(plugin);
-        this.fixStuttering = plugin.getConfig().getBoolean("dragonArmor.fixStuttering", true);
+        PROTECTION_EACH = plugin.getConfig().getDouble("dragonArmor.protection_each", 0.05);
+        PROTECTION_ENCHANT = plugin.getConfig().getDouble("dragonArmor.protection_enchant", 0.0075);
+        ATTACK_BONUS_EACH = plugin.getConfig().getDouble("dragonArmor.attack_bonus_each", 0.02);
+        REDUCTION_HUNGER = (float) plugin.getConfig().getDouble("dragonArmor.reduction_hunger", 0.6666666666666666);
+        MIN_DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("dragonArmor.min_damage_multiplier", 0.02);
+        fixStuttering = plugin.getConfig().getBoolean("dragonArmor.fixStuttering", true);
     }
 
     public boolean hasFullSet(PlayerInventory inventory) {
@@ -79,7 +85,7 @@ public class DragonArmorListener implements Listener {
             damageProtection -= (a + b + c + d) * PROTECTION_ENCHANT;
         }
         if (damageProtection >= 0.999)  return;
-        damageProtection = Math.max(damageProtection, 0.02);
+        damageProtection = Math.max(damageProtection, MIN_DAMAGE_MULTIPLIER);
         if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
             return;
@@ -102,10 +108,10 @@ public class DragonArmorListener implements Listener {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
         double damageBonus = 1.0;
-        if (util.checkForDragonArmor(player.getInventory().getHelmet())) { damageBonus += BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getHelmet()); }
-        if (util.checkForDragonArmor(player.getInventory().getChestplate())) { damageBonus += BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getChestplate()); }
-        if (util.checkForDragonArmor(player.getInventory().getLeggings())) { damageBonus += BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getLeggings()); }
-        if (util.checkForDragonArmor(player.getInventory().getBoots())) { damageBonus += BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getBoots()); }
+        if (util.checkForDragonArmor(player.getInventory().getHelmet())) { damageBonus += ATTACK_BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getHelmet()); }
+        if (util.checkForDragonArmor(player.getInventory().getChestplate())) { damageBonus += ATTACK_BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getChestplate()); }
+        if (util.checkForDragonArmor(player.getInventory().getLeggings())) { damageBonus += ATTACK_BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getLeggings()); }
+        if (util.checkForDragonArmor(player.getInventory().getBoots())) { damageBonus += ATTACK_BONUS_EACH + 0.002*getUpgradeLevel(player.getInventory().getBoots()); }
         if (damageBonus <= 1.001)  return;
         if (!player.hasPermission("weaponmaster.dragonarmor.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.dragonarmor.use§3.");
