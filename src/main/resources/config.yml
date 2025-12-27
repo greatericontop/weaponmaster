@@ -81,6 +81,21 @@ fireball:
   power: 3.0
   seekingDistance: 3.0
   heatSeeking: false
+guidedMissile:
+  # Max distance that players can lock on to targets
+  max_distance: 96.0
+  # How much entity hitboxes are expanded
+  ray_size: 2.9
+  ticks_to_lock: 16
+  # Target is lost if line of sight is lost for this many ticks in a row
+  retain_target_ticks: 70
+  block_explosion_power: 6.0
+  entity_explosion_power: 19.0
+  # If missile explodes without a target
+  weak_explosion_power: 5.0
+  proximity_distance: 6.5
+  acceleration: 0.63
+  air_resistance: 0.73
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

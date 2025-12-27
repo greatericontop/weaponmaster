@@ -33,10 +33,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GuidedMissileTargetSelector extends BukkitRunnable {
-    private final double MAX_DISTANCE = 96.0;
-    private final double RAY_SIZE = 2.9; // only affects entities, so this won't "crash" into blocks
-    private final int TICKS_TO_LOCK = 16;
-    private final int RETAIN_TARGET_TICKS = 70;
+
+    private final double MAX_DISTANCE;
+    private final double RAY_SIZE;
+    private final int TICKS_TO_LOCK;
+    private final int RETAIN_TARGET_TICKS;
 
     public enum LockState {
         NONE,
@@ -54,6 +55,10 @@ public class GuidedMissileTargetSelector extends BukkitRunnable {
     public GuidedMissileTargetSelector(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        MAX_DISTANCE = plugin.getConfig().getDouble("guidedMissile.max_distance", 96.0);
+        RAY_SIZE = plugin.getConfig().getDouble("guidedMissile.ray_size", 2.9);
+        TICKS_TO_LOCK = plugin.getConfig().getInt("guidedMissile.ticks_to_lock", 16);
+        RETAIN_TARGET_TICKS = plugin.getConfig().getInt("guidedMissile.retain_target_ticks", 70);
     }
 
     public LockState getLockState(Player player) {

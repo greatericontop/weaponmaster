@@ -28,7 +28,6 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -37,14 +36,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class GuidedMissileManager implements Listener {
-    private final float BLOCK_EXPLOSION_POWER = 6.0F;
-    private final float ENTITY_EXPLOSION_POWER = 19.0F;
-    private final float WEAK_EXPLOSION_POWER = 5.0F;
-    public static double PROXIMITY_DISTANCE_SQUARED = 6.5 * 6.5;
+
+    private final float BLOCK_EXPLOSION_POWER;
+    private final float ENTITY_EXPLOSION_POWER;
+    private final float WEAK_EXPLOSION_POWER;
+    private final double PROXIMITY_DISTANCE_SQUARED;
     // higher acceleration = faster missile
-    public static double ACCELERATION = 0.63;
+    private final double ACCELERATION;
     // higher air resistance (lower number) = slower missile, but more maneuverable
-    public static double AIR_RESISTANCE = 0.73;
+    private final double AIR_RESISTANCE;
     // when air resistance is applied before acceleration, terminal velocity is given by: a / (1-d)
 
     // There are cases where missiles can orbit the target
@@ -67,6 +67,13 @@ public class GuidedMissileManager implements Listener {
         this.plugin = plugin;
         this.util = new Util(plugin);
         this.targetSelector = new GuidedMissileTargetSelector(plugin);
+        BLOCK_EXPLOSION_POWER = (float) plugin.getConfig().getDouble("guidedMissile.block_explosion_power", 6.0);
+        ENTITY_EXPLOSION_POWER = (float) plugin.getConfig().getDouble("guidedMissile.entity_explosion_power", 19.0);
+        WEAK_EXPLOSION_POWER = (float) plugin.getConfig().getDouble("guidedMissile.weak_explosion_power", 5.0);
+        double proximityDistance = plugin.getConfig().getDouble("guidedMissile.proximity_distance", 6.5);
+        PROXIMITY_DISTANCE_SQUARED = proximityDistance * proximityDistance;
+        ACCELERATION = plugin.getConfig().getDouble("guidedMissile.acceleration", 0.63);
+        AIR_RESISTANCE = plugin.getConfig().getDouble("guidedMissile.air_resistance", 0.73);
     }
 
     @EventHandler()
