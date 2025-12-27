@@ -23,7 +23,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -33,12 +32,13 @@ import java.util.Set;
 import java.util.UUID;
 
 public class BombCannonListener implements Listener {
-    private final float ARROW_DAMAGE = 1.25F;
+    private final float EXPLOSION_POWER;
 
     private final Set<UUID> explosiveArrows = new HashSet<>();
     private final Util util;
     public BombCannonListener(WeaponMasterMain plugin) {
         util = new Util(plugin);
+        EXPLOSION_POWER = (float) plugin.getConfig().getDouble("bombcannon.explosion_power", 1.25);
     }
 
     @EventHandler()
@@ -63,7 +63,7 @@ public class BombCannonListener implements Listener {
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile arrow = event.getEntity();
         if (explosiveArrows.contains(arrow.getUniqueId())) {
-            arrow.getWorld().createExplosion(arrow.getLocation(), ARROW_DAMAGE, false, true, arrow);
+            arrow.getWorld().createExplosion(arrow.getLocation(), EXPLOSION_POWER, false, true, arrow);
             explosiveArrows.remove(arrow.getUniqueId());
             arrow.remove();
         }

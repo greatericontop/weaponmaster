@@ -23,7 +23,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -35,15 +34,16 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CavemanItemListener implements Listener {
-
     private final Map<UUID, Integer> xpCooldown = new HashMap<UUID, Integer>();
-    private final double MULTIPLIER = 0.25;
+
+    private final double MULTIPLIER;
 
     private final WeaponMasterMain plugin;
     private final Util util;
     public CavemanItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        MULTIPLIER = plugin.getConfig().getDouble("cavemansword.multiplier", 0.25);
     }
 
     private int parseExpInt(String s) {

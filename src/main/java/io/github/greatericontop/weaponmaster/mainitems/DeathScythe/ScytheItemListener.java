@@ -42,11 +42,14 @@ public class ScytheItemListener implements Listener {
 
     private final Map<UUID, Boolean> cooldowns = new HashMap<>();
 
+    private final double DAMAGE_RATIO;
+
     private final Util util;
     private final WeaponMasterMain plugin;
     public ScytheItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        DAMAGE_RATIO = plugin.getConfig().getDouble("deathScythe.damage_ratio", 0.3);
     }
 
     private int getStrengthLevel(double damageAmount) {
@@ -90,7 +93,7 @@ public class ScytheItemListener implements Listener {
         scythe.setItemMeta(iMeta);
 
         LivingEntity target = (LivingEntity) event.getEntity();
-        double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * 0.3;
+        double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * DAMAGE_RATIO;
         TrueDamageHelper.dealTrueDamage(target, damageAmount);
         int strengthLevel = getStrengthLevel(damageAmount);
         player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 300, strengthLevel, true));
