@@ -40,17 +40,23 @@ import java.util.List;
 
 public class HeliosItemListener implements Listener {
 
-    private final double IMPACT_DISTANCE = 5.0;
-    private final double IMPACT_DISTANCE_SQUARED = 25.0;
-    private final float FOOD_COST = 8.0F / 3.0F; // 4 exhaustion = 1 hunger point (8 = bar)
-    private final int MAX_DAMAGE_LEVEL = 80;
-    private final double DAMAGE_INCREASE_PER_LEVEL = 0.5 / MAX_DAMAGE_LEVEL;
+    private final double IMPACT_DISTANCE;
+    private final double IMPACT_DISTANCE_SQUARED;
+    private final float FOOD_COST;
+    private final int MAX_DAMAGE_LEVEL;
+    private final double DAMAGE_INCREASE_PER_LEVEL;
 
     private final WeaponMasterMain plugin;
     private final Util util;
     public HeliosItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        IMPACT_DISTANCE = plugin.getConfig().getDouble("helios.impact_distance", 5.0);
+        IMPACT_DISTANCE_SQUARED = IMPACT_DISTANCE * IMPACT_DISTANCE;
+        FOOD_COST = (float) plugin.getConfig().getDouble("helios.food_cost", 2.666666);
+        MAX_DAMAGE_LEVEL = plugin.getConfig().getInt("helios.max_damage_level", 80);
+        double maxDamageAmount = plugin.getConfig().getDouble("helios.max_damage_amount", 0.5);
+        DAMAGE_INCREASE_PER_LEVEL = maxDamageAmount / MAX_DAMAGE_LEVEL;
     }
 
     private double damageMultiply(Player player, double damage) {

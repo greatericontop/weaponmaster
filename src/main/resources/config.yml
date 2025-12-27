@@ -96,6 +96,12 @@ guidedMissile:
   proximity_distance: 6.5
   acceleration: 0.63
   air_resistance: 0.73
+helios:
+  # Radius of the fire ring on right click
+  impact_distance: 5.0
+  food_cost: 2.666666
+  max_damage_level: 80
+  max_damage_amount: 0.5
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
