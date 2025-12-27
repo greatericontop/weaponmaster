@@ -34,39 +34,40 @@ import java.util.UUID;
 
 public class MinorItems {
 
-    public final UUID ENERGY_MODIFIER_UUID = UUID.fromString("00000000-1111-0000-0000-c61288850beb");
+    public static final UUID ENERGY_MODIFIER_UUID = UUID.fromString("00000000-1111-0000-0000-c61288850beb");
 
-    public final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
-    public final String CORE_STAFF_NAME = "§4Nether Reactor Core";
-    public final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
-    public final String DRAGON_SCALE_NAME = "§dDragon Scale";
-    public final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
-    public final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
-    public final String DRAGON_WING_NAME = "§dDragon Wing";
-    public final String DRAGON_HORN_NAME = "§dDragon Horn";
-    public final String SILKY_STRING_NAME = "§5Silky String";
-    public final String LIFE_CORE_NAME = "§bLife Core";
-    public final String END_ARTIFACT_NAME = "§5End Artifact";
-    public final String SUPER_XP_BOTTLE_NAME = "§eSuper XP Bottle";
-    public final String CRUDE_PLUTONIUM_NAME = "§8Crude Plutonium";
-    public final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
-    public final String MASTER_DYE_NAME = "§6Master Dye";
-    public final String WITHER_DYE_NAME = "§8Wither Dye";
-    public final String DIAMOND_DYE_NAME = "§bDiamond Dye";
-    public final String EMERALD_DYE_NAME = "§aEmerald Dye";
-    public final String CRYSTAL_DYE_NAME = "§dCrystal Dye";
-    public final String LAPIS_DYE_NAME = "§9Lapis Dye";
-    public final String DARK_DIAMOND_DYE_NAME = "§2Dark Diamond Dye";
-    public final String GOLD_DYE_NAME = "§6Gold Dye";
-    public final String REDSTONE_DYE_NAME = "§cRedstone Dye";
-    public final String BLOOD_DYE_NAME = "§4Blood Dye";
-    public final String LEVIATHAN_DYE_NAME = "§3Leviathan Dye";
-    public final String EXPERT_DYE_NAME = "§6Expert Dye";
-    public final String DRAGON_DYE_NAME = "§5Dragon Dye";
-    public final String DIAMOND_APEX_NAME = "§bDiamond Apex";
-    public final String EMERALD_APEX_NAME = "§aEmerald Apex";
-    public final String REDSTONE_APEX_NAME = "§cRedstone Apex";
-    public final String WITHER_HEAD_NAME = "§8§lWither Head";
+    public static final String LEVIATHAN_HEART_NAME = "§9Heart of Leviathan";
+    public static final String CORE_STAFF_NAME = "§4Nether Reactor Core";
+    public static final String FLASK_ICHOR_NAME = "§cFlask of Ichor";
+    public static final String DRAGON_SCALE_NAME = "§dDragon Scale";
+    public static final String MAGIC_ENERGY_BAR_NAME = "§eMagic Energy Bar";
+    public static final String EXPERT_SEAL_NAME = "§6§lExpert Seal";
+    public static final String DRAGON_WING_NAME = "§dDragon Wing";
+    public static final String DRAGON_HORN_NAME = "§dDragon Horn";
+    public static final String SILKY_STRING_NAME = "§5Silky String";
+    public static final String LIFE_CORE_NAME = "§bLife Core";
+    public static final String END_ARTIFACT_NAME = "§5End Artifact";
+    public static final String SUPER_XP_BOTTLE_NAME = "§eSuper XP Bottle";
+    public static final String CRUDE_PLUTONIUM_NAME = "§8Crude Plutonium";
+    public static final String WEAPONS_GRADE_PLUTONIUM_NAME = "§8Weapons-Grade Plutonium";
+    public static final String MASTER_DYE_NAME = "§6Master Dye";
+    public static final String WITHER_DYE_NAME = "§8Wither Dye";
+    public static final String DIAMOND_DYE_NAME = "§bDiamond Dye";
+    public static final String EMERALD_DYE_NAME = "§aEmerald Dye";
+    public static final String CRYSTAL_DYE_NAME = "§dCrystal Dye";
+    public static final String LAPIS_DYE_NAME = "§9Lapis Dye";
+    public static final String DARK_DIAMOND_DYE_NAME = "§2Dark Diamond Dye";
+    public static final String GOLD_DYE_NAME = "§6Gold Dye";
+    public static final String REDSTONE_DYE_NAME = "§cRedstone Dye";
+    public static final String BLOOD_DYE_NAME = "§4Blood Dye";
+    public static final String LEVIATHAN_DYE_NAME = "§3Leviathan Dye";
+    public static final String EXPERT_DYE_NAME = "§6Expert Dye";
+    public static final String DRAGON_DYE_NAME = "§5Dragon Dye";
+    public static final String DIAMOND_APEX_NAME = "§bDiamond Apex";
+    public static final String EMERALD_APEX_NAME = "§aEmerald Apex";
+    public static final String REDSTONE_APEX_NAME = "§cRedstone Apex";
+    public static final String WITHER_HEAD_NAME = "§8§lWither Head";
+    public static final String MASTER_SEAL_NAME = "§6§lMaster Seal";
 
     public List<String> LEVIATHAN_HEART_LORE = new ArrayList<>();
     public List<String> CORE_STAFF_LORE = new ArrayList<>();
@@ -98,6 +99,7 @@ public class MinorItems {
     public List<String> EMERALD_APEX_LORE = new ArrayList<>();
     public List<String> REDSTONE_APEX_LORE = new ArrayList<>();
     public List<String> WITHER_HEAD_LORE = new ArrayList<>();
+    public List<String> MASTER_SEAL_LORE = new ArrayList<>();
 
     public static final String WITHER_DYE_KEY = "§8Dark Gray Color";
     public static final String DIAMOND_DYE_KEY = "§bAqua Color";
@@ -225,6 +227,12 @@ public class MinorItems {
         WITHER_HEAD_LORE.add("id: WITHER_HEAD");
         WITHER_HEAD_LORE.add("§8Only the best of the best can extract the head from a Wither.");
         WITHER_HEAD_LORE.add("§7Can upgrade Wither Staff!");
+
+        MASTER_SEAL_LORE.add("id: MASTER_SEAL");
+        MASTER_SEAL_LORE.add("§9Move this item over another to increase all enchantments");
+        MASTER_SEAL_LORE.add("§9in the target item by 1 level!");
+        MASTER_SEAL_LORE.add("§6You can upgrade an item that has upgraded with Expert Seal");
+        MASTER_SEAL_LORE.add("§6an additional time!");
     }
 
     public ItemStack generateLeviathanHeartItemStack() {
@@ -547,6 +555,16 @@ public class MinorItems {
         iMeta.setDisplayName(WITHER_HEAD_NAME);
         iMeta.setLore(WITHER_HEAD_LORE);
         iMeta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        stack.setItemMeta(iMeta);
+        return stack;
+    }
+
+    public ItemStack generateMasterSealItemStack() {
+        ItemStack stack = new ItemStack(Material.NETHER_STAR, 1);
+        ItemMeta iMeta = stack.getItemMeta();
+        iMeta.setDisplayName(MASTER_SEAL_NAME);
+        iMeta.setLore(MASTER_SEAL_LORE);
+        iMeta.setMaxStackSize(1);
         stack.setItemMeta(iMeta);
         return stack;
     }
