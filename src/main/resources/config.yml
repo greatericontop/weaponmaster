@@ -58,6 +58,11 @@ dragonArmor:
   # This should be patched in later versions (should be fixed in 1.21.4 Paper) but if you're on an earlier version
   # or Spigot and experience stuttering, try setting this to true
   fixStuttering: false
+dragonelytra:
+  # When you are slower, you get bonus_max bonus; when you are faster, you get bonus_min bonus
+  bonus_max: 0.01
+  bonus_min: 0.005
+  ender_eye_bonus: 7.5
 fireball:
   heatSeeking: false
 witherStaff:

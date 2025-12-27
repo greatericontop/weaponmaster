@@ -34,11 +34,18 @@ import org.bukkit.util.Vector;
 
 public class ElytraItemListener implements Listener {
 
+    private final double BONUS_MAX;
+    private final double BONUS_MIN;
+    private final double ENDER_EYE_BONUS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public ElytraItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        BONUS_MAX = plugin.getConfig().getDouble("dragonelytra.bonus_max", 0.01);
+        BONUS_MIN = plugin.getConfig().getDouble("dragonelytra.bonus_min", 0.005);
+        ENDER_EYE_BONUS = plugin.getConfig().getDouble("dragonelytra.ender_eye_bonus", 7.5);
     }
 
     @EventHandler()
@@ -53,7 +60,7 @@ public class ElytraItemListener implements Listener {
             return;
         }
         if (player.getInventory().getItemInMainHand().getType() == Material.ENDER_EYE) {
-            Vector bonus = player.getEyeLocation().getDirection().multiply(7.5);
+            Vector bonus = player.getEyeLocation().getDirection().multiply(ENDER_EYE_BONUS);
             player.setVelocity(player.getVelocity().add(bonus));
             player.getInventory().removeItem(new ItemStack(Material.ENDER_EYE, 1));
             event.setCancelled(true);
@@ -71,12 +78,12 @@ public class ElytraItemListener implements Listener {
                     double playerVelocity = player.getVelocity().length();
                     double bonusMagnitude;
                     if (playerVelocity <= 1.25) { // 25 m/s
-                        bonusMagnitude = 0.01;
+                        bonusMagnitude = BONUS_MAX;
                     } else if (playerVelocity <= 1.75) { // 35 m/s
-                        // linear decrease from 0.01 to 0.005
-                        bonusMagnitude = 0.005 + 0.005 * (1 - 2.0*(playerVelocity-1.25));
+                        // linear decrease
+                        bonusMagnitude = BONUS_MIN + (BONUS_MAX-BONUS_MIN) * (1 - 2.0*(playerVelocity-1.25));
                     } else {
-                        bonusMagnitude = 0.005;
+                        bonusMagnitude = BONUS_MIN;
                     }
                     Vector bonus = player.getEyeLocation().getDirection().multiply(bonusMagnitude);
                     player.setVelocity(player.getVelocity().add(bonus));
