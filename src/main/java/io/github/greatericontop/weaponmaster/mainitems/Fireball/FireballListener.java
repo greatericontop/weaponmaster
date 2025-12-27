@@ -29,7 +29,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -40,15 +39,20 @@ import java.util.List;
 
 public class FireballListener implements Listener {
 
-    private final float VELOCITY = 1.9F;
-    private final float POWER = 3.0F;
-    private final double SEEKING_DISTANCE = 3.0;
+    private final double VELOCITY;
+    private final float POWER;
+    private final double SEEKING_DISTANCE;
+    private final boolean IS_SEEKING;
 
     private final WeaponMasterMain plugin;
     private final Util util;
     public FireballListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        VELOCITY = plugin.getConfig().getDouble("fireball.velocity", 1.9);
+        POWER = (float) plugin.getConfig().getDouble("fireball.power", 3.0);
+        SEEKING_DISTANCE = plugin.getConfig().getDouble("fireball.seekingDistance", 3.0);
+        IS_SEEKING = plugin.getConfig().getBoolean("fireball.heatSeeking", false);
     }
 
 
@@ -87,7 +91,7 @@ public class FireballListener implements Listener {
                     }
                     Location fireballLoc = fireball.getLocation();
                     fireball.getWorld().spawnParticle(Particle.FLAME, fireballLoc, 10, 0.0, 0.0, 0.0, 0.001);
-                    if (plugin.getConfig().getBoolean("fireball.heatSeeking")) {
+                    if (IS_SEEKING) {
                         List<Entity> nearEntities = fireball.getNearbyEntities(SEEKING_DISTANCE, SEEKING_DISTANCE, SEEKING_DISTANCE);
                         nearEntities.sort(
                                 (Entity a, Entity b) -> (int) (1000.0 * (a.getLocation().distanceSquared(fireballLoc) - b.getLocation().distanceSquared(fireballLoc)))
