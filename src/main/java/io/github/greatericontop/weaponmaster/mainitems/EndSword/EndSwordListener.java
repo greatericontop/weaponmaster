@@ -83,7 +83,6 @@ public class EndSwordListener implements Listener {
             player.sendMessage("§7You can't teleport through blocks!");
             return;
         }
-        player.sendMessage(""+teleportDistance);
         Vector tp = player.getEyeLocation().getDirection().multiply(teleportDistance);
         player.playSound(player, Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
         player.teleport(player.getEyeLocation().add(tp));
