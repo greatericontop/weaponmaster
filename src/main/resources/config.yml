@@ -1,18 +1,11 @@
-# weaponmaster config
-# most of these options should be self-explanatory
+# WeaponMaster config
+
 
 warnOnNoPaper: true
+
 dragonDescent:
   enable: true
-atomBomb:
-  disable: true
-  enforceGlobalCooldown: false
-deathScythe:
-  cooldownTicks: 10
-  strength5Threshold: 16.0
-  strength4Threshold: 11.0
-  strength3Threshold: 7.0
-  strength2Threshold: 3.0
+
 rng:
   coreStaff: 0.02
   leviathanHeart: 0.12
@@ -25,6 +18,25 @@ rng:
   diamondApex: 0.035
   emeraldApex: 0.12
   redstoneApex: 0.0075
+
+
+# Weapon configs
+# Customize weapon behavior here
+# Changes to these values affect weapons that have already been crafted, but
+# will not affect their item names/descriptions.
+
+
+ares:
+  damage: 2.0
+atomBomb:
+  disable: true
+  enforceGlobalCooldown: false
+deathScythe:
+  cooldownTicks: 10
+  strength5Threshold: 16.0
+  strength4Threshold: 11.0
+  strength3Threshold: 7.0
+  strength2Threshold: 3.0
 fireball:
   heatSeeking: false
 witherStaff:

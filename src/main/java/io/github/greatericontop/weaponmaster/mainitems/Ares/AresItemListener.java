@@ -23,7 +23,6 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -35,11 +34,14 @@ import java.util.UUID;
 public class AresItemListener implements Listener {
     private final Set<UUID> arrows = new HashSet<>();
 
+    private final double DAMAGE;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public AresItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        DAMAGE = plugin.getConfig().getDouble("ares.damage", 2.0);
     }
 
     @EventHandler()
@@ -63,7 +65,7 @@ public class AresItemListener implements Listener {
         if (!arrows.contains(event.getDamager().getUniqueId())) { return; }
         if (event.getEntity() instanceof LivingEntity) {
             LivingEntity target = (LivingEntity) event.getEntity();
-            TrueDamageHelper.dealTrueDamage(target, 2.0);
+            TrueDamageHelper.dealTrueDamage(target, DAMAGE);
             target.getWorld().strikeLightningEffect(target.getLocation());
         }
         arrows.remove(event.getDamager().getUniqueId());
