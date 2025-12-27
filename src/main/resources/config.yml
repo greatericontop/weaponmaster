@@ -71,6 +71,11 @@ dragonsword:
   dragon_armor_buff: 1.25
 endsword:
   teleport_distance: 7.0
+excalibur:
+  damage: 5.0
+  cooldown_ticks: 120
+exodus:
+  cooldown_ticks: 80
 fireball:
   heatSeeking: false
 witherStaff:

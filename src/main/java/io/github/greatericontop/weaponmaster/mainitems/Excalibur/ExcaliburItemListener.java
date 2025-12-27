@@ -25,7 +25,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -38,11 +37,16 @@ public class ExcaliburItemListener implements Listener {
 
     private Map<UUID, Boolean> cooldowns = new HashMap<UUID, Boolean>();
 
+    private final double DAMAGE;
+    private final long COOLDOWN_TICKS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public ExcaliburItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        DAMAGE = plugin.getConfig().getDouble("excalibur.damage", 5.0);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("excalibur.cooldown_ticks", 120L);
     }
 
     @EventHandler()
@@ -66,7 +70,7 @@ public class ExcaliburItemListener implements Listener {
                     }
                     victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
                     victim.getWorld().spawnParticle(Particle.EXPLOSION, victim.getLocation(), 4);
-                    TrueDamageHelper.dealTrueDamage(victim, 5.0); // dealing true damage does NOT require no damage ticks
+                    TrueDamageHelper.dealTrueDamage(victim, DAMAGE); // dealing true damage does NOT require no damage ticks
                 }
             }.runTaskLater(plugin, 1L);
             cooldowns.put(player.getUniqueId(), false);
@@ -74,7 +78,7 @@ public class ExcaliburItemListener implements Listener {
                 public void run() {
                     cooldowns.put(player.getUniqueId(), true);
                 }
-            }.runTaskLater(plugin, 120L);
+            }.runTaskLater(plugin, COOLDOWN_TICKS);
         }
     }
 

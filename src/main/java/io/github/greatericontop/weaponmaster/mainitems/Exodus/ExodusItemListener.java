@@ -23,7 +23,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
@@ -37,12 +36,15 @@ import java.util.UUID;
 public class ExodusItemListener implements Listener {
 
     private Map<UUID, Boolean> cooldown = new HashMap<UUID, Boolean>();
+
+    private final long COOLDOWN_TICKS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
-
     public ExodusItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("exodus.cooldown_ticks", 80L);
     }
 
     public void doExodusHeal(Player player) {
@@ -55,7 +57,7 @@ public class ExodusItemListener implements Listener {
                 public void run() {
                     cooldown.put(player.getUniqueId(), true);
                 }
-            }.runTaskLater(plugin, 80L);
+            }.runTaskLater(plugin, COOLDOWN_TICKS);
         }
     }
 
