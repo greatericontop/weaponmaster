@@ -63,6 +63,14 @@ dragonelytra:
   bonus_max: 0.01
   bonus_min: 0.005
   ender_eye_bonus: 7.5
+dragonsword:
+  # Bonuses follow a triangular distribution with minimum A, maximum B, mode C
+  a: 0.0
+  b: 0.8
+  c: 0.25
+  dragon_armor_buff: 1.25
+endsword:
+  teleport_distance: 7.0
 fireball:
   heatSeeking: false
 witherStaff:

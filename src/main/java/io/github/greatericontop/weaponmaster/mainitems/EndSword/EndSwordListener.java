@@ -31,9 +31,10 @@ import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 public class EndSwordListener implements Listener {
-    private static final double TELEPORT_DISTANCE = 7.0;
     private static final double RAYTRACE_EXTRA_PADDING = 0.4;
     private static final double RAYTRACE_TOLERANCE = 0.05;
+
+    private final double TELEPORT_DISTANCE;
 
     private final WeaponMasterMain plugin;
     private final EndPowerManager powerManager;
@@ -42,6 +43,7 @@ public class EndSwordListener implements Listener {
         this.plugin = plugin;
         this.powerManager = powerManager;
         this.util = new Util(null);
+        TELEPORT_DISTANCE = plugin.getConfig().getDouble("endsword.teleport_distance", 7.0);
     }
 
     private static double findMaxRaytraceDistance(Player player, double min, double max, boolean isFirstRun) {
@@ -77,7 +79,7 @@ public class EndSwordListener implements Listener {
         }
 
         double teleportDistance = findMaxRaytraceDistance(player, 0.0, TELEPORT_DISTANCE+RAYTRACE_EXTRA_PADDING, true) - RAYTRACE_EXTRA_PADDING;
-        if (teleportDistance < 3.0) {
+        if (teleportDistance < TELEPORT_DISTANCE/2) {
             player.sendMessage("§7You can't teleport through blocks!");
             return;
         }

@@ -29,10 +29,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class DragonSwordListener implements Listener {
 
     // triangular distribution parameters
-    // on average, if the ability triggers, deal 35% more damage
-    private final double A = 0.0;
-    private final double B = 0.8;
-    private final double C = 0.25;
+    private final double A;
+    private final double B;
+    private final double C;
+    private final double DRAGON_ARMOR_BUFF;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -41,6 +41,10 @@ public class DragonSwordListener implements Listener {
         this.plugin = plugin;
         this.util = new Util(plugin);
         this.dragonUpgrade = new DragonSwordUpgradeListener(plugin);
+        A = plugin.getConfig().getDouble("dragonsword.a", 0.0);
+        B = plugin.getConfig().getDouble("dragonsword.b", 0.8);
+        C = plugin.getConfig().getDouble("dragonsword.c", 0.25);
+        DRAGON_ARMOR_BUFF = plugin.getConfig().getDouble("dragonsword.dragon_armor_buff", 1.25);
     }
 
     private double triangular(double random) {
@@ -71,7 +75,7 @@ public class DragonSwordListener implements Listener {
                     && util.checkForDragonArmor(player.getInventory().getLeggings())
                     && util.checkForDragonArmor(player.getInventory().getBoots())
             ) { // multiplicative increase in damage when a full set of dragon armor is found
-                multiplier *= 1.25;
+                multiplier *= DRAGON_ARMOR_BUFF;
             }
             event.setDamage(event.getDamage()*multiplier);
             plugin.paperUtils.sendActionBar(player, String.format("§3Hit increased by §4%.1f%% §3for §4%.1f§3.", (multiplier-1)*100, event.getDamage()), true);
