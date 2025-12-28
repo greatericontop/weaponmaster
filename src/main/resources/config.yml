@@ -105,6 +105,8 @@ helios:
 hermes:
   activate_chance: 0.12
   cooldown_ticks: 320
+lifehelmet:
+  cooldown_ticks: 12000
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

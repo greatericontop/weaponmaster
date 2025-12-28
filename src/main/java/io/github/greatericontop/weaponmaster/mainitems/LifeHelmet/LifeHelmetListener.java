@@ -37,12 +37,15 @@ import java.util.UUID;
 public class LifeHelmetListener implements Listener {
 
     public Map<UUID, Integer> cooldown = new HashMap<UUID, Integer>();
+
+    private final long COOLDOWN_TICKS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
-
     public LifeHelmetListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("lifehelmet.cooldown_ticks", 12000L);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST) // run last to query the correct final damage
@@ -82,7 +85,7 @@ public class LifeHelmetListener implements Listener {
                                     + " actual nonce: "+cooldown.get(player.getUniqueId()));
                         }
                     }
-                }.runTaskLater(plugin, 12_000L); // after 10 minutes
+                }.runTaskLater(plugin, COOLDOWN_TICKS);
 
             }
         }
