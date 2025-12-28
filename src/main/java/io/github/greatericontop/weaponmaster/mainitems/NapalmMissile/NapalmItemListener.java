@@ -34,8 +34,8 @@ import java.util.UUID;
 
 public class NapalmItemListener implements Listener {
 
-    private final float MISSILE_EXPLOSIVE_POWER = 6.0F;
-    private final float MISSILE_FIRE_POWER = 14.0F;
+    private final float MISSILE_EXPLOSIVE_POWER;
+    private final float MISSILE_FIRE_POWER;
 
     private final List<UUID> missiles = new ArrayList<UUID>();
     private final WeaponMasterMain plugin;
@@ -43,6 +43,8 @@ public class NapalmItemListener implements Listener {
     public NapalmItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.util = new Util(plugin);
+        MISSILE_EXPLOSIVE_POWER = (float) plugin.getConfig().getDouble("napalmMissile.explosive_power", 6.0);
+        MISSILE_FIRE_POWER = (float) plugin.getConfig().getDouble("napalmMissile.fire_power", 14.0);
     }
 
     @EventHandler

@@ -107,6 +107,11 @@ hermes:
   cooldown_ticks: 320
 lifehelmet:
   cooldown_ticks: 12000
+napalmMissile:
+  explosive_power: 6.0
+  fire_power: 14.0
+ninjabow:
+  cooldown_ticks: 8
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
