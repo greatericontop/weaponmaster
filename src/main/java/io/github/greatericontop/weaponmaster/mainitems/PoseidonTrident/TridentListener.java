@@ -38,11 +38,14 @@ import java.util.UUID;
 public class TridentListener implements Listener {
     private final Set<UUID> activeTridents = new HashSet<>();
 
+    private final double LIGHTNING_CHANCE;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public TridentListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        LIGHTNING_CHANCE = plugin.getConfig().getDouble("poseidon.lightning_chance", 0.1);
     }
 
     public void regTridentRunnable() {
@@ -78,7 +81,7 @@ public class TridentListener implements Listener {
         if (!(event.getEntity().getShooter() instanceof Player))  return;
         if (event.getHitEntity() == null)  return;
         activeTridents.remove(event.getEntity().getUniqueId());
-        if (Math.random() < 0.1) {
+        if (Math.random() < LIGHTNING_CHANCE) {
             event.getHitEntity().getWorld().spawnEntity(event.getHitEntity().getLocation(), EntityType.LIGHTNING_BOLT);
         }
     }

@@ -119,6 +119,8 @@ plutonium:
   knockback_strength: 9.0
   crit_multiplier: 1.2
   cooldown_ticks: 400
+poseidon:
+  lightning_chance: 0.1
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
