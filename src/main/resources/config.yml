@@ -114,6 +114,11 @@ ninjabow:
   cooldown_ticks: 8
 pilot:
   damage_multiplier: 0.2
+plutonium:
+  damage: 70.0
+  knockback_strength: 9.0
+  crit_multiplier: 1.2
+  cooldown_ticks: 400
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

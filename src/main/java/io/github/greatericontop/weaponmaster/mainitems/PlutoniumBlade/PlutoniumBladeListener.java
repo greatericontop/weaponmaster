@@ -54,11 +54,13 @@ public class PlutoniumBladeListener implements Listener {
     private static final int RAYS = 10000; // on my pc these only take like 1-4 ms per iteration
     private static final double STEP = 0.4;
     private static final double GOLDEN_ANGLE = 3.88322207745093; // pi * (root5 - 1)
-    private static final double DAMAGE = 70.0;
-    private static final double KNOCKBACK_STRENGTH = 9.0; // length of velocity vector added to things attacked
+
+    private final double DAMAGE;
+    private final double KNOCKBACK_STRENGTH;
+    private final double CRIT_MULTIPLIER;
+    private final long COOLDOWN_TICKS;
 
     private Map<UUID, Boolean> cooldown = new HashMap<>();
-
     private final WeaponMasterMain plugin;
     private final Util util;
     private final DragonSwordUpgradeListener dragonUpgrade;
@@ -66,6 +68,10 @@ public class PlutoniumBladeListener implements Listener {
         this.plugin = plugin;
         this.util = new Util(plugin);
         this.dragonUpgrade = new DragonSwordUpgradeListener(plugin);
+        DAMAGE = plugin.getConfig().getDouble("plutonium.damage", 70.0);
+        KNOCKBACK_STRENGTH = plugin.getConfig().getDouble("plutonium.knockback_strength", 9.0);
+        CRIT_MULTIPLIER = plugin.getConfig().getDouble("plutonium.crit_multiplier", 1.2);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("plutoniumblade.cooldown_ticks", 400L);
     }
 
     @EventHandler(priority = EventPriority.HIGH) // runs nearer to the end to stack bonuses
@@ -80,7 +86,7 @@ public class PlutoniumBladeListener implements Listener {
         if (event.getCause() == EntityDamageEvent.DamageCause.CUSTOM)  return; // so it doesn't apply to the ability
         // You just have to be falling actually
         if (player.getFallDistance() > 0.01F && (!player.isOnGround()) && (!player.isClimbing())) {
-            event.setDamage(event.getDamage() * 1.2);
+            event.setDamage(event.getDamage() * CRIT_MULTIPLIER);
             player.getWorld().playSound(player.getLocation(), Sound.ITEM_MACE_SMASH_GROUND_HEAVY, 1.0F, 1.0F);
         }
     }
@@ -170,7 +176,7 @@ public class PlutoniumBladeListener implements Listener {
             public void run() {
                 cooldown.put(player.getUniqueId(), true);
             }
-        }.runTaskLater(plugin, 400L);
+        }.runTaskLater(plugin, COOLDOWN_TICKS);
     }
 
 }
