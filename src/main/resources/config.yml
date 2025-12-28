@@ -112,6 +112,8 @@ napalmMissile:
   fire_power: 14.0
 ninjabow:
   cooldown_ticks: 8
+pilot:
+  damage_multiplier: 0.2
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
