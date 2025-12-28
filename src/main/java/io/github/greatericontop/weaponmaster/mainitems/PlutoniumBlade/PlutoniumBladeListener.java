@@ -18,7 +18,6 @@ package io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade;
  */
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
-import io.github.greatericontop.weaponmaster.mainitems.DragonSword.DragonSwordUpgradeListener;
 import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -63,11 +62,9 @@ public class PlutoniumBladeListener implements Listener {
     private Map<UUID, Boolean> cooldown = new HashMap<>();
     private final WeaponMasterMain plugin;
     private final Util util;
-    private final DragonSwordUpgradeListener dragonUpgrade;
     public PlutoniumBladeListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         this.util = new Util(plugin);
-        this.dragonUpgrade = new DragonSwordUpgradeListener(plugin);
         DAMAGE = plugin.getConfig().getDouble("plutonium.damage", 70.0);
         KNOCKBACK_STRENGTH = plugin.getConfig().getDouble("plutonium.knockback_strength", 9.0);
         CRIT_MULTIPLIER = plugin.getConfig().getDouble("plutonium.crit_multiplier", 1.2);
