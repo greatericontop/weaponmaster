@@ -121,6 +121,13 @@ plutonium:
   cooldown_ticks: 400
 poseidon:
   lightning_chance: 0.1
+rocketStick:
+  knockback_other: 10.0
+  knockback_self: 8.3
+  teleport_distance: 6.5
+scorpionBow:
+  duration: 120
+  amplifier: 0
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

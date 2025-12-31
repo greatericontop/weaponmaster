@@ -24,7 +24,6 @@ import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -35,15 +34,18 @@ import org.bukkit.util.Vector;
 
 public class RocketItemListener implements Listener {
 
-    private final double KNOCKBACK_OTHER = 10.0;
-    private final double KNOCKBACK_SELF = 8.3;
-    private final double TELEPORT_DISTANCE = 6.5;
+    private final double KNOCKBACK_OTHER;
+    private final double KNOCKBACK_SELF;
+    private final double TELEPORT_DISTANCE;
 
     private final WeaponMasterMain plugin;
     private final Util util;
     public RocketItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        KNOCKBACK_OTHER = plugin.getConfig().getDouble("rocketStick.knockback_other", 10.0);
+        KNOCKBACK_SELF = plugin.getConfig().getDouble("rocketStick.knockback_self", 8.3);
+        TELEPORT_DISTANCE = plugin.getConfig().getDouble("rocketStick.teleport_distance", 6.5);
     }
 
     @EventHandler()

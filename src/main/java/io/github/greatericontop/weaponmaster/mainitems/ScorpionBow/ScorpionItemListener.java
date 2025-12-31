@@ -22,7 +22,6 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -36,11 +35,16 @@ import java.util.UUID;
 public class ScorpionItemListener implements Listener {
     private final Set<UUID> arrows = new HashSet<>();
 
+    private final int DURATION;
+    private final int AMPLIFIER;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public ScorpionItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        DURATION = plugin.getConfig().getInt("scorpionBow.duration", 120);
+        AMPLIFIER = plugin.getConfig().getInt("scorpionBow.amplifier", 0);
     }
 
     @EventHandler()
@@ -63,7 +67,7 @@ public class ScorpionItemListener implements Listener {
     public void onArrowHit(EntityDamageByEntityEvent event) {
         if (!arrows.contains(event.getDamager().getUniqueId())) { return; }
         if (event.getEntity() instanceof LivingEntity) {
-            ((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 120, 0));
+            ((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, DURATION, AMPLIFIER));
         }
         arrows.remove(event.getDamager().getUniqueId());
     }
