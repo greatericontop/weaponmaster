@@ -27,7 +27,6 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -40,12 +39,14 @@ import org.bukkit.util.Vector;
 
 public class SniperItemListener implements Listener {
 
+    private final int COOLDOWN_TICKS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
-
     public SniperItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        COOLDOWN_TICKS = plugin.getConfig().getInt("sniper.cooldown_ticks", 30);
     }
 
     private void fireOneRound(Player player) {
@@ -102,7 +103,7 @@ public class SniperItemListener implements Listener {
                 player.getInventory().removeItem(new ItemStack(Material.ARROW, 1));
             }
             new BukkitRunnable() {
-                int ticksLeft = 29;
+                int ticksLeft = COOLDOWN_TICKS - 1;
                 public void run() {
                     if (ticksLeft == 0) {
                         durability.setDamage(0);
@@ -110,8 +111,7 @@ public class SniperItemListener implements Listener {
                         cancel();
                         return;
                     }
-                    int remainingDurability = (int) ( 384.0/30.0 * (30-ticksLeft) );
-                    // player.sendMessage("§7test " + remainingDurability);
+                    int remainingDurability = (int) ( 384.0/COOLDOWN_TICKS * (COOLDOWN_TICKS-ticksLeft) );
                     durability.setDamage(384 - remainingDurability);
                     sniper.setItemMeta(durability);
                     ticksLeft--;

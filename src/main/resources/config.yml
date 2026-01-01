@@ -135,6 +135,8 @@ shreddedAxe:
   survival_duration: 400
   zombie_max_hp: 50.0
   max_zombies: 10
+sniper:
+  cooldown_ticks: 30
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
