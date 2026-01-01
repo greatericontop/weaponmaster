@@ -21,11 +21,6 @@ import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.MathHelper;
 import io.github.greatericontop.weaponmaster.utils.TrueDamageHelper;
 import io.github.greatericontop.weaponmaster.utils.Util;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.attribute.Attribute;
@@ -44,11 +39,17 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class ShreddedListener implements Listener {
-    private final int SURVIVAL_DURATION = 400;
-    private final double NEW_MAX_HP = 50.0;
     private final NamespacedKey pdcKeyOwner;
     private final Map<UUID, Integer> zombieCount = new HashMap<>();
+
+    private final int SURVIVAL_DURATION;
+    private final double NEW_MAX_HP;
+    private final int MAX_ZOMBIES;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -56,6 +57,9 @@ public class ShreddedListener implements Listener {
         this.plugin = plugin;
         util = new Util(plugin);
         pdcKeyOwner = new NamespacedKey(plugin, "zombie_owner");
+        SURVIVAL_DURATION = plugin.getConfig().getInt("shreddedAxe.survival_duration", 400);
+        NEW_MAX_HP = plugin.getConfig().getDouble("shreddedAxe.zombie_max_hp", 50.0);
+        MAX_ZOMBIES = plugin.getConfig().getInt("shreddedAxe.max_zombies", 10);
     }
 
     @EventHandler(priority = EventPriority.LOW)
@@ -88,7 +92,7 @@ public class ShreddedListener implements Listener {
             return;
         }
 
-        if (zombieCount.getOrDefault(player.getUniqueId(), 0) >= 10) {
+        if (zombieCount.getOrDefault(player.getUniqueId(), 0) >= MAX_ZOMBIES) {
             return;
         }
         zombieCount.put(player.getUniqueId(), zombieCount.getOrDefault(player.getUniqueId(), 0) + 1);

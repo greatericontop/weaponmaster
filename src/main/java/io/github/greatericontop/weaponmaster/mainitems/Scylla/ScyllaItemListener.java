@@ -22,14 +22,13 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class ScyllaItemListener implements Listener {
 
-    private final double HEALTH_THRESHOLD = 8.0;
-    private final double MAX_REDUCTION = 0.35;
+    private final double HEALTH_THRESHOLD;
+    private final double MAX_REDUCTION;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -37,6 +36,8 @@ public class ScyllaItemListener implements Listener {
     public ScyllaItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        HEALTH_THRESHOLD = plugin.getConfig().getDouble("scylla.health_threshold", 8.0);
+        MAX_REDUCTION = plugin.getConfig().getDouble("scylla.max_reduction", 0.35);
     }
 
     private double getResistanceAmount(Player player, double damage) {

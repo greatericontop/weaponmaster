@@ -128,6 +128,13 @@ rocketStick:
 scorpionBow:
   duration: 120
   amplifier: 0
+scylla:
+  health_threshold: 8.0
+  max_reduction: 0.35
+shreddedAxe:
+  survival_duration: 400
+  zombie_max_hp: 50.0
+  max_zombies: 10
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
