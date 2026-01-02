@@ -137,6 +137,11 @@ shreddedAxe:
   max_zombies: 10
 sniper:
   cooldown_ticks: 30
+throwingKnife:
+  knife_speed: 0.5
+  # How many ticks to throw forward
+  # The total throw time is twice this (forward + back)
+  ticks: 30
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

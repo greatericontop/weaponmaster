@@ -25,7 +25,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -42,10 +41,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ThrowingKnifeListener implements Listener {
-    private static final double KNIFE_SPEED = 0.5;
-
     Map<UUID, Boolean> isThrowing = new HashMap<>();
     Set<UUID> affectedEntities = new HashSet<>();
+
+    private final double KNIFE_SPEED;
+    private final int TICKS;
 
     private final WeaponMasterMain plugin;
     private final Util util;
@@ -57,6 +57,8 @@ public class ThrowingKnifeListener implements Listener {
                 affectedEntities.clear();
             }
         }.runTaskTimer(plugin, 1L, 1L);
+        KNIFE_SPEED = plugin.getConfig().getDouble("throwingKnife.knife_speed", 0.5);
+        TICKS = plugin.getConfig().getInt("throwingKnife.ticks", 30);
     }
 
     @EventHandler()
@@ -97,7 +99,7 @@ public class ThrowingKnifeListener implements Listener {
             public void run() {
                 isThrowing.put(player.getUniqueId(), false);
             }
-        }.runTaskLater(plugin, 60L);
+        }.runTaskLater(plugin, 2L*TICKS);
 
         Location origin = player.getEyeLocation().add(player.getLocation().getDirection().multiply(0.5));
         Vector vector = new Vector(0.0, 0.0, 0.0);
@@ -105,9 +107,9 @@ public class ThrowingKnifeListener implements Listener {
         new BukkitRunnable() {
             int i = 0;
             public void run() {
-                if (i < 60) {
+                if (i < 2*TICKS) {
                     Location originalLoc = origin.clone().add(vector);
-                    if (i < 30) {
+                    if (i < TICKS) {
                         vector.add(toAdd);
                     } else {
                         vector.subtract(toAdd);
