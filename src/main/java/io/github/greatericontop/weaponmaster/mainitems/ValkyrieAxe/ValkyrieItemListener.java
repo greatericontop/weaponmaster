@@ -19,7 +19,6 @@ package io.github.greatericontop.weaponmaster.mainitems.ValkyrieAxe;
 
 import io.github.greatericontop.weaponmaster.WeaponMasterMain;
 import io.github.greatericontop.weaponmaster.utils.Util;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -29,7 +28,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -44,13 +42,14 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ValkyrieItemListener implements Listener {
-    private final float FOOD_COST = 8.0F / 3.0F; // 3 uses = 2 hunger points or 1 hunger bar
-    private final double DAMAGE_FACTOR = 0.75;
-    private final double FIRESTORM_RADIUS = 25.0;
-    private final double FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
-    private final double MAX_ANGLE_DEG = 32.0;
-    private final double FIRESTORM_KNOCKBACK = 14.0;
     private final int ITEM_TOTAL_DURABILITY = 250;
+
+    private final float FOOD_COST;
+    private final double DAMAGE_FACTOR;
+    private final double FIRESTORM_RADIUS;
+    private final double FIRESTORM_RADIUS_SQUARED;
+    private final double MAX_ANGLE_DEG;
+    private final double FIRESTORM_KNOCKBACK;
 
     Set<UUID> affectedEntities = new HashSet<>(); // cleared every tick; used to prevent a recursive call chain in 1.19.3
 
@@ -64,6 +63,12 @@ public class ValkyrieItemListener implements Listener {
                 affectedEntities.clear();
             }
         }.runTaskTimer(plugin, 1L, 1L);
+        FOOD_COST = (float) plugin.getConfig().getDouble("valkyrieAxe.food_cost", 2.666666);
+        DAMAGE_FACTOR = plugin.getConfig().getDouble("valkyrieAxe.damage_factor", 0.75);
+        FIRESTORM_RADIUS = plugin.getConfig().getDouble("valkyrieAxe.firestorm_radius", 25.0);
+        FIRESTORM_RADIUS_SQUARED = FIRESTORM_RADIUS * FIRESTORM_RADIUS;
+        MAX_ANGLE_DEG = plugin.getConfig().getDouble("valkyrieAxe.max_angle_deg", 32.0);
+        FIRESTORM_KNOCKBACK = plugin.getConfig().getDouble("valkyrieAxe.firestorm_knockback", 14.0);
     }
 
     @EventHandler()
