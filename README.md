@@ -15,7 +15,7 @@ It runs on any Spigot (or Paper and its forks, which are required for some addit
 
 ## Features
 
-- As of v1.10.0, **75** unique weapons, armor, and tools.
+- As of v1.12.0, **77** unique weapons, armor, and tools.
 - The **WeaponMaster Dragon**, an upgraded dragon fight with special loot and rewards.
 - The **Wither Challenge**, where you have to kill the wither without armor to get special loot.
 - And some overpowered admin commands for fun.
