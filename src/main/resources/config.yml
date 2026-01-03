@@ -158,3 +158,8 @@ witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20
   cooldownTicksUpgraded: 4
+  kingShieldAmount: 10.0
+  # Half of the shield is converted into healing after this many ticks
+  shieldDecayAfter: 200
+  # How many ticks before the shield can be used again
+  shieldCooldownTicks: 300

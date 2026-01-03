@@ -48,14 +48,25 @@ public class WitherKingItemListener implements Listener {
     private final Map<UUID, Boolean> cooldowns = new HashMap<>();
     private final Map<UUID, Boolean> healCooldowns = new HashMap<>();
 
+    private final double SHIELD_AMOUNT;
+    private final double CHARGE_CHANCE;
+    private final long FIRE_COOLDOWN_TICKS;
+    private final long SHIELD_DECAY_AFTER;
+    private final long SHIELD_COOLDOWN_TICKS;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public WitherKingItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        SHIELD_AMOUNT = plugin.getConfig().getDouble("witherStaff.kingShieldAmount", 10.0);
+        CHARGE_CHANCE = plugin.getConfig().getDouble("witherStaff.chargedChance", 0.06);
+        FIRE_COOLDOWN_TICKS = plugin.getConfig().getLong("witherStaff.cooldownTicksUpgraded", 4L);
+        SHIELD_DECAY_AFTER = plugin.getConfig().getLong("witherStaff.shieldDecayAfter", 200L);
+        SHIELD_COOLDOWN_TICKS = plugin.getConfig().getLong("witherStaff.shieldCooldownTicks", 300L);
     }
 
-    private static AttributeModifier getAM() {
+    private AttributeModifier getAM() {
         return new AttributeModifier(new NamespacedKey("weaponmaster", "wither_king"), SHIELD_AMOUNT, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY);
     }
 
@@ -78,17 +89,15 @@ public class WitherKingItemListener implements Listener {
         WitherSkull witherSkull = (WitherSkull) player.getLocation().getWorld().spawnEntity(player.getEyeLocation(), EntityType.WITHER_SKULL);
         witherSkull.setVelocity(velocity);
         witherSkull.setShooter(player);
-        witherSkull.setCharged(Math.random() < plugin.getConfig().getDouble("witherStaff.chargedChance", 0.06));
+        witherSkull.setCharged(Math.random() < CHARGE_CHANCE);
 
-        long cooldown = plugin.getConfig().getLong("witherStaff.cooldownTicksUpgraded", 4L);
-        if (cooldown > 0) {
-            Bukkit.getScheduler().runTaskLater(plugin, () -> cooldowns.put(player.getUniqueId(), true), cooldown);
+        if (FIRE_COOLDOWN_TICKS > 0) {
+            Bukkit.getScheduler().runTaskLater(plugin, () -> cooldowns.put(player.getUniqueId(), true), FIRE_COOLDOWN_TICKS);
         } else {
             cooldowns.put(player.getUniqueId(), true);
         }
     }
 
-    private static final double SHIELD_AMOUNT = 10.0;
     @EventHandler()
     public void onRightClickHeal(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
@@ -119,9 +128,9 @@ public class WitherKingItemListener implements Listener {
                     player.setHealth(Math.min(player.getHealth() + absorptionAmount*0.5, player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
                 }
             }
-        }.runTaskLater(plugin, 200L);
+        }.runTaskLater(plugin, SHIELD_DECAY_AFTER);
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> healCooldowns.put(player.getUniqueId(), true), 300L);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> healCooldowns.put(player.getUniqueId(), true), SHIELD_COOLDOWN_TICKS);
     }
 
     @EventHandler()
