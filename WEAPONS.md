@@ -9,6 +9,7 @@
   - [RPG Launcher](#rpg-launcher)
   - [Sniper Rifle](#sniper-rifle)
 - [LEGENDARY](#legendary)
+  - [Agricultural Abomination](#agricultural-abomination)
   - [Ares](#ares)
   - [Artemis Bow](#artemis-bow)
   - [Caveman Sword](#caveman-sword)
@@ -105,6 +106,12 @@ Admin, command-only weapons of extreme power and mass destruction.
 ## LEGENDARY
 
 Craftable weapons for late and end game players. These are very powerful.
+
+### Agricultural Abomination
+
+`/agriculturalabomination give` - automatically replants crops that are harvested
+
+Crafting Recipe: NOT REALLY COMING SOON
 
 ### Ares
 
@@ -203,6 +210,12 @@ Crafting Recipe:
 ### Dragon Elytra
 
 `/dragonelytra give` - a powerful elytra, small speed boost when in flying, use `Eye of Ender` to gain a massive speed boost.
+
+Crafting Recipe:
+- 4x Dragon Wing
+- 1x Elytra
+
+![](assets/dragonelytra.png)
 
 ### Dragon Sword
 
