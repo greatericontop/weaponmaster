@@ -360,7 +360,13 @@ Crafting Recipe:
 
 `/pilotsword give` - a combo sword, no attack cooldown (but less damage)
 
-Crafting Recipe: NOT REALLY COMING SOON
+Crafting Recipe:
+- 5x Nether Star
+- 1x Netherite Sword (must be full durability and unenchanted)
+- 2x Efficiency V book
+- 1x Elytra
+
+![](assets/pilots.png)
 
 ### Plutonium Blade
 
