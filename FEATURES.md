@@ -201,16 +201,27 @@ Forcefully enchants items with enchantments. Allows you to add incompatible or r
 
 Example: `/weaponmaster forceenchant protection 10` adds protection 10.
 
+## Vanilla Stack
+
+`/weaponmaster vanillastack <amount>`
+
+Sets the item in hand to any amount by changing the max stack size of the item in vanilla.
+Stacks made this way can be moved around in the client normally.
+
+**Arguments**
+- **amount** ≫ Any number between `1..99`, as vanilla limits us to 99; you have to use `illegalstack` for more.
+
+Example: `/weaponmaster vanillstack 80` to stack to 80.
+
 ## Illegal Stack
 
 `/weaponmaster illegalstack <amount>`
 
-Sets the item in hand to any amount.
+Sets the item in hand to any amount, bypassing vanilla limits.
 
 **Arguments**
+- **amount** ≫ Any integer (as low as `-2147483648` or as high as `2147483647`).
 
-- **amount** ≫ Any signed byte `-128..127`, nonpositive values will delete the item.
+Example: `/weaponmaster illegalstack 150` to stack to 150. (DANGEROUS - see below)
 
-Example: `/weaponmaster illegalstack 64` sets the item in hand to 64 (even if it usually can't stack that high).
-
-Be careful when moving illegally stacked items around. For now, using the hotkey to move them between the offhand and shift clicking will preserve stacks of up to 64 (items stacked to 127 can only be moved to the offhand). Also don't put too many illegally stacked items into shulker boxes, since I banned myself once because of that. Stacking shulker boxes should be ok.
+**Stacks above 99 will cause an error when the server autosaves.** This can result in data loss or duplication exploits.
