@@ -23,7 +23,6 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -31,13 +30,14 @@ import static java.lang.Math.min;
 
 public class VampItemListener implements Listener {
 
-    private final double VAMP_HEAL_MULTIPLIER = 0.16;
+    private final double HEAL_MULTIPLIER;
 
     private final WeaponMasterMain plugin;
     private final Util util;
     public VampItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        HEAL_MULTIPLIER = plugin.getConfig().getDouble("vampAxe.heal_multiplier", 0.16);
     }
 
     @EventHandler()
@@ -50,7 +50,7 @@ public class VampItemListener implements Listener {
             return;
         }
         // Heal player
-        double healAmount = event.getFinalDamage() * VAMP_HEAL_MULTIPLIER;
+        double healAmount = event.getFinalDamage() * HEAL_MULTIPLIER;
         double previousHealth = player.getHealth();
         double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
         player.setHealth(min(previousHealth+healAmount, maxHealth));

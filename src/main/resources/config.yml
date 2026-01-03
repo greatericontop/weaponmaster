@@ -150,6 +150,10 @@ valkyrieAxe:
   # Size of the firestorm cone in degrees
   max_angle_deg: 32.0
   firestorm_knockback: 14.0
+vampAxe:
+  heal_multiplier: 0.16
+witchSword:
+  heal_factor: 0.15
 witherStaff:
   chargedChance: 0.06
   cooldownTicks: 20

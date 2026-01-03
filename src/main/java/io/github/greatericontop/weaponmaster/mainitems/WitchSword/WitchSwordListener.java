@@ -32,15 +32,16 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class WitchSwordListener implements Listener {
-    private static final double HEAL_FACTOR = 0.15;
     private static final PotionEffect WITCH_EFFECT = new PotionEffect(PotionEffectType.UNLUCK, 200, 100, true, true, true);
+
+    private final double HEAL_FACTOR;
 
     private final WeaponMasterMain plugin;
     private final Util util;
-
     public WitchSwordListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        HEAL_FACTOR = plugin.getConfig().getDouble("witchSword.heal_factor", 0.15);
     }
 
     @EventHandler()
