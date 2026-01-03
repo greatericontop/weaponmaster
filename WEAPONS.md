@@ -49,6 +49,7 @@
   - [Diamond Apex](#diamond-apex)
   - [Emerald Apex](#emerald-apex)
   - [Expert Seal](#expert-seal)
+    - [Master Seal](#master-seal)
   - [Flask of Ichor](#flask-of-ichor)
   - [Heart of Leviathan](#heart-of-leviathan)
   - [Hide of Leviathan](#hide-of-leviathan)
@@ -568,6 +569,11 @@ The best emerald ever. Drops `12%` of the time from emerald ores and is used to 
 2.5% chance of dropping for a `Wither`, or complete the **Wither Challenge** (see [`FEATURES.md`](https://github.com/greatericontop/weaponmaster/blob/main/FEATURES.md)).
 
 Increases all the enchantments on an item by 1 level. Can only be used once per item.
+
+### Master Seal
+
+Like an `Expert Seal`, but it can be used on an item after it has already been sealed once.
+It can thus upgrade enchantments a total of 2 levels!
 
 ### Flask of Ichor
 
