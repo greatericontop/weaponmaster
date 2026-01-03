@@ -113,7 +113,7 @@ napalmMissile:
 ninjabow:
   cooldown_ticks: 8
 pilot:
-  damage_multiplier: 0.2
+  damage_multiplier: 0.111111111111111
 plutonium:
   damage: 70.0
   knockback_strength: 9.0

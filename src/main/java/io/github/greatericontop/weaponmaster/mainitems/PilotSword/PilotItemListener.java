@@ -36,7 +36,7 @@ public class PilotItemListener implements Listener {
     public PilotItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
-        DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("pilot.damage_multiplier", 0.2);
+        DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("pilot.damage_multiplier", 0.111111111111111);
     }
 
     @EventHandler()
