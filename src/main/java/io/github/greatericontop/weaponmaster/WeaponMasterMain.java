@@ -107,6 +107,7 @@ import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMast
 import io.github.greatericontop.weaponmaster.mainitems.NinjaMastersBow.NinjaMastersItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.PilotSword.PilotRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeCommand;
 import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeListener;
 import io.github.greatericontop.weaponmaster.mainitems.PlutoniumBlade.PlutoniumBladeRecipe;
@@ -282,7 +283,7 @@ public class WeaponMasterMain extends JavaPlugin {
         // Pilot's Sword
         this.getCommand("pilotsword").setExecutor(new PilotCommand());
         this.getServer().getPluginManager().registerEvents(new PilotItemListener(this), this);
-        //new PilotRecipe().regRecipe();
+        new PilotRecipe().regRecipe();
         // Shredded Axe
         this.getCommand("shreddedaxe").setExecutor(new ShreddedCommand());
         this.getServer().getPluginManager().registerEvents(new ShreddedListener(this), this);

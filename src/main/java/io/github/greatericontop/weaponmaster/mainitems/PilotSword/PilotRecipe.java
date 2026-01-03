@@ -21,11 +21,18 @@ import io.github.greatericontop.weaponmaster.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.UUID;
 
 public class PilotRecipe {
     private final Util util;
@@ -35,18 +42,23 @@ public class PilotRecipe {
 
     public void regRecipe() {
         ItemStack pilotsword = util.generateMeta(util.PILOT_SWORD_LORE, util.PILOT_SWORD_NAME, Material.NETHERITE_SWORD);
+        ItemMeta pilotIM = pilotsword.getItemMeta();
+        pilotIM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 7.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        pilotIM.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "weaponmaster", 20.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
+        pilotIM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        pilotsword.setItemMeta(pilotIM);
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "pilot_sword"), pilotsword);
-        recipe.shape("WXW",
-                     "YTY",
-                     "WXW");
+        recipe.shape("YeY",
+                     "XTX",
+                     "YYY");
         recipe.setIngredient('T', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHERITE_SWORD, 1)));
         ItemStack book = new ItemStack(Material.ENCHANTED_BOOK, 1);
-        ItemMeta im = book.getItemMeta();
-        im.addEnchant(Enchantment.EFFICIENCY, 5, true);
+        EnchantmentStorageMeta im = (EnchantmentStorageMeta) book.getItemMeta();
+        im.addStoredEnchant(Enchantment.EFFICIENCY, 5, true);
         book.setItemMeta(im);
         recipe.setIngredient('X', new RecipeChoice.ExactChoice(book));
         recipe.setIngredient('Y', Material.NETHER_STAR);
-        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
+        recipe.setIngredient('e', Material.ELYTRA);
         Bukkit.getServer().addRecipe(recipe);
     }
 }
