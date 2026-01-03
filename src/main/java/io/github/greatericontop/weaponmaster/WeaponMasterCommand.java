@@ -295,6 +295,7 @@ public class WeaponMasterCommand implements CommandExecutor {
         sender.sendMessage("");
         sender.sendMessage("§e/weaponmaster attributemodifier");
         sender.sendMessage("§e/weaponmaster illegalstack");
+        sender.sendMessage("§e/weaponmaster vanillastack");
         sender.sendMessage("§e/weaponmaster forceenchant");
         sender.sendMessage("§e/weaponmaster addpotioneffect");
         sender.sendMessage("");

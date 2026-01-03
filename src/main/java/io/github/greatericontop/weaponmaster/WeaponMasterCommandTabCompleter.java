@@ -31,7 +31,7 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
-            List<String> mainCommands = Arrays.asList("attributemodifier", "illegalstack", "forceenchant", "addpotioneffect");
+            List<String> mainCommands = Arrays.asList("attributemodifier", "illegalstack", "vanillastack", "forceenchant", "addpotioneffect");
             ArrayList<String> result = StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<String>(mainCommands.size()));
             return result;
         }
@@ -63,6 +63,12 @@ public class WeaponMasterCommandTabCompleter implements TabCompleter {
                 ArrayList<String> result = StringUtil.copyPartialMatches(args[1], commands, new ArrayList<String>(commands.size()));
                 result.add(0, "<number>");
                 return result;
+            }
+        }
+
+        if (args[0].equals("vanillastack")) {
+            if (args.length == 2) {
+                return Arrays.asList("<number>");
             }
         }
 
