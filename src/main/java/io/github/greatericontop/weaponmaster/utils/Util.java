@@ -680,6 +680,7 @@ public class Util {
         ItemStack items = new ItemStack(mat, 1);
         ItemMeta iMeta = items.getItemMeta();
         iMeta.setLore(lore);
+        iMeta.setItemName(name); // For overlay pack
         iMeta.setDisplayName(name);
         items.setItemMeta(iMeta);
         return items;
