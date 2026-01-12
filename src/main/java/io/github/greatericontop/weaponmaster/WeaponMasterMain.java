@@ -83,6 +83,9 @@ import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballListener
 import io.github.greatericontop.weaponmaster.mainitems.Fireball.FireballRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileCommand;
 import io.github.greatericontop.weaponmaster.mainitems.GuidedMissile.GuidedMissileManager;
+import io.github.greatericontop.weaponmaster.mainitems.HeavyAxe.HeavyAxeCommand;
+import io.github.greatericontop.weaponmaster.mainitems.HeavyAxe.HeavyAxeItemListener;
+import io.github.greatericontop.weaponmaster.mainitems.HeavyAxe.HeavyAxeRecipe;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosCommand;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosItemListener;
 import io.github.greatericontop.weaponmaster.mainitems.Helios.HeliosRecipe;
@@ -377,6 +380,10 @@ public class WeaponMasterMain extends JavaPlugin {
         // Agricultural Abomination
         this.getCommand("agriculturalabomination").setExecutor(new AgriculturalAbominationCommand());
         this.getServer().getPluginManager().registerEvents(new AgriculturalAbominationListener(this), this);
+        // Heavy Axe
+        this.getCommand("heavyaxe").setExecutor(new HeavyAxeCommand());
+        this.getServer().getPluginManager().registerEvents(new HeavyAxeItemListener(this), this);
+        new HeavyAxeRecipe().regRecipe();
 
         // Custom Items
         this.getCommand("minoritem").setExecutor(new MinorItemCommand());

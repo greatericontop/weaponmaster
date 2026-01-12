@@ -267,6 +267,11 @@ commands:
     usage: "U: /agriculturalabomination [give]"
     permission: "weaponmaster.agriculturalabomination.command"
     permission-message: "§cYou are not allowed to do this!"
+  heavyaxe:
+    description: "[Weapon Master] command for Heavy Axe"
+    usage: "U: /heavyaxe [give]"
+    permission: "weaponmaster.heavyaxe.command"
+    permission-message: "§cYou are not allowed to do this!"
 
 
 permissions:
@@ -505,4 +510,9 @@ permissions:
   weaponmaster.agriculturalabomination.command:
     default: op
   weaponmaster.agriculturalabomination.use:
+    default: true
+  #
+  weaponmaster.heavyaxe.command:
+    default: op
+  weaponmaster.heavyaxe.use:
     default: true

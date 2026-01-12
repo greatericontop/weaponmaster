@@ -75,6 +75,7 @@ public class Util {
     public final String PLUTONIUM_BLADE_NAME = "§8§lPlutonium Blade §6⚝⚝⚝⚝⚝";
     public final String WITHER_KING_STAFF_NAME = "§0Wither King Staff §6⚝⚝⚝⚝⚝";
     public final String AGRICULTURAL_ABOMINATION_NAME = "§aAgricultural Abomination §6⚝⚝⚝⚝⚝";
+    public final String HEAVY_AXE_NAME = "§bHeavy Axe §6⚝⚝⚝⚝⚝";
 
     public List<String> RPG_LAUNCHER_LORE = new ArrayList<>();
     public List<String> VAMP_AXE_LORE = new ArrayList<>();
@@ -121,6 +122,7 @@ public class Util {
     public List<String> PLUTONIUM_BLADE_LORE = new ArrayList<>();
     public List<String> WITHER_KING_STAFF_LORE = new ArrayList<>();
     public List<String> AGRICULTURAL_ABOMINATION_LORE = new ArrayList<>();
+    public List<String> HEAVY_AXE_LORE = new ArrayList<>();
 
     public final int CAVEMAN_EXP = 3;
     public final int CAVEMAN_REQ = 4;
@@ -674,6 +676,17 @@ public class Util {
         AGRICULTURAL_ABOMINATION_LORE.add("");
         AGRICULTURAL_ABOMINATION_LORE.add("§6LEGENDARY");
         AGRICULTURAL_ABOMINATION_LORE.add("§6---------------");
+        // Heavy Axe
+        HEAVY_AXE_LORE.add("id: HEAVY_AXE");
+        HEAVY_AXE_LORE.add("§6---------------");
+        HEAVY_AXE_LORE.add("");
+        HEAVY_AXE_LORE.add("§eAbility: §4Heavy Chop");
+        HEAVY_AXE_LORE.add("§3Chops down an entire tree");
+        HEAVY_AXE_LORE.add("§3in one swing!");
+        HEAVY_AXE_LORE.add("§3Up to 50 logs and 100 leaves");
+        HEAVY_AXE_LORE.add("");
+        HEAVY_AXE_LORE.add("§6LEGENDARY");
+        HEAVY_AXE_LORE.add("§6---------------");
     }
 
     public ItemStack generateMeta(List<String> lore, String name, Material mat) {
@@ -836,5 +849,8 @@ public class Util {
     }
     public boolean checkForAgriculturalAbomination(ItemStack item) {
         return this.checkFor(item, 0, "id: AGRICULTURAL_ABOMINATION");
+    }
+    public boolean checkForHeavyAxe(ItemStack item) {
+        return this.checkFor(item, 0, "id: HEAVY_AXE");
     }
 }
