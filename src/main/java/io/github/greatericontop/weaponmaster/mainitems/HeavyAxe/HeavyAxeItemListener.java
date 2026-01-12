@@ -109,17 +109,19 @@ public class HeavyAxeItemListener implements Listener {
             if (isLeaves(currentLocation.getBlock().getType()) && leavesLeft > 0) {
                 visited.add(currentLocation);
                 leavesLeft--;
-                currentLocation.getBlock().breakNaturally(player.getInventory().getItemInMainHand());
                 for (int x = -1; x <= 1; x++) {
                     for (int y = -1; y <= 1; y++) {
                         for (int z = -1; z <= 1; z++) {
                             Location newLocation = currentLocation.clone().add(x, y, z);
-                            if (!visited.contains(newLocation)) {
+                            // Leaves only spread to the exact same leaves, or wood
+                            if ((newLocation.getBlock().getType() == currentLocation.getBlock().getType() || isWood(newLocation.getBlock().getType()))
+                                    && !visited.contains(newLocation)) {
                                 locationQueue.add(newLocation);
                             }
                         }
                     }
                 }
+                currentLocation.getBlock().breakNaturally(player.getInventory().getItemInMainHand());
             }
         }
     }
