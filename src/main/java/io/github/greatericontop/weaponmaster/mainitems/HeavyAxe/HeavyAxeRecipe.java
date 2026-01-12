@@ -34,12 +34,11 @@ public class HeavyAxeRecipe {
     public void regRecipe() {
         ItemStack heavyAxe = util.generateMeta(util.HEAVY_AXE_LORE, util.HEAVY_AXE_NAME, Material.IRON_AXE);
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "heavy_axe"), heavyAxe);
-        recipe.shape(" Wx",
-                     " Rx",
-                     "R x");
-        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
-        recipe.setIngredient('R', Material.REDSTONE_BLOCK);
-        recipe.setIngredient('x', Material.NETHERITE_AXE);
+        recipe.shape(" XX",
+                     " sX",
+                     "s  ");
+        recipe.setIngredient('s', Material.STICK);
+        recipe.setIngredient('X', Material.HEAVY_CORE);
         Bukkit.getServer().addRecipe(recipe);
     }
 
