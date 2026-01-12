@@ -76,7 +76,7 @@ public class ValkyrieItemListener implements Listener {
         if (event.getDamager().getType() != EntityType.PLAYER)  return;
         Player player = (Player) event.getDamager();
         if (!util.checkForValkyrieAxe(player.getInventory().getItemInMainHand()))  return;
-        if (!player.hasPermission("weaponmaster.valkryieaxe.use")) {
+        if (!player.hasPermission("weaponmaster.valkyrieaxe.use")) {
             player.sendMessage("§3Sorry, you cannot use this item yet. You need the permission §4weaponmaster.valkyrie.use§3.");
             return;
         }
