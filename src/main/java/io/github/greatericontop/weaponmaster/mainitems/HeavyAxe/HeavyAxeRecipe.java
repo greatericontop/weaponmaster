@@ -36,7 +36,7 @@ public class HeavyAxeRecipe {
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey("weaponmaster", "heavy_axe"), heavyAxe);
         recipe.shape(" XX",
                      " sX",
-                     "s  ");
+                     " s ");
         recipe.setIngredient('s', Material.STICK);
         recipe.setIngredient('X', Material.HEAVY_CORE);
         Bukkit.getServer().addRecipe(recipe);
