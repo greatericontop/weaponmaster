@@ -21,6 +21,7 @@
   - [End Sword](#end-sword)
   - [Excalibur](#excalibur)
   - [Exodus](#exodus)
+  - [Heavy Axe](#heavy-axe)
   - [Helios](#helios)
   - [Helmet of Life](#helmet-of-life)
   - [Herme's Boots](#hermes-boots)
@@ -276,6 +277,16 @@ Crafting Recipe:
 - 1x End Crystal
 
 ![](assets/exodus.png)
+
+### Heavy Axe
+
+`/heavyaxe give` - cuts down a tree in one swing
+
+Crafting Recipe:
+- 2x Stick
+- 3x Heavy Core
+
+![](assets/heavyaxe.png)
 
 ### Helios
 
