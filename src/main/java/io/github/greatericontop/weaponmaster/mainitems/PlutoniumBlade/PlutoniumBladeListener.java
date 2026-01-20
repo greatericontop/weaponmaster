@@ -68,7 +68,7 @@ public class PlutoniumBladeListener implements Listener {
         DAMAGE = plugin.getConfig().getDouble("plutonium.damage", 70.0);
         KNOCKBACK_STRENGTH = plugin.getConfig().getDouble("plutonium.knockback_strength", 9.0);
         CRIT_MULTIPLIER = plugin.getConfig().getDouble("plutonium.crit_multiplier", 1.2);
-        COOLDOWN_TICKS = plugin.getConfig().getLong("plutoniumblade.cooldown_ticks", 400L);
+        COOLDOWN_TICKS = plugin.getConfig().getLong("plutonium.cooldown_ticks", 400L);
     }
 
     @EventHandler(priority = EventPriority.HIGH) // runs nearer to the end to stack bonuses
