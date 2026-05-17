@@ -65,7 +65,7 @@ public class AresItemListener implements Listener {
         if (!arrows.contains(event.getDamager().getUniqueId())) { return; }
         if (event.getEntity() instanceof LivingEntity) {
             LivingEntity target = (LivingEntity) event.getEntity();
-            TrueDamageHelper.dealTrueDamage(target, DAMAGE);
+            TrueDamageHelper.dealTrueDamage(target, DAMAGE, "wm:ares");
             target.getWorld().strikeLightningEffect(target.getLocation());
         }
         arrows.remove(event.getDamager().getUniqueId());

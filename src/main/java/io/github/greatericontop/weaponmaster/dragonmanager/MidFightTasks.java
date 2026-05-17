@@ -216,7 +216,7 @@ public class MidFightTasks {
             Player target = (Player) entity;
             double damage = 7.0 + rnd.nextInt(11); // 7 ~ 17 in true damage
             if (rnd.nextFloat() < 0.5F) { damage += 0.5; } // 7.5 ~ 17.5 uniform
-            TrueDamageHelper.dealTrueDamage(target, damage);
+            TrueDamageHelper.dealTrueDamage(target, damage, "wm:dragon_lightning");
             target.getWorld().strikeLightningEffect(target.getLocation());
             target.sendMessage(String.format("§5WeaponMaster Dragon §7used §3Lightning §7on you for §4%.1f §7damage.", damage));
         }

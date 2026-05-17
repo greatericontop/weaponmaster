@@ -17,6 +17,8 @@ package io.github.greatericontop.weaponmaster.utils;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.weaponmaster.api.TrueDamageEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -24,7 +26,13 @@ import org.bukkit.entity.LivingEntity;
 
 public class TrueDamageHelper {
 
-    public static void dealTrueDamage(LivingEntity target, double amount) {
+    public static void dealTrueDamage(LivingEntity orig_target, double orig_amount, String orig_cause) {
+        TrueDamageEvent event = new TrueDamageEvent(orig_target, orig_amount, orig_cause);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled())  return;
+        LivingEntity target = event.getTarget();
+        double amount = event.getAmount();
+
         double absorptionAmount = target.getAbsorptionAmount();
         double leftAmount = amount - absorptionAmount;
         if (leftAmount <= 0) {

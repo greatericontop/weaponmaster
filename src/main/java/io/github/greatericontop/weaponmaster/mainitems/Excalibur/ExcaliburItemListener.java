@@ -70,7 +70,7 @@ public class ExcaliburItemListener implements Listener {
                     }
                     victim.getWorld().createExplosion(victim.getLocation(), 0.0F);
                     victim.getWorld().spawnParticle(Particle.EXPLOSION, victim.getLocation(), 4);
-                    TrueDamageHelper.dealTrueDamage(victim, DAMAGE); // dealing true damage does NOT require no damage ticks
+                    TrueDamageHelper.dealTrueDamage(victim, DAMAGE, "wm:excalibur"); // dealing true damage does NOT require no damage ticks
                 }
             }.runTaskLater(plugin, 1L);
             cooldowns.put(player.getUniqueId(), false);

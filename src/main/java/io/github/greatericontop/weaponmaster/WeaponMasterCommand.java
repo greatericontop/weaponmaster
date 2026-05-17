@@ -46,7 +46,7 @@ public class WeaponMasterCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length >= 1 && args[0].equals("debug")) {
             Player player = (Player) sender;
-            TrueDamageHelper.dealTrueDamage(player, 30.0);
+            TrueDamageHelper.dealTrueDamage(player, 30.0, "wm:debug_command");
             player.sendMessage("§7I just damaged you for 30 true damage!");
         }
         if (args.length >= 1 && args[0].equals("debug1")) {

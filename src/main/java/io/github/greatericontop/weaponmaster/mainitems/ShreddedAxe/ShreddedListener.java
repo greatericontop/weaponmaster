@@ -126,7 +126,7 @@ public class ShreddedListener implements Listener {
                     zombie.setTarget(victim);
                 }
                 if (ticks >= SURVIVAL_DURATION && ticks % 20 == 0) {
-                    TrueDamageHelper.dealTrueDamage(zombie,4.0);
+                    TrueDamageHelper.dealTrueDamage(zombie,4.0, "wm:shredded_zombie_decay");
                     zombie.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, zombie.getLocation().add(0.0, 0.0, 1.0), 10);
                 }
             }

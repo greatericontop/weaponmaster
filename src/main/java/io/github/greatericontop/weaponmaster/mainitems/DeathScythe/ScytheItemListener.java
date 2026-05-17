@@ -94,7 +94,7 @@ public class ScytheItemListener implements Listener {
 
         LivingEntity target = (LivingEntity) event.getEntity();
         double damageAmount = (target.getHealth() + target.getAbsorptionAmount()) * DAMAGE_RATIO;
-        TrueDamageHelper.dealTrueDamage(target, damageAmount);
+        TrueDamageHelper.dealTrueDamage(target, damageAmount, "wm:scythe");
         int strengthLevel = getStrengthLevel(damageAmount);
         player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 300, strengthLevel, true));
         player.sendMessage(String.format("§3Dealt §4%.1f §3damage. You gained §bStrength §c%d§3 for §b15 §3seconds.", damageAmount, strengthLevel+1));
