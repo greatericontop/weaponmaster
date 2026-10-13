@@ -26,6 +26,12 @@ rng:
 # will not affect their item names/descriptions.
 
 
+anduril:
+  # Every :timer_effect_every: ticks, the effect will be applied for :timer_effect_ticks: ticks.
+  # You can finetune these values to balance performance (smaller values for both decrease latency), or to allow
+  # the effect to remain for a few seconds after the item is not held.
+  timer_effect_ticks: 39
+  timer_effect_every: 5
 ares:
   damage: 2.0
 artemis:

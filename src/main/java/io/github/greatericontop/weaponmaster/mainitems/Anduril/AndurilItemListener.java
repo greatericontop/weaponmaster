@@ -28,11 +28,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class AndurilItemListener implements Listener {
 
+    private final int TIMER_EFFECT_TICKS;
+    private final long TIMER_EFFECT_EVERY;
+
     private final WeaponMasterMain plugin;
     private final Util util;
     public AndurilItemListener(WeaponMasterMain plugin) {
         this.plugin = plugin;
         util = new Util(plugin);
+        TIMER_EFFECT_TICKS = plugin.getConfig().getInt("anduril.timer_effect_ticks", 39);
+        TIMER_EFFECT_EVERY = plugin.getConfig().getLong("anduril.timer_effect_every", 5L);
     }
 
     public void regAndurilRunnable() {
@@ -42,11 +47,11 @@ public class AndurilItemListener implements Listener {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (!player.hasPermission("weaponmaster.anduril.use")) { continue; }
                     if (!(util.checkForAnduril(player.getInventory().getItemInMainHand()))) { continue; }
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 39, 0, true));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 39, 0, true));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, TIMER_EFFECT_TICKS, 0, true));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, TIMER_EFFECT_TICKS, 0, true));
                 }
             }
-        }.runTaskTimer(plugin, 200L, 5L);
+        }.runTaskTimer(plugin, 200L, TIMER_EFFECT_EVERY);
     }
 
 }
